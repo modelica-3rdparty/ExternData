@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<springMass>
+  <system1>
+    <body>
+      <mass>1</mass>
+    </body>
+   <spring>
+     <c>30</c>
+   </spring>
+  </system1>
+  <system2>
+    <body>
+      <mass>1</mass>
+    </body>
+   <spring>
+     <c>30</c>
+   </spring>
+  </system2>
+</springMass>
