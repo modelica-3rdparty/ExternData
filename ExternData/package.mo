@@ -37,7 +37,7 @@ package ExternData "Library to read data from INI or XML files"
 
   package Examples
     extends Modelica.Icons.ExamplesPackage;
-    model XMLTest1 "XML double read test with initial equation"
+    model XMLTest1 "XML Real read test with initial equation"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
@@ -49,7 +49,7 @@ package ExternData "Library to read data from INI or XML files"
       annotation(experiment(StopTime=1));
     end XMLTest1;
 
-    model XMLTest2 "XML double read test with parameter binding"
+    model XMLTest2 "XML Real read test with parameter binding"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
@@ -59,7 +59,7 @@ package ExternData "Library to read data from INI or XML files"
       annotation(experiment(StopTime=1));
     end XMLTest2;
 
-    model XMLTest3 "XML double read test with parameter binding and fixed=false"
+    model XMLTest3 "XML Real read test with parameter binding and fixed=false"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
@@ -69,7 +69,7 @@ package ExternData "Library to read data from INI or XML files"
       annotation(experiment(StopTime=1));
     end XMLTest3;
 
-    model XMLTest4 "XML string read test with initial equation"
+    model XMLTest4 "XML String read test with initial equation"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
@@ -81,7 +81,7 @@ package ExternData "Library to read data from INI or XML files"
       annotation(experiment(StopTime=1));
     end XMLTest4;
 
-    model XMLTest5 "XML integer read test with initial equation"
+    model XMLTest5 "XML Integer read test with initial equation"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
@@ -92,6 +92,54 @@ package ExternData "Library to read data from INI or XML files"
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
       annotation(experiment(StopTime=1));
     end XMLTest5;
+
+    model INITest1 "INI Real read test with initial equation"
+      extends Modelica.Icons.Example;
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = inifile.getReal("gain.k");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end INITest1;
+
+    model INITest2 "INI Real read test from section with initial equation"
+      extends Modelica.Icons.Example;
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = inifile.getReal("gain.k", "set1");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end INITest2;
+
+    model INITest3 "INI String read test from section with initial equation"
+      extends Modelica.Icons.Example;
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set1"));
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end INITest3;
+
+    model INITest4 "INI Integer read test from section with initial equation"
+      extends Modelica.Icons.Example;
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = inifile.getInteger("gain.k", "set1");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end INITest4;
   end Examples;
 
   package Functions
@@ -99,34 +147,46 @@ package ExternData "Library to read data from INI or XML files"
     package INI
       extends Modelica.Icons.Package;
       function getReal
-        extends Interfaces.partialGetReal;
+        extends Modelica.Icons.Function;
+        input String varName;
+        input String section="";
         input Types.ExternINIFile ini;
+        output Real y;
         algorithm
-          y := Internal.getReal(ini=ini, varName=varName);
+          y := Internal.getReal(ini=ini, varName=varName, section=section);
         annotation(Inline=true);
       end getReal;
 
       function getInteger
-        extends Interfaces.partialGetInteger;
+        extends Modelica.Icons.Function;
+        input String varName;
+        input String section="";
         input Types.ExternINIFile ini;
+        output Integer y;
         algorithm
-          y := Internal.getInteger(ini=ini, varName=varName);
+          y := Internal.getInteger(ini=ini, varName=varName, section=section);
         annotation(Inline=true);
       end getInteger;
 
       function getBoolean
-        extends Interfaces.partialGetBoolean;
+        extends Modelica.Icons.Function;
+        input String varName;
+        input String section="";
         input Types.ExternINIFile ini;
+        output Boolean y;
         algorithm
-          y := Internal.getReal(ini=ini, varName=varName) <> 0;
+          y := Internal.getReal(ini=ini, varName=varName, section=section) <> 0;
         annotation(Inline=true);
       end getBoolean;
 
       function getString
-        extends Interfaces.partialGetString;
+        extends Modelica.Icons.Function;
+        input String varName;
+        input String section="";
         input Types.ExternINIFile ini;
+        output String str;
         algorithm
-          str := Internal.getString(ini=ini, varName=varName);
+          str := Internal.getString(ini=ini, varName=varName, section=section);
         annotation(Inline=true);
       end getString;
 
@@ -135,7 +195,8 @@ package ExternData "Library to read data from INI or XML files"
         function getReal
           extends Interfaces.partialGetReal;
           input Types.ExternINIFile ini;
-          external "C" y=ED_getDoubleFromINI(ini, varName) annotation(
+          input String section="";
+          external "C" y=ED_getDoubleFromINI(ini, varName, section) annotation(
             Include="#include \"ED_INIFile.h\"",
             Library = "ED_INIFile");
         end getReal;
@@ -143,7 +204,8 @@ package ExternData "Library to read data from INI or XML files"
         function getInteger
           extends Interfaces.partialGetInteger;
           input Types.ExternINIFile ini;
-          external "C" y=ED_getIntFromINI(ini, varName) annotation(
+          input String section="";
+          external "C" y=ED_getIntFromINI(ini, varName, section) annotation(
             Include="#include \"ED_INIFile.h\"",
             Library = "ED_INIFile");
         end getInteger;
@@ -151,7 +213,8 @@ package ExternData "Library to read data from INI or XML files"
         function getString
           extends Interfaces.partialGetString;
           input Types.ExternINIFile ini;
-          external "C" str=ED_getStringFromINI(ini, varName) annotation(
+          input String section="";
+          external "C" str=ED_getStringFromINI(ini, varName, section) annotation(
             Include="#include \"ED_INIFile.h\"",
             Library = "ED_INIFile");
         end getString;

@@ -1,5 +1,6 @@
-<?xml version="1.0"?>
-<dummyRoot>
+<?xml version="1.0"?> <!-- test.xml -->
+<dummyRoot> <!-- Root name can be any name -->
+  <!-- First set -->
   <set1>
     <gain>
       <k>2</k>
@@ -8,6 +9,7 @@
      <offset>0.1</offset>
    </clock>
   </set1>
+  <!-- Second set -->
   <set2>
     <gain>
       <k>-2</k>

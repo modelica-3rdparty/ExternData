@@ -48,7 +48,7 @@ void ED_destroyXML(void* _xml)
 	}
 }
 
-static char* getValue(XmlNodeRef* root, const char* varName, const char* fileName)
+static char* findValue(XmlNodeRef* root, const char* varName, const char* fileName)
 {
 	char* token = NULL;
 	char* buf = _strdup(varName);
@@ -88,36 +88,36 @@ static char* getValue(XmlNodeRef* root, const char* varName, const char* fileNam
 	return token;
 }
 
-double ED_getDoubleFromXML(void*_xml, const char* varName)
+double ED_getDoubleFromXML(void* _xml, const char* varName)
 {
 	double ret = 0.;
 	XMLFile* xml = (XMLFile*)_xml;
 	if (xml) {
 		XmlNodeRef root = xml->root;
-		char* token = getValue(&root, varName, xml->fileName);
+		char* token = findValue(&root, varName, xml->fileName);
 		if (token) {
 			char* endptr;
 			ret = _strtod_l(token, &endptr, xml->loc);
 			if (*endptr != 0) {
 				ret = 0.;
-				ModelicaFormatError("Error in line %i when reading value %s from file \"%s\"\n",
+				ModelicaFormatError("Error in line %i when reading double value %s from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading value from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i when reading double value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 		}
 	}
 	return ret;
 }
 
-const char* ED_getStringFromXML(void*_xml, const char* varName)
+const char* ED_getStringFromXML(void* _xml, const char* varName)
 {
 	XMLFile* xml = (XMLFile*)_xml;
 	if (xml) {
 		XmlNodeRef root = xml->root;
-		char* token = getValue(&root, varName, xml->fileName);
+		char* token = findValue(&root, varName, xml->fileName);
 		if (token) {
 			char* ret = ModelicaAllocateString(strlen(token));
 			strcpy(ret, token);
@@ -131,24 +131,24 @@ const char* ED_getStringFromXML(void*_xml, const char* varName)
 	return "";
 }
 
-int ED_getIntFromXML(void*_xml, const char* varName)
+int ED_getIntFromXML(void* _xml, const char* varName)
 {
 	int ret = 0;
 	XMLFile* xml = (XMLFile*)_xml;
 	if (xml) {
 		XmlNodeRef root = xml->root;
-		char* token = getValue(&root, varName, xml->fileName);
+		char* token = findValue(&root, varName, xml->fileName);
 		if (token) {
 			char* endptr;
 			ret = (int)_strtol_l(token, &endptr, 10, xml->loc);
 			if (*endptr != 0) {
 				ret = 0;
-				ModelicaFormatError("Error in line %i when reading value %s from file \"%s\"\n",
+				ModelicaFormatError("Error in line %i when reading int value %s from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading value from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i when reading int value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 		}
 	}
