@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<dummyRoot>
+  <set1>
+    <gain>
+      <k>2</k>
+    </gain>
+   <clock>
+     <offset>0.1</offset>
+   </clock>
+  </set1>
+  <set2>
+    <gain>
+      <k>-2</k>
+    </gain>
+   <clock>
+     <offset>-0.1</offset>
+   </clock>
+  </set2>
+</dummyRoot>

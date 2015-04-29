@@ -7,11 +7,9 @@ package ExternData
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
 
-  protected
-    replaceable function getReal = Functions.getReal(
-      xml=xml
-    ) constrainedby Interfaces.partialGetReal;
+    final function getReal = Functions.XML.getReal(xml=xml);
 
+  protected
     inner parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
 
     annotation(defaultComponentName="xmlfile");
@@ -21,36 +19,60 @@ package ExternData
     extends Modelica.Icons.ExamplesPackage;
     model XMLTest1 "XML read test with initial equation"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName="dummy.xml") annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
       Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
       initial equation
-        gain.k = xmlfile.getReal("k");
+        gain.k = xmlfile.getReal("set1.gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-     annotation(experiment(StopTime=1));
+      annotation(experiment(StopTime=1));
     end XMLTest1;
+
+    model XMLTest2 "XML read test with parameter binding"
+      extends Modelica.Icons.Example;
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end XMLTest2;
+
+    model XMLTest3 "XML read test with parameter binding and fixed=false"
+      extends Modelica.Icons.Example;
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end XMLTest3;
   end Examples;
 
   package Functions
     extends Modelica.Icons.Package;
-    function getReal
-      extends Interfaces.partialGetReal;
-      input Types.ExternXMLFile xml;
-      algorithm
-        y := Internal.getReal(xml=xml, varName=varName);
-    end getReal;
-
-    package Internal
-      extends Modelica.Icons.InternalPackage;
+    package XML
+      extends Modelica.Icons.Package;
       function getReal
         extends Interfaces.partialGetReal;
         input Types.ExternXMLFile xml;
-        external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
-          Include="#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "expat"});
+        algorithm
+          y := Internal.getReal(xml=xml, varName=varName);
+        annotation(Inline=true);
       end getReal;
-    end Internal;
+
+      package Internal
+        extends Modelica.Icons.InternalPackage;
+        function getReal
+          extends Interfaces.partialGetReal;
+          input Types.ExternXMLFile xml;
+          external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
+            Include="#include \"ED_XMLFile.h\"",
+            Library = {"ED_XMLFile", "expat"});
+        end getReal;
+      end Internal;
+    end XML;
   end Functions;
 
   package Interfaces
@@ -73,7 +95,7 @@ package ExternData
         Include="#include \"ED_XMLFile.h\"",
         Library = {"ED_XMLFile", "expat"});
       end constructor;
-  
+
       function destructor
         input ExternXMLFile xml;
         external "C" ED_destroyXML(xml) annotation(
