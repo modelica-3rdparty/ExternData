@@ -1,18 +1,19 @@
 within;
-package ExternData
+package ExternData "Library to read data from XML files"
   extends Modelica.Icons.Package;
-  model XMLFile
+  model XMLFile "Read data values from XML file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
 
-    final function getReal = Functions.XML.getReal(xml=xml);
-    final function getInteger = Functions.XML.getInteger(xml=xml);
-    final function getString = Functions.XML.getString(xml=xml);
+    final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
+    final function getInteger = Functions.XML.getInteger(xml=xml) "Get scalar Integer value from XML file";
+    final function getBoolean = Functions.XML.getBoolean(xml=xml) "Get scalar Boolean value from XML file";
+    final function getString = Functions.XML.getString(xml=xml) "Get scalar String value from XML file";
 
-  protected
-    inner parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
+    protected
+      inner parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
 
     annotation(defaultComponentName="xmlfile");
   end XMLFile;
@@ -96,6 +97,14 @@ package ExternData
         annotation(Inline=true);
       end getInteger;
 
+      function getBoolean
+        extends Interfaces.partialGetBoolean;
+        input Types.ExternXMLFile xml;
+        algorithm
+          y := Internal.getReal(xml=xml, varName=varName) <> 0;
+        annotation(Inline=true);
+      end getBoolean;
+
       function getString
         extends Interfaces.partialGetString;
         input Types.ExternXMLFile xml;
@@ -146,6 +155,12 @@ package ExternData
       input String varName;
       output Integer y;
     end partialGetInteger;
+
+    partial function partialGetBoolean
+      extends Modelica.Icons.Function;
+      input String varName;
+      output Boolean y;
+    end partialGetBoolean;
 
     partial function partialGetString
       extends Modelica.Icons.Function;
