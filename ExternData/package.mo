@@ -1,6 +1,23 @@
 within;
-package ExternData "Library to read data from XML files"
+package ExternData "Library to read data from INI or XML files"
   extends Modelica.Icons.Package;
+  model INIFile "Read data values from INI file"
+    parameter String fileName "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="INI files (*.ini)",
+        caption="Open file")));
+
+    final function getReal = Functions.INI.getReal(ini=ini) "Get scalar Real value from INI file";
+    final function getInteger = Functions.INI.getInteger(ini=ini) "Get scalar Integer value from INI file";
+    final function getBoolean = Functions.INI.getBoolean(ini=ini) "Get scalar Boolean value from INI file";
+    final function getString = Functions.INI.getString(ini=ini) "Get scalar String value from INI file";
+
+    protected
+      inner parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName);
+
+    annotation(defaultComponentName="inifile");
+  end INIFile;
+
   model XMLFile "Read data values from XML file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
@@ -79,6 +96,68 @@ package ExternData "Library to read data from XML files"
 
   package Functions
     extends Modelica.Icons.Package;
+    package INI
+      extends Modelica.Icons.Package;
+      function getReal
+        extends Interfaces.partialGetReal;
+        input Types.ExternINIFile ini;
+        algorithm
+          y := Internal.getReal(ini=ini, varName=varName);
+        annotation(Inline=true);
+      end getReal;
+
+      function getInteger
+        extends Interfaces.partialGetInteger;
+        input Types.ExternINIFile ini;
+        algorithm
+          y := Internal.getInteger(ini=ini, varName=varName);
+        annotation(Inline=true);
+      end getInteger;
+
+      function getBoolean
+        extends Interfaces.partialGetBoolean;
+        input Types.ExternINIFile ini;
+        algorithm
+          y := Internal.getReal(ini=ini, varName=varName) <> 0;
+        annotation(Inline=true);
+      end getBoolean;
+
+      function getString
+        extends Interfaces.partialGetString;
+        input Types.ExternINIFile ini;
+        algorithm
+          str := Internal.getString(ini=ini, varName=varName);
+        annotation(Inline=true);
+      end getString;
+
+      package Internal
+        extends Modelica.Icons.InternalPackage;
+        function getReal
+          extends Interfaces.partialGetReal;
+          input Types.ExternINIFile ini;
+          external "C" y=ED_getDoubleFromINI(ini, varName) annotation(
+            Include="#include \"ED_INIFile.h\"",
+            Library = "ED_INIFile");
+        end getReal;
+
+        function getInteger
+          extends Interfaces.partialGetInteger;
+          input Types.ExternINIFile ini;
+          external "C" y=ED_getIntFromINI(ini, varName) annotation(
+            Include="#include \"ED_INIFile.h\"",
+            Library = "ED_INIFile");
+        end getInteger;
+
+        function getString
+          extends Interfaces.partialGetString;
+          input Types.ExternINIFile ini;
+          external "C" str=ED_getStringFromINI(ini, varName) annotation(
+            Include="#include \"ED_INIFile.h\"",
+            Library = "ED_INIFile");
+        end getString;
+      end Internal;
+    end INI;
+
     package XML
       extends Modelica.Icons.Package;
       function getReal
@@ -171,21 +250,39 @@ package ExternData "Library to read data from XML files"
 
   package Types
     extends Modelica.Icons.TypesPackage;
+    class ExternINIFile
+      extends ExternalObject;
+      function constructor
+        input String fileName;
+        output ExternINIFile ini;
+        external "C" ini=ED_createINI(fileName) annotation(
+          Include="#include \"ED_INIFile.h\"",
+          Library = "ED_INIFile");
+      end constructor;
+
+      function destructor
+        input ExternINIFile ini;
+        external "C" ED_destroyINI(ini) annotation(
+          Include="#include \"ED_INIFile.h\"",
+          Library = "ED_INIFile");
+      end destructor;
+    end ExternINIFile;
+
     class ExternXMLFile
       extends ExternalObject;
       function constructor
         input String fileName;
         output ExternXMLFile xml;
         external "C" xml=ED_createXML(fileName) annotation(
-        Include="#include \"ED_XMLFile.h\"",
-        Library = {"ED_XMLFile", "expat"});
+          Include="#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "expat"});
       end constructor;
 
       function destructor
         input ExternXMLFile xml;
         external "C" ED_destroyXML(xml) annotation(
-        Include="#include \"ED_XMLFile.h\"",
-        Library = {"ED_XMLFile", "expat"});
+          Include="#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "expat"});
       end destructor;
     end ExternXMLFile;
   end Types;
