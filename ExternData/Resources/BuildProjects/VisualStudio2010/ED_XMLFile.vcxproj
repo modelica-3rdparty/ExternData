@@ -232,6 +232,9 @@
     <ClInclude Include="..\..\C-Sources\bsxml.h" />
     <ClInclude Include="..\..\Include\ED_XMLFile.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ED_XMLFile.def" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

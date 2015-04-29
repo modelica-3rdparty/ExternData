@@ -111,4 +111,23 @@ double ED_getDoubleFromXML(void*_xml, const char* varName)
 	return ret;
 }
 
+const char* ED_getStringFromXML(void*_xml, const char* varName)
+{
+	XMLFile* xml = (XMLFile*)_xml;
+	if (xml) {
+		XmlNodeRef root = xml->root;
+		char* token = getValue(&root, varName, xml->fileName);
+		if (token) {
+			char* ret = ModelicaAllocateString(strlen(token));
+			strcpy(ret, token);
+			return (const char*)ret;
+		}
+		else {
+			ModelicaFormatError("Error in line %i when reading value from file \"%s\"\n",
+				XmlNode_getLine(root), xml->fileName);
+		}
+	}
+	return "";
+}
+
 #endif

@@ -3,3 +3,4 @@ EXPORTS
     ED_createXML
     ED_destroyXML
     ED_getDoubleFromXML
+	ED_getStringFromXML
