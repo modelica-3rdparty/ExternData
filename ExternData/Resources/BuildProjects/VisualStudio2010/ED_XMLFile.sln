@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_XMLFile", "ED_XMLFile.vcxproj", "{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5AD64683-F022-444E-85AF-288C0E460382} = {5AD64683-F022-444E-85AF-288C0E460382}
@@ -12,6 +12,8 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		LIB Release|Win32 = LIB Release|Win32
+		LIB Release|x64 = LIB Release|x64
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 	EndGlobalSection
@@ -19,12 +21,18 @@ Global
 		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.Debug|Win32.Build.0 = Debug|Win32
 		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.Debug|x64.ActiveCfg = Debug|Win32
+		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.LIB Release|Win32.ActiveCfg = LIB Release|Win32
+		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.LIB Release|Win32.Build.0 = LIB Release|Win32
+		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.LIB Release|x64.ActiveCfg = LIB Release|Win32
 		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.Release|Win32.ActiveCfg = Release|Win32
 		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.Release|Win32.Build.0 = Release|Win32
 		{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}.Release|x64.ActiveCfg = Release|Win32
 		{5AD64683-F022-444E-85AF-288C0E460382}.Debug|Win32.ActiveCfg = Debug|Win32
 		{5AD64683-F022-444E-85AF-288C0E460382}.Debug|Win32.Build.0 = Debug|Win32
 		{5AD64683-F022-444E-85AF-288C0E460382}.Debug|x64.ActiveCfg = Debug|Win32
+		{5AD64683-F022-444E-85AF-288C0E460382}.LIB Release|Win32.ActiveCfg = LIB Release|Win32
+		{5AD64683-F022-444E-85AF-288C0E460382}.LIB Release|Win32.Build.0 = LIB Release|Win32
+		{5AD64683-F022-444E-85AF-288C0E460382}.LIB Release|x64.ActiveCfg = LIB Release|Win32
 		{5AD64683-F022-444E-85AF-288C0E460382}.Release|Win32.ActiveCfg = Release|Win32
 		{5AD64683-F022-444E-85AF-288C0E460382}.Release|Win32.Build.0 = Release|Win32
 		{5AD64683-F022-444E-85AF-288C0E460382}.Release|x64.ActiveCfg = Release|Win32
