@@ -1,3 +1,14 @@
+/* String utility
+ *
+ * Copyright (C) 2014 Borislav Sapundzhiev
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ */
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -60,24 +71,7 @@ void bsstr_delete(bsstr *str)
     free(str->buf);
     free(str);
 }
-/*
-void bsstr_printf(bsstr *str, char* format, ...)
-{
-   va_list ap;
-   int n, size = 100;
-   while (1) {
-      bsstr_realloc(str, size + 1);
-      va_start(ap, format);
-      n = vsnprintf(str->buf, size, format, ap);
-      va_end(ap);
-      if (n > -1 && n < size) {
-         str->lenght = n;
-         return;
-      }
-      size *= 2;
-   }
-}
-*/
+
 void bsstr_printf(bsstr* str, char* format, ...)
 {
     va_list ap;
