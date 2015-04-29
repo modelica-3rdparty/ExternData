@@ -4,3 +4,4 @@ EXPORTS
     ED_destroyXML
     ED_getDoubleFromXML
 	ED_getStringFromXML
+	ED_getIntFromXML

@@ -99,6 +99,7 @@ double ED_getDoubleFromXML(void*_xml, const char* varName)
 			char* endptr;
 			ret = _strtod_l(token, &endptr, xml->loc);
 			if (*endptr != 0) {
+				ret = 0.;
 				ModelicaFormatError("Error in line %i when reading value %s from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -128,6 +129,30 @@ const char* ED_getStringFromXML(void*_xml, const char* varName)
 		}
 	}
 	return "";
+}
+
+int ED_getIntFromXML(void*_xml, const char* varName)
+{
+	int ret = 0;
+	XMLFile* xml = (XMLFile*)_xml;
+	if (xml) {
+		XmlNodeRef root = xml->root;
+		char* token = getValue(&root, varName, xml->fileName);
+		if (token) {
+			char* endptr;
+			ret = (int)_strtol_l(token, &endptr, 10, xml->loc);
+			if (*endptr != 0) {
+				ret = 0;
+				ModelicaFormatError("Error in line %i when reading value %s from file \"%s\"\n",
+					XmlNode_getLine(root), token, xml->fileName);
+			}
+		}
+		else {
+			ModelicaFormatError("Error in line %i when reading value from file \"%s\"\n",
+				XmlNode_getLine(root), xml->fileName);
+		}
+	}
+	return ret;
 }
 
 #endif

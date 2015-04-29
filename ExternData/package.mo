@@ -8,6 +8,7 @@ package ExternData
         caption="Open file")));
 
     final function getReal = Functions.XML.getReal(xml=xml);
+    final function getInteger = Functions.XML.getInteger(xml=xml);
     final function getString = Functions.XML.getString(xml=xml);
 
   protected
@@ -61,6 +62,18 @@ package ExternData
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
       annotation(experiment(StopTime=1));
     end XMLTest4;
+
+    model XMLTest5 "XML integer read test with initial equation"
+      extends Modelica.Icons.Example;
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = xmlfile.getInteger("set1.gain.k");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end XMLTest5;
   end Examples;
 
   package Functions
@@ -74,6 +87,14 @@ package ExternData
           y := Internal.getReal(xml=xml, varName=varName);
         annotation(Inline=true);
       end getReal;
+
+      function getInteger
+        extends Interfaces.partialGetInteger;
+        input Types.ExternXMLFile xml;
+        algorithm
+          y := Internal.getInteger(xml=xml, varName=varName);
+        annotation(Inline=true);
+      end getInteger;
 
       function getString
         extends Interfaces.partialGetString;
@@ -93,6 +114,14 @@ package ExternData
             Library = {"ED_XMLFile", "expat"});
         end getReal;
 
+        function getInteger
+          extends Interfaces.partialGetInteger;
+          input Types.ExternXMLFile xml;
+          external "C" y=ED_getIntFromXML(xml, varName) annotation(
+            Include="#include \"ED_XMLFile.h\"",
+            Library = {"ED_XMLFile", "expat"});
+        end getInteger;
+
         function getString
           extends Interfaces.partialGetString;
           input Types.ExternXMLFile xml;
@@ -111,6 +140,12 @@ package ExternData
       input String varName;
       output Real y;
     end partialGetReal;
+
+    partial function partialGetInteger
+      extends Modelica.Icons.Function;
+      input String varName;
+      output Integer y;
+    end partialGetInteger;
 
     partial function partialGetString
       extends Modelica.Icons.Function;
