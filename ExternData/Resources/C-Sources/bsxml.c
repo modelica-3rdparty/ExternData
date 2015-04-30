@@ -143,7 +143,7 @@ static int XmlAttribute_comparer(const void *a, const void *b)
 String XmlNode_getAttribute(struct XmlNode *node, const String key )
 {
     XmlAttribute a;
-    a.key = key;
+    a.key = (String)key;
     return (String)cpo_array_bsearch(node->m_attributes, &a, XmlAttribute_comparer);
 }
 
@@ -166,7 +166,7 @@ static int XmlNode_comparer(const void *a, const void *b)
 
 XmlNodeRef XmlNode_findChild(struct XmlNode *node, const String tag )
 {
-    XmlNode tmpNode = {NODE_CHILD, 0, tag};
+    XmlNode tmpNode = {NODE_CHILD, 0, (String)tag};
     XmlNodeRef ret = (XmlNodeRef)cpo_array_bsearch(node->m_childs, &tmpNode, XmlNode_comparer);
     return ret;
 }

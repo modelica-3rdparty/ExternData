@@ -25,7 +25,7 @@
 enum { XML_NOK = 0, XML_OK };
 enum { NODE_NONE, NODE_ROOT, NODE_CHILD };
  
-typedef char* String;
+#define String char*
 
 typedef struct XmlNode * XmlNodeRef;
 typedef struct XmlAttribute XmlAttribute;
