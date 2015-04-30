@@ -18,6 +18,9 @@ void* ED_createXML(const char* fileName) {
 	XMLFile* xml = NULL;
 	XmlParser xmlParser;
 	XmlNodeRef root = XmlParser_parse_file(&xmlParser, fileName);
+	if (root == NULL) {
+		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+	}
 	xml = (XMLFile*)malloc(sizeof(XMLFile));
 	if (xml) {
 		xml->fileName = _strdup(fileName);

@@ -36,8 +36,9 @@ enum {JSON_NONE, JSON_ROOT, JSON_OBJ, JSON_ARRAY } eNodeTypes;
 #define JSON_IS_ARRAY(node)\
 	(node->m_type == JSON_ARRAY)
 
-struct JsonNode;
-typedef char * String;
+#define String char*
+
+typedef struct JsonNode * JsonNodeRef;
 typedef struct JsonNode JsonNode;
 typedef struct JsonParser JsonParser;
 typedef struct JsonPair JsonPair;
@@ -58,7 +59,6 @@ struct JsonNode {
 struct JsonParser {
 	JsonNode *m_root;
 	cpo_array_t *m_nodeStack;
-
 };
 
 JsonNode *JsonParser_parse(JsonParser *parser, const char * json);
@@ -73,5 +73,8 @@ String JsonNode_getPairValue(JsonNode *node, const String key);
 void JsonNode_delete(JsonNode *node);
 void JsonNode_deleteTree(JsonNode *root);
 String JsonNode_getJSON(JsonNode *node);
+int	JsonNode_getChildCount(struct JsonNode * node);
+JsonNodeRef JsonNode_getChild(struct JsonNode *node, int i);
+JsonNode * JsonNode_findChild(JsonNode *node, const String name, int type);
 
 #endif //__BSJSON_H

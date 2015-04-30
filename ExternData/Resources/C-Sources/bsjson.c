@@ -14,6 +14,7 @@
 #include <string.h>
 #include <assert.h>
 #include "bsjson.h"
+#include "ModelicaUtilities.h"
 
 #define JSON_STACK_SIZE 32
 
@@ -93,8 +94,13 @@ static int JsonPair_comparer(const void *a, const void *b)
 String JsonNode_getPairValue(JsonNode *node, const String key)
 {
     JsonPair p;
-    p.key = key;
-    return (String)cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
+	void* res;
+    p.key = (String)key;
+	res = cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
+	if (res) {
+		return ((JsonPair*)res)->value;
+	}
+	return NULL;
 }
 
 static int JsonNode_comparer(const void *a, const void *b)
@@ -102,9 +108,20 @@ static int JsonNode_comparer(const void *a, const void *b)
     return strcmp(((JsonNode *) a)->m_name, ((JsonNode *) b)->m_name);
 }
 
+JsonNodeRef JsonNode_getChild(struct JsonNode *node, int i)
+{
+    assert( i >= 0 && i < node->m_childs->num );
+    return cpo_array_get_at(node->m_childs, i);
+}
+
+int	JsonNode_getChildCount(struct JsonNode * node)
+{
+    return node->m_childs->num;
+}
+
 JsonNode * JsonNode_findChild(JsonNode *node, const String name, int type)
 {
-    JsonNode tmpNode = { type, name };
+    JsonNode tmpNode = { type, (String)name };
     JsonNode *ret = (JsonNode*)cpo_array_bsearch(node->m_childs, &tmpNode, JsonNode_comparer);
     return ret;
 }
@@ -441,7 +458,7 @@ static void JsonParser_startElem(struct JsonParser *parser, const String name, i
     }
 
     if (parent) {
-        char *pname = isNullorEmpty(name) ? NULL : name;
+        char *pname = isNullorEmpty(name) ? NULL : (char*)name;
         node = JsonNode_createChild(parent, pname , type);
     } else {
         node = parser->m_root;
@@ -485,12 +502,12 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
     if (JsonParser_internalParse(&pi, json, strlen(json)) == JSON_ERR_NONE) {
         root = parser->m_root;
     } else {
-        printf("TODO: parser error:%d @ %d\n", pi.error , pi.line);
+        ModelicaFormatError("Parser error: %d in line %d\n", pi.error, pi.line);
     }
-    printf("Parsed lines %d\n",  pi.line);
+    //ModelicaFormatMessage("Parsed lines %d\n",  pi.line);
     JsonParser_internalDelete(&pi);
     cpo_array_destroy(parser->m_nodeStack);
-    printf("-end-\n");
+    //ModelicaMessage("-end-\n");
     return root;
 }
 
@@ -515,7 +532,7 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         root = JsonParser_parse(parser,  buffer);
         free(buffer);
     } else {
-        printf("error: cant read %s \n", fileName);
+         ModelicaFormatError("Error: Cannot read \"%s\"\n", fileName);
     }
 
     return root;
