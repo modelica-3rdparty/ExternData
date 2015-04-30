@@ -1,7 +1,7 @@
 LIBRARY ED_JSONFile
 EXPORTS
-    ED_createJSON
-    ED_destroyJSON
-    ED_getDoubleFromJSON
+	ED_createJSON
+	ED_destroyJSON
+	ED_getDoubleFromJSON
 	ED_getStringFromJSON
 	ED_getIntFromJSON

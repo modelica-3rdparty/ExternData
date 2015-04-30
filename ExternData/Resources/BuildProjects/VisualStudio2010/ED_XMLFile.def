@@ -1,7 +1,7 @@
 LIBRARY ED_XMLFile
 EXPORTS
-    ED_createXML
-    ED_destroyXML
-    ED_getDoubleFromXML
+	ED_createXML
+	ED_destroyXML
+	ED_getDoubleFromXML
 	ED_getStringFromXML
 	ED_getIntFromXML
