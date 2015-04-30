@@ -349,4 +349,6 @@ package ExternData "Library to read data from INI or XML files"
       end destructor;
     end ExternXMLFile;
   end Types;
+
+  annotation(uses(Modelica(version="3.2.1")));
 end ExternData;
