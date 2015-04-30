@@ -1,0 +1,12 @@
+{ /* test.json */
+  "dummyRoot": { /* Root name can be any name */
+    "set1": { /* First set */
+      "gain": { "k": "2" },
+      "clock": { "offset": "0.1" }
+    },
+    "set2": { /* Second set */
+      "gain": { "k": "-2" },
+      "clock": { "offset": "-0.1" }
+    }
+  }
+}
