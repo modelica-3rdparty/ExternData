@@ -216,12 +216,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C-Sources\array.c" />
+    <ClCompile Include="..\..\C-Sources\bsjson.c" />
     <ClCompile Include="..\..\C-Sources\bsstr.c" />
     <ClCompile Include="..\..\C-Sources\bsxml.c" />
     <ClCompile Include="..\..\C-Sources\ED_XMLFile.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\array.h" />
+    <ClInclude Include="..\..\C-Sources\bsjson.h" />
     <ClInclude Include="..\..\C-Sources\bsstr.h" />
     <ClInclude Include="..\..\C-Sources\bsxml.h" />
     <ClInclude Include="..\..\Include\ED_XMLFile.h" />

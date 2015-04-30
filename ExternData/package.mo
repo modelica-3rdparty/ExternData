@@ -1,5 +1,5 @@
 within;
-package ExternData "Library to read data from INI or XML files"
+package ExternData "Library to read data from INI, JSON or XML files"
   extends Modelica.Icons.Package;
   model INIFile "Read data values from INI file"
     parameter String fileName "File where external data is stored"
@@ -17,6 +17,23 @@ package ExternData "Library to read data from INI or XML files"
 
     annotation(defaultComponentName="inifile");
   end INIFile;
+
+  model JSONFile "Read data values from JSON file"
+    parameter String fileName "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="JSON files (*.json)",
+        caption="Open file")));
+
+    final function getReal = Functions.JSON.getReal(json=json) "Get scalar Real value from JSON file";
+    final function getInteger = Functions.JSON.getInteger(json=json) "Get scalar Integer value from JSON file";
+    final function getBoolean = Functions.JSON.getBoolean(json=json) "Get scalar Boolean value from JSON file";
+    final function getString = Functions.JSON.getString(json=json) "Get scalar String value from JSON file";
+
+    protected
+      inner parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName);
+
+    annotation(defaultComponentName="jsonfile");
+  end JSONFile;
 
   model XMLFile "Read data values from XML file"
     parameter String fileName "File where external data is stored"
@@ -140,6 +157,42 @@ package ExternData "Library to read data from INI or XML files"
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
       annotation(experiment(StopTime=1));
     end INITest4;
+
+    model JSONTest1 "JSON Real read test with initial equation"
+      extends Modelica.Icons.Example;
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = jsonfile.getReal("set1.gain.k");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end JSONTest1;
+
+    model JSONTest2 "JSON String read test from section with initial equation"
+      extends Modelica.Icons.Example;
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = Modelica.Utilities.Strings.scanReal(jsonfile.getString("set1.gain.k"));
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end JSONTest2;
+
+    model JSONTest3 "JSON Integer read test from section with initial equation"
+      extends Modelica.Icons.Example;
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = jsonfile.getInteger("set2.gain.k");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1));
+    end JSONTest3;
   end Examples;
 
   package Functions
@@ -220,6 +273,68 @@ package ExternData "Library to read data from INI or XML files"
         end getString;
       end Internal;
     end INI;
+
+    package JSON
+      extends Modelica.Icons.Package;
+      function getReal
+        extends Interfaces.partialGetReal;
+        input Types.ExternJSONFile json;
+        algorithm
+          y := Internal.getReal(json=json, varName=varName);
+        annotation(Inline=true);
+      end getReal;
+
+      function getInteger
+        extends Interfaces.partialGetInteger;
+        input Types.ExternJSONFile json;
+        algorithm
+          y := Internal.getInteger(json=json, varName=varName);
+        annotation(Inline=true);
+      end getInteger;
+
+      function getBoolean
+        extends Interfaces.partialGetBoolean;
+        input Types.ExternJSONFile json;
+        algorithm
+          y := Internal.getReal(json=json, varName=varName) <> 0;
+        annotation(Inline=true);
+      end getBoolean;
+
+      function getString
+        extends Interfaces.partialGetString;
+        input Types.ExternJSONFile json;
+        algorithm
+          str := Internal.getString(json=json, varName=varName);
+        annotation(Inline=true);
+      end getString;
+
+      package Internal
+        extends Modelica.Icons.InternalPackage;
+        function getReal
+          extends Interfaces.partialGetReal;
+          input Types.ExternJSONFile json;
+          external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
+            Include="#include \"ED_JSONFile.h\"",
+             Library = {"ED_XMLFile", "expat"});
+        end getReal;
+
+        function getInteger
+          extends Interfaces.partialGetInteger;
+          input Types.ExternJSONFile json;
+          external "C" y=ED_getIntFromJSON(json, varName) annotation(
+            Include="#include \"ED_JSONFile.h\"",
+             Library = {"ED_XMLFile", "expat"});
+        end getInteger;
+
+        function getString
+          extends Interfaces.partialGetString;
+          input Types.ExternJSONFile json;
+          external "C" str=ED_getStringFromJSON(json, varName) annotation(
+            Include="#include \"ED_JSONFile.h\"",
+             Library = {"ED_XMLFile", "expat"});
+        end getString;
+      end Internal;
+    end JSON;
 
     package XML
       extends Modelica.Icons.Package;
@@ -330,6 +445,24 @@ package ExternData "Library to read data from INI or XML files"
           Library = "ED_INIFile");
       end destructor;
     end ExternINIFile;
+
+    class ExternJSONFile
+      extends ExternalObject;
+      function constructor
+        input String fileName;
+        output ExternJSONFile json;
+        external "C" json=ED_createJSON(fileName) annotation(
+          Include="#include \"ED_JSONFile.h\"",
+          Library = {"ED_XMLFile", "expat"});
+      end constructor;
+
+      function destructor
+        input ExternJSONFile json;
+        external "C" ED_destroyJSON(json) annotation(
+          Include="#include \"ED_JSONFile.h\"",
+          Library = {"ED_XMLFile", "expat"});
+      end destructor;
+    end ExternJSONFile;
 
     class ExternXMLFile
       extends ExternalObject;

@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\C-Sources\bsxml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C-Sources\bsjson.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\ED_XMLFile.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\bsstr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\bsjson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
