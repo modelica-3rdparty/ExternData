@@ -1,8 +1,8 @@
 # ExternData
-Modelica library for reading data from INI and XML files.
+Modelica library for reading data from INI, JSON and XML files.
 
 ## Library description
-ExternData is a small utility library to access data stored in INI or XML files.
+ExternData is a small utility library to access data stored in INI, JSON or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
 for convenient model initialization / parametrization.
 
