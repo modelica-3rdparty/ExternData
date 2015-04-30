@@ -5,8 +5,3 @@ EXPORTS
     ED_getDoubleFromXML
 	ED_getStringFromXML
 	ED_getIntFromXML
-    ED_createJSON
-    ED_destroyJSON
-    ED_getDoubleFromJSON
-	ED_getStringFromJSON
-	ED_getIntFromJSON

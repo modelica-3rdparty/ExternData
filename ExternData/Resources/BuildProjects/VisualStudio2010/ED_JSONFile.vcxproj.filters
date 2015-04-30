@@ -15,35 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\C-Sources\ED_XMLFile.c">
+    <ClCompile Include="..\..\C-Sources\ED_JSONFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\array.c">
+    <ClCompile Include="..\..\C-Sources\bsjson.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\C-Sources\bsstr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\bsxml.c">
+    <ClCompile Include="..\..\C-Sources\array.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\ED_XMLFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsxml.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\array.h">
+    <ClInclude Include="..\..\Include\ED_JSONFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\bsstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\bsjson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ED_XMLFile.def">
+    <None Include="ED_JSONFile.def">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

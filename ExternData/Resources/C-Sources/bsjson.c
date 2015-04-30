@@ -94,13 +94,13 @@ static int JsonPair_comparer(const void *a, const void *b)
 String JsonNode_getPairValue(JsonNode *node, const String key)
 {
     JsonPair p;
-	void* res;
+    void* res;
     p.key = (String)key;
-	res = cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
-	if (res) {
-		return ((JsonPair*)res)->value;
-	}
-	return NULL;
+    res = cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
+    if (res) {
+        return ((JsonPair*)res)->value;
+    }
+    return NULL;
 }
 
 static int JsonNode_comparer(const void *a, const void *b)

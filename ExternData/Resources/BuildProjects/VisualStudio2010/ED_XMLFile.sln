@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "expat", "expat.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_INIFile", "ED_INIFile.vcxproj", "{42128041-A1F4-4249-A1F4-BB2530F0423F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_JSONFile", "ED_JSONFile.vcxproj", "{81F23536-BFAC-4819-9D33-BE2513CF3A9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -47,6 +49,18 @@ Global
 		{42128041-A1F4-4249-A1F4-BB2530F0423F}.Release|Win32.ActiveCfg = Release|Win32
 		{42128041-A1F4-4249-A1F4-BB2530F0423F}.Release|Win32.Build.0 = Release|Win32
 		{42128041-A1F4-4249-A1F4-BB2530F0423F}.Release|x64.ActiveCfg = Release|x64
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Debug|Win32.Build.0 = Debug|Win32
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Debug|x64.ActiveCfg = Debug|x64
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Debug|x64.Build.0 = Debug|x64
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.LIB Release|Win32.ActiveCfg = LIB Release|Win32
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.LIB Release|Win32.Build.0 = LIB Release|Win32
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.LIB Release|x64.ActiveCfg = LIB Release|x64
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.LIB Release|x64.Build.0 = LIB Release|x64
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|Win32.ActiveCfg = Release|Win32
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|Win32.Build.0 = Release|Win32
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|x64.ActiveCfg = Release|x64
+		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

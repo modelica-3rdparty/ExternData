@@ -315,7 +315,7 @@ package ExternData "Library to read data from INI, JSON or XML files"
           input Types.ExternJSONFile json;
           external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
             Include="#include \"ED_JSONFile.h\"",
-             Library = {"ED_XMLFile", "expat"});
+            Library = "ED_JSONFile");
         end getReal;
 
         function getInteger
@@ -323,7 +323,7 @@ package ExternData "Library to read data from INI, JSON or XML files"
           input Types.ExternJSONFile json;
           external "C" y=ED_getIntFromJSON(json, varName) annotation(
             Include="#include \"ED_JSONFile.h\"",
-             Library = {"ED_XMLFile", "expat"});
+            Library = "ED_JSONFile");
         end getInteger;
 
         function getString
@@ -331,7 +331,7 @@ package ExternData "Library to read data from INI, JSON or XML files"
           input Types.ExternJSONFile json;
           external "C" str=ED_getStringFromJSON(json, varName) annotation(
             Include="#include \"ED_JSONFile.h\"",
-             Library = {"ED_XMLFile", "expat"});
+            Library = "ED_JSONFile");
         end getString;
       end Internal;
     end JSON;
@@ -453,14 +453,14 @@ package ExternData "Library to read data from INI, JSON or XML files"
         output ExternJSONFile json;
         external "C" json=ED_createJSON(fileName) annotation(
           Include="#include \"ED_JSONFile.h\"",
-          Library = {"ED_XMLFile", "expat"});
+          Library = "ED_JSONFile");
       end constructor;
 
       function destructor
         input ExternJSONFile json;
         external "C" ED_destroyJSON(json) annotation(
           Include="#include \"ED_JSONFile.h\"",
-          Library = {"ED_XMLFile", "expat"});
+          Library = "ED_JSONFile");
       end destructor;
     end ExternJSONFile;
 
