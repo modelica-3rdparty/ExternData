@@ -21,6 +21,9 @@
     <ClCompile Include="..\..\C-Sources\minIni.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C-Sources\array.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\minIni.h">
@@ -30,6 +33,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\ED_INIFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,10 +27,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\C-Sources\array.c" />
     <ClCompile Include="..\..\C-Sources\ED_INIFile.c" />
     <ClCompile Include="..\..\C-Sources\minIni.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\C-Sources\array.h" />
     <ClInclude Include="..\..\C-Sources\minGlue.h" />
     <ClInclude Include="..\..\C-Sources\minIni.h" />
     <ClInclude Include="..\..\Include\ED_INIFile.h" />
