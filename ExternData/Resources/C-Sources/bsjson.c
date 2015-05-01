@@ -60,7 +60,7 @@ JsonNode * JsonNode_Create()
 
 JsonNode * JsonNode_createChild(JsonNode * node, String name, int type)
 {
-    JsonNode * child = cpo_array_push(node->m_childs);
+    JsonNode * child = (JsonNode *)cpo_array_push(node->m_childs);
     child->m_type = type;
     child->m_parent = node;
     child->m_name = (name != NULL) ? strdup(name) : NULL;
@@ -81,7 +81,7 @@ JsonNode * JsonNode_createArray(JsonNode * node, String name)
 
 void JsonNode_setPair(JsonNode * node, const String key, const String value )
 {
-    JsonPair *a = cpo_array_push( node->m_pairs );
+    JsonPair *a = (JsonPair*)cpo_array_push( node->m_pairs );
     a->key =  strdup(key);
     a->value =  strdup(value);
 }
@@ -91,16 +91,21 @@ static int JsonPair_comparer(const void *a, const void *b)
     return strcmp(((JsonPair *) a)->key, ((JsonPair *) b)->key);
 }
 
+JsonPair * JsonNode_findPair(JsonNode *node, const String key)
+{
+    JsonPair p = { key, NULL };
+    JsonPair *ret = (JsonPair*)cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
+    return ret;
+}
+
 String JsonNode_getPairValue(JsonNode *node, const String key)
 {
-    JsonPair p;
-    void* res;
-    p.key = (String)key;
-    res = cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
-    if (res) {
-        return ((JsonPair*)res)->value;
+    String value  = NULL; 
+    JsonPair *pair = JsonNode_findPair(node,  key);
+    if(pair) {
+        value = pair->value;
     }
-    return NULL;
+    return value;
 }
 
 static int JsonNode_comparer(const void *a, const void *b)
@@ -131,7 +136,7 @@ void JsonNode_delete(JsonNode *node)
     int i;
     if (!node) return;
     for (i=0; i < node->m_pairs->num; i++) {
-        JsonPair *pair = cpo_array_get_at(node->m_pairs, i);
+        JsonPair *pair = (JsonPair*)cpo_array_get_at(node->m_pairs, i);
         free(pair->key);
         free(pair->value);
     }
@@ -153,7 +158,7 @@ void JsonNode_deleteTree(JsonNode *root)
     int i;
     if (!root) return;
     for (i=0 ; i < root->m_childs->num; i++) {
-        JsonNode *node = cpo_array_get_at(root->m_childs, i);
+        JsonNode *node = (JsonPair*)cpo_array_get_at(root->m_childs, i);
         JsonNode_deleteTree(node);
     }
 
@@ -180,7 +185,7 @@ String JsonNode_getJSON(JsonNode *node)
     nChilds = node->m_childs->num;
 
     for (i=0; i < nPairs; i++ ) {
-        JsonPair *pair = cpo_array_get_at(node->m_pairs, i);
+        JsonPair *pair = (JsonPair*)cpo_array_get_at(node->m_pairs, i);
 
         if (JSON_IS_ARRAY(node)) {
             bsstr_printf(buff, "\"%s\"", pair->key);
@@ -192,7 +197,7 @@ String JsonNode_getJSON(JsonNode *node)
     }
 
     for (i = 0; i < nChilds; i++) {
-        JsonNode* child = cpo_array_get_at(node->m_childs, i);
+        JsonNode* child = (JsonNode*)cpo_array_get_at(node->m_childs, i);
         String childJSON = JsonNode_getJSON(child);
         bsstr_add(buff, childJSON);
         if (i < nChilds -1) {
