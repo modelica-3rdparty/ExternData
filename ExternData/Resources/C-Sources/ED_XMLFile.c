@@ -158,4 +158,41 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 	return ret;
 }
 
+void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size_t n)
+{
+	XMLFile* xml = (XMLFile*)_xml;
+	if (xml) {
+		XmlNodeRef root = xml->root;
+		char* token = findValue(&root, varName, xml->fileName);
+		if (token) {
+			char* buf = _strdup(token);
+			if (buf) {
+				size_t i;
+				strcpy(buf, token);
+				token = strtok(buf, "[]{},; \t");
+				for (i = 0; i < n; i++) {
+					char* endptr;
+					a[i] = _strtod_l(token, &endptr, xml->loc);
+					if (*endptr != 0) {
+						a[i] = 0.;
+						ModelicaFormatError("Error in line %i when reading double value %s from file \"%s\"\n",
+							XmlNode_getLine(root), token, xml->fileName);
+					}
+					token = strtok(NULL, "[]{},; \t");
+				}
+				free(buf);
+			}
+		}
+		else {
+			ModelicaFormatError("Error in line %i when reading double value from file \"%s\"\n",
+				XmlNode_getLine(root), xml->fileName);
+		}
+	}
+}
+
+void ED_getDoubleArray2DFromXML(void* _xml, const char* varName, double* a, size_t m, size_t n)
+{
+	ED_getDoubleArray1DFromXML(_xml, varName, a, m*n);
+}
+
 #endif

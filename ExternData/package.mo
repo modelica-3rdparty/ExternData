@@ -42,6 +42,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         caption="Open file")));
 
     final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
+    final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file";
+    final function getRealArray2D = Functions.XML.getRealArray2D(xml=xml) "Get 2D Real values from XML file";
     final function getInteger = Functions.XML.getInteger(xml=xml) "Get scalar Integer value from XML file";
     final function getBoolean = Functions.XML.getBoolean(xml=xml) "Get scalar Boolean value from XML file";
     final function getString = Functions.XML.getString(xml=xml) "Get scalar String value from XML file";
@@ -346,6 +348,29 @@ package ExternData "Library to read data from INI, JSON or XML files"
         annotation(Inline=true);
       end getReal;
 
+      function getRealArray1D
+        extends Modelica.Icons.Function;
+        input String varName;
+        input Integer n=1;
+        input Types.ExternXMLFile xml;
+        output Real y[n];
+        algorithm
+          y := Internal.getRealArray1D(xml=xml, varName=varName, n=n);
+        annotation(Inline=true);
+      end getRealArray1D;
+
+      function getRealArray2D
+        extends Modelica.Icons.Function;
+        input String varName;
+        input Integer m=1;
+        input Integer n=1;
+        input Types.ExternXMLFile xml;
+        output Real y[m,n];
+        algorithm
+          y := Internal.getRealArray2D(xml=xml, varName=varName, m=m, n=n);
+        annotation(Inline=true);
+      end getRealArray2D;
+
       function getInteger
         extends Interfaces.partialGetInteger;
         input Types.ExternXMLFile xml;
@@ -379,6 +404,27 @@ package ExternData "Library to read data from INI, JSON or XML files"
             Include="#include \"ED_XMLFile.h\"",
             Library = {"ED_XMLFile", "expat"});
         end getReal;
+
+        function getRealArray2D
+          input String varName;
+          input Integer m=1;
+          input Integer n=1;
+          input Types.ExternXMLFile xml;
+          output Real y[m,n];
+          external "C" ED_getDoubleArray2DFromXML(xml, varName, y, size(y, 1), size(y, 2)) annotation(
+            Include="#include \"ED_XMLFile.h\"",
+            Library = {"ED_XMLFile", "expat"});
+        end getRealArray2D;
+
+        function getRealArray1D
+          input String varName;
+          input Integer n=1;
+          input Types.ExternXMLFile xml;
+          output Real y[n];
+          external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
+            Include="#include \"ED_XMLFile.h\"",
+            Library = {"ED_XMLFile", "expat"});
+        end getRealArray1D;
 
         function getInteger
           extends Interfaces.partialGetInteger;

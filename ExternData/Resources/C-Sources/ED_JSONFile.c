@@ -79,6 +79,7 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 			}
 		}
 		if (token == NULL) {
+			free(buf);
 			ModelicaFormatError("Error in when reading element %s from file \"%s\"\n",
 				varName, fileName);
 		}
