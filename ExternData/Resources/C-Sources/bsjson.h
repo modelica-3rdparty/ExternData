@@ -71,11 +71,13 @@ JsonNode *JsonNode_createArray(JsonNode * node, String name);
 JsonNode * JsonNode_findChild(JsonNode *node, const String name, int type);
 JsonPair * JsonNode_findPair(JsonNode *node, const String key);
 void JsonNode_setPair(JsonNode *node, const String key, const String value );
+int	JsonNode_getChildCount(JsonNode * node);
+int	JsonNode_getPairCount(JsonNode *node);
 String JsonNode_getPairValue(JsonNode *node, const String key);
+int JsonNode_getPairValueInt(JsonNode *node, const String key);
 void JsonNode_delete(JsonNode *node);
 void JsonNode_deleteTree(JsonNode *root);
 String JsonNode_getJSON(JsonNode *node);
-int	JsonNode_getChildCount(struct JsonNode * node);
 JsonNodeRef JsonNode_getChild(struct JsonNode *node, int i);
 
 #endif //__BSJSON_H

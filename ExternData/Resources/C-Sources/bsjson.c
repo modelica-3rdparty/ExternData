@@ -108,6 +108,15 @@ String JsonNode_getPairValue(JsonNode *node, const String key)
     return value;
 }
 
+int JsonNode_getPairValueInt(JsonNode *node, const String key) 
+{
+	String jsonVal = JsonNode_getPairValue(node, key);
+	if(jsonVal) {
+		return atoi(jsonVal);
+	}
+	return 0;
+}
+//TODO: float
 static int JsonNode_comparer(const void *a, const void *b)
 {
     return strcmp(((JsonNode *) a)->m_name, ((JsonNode *) b)->m_name);
@@ -119,16 +128,21 @@ JsonNodeRef JsonNode_getChild(struct JsonNode *node, int i)
     return cpo_array_get_at(node->m_childs, i);
 }
 
-int	JsonNode_getChildCount(struct JsonNode * node)
-{
-    return node->m_childs->num;
-}
-
 JsonNode * JsonNode_findChild(JsonNode *node, const String name, int type)
 {
     JsonNode tmpNode = { type, (String)name };
     JsonNode *ret = (JsonNode*)cpo_array_bsearch(node->m_childs, &tmpNode, JsonNode_comparer);
     return ret;
+}
+
+int	JsonNode_getChildCount(JsonNode *node) 
+{
+	return node->m_childs->num;
+}
+
+int	JsonNode_getPairCount(JsonNode *node) 
+{
+	return node->m_pairs->num;
 }
 
 void JsonNode_delete(JsonNode *node)
@@ -158,7 +172,7 @@ void JsonNode_deleteTree(JsonNode *root)
     int i;
     if (!root) return;
     for (i=0 ; i < root->m_childs->num; i++) {
-        JsonNode *node = (JsonPair*)cpo_array_get_at(root->m_childs, i);
+        JsonNode *node = (JsonNode*)cpo_array_get_at(root->m_childs, i);
         JsonNode_deleteTree(node);
     }
 
@@ -433,10 +447,9 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
         case JSON_TAB:
         case JSON_HEX:	/*TODO:*/
         case JSON_INVALID:
-            //printf("%c", ch);
             if (pi->quote_begin && !pi->is_value) {
                 bsstr_addchr(pi->key, ch);
-            } else if (pi->is_value) {
+            } else if (pi->quote_begin && pi->is_value) {
                 bsstr_addchr(pi->value, ch);
             } else {
                 //printf("[skiped] '%c' [0x%x]\n", ch,ch);
