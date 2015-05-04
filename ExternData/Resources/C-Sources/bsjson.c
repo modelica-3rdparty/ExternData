@@ -93,7 +93,7 @@ static int JsonPair_comparer(const void *a, const void *b)
 
 JsonPair * JsonNode_findPair(JsonNode *node, const String key)
 {
-    JsonPair p = { key, NULL };
+    JsonPair p = { (String)key, NULL };
     JsonPair *ret = (JsonPair*)cpo_array_bsearch(node->m_pairs, &p, JsonPair_comparer);
     return ret;
 }

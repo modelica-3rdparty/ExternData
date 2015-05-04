@@ -154,7 +154,7 @@ int XmlNode_haveAttribute(struct XmlNode *node, const String key )
 
 void XmlNode_setAttribute(struct XmlNode *node, const String key, const String value )
 {
-    XmlAttribute *a = cpo_array_push( node->m_attributes );
+    XmlAttribute *a = (XmlAttribute *)cpo_array_push( node->m_attributes );
     a->key =  strdup(key);
     a->value =  strdup(value);
 }
@@ -173,7 +173,7 @@ XmlNodeRef XmlNode_findChild(struct XmlNode *node, const String tag )
 
 XmlNode * XmlNode_createChild(struct XmlNode *node, const String tag, const String text)
 {
-    XmlNodeRef child = cpo_array_push( node->m_childs );
+    XmlNodeRef child = (XmlNodeRef)cpo_array_push( node->m_childs );
     child->m_tag = strdup( tag );
     child->m_type = NODE_CHILD;
     child->m_content = NULL;
@@ -189,7 +189,7 @@ XmlNode * XmlNode_createChild(struct XmlNode *node, const String tag, const Stri
 
 void XmlNode_addChild(struct XmlNode *node, const XmlNodeRef child )
 {
-    XmlNodeRef ref = cpo_array_push( node->m_childs );
+    XmlNodeRef ref = (XmlNodeRef)cpo_array_push( node->m_childs );
     if (ref) {
         *ref = *child;
         ref->m_parent = node;
@@ -199,7 +199,7 @@ void XmlNode_addChild(struct XmlNode *node, const XmlNodeRef child )
 XmlNodeRef XmlNode_getChild(struct XmlNode *node, int i)
 {
     assert( i >= 0 && i < node->m_childs->num );
-    return cpo_array_get_at(node->m_childs, i);
+    return (XmlNodeRef)cpo_array_get_at(node->m_childs, i);
 }
 
 void XmlNode_getValue(struct XmlNode *node, String *value )
