@@ -15,7 +15,13 @@ package ExternData "Library to read data from INI, JSON or XML files"
     protected
       inner parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName);
 
-    annotation(defaultComponentName="inifile");
+    annotation(
+      defaultComponentName="inifile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="[ini]"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end INIFile;
 
   model JSONFile "Read data values from JSON file"
@@ -32,7 +38,13 @@ package ExternData "Library to read data from INI, JSON or XML files"
     protected
       inner parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName);
 
-    annotation(defaultComponentName="jsonfile");
+    annotation(
+      defaultComponentName="jsonfile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="{\"json\"}"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
   model XMLFile "Read data values from XML file"
@@ -51,7 +63,13 @@ package ExternData "Library to read data from INI, JSON or XML files"
     protected
       inner parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
 
-    annotation(defaultComponentName="xmlfile");
+    annotation(
+      defaultComponentName="xmlfile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
   package Examples
