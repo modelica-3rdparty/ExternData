@@ -144,7 +144,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = inifile.getReal("gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the plain section of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end INITest1;
 
     model INITest2 "INI Real read test from section with initial equation"
@@ -156,7 +157,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = inifile.getReal("gain.k", "set1");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the section [set1] of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end INITest2;
 
     model INITest3 "INI String read test from section with initial equation"
@@ -168,7 +170,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set1"));
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end INITest3;
 
     model INITest4 "INI Integer read test from section with initial equation"
@@ -180,7 +183,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = inifile.getInteger("gain.k", "set1");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end INITest4;
 
     model JSONTest1 "JSON Real read test with initial equation"
@@ -192,7 +196,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = jsonfile.getReal("set1.gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end JSONTest1;
 
     model JSONTest2 "JSON String read test from section with initial equation"
@@ -204,7 +209,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = Modelica.Utilities.Strings.scanReal(jsonfile.getString("set1.gain.k"));
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end JSONTest2;
 
     model JSONTest3 "JSON Integer read test from section with initial equation"
@@ -216,7 +222,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = jsonfile.getInteger("set2.gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end JSONTest3;
   end Examples;
 
