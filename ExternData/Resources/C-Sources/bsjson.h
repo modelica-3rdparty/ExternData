@@ -63,7 +63,7 @@ struct JsonParser {
 
 JsonNode *JsonParser_parse(JsonParser *parser, const char * json);
 JsonNode *JsonParser_parseFile(JsonParser *parser, const char *fileName);
-
+//Create root node
 JsonNode *JsonNode_Create();
 JsonNode *JsonNode_createChild(JsonNode *node, String name, int type);
 JsonNode *JsonNode_createObject(JsonNode * node, String name);
@@ -73,11 +73,12 @@ JsonPair * JsonNode_findPair(JsonNode *node, const String key);
 void JsonNode_setPair(JsonNode *node, const String key, const String value );
 int	JsonNode_getChildCount(JsonNode * node);
 int	JsonNode_getPairCount(JsonNode *node);
+JsonNode * JsonNode_getChild(JsonNode *node, int index);
+JsonPair * JsonNode_getPair(JsonNode *node, int index);
 String JsonNode_getPairValue(JsonNode *node, const String key);
 int JsonNode_getPairValueInt(JsonNode *node, const String key);
 void JsonNode_delete(JsonNode *node);
 void JsonNode_deleteTree(JsonNode *root);
 String JsonNode_getJSON(JsonNode *node);
-JsonNodeRef JsonNode_getChild(struct JsonNode *node, int i);
 
 #endif //__BSJSON_H

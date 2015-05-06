@@ -186,6 +186,7 @@ void cpo_array_qsort(cpo_array_t *a,
 void *cpo_array_bsearch(cpo_array_t *ar, const void *key,
                         int (*compar)(const void *, const void *))
 {
+    cpo_array_qsort(ar, compar);
     return bsearch(key, ar->v, ar->num, ar->elem_size, compar);
 }
 

@@ -29,16 +29,16 @@ bsstr *bsstr_create(const char *data)
     bsstr *str = (bsstr *)malloc(sizeof (bsstr));
     if (!str) return NULL;
     if (data != NULL) {
-        int len = strlen(data);
+        int len = (int)strlen(data);
         str->allocated = (ALLOC_BLOCK > len) ? ALLOC_BLOCK : (len+1);
-        str->buf = calloc(str->allocated, 1);
+        str->buf = (char*)calloc(str->allocated, 1);
         if (str->buf) {
             str->lenght = len;
             strncpy(str->buf, data, len+1);
         }
     } else {
         str->allocated = ALLOC_BLOCK;
-        str->buf = calloc(str->allocated, 1);
+        str->buf = (char*)calloc(str->allocated, 1);
         str->lenght = 0;
     }
 
@@ -48,16 +48,16 @@ bsstr *bsstr_create(const char *data)
 static int bsstr_realloc(bsstr *str , int len)
 {
     if (str->allocated <= len) {
-        char *new;
+        char *_new;
         int new_size = str->allocated * 2;
 
         if (new_size < len)
             new_size += len;
 
         str->allocated += len + 1;
-        new = realloc(str->buf , new_size +1);
-        if (new) {
-            str->buf = new;
+        _new = (char*)realloc(str->buf , new_size +1);
+        if (_new) {
+            str->buf = _new;
             str->allocated = new_size;
         }
         return str->allocated;
@@ -92,7 +92,7 @@ void bsstr_printf(bsstr* str, char* format, ...)
 
 void bsstr_add(bsstr* str, const char* string)
 {
-    int len = strlen(string);
+    int len = (int)strlen(string);
     bsstr_add_size(str, string, len);
 }
 
@@ -115,7 +115,7 @@ void bsstr_add_size(bsstr* str, const char* string, int len)
 
 char *bsstr_get_copy(bsstr* str)
 {
-    char* result = malloc(str->allocated +1);
+    char* result = (char*)malloc(str->allocated +1);
     if (!result) return NULL;
     strncpy(result, str->buf, str->lenght);
     result[str->lenght] = '\0';
@@ -131,7 +131,7 @@ char *bsstr_get_buf(bsstr* str)
 {
     char* result = str->buf;
     str->allocated = ALLOC_BLOCK;
-    str->buf = calloc(str->allocated, 1);
+    str->buf = (char*)calloc(str->allocated, 1);
     str->lenght = 0;
     return result;
 }
