@@ -83,7 +83,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = xmlfile.getReal("set1.gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end XMLTest1;
 
     model XMLTest2 "XML Real read test with parameter binding"
@@ -93,7 +94,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
       Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
     end XMLTest2;
 
     model XMLTest3 "XML Real read test with parameter binding and fixed=false"
@@ -103,7 +105,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
       Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding. In comparison with <a href=\"modelica://ExternData.Examples.XMLTest2\">XMLTest2</a> <code>gain.k.fixed</code> is set to <code>false</code>.</p><p>This is non-standard Modelica but works in SimulationX though.</p></html>"));
     end XMLTest3;
 
     model XMLTest4 "XML String read test with initial equation"
@@ -115,7 +118,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = Modelica.Utilities.Strings.scanReal(xmlfile.getString("set1.gain.k"));
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end XMLTest4;
 
     model XMLTest5 "XML Integer read test with initial equation"
@@ -127,7 +131,8 @@ package ExternData "Library to read data from INI, JSON or XML files"
         gain.k = xmlfile.getInteger("set1.gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text");
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XMLTest5;
 
     model INITest1 "INI Real read test with initial equation"
