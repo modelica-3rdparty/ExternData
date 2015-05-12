@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_INIFile", "ED_INIFile.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_JSONFile", "ED_JSONFile.vcxproj", "{81F23536-BFAC-4819-9D33-BE2513CF3A9E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_XLSFile", "ED_XLSFile.vcxproj", "{C93082DA-1029-4773-8A57-CBE7702ECC4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,6 +63,18 @@ Global
 		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|Win32.Build.0 = Release|Win32
 		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|x64.ActiveCfg = Release|x64
 		{81F23536-BFAC-4819-9D33-BE2513CF3A9E}.Release|x64.Build.0 = Release|x64
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Debug|Win32.Build.0 = Debug|Win32
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Debug|x64.ActiveCfg = Debug|x64
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Debug|x64.Build.0 = Debug|x64
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.LIB Release|Win32.ActiveCfg = LIB Release|Win32
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.LIB Release|Win32.Build.0 = LIB Release|Win32
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.LIB Release|x64.ActiveCfg = LIB Release|x64
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.LIB Release|x64.Build.0 = LIB Release|x64
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Release|Win32.ActiveCfg = Release|Win32
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Release|Win32.Build.0 = Release|Win32
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Release|x64.ActiveCfg = Release|x64
+		{C93082DA-1029-4773-8A57-CBE7702ECC4F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

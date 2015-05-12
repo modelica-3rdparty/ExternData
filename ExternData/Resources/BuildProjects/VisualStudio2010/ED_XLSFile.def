@@ -1,0 +1,7 @@
+LIBRARY ED_XLSFile
+EXPORTS
+	ED_createXLS
+	ED_destroyXLS
+	ED_getDoubleFromXLS
+	ED_getStringFromXLS
+	ED_getIntFromXLS

@@ -47,6 +47,27 @@ package ExternData "Library to read data from INI, JSON or XML files"
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
+  model XLSFile "Read data values from XLS file"
+    parameter String fileName "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="Excel files (*.xls)",
+        caption="Open file")));
+    parameter String encoding="UTF-8" "Encoding";
+
+    final function getReal = Functions.XLS.getReal(xls=xls) "Get scalar Real value from XLS file";
+
+    protected
+      inner parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding);
+
+    annotation(
+      defaultComponentName="xlsfile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="xls"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+  end XLSFile;
+
   model XMLFile "Read data values from XML file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
@@ -74,6 +95,19 @@ package ExternData "Library to read data from INI, JSON or XML files"
 
   package Examples
     extends Modelica.Icons.ExamplesPackage;
+    model XLSTest1 "XLS Real read test with initial equation"
+      extends Modelica.Icons.Example;
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = xlsfile.getReal("B2");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XLS file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
+    end XLSTest1;
+
     model XMLTest1 "XML Real read test with initial equation"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
@@ -368,6 +402,33 @@ package ExternData "Library to read data from INI, JSON or XML files"
       end Internal;
     end JSON;
 
+    package XLS
+      extends Modelica.Icons.Package;
+      function getReal
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSFile xls;
+        output Real y;
+        algorithm
+          y := Internal.getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
+        annotation(Inline=true);
+      end getReal;
+
+      package Internal
+        extends Modelica.Icons.InternalPackage;
+        function getReal
+          input String cellAddress="A1";
+          input Types.ExternXLSFile xls;
+          input String sheetName="";
+          output Real y;
+          external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName) annotation(
+            Include="#include \"ED_XLSFile.h\"",
+            Library = "ED_XLSFile");
+        end getReal;
+      end Internal;
+    end XLS;
+
     package XML
       extends Modelica.Icons.Package;
       function getReal
@@ -539,6 +600,25 @@ package ExternData "Library to read data from INI, JSON or XML files"
           Library = "ED_JSONFile");
       end destructor;
     end ExternJSONFile;
+
+    class ExternXLSFile
+      extends ExternalObject;
+      function constructor
+        input String fileName;
+        input String encoding="UTF-8";
+        output ExternXLSFile xls;
+        external "C" xls=ED_createXLS(fileName, encoding) annotation(
+          Include="#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
+      end constructor;
+
+      function destructor
+        input ExternXLSFile xls;
+        external "C" ED_destroyXLS(xls) annotation(
+          Include="#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
+      end destructor;
+    end ExternXLSFile;
 
     class ExternXMLFile
       extends ExternalObject;

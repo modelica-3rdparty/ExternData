@@ -1,8 +1,8 @@
 # ExternData
-Modelica library for reading data from INI, JSON and XML files.
+Modelica library for reading data from INI, JSON, XLS and XML files.
 
 ## Library description
-ExternData is a small utility library to access data stored in INI, JSON or XML files.
+ExternData is a small utility library to access data stored in INI, JSON, XLS or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
 for convenient model initialization / parametrization.
 
@@ -17,6 +17,8 @@ James Clark's Expat XML parser library
 Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
 * [minIni](https://github.com/compuphase/minIni) -
 Thiadmer Riemersma's small and portable INI file library with read/write support
+* [libxls](http://sourceforge.net/projects/libxls) -
+David Hoerl's library for parsing Excel files
 
 ## Development and contribution
 * [tbeu](https://github.com/tbeu)
