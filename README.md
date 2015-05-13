@@ -18,7 +18,9 @@ Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
 * [minIni](https://github.com/compuphase/minIni) -
 Thiadmer Riemersma's small and portable INI file library with read/write support
 * [libxls](http://sourceforge.net/projects/libxls) -
-David Hoerl's library for parsing Excel files
+David Hoerl's C library for parsing Excel files
+* [uthash](https://github.com/troydhanson/uthash) -
+Troy D. Hanson's C macros for hash tables and more 
 
 ## Development and contribution
 * [tbeu](https://github.com/tbeu)
