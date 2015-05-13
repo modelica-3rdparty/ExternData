@@ -12,7 +12,7 @@
 #define _BSSTRING_H
 
 #define isNullorEmpty(str)\
-	(str == NULL || !strlen(str)) 
+	(str == NULL || !strlen(str))
 
 #define isAlpha(c)\
 	((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))

@@ -27,26 +27,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\C-Sources\ED_XLSFile.c" />
-    <ClCompile Include="..\..\C-Sources\endian.c" />
-    <ClCompile Include="..\..\C-Sources\ole.c" />
-    <ClCompile Include="..\..\C-Sources\xls.c" />
-    <ClCompile Include="..\..\C-Sources\xlstool.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\config.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\brdb.c.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\brdb.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\endian.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\ole.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\xls.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\xlsstruct.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\xlstool.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\xlstypes.h" />
-    <ClInclude Include="..\..\Include\ED_XLSFile.h" />
+    <ClCompile Include="..\..\C-Sources\ED_XLSFile.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="..\..\C-Sources\libxls\src\endian.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\ole.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\xls.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\xlstool.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_XLSFile.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.c.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\endian.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\ole.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xls.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlsstruct.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstool.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\src\config.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h" />
+    <ClInclude Include="..\..\Include\ED_XLSFile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C93082DA-1029-4773-8A57-CBE7702ECC4F}</ProjectGuid>
@@ -130,7 +133,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;_WINDOWS;_USRDLL;ED_XLSFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,7 +151,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -165,7 +168,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_XLSFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>..\..\C-Sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -182,7 +185,7 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_XLSFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -200,7 +203,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -217,7 +220,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -132,18 +132,18 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section)
 				ret = _strtod_l(pair->value, &endptr, ini->loc);
 				if (*endptr != 0) {
 					ret = 0.;
-					ModelicaFormatError("Error when reading double value %s from file \"%s\"\n",
+					ModelicaFormatError("Error when reading double value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}
 			}
 			else {
-				ModelicaFormatError("Error when reading key %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading key \"%s\" from file \"%s\"\n",
 					varName, ini->fileName);
 			}
 		}
 		else {
 			if (strlen(section) > 0) {
-				ModelicaFormatError("Error when reading section %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
 			}
 			else {
@@ -168,13 +168,13 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 				return (const char*)ret;
 			}
 			else {
-				ModelicaFormatError("Error when reading key %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading key \"%s\" from file \"%s\"\n",
 					varName, ini->fileName);
 			}
 		}
 		else {
 			if (strlen(section) > 0) {
-				ModelicaFormatError("Error when reading section %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
 			}
 			else {
@@ -199,18 +199,18 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
 				ret = (int)_strtol_l(pair->value, &endptr, 10, ini->loc);
 				if (*endptr != 0) {
 					ret = 0;
-					ModelicaFormatError("Error when reading int value %s from file \"%s\"\n",
+					ModelicaFormatError("Error when reading int value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}
 			}
 			else {
-				ModelicaFormatError("Error when reading key %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading key \"%s\" from file \"%s\"\n",
 					varName, ini->fileName);
 			}
 		}
 		else {
 			if (strlen(section) > 0) {
-				ModelicaFormatError("Error when reading section %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
 			}
 			else {

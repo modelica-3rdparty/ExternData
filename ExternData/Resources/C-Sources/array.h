@@ -20,13 +20,13 @@ cpo_array_get_at(cpo_array_t *a, int index);
 void *
 cpo_array_push(cpo_array_t *a);
 
-void * 
+void *
 cpo_array_insert_at(cpo_array_t *a, int index);
 
 void *
 cpo_array_remove(cpo_array_t *a, int index);
 
-void 
+void
 cpo_array_qsort(cpo_array_t *a, int (*cmp_func)(const void *, const void *));
 
 void *cpo_array_bsearch(cpo_array_t *ar, const void *key,
@@ -41,7 +41,7 @@ void * stack_pop_back(cpo_array_t *stack);
 void * stack_push_back(cpo_array_t *stack);
 void * stack_back(cpo_array_t *stack);
 
-int array_cmp_int_asc(const void *a,  const void *b); 
+int array_cmp_int_asc(const void *a,  const void *b);
 int array_cmp_int_dsc(const void *a,  const void *b);
 int array_cmp_str_asc(const void *a,  const void *b);
 int array_cmp_str_dsc(const void *a,  const void *b);

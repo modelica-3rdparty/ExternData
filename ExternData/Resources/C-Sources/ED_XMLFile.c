@@ -80,7 +80,7 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 		}
 		free(buf);
 		if (elementError == 1) {
-			ModelicaFormatError("Error in line %i when reading element %s from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i when reading element \"%s\" from file \"%s\"\n",
 				XmlNode_getLine(*root), varName, fileName);
 		}
 		XmlNode_getValue(*root, &token);
@@ -103,7 +103,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 			ret = _strtod_l(token, &endptr, xml->loc);
 			if (*endptr != 0) {
 				ret = 0.;
-				ModelicaFormatError("Error in line %i when reading double value %s from file \"%s\"\n",
+				ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
 		}
@@ -146,7 +146,7 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 			ret = (int)_strtol_l(token, &endptr, 10, xml->loc);
 			if (*endptr != 0) {
 				ret = 0;
-				ModelicaFormatError("Error in line %i when reading int value %s from file \"%s\"\n",
+				ModelicaFormatError("Error in line %i when reading int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
 		}
@@ -175,7 +175,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 					a[i] = _strtod_l(token, &endptr, xml->loc);
 					if (*endptr != 0) {
 						a[i] = 0.;
-						ModelicaFormatError("Error in line %i when reading double value %s from file \"%s\"\n",
+						ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 							XmlNode_getLine(root), token, xml->fileName);
 					}
 					token = strtok(NULL, "[]{},; \t");

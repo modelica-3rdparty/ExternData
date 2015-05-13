@@ -80,14 +80,14 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 		}
 		if (token == NULL) {
 			free(buf);
-			ModelicaFormatError("Error in when reading element %s from file \"%s\"\n",
+			ModelicaFormatError("Error when reading element \"%s\" from file \"%s\"\n",
 				varName, fileName);
 		}
 		else {
 			token = JsonNode_getPairValue(*root, token);
 			free(buf);
 			if (token == NULL) {
-				ModelicaFormatError("Error in when reading element %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading element \"%s\" from file \"%s\"\n",
 					varName, fileName);
 			}
 		}
@@ -110,12 +110,12 @@ double ED_getDoubleFromJSON(void* _json, const char* varName)
 			ret = _strtod_l(token, &endptr, json->loc);
 			if (*endptr != 0) {
 				ret = 0.;
-				ModelicaFormatError("Error when reading double value %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading double value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading double value from file \"%s\"\n",
+			ModelicaFormatError("Error when reading double value from file \"%s\"\n",
 				json->fileName);
 		}
 	}
@@ -153,7 +153,7 @@ int ED_getIntFromJSON(void* _json, const char* varName)
 			ret = (int)_strtol_l(token, &endptr, 10, json->loc);
 			if (*endptr != 0) {
 				ret = 0;
-				ModelicaFormatError("Error when reading int value %s from file \"%s\"\n",
+				ModelicaFormatError("Error when reading int value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}
 		}

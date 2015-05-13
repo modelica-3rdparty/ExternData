@@ -55,6 +55,9 @@ package ExternData "Library to read data from INI, JSON or XML files"
     parameter String encoding="UTF-8" "Encoding";
 
     final function getReal = Functions.XLS.getReal(xls=xls) "Get scalar Real value from XLS file";
+    final function getInteger = Functions.XLS.getInteger(xls=xls) "Get scalar Integer value from XLS file";
+    final function getBoolean = Functions.XLS.getBoolean(xls=xls) "Get scalar Boolean value from XLS file";
+    final function getString = Functions.XLS.getString(xls=xls) "Get scalar String value from XLS file";
 
     protected
       inner parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding);
@@ -63,8 +66,22 @@ package ExternData "Library to read data from INI, JSON or XML files"
       defaultComponentName="xlsfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
-        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
-        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="xls"),
+        Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{20,70},{-20,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,40},{-80,20}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,10},{-80,-10}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,-20},{-80,-40}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,-50},{-80,-70}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,40},{80,20}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,10},{80,-10}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,-20},{80,-40}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,-50},{80,-70}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,40},{20,20}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,10},{20,-10}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,-20},{20,-40}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,-50},{20,-70}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={0,127,0},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,127,0},extent={{-85,-10},{85,-55}},textString="xls"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSFile;
 
@@ -88,26 +105,13 @@ package ExternData "Library to read data from INI, JSON or XML files"
       defaultComponentName="xmlfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
-        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
-        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid),
+        Text(lineColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
   package Examples
     extends Modelica.Icons.ExamplesPackage;
-    model XLSTest1 "XLS Real read test with initial equation"
-      extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
-      initial equation
-        gain.k = xlsfile.getReal("B2");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XLS file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end XLSTest1;
-
     model XMLTest1 "XML Real read test with initial equation"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
@@ -259,6 +263,58 @@ package ExternData "Library to read data from INI, JSON or XML files"
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end JSONTest3;
+
+    model XLSTest1 "XLS Real read test from default sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = xlsfile.getReal("B2");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first shett of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
+    end XLSTest1;
+
+    model XLSTest2 "XLS Real read test from sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = xlsfile.getReal("B2", "set2");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
+    end XLSTest2;
+
+    model XLSTest3 "XLS String read test from sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"));
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
+    end XLSTest3;
+
+    model XLSTest4 "XLS Integer read test from sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      initial equation
+        gain.k = xlsfile.getInteger("B2", "set1");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
+    end XLSTest4;
   end Examples;
 
   package Functions
@@ -415,9 +471,43 @@ package ExternData "Library to read data from INI, JSON or XML files"
         annotation(Inline=true);
       end getReal;
 
+      function getInteger
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSFile xls;
+        output Integer y;
+        algorithm
+          y := Internal.getInteger(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
+        annotation(Inline=true);
+      end getInteger;
+
+      function getBoolean
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSFile xls;
+        output Boolean y;
+        algorithm
+          y := Internal.getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName) <> 0;
+        annotation(Inline=true);
+      end getBoolean;
+
+      function getString
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSFile xls;
+        output String str;
+        algorithm
+          str := Internal.getString(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
+        annotation(Inline=true);
+      end getString;
+
       package Internal
         extends Modelica.Icons.InternalPackage;
         function getReal
+          extends Modelica.Icons.Function;
           input String cellAddress="A1";
           input Types.ExternXLSFile xls;
           input String sheetName="";
@@ -426,6 +516,28 @@ package ExternData "Library to read data from INI, JSON or XML files"
             Include="#include \"ED_XLSFile.h\"",
             Library = "ED_XLSFile");
         end getReal;
+
+        function getInteger
+          extends Modelica.Icons.Function;
+          input String cellAddress="A1";
+          input Types.ExternXLSFile xls;
+          input String sheetName="";
+          output Integer y;
+          external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName) annotation(
+            Include="#include \"ED_XLSFile.h\"",
+            Library = "ED_XLSFile");
+        end getInteger;
+
+        function getString
+          extends Modelica.Icons.Function;
+          input String cellAddress="A1";
+          input Types.ExternXLSFile xls;
+          input String sheetName="";
+          output String str;
+          external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName) annotation(
+            Include="#include \"ED_XLSFile.h\"",
+            Library = "ED_XLSFile");
+        end getString;
       end Internal;
     end XLS;
 

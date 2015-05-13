@@ -46,15 +46,10 @@ static int cpo_array_preallocate(cpo_array_t *a, int elements)
         newmax = (newmax + 1) * 2;
     }
 
-    newv = malloc(newmax * a->elem_size);
+    newv = realloc(a->v, newmax * a->elem_size);
 
     if (newv == NULL)
         return ENOMEM;
-
-    memcpy(newv, a->v, a->num * a->elem_size);
-
-    if (a->v)
-        free(a->v);
 
     a->v = newv;
     a->max = newmax;

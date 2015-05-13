@@ -8,7 +8,7 @@
  * your option) any later version.
  *
  */
- 
+
 #ifndef __BSXML_H
 #define __BSXML_H
 
@@ -20,11 +20,11 @@
 #undef strdup
 #define strdup	_strdup
 #define snprintf _snprintf
-#endif 
+#endif
 
 enum { XML_NOK = 0, XML_OK };
 enum { NODE_NONE, NODE_ROOT, NODE_CHILD };
- 
+
 #define String char*
 
 typedef struct XmlNode * XmlNodeRef;
@@ -53,12 +53,12 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml );
 String XmlParser_getErrorString(struct XmlParser *parser);
 
 struct XmlNode {
-	//node type	
-	int m_type; 
-	//line of node 
-	int m_line; 
-	//node xml tag 
-	String m_tag; 
+	//node type
+	int m_type;
+	//line of node
+	int m_line;
+	//node xml tag
+	String m_tag;
 	//! Content of XML node.
 	String m_content;
 	//! Parent XML node.
@@ -85,13 +85,13 @@ struct XmlNode {
 	//! Check if attributes with specified key exist.
 	int XmlNode_haveAttribute(struct XmlNode * node, const String key );
 	//! Set new XML Node attribute (or override attribute with same key).
-	void XmlNode_setAttribute(struct XmlNode * node, const String key, const String  value );	
+	void XmlNode_setAttribute(struct XmlNode * node, const String key, const String  value );
 	//! Adds new child node.
 	void XmlNode_addChild(struct XmlNode * node, const XmlNodeRef child );
 
 	//! Get number of child XML nodes.
 	int	XmlNode_getChildCount(struct XmlNode * node);
-	
+
 	//! Get XML Node child nodes.
 	XmlNodeRef XmlNode_getChild(struct XmlNode * node, int i ) ;
 
@@ -132,5 +132,5 @@ struct XmlNode {
 	void XmlNode_setSubNodeValue(struct XmlNode * node, const String tag, const String value );
 	void XmlNode_setSubNodeValueInt(struct XmlNode * node, const String tag, int value );
 	void XmlNode_setSubNodeValueFloat(struct XmlNode * node, const String tag, float value );
-	
+
 #endif // __BSXML_H

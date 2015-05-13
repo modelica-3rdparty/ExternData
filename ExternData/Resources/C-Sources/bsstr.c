@@ -8,7 +8,7 @@
  * your option) any later version.
  *
  */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
