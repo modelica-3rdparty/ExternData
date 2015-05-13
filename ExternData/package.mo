@@ -274,7 +274,7 @@ package ExternData "Library to read data from INI, JSON or XML files"
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first shett of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first sheet of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end XLSTest1;
 
     model XLSTest2 "XLS Real read test from sheet with initial equation"
@@ -300,7 +300,7 @@ package ExternData "Library to read data from INI, JSON or XML files"
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end XLSTest3;
 
     model XLSTest4 "XLS Integer read test from sheet with initial equation"
