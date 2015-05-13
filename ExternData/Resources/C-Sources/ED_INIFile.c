@@ -5,6 +5,7 @@
 #include <string.h>
 #include <locale.h>
 #include "array.h"
+#define INI_BUFFERSIZE 1024
 #include "minIni.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_INIFile.h"
