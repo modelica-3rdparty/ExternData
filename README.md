@@ -1,6 +1,9 @@
 # ExternData
 Modelica library for reading data from INI, JSON, XLS and XML files.
 
+## Build status
+[![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest)
+
 ## Library description
 ExternData is a small utility library to access data stored in INI, JSON, XLS or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
