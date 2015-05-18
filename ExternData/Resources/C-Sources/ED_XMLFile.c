@@ -1,9 +1,12 @@
 #if !defined(ED_XMLFILE_C)
 #define ED_XMLFILE_C
 
-#include <stdlib.h>
+#if !defined(_MSC_VER)
+#define _strdup strdup
+#endif
+
 #include <string.h>
-#include <locale.h>
+#include "ED_locale.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_XMLFile.h"
@@ -11,7 +14,7 @@
 typedef struct {
 	char* fileName;
 	XmlNodeRef root;
-	_locale_t loc;
+	ED_LOCALE_TYPE loc;
 } XMLFile;
 
 void* ED_createXML(const char* fileName) {
@@ -29,7 +32,7 @@ void* ED_createXML(const char* fileName) {
 			xml = NULL;
 			ModelicaError("Memory allocation error\n");
 		}
-		xml->loc = _create_locale(LC_NUMERIC, "C");
+		xml->loc = ED_INIT_LOCALE;
 		xml->root = root;
 	}
 	else {
@@ -46,7 +49,7 @@ void ED_destroyXML(void* _xml)
 			free(xml->fileName);
 		}
 		XmlNode_deleteTree(xml->root);
-		_free_locale(xml->loc);
+		ED_FREE_LOCALE(xml->loc);
 		free(xml);
 	}
 }
@@ -99,10 +102,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token) {
-			char* endptr;
-			ret = _strtod_l(token, &endptr, xml->loc);
-			if (*endptr != 0) {
-				ret = 0.;
+			if (ED_strtod(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -143,9 +143,7 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token) {
 			char* endptr;
-			ret = (int)_strtol_l(token, &endptr, 10, xml->loc);
-			if (*endptr != 0) {
-				ret = 0;
+			if (ED_strtoi(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}

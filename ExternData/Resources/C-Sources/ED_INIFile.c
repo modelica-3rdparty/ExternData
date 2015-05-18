@@ -1,9 +1,12 @@
 #if !defined(ED_INIFILE_C)
 #define ED_INIFILE_C
 
-#include <stdlib.h>
+#if !defined(_MSC_VER)
+#define _strdup strdup
+#endif
+
 #include <string.h>
-#include <locale.h>
+#include "ED_locale.h"
 #include "array.h"
 #define INI_BUFFERSIZE 1024
 #include "minIni.h"
@@ -22,7 +25,7 @@ typedef struct {
 
 typedef struct {
 	char* fileName;
-	_locale_t loc;
+	ED_LOCALE_TYPE loc;
 	cpo_array_t* sections;
 } INIFile;
 
@@ -83,7 +86,7 @@ void* ED_createINI(const char* fileName) {
 			ini = NULL;
 			ModelicaError("Memory allocation error\n");
 		}
-		ini->loc = _create_locale(LC_NUMERIC, "C");
+		ini->loc = ED_INIT_LOCALE;
 	}
 	else {
 		ModelicaError("Memory allocation error\n");
@@ -98,7 +101,7 @@ void ED_destroyINI(void* _ini)
 		if (ini->fileName) {
 			free(ini->fileName);
 		}
-		_free_locale(ini->loc);
+		ED_FREE_LOCALE(ini->loc);
 		if (ini->sections) {
 			int i;
 			for (i = 0; i < ini->sections->num; i++) {
@@ -129,10 +132,7 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section)
 		if (_section) {
 			INIPair* pair = findKey(_section, varName);
 			if (pair) {
-				char* endptr;
-				ret = _strtod_l(pair->value, &endptr, ini->loc);
-				if (*endptr != 0) {
-					ret = 0.;
+				if (ED_strtod(pair->value, ini->loc, &ret)) {
 					ModelicaFormatError("Error when reading double value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}
@@ -196,10 +196,7 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
 		if (_section) {
 			INIPair* pair = findKey(_section, varName);
 			if (pair) {
-				char* endptr;
-				ret = (int)_strtol_l(pair->value, &endptr, 10, ini->loc);
-				if (*endptr != 0) {
-					ret = 0;
+				if (ED_strtoi(pair->value, ini->loc, &ret)) {
 					ModelicaFormatError("Error when reading int value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}

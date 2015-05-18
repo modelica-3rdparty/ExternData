@@ -1,17 +1,20 @@
 #if !defined(ED_XLSFILE_C)
 #define ED_XLSFILE_C
 
-#include <stdlib.h>
+#if !defined(_MSC_VER)
+#define _strdup strdup
+#endif
+
 #include <string.h>
-#include <locale.h>
 #include <ctype.h>
+#include "ED_locale.h"
 #include "ModelicaUtilities.h"
 #include "libxls/xls.h"
 #include "../Include/ED_XLSFile.h"
 #define uthash_fatal(msg) ModelicaFormatMessage("Error: %s\n", msg); break
 #include "uthash.h"
 
-typedef struct SheetShare {
+typedef struct {
 	char* sheetName;
 	xlsWorkSheet* pWS;
 	UT_hash_handle hh; /* Hashable structure */
@@ -19,7 +22,7 @@ typedef struct SheetShare {
 
 typedef struct {
 	char* fileName;
-	_locale_t loc;
+	ED_LOCALE_TYPE loc;
 	xlsWorkBook* pWB;
 	SheetShare* sheets;
 } XLSFile;
@@ -40,7 +43,7 @@ void* ED_createXLS(const char* fileName, const char* encoding)
 			xls = NULL;
 			ModelicaError("Memory allocation error\n");
 		}
-		xls->loc = _create_locale(LC_NUMERIC, "C");
+		xls->loc = ED_INIT_LOCALE;
 		xls->pWB = pWB;
 		xls->sheets = NULL;
 	}
@@ -59,7 +62,7 @@ void ED_destroyXLS(void* _xls)
 		if (xls->fileName) {
 			free(xls->fileName);
 		}
-		_free_locale(xls->loc);
+		ED_FREE_LOCALE(xls->loc);
 		HASH_ITER(hh, xls->sheets, iter, tmp) {
 			free(iter->sheetName);
 			xls_close_WS(iter->pWS);
@@ -85,7 +88,7 @@ static void rc(const char* cellAddr, WORD* row, WORD* col)
 	*row =  rowVal > 0 ? (rowVal - 1) : 0;
 }
 
-static xlsWorkSheet* findSheet(XLSFile* xls, const char** sheetName)
+static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 {
 	SheetShare* iter;
 	xlsWorkSheet* pWS = NULL;
@@ -163,10 +166,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 							(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 					}
 					else { /* Valid formula result */
-						char* endptr;
-						ret = _strtod_l((char*)cell->str, &endptr, xls->loc);
-						if (*endptr != 0) {
-							ret = 0.;
+						if (ED_strtod((char*)cell->str, xls->loc, &ret)) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 								(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 						}
@@ -174,10 +174,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 				}
 			}
 			else if (cell->str != NULL) {
-				char* endptr;
-				ret = _strtod_l((char *)cell->str, &endptr, xls->loc);
-				if (*endptr != 0) {
-					ret = 0.;
+				if (ED_strtod((char*)cell->str, xls->loc, &ret)) {
 					ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 				}
@@ -258,10 +255,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 							(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 					}
 					else { /* Valid formula result */
-						char* endptr;
-						ret = (int)_strtol_l((char*)cell->str, &endptr, 10, xls->loc);
-						if (*endptr != 0) {
-							ret = 0;
+						if (ED_strtoi((char*)cell->str, xls->loc, &ret)) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 								(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 						}
@@ -269,10 +263,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 				}
 			}
 			else if (cell->str != NULL) {
-				char* endptr;
-				ret = (int)_strtol_l((char*)cell->str, &endptr, 10, xls->loc);
-				if (*endptr != 0) {
-					ret = 0;
+				if (ED_strtoi((char*)cell->str, xls->loc, &ret)) {
 					ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 				}
