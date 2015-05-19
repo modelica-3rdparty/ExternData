@@ -25,6 +25,7 @@ XLS_OBJS = \
 
 XML_OBJS = \
 	array.o \
+	bsstr.o \
 	bsxml.o \
 	ED_XMLFile.o
 

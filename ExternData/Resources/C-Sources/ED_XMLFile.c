@@ -168,10 +168,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 				strcpy(buf, token);
 				token = strtok(buf, "[]{},; \t");
 				for (i = 0; i < n; i++) {
-					char* endptr;
-					a[i] = _strtod_l(token, &endptr, xml->loc);
-					if (*endptr != 0) {
-						a[i] = 0.;
+					if (ED_strtod(token, xml->loc, &a[i])) {
 						ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 							XmlNode_getLine(root), token, xml->fileName);
 					}

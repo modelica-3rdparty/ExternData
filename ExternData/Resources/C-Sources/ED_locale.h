@@ -36,7 +36,7 @@ int ED_strtoi(char* token, ED_LOCALE_TYPE loc, int* val)
 #elif defined(__GLIBC__) && defined(__GLIBC_MINOR__) && ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= (2 << 16) + 3)
 #define ED_LOCALE_TYPE locale_t
 #define ED_INIT_LOCALE newlocale(LC_NUMERIC, "C", NULL)
-#define ED_FREE_LOCALE(loc) free_locale(loc)
+#define ED_FREE_LOCALE(loc) freelocale(loc)
 
 int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val)
 {
