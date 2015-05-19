@@ -1,6 +1,10 @@
 #if !defined(ED_XMLFILE_C)
 #define ED_XMLFILE_C
 
+#if defined(__gnu_linux__)
+#define _GNU_SOURCE 1
+#endif
+
 #if !defined(_MSC_VER)
 #define _strdup strdup
 #endif
@@ -28,9 +32,10 @@ void* ED_createXML(const char* fileName) {
 	if (xml != NULL) {
 		xml->fileName = _strdup(fileName);
 		if (xml->fileName == NULL) {
+			XmlNode_deleteTree(root);
 			free(xml);
-			xml = NULL;
 			ModelicaError("Memory allocation error\n");
+			return NULL;
 		}
 		xml->loc = ED_INIT_LOCALE;
 		xml->root = root;
