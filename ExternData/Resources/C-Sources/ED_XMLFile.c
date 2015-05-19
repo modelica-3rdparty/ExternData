@@ -25,7 +25,7 @@ void* ED_createXML(const char* fileName) {
 		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
 	}
 	xml = (XMLFile*)malloc(sizeof(XMLFile));
-	if (xml) {
+	if (xml != NULL) {
 		xml->fileName = _strdup(fileName);
 		if (xml->fileName == NULL) {
 			free(xml);
@@ -44,8 +44,8 @@ void* ED_createXML(const char* fileName) {
 void ED_destroyXML(void* _xml)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
-		if (xml->fileName) {
+	if (xml != NULL) {
+		if (xml->fileName != NULL) {
 			free(xml->fileName);
 		}
 		XmlNode_deleteTree(xml->root);
@@ -58,14 +58,14 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 {
 	char* token = NULL;
 	char* buf = _strdup(varName);
-	if (buf) {
+	if (buf != NULL) {
 		int elementError = 0;
 		strcpy(buf, varName);
 		token = strtok(buf, ".");
 		if (token == NULL) {
 			elementError = 1;
 		}
-		while (token && elementError == 0) {
+		while (token != NULL && elementError == 0) {
 			int i;
 			int foundToken = 0;
 			for (i = 0; i < XmlNode_getChildCount(*root); i++) {
@@ -98,10 +98,10 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 {
 	double ret = 0.;
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
+		if (token != NULL) {
 			if (ED_strtod(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
@@ -118,10 +118,10 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 const char* ED_getStringFromXML(void* _xml, const char* varName)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
+		if (token != NULL) {
 			char* ret = ModelicaAllocateString(strlen(token));
 			strcpy(ret, token);
 			return (const char*)ret;
@@ -138,10 +138,10 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 {
 	int ret = 0;
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
+		if (token != NULL) {
 			if (ED_strtoi(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
@@ -158,12 +158,12 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size_t n)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
+		if (token != NULL) {
 			char* buf = _strdup(token);
-			if (buf) {
+			if (buf != NULL) {
 				size_t i;
 				strcpy(buf, token);
 				token = strtok(buf, "[]{},; \t");

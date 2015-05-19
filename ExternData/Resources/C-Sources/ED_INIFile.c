@@ -57,7 +57,7 @@ static INIPair* findKey(INISection* section, const char* key)
 static int fillValues(const char *section, const char *key, const char *value, const void *userdata)
 {
 	INIFile* ini = (INIFile*)userdata;
-	if (ini) {
+	if (ini != NULL) {
 		INIPair* pair;
 		INISection* _section = findSection(ini, section);
 		if (_section == NULL) {
@@ -75,21 +75,23 @@ static int fillValues(const char *section, const char *key, const char *value, c
 
 void* ED_createINI(const char* fileName) {
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
-	if (ini) {
-		ini->sections = cpo_array_create(1 , sizeof(INISection));
-		if (1 != ini_browse(fillValues, ini, fileName)) {
-			ModelicaFormatError("Error: Cannot read \"%s\"\n", fileName);
-		}
+	if (ini != NULL) {
 		ini->fileName = _strdup(fileName);
 		if (ini->fileName == NULL) {
 			free(ini);
-			ini = NULL;
 			ModelicaError("Memory allocation error\n");
+			return NULL;
+		}
+		ini->sections = cpo_array_create(1 , sizeof(INISection));
+		if (1 != ini_browse(fillValues, ini, fileName)) {
+			ModelicaFormatError("Error: Cannot read \"%s\"\n", fileName);
+			return NULL;
 		}
 		ini->loc = ED_INIT_LOCALE;
 	}
 	else {
 		ModelicaError("Memory allocation error\n");
+		return NULL;
 	}
 	return ini;
 }
@@ -97,17 +99,17 @@ void* ED_createINI(const char* fileName) {
 void ED_destroyINI(void* _ini)
 {
 	INIFile* ini = (INIFile*)_ini;
-	if (ini) {
-		if (ini->fileName) {
+	if (ini != NULL) {
+		if (ini->fileName != NULL) {
 			free(ini->fileName);
 		}
 		ED_FREE_LOCALE(ini->loc);
-		if (ini->sections) {
+		if (ini->sections != NULL) {
 			int i;
 			for (i = 0; i < ini->sections->num; i++) {
 				INISection* section = (INISection*)cpo_array_get_at(ini->sections, i);
 				free(section->name);
-				if (section->pairs) {
+				if (section->pairs != NULL) {
 					int j;
 					for (j = 0; j < section->pairs->num; j++) {
 						INIPair* pair = (INIPair*)cpo_array_get_at(section->pairs, j);
@@ -127,11 +129,11 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section)
 {
 	double ret = 0.;
 	INIFile* ini = (INIFile*)_ini;
-	if (ini) {
+	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
-		if (_section) {
+		if (_section != NULL) {
 			INIPair* pair = findKey(_section, varName);
-			if (pair) {
+			if (pair != NULL) {
 				if (ED_strtod(pair->value, ini->loc, &ret)) {
 					ModelicaFormatError("Error when reading double value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
@@ -159,11 +161,11 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section)
 const char* ED_getStringFromINI(void* _ini, const char* varName, const char* section)
 {
 	INIFile* ini = (INIFile*)_ini;
-	if (ini) {
+	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
-		if (_section) {
+		if (_section != NULL) {
 			INIPair* pair = findKey(_section, varName);
-			if (pair) {
+			if (pair != NULL) {
 				char* ret = ModelicaAllocateString(strlen(pair->value));
 				strcpy(ret, pair->value);
 				return (const char*)ret;
@@ -191,11 +193,11 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
 {
 	int ret = 0;
 	INIFile* ini = (INIFile*)_ini;
-	if (ini) {
+	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
-		if (_section) {
+		if (_section != NULL) {
 			INIPair* pair = findKey(_section, varName);
-			if (pair) {
+			if (pair != NULL) {
 				if (ED_strtoi(pair->value, ini->loc, &ret)) {
 					ModelicaFormatError("Error when reading int value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);

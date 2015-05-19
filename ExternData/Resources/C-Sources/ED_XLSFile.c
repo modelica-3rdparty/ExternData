@@ -31,17 +31,18 @@ void* ED_createXLS(const char* fileName, const char* encoding)
 {
 	XLSFile* xls = NULL;
 	xlsWorkBook* pWB = xls_open(fileName, encoding);
-	if (!pWB) {
+	if (pWB == NULL) {
 		ModelicaFormatError("Cannot open file \"%s\"\n", fileName);
 		return xls;
 	}
 	xls = (XLSFile*)malloc(sizeof(XLSFile));
-	if (xls) {
+	if (xls != NULL) {
 		xls->fileName = _strdup(fileName);
 		if (xls->fileName == NULL) {
+			xls_close(pWB);
 			free(xls);
-			xls = NULL;
 			ModelicaError("Memory allocation error\n");
+			return NULL;
 		}
 		xls->loc = ED_INIT_LOCALE;
 		xls->pWB = pWB;
@@ -49,6 +50,7 @@ void* ED_createXLS(const char* fileName, const char* encoding)
 	}
 	else {
 		ModelicaError("Memory allocation error\n");
+		return NULL;
 	}
 	return xls;
 }
@@ -56,10 +58,10 @@ void* ED_createXLS(const char* fileName, const char* encoding)
 void ED_destroyXLS(void* _xls)
 {
 	XLSFile* xls = (XLSFile*)_xls;
-	if (xls) {
+	if (xls != NULL) {
 		SheetShare* iter;
 		SheetShare* tmp;
-		if (xls->fileName) {
+		if (xls->fileName != NULL) {
 			free(xls->fileName);
 		}
 		ED_FREE_LOCALE(xls->loc);
@@ -140,7 +142,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 {
 	double ret = 0.;
 	XLSFile* xls = (XLSFile*)_xls;
-	if (xls) {
+	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
 		xlsCell* cell;
@@ -191,7 +193,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 {
 	XLSFile* xls = (XLSFile*)_xls;
-	if (xls) {
+	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
 		xlsCell* cell;
@@ -229,7 +231,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 {
 	int ret = 0;
 	XLSFile* xls = (XLSFile*)_xls;
-	if (xls) {
+	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
 		xlsCell* cell;
