@@ -41,6 +41,9 @@
     <ClInclude Include="..\..\C-Sources\bsjson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\ED_locale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_JSONFile.def">

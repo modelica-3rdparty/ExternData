@@ -39,6 +39,7 @@
     <None Include="ED_XLSFile.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.c.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\endian.h" />

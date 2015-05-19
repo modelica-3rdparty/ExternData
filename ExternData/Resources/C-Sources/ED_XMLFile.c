@@ -142,7 +142,6 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token) {
-			char* endptr;
 			if (ED_strtoi(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
