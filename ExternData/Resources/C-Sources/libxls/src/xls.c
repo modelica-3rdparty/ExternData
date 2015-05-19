@@ -30,6 +30,10 @@
  *
  */
 
+#if !defined(_MSC_VER)
+#define _strdup strdup
+#endif
+
 #include "config.h"
 
 #include <stdio.h>
@@ -2174,8 +2178,3 @@ static int finder(uint8_t *buf, uint32_t len, uint16_t pattern)
 #pragma pack(pop)
 
 #endif
-
-
-
-
-
