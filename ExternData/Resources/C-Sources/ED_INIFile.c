@@ -118,8 +118,8 @@ void ED_destroyINI(void* _ini)
 					}
 					cpo_array_destroy(section->pairs);
 				}
-				cpo_array_destroy(ini->sections);
 			}
+			cpo_array_destroy(ini->sections);
 		}
 		free(ini);
 	}
