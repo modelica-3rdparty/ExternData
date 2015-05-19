@@ -2,7 +2,7 @@ CC = gcc
 AR = ar -ru
 RM = rm -f
 
-CFLAGS = -DHAVE_MEMMOVE=1 -O3 -I"libxls/include" -I"expat/lib"
+CFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -O3 -I"libxls/include" -I"expat/lib"
 
 INI_OBJS = \
 	array.o \
