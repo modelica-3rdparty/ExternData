@@ -41,7 +41,9 @@ EXPAT_OBJS = \
 
 ALL_OBJS = $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
 
-all: clean libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
+all: clean libs
+
+libs: libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
 	cp $^ ../Library/$(TARGETDIR)
 
 libED_INIFile.a: $(INI_OBJS)
