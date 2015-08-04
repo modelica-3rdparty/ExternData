@@ -37,7 +37,7 @@ char *bsstr_get_copy(bsstr* str);
 char* bsstr_get_bufref(bsstr* str);
 /* return allocated buffer*/
 char* bsstr_release(bsstr* str);
-int bsstr_lenght(bsstr* str);
+int bsstr_length(bsstr* str);
 void bsstr_clear(bsstr* str);
 
 #endif //_BSSTRING_H

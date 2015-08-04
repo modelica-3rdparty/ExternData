@@ -18,7 +18,7 @@
 
 struct bsstr {
     char *buf;
-    int lenght;
+    int length;
     int allocated;
 };
 
@@ -33,13 +33,13 @@ bsstr *bsstr_create(const char *data)
         str->allocated = (ALLOC_BLOCK > len) ? ALLOC_BLOCK : (len+1);
         str->buf = (char*)calloc(str->allocated, 1);
         if (str->buf) {
-            str->lenght = len;
+            str->length = len;
             strncpy(str->buf, data, len+1);
         }
     } else {
         str->allocated = ALLOC_BLOCK;
         str->buf = (char*)calloc(str->allocated, 1);
-        str->lenght = 0;
+        str->length = 0;
     }
 
     return str;
@@ -76,14 +76,14 @@ void bsstr_printf(bsstr* str, char* format, ...)
 {
     va_list ap;
     int n, size = 100;
-    int end = str->lenght;
+    int end = str->length;
     while (1) {
         bsstr_realloc(str, end + size + 1);
         va_start(ap, format);
         n = vsnprintf(str->buf + end, size, format, ap);
         va_end(ap);
         if (n > -1 && n < size) {
-            str->lenght = end + n;
+            str->length = end + n;
             return;
         }
         size *= 2;
@@ -98,27 +98,27 @@ void bsstr_add(bsstr* str, const char* string)
 
 void bsstr_addchr(bsstr* str, char ch)
 {
-    bsstr_realloc(str, str->lenght + 1);
-    str->buf[str->lenght] = ch;
-    str->lenght++;
-    str->buf[str->lenght] = '\0';
+    bsstr_realloc(str, str->length + 1);
+    str->buf[str->length] = ch;
+    str->length++;
+    str->buf[str->length] = '\0';
 }
 
 void bsstr_add_size(bsstr* str, const char* string, int len)
 {
-    int end = str->lenght;
-    bsstr_realloc(str, str->lenght + len+1);
+    int end = str->length;
+    bsstr_realloc(str, str->length + len+1);
     strncpy(str->buf + end, string, len+1);
-    str->lenght += len;
-    str->buf[str->lenght] = '\0';
+    str->length += len;
+    str->buf[str->length] = '\0';
 }
 
 char *bsstr_get_copy(bsstr* str)
 {
     char* result = (char*)malloc(str->allocated +1);
     if (!result) return NULL;
-    strncpy(result, str->buf, str->lenght);
-    result[str->lenght] = '\0';
+    strncpy(result, str->buf, str->length);
+    result[str->length] = '\0';
     return result;
 }
 
@@ -132,7 +132,7 @@ char *bsstr_get_buf(bsstr* str)
     char* result = str->buf;
     str->allocated = ALLOC_BLOCK;
     str->buf = (char*)calloc(str->allocated, 1);
-    str->lenght = 0;
+    str->length = 0;
     return result;
 }
 
@@ -143,13 +143,13 @@ char* bsstr_release(bsstr* str)
     return result;
 }
 
-int bsstr_lenght(bsstr *str)
+int bsstr_length(bsstr *str)
 {
-    return str->lenght;
+    return str->length;
 }
 
 void bsstr_clear(bsstr* str)
 {
-    str->lenght = 0;
+    str->length = 0;
     str->buf[0] = '\0';
 }

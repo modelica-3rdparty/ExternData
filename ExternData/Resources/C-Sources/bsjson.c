@@ -228,7 +228,7 @@ String JsonNode_getJSON(JsonNode *node)
         String childJSON = JsonNode_getJSON(child);
         bsstr_add(buff, childJSON);
         if (i < nChilds -1) {
-            int len = bsstr_lenght(buff)-1;
+            int len = bsstr_length(buff)-1;
             strncpy(bsstr_get_bufref(buff) + len, ",", 1);
             bsstr_addchr(buff, '\n');
         }
@@ -330,7 +330,7 @@ static int JsonParser_internalData(struct  ParserInternal *pi)
         return JSON_NOK;
     }
 
-    if (bsstr_lenght(pi->key) || bsstr_lenght(pi->value)) {
+    if (bsstr_length(pi->key) || bsstr_length(pi->value)) {
 
         if (pi->elemData) {
             pi->elemData(pi->parser,  bsstr_get_bufref(pi->key), bsstr_get_bufref(pi->value) );
