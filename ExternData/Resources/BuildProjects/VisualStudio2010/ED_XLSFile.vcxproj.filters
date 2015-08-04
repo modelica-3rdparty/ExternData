@@ -73,5 +73,8 @@
     <ClInclude Include="..\..\C-Sources\ED_locale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\uthash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
