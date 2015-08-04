@@ -542,6 +542,20 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
     return root;
 }
 
+static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
+{
+    int i;
+    for(i = 0; i < size; i++)
+    {
+        if((buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#') {
+            while(buff[i] != '\n' && buff[i] != 0){
+                buff[i] = ' ';
+                i++;
+            }
+        }
+    }
+}
+
 JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName)
 {
     char * buffer = 0;
@@ -560,6 +574,7 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         }
 
         fclose (f);
+        JsonParser_stripCommentsFromBuffer(buffer, length);
         root = JsonParser_parse(parser,  buffer);
         free(buffer);
     } else {

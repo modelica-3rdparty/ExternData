@@ -1,9 +1,16 @@
 #if !defined(ED_JSONFILE_C)
 #define ED_JSONFILE_C
 
-#include <stdlib.h>
+#if defined(__gnu_linux__)
+#define _GNU_SOURCE 1
+#endif
+
+#if !defined(_MSC_VER)
+#define _strdup strdup
+#endif
+
 #include <string.h>
-#include <locale.h>
+#include "ED_locale.h"
 #include "bsjson.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_JSONFile.h"
@@ -11,7 +18,7 @@
 typedef struct {
 	char* fileName;
 	JsonNodeRef root;
-	_locale_t loc;
+	ED_LOCALE_TYPE loc;
 } JSONFile;
 
 void* ED_createJSON(const char* fileName) {
@@ -20,20 +27,23 @@ void* ED_createJSON(const char* fileName) {
 	JsonNodeRef root = JsonParser_parseFile(&jsonParser, fileName);
 	if (root == NULL) {
 		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+		return json;
 	}
 	json = (JSONFile*)malloc(sizeof(JSONFile));
-	if (json) {
+	if (json != NULL) {
 		json->fileName = _strdup(fileName);
 		if (json->fileName == NULL) {
+			JsonNode_deleteTree(root);
 			free(json);
-			json = NULL;
 			ModelicaError("Memory allocation error\n");
+			return NULL;
 		}
-		json->loc = _create_locale(LC_NUMERIC, "C");
+		json->loc = ED_INIT_LOCALE;
 		json->root = root;
 	}
 	else {
 		ModelicaError("Memory allocation error\n");
+		return NULL;
 	}
 	return json;
 }
@@ -41,12 +51,12 @@ void* ED_createJSON(const char* fileName) {
 void ED_destroyJSON(void* _json)
 {
 	JSONFile* json = (JSONFile*)_json;
-	if (json) {
-		if (json->fileName) {
+	if (json != NULL) {
+		if (json->fileName != NULL) {
 			free(json->fileName);
 		}
 		JsonNode_deleteTree(json->root);
-		_free_locale(json->loc);
+		ED_FREE_LOCALE(json->loc);
 		free(json);
 	}
 }
@@ -55,19 +65,19 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 {
 	char* token = NULL;
 	char* buf = _strdup(varName);
-	if (buf) {
+	if (buf != NULL) {
 		int elementError = 0;
 		strcpy(buf, varName);
 		token = strtok(buf, ".");
 		if (token == NULL) {
 			elementError = 1;
 		}
-		while (token && elementError == 0) {
+		while (token != NULL && elementError == 0) {
 			int i;
 			int foundToken = 0;
 			for (i = 0; i < JsonNode_getChildCount(*root); i++) {
 				JsonNodeRef child = JsonNode_findChild(*root, token, JSON_OBJ);
-				if (child) {
+				if (child != NULL) {
 					*root = child;
 					token = strtok(NULL, ".");
 					foundToken = 1;
@@ -102,14 +112,11 @@ double ED_getDoubleFromJSON(void* _json, const char* varName)
 {
 	double ret = 0.;
 	JSONFile* json = (JSONFile*)_json;
-	if (json) {
+	if (json != NULL) {
 		JsonNodeRef root = json->root;
 		char* token = findValue(&root, varName, json->fileName);
-		if (token) {
-			char* endptr;
-			ret = _strtod_l(token, &endptr, json->loc);
-			if (*endptr != 0) {
-				ret = 0.;
+		if (token != NULL) {
+			if (ED_strtod(token, json->loc, &ret)) {
 				ModelicaFormatError("Error when reading double value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}
@@ -125,10 +132,10 @@ double ED_getDoubleFromJSON(void* _json, const char* varName)
 const char* ED_getStringFromJSON(void* _json, const char* varName)
 {
 	JSONFile* json = (JSONFile*)_json;
-	if (json) {
+	if (json != NULL) {
 		JsonNodeRef root = json->root;
 		char* token = findValue(&root, varName, json->fileName);
-		if (token) {
+		if (token != NULL) {
 			char* ret = ModelicaAllocateString(strlen(token));
 			strcpy(ret, token);
 			return (const char*)ret;
@@ -145,14 +152,11 @@ int ED_getIntFromJSON(void* _json, const char* varName)
 {
 	int ret = 0;
 	JSONFile* json = (JSONFile*)_json;
-	if (json) {
+	if (json != NULL) {
 		JsonNodeRef root = json->root;
 		char* token = findValue(&root, varName, json->fileName);
-		if (token) {
-			char* endptr;
-			ret = (int)_strtol_l(token, &endptr, 10, json->loc);
-			if (*endptr != 0) {
-				ret = 0;
+		if (token != NULL) {
+			if (ED_strtoi(token, json->loc, &ret)) {
 				ModelicaFormatError("Error when reading int value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}

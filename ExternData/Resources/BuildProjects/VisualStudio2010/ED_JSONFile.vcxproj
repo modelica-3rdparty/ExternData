@@ -36,6 +36,7 @@
     <ClInclude Include="..\..\C-Sources\array.h" />
     <ClInclude Include="..\..\C-Sources\bsjson.h" />
     <ClInclude Include="..\..\C-Sources\bsstr.h" />
+    <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\Include\ED_JSONFile.h" />
   </ItemGroup>
   <ItemGroup>

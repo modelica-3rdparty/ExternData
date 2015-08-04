@@ -1,9 +1,16 @@
 #if !defined(ED_XMLFILE_C)
 #define ED_XMLFILE_C
 
-#include <stdlib.h>
+#if defined(__gnu_linux__)
+#define _GNU_SOURCE 1
+#endif
+
+#if !defined(_MSC_VER)
+#define _strdup strdup
+#endif
+
 #include <string.h>
-#include <locale.h>
+#include "ED_locale.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_XMLFile.h"
@@ -11,7 +18,7 @@
 typedef struct {
 	char* fileName;
 	XmlNodeRef root;
-	_locale_t loc;
+	ED_LOCALE_TYPE loc;
 } XMLFile;
 
 void* ED_createXML(const char* fileName) {
@@ -22,14 +29,15 @@ void* ED_createXML(const char* fileName) {
 		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
 	}
 	xml = (XMLFile*)malloc(sizeof(XMLFile));
-	if (xml) {
+	if (xml != NULL) {
 		xml->fileName = _strdup(fileName);
 		if (xml->fileName == NULL) {
+			XmlNode_deleteTree(root);
 			free(xml);
-			xml = NULL;
 			ModelicaError("Memory allocation error\n");
+			return NULL;
 		}
-		xml->loc = _create_locale(LC_NUMERIC, "C");
+		xml->loc = ED_INIT_LOCALE;
 		xml->root = root;
 	}
 	else {
@@ -41,12 +49,12 @@ void* ED_createXML(const char* fileName) {
 void ED_destroyXML(void* _xml)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
-		if (xml->fileName) {
+	if (xml != NULL) {
+		if (xml->fileName != NULL) {
 			free(xml->fileName);
 		}
 		XmlNode_deleteTree(xml->root);
-		_free_locale(xml->loc);
+		ED_FREE_LOCALE(xml->loc);
 		free(xml);
 	}
 }
@@ -55,14 +63,14 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 {
 	char* token = NULL;
 	char* buf = _strdup(varName);
-	if (buf) {
+	if (buf != NULL) {
 		int elementError = 0;
 		strcpy(buf, varName);
 		token = strtok(buf, ".");
 		if (token == NULL) {
 			elementError = 1;
 		}
-		while (token && elementError == 0) {
+		while (token != NULL && elementError == 0) {
 			int i;
 			int foundToken = 0;
 			for (i = 0; i < XmlNode_getChildCount(*root); i++) {
@@ -95,14 +103,11 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 {
 	double ret = 0.;
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
-			char* endptr;
-			ret = _strtod_l(token, &endptr, xml->loc);
-			if (*endptr != 0) {
-				ret = 0.;
+		if (token != NULL) {
+			if (ED_strtod(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -118,10 +123,10 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 const char* ED_getStringFromXML(void* _xml, const char* varName)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
+		if (token != NULL) {
 			char* ret = ModelicaAllocateString(strlen(token));
 			strcpy(ret, token);
 			return (const char*)ret;
@@ -138,14 +143,11 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 {
 	int ret = 0;
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
-			char* endptr;
-			ret = (int)_strtol_l(token, &endptr, 10, xml->loc);
-			if (*endptr != 0) {
-				ret = 0;
+		if (token != NULL) {
+			if (ED_strtoi(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i when reading int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -161,20 +163,17 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size_t n)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	if (xml) {
+	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
-		if (token) {
+		if (token != NULL) {
 			char* buf = _strdup(token);
-			if (buf) {
+			if (buf != NULL) {
 				size_t i;
 				strcpy(buf, token);
 				token = strtok(buf, "[]{},; \t");
 				for (i = 0; i < n; i++) {
-					char* endptr;
-					a[i] = _strtod_l(token, &endptr, xml->loc);
-					if (*endptr != 0) {
-						a[i] = 0.;
+					if (ED_strtod(token, xml->loc, &a[i])) {
 						ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
 							XmlNode_getLine(root), token, xml->fileName);
 					}

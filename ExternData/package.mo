@@ -1,5 +1,5 @@
 within;
-package ExternData "Library to read data from INI, JSON or XML files"
+package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
   extends Modelica.Icons.Package;
   model INIFile "Read data values from INI file"
     parameter String fileName "File where external data is stored"
@@ -751,5 +751,6 @@ package ExternData "Library to read data from INI, JSON or XML files"
     end ExternXMLFile;
   end Types;
 
-  annotation(uses(Modelica(version="3.2.1")));
+  annotation(uses(Modelica(version="3.2.1")), version="1.0.3-dev",
+    Documentation(info="<html><p>Library <b>ExternData</b> is a Modelica utility library for reading data from INI, JSON, Excel XLS and XML files.</p>"));
 end ExternData;
