@@ -238,7 +238,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end JSONTest1;
 
-    model JSONTest2 "JSON String read test from section with initial equation"
+    model JSONTest2 "JSON String read test with initial equation"
       extends Modelica.Icons.Example;
       JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
@@ -251,7 +251,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end JSONTest2;
 
-    model JSONTest3 "JSON Integer read test from section with initial equation"
+    model JSONTest3 "JSON Integer read test with initial equation"
       extends Modelica.Icons.Example;
       JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
