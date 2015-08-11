@@ -774,5 +774,5 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
   end Types;
 
   annotation(uses(Modelica(version="3.2.1")), version="1.0.4-dev",
-    Documentation(info="<html><p>Library <b>ExternData</b> is a Modelica utility library for reading data from INI, JSON, Excel XLS and XML files.</p>"));
+    Documentation(info="<html><p>Library <b>ExternData</b> is a Modelica utility library for reading data from INI, JSON, Excel XLS and XML files.</p></html>"));
 end ExternData;
