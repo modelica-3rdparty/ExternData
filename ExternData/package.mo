@@ -173,6 +173,14 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XMLTest5;
 
+    model XMLTest6 "XML Real 2D array read test with parameter binding"
+      extends Modelica.Icons.Example;
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
+      Modelica.Blocks.Sources.CombiTimeTable table(table=xmlfile.getRealArray2D("table", 3, 2)) annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>Reads the table array parameter <code>table</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
+    end XMLTest6;
+
     model INITest1 "INI Real read test with initial equation"
       extends Modelica.Icons.Example;
       INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
