@@ -1,4 +1,3 @@
-LIBRARY ED_XLSFile
 EXPORTS
 	ED_createXLS
 	ED_destroyXLS

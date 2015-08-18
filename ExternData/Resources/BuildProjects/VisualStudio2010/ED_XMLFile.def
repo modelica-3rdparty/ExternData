@@ -1,4 +1,3 @@
-LIBRARY ED_XMLFile
 EXPORTS
 	ED_createXML
 	ED_destroyXML

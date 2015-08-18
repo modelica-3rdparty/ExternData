@@ -1,4 +1,3 @@
-LIBRARY ED_JSONFile
 EXPORTS
 	ED_createJSON
 	ED_destroyJSON

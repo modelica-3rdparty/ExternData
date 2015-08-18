@@ -1,4 +1,3 @@
-LIBRARY ED_INIFile
 EXPORTS
 	ED_createINI
 	ED_destroyINI
