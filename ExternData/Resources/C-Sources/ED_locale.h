@@ -96,6 +96,7 @@ int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val)
 			ret = 2;
 		}
 	}
+	return ret;
 }
 
 int ED_strtoi(char* token, ED_LOCALE_TYPE loc, int* val)
