@@ -65,7 +65,6 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 	char* buf = _strdup(varName);
 	if (buf != NULL) {
 		int elementError = 0;
-		strcpy(buf, varName);
 		token = strtok(buf, ".");
 		if (token == NULL) {
 			elementError = 1;
@@ -170,7 +169,6 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 			char* buf = _strdup(token);
 			if (buf != NULL) {
 				size_t i;
-				strcpy(buf, token);
 				token = strtok(buf, "[]{},; \t");
 				for (i = 0; i < n; i++) {
 					if (ED_strtod(token, xml->loc, &a[i])) {

@@ -67,7 +67,6 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 	char* buf = _strdup(varName);
 	if (buf != NULL) {
 		int elementError = 0;
-		strcpy(buf, varName);
 		token = strtok(buf, ".");
 		if (token == NULL) {
 			elementError = 1;
