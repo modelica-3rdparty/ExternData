@@ -171,11 +171,19 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 				size_t i;
 				token = strtok(buf, "[]{},; \t");
 				for (i = 0; i < n; i++) {
-					if (ED_strtod(token, xml->loc, &a[i])) {
-						ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
-							XmlNode_getLine(root), token, xml->fileName);
+					if (token != NULL) {
+						if (ED_strtod(token, xml->loc, &a[i])) {
+							ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
+								XmlNode_getLine(root), token, xml->fileName);
+						}
+						token = strtok(NULL, "[]{},; \t");
 					}
-					token = strtok(NULL, "[]{},; \t");
+					else {
+						free(buf);
+						ModelicaFormatError("Error in line %i when reading %lu double values from file \"%s\"\n",
+							XmlNode_getLine(root), (unsigned long)n, xml->fileName);
+						return;
+					}
 				}
 				free(buf);
 			}
