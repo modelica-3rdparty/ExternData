@@ -20,6 +20,8 @@
 #undef strdup
 #define strdup _strdup
 #define snprintf _snprintf
+#elif defined(__MINGW32__)
+#define strcasecmp _stricmp
 #endif
 
 enum { XML_NOK = 0, XML_OK };
