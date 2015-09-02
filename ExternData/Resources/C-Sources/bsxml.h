@@ -15,10 +15,10 @@
 #include "expat.h"
 #include "array.h"
 
-#ifdef _WIN32
+#if defined(_MSC_VER)
 #define strcasecmp _stricmp
 #undef strdup
-#define strdup	_strdup
+#define strdup _strdup
 #define snprintf _snprintf
 #endif
 

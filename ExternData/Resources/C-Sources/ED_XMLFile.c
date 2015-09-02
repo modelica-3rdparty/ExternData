@@ -5,11 +5,10 @@
 #define _GNU_SOURCE 1
 #endif
 
-#if !defined(_MSC_VER)
-#define _strdup strdup
-#endif
-
 #include <string.h>
+#if defined(_MSC_VER)
+#define strdup _strdup
+#endif
 #include "ED_locale.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
@@ -30,7 +29,7 @@ void* ED_createXML(const char* fileName) {
 	}
 	xml = (XMLFile*)malloc(sizeof(XMLFile));
 	if (xml != NULL) {
-		xml->fileName = _strdup(fileName);
+		xml->fileName = strdup(fileName);
 		if (xml->fileName == NULL) {
 			XmlNode_deleteTree(root);
 			free(xml);
@@ -62,7 +61,7 @@ void ED_destroyXML(void* _xml)
 static char* findValue(XmlNodeRef* root, const char* varName, const char* fileName)
 {
 	char* token = NULL;
-	char* buf = _strdup(varName);
+	char* buf = strdup(varName);
 	if (buf != NULL) {
 		int elementError = 0;
 		token = strtok(buf, ".");
@@ -166,7 +165,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token != NULL) {
-			char* buf = _strdup(token);
+			char* buf = strdup(token);
 			if (buf != NULL) {
 				size_t i;
 				token = strtok(buf, "[]{},; \t");

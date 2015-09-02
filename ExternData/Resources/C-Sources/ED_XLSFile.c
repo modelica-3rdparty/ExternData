@@ -5,11 +5,10 @@
 #define _GNU_SOURCE 1
 #endif
 
-#if !defined(_MSC_VER)
-#define _strdup strdup
-#endif
-
 #include <string.h>
+#if defined(_MSC_VER)
+#define strdup _strdup
+#endif
 #include <ctype.h>
 #include "ED_locale.h"
 #include "ModelicaUtilities.h"
@@ -41,7 +40,7 @@ void* ED_createXLS(const char* fileName, const char* encoding)
 	}
 	xls = (XLSFile*)malloc(sizeof(XLSFile));
 	if (xls != NULL) {
-		xls->fileName = _strdup(fileName);
+		xls->fileName = strdup(fileName);
 		if (xls->fileName == NULL) {
 			xls_close(pWB);
 			free(xls);
@@ -134,7 +133,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 		xls_parseWorkSheet(pWS);
 		iter = malloc(sizeof(SheetShare));
 		if (iter) {
-			iter->sheetName = _strdup(*sheetName);
+			iter->sheetName = strdup(*sheetName);
 			iter->pWS = pWS;
 			HASH_ADD_KEYPTR(hh, xls->sheets, *sheetName, strlen(*sheetName), iter);
 		}

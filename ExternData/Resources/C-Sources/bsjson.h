@@ -15,7 +15,8 @@
 #include "array.h"
 #include "bsstr.h"
 
-#ifdef _WIN32
+#if defined(_MSC_VER)
+#undef strdup
 #define strdup _strdup
 #endif
 

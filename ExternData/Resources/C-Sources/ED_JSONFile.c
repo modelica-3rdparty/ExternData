@@ -5,11 +5,10 @@
 #define _GNU_SOURCE 1
 #endif
 
-#if !defined(_MSC_VER)
-#define _strdup strdup
-#endif
-
 #include <string.h>
+#if defined(_MSC_VER)
+#define strdup _strdup
+#endif
 #include "ED_locale.h"
 #include "bsjson.h"
 #include "ModelicaUtilities.h"
@@ -31,7 +30,7 @@ void* ED_createJSON(const char* fileName) {
 	}
 	json = (JSONFile*)malloc(sizeof(JSONFile));
 	if (json != NULL) {
-		json->fileName = _strdup(fileName);
+		json->fileName = strdup(fileName);
 		if (json->fileName == NULL) {
 			JsonNode_deleteTree(root);
 			free(json);
@@ -64,7 +63,7 @@ void ED_destroyJSON(void* _json)
 static char* findValue(JsonNodeRef* root, const char* varName, const char* fileName)
 {
 	char* token = NULL;
-	char* buf = _strdup(varName);
+	char* buf = strdup(varName);
 	if (buf != NULL) {
 		int elementError = 0;
 		token = strtok(buf, ".");

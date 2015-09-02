@@ -5,11 +5,10 @@
 #define _GNU_SOURCE 1
 #endif
 
-#if !defined(_MSC_VER)
-#define _strdup strdup
-#endif
-
 #include <string.h>
+#if defined(_MSC_VER)
+#define strdup _strdup
+#endif
 #include "ED_locale.h"
 #include "array.h"
 #define INI_BUFFERSIZE 1024
@@ -66,12 +65,12 @@ static int fillValues(const char *section, const char *key, const char *value, c
 		INISection* _section = findSection(ini, section);
 		if (_section == NULL) {
 			_section = (INISection*)cpo_array_push(ini->sections);
-			_section->name = (section != NULL) ? _strdup(section) : NULL;
+			_section->name = (section != NULL) ? strdup(section) : NULL;
 			_section->pairs = cpo_array_create(4 , sizeof(INIPair));
 		}
 		pair = (INIPair*)cpo_array_push(_section->pairs);
-		pair->key = (key != NULL) ? _strdup(key) : NULL;
-		pair->value = (value != NULL) ? _strdup(value) : NULL;
+		pair->key = (key != NULL) ? strdup(key) : NULL;
+		pair->value = (value != NULL) ? strdup(value) : NULL;
 		return 1;
 	}
 	return 0;
@@ -80,7 +79,7 @@ static int fillValues(const char *section, const char *key, const char *value, c
 void* ED_createINI(const char* fileName) {
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
 	if (ini != NULL) {
-		ini->fileName = _strdup(fileName);
+		ini->fileName = strdup(fileName);
 		if (ini->fileName == NULL) {
 			free(ini);
 			ModelicaError("Memory allocation error\n");
