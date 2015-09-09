@@ -167,29 +167,72 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 		if (token != NULL) {
 			char* buf = strdup(token);
 			if (buf != NULL) {
-				size_t i;
+				size_t i = 0;
+				size_t iSibling = 0;
+				XmlNodeRef parent = XmlNode_getParent(root);
+				int nSiblings = XmlNode_getChildCount(parent);
+				int line = XmlNode_getLine(root);
 				token = strtok(buf, "[]{},; \t");
-				for (i = 0; i < n; i++) {
+				while (i < n) {
 					if (token != NULL) {
-						if (ED_strtod(token, xml->loc, &a[i])) {
+						if (ED_strtod(token, xml->loc, &a[i++])) {
+							free(buf);
 							ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
-								XmlNode_getLine(root), token, xml->fileName);
+								line, token, xml->fileName);
+							return;
 						}
 						token = strtok(NULL, "[]{},; \t");
 					}
+					else if (++iSibling < nSiblings) {
+						/* Retrieve value from next sibling */
+						XmlNodeRef child = XmlNode_getChild(parent, iSibling);
+						if (XmlNode_isTag(child, XmlNode_getTag(root))) {
+							XmlNode_getValue(child, &token);
+							line = XmlNode_getLine(child);
+							free(buf);
+							if (token != NULL) {
+								buf = strdup(token);
+								if (buf != NULL) {
+									token = strtok(buf, "[]{},; \t");
+								}
+								else {
+									ModelicaError("Memory allocation error\n");
+									return;
+								}
+							}
+							else {
+								ModelicaFormatError("Error in line %i when reading empty (%lu.) element \"%s\" from file \"%s\"\n",
+									line, (unsigned long)(iSibling + 1), varName, xml->fileName);
+								return;
+							}
+						}
+					}
 					else {
+						/* Error: token is NULL and no (more) siblings */
 						free(buf);
-						ModelicaFormatError("Error in line %i when reading %lu double values from file \"%s\"\n",
-							XmlNode_getLine(root), (unsigned long)n, xml->fileName);
+						if (nSiblings > 1) {
+							XmlNodeRef child;
+							child = XmlNode_getChild(parent, nSiblings - 1);
+							line = XmlNode_getLine(child);
+							ModelicaFormatError("Error after line %i when reading nonexistent (%lu.) element \"%s\" from file \"%s\"\n",
+								line, (unsigned long)(iSibling + 1), varName, xml->fileName);
+						}
+						else {
+							ModelicaFormatError("Error in line %i when reading %lu double values from file \"%s\"\n",
+								line, (unsigned long)n, xml->fileName);
+						}
 						return;
 					}
 				}
 				free(buf);
 			}
+			else {
+				ModelicaError("Memory allocation error\n");
+			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading double value from file \"%s\"\n",
-				XmlNode_getLine(root), xml->fileName);
+			ModelicaFormatError("Error in line %i when reading empty element \"%s\" from file \"%s\"\n",
+				XmlNode_getLine(root), varName, xml->fileName);
 		}
 	}
 }
