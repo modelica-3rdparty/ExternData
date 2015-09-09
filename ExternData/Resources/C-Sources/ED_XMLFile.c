@@ -164,6 +164,11 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
+		while (token == NULL && XmlNode_getChildCount(root) > 0) {
+			/* Try children if root is empty */
+			root = XmlNode_getChild(root, 0);
+			XmlNode_getValue(root, &token);
+		}
 		if (token != NULL) {
 			char* buf = strdup(token);
 			if (buf != NULL) {
