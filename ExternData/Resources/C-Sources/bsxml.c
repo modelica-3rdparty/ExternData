@@ -483,7 +483,7 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
     XML_SetElementHandler(parser->m_parser, startElement, endElement );
     XML_SetCharacterDataHandler(parser->m_parser, characterData );
 
-    if (XML_Parse(parser->m_parser, xml, strlen(xml), XML_TRUE)) {
+    if (XML_Parse(parser->m_parser, xml, (int)strlen(xml), XML_TRUE)) {
         root = parser->m_root;
     } else {
         ModelicaFormatError("XML Error: %s at line %ld\n",

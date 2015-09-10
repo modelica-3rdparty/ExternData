@@ -173,7 +173,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 			char* buf = strdup(token);
 			if (buf != NULL) {
 				size_t i = 0;
-				size_t iSibling = 0;
+				int iSibling = 0;
 				XmlNodeRef parent = XmlNode_getParent(root);
 				int nSiblings = XmlNode_getChildCount(parent);
 				int line = XmlNode_getLine(root);
