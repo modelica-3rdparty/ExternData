@@ -173,13 +173,25 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XMLTest5;
 
-    model XMLTest6 "XML Real 2D array read test with parameter binding"
+    model XMLTest6 "XML Real 2D array read test with parameter binding for table array of CombiTimeTable"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
       Modelica.Blocks.Sources.CombiTimeTable table(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       annotation(experiment(StopTime=1),
         Documentation(info="<html><p>Reads the table array parameter <code>table1</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
     end XMLTest6;
+
+    model XMLTest7 "XML Real 2D array read test with with initial equation and parameter binding for table array of CombiTimeTable"
+      extends Modelica.Icons.Example;
+      final parameter Integer m = 3 "Number of rows";
+      final parameter Integer n = 2 "Number of columns";
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Sources.CombiTimeTable table(table(fixed=fill(false, m, n))=fill(0., m, n)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      initial equation
+        table.table = xmlfile.getRealArray2D("table3", m, n);
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the table array parameter <code>table3</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block in an initial equation.</p><p>This works in Dymola with an unavoidable translation warning: The following parameters with fixed = false also have a binding: table.table = fill(0.0, m, n)</p></html>"));
+    end XMLTest7;
 
     model INITest1 "INI Real read test with initial equation"
       extends Modelica.Icons.Example;
