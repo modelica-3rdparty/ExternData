@@ -578,7 +578,7 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         root = JsonParser_parse(parser,  buffer);
         free(buffer);
     } else {
-         ModelicaFormatError("Error: Cannot read \"%s\"\n", fileName);
+         ModelicaFormatError("Cannot read \"%s\"\n", fileName);
     }
 
     return root;

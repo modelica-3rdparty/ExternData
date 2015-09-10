@@ -516,7 +516,7 @@ XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName
         root = XmlParser_parse(parser,  buffer);
         free(buffer);
     } else {
-        ModelicaFormatError("Error: Cannot read \"%s\"\n", fileName);
+        ModelicaFormatError("Cannot read \"%s\"\n", fileName);
     }
 
     return root;

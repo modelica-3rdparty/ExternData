@@ -88,14 +88,14 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 		}
 		if (token == NULL) {
 			free(buf);
-			ModelicaFormatError("Error when reading element \"%s\" from file \"%s\"\n",
+			ModelicaFormatError("Cannot read element \"%s\" from file \"%s\"\n",
 				varName, fileName);
 		}
 		else {
 			token = JsonNode_getPairValue(*root, token);
 			free(buf);
 			if (token == NULL) {
-				ModelicaFormatError("Error when reading element \"%s\" from file \"%s\"\n",
+				ModelicaFormatError("Cannot read element \"%s\" from file \"%s\"\n",
 					varName, fileName);
 			}
 		}
@@ -115,12 +115,12 @@ double ED_getDoubleFromJSON(void* _json, const char* varName)
 		char* token = findValue(&root, varName, json->fileName);
 		if (token != NULL) {
 			if (ED_strtod(token, json->loc, &ret)) {
-				ModelicaFormatError("Error when reading double value \"%s\" from file \"%s\"\n",
+				ModelicaFormatError("Cannot read double value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error when reading double value from file \"%s\"\n",
+			ModelicaFormatError("Cannot read double value from file \"%s\"\n",
 				json->fileName);
 		}
 	}
@@ -139,7 +139,7 @@ const char* ED_getStringFromJSON(void* _json, const char* varName)
 			return (const char*)ret;
 		}
 		else {
-			ModelicaFormatError("Error when reading value from file \"%s\"\n",
+			ModelicaFormatError("Cannot read value from file \"%s\"\n",
 				json->fileName);
 		}
 	}
@@ -155,12 +155,12 @@ int ED_getIntFromJSON(void* _json, const char* varName)
 		char* token = findValue(&root, varName, json->fileName);
 		if (token != NULL) {
 			if (ED_strtoi(token, json->loc, &ret)) {
-				ModelicaFormatError("Error when reading int value \"%s\" from file \"%s\"\n",
+				ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error when reading int value from file \"%s\"\n",
+			ModelicaFormatError("Cannot read int value from file \"%s\"\n",
 				json->fileName);
 		}
 	}
