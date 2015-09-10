@@ -5,18 +5,43 @@
     <gain>
       <k>2</k>
     </gain>
-   <clock>
-     <offset>0.1</offset>
-   </clock>
+    <clock>
+      <offset>0.1</offset>
+    </clock>
   </set1>
   <!-- Second set -->
   <set2>
     <gain>
       <k>-2</k>
     </gain>
-   <clock>
-     <offset>-0.1</offset>
-   </clock>
+    <clock>
+      <offset>-0.1</offset>
+    </clock>
   </set2>
-  <table>[0,0;0.5,0.25;1,1]</table>
+  <!-- Array format examples -->
+  <table1>[0,0;0.5,0.25;1,1]</table1>
+  <table2>{{0,0},{0.5,0.25},{1,1}}</table2>
+  <table3>
+    <row>0,0</row> <!-- Child name can be any name -->
+    <row>0.5,0.25</row>
+    <row>1,1</row>
+  </table3>
+  <table4>
+    <val>0</val> <!-- Child name can be any name -->
+    <val>0</val>
+    <val>0.5</val>
+    <val>0.25</val>
+    <val>1</val>
+    <val>1</val>
+  </table4>
+  <table5>
+    <values> <!-- Child name can be any name -->
+      <val>0</val> <!-- Grandchild name can be any name -->
+      <val>0</val>
+      <val>0.5</val>
+      <val>0.25</val>
+      <val>1</val>
+      <val>1</val>
+    </values>
+  </table5>
 </dummyRoot>
