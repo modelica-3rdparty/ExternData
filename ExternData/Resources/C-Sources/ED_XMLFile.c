@@ -86,7 +86,7 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 		}
 		free(buf);
 		if (elementError == 1) {
-			ModelicaFormatError("Error in line %i when reading element \"%s\" from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i: Cannot find element \"%s\" in file \"%s\"\n",
 				XmlNode_getLine(*root), varName, fileName);
 		}
 		XmlNode_getValue(*root, &token);
@@ -106,12 +106,12 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token != NULL) {
 			if (ED_strtod(token, xml->loc, &ret)) {
-				ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
+				ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading double value from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i: Cannot read double value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 		}
 	}
@@ -130,7 +130,7 @@ const char* ED_getStringFromXML(void* _xml, const char* varName)
 			return (const char*)ret;
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading value from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i: Cannot read value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 		}
 	}
@@ -146,12 +146,12 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token != NULL) {
 			if (ED_strtoi(token, xml->loc, &ret)) {
-				ModelicaFormatError("Error in line %i when reading int value \"%s\" from file \"%s\"\n",
+				ModelicaFormatError("Error in line %i: Cannot read int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading int value from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i: Cannot read int value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 		}
 	}
@@ -163,11 +163,13 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 	XMLFile* xml = (XMLFile*)_xml;
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
+		int iLevel = 0;
 		char* token = findValue(&root, varName, xml->fileName);
 		while (token == NULL && XmlNode_getChildCount(root) > 0) {
 			/* Try children if root is empty */
 			root = XmlNode_getChild(root, 0);
 			XmlNode_getValue(root, &token);
+			iLevel++;
 		}
 		if (token != NULL) {
 			char* buf = strdup(token);
@@ -177,12 +179,13 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 				XmlNodeRef parent = XmlNode_getParent(root);
 				int nSiblings = XmlNode_getChildCount(parent);
 				int line = XmlNode_getLine(root);
+				int foundSibling = 0;
 				token = strtok(buf, "[]{},; \t");
 				while (i < n) {
 					if (token != NULL) {
 						if (ED_strtod(token, xml->loc, &a[i++])) {
 							free(buf);
-							ModelicaFormatError("Error in line %i when reading double value \"%s\" from file \"%s\"\n",
+							ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" from file \"%s\"\n",
 								line, token, xml->fileName);
 							return;
 						}
@@ -191,7 +194,8 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 					else if (++iSibling < nSiblings) {
 						/* Retrieve value from next sibling */
 						XmlNodeRef child = XmlNode_getChild(parent, iSibling);
-						if (XmlNode_isTag(child, XmlNode_getTag(root))) {
+						if (child != root && XmlNode_isTag(child, XmlNode_getTag(root))) {
+							foundSibling = 1;
 							XmlNode_getValue(child, &token);
 							line = XmlNode_getLine(child);
 							free(buf);
@@ -206,7 +210,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 								}
 							}
 							else {
-								ModelicaFormatError("Error in line %i when reading empty (%lu.) element \"%s\" from file \"%s\"\n",
+								ModelicaFormatError("Error in line %: Cannot read empty (%lu.) element \"%s\" from file \"%s\"\n",
 									line, (unsigned long)(iSibling + 1), varName, xml->fileName);
 								return;
 							}
@@ -215,16 +219,19 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 					else {
 						/* Error: token is NULL and no (more) siblings */
 						free(buf);
-						if (nSiblings > 1) {
-							XmlNodeRef child;
-							child = XmlNode_getChild(parent, nSiblings - 1);
+						if (foundSibling != 0) {
+							const char* levels[] = {"", "child ", "grandchild ", "great-grandchild ", "great-great-grandchild "};
+							XmlNodeRef child = XmlNode_getChild(parent, nSiblings - 1);
 							line = XmlNode_getLine(child);
-							ModelicaFormatError("Error after line %i when reading nonexistent (%lu.) element \"%s\" from file \"%s\"\n",
-								line, (unsigned long)(iSibling + 1), varName, xml->fileName);
+							if (iLevel > 4) {
+								iLevel = 0;
+							}
+							ModelicaFormatError("Error after line %i: Cannot find %lu. %selement of \"%s\" in file \"%s\"\n",
+								line, (unsigned long)(iSibling + 1), levels[iLevel], varName, xml->fileName);
 						}
 						else {
-							ModelicaFormatError("Error in line %i when reading %lu double values from file \"%s\"\n",
-								line, (unsigned long)n, xml->fileName);
+							ModelicaFormatError("Error in line %i: Cannot read %lu double values of \"%s\" from file \"%s\"\n",
+								line, (unsigned long)n, varName, xml->fileName);
 						}
 						return;
 					}
@@ -236,7 +243,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 			}
 		}
 		else {
-			ModelicaFormatError("Error in line %i when reading empty element \"%s\" from file \"%s\"\n",
+			ModelicaFormatError("Error in line %i: Cannot read empty element \"%s\" in file \"%s\"\n",
 				XmlNode_getLine(root), varName, xml->fileName);
 		}
 	}
