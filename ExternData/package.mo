@@ -114,212 +114,212 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
     extends Modelica.Icons.ExamplesPackage;
     model XMLTest1 "XML Real read test with initial equation"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = xmlfile.getReal("set1.gain.k");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end XMLTest1;
 
     model XMLTest2 "XML Real read test with parameter binding"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1),
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
     end XMLTest2;
 
     model XMLTest3 "XML Real read test with parameter binding and fixed=false"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1),
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding. In comparison with <a href=\"modelica://ExternData.Examples.XMLTest2\">XMLTest2</a> <code>gain.k.fixed</code> is set to <code>false</code>.</p><p>This is non-standard Modelica but works in SimulationX though.</p></html>"));
     end XMLTest3;
 
     model XMLTest4 "XML String read test with initial equation"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = Modelica.Utilities.Strings.scanReal(xmlfile.getString("set1.gain.k"));
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end XMLTest4;
 
     model XMLTest5 "XML Integer read test with initial equation"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = xmlfile.getInteger("set1.gain.k");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XMLTest5;
 
     model XMLTest6 "XML Real 2D array read test with parameter binding"
       extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Sources.CombiTimeTable table(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Sources.CombiTimeTable table(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       annotation(experiment(StopTime=1),
         Documentation(info="<html><p>Reads the table array parameter <code>table1</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
     end XMLTest6;
 
     model INITest1 "INI Real read test with initial equation"
       extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = inifile.getReal("gain.k");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the plain section of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end INITest1;
 
     model INITest2 "INI Real read test from section with initial equation"
       extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = inifile.getReal("gain.k", "set1");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the section [set1] of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end INITest2;
 
     model INITest3 "INI String read test from section with initial equation"
       extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set1"));
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end INITest3;
 
     model INITest4 "INI Integer read test from section with initial equation"
       extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = inifile.getInteger("gain.k", "set1");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end INITest4;
 
     model JSONTest1 "JSON Real read test with initial equation"
       extends Modelica.Icons.Example;
-      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = jsonfile.getReal("set1.gain.k");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end JSONTest1;
 
     model JSONTest2 "JSON String read test with initial equation"
       extends Modelica.Icons.Example;
-      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = Modelica.Utilities.Strings.scanReal(jsonfile.getString("set1.gain.k"));
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end JSONTest2;
 
     model JSONTest3 "JSON Integer read test with initial equation"
       extends Modelica.Icons.Example;
-      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = jsonfile.getInteger("set2.gain.k");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end JSONTest3;
 
     model XLSTest1 "XLS Real read test from default sheet with initial equation"
       extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = xlsfile.getReal("B2");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first sheet of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end XLSTest1;
 
     model XLSTest2 "XLS Real read test from sheet with initial equation"
       extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = xlsfile.getReal("B2", "set2");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end XLSTest2;
 
     model XLSTest3 "XLS String read test from sheet with initial equation"
       extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"));
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
     end XLSTest3;
 
     model XLSTest4 "XLS Integer read test from sheet with initial equation"
       extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-81,60},{-61,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-16,60},{4,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-51,60},{-31,80}})));
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
         gain.k = xlsfile.getInteger("B2", "set1");
       equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-18,70}}));
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XLSTest4;
