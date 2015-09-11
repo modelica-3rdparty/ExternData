@@ -110,7 +110,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 	}
 
 	HASH_FIND_STR(xls->sheets, *sheetName, iter);
-	if (iter) {
+	if (iter != NULL) {
 		pWS = iter->pWS;
 	}
 	else {
@@ -132,7 +132,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 		pWS = xls_getWorkSheet(xls->pWB, sheet);
 		xls_parseWorkSheet(pWS);
 		iter = malloc(sizeof(SheetShare));
-		if (iter) {
+		if (iter != NULL) {
 			iter->sheetName = strdup(*sheetName);
 			iter->pWS = pWS;
 			HASH_ADD_KEYPTR(hh, xls->sheets, *sheetName, strlen(*sheetName), iter);
@@ -153,7 +153,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 
 		rc(cellAddress, &row, &col);
 		cell = xls_cell(pWS, row, col);
-		if (cell && !cell->isHidden) {
+		if (cell != NULL && !cell->isHidden) {
 			/* Get the value of the cell (either numeric or string) */
 			if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
 				ret = cell->d;
@@ -204,7 +204,7 @@ const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char*
 
 		rc(cellAddress, &row, &col);
 		cell = xls_cell(pWS, row, col);
-		if (cell && !cell->isHidden) {
+		if (cell != NULL && !cell->isHidden) {
 			/* Get the string value of the cell */
 			if (cell->id == XLS_RECORD_FORMULA) {
 				if (cell->l != 0) { /* It is not a number */
@@ -242,7 +242,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 
 		rc(cellAddress, &row, &col);
 		cell = xls_cell(pWS, row, col);
-		if (cell && !cell->isHidden) {
+		if (cell != NULL && !cell->isHidden) {
 			/* Get the value of the cell (either numeric or string) */
 			if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
 				ret = (int)cell->d;
