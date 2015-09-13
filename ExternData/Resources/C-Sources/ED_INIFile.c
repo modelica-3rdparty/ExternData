@@ -88,6 +88,9 @@ void* ED_createINI(const char* fileName)
 		}
 		ini->sections = cpo_array_create(1 , sizeof(INISection));
 		if (1 != ini_browse(fillValues, ini, fileName)) {
+			cpo_array_destroy(ini->sections);
+			free(ini->fileName);
+			free(ini);
 			ModelicaFormatError("Cannot read \"%s\"\n", fileName);
 			return NULL;
 		}

@@ -16,6 +16,7 @@
 #include "../Include/ED_XLSXFile.h"
 #include "unzip.h"
 
+#define E_NO_MEMORY (11)
 #define E_BAD_DATA (12)
 #define E_EOPEN (15)
 #define E_ECLOSE (17)
@@ -47,6 +48,9 @@ static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
 		return E_EGETFILEINFO;
 	}
 	buf = malloc(info.uncompressed_size + 1);
+	if (buf == NULL) {
+		return E_NO_MEMORY;
+	}
 	rc = unzReadCurrentFile(zfile, buf, info.uncompressed_size);
 	if (rc < 0) {
 		free(buf);
@@ -77,6 +81,9 @@ void* ED_createXLSX(const char* fileName, const char* encoding)
 	if (rc != 0) {
 		unzClose(zfile);
 		switch (rc) {
+			case: E_NO_MEMORY:
+				ModelicaError("Memory allocation error\n");
+				break;
 			case E_ELOCATE:
 				ModelicaFormatError("Cannot locate %s in file \"%s\"\n", wb, fileName);
 				break;
@@ -101,6 +108,7 @@ void* ED_createXLSX(const char* fileName, const char* encoding)
 	if (xlsx != NULL) {
 		xlsx->fileName = strdup(fileName);
 		if (xlsx->fileName == NULL) {
+			unzClose(zfile);
 			XmlNode_deleteTree(wb_root);
 			free(xlsx);
 			ModelicaError("Memory allocation error\n");
@@ -109,6 +117,8 @@ void* ED_createXLSX(const char* fileName, const char* encoding)
 		xlsx->loc = ED_INIT_LOCALE;
 	}
 	else {
+		unzClose(zfile);
+		XmlNode_deleteTree(wb_root);
 		ModelicaError("Memory allocation error\n");
 	}
 	unzClose(zfile);

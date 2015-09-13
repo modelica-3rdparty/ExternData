@@ -42,6 +42,7 @@ void* ED_createJSON(const char* fileName)
 		json->root = root;
 	}
 	else {
+		JsonNode_deleteTree(root);
 		ModelicaError("Memory allocation error\n");
 		return NULL;
 	}

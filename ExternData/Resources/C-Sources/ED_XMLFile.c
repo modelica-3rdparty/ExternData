@@ -27,7 +27,7 @@ void* ED_createXML(const char* fileName)
 	XmlNodeRef root = XmlParser_parse_file(&xmlParser, fileName);
 	if (root == NULL) {
 		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
-		return NULL;
+		return xml;
 	}
 	xml = (XMLFile*)malloc(sizeof(XMLFile));
 	if (xml != NULL) {
@@ -42,6 +42,7 @@ void* ED_createXML(const char* fileName)
 		xml->root = root;
 	}
 	else {
+		XmlNode_deleteTree(root);
 		ModelicaError("Memory allocation error\n");
 	}
 	return xml;
