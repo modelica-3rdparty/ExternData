@@ -20,12 +20,14 @@ typedef struct {
 	ED_LOCALE_TYPE loc;
 } XMLFile;
 
-void* ED_createXML(const char* fileName) {
+void* ED_createXML(const char* fileName)
+{
 	XMLFile* xml = NULL;
 	XmlParser xmlParser;
 	XmlNodeRef root = XmlParser_parse_file(&xmlParser, fileName);
 	if (root == NULL) {
 		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+		return NULL;
 	}
 	xml = (XMLFile*)malloc(sizeof(XMLFile));
 	if (xml != NULL) {

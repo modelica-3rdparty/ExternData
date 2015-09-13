@@ -3,20 +3,21 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I"libxls/include" -I"expat/lib"
+CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I"bsxml-json" -I"libxls/include" -I"expat/lib"
 
 TARGETDIR = linux64
 
-INI_OBJS = \
+BS_OBJS = \
 	array.o \
+	bsjson.o \
 	bsstr.o \
+	bsxml.o
+
+INI_OBJS = \
 	minIni.o \
 	ED_INIFile.o
 
 JSON_OBJS = \
-	array.o \
-	bsstr.o \
-	bsjson.o \
 	ED_JSONFile.o
 
 XLS_OBJS = \
@@ -27,9 +28,6 @@ XLS_OBJS = \
 	ED_XLSFile.o
 
 XML_OBJS = \
-	array.o \
-	bsstr.o \
-	bsxml.o \
 	ED_XMLFile.o
 
 EXPAT_OBJS = \
@@ -39,12 +37,15 @@ EXPAT_OBJS = \
 	expat/lib/xmltok_impl.o \
 	expat/lib/xmltok_ns.o
 
-ALL_OBJS = $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
+ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
 
 all: clean libs
 
-libs: libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
+libs: libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
 	cp $^ ../Library/$(TARGETDIR)
+
+libbsxml-json.a: $(BS_OBJS)
+	$(AR) $@ $(BS_OBJS)
 
 libED_INIFile.a: $(INI_OBJS)
 	$(AR) $@ $(INI_OBJS)

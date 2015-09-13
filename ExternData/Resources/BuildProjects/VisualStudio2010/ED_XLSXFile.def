@@ -1,0 +1,6 @@
+EXPORTS
+	ED_createXLSX
+	ED_destroyXLSX
+	ED_getDoubleFromXLSX
+	ED_getStringFromXLSX
+	ED_getIntFromXLSX

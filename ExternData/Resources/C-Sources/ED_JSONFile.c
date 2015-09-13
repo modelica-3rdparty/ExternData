@@ -20,7 +20,8 @@ typedef struct {
 	ED_LOCALE_TYPE loc;
 } JSONFile;
 
-void* ED_createJSON(const char* fileName) {
+void* ED_createJSON(const char* fileName)
+{
 	JSONFile* json = NULL;
 	JsonParser jsonParser;
 	JsonNodeRef root = JsonParser_parseFile(&jsonParser, fileName);

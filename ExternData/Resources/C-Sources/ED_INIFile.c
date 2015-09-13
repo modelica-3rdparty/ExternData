@@ -76,7 +76,8 @@ static int fillValues(const char *section, const char *key, const char *value, c
 	return 0;
 }
 
-void* ED_createINI(const char* fileName) {
+void* ED_createINI(const char* fileName)
+{
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
 	if (ini != NULL) {
 		ini->fileName = strdup(fileName);

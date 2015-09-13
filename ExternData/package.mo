@@ -1,5 +1,5 @@
-within;
-package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
+﻿within;
+package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   model INIFile "Read data values from INI file"
     parameter String fileName "File where external data is stored"
@@ -84,6 +84,44 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         Text(lineColor={0,127,0},extent={{-85,-10},{85,-55}},textString="xls"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSFile;
+
+  model XLSXFile "Read data values from XLSX file"
+    parameter String fileName "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="Excel files (*.xlsx)",
+        caption="Open file")));
+    parameter String encoding="UTF-8" "Encoding";
+
+    final function getReal = Functions.XLSX.getReal(xlsx=xlsx) "Get scalar Real value from XLSX file";
+    final function getInteger = Functions.XLSX.getInteger(xlsx=xlsx) "Get scalar Integer value from XLSX file";
+    final function getBoolean = Functions.XLSX.getBoolean(xlsx=xlsx) "Get scalar Boolean value from XLSX file";
+    final function getString = Functions.XLSX.getString(xlsx=xlsx) "Get scalar String value from XLSX file";
+
+    protected
+      inner parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, encoding);
+
+    annotation(
+      defaultComponentName="xlsxfile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{20,70},{-20,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,40},{-80,20}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,10},{-80,-10}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,-20},{-80,-40}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-40,-50},{-80,-70}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,40},{80,20}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,10},{80,-10}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,-20},{80,-40}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{40,-50},{80,-70}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,40},{20,20}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,10},{20,-10}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,-20},{20,-40}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-20,-50},{20,-70}},lineColor={148,215,187},fillColor={148,215,187},fillPattern=FillPattern.Solid),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={160,255,255},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,127,255},extent={{-85,-10},{85,-55}},textString="xlsx"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+  end XLSXFile;
 
   model XMLFile "Read data values from XML file"
     parameter String fileName "File where external data is stored"
@@ -335,6 +373,19 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XLSTest4;
+
+    model XLSXTest1 "XLSX Real read test from default sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      initial equation
+        gain.k = xlsxfile.getReal("B2");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first sheet of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
+    end XLSXTest1;
   end Examples;
 
   package Functions
@@ -394,7 +445,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" y=ED_getDoubleFromINI(ini, varName, section) annotation(
             __iti_dll = "ITI_ED_INIFile.dll",
             Include="#include \"ED_INIFile.h\"",
-            Library = "ED_INIFile");
+            Library = {"ED_INIFile", "bsxml-json"});
         end getReal;
 
         function getInteger
@@ -404,7 +455,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" y=ED_getIntFromINI(ini, varName, section) annotation(
             __iti_dll = "ITI_ED_INIFile.dll",
             Include="#include \"ED_INIFile.h\"",
-            Library = "ED_INIFile");
+            Library = {"ED_INIFile", "bsxml-json"});
         end getInteger;
 
         function getString
@@ -414,7 +465,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" str=ED_getStringFromINI(ini, varName, section) annotation(
             __iti_dll = "ITI_ED_INIFile.dll",
             Include="#include \"ED_INIFile.h\"",
-            Library = "ED_INIFile");
+            Library = {"ED_INIFile", "bsxml-json"});
         end getString;
       end Internal;
     end INI;
@@ -461,7 +512,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
             __iti_dll = "ITI_ED_JSONFile.dll",
             Include="#include \"ED_JSONFile.h\"",
-            Library = "ED_JSONFile");
+            Library = {"ED_JSONFile", "bsxml-json"});
         end getReal;
 
         function getInteger
@@ -470,7 +521,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" y=ED_getIntFromJSON(json, varName) annotation(
             __iti_dll = "ITI_ED_JSONFile.dll",
             Include="#include \"ED_JSONFile.h\"",
-            Library = "ED_JSONFile");
+            Library = {"ED_JSONFile", "bsxml-json"});
         end getInteger;
 
         function getString
@@ -479,7 +530,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" str=ED_getStringFromJSON(json, varName) annotation(
             __iti_dll = "ITI_ED_JSONFile.dll",
             Include="#include \"ED_JSONFile.h\"",
-            Library = "ED_JSONFile");
+            Library = {"ED_JSONFile", "bsxml-json"});
         end getString;
       end Internal;
     end JSON;
@@ -570,6 +621,92 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
       end Internal;
     end XLS;
 
+    package XLSX
+      extends Modelica.Icons.Package;
+      function getReal
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSXFile xlsx;
+        output Real y;
+        algorithm
+          y := Internal.getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
+        annotation(Inline=true);
+      end getReal;
+
+      function getInteger
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSXFile xlsx;
+        output Integer y;
+        algorithm
+          y := Internal.getInteger(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
+        annotation(Inline=true);
+      end getInteger;
+
+      function getBoolean
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSXFile xlsx;
+        output Boolean y;
+        algorithm
+          y := Internal.getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName) <> 0;
+        annotation(Inline=true);
+      end getBoolean;
+
+      function getString
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1";
+        input String sheetName="";
+        input Types.ExternXLSXFile xlsx;
+        output String str;
+        algorithm
+          str := Internal.getString(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
+        annotation(Inline=true);
+      end getString;
+
+      package Internal
+        extends Modelica.Icons.InternalPackage;
+        function getReal
+          extends Modelica.Icons.Function;
+          input String cellAddress="A1";
+          input Types.ExternXLSXFile xlsx;
+          input String sheetName="";
+          output Real y;
+          external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName) annotation(
+            __iti_dll = "ITI_ED_XLSXFile.dll",
+            Include="#include \"ED_XLSXFile.h\"",
+            Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+        end getReal;
+
+        function getInteger
+          extends Modelica.Icons.Function;
+          input String cellAddress="A1";
+          input Types.ExternXLSXFile xlsx;
+          input String sheetName="";
+          output Integer y;
+          external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName) annotation(
+            __iti_dll = "ITI_ED_XLSXFile.dll",
+            Include="#include \"ED_XLSXFile.h\"",
+            Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+        end getInteger;
+
+        function getString
+          extends Modelica.Icons.Function;
+          input String cellAddress="A1";
+          input Types.ExternXLSXFile xlsx;
+          input String sheetName="";
+          output String str;
+          external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName) annotation(
+            __iti_dll = "ITI_ED_XLSXFile.dll",
+            Include="#include \"ED_XLSXFile.h\"",
+            Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+        end getString;
+      end Internal;
+    end XLSX;
+
     package XML
       extends Modelica.Icons.Package;
       function getReal
@@ -635,7 +772,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             Include="#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "expat"});
+            Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getReal;
 
         function getRealArray2D
@@ -647,7 +784,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" ED_getDoubleArray2DFromXML(xml, varName, y, size(y, 1), size(y, 2)) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             Include="#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "expat"});
+            Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getRealArray2D;
 
         function getRealArray1D
@@ -658,7 +795,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             Include="#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "expat"});
+            Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getRealArray1D;
 
         function getInteger
@@ -667,7 +804,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" y=ED_getIntFromXML(xml, varName) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             Include="#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "expat"});
+            Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getInteger;
 
         function getString
@@ -676,7 +813,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
           external "C" str=ED_getStringFromXML(xml, varName) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             Include="#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "expat"});
+            Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getString;
       end Internal;
     end XML;
@@ -719,7 +856,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         external "C" ini=ED_createINI(fileName) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           Include="#include \"ED_INIFile.h\"",
-          Library = "ED_INIFile");
+          Library = {"ED_INIFile", "bsxml-json"});
       end constructor;
 
       function destructor
@@ -727,7 +864,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         external "C" ED_destroyINI(ini) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           Include="#include \"ED_INIFile.h\"",
-          Library = "ED_INIFile");
+          Library = {"ED_INIFile", "bsxml-json"});
       end destructor;
     end ExternINIFile;
 
@@ -739,7 +876,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         external "C" json=ED_createJSON(fileName) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           Include="#include \"ED_JSONFile.h\"",
-          Library = "ED_JSONFile");
+          Library = {"ED_JSONFile", "bsxml-json"});
       end constructor;
 
       function destructor
@@ -747,7 +884,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         external "C" ED_destroyJSON(json) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           Include="#include \"ED_JSONFile.h\"",
-          Library = "ED_JSONFile");
+          Library = {"ED_JSONFile", "bsxml-json"});
       end destructor;
     end ExternJSONFile;
 
@@ -772,6 +909,27 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
       end destructor;
     end ExternXLSFile;
 
+    class ExternXLSXFile
+      extends ExternalObject;
+      function constructor
+        input String fileName;
+        input String encoding="UTF-8";
+        output ExternXLSXFile xlsx;
+        external "C" xlsx=ED_createXLSX(fileName, encoding) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          Include="#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+      end constructor;
+
+      function destructor
+        input ExternXLSXFile xlsx;
+        external "C" ED_destroyXLSX(xlsx) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          Include="#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+      end destructor;
+    end ExternXLSXFile;
+
     class ExternXMLFile
       extends ExternalObject;
       function constructor
@@ -780,7 +938,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         external "C" xml=ED_createXML(fileName) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           Include="#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end constructor;
 
       function destructor
@@ -788,11 +946,11 @@ package ExternData "Library to read data from INI, JSON, Excel XLS or XML files"
         external "C" ED_destroyXML(xml) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           Include="#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end destructor;
     end ExternXMLFile;
   end Types;
 
-  annotation(uses(Modelica(version="3.2.1")), version="1.0.4",
-    Documentation(info="<html><p>Library <b>ExternData</b> is a Modelica utility library for reading data from INI, JSON, Excel XLS and XML files.</p></html>"));
+  annotation(uses(Modelica(version="3.2.1")), version="1.1.0-dev",
+    Documentation(info="<html><p>Library <b>ExternData</b> is a Modelica utility library for reading data from INI, JSON, Excel XLS/XLSX and XML files.</p></html>"));
 end ExternData;
