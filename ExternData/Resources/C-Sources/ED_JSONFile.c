@@ -22,30 +22,27 @@ typedef struct {
 
 void* ED_createJSON(const char* fileName)
 {
-	JSONFile* json = NULL;
 	JsonParser jsonParser;
-	JsonNodeRef root = JsonParser_parseFile(&jsonParser, fileName);
-	if (root == NULL) {
-		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
-		return json;
-	}
-	json = (JSONFile*)malloc(sizeof(JSONFile));
-	if (json != NULL) {
-		json->fileName = strdup(fileName);
-		if (json->fileName == NULL) {
-			JsonNode_deleteTree(root);
-			free(json);
-			ModelicaError("Memory allocation error\n");
-			return NULL;
-		}
-		json->loc = ED_INIT_LOCALE;
-		json->root = root;
-	}
-	else {
-		JsonNode_deleteTree(root);
+	JSONFile* json = (JSONFile*)malloc(sizeof(JSONFile));
+	if (json == NULL) {
 		ModelicaError("Memory allocation error\n");
 		return NULL;
 	}
+	json->fileName = strdup(fileName);
+	if (json->fileName == NULL) {
+		free(json);
+		ModelicaError("Memory allocation error\n");
+		return NULL;
+	}
+
+	json->root = JsonParser_parseFile(&jsonParser, fileName);
+	if (json->root == NULL) {
+		free(json->fileName);
+		free(json);
+		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+		return NULL;
+	}
+	json->loc = ED_INIT_LOCALE;
 	return json;
 }
 

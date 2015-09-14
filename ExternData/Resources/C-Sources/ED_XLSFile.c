@@ -32,29 +32,27 @@ typedef struct {
 
 void* ED_createXLS(const char* fileName, const char* encoding)
 {
-	XLSFile* xls = NULL;
-	xlsWorkBook* pWB = xls_open(fileName, encoding);
-	if (pWB == NULL) {
-		ModelicaFormatError("Cannot open file \"%s\"\n", fileName);
-		return xls;
-	}
-	xls = (XLSFile*)malloc(sizeof(XLSFile));
-	if (xls != NULL) {
-		xls->fileName = strdup(fileName);
-		if (xls->fileName == NULL) {
-			xls_close(pWB);
-			free(xls);
-			ModelicaError("Memory allocation error\n");
-			return NULL;
-		}
-		xls->loc = ED_INIT_LOCALE;
-		xls->pWB = pWB;
-		xls->sheets = NULL;
-	}
-	else {
+	XLSFile* xls = (XLSFile*)malloc(sizeof(XLSFile));
+	if (xls == NULL) {
 		ModelicaError("Memory allocation error\n");
 		return NULL;
 	}
+	xls->fileName = strdup(fileName);
+	if (xls->fileName == NULL) {
+		free(xls);
+		ModelicaError("Memory allocation error\n");
+		return NULL;
+	}
+
+	xls->pWB = xls_open(fileName, encoding);
+	if (xls->pWB == NULL) {
+		free(xls->fileName);
+		free(xls);
+		ModelicaFormatError("Cannot open file \"%s\"\n", fileName);
+		return NULL;
+	}
+	xls->sheets = NULL;
+	xls->loc = ED_INIT_LOCALE;
 	return xls;
 }
 

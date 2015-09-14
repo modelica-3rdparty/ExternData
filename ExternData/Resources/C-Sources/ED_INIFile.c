@@ -79,27 +79,26 @@ static int fillValues(const char *section, const char *key, const char *value, c
 void* ED_createINI(const char* fileName)
 {
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
-	if (ini != NULL) {
-		ini->fileName = strdup(fileName);
-		if (ini->fileName == NULL) {
-			free(ini);
-			ModelicaError("Memory allocation error\n");
-			return NULL;
-		}
-		ini->sections = cpo_array_create(1 , sizeof(INISection));
-		if (1 != ini_browse(fillValues, ini, fileName)) {
-			cpo_array_destroy(ini->sections);
-			free(ini->fileName);
-			free(ini);
-			ModelicaFormatError("Cannot read \"%s\"\n", fileName);
-			return NULL;
-		}
-		ini->loc = ED_INIT_LOCALE;
-	}
-	else {
+	if (ini == NULL) {
 		ModelicaError("Memory allocation error\n");
 		return NULL;
 	}
+	ini->fileName = strdup(fileName);
+	if (ini->fileName == NULL) {
+		free(ini);
+		ModelicaError("Memory allocation error\n");
+		return NULL;
+	}
+
+	ini->sections = cpo_array_create(1 , sizeof(INISection));
+	if (1 != ini_browse(fillValues, ini, fileName)) {
+		cpo_array_destroy(ini->sections);
+		free(ini->fileName);
+		free(ini);
+		ModelicaFormatError("Cannot read \"%s\"\n", fileName);
+		return NULL;
+	}
+	ini->loc = ED_INIT_LOCALE;
 	return ini;
 }
 

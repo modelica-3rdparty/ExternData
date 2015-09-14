@@ -22,29 +22,27 @@ typedef struct {
 
 void* ED_createXML(const char* fileName)
 {
-	XMLFile* xml = NULL;
 	XmlParser xmlParser;
-	XmlNodeRef root = XmlParser_parse_file(&xmlParser, fileName);
-	if (root == NULL) {
-		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
-		return xml;
-	}
-	xml = (XMLFile*)malloc(sizeof(XMLFile));
-	if (xml != NULL) {
-		xml->fileName = strdup(fileName);
-		if (xml->fileName == NULL) {
-			XmlNode_deleteTree(root);
-			free(xml);
-			ModelicaError("Memory allocation error\n");
-			return NULL;
-		}
-		xml->loc = ED_INIT_LOCALE;
-		xml->root = root;
-	}
-	else {
-		XmlNode_deleteTree(root);
+	XMLFile* xml = (XMLFile*)malloc(sizeof(XMLFile));
+	if (xml == NULL) {
 		ModelicaError("Memory allocation error\n");
+		return NULL;
 	}
+	xml->fileName = strdup(fileName);
+	if (xml->fileName == NULL) {
+		free(xml);
+		ModelicaError("Memory allocation error\n");
+		return NULL;
+	}
+
+	xml->root = XmlParser_parse_file(&xmlParser, fileName);
+	if (xml->root == NULL) {
+		free(xml->fileName);
+		free(xml);
+		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+		return NULL;
+	}
+	xml->loc = ED_INIT_LOCALE;
 	return xml;
 }
 

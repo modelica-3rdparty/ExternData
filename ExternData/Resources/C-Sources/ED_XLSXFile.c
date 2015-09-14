@@ -68,18 +68,34 @@ static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
 
 void* ED_createXLSX(const char* fileName)
 {
-	XLSXFile* xlsx = NULL;
 	int rc;
 	XmlNodeRef wb_root;
 	const char* wb = "xl/workbook.xml";
-	unzFile zfile = unzOpen(fileName);
+	unzFile zfile;
+	XLSXFile* xlsx = (XLSXFile*)malloc(sizeof(XLSXFile));
+	if (xlsx == NULL) {
+		ModelicaError("Memory allocation error\n");
+		return NULL;
+	}
+	xlsx->fileName = strdup(fileName);
+	if (xlsx->fileName == NULL) {
+		free(xlsx);
+		ModelicaError("Memory allocation error\n");
+		return NULL;
+	}
+	
+	zfile = unzOpen(fileName);
 	if (zfile == NULL) {
+		free(xlsx->fileName);
+		free(xlsx);
 		ModelicaFormatError("Cannot open file \"%s\"\n", fileName);
-		return xlsx;
+		return NULL;
 	}
 	rc = parseXML(zfile, "xl/workbook.xml", &wb_root);
 	if (rc != 0) {
 		unzClose(zfile);
+		free(xlsx->fileName);
+		free(xlsx);
 		switch (rc) {
 			case E_NO_MEMORY:
 				ModelicaError("Memory allocation error\n");
@@ -102,32 +118,25 @@ void* ED_createXLSX(const char* fileName)
 			default:
 				break;
 		}
-		return xlsx;
+		return NULL;
 	}
-	xlsx = (XLSXFile*)malloc(sizeof(XLSXFile));
-	if (xlsx != NULL) {
-		xlsx->fileName = strdup(fileName);
-		if (xlsx->fileName == NULL) {
-			unzClose(zfile);
-			XmlNode_deleteTree(wb_root);
-			free(xlsx);
-			ModelicaError("Memory allocation error\n");
-			return NULL;
-		}
-		xlsx->loc = ED_INIT_LOCALE;
-	}
-	else {
-		unzClose(zfile);
-		XmlNode_deleteTree(wb_root);
-		ModelicaError("Memory allocation error\n");
-	}
+
 	unzClose(zfile);
+	XmlNode_deleteTree(wb_root);
+	xlsx->loc = ED_INIT_LOCALE;
 	return xlsx;
 }
 
 void ED_destroyXLSX(void* _xlsx)
 {
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	if (xlsx != NULL) {
+		if (xlsx->fileName != NULL) {
+			free(xlsx->fileName);
+		}
+		ED_FREE_LOCALE(xlsx->loc);
+		free(xlsx);
+	}
 }
 
 double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName)
