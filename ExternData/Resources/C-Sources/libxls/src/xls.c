@@ -30,10 +30,6 @@
  *
  */
 
-#if !defined(_MSC_VER)
-#define _strdup strdup
-#endif
-
 #include "config.h"
 
 #include <stdio.h>
@@ -44,6 +40,9 @@
 #include <math.h>
 #include <sys/types.h>
 #include <string.h>
+#if defined(_MSC_VER)
+#define strdup _strdup
+#endif
 #include <wchar.h>
 #include <assert.h>
 
@@ -235,7 +234,7 @@ void xls_appendSST(xlsWorkBook* pWB,BYTE* buf,DWORD size)
 
                 if (ret == NULL)
                 {
-                    ret = (BYTE *)_strdup("*failed to decode utf16*");
+                    ret = (BYTE *)strdup("*failed to decode utf16*");
                     new_len = strlen((char *)ret);
                 }
 
@@ -265,7 +264,7 @@ void xls_appendSST(xlsWorkBook* pWB,BYTE* buf,DWORD size)
         }
         else
         {
-         ret = (BYTE *)_strdup("");
+         ret = (BYTE *)strdup("");
         }
 
         if (  (ln_toread > 0)
@@ -1659,7 +1658,7 @@ void xls_dumpSummary(char *buf,int isSummary,xlsSummaryInfo *pSI) {
 					default:	s = NULL;				break;
 					}
 				}
-				if(s) *s = (BYTE *)_strdup((char *)prop->data + 4);
+				if(s) *s = (BYTE *)strdup((char *)prop->data + 4);
 				break;
 			case 64:
 				//printf("      longVal=%llx\n", *(uint64_t *)prop->data);
