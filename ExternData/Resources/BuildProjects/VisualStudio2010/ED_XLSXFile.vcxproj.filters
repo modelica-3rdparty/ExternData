@@ -61,5 +61,8 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\uthash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

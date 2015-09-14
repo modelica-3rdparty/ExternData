@@ -143,8 +143,13 @@ static int XmlAttribute_comparer(const void *a, const void *b)
 String XmlNode_getAttribute(struct XmlNode *node, const String key )
 {
     XmlAttribute a;
+    void* res;
     a.key = (String)key;
-    return (String)cpo_array_bsearch(node->m_attributes, &a, XmlAttribute_comparer);
+    res = cpo_array_bsearch(node->m_attributes, &a, XmlAttribute_comparer);
+    if (res) {
+        return ((XmlAttribute*)res)->value;
+    }
+    return NULL;
 }
 
 int XmlNode_haveAttribute(struct XmlNode *node, const String key )
