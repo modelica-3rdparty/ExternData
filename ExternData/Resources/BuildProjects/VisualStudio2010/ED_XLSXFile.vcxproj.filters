@@ -52,13 +52,13 @@
     <ClInclude Include="..\..\C-Sources\minizip\iowin32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsxml.h">
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\array.h">
+    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsstr.h">
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,7 +31,7 @@
     <ClCompile Include="..\..\C-Sources\minIni.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\array.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\minGlue.h" />
     <ClInclude Include="..\..\C-Sources\minIni.h" />

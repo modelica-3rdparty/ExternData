@@ -39,9 +39,9 @@
     <None Include="ED_XLSXFile.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\array.h" />
-    <ClInclude Include="..\..\C-Sources\bsstr.h" />
-    <ClInclude Include="..\..\C-Sources\bsxml.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\minizip\ioapi.h" />
     <ClInclude Include="..\..\C-Sources\minizip\iowin32.h" />

@@ -218,9 +218,9 @@
     <ClCompile Include="..\..\C-Sources\ED_XMLFile.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\array.h" />
-    <ClInclude Include="..\..\C-Sources\bsstr.h" />
-    <ClInclude Include="..\..\C-Sources\bsxml.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\Include\ED_XMLFile.h" />
   </ItemGroup>

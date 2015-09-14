@@ -23,16 +23,16 @@
     <ClInclude Include="..\..\Include\ED_XMLFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsxml.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsstr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\C-Sources\ED_locale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
