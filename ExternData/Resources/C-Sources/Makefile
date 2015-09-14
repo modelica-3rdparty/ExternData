@@ -3,15 +3,15 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I"bsxml-json" -I"libxls/include" -I"expat/lib"
+CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I. -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
 
 TARGETDIR = linux64
 
 BS_OBJS = \
-	array.o \
-	bsjson.o \
-	bsstr.o \
-	bsxml.o
+	bsxml-json/array.o \
+	bsxml-json/bsjson.o \
+	bsxml-json/bsstr.o \
+	bsxml-json/bsxml.o
 
 INI_OBJS = \
 	minIni.o \
@@ -27,6 +27,12 @@ XLS_OBJS = \
 	libxls/src/xlstool.o \
 	ED_XLSFile.o
 
+XLSX_OBJS = \
+	minizip/ioapi.o \
+	minizip/miniunz.o \
+	minizip/unzip.o \
+	ED_XLSXFile.o
+
 XML_OBJS = \
 	ED_XMLFile.o
 
@@ -37,11 +43,28 @@ EXPAT_OBJS = \
 	expat/lib/xmltok_impl.o \
 	expat/lib/xmltok_ns.o
 
-ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
+ZLIB_OBJS = \
+	zlib/adler32.o \
+	zlib/compress.o \
+	zlib/crc32.o \
+	zlib/deflate.o \
+	zlib/gzclose.o \
+	zlib/gzlib.o \
+	zlib/gzread.o \
+	zlib/gzwrite.o \
+	zlib/infback.o \
+	zlib/inffast.o \
+	zlib/inflate.o \
+	zlib/inftrees.o \
+	zlib/trees.o \
+	zlib/uncompr.o \
+	zlib/zutil.o
+
+ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
 
 all: clean libs
 
-libs: libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
+libs: libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a
 	cp $^ ../Library/$(TARGETDIR)
 
 libbsxml-json.a: $(BS_OBJS)
@@ -56,11 +79,17 @@ libED_JSONFile.a: $(JSON_OBJS)
 libED_XLSFile.a: $(XLS_OBJS)
 	$(AR) $@ $(XLS_OBJS)
 
+libED_XLSXFile.a: $(XLSX_OBJS)
+	$(AR) $@ $(XLSX_OBJS)
+
 libED_XMLFile.a: $(XML_OBJS)
 	$(AR) $@ $(XML_OBJS)
 
 libexpat.a: $(EXPAT_OBJS)
 	$(AR) $@ $(EXPAT_OBJS)
+
+libzlib.a: $(ZLIB_OBJS)
+	$(AR) $@ $(ZLIB_OBJS)
 
 %.o: %.c
 	$(CC) -c -o $@ $< $(CFLAGS) $(CXXFLAGS)

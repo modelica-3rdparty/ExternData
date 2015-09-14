@@ -81,7 +81,7 @@ void* ED_createXLSX(const char* fileName, const char* encoding)
 	if (rc != 0) {
 		unzClose(zfile);
 		switch (rc) {
-			case: E_NO_MEMORY:
+			case E_NO_MEMORY:
 				ModelicaError("Memory allocation error\n");
 				break;
 			case E_ELOCATE:
