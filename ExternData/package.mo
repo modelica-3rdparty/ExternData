@@ -90,7 +90,6 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xlsx)",
         caption="Open file")));
-    parameter String encoding="UTF-8" "Encoding";
 
     final function getReal = Functions.XLSX.getReal(xlsx=xlsx) "Get scalar Real value from XLSX file";
     final function getInteger = Functions.XLSX.getInteger(xlsx=xlsx) "Get scalar Integer value from XLSX file";
@@ -98,7 +97,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
     final function getString = Functions.XLSX.getString(xlsx=xlsx) "Get scalar String value from XLSX file";
 
     protected
-      inner parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, encoding);
+      inner parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName);
 
     annotation(
       defaultComponentName="xlsxfile",
@@ -913,9 +912,8 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       extends ExternalObject;
       function constructor
         input String fileName;
-        input String encoding="UTF-8";
         output ExternXLSXFile xlsx;
-        external "C" xlsx=ED_createXLSX(fileName, encoding) annotation(
+        external "C" xlsx=ED_createXLSX(fileName) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           Include="#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});

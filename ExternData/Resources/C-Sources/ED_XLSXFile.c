@@ -66,7 +66,7 @@ static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
 	return 0;
 }
 
-void* ED_createXLSX(const char* fileName, const char* encoding)
+void* ED_createXLSX(const char* fileName)
 {
 	XLSXFile* xlsx = NULL;
 	int rc;
