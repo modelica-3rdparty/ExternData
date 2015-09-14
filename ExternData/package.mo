@@ -1,4 +1,4 @@
-﻿within;
+within;
 package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   model INIFile "Read data values from INI file"
