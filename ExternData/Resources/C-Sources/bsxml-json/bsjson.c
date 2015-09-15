@@ -530,7 +530,7 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
     pi.endElem = JsonParser_endElem;
     pi.elemData = JsonParser_elemData;
     parser->m_nodeStack = cpo_array_create(JSON_STACK_SIZE , sizeof(void*));
-    if (JsonParser_internalParse(&pi, json, strlen(json)) == JSON_ERR_NONE) {
+    if (JsonParser_internalParse(&pi, json, (int)strlen(json)) == JSON_ERR_NONE) {
         root = parser->m_root;
     } else {
         ModelicaFormatError("Parser error: %d in line %d\n", pi.error, pi.line);
