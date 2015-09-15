@@ -133,7 +133,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 		if (iter != NULL) {
 			iter->sheetName = strdup(*sheetName);
 			iter->pWS = pWS;
-			HASH_ADD_KEYPTR(hh, xls->sheets, *sheetName, strlen(*sheetName), iter);
+			HASH_ADD_KEYPTR(hh, xls->sheets, iter->sheetName, strlen(iter->sheetName), iter);
 		}
 	}
 	return pWS;
