@@ -1,14 +1,14 @@
 #ifndef _CPO_ARRAY_H
 #define _CPO_ARRAY_H
 
-#define ARR_VAL(p) 	*((long*)p)
-#define ARR_VAL2PTR(v) 	((long)(v))
+#define ARR_VAL(p)  *((long*)p)
+#define ARR_VAL2PTR(v)  ((long)(v))
 
 typedef struct s_array {
-	int num;
-	int max;
-	void *v;
-	int elem_size;
+    int num;
+    int max;
+    void *v;
+    int elem_size;
 } cpo_array_t;
 
 cpo_array_t *

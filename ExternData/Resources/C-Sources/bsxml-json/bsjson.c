@@ -32,7 +32,7 @@ static const char jsonElems [] = {
 
 static char Json_elem(enum eElemType type)
 {
-    return	jsonElems[type];
+    return jsonElems[type];
 }
 
 static enum eElemType Json_typeOfElem(const char c)
@@ -363,7 +363,7 @@ static char JsonParser_prev_char(const char *p , int pos)
     return ch;
 }
 
-#define JsonParser_peek_char(p,pos)		*(p + pos + 1)
+#define JsonParser_peek_char(p,pos)     *(p + pos + 1)
 
 #define JsonParser_peekObjBegin(p,pos)\
     (JsonParser_next_char(p, pos) == Json_elem(JSON_OBJ_B)\
@@ -458,7 +458,7 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
         case JSON_LEFT:
         case JSON_RIGHT:
         case JSON_TAB:
-        case JSON_HEX:	/*TODO:*/
+        case JSON_HEX:  /*TODO:*/
         case JSON_INVALID:
             if (pi->quote_begin && !pi->is_value) {
                 bsstr_addchr(pi->key, ch);

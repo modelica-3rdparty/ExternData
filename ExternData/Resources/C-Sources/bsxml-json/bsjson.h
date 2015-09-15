@@ -33,9 +33,9 @@ enum {JSON_NONE, JSON_ROOT, JSON_OBJ, JSON_ARRAY } eNodeTypes;
 #define NAME_ANON NULL
 
 #define JSON_IS_OBJ(node)\
-	(node->m_type == JSON_OBJ || node->m_type == JSON_ROOT)
+    (node->m_type == JSON_OBJ || node->m_type == JSON_ROOT)
 #define JSON_IS_ARRAY(node)\
-	(node->m_type == JSON_ARRAY)
+    (node->m_type == JSON_ARRAY)
 
 #define String char*
 
@@ -45,21 +45,21 @@ typedef struct JsonParser JsonParser;
 typedef struct JsonPair JsonPair;
 
 struct JsonPair {
-	String key;
-	String value;
+    String key;
+    String value;
 };
 
 struct JsonNode {
-	int m_type;
-	String m_name;
-	JsonNode * m_parent;
-	cpo_array_t *m_pairs;
-	cpo_array_t *m_childs;
+    int m_type;
+    String m_name;
+    JsonNode * m_parent;
+    cpo_array_t *m_pairs;
+    cpo_array_t *m_childs;
 };
 
 struct JsonParser {
-	JsonNode *m_root;
-	cpo_array_t *m_nodeStack;
+    JsonNode *m_root;
+    cpo_array_t *m_nodeStack;
 };
 
 JsonNode *JsonParser_parse(JsonParser *parser, const char * json);
@@ -72,8 +72,8 @@ JsonNode *JsonNode_createArray(JsonNode * node, String name);
 JsonNode * JsonNode_findChild(JsonNode *node, const String name, int type);
 JsonPair * JsonNode_findPair(JsonNode *node, const String key);
 void JsonNode_setPair(JsonNode *node, const String key, const String value );
-int	JsonNode_getChildCount(JsonNode * node);
-int	JsonNode_getPairCount(JsonNode *node);
+int JsonNode_getChildCount(JsonNode * node);
+int JsonNode_getPairCount(JsonNode *node);
 JsonNode * JsonNode_getChild(JsonNode *node, int index);
 JsonPair * JsonNode_getPair(JsonNode *node, int index);
 String JsonNode_getPairValue(JsonNode *node, const String key);

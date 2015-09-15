@@ -5,6 +5,7 @@
 #define _GNU_SOURCE 1
 #endif
 
+#include <stdint.h>
 #include <string.h>
 #if defined(_MSC_VER)
 #define strdup _strdup
@@ -27,6 +28,8 @@
 #define E_EGETFILEINFO (31)
 
 #define WB "xl/workbook.xml"
+
+typedef uint16_t WORD;
 
 typedef struct {
 	char* sheetName;
@@ -148,8 +151,8 @@ void* ED_createXLSX(const char* fileName)
 		XmlNodeRef child = XmlNode_getChild(sheets, i);
 		if (XmlNode_isTag(child, "sheet")) {
 			SheetShare* iter;
-			char* sheetName = XmlNode_getAttribute(child, "name");
-			char* sheetId = XmlNode_getAttribute(child, "sheetId");
+			char* sheetName = XmlNode_getAttributeValue(child, "name");
+			char* sheetId = XmlNode_getAttributeValue(child, "sheetId");
 			HASH_FIND_STR(xlsx->sheets, sheetName, iter);
 			if (iter == NULL) {
 				iter = malloc(sizeof(SheetShare));
@@ -268,7 +271,7 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 			if (col < XmlNode_getChildCount(iter)) {
 				char* t;
 				iter = XmlNode_getChild(iter, col);
-				t = XmlNode_getAttribute(iter, "t");
+				t = XmlNode_getAttributeValue(iter, "t");
 				if (0 == strcmp(t, "s")) {
 					/* Shared string */
 				}

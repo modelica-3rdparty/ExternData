@@ -18,11 +18,11 @@
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
 /* initial size */
-#define XMLTREE_CHILDSIZE	8
-#define XMLTREE_ATTRSIZE 	4
-#define XMLTREE_STACKSIZE 	32
+#define XMLTREE_CHILDSIZE   8
+#define XMLTREE_ATTRSIZE    4
+#define XMLTREE_STACKSIZE   32
 
-#define ENC_TYPE_UTF8 	"UTF-8"
+#define ENC_TYPE_UTF8   "UTF-8"
 
 XmlNode * XmlNode_Create(const String tag)
 {
@@ -52,7 +52,7 @@ String XmlNode_getTag(struct XmlNode * node)
     return node->m_tag;
 }
 
-int	XmlNode_getChildCount(struct XmlNode * node)
+int XmlNode_getChildCount(struct XmlNode * node)
 {
     return node->m_childs->num;
 }
@@ -140,16 +140,22 @@ static int XmlAttribute_comparer(const void *a, const void *b)
     return strcmp(((XmlAttribute *) a)->key, ((XmlAttribute *) b)->key);
 }
 
-String XmlNode_getAttribute(struct XmlNode *node, const String key )
+XmlAttribute *XmlNode_getAttribute(struct XmlNode *node, const String key)
 {
     XmlAttribute a;
-    void* res;
     a.key = (String)key;
-    res = cpo_array_bsearch(node->m_attributes, &a, XmlAttribute_comparer);
-    if (res) {
-        return ((XmlAttribute*)res)->value;
+    return (XmlAttribute*)cpo_array_bsearch(node->m_attributes, &a, XmlAttribute_comparer);
+}
+
+String XmlNode_getAttributeValue(struct XmlNode *node, const String key)
+{
+    String value = NULL;
+    XmlAttribute *attr = XmlNode_getAttribute(node, key);
+    if(attr) {
+        value = attr->value;
     }
-    return NULL;
+
+    return value;
 }
 
 int XmlNode_haveAttribute(struct XmlNode *node, const String key )
@@ -472,8 +478,9 @@ static void characterData( void *userData, const char *s, int len )
     }
 }
 
-String XmlParser_getErrorString(struct XmlParser *parser)
+const String XmlParser_getErrorString(struct XmlParser *parser)
 {
+    parser->m_errorString = (char*) XML_ErrorString(XML_GetErrorCode(parser->m_parser));
     return parser->m_errorString;
 }
 
@@ -481,6 +488,7 @@ String XmlParser_getErrorString(struct XmlParser *parser)
 XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
 {
     XmlNodeRef root = NULL;
+    parser->m_errorString = NULL;
     parser->m_nodeStack= cpo_array_create(XMLTREE_STACKSIZE, sizeof(void*));
     /*expat parser*/
     parser->m_parser = XML_ParserCreate(NULL);
@@ -492,7 +500,7 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
         root = parser->m_root;
     } else {
         ModelicaFormatError("XML Error: %s at line %ld\n",
-               XML_ErrorString(XML_GetErrorCode(parser->m_parser)),
+               XmlParser_getErrorString(parser),
                XML_GetCurrentLineNumber(parser->m_parser));
     }
 
