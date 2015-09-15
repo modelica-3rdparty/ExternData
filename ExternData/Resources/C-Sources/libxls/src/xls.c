@@ -1348,7 +1348,9 @@ void xls_parseWorkSheet(xlsWorkSheet* pWS)
 #endif
 
         default:
+#ifdef DEBUG_DRAWINGS
 		  printBOF:
+#endif
 			if(xls_debug)
 			{
 				//xls_showBOF(&tmp);
