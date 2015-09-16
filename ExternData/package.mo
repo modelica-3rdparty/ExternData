@@ -385,6 +385,45 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first sheet of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
     end XLSXTest1;
+
+    model XLSXTest2 "XLSX Real read test from sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      initial equation
+        gain.k = xlsxfile.getReal("B2", "set2");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
+    end XLSXTest2;
+
+    model XLSXTest3 "XLSX String read test from sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      initial equation
+        gain.k = Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"));
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
+    end XLSXTest3;
+
+    model XLSXTest4 "XLSX Integer read test from sheet with initial equation"
+      extends Modelica.Icons.Example;
+      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      initial equation
+        gain.k = xlsxfile.getInteger("B2", "set1");
+      equation
+        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
+      annotation(experiment(StopTime=1), preferredView="text",
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
+    end XLSXTest4;
   end Examples;
 
   package Functions
