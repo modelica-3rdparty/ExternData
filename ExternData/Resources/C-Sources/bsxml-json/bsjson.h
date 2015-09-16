@@ -60,10 +60,12 @@ struct JsonNode {
 struct JsonParser {
     JsonNode *m_root;
     cpo_array_t *m_nodeStack;
+    String m_errorString;
 };
 
 JsonNode *JsonParser_parse(JsonParser *parser, const char * json);
 JsonNode *JsonParser_parseFile(JsonParser *parser, const char *fileName);
+String JsonParser_getErrorString(JsonParser *parser);
 //Create root node
 JsonNode *JsonNode_Create();
 JsonNode *JsonNode_createChild(JsonNode *node, String name, int type);

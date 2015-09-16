@@ -39,7 +39,13 @@ void* ED_createXML(const char* fileName)
 	if (xml->root == NULL) {
 		free(xml->fileName);
 		free(xml);
-		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+		if (XmlParser_getErrorLineSet(&xmlParser) != 0) {
+			ModelicaFormatError("Error \"%s\" in line %lu: Cannot parse file \"%s\"\n",
+				XmlParser_getErrorString(&xmlParser), XmlParser_getErrorLine(&xmlParser), fileName);
+		}
+		else {
+			ModelicaError(XmlParser_getErrorString(&xmlParser));
+		}
 		return NULL;
 	}
 	xml->loc = ED_INIT_LOCALE;

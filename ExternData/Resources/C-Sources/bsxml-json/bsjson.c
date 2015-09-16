@@ -13,8 +13,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <errno.h>
 #include "bsjson.h"
-#include "ModelicaUtilities.h"
 
 #define JSON_STACK_SIZE 32
 
@@ -243,6 +243,12 @@ String JsonNode_getJSON(JsonNode *node)
 /* Parse JSON                                                                   */
 /********************************************************************************/
 enum {JSON_ERR_NONE, JSON_ERR_QUOTE, JSON_ERR_COMMA, JSNON_ERR_NOTOBJ, JSON_ERR_SYN};
+const char *jsonParser_errlist[] = {
+    "Unknown error", "Missing or unexpected quote",
+    "Missing or unexpected comma", "Unexpected object end",
+    "Unexpected syntax"
+};
+
 struct  ParserInternal { /*Jsonlexer*/
     int error;
     int line;
@@ -520,10 +526,16 @@ static void JsonParser_elemData(struct JsonParser *parser, const String key,  co
     }
 }
 
+String JsonParser_getErrorString(JsonParser *parser)
+{
+    return parser->m_errorString;
+}
+
 JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
 {
     JsonNode * root = NULL;
     struct ParserInternal pi;
+    parser->m_errorString = NULL;
     pi.parser = parser;
     JsonParser_internalCreate(&pi);
     pi.startElem = JsonParser_startElem;
@@ -533,23 +545,26 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
     if (JsonParser_internalParse(&pi, json, (int)strlen(json)) == JSON_ERR_NONE) {
         root = parser->m_root;
     } else {
-        ModelicaFormatError("Parser error: %d in line %d\n", pi.error, pi.line);
+        parser->m_errorString = (char*)jsonParser_errlist[pi.error];
+        //printf("Parser error: %s in line %d\n", parser->m_errorString, pi.line);
     }
-    //ModelicaFormatMessage("Parsed lines %d\n",  pi.line);
+    DEBUG_PRINT("Parsed lines %d\n", pi.line);
     JsonParser_internalDelete(&pi);
     cpo_array_destroy(parser->m_nodeStack);
-    //ModelicaMessage("-end-\n");
+    DEBUG_PRINT("-end-\n");
     return root;
 }
 
 static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
 {
-    int i;
-    for(i = 0; i < size; i++)
-    {
-        if((buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#') {
-            while(buff[i] != '\n' && buff[i] != 0){
-                buff[i] = ' ';
+    long i;
+    for(i = 0; i < size; i++) {
+        if((buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#' || buff[i] == '"') {
+            char s = buff[i];
+            while(buff[i] != '\n' && buff[i] != 0) {
+                if(s != '"') {
+                    buff[i] = ' ';
+                }
                 i++;
             }
         }
@@ -578,7 +593,8 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         root = JsonParser_parse(parser,  buffer);
         free(buffer);
     } else {
-         ModelicaFormatError("Cannot read \"%s\"\n", fileName);
+        parser->m_errorString = strerror(errno);
+        //printf("Error: Cannot read \"%s\"\n", fileName);
     }
 
     return root;

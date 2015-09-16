@@ -48,11 +48,15 @@ struct XmlParser
     XML_Parser  m_parser;
     String      m_errorString;
     XmlStack   *m_nodeStack;
+    XML_Size    m_errorLine;
+    int         m_errorLineSet;
 };
 
 XmlNodeRef XmlParser_parse_file(XmlParser *parser,  const String fileName );
 XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml );
 const String XmlParser_getErrorString(struct XmlParser *parser);
+XML_Size XmlParser_getErrorLine(struct XmlParser *parser);
+int XmlParser_getErrorLineSet(struct XmlParser *parser);
 
 struct XmlNode {
     //node type

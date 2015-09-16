@@ -14,9 +14,9 @@
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
+#include <errno.h>
 #include "bsstr.h"
 #include "bsxml.h"
-#include "ModelicaUtilities.h"
 /* initial size */
 #define XMLTREE_CHILDSIZE   8
 #define XMLTREE_ATTRSIZE    4
@@ -415,7 +415,7 @@ void XmlNode_toFile(struct XmlNode *node, const char *fileName)
         }
         fclose (f);
     } else {
-        ModelicaFormatError("Error: Cannot write to \"%s\"\n", fileName);
+        //printf("Error: Cannot write to \"%s\"\n", fileName);
     }
 }
 /*parser */
@@ -480,8 +480,17 @@ static void characterData( void *userData, const char *s, int len )
 
 const String XmlParser_getErrorString(struct XmlParser *parser)
 {
-    parser->m_errorString = (char*) XML_ErrorString(XML_GetErrorCode(parser->m_parser));
     return parser->m_errorString;
+}
+
+XML_Size XmlParser_getErrorLine(struct XmlParser *parser)
+{
+    return parser->m_errorLine;
+}
+
+int XmlParser_getErrorLineSet(struct XmlParser *parser)
+{
+    return parser->m_errorLineSet;
 }
 
 /* return root elem */
@@ -499,9 +508,12 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
     if (XML_Parse(parser->m_parser, xml, (int)strlen(xml), XML_TRUE)) {
         root = parser->m_root;
     } else {
-        ModelicaFormatError("XML Error: %s at line %ld\n",
-               XmlParser_getErrorString(parser),
-               XML_GetCurrentLineNumber(parser->m_parser));
+        parser->m_errorString = (char*)XML_ErrorString(XML_GetErrorCode(parser->m_parser));
+        parser->m_errorLine = XML_GetCurrentLineNumber(parser->m_parser);
+        parser->m_errorLineSet = 1;
+        //printf("XML Error: %s at line %ld\n",
+        //    XmlParser_getErrorString(parser),
+        //    XML_GetCurrentLineNumber(parser->m_parser));
     }
 
     XML_ParserFree(parser->m_parser);
@@ -529,7 +541,10 @@ XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName
         root = XmlParser_parse(parser,  buffer);
         free(buffer);
     } else {
-        ModelicaFormatError("Cannot read \"%s\"\n", fileName);
+        parser->m_errorLineSet = 0;
+        parser->m_errorLine = 0;
+        parser->m_errorString = strerror(errno);
+        //printf("Error: Cannot read \"%s\"\n", fileName);
     }
 
     return root;

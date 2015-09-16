@@ -3,7 +3,7 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I. -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
+CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
 
 TARGETDIR = linux64
 
