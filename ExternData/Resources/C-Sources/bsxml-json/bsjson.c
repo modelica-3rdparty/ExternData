@@ -531,6 +531,16 @@ String JsonParser_getErrorString(JsonParser *parser)
     return parser->m_errorString;
 }
 
+int JsonParser_getErrorLine(struct JsonParser *parser)
+{
+	return parser->m_errorLine;
+}
+
+int JsonParser_getErrorLineSet(struct JsonParser *parser)
+{
+	return parser->m_errorLineSet;
+}
+
 JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
 {
     JsonNode * root = NULL;
@@ -546,6 +556,8 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
         root = parser->m_root;
     } else {
         parser->m_errorString = (char*)jsonParser_errlist[pi.error];
+		parser->m_errorLine = pi.line;
+		parser->m_errorLineSet = 1;
         //printf("Parser error: %s in line %d\n", parser->m_errorString, pi.line);
     }
     DEBUG_PRINT("Parsed lines %d\n", pi.line);
@@ -594,6 +606,8 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         free(buffer);
     } else {
         parser->m_errorString = strerror(errno);
+		parser->m_errorLine = 0;
+		parser->m_errorLineSet = 0;
         //printf("Error: Cannot read \"%s\"\n", fileName);
     }
 

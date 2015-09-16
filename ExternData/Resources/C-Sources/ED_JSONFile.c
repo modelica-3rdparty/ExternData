@@ -39,7 +39,13 @@ void* ED_createJSON(const char* fileName)
 	if (json->root == NULL) {
 		free(json->fileName);
 		free(json);
-		ModelicaFormatError("Cannot parse file \"%s\"\n", fileName);
+		if (JsonParser_getErrorLineSet(&jsonParser) != 0) {
+			ModelicaFormatError("Error \"%s\" in line %lu: Cannot parse file \"%s\"\n",
+				JsonParser_getErrorString(&jsonParser), JsonParser_getErrorLine(&jsonParser), fileName);
+		}
+		else {
+			ModelicaError(JsonParser_getErrorString(&jsonParser));
+		}
 		return NULL;
 	}
 	json->loc = ED_INIT_LOCALE;
