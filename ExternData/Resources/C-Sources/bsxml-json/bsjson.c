@@ -432,21 +432,18 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
             if (!pi->quote_begin) {
                 pi->is_value = 1;
             } else {
-                /* quote in string */
-                bsstr_addchr(pi->key, Json_elem(JSON_COLON));
+                /* colon in value */
+                bsstr *data = (!pi->is_value) ? pi->key : pi->value;
+                bsstr_addchr(data, Json_elem(JSON_COLON));
             }
             break;
         case JSON_COMMA:
             if (JsonParser_peekEndLine(p,i) || JsonParser_next_char(p,i) == Json_elem(JSON_QUOTE)) {
                 JsonParser_internalData(pi);
             } else {
-                /* comma in string */
-                if (pi->is_value) {
-                    bsstr_addchr(pi->value, Json_elem(JSON_COMMA));
-                } else {
-                    /* XXX: comma in key? */
-                    pi->error = JSON_ERR_COMMA;
-                }
+                /* comma in value */
+                bsstr *data = (!pi->is_value) ? pi->key : pi->value;
+                bsstr_addchr(data, Json_elem(JSON_COMMA));
             }
             break;
 
@@ -533,20 +530,20 @@ String JsonParser_getErrorString(JsonParser *parser)
 
 int JsonParser_getErrorLine(struct JsonParser *parser)
 {
-	return parser->m_errorLine;
+    return parser->m_errorLine;
 }
 
 int JsonParser_getErrorLineSet(struct JsonParser *parser)
 {
-	return parser->m_errorLineSet;
+    return parser->m_errorLineSet;
 }
 
 JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
 {
     JsonNode * root = NULL;
     struct ParserInternal pi;
-    parser->m_errorString = NULL;
     pi.parser = parser;
+    parser->m_errorString = NULL;
     JsonParser_internalCreate(&pi);
     pi.startElem = JsonParser_startElem;
     pi.endElem = JsonParser_endElem;
@@ -556,8 +553,8 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
         root = parser->m_root;
     } else {
         parser->m_errorString = (char*)jsonParser_errlist[pi.error];
-		parser->m_errorLine = pi.line;
-		parser->m_errorLineSet = 1;
+        parser->m_errorLine = pi.line;
+        parser->m_errorLineSet = 1;
         //printf("Parser error: %s in line %d\n", parser->m_errorString, pi.line);
     }
     DEBUG_PRINT("Parsed lines %d\n", pi.line);
@@ -606,8 +603,8 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         free(buffer);
     } else {
         parser->m_errorString = strerror(errno);
-		parser->m_errorLine = 0;
-		parser->m_errorLineSet = 0;
+        parser->m_errorLine = 0;
+        parser->m_errorLineSet = 0;
         //printf("Error: Cannot read \"%s\"\n", fileName);
     }
 
