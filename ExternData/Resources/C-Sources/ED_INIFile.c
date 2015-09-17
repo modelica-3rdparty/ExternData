@@ -34,26 +34,26 @@ typedef struct {
 
 static int compareSection(const void *a, const void *b)
 {
-    return strcmp(((INISection*)a)->name, ((INISection*)b)->name);
+	return strcmp(((INISection*)a)->name, ((INISection*)b)->name);
 }
 
 static int compareKey(const void *a, const void *b)
 {
-    return strcmp(((INIPair*)a)->key, ((INIPair*)b)->key);
+	return strcmp(((INIPair*)a)->key, ((INIPair*)b)->key);
 }
 
 static INISection* findSection(INIFile* ini, const char* name)
 {
-    INISection tmpSection = {(char*)name, NULL};
-    INISection* ret = (INISection*)cpo_array_bsearch(ini->sections, &tmpSection, compareSection);
-    return ret;
+	INISection tmpSection = {(char*)name, NULL};
+	INISection* ret = (INISection*)cpo_array_bsearch(ini->sections, &tmpSection, compareSection);
+	return ret;
 }
 
 static INIPair* findKey(INISection* section, const char* key)
 {
-    INIPair tmpPair = {(char*)key, NULL};
-    INIPair* ret = (INIPair*)cpo_array_bsearch(section->pairs, &tmpPair, compareKey);
-    return ret;
+	INIPair tmpPair = {(char*)key, NULL};
+	INIPair* ret = (INIPair*)cpo_array_bsearch(section->pairs, &tmpPair, compareKey);
+	return ret;
 }
 
 /* Callback function for ini_browse */
