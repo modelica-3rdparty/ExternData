@@ -1,4 +1,4 @@
-within;
+﻿within;
 package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   model INIFile "Read data values from INI file"
@@ -370,7 +370,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XLSTest4;
 
     model XLSXTest1 "XLSX Real read test from default sheet with initial equation"
@@ -422,7 +422,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XLSXTest4;
   end Examples;
 
@@ -483,7 +483,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getDoubleFromINI(ini, varName, section) annotation(
             __iti_dll = "ITI_ED_INIFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_INIFile.h\"",
+            Include = "#include \"ED_INIFile.h\"",
             Library = {"ED_INIFile", "bsxml-json"});
         end getReal;
 
@@ -494,7 +494,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getIntFromINI(ini, varName, section) annotation(
             __iti_dll = "ITI_ED_INIFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_INIFile.h\"",
+            Include = "#include \"ED_INIFile.h\"",
             Library = {"ED_INIFile", "bsxml-json"});
         end getInteger;
 
@@ -505,7 +505,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" str=ED_getStringFromINI(ini, varName, section) annotation(
             __iti_dll = "ITI_ED_INIFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_INIFile.h\"",
+            Include = "#include \"ED_INIFile.h\"",
             Library = {"ED_INIFile", "bsxml-json"});
         end getString;
       end Internal;
@@ -553,7 +553,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
             __iti_dll = "ITI_ED_JSONFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_JSONFile.h\"",
+            Include = "#include \"ED_JSONFile.h\"",
             Library = {"ED_JSONFile", "bsxml-json"});
         end getReal;
 
@@ -563,7 +563,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getIntFromJSON(json, varName) annotation(
             __iti_dll = "ITI_ED_JSONFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_JSONFile.h\"",
+            Include = "#include \"ED_JSONFile.h\"",
             Library = {"ED_JSONFile", "bsxml-json"});
         end getInteger;
 
@@ -573,7 +573,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" str=ED_getStringFromJSON(json, varName) annotation(
             __iti_dll = "ITI_ED_JSONFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_JSONFile.h\"",
+            Include = "#include \"ED_JSONFile.h\"",
             Library = {"ED_JSONFile", "bsxml-json"});
         end getString;
       end Internal;
@@ -636,7 +636,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName) annotation(
             __iti_dll = "ITI_ED_XLSFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XLSFile.h\"",
+            Include = "#include \"ED_XLSFile.h\"",
             Library = "ED_XLSFile");
         end getReal;
 
@@ -649,7 +649,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName) annotation(
             __iti_dll = "ITI_ED_XLSFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XLSFile.h\"",
+            Include = "#include \"ED_XLSFile.h\"",
             Library = "ED_XLSFile");
         end getInteger;
 
@@ -662,7 +662,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName) annotation(
             __iti_dll = "ITI_ED_XLSFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XLSFile.h\"",
+            Include = "#include \"ED_XLSFile.h\"",
             Library = "ED_XLSFile");
         end getString;
       end Internal;
@@ -725,7 +725,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName) annotation(
             __iti_dll = "ITI_ED_XLSXFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XLSXFile.h\"",
+            Include = "#include \"ED_XLSXFile.h\"",
             Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
         end getReal;
 
@@ -738,7 +738,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName) annotation(
             __iti_dll = "ITI_ED_XLSXFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XLSXFile.h\"",
+            Include = "#include \"ED_XLSXFile.h\"",
             Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
         end getInteger;
 
@@ -751,7 +751,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName) annotation(
             __iti_dll = "ITI_ED_XLSXFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XLSXFile.h\"",
+            Include = "#include \"ED_XLSXFile.h\"",
             Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
         end getString;
       end Internal;
@@ -822,7 +822,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XMLFile.h\"",
+            Include = "#include \"ED_XMLFile.h\"",
             Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getReal;
 
@@ -835,7 +835,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" ED_getDoubleArray2DFromXML(xml, varName, y, size(y, 1), size(y, 2)) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XMLFile.h\"",
+            Include = "#include \"ED_XMLFile.h\"",
             Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getRealArray2D;
 
@@ -847,7 +847,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XMLFile.h\"",
+            Include = "#include \"ED_XMLFile.h\"",
             Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getRealArray1D;
 
@@ -857,7 +857,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" y=ED_getIntFromXML(xml, varName) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XMLFile.h\"",
+            Include = "#include \"ED_XMLFile.h\"",
             Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getInteger;
 
@@ -867,7 +867,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
           external "C" str=ED_getStringFromXML(xml, varName) annotation(
             __iti_dll = "ITI_ED_XMLFile.dll",
             __iti_dllNoExport = true,
-            Include="#include \"ED_XMLFile.h\"",
+            Include = "#include \"ED_XMLFile.h\"",
             Library = {"ED_XMLFile", "bsxml-json", "expat"});
         end getString;
       end Internal;
@@ -911,7 +911,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" ini=ED_createINI(fileName) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_INIFile.h\"",
+          Include = "#include \"ED_INIFile.h\"",
           Library = {"ED_INIFile", "bsxml-json"});
       end constructor;
 
@@ -920,7 +920,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" ED_destroyINI(ini) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_INIFile.h\"",
+          Include = "#include \"ED_INIFile.h\"",
           Library = {"ED_INIFile", "bsxml-json"});
       end destructor;
     end ExternINIFile;
@@ -933,7 +933,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" json=ED_createJSON(fileName) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_JSONFile.h\"",
+          Include = "#include \"ED_JSONFile.h\"",
           Library = {"ED_JSONFile", "bsxml-json"});
       end constructor;
 
@@ -942,7 +942,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" ED_destroyJSON(json) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_JSONFile.h\"",
+          Include = "#include \"ED_JSONFile.h\"",
           Library = {"ED_JSONFile", "bsxml-json"});
       end destructor;
     end ExternJSONFile;
@@ -956,7 +956,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" xls=ED_createXLS(fileName, encoding) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_XLSFile.h\"",
+          Include = "#include \"ED_XLSFile.h\"",
           Library = "ED_XLSFile");
       end constructor;
 
@@ -965,7 +965,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" ED_destroyXLS(xls) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_XLSFile.h\"",
+          Include = "#include \"ED_XLSFile.h\"",
           Library = "ED_XLSFile");
       end destructor;
     end ExternXLSFile;
@@ -978,7 +978,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" xlsx=ED_createXLSX(fileName) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_XLSXFile.h\"",
+          Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end constructor;
 
@@ -987,7 +987,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" ED_destroyXLSX(xlsx) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_XLSXFile.h\"",
+          Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end destructor;
     end ExternXLSXFile;
@@ -1000,7 +1000,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" xml=ED_createXML(fileName) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_XMLFile.h\"",
+          Include = "#include \"ED_XMLFile.h\"",
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end constructor;
 
@@ -1009,7 +1009,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         external "C" ED_destroyXML(xml) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
-          Include="#include \"ED_XMLFile.h\"",
+          Include = "#include \"ED_XMLFile.h\"",
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end destructor;
     end ExternXMLFile;
