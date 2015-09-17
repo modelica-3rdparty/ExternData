@@ -3,7 +3,8 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
+CPPFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG
+INC = -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
 
 TARGETDIR = linux64
 
@@ -60,7 +61,7 @@ ZLIB_OBJS = \
 	zlib/uncompr.o \
 	zlib/zutil.o
 
-ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
+ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS)
 
 all: clean libs
 
@@ -92,7 +93,7 @@ libzlib.a: $(ZLIB_OBJS)
 	$(AR) $@ $(ZLIB_OBJS)
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS) $(CXXFLAGS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
 	$(RM) $(ALL_OBJS)
