@@ -44,7 +44,7 @@ void* ED_createJSON(const char* fileName)
 				JsonParser_getErrorString(&jsonParser), JsonParser_getErrorLine(&jsonParser), fileName);
 		}
 		else {
-			ModelicaError(JsonParser_getErrorString(&jsonParser));
+			ModelicaFormatError("Cannot read \"%s\": %s\n", fileName, JsonParser_getErrorString(&jsonParser));
 		}
 		return NULL;
 	}
