@@ -19,7 +19,7 @@
 #define strcasecmp _stricmp
 #undef strdup
 #define strdup _strdup
-if _MSC_VER < 1900
+#if _MSC_VER < 1900
 #define snprintf _snprintf
 #endif
 #elif defined(__MINGW32__)
