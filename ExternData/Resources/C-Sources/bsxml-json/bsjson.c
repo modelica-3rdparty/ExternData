@@ -583,7 +583,7 @@ static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
 JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName)
 {
     char * buffer = 0;
-    long length =0;
+    long length = 0, read = 0;
     JsonNode * root = NULL;
     FILE *f = fopen (fileName, "r");
 
@@ -593,13 +593,18 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         fseek (f, 0, SEEK_SET);
         buffer = (char*) malloc (length + 1);
         if (buffer) {
-            fread (buffer, sizeof(char), length, f);
+            read = fread (buffer, sizeof(char), length, f);
             buffer[length] = '\0';
         }
-
         fclose (f);
-        JsonParser_stripCommentsFromBuffer(buffer, length);
-        root = JsonParser_parse(parser,  buffer);
+        if (read > 0) {
+            JsonParser_stripCommentsFromBuffer(buffer, length);
+            root = JsonParser_parse(parser,  buffer);
+        } else {
+            parser->m_errorString = strerror(errno);
+            parser->m_errorLine = 0;
+            parser->m_errorLineSet = 0;
+        }
         free(buffer);
     } else {
         parser->m_errorString = strerror(errno);
