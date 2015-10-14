@@ -170,7 +170,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1),
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
+        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola where external functions are generally assumed to be pure.</p></html>"));
     end XMLTest2;
 
     model XMLTest3 "XML Real read test with parameter binding and fixed=false"
@@ -215,7 +215,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
       Modelica.Blocks.Sources.CombiTimeTable table(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       annotation(experiment(StopTime=1),
-        Documentation(info="<html><p>Reads the table array parameter <code>table1</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola though.</p></html>"));
+        Documentation(info="<html><p>Reads the table array parameter <code>table1</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola where external functions are generally assumed to be pure.</p></html>"));
     end XMLTest6;
 
     model XMLTest7 "XML Real 2D array read test with with initial equation and parameter binding for table array of CombiTimeTable"
