@@ -1,4 +1,26 @@
-﻿within;
+﻿// CP: 65001
+/* package.mo - Modelica library to read data from INI, JSON, Excel XLS/XLSX or XML files
+ *
+ * Copyright (C) 2015 tbeu
+ *
+ * This file is part of ExternData.
+ *
+ * ExternData is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * ExternData is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ExternData; if not, see http://www.gnu.org/licenses
+ *
+ */
+
+within;
 package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   model INIFile "Read data values from INI file"

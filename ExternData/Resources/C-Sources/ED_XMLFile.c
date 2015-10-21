@@ -1,5 +1,23 @@
-#if !defined(ED_XMLFILE_C)
-#define ED_XMLFILE_C
+/* ED_XMLFile.c - XML functions
+ *
+ * Copyright (C) 2015 tbeu
+ *
+ * This file is part of ExternData.
+ * 
+ * ExternData is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * ExternData is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with ExternData; if not, see http://www.gnu.org/licenses
+ *
+ */
 
 #if defined(__gnu_linux__)
 #define _GNU_SOURCE 1
@@ -260,5 +278,3 @@ void ED_getDoubleArray2DFromXML(void* _xml, const char* varName, double* a, size
 {
 	ED_getDoubleArray1DFromXML(_xml, varName, a, m*n);
 }
-
-#endif
