@@ -2,7 +2,11 @@
 /* config.h.in.  Generated from configure.in by autoheader.  */
 
 /* Define to 1 if you have the `asprintf' function. */
+#if defined(__CYGWIN__)
+#define HAVE_ASPRINTF 1
+#else
 #undef HAVE_ASPRINTF
+#endif
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
