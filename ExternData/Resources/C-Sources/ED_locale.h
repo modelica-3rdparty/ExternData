@@ -65,7 +65,7 @@ int ED_strtoi(char* token, ED_LOCALE_TYPE loc, int* val)
 #else
 #define ED_LOCALE_TYPE char*
 #define ED_INIT_LOCALE localeconv()->decimal_point
-#define ED_FREE_LOCALE(loc) *(loc) = '\0'
+#define ED_FREE_LOCALE(loc)
 
 int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val)
 {
