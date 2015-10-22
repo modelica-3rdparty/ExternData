@@ -23,10 +23,23 @@
 within;
 package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
+  package UsersGuide "User's Guide"
+    extends Modelica.Icons.Information;
+    class License "GNU General Public License"
+      extends Modelica.Icons.Information;
+      annotation(Documentation(info="<html><p>Copyright (C) 2015 tbeu</p><p>ExternData is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p><p>ExternData is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</p><p>You should have received a copy of the GNU General Public License along with ExternData; if not, see <a href=\"http://www.gnu.org/licenses\">http://www.gnu.org/licenses</a>.</p></html>"));
+    end License;
+    class Contact "Contact"
+      extends Modelica.Icons.Contact;
+      annotation(Documentation(info="<html><p>The ExternData Modelica library is developed by <a href=\"https://github.com/tbeu\">tbeu</a> at <a href=\"https://github.com/tbeu/ExternData\">GitHub</a>.</p></html>"));
+    end Contact;
+    annotation(DocumentationClass=true,
+      Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library for reading data from <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files based on the following third-party C projects</p><ul><li><a href=\"http://sourceforge.net/projects/expat\">expat</a>&nbsp;-&nbsp;James Clark's Expat XML parser library</li><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma's small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant's Zip and UnZip library</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl's C library for parsing Excel files</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson's C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly's and Mark Adler's massively spiffy yet delicately unobtrusive compression library</li></ul></html>"));
+  end UsersGuide;
   model INIFile "Read data values from INI file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
-        loadSelector(filter="INI files (*.ini)",
+        loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
         caption="Open file")));
 
     final function getReal = Functions.INI.getReal(ini=ini) "Get scalar Real value from INI file";
@@ -169,7 +182,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
-  package Examples
+  package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
     model XMLTest1 "XML Real read test with initial equation"
       extends Modelica.Icons.Example;
@@ -448,7 +461,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
     end XLSXTest4;
   end Examples;
 
-  package Functions
+  package Functions "Functions"
     extends Modelica.Icons.Package;
     package INI
       extends Modelica.Icons.Package;
@@ -896,7 +909,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
     end XML;
   end Functions;
 
-  package Interfaces
+  package Interfaces "Interfaces"
     extends Modelica.Icons.InterfacesPackage;
     partial function partialGetReal
       extends Modelica.Icons.Function;
@@ -923,9 +936,9 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
     end partialGetString;
   end Interfaces;
 
-  package Types
+  package Types "Types"
     extends Modelica.Icons.TypesPackage;
-    class ExternINIFile
+    class ExternINIFile "External INI file object"
       extends ExternalObject;
       function constructor
         input String fileName;
@@ -947,7 +960,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       end destructor;
     end ExternINIFile;
 
-    class ExternJSONFile
+    class ExternJSONFile "External JSON file object"
       extends ExternalObject;
       function constructor
         input String fileName;
@@ -969,7 +982,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       end destructor;
     end ExternJSONFile;
 
-    class ExternXLSFile
+    class ExternXLSFile "External XLS file object"
       extends ExternalObject;
       function constructor
         input String fileName;
@@ -992,7 +1005,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       end destructor;
     end ExternXLSFile;
 
-    class ExternXLSXFile
+    class ExternXLSXFile "External XLSX file object"
       extends ExternalObject;
       function constructor
         input String fileName;
@@ -1014,7 +1027,7 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
       end destructor;
     end ExternXLSXFile;
 
-    class ExternXMLFile
+    class ExternXMLFile "External XML file object"
       extends ExternalObject;
       function constructor
         input String fileName;
@@ -1038,5 +1051,5 @@ package ExternData "Library to read data from INI, JSON, Excel XLS/XLSX or XML f
   end Types;
 
   annotation(uses(Modelica(version="3.2.1")), version="1.1.0",
-    Documentation(info="<html><p>Library <b>ExternData</b> is a Modelica utility library for reading data from INI, JSON, Excel XLS/XLSX and XML files.</p></html>"));
+    Documentation(info="<html><p>Library <strong>ExternData</strong> is a Modelica utility library for reading data from <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
 end ExternData;
