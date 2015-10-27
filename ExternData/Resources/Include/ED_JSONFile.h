@@ -1,4 +1,4 @@
-/* ED_JSONFile.c - JSON functions header
+/* ED_JSONFile.h - JSON functions header
  *
  * Copyright (C) 2015 tbeu
  *

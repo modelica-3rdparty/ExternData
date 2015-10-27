@@ -1,4 +1,4 @@
-/* ED_INIFile.c - INI functions header
+/* ED_INIFile.h - INI functions header
  *
  * Copyright (C) 2015 tbeu
  *

@@ -1,4 +1,4 @@
-/* ED_XLSFile.c - Excel XLS functions header
+/* ED_XLSFile.h - Excel XLS functions header
  *
  * Copyright (C) 2015 tbeu
  *
