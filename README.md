@@ -1,11 +1,11 @@
 # ExternData
-Modelica library for reading data from INI, JSON, Excel XLS/XLSX and XML files.
+Modelica library for reading data from INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
 
 ## Build status
 [![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest)
 
 ## Library description
-ExternData is a small utility library to access data stored in INI, JSON, Excel XLS/XLSX or XML files.
+ExternData is a small utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
 for convenient model initialization / parametrization.
 
@@ -18,6 +18,8 @@ ExternData is based on the following third-party C projects
 James Clark's Expat XML parser library
 * [bsxml-json](https://github.com/bsapundzhiev/bsxml-json) -
 Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
+* [libmatio](http://sourceforge.net/projects/matio) -
+Christopher Hulbert's C library for reading and writing MATLAB MAT-files
 * [minIni](https://github.com/compuphase/minIni) -
 Thiadmer Riemersma's small and portable INI file library with read/write support
 * [minizip](http://www.winimage.com/zLibDll/minizip.html) -

@@ -1,8 +1,20 @@
-# Ignore Dymola output, log and temporary files (in alphabetical order)
 *.bak-mo
-*.mat
+*.cache
+*.exp
+*.ipch
+*.lastbuildstate
+*.log
+*.manifest
 *.mof
+*.o
+*.obj
+*.opensdf
+*.pdb
 *.pyc
+*.sdf
+*.suo
+*.tlog
+*.user
 buildlog.txt
 dsfinal.txt
 dsin.txt

@@ -3,7 +3,7 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CPPFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG
+CPPFLAGS = -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DNDEBUG
 INC = -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
 
 TARGETDIR = linux64
@@ -20,6 +20,10 @@ INI_OBJS = \
 
 JSON_OBJS = \
 	ED_JSONFile.o
+	
+MAT_OBJS = \
+	ED_MATFile.o \
+	ModelicaMatIO.o
 
 XLS_OBJS = \
 	libxls/src/endian.o \
@@ -61,11 +65,11 @@ ZLIB_OBJS = \
 	zlib/uncompr.o \
 	zlib/zutil.o
 
-ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS)
+ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(MAT_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS)
 
 all: clean libs
 
-libs: libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a
+libs: libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a
 	cp $^ ../Library/$(TARGETDIR)
 
 libbsxml-json.a: $(BS_OBJS)
@@ -76,6 +80,9 @@ libED_INIFile.a: $(INI_OBJS)
 
 libED_JSONFile.a: $(JSON_OBJS)
 	$(AR) $@ $(JSON_OBJS)
+
+libED_MATFile.a: $(MAT_OBJS)
+	$(AR) $@ $(MAT_OBJS)
 
 libED_XLSFile.a: $(XLS_OBJS)
 	$(AR) $@ $(XLS_OBJS)
