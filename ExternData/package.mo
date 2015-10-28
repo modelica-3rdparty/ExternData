@@ -105,6 +105,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
         Line(points={{0,20},{0,-80}}),
         Line(points={{40,20},{40,-80}}),
         Line(points={{-80,-30},{80,-30}}),
+        Text(extent={{5,85},{65,40}},textString="mat"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end MATFile;
 
