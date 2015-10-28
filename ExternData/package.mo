@@ -83,6 +83,31 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
+  model MATFile "Read data values from MATLAB MAT file"
+    parameter String fileName "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="MAT files (*.mat)",
+        caption="Open file")));
+
+    final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file";
+
+    protected
+      Types.ExternMATFile mat=Types.ExternMATFile(fileName);
+
+    annotation(
+      defaultComponentName="matfile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={241,219,48},fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-80,20},{80,-80}},lineColor={248,236,140},fillColor={241,219,48},fillPattern=FillPattern.HorizontalCylinder),
+        Rectangle(extent={{-80,20},{80,-80}}),
+        Line(points={{-40,20},{-40,-80}}),
+        Line(points={{0,20},{0,-80}}),
+        Line(points={{40,20},{40,-80}}),
+        Line(points={{-80,-30},{80,-30}}),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+  end MATFile;
+
   model XLSFile "Read data values from XLS file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
@@ -616,6 +641,37 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
         end getString;
       end Internal;
     end JSON;
+    
+    package MAT
+      extends Modelica.Icons.Package;
+      function getRealArray2D
+        extends Modelica.Icons.Function;
+        input String varName;
+        input Integer m=1;
+        input Integer n=1;
+        input Types.ExternMATFile mat;
+        output Real y[m,n];
+        algorithm
+          y := Internal.getRealArray2D(mat=mat, varName=varName, m=m, n=n);
+        annotation(Inline=true);
+      end getRealArray2D;
+
+      package Internal
+        extends Modelica.Icons.InternalPackage;
+        function getRealArray2D
+          input String varName;
+          input Integer m=1;
+          input Integer n=1;
+          input Types.ExternMATFile mat;
+          output Real y[m,n];
+          external "C" ED_getDoubleArray2DFromMAT(mat, varName, y, size(y, 1), size(y, 2)) annotation(
+            __iti_dll = "ITI_ED_MATFile.dll",
+            __iti_dllNoExport = true,
+            Include = "#include \"ED_MATFile.h\"",
+            Library = "ED_MATFile");
+        end getRealArray2D;
+      end Internal;
+    end MAT;
 
     package XLS
       extends Modelica.Icons.Package;
@@ -984,6 +1040,28 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
           Library = {"ED_JSONFile", "bsxml-json"});
       end destructor;
     end ExternJSONFile;
+
+    class ExternMATFile "External MAT file object"
+      extends ExternalObject;
+      function constructor
+        input String fileName;
+        output ExternMATFile mat;
+        external "C" mat=ED_createMAT(fileName) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = "ED_MATFile");
+      end constructor;
+
+      function destructor
+        input ExternMATFile mat;
+        external "C" ED_destroyMAT(mat) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = "ED_MATFile");
+      end destructor;
+    end ExternMATFile;
 
     class ExternXLSFile "External XLS file object"
       extends ExternalObject;
