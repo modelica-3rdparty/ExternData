@@ -1,0 +1,3 @@
+EXPORTS
+	ED_getDimDoubleArray2D
+	ED_getDoubleArray2D

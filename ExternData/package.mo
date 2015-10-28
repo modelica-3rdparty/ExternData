@@ -83,7 +83,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
-  model MATFile "Read data values from MATLAB MAT file"
+  model MATFile "Read data values from MAT file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="MAT files (*.mat)",
@@ -491,6 +491,33 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
 
   package Functions "Functions"
     extends Modelica.Icons.Package;
+
+    function readMatrixSize "Get dimensions of a 2D Real array from file"
+      input String fileName "File where external data is stored";
+      input String matrixName "Name / identifier of the matrix on the file";
+      output Integer Size[2] "Number of rows and columns of the 2D Real array";
+      external "C" ED_getDimDoubleArray2D(fileName, matrixName, Size) annotation(
+        __iti_dll = "ITI_ED_2D.dll",
+        __iti_dllNoExport = true,
+        Include = "#include \"ED_2D.c\"",
+        Library = {"ED_MATFile", "ED_XMLFile", "bsxml-json", "expat", "zlib"});
+      annotation(Documentation(info="<html><p>Read the 2D dimensions from a binary MATLAB MAT or textual XML file.</p></html>"));
+    end readMatrixSize;
+
+    function readMatrix "Get 2D Real values from file"
+      input String fileName "File where external data is stored";
+      input String matrixName "Name / identifier of the matrix on the file";
+      input Integer rows "Number of rows";
+      input Integer columns "Number of columns";
+      output Real matrix[rows, columns];
+      external "C" ED_getDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2)) annotation(
+        __iti_dll = "ITI_ED_2D.dll",
+        __iti_dllNoExport = true,
+        Include = "#include \"ED_2D.c\"",
+        Library = {"ED_MATFile", "ED_XMLFile", "bsxml-json", "expat", "zlib"});
+      annotation(Documentation(info="<html><p>Read a 2D Real array from a binary MATLAB MAT or textual XML file.</p></html>"));
+    end readMatrix;
+
     package INI
       extends Modelica.Icons.Package;
       function getReal
@@ -1050,7 +1077,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = "ED_MATFile");
+          Library = {"ED_MATFile", "zlib"});
       end constructor;
 
       function destructor
@@ -1059,7 +1086,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = "ED_MATFile");
+          Library = {"ED_MATFile", "zlib"});
       end destructor;
     end ExternMATFile;
 

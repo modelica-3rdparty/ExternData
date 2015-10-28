@@ -27,9 +27,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6FCAE2D7-453F-4A73-A243-439F356561D8}</ProjectGuid>
+    <ProjectGuid>{AC1A5793-3395-497D-A900-AD24DB09A129}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ED_MATFile</RootNamespace>
+    <RootNamespace>ED_2D</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -118,14 +118,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;_DEBUG;_WINDOWS;_USRDLL;ED_MATFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;_DEBUG;_WINDOWS;_USRDLL;ED_2D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -133,14 +133,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;_DEBUG;_WINDOWS;_USRDLL;ED_XMLFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;_DEBUG;_WINDOWS;_USRDLL;ED_2D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -149,14 +149,14 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_USRDLL;_WINDOWS;ED_2D_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -167,13 +167,13 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_USRDLL;_WINDOWS;ED_2D_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -186,12 +186,12 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
       <ImportLibrary>$(Configuration)\$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>expat.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
@@ -206,12 +206,12 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
       <ImportLibrary>$(Configuration)\$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>expat.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
@@ -222,14 +222,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C-Sources\ED_MATFile.c" />
+    <ClCompile Include="..\..\C-Sources\ED_XMLFile.c" />
     <ClCompile Include="..\..\C-Sources\ModelicaMatIO.c" />
+    <ClCompile Include="..\..\Include\ED_2D.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h" />
+    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
+    <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h" />
+    <ClInclude Include="..\..\Include\ED_2D.h" />
     <ClInclude Include="..\..\Include\ED_MATFile.h" />
+    <ClInclude Include="..\..\Include\ED_XMLFile.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ED_MATFile.def" />
+    <None Include="ED_2D.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,4 +5,5 @@ EXPORTS
 	ED_getStringFromXML
 	ED_getIntFromXML
 	ED_getDoubleArray1DFromXML
+	ED_getDimDoubleArray2DFromXML
 	ED_getDoubleArray2DFromXML
