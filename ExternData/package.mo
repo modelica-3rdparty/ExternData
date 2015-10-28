@@ -507,8 +507,8 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
     function readMatrix "Get 2D Real values from file"
       input String fileName "File where external data is stored";
       input String matrixName "Name / identifier of the matrix on the file";
-      input Integer rows "Number of rows";
-      input Integer columns "Number of columns";
+      input Integer rows "Number of rows" annotation(__OpenModelica_UnusedVariable=true);
+      input Integer columns "Number of columns" annotation(__OpenModelica_UnusedVariable=true);
       output Real matrix[rows, columns];
       external "C" ED_getDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2)) annotation(
         __iti_dll = "ITI_ED_2D.dll",
