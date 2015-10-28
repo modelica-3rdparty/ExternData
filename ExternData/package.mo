@@ -86,7 +86,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
   model MATFile "Read data values from MAT file"
     parameter String fileName "File where external data is stored"
       annotation(Dialog(
-        loadSelector(filter="MAT files (*.mat)",
+        loadSelector(filter="MATLAB MAT-files (*.mat)",
         caption="Open file")));
 
     final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file";
