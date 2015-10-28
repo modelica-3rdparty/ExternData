@@ -36,12 +36,14 @@
 #define MODELICA_NONNULLATTR
 #endif
 #if !defined(__ATTR_SAL)
+#define _In_
 #define _In_z_
 #define _Out_
 #endif
 
 void ED_getDimDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _Out_ int* dim) MODELICA_NONNULLATTR;
 void ED_getDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _Out_ double* a, size_t m, size_t n) MODELICA_NONNULLATTR;
+int ED_writeDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _In_ double* a, size_t m, size_t n, int append) MODELICA_NONNULLATTR;
 
 void ED_getDimDoubleArray2D(const char* fileName, const char* arrayName, int* dim)
 {
@@ -54,8 +56,8 @@ void ED_getDimDoubleArray2D(const char* fileName, const char* arrayName, int* di
 			if (ed != NULL) {
 				ED_getDimDoubleArray2DFromMAT(ed, arrayName, dim);
 				ED_destroyMAT(ed);
-				return;
 			}
+			return;
 		}
 		else if (0 == strncmp(ext, ".xml", 4) ||
 			0 == strncmp(ext, ".XML", 4)) {
@@ -63,8 +65,8 @@ void ED_getDimDoubleArray2D(const char* fileName, const char* arrayName, int* di
 			if (ed != NULL) {
 				ED_getDimDoubleArray2DFromXML(ed, arrayName, dim);
 				ED_destroyXML(ed);
-				return;
 			}
+			return;
 		}
 	}
 	ModelicaFormatError("Function \"ED_getDimDoubleArray2D\" is not implemented for \"%s\"\n", fileName);
@@ -81,8 +83,8 @@ void ED_getDoubleArray2D(const char* fileName, const char* arrayName, double* a,
 			if (ed != NULL) {
 				ED_getDoubleArray2DFromMAT(ed, arrayName, a, m, n);
 				ED_destroyMAT(ed);
-				return;
 			}
+			return;
 		}
 		else if (0 == strncmp(ext, ".xml", 4) ||
 			0 == strncmp(ext, ".XML", 4)) {
@@ -90,11 +92,31 @@ void ED_getDoubleArray2D(const char* fileName, const char* arrayName, double* a,
 			if (ed != NULL) {
 				ED_getDoubleArray2DFromXML(ed, arrayName, a, m, n);
 				ED_destroyXML(ed);
-				return;
 			}
+			return;
 		}
 	}
 	ModelicaFormatError("Function \"ED_getDoubleArray2D\" is not implemented for \"%s\"\n", fileName);
+}
+
+int ED_writeDoubleArray2D(const char* fileName, const char* arrayName, double* a, size_t m, size_t n, int append)
+{
+	/* File can be binary MATLAB MAT-file */
+	const char* ext = strrchr(fileName, '.');
+	if (ext != NULL) {
+		if (0 == strncmp(ext, ".mat", 4) ||
+			0 == strncmp(ext, ".MAT", 4)) {
+			int status = 0;
+			void* ed = ED_createMAT(fileName);
+			if (ed != NULL) {
+				status = ED_writeDoubleArray2DToMAT(ed, arrayName, a, m, n, append);
+				ED_destroyMAT(ed);
+			}
+			return status;
+		}
+	}
+	ModelicaFormatError("Function \"ED_writeDoubleArray2D\" is not implemented for \"%s\"\n", fileName);
+	return 0;
 }
 
 #endif /* !defined(ITI_COMP_SIM) */

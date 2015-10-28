@@ -243,3 +243,8 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		}
 	}
 }
+
+int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append)
+{
+	return 0;
+}

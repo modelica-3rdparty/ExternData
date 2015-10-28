@@ -495,7 +495,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
 
     function readMatrixSize "Get dimensions of a 2D Real array from file"
       input String fileName "File where external data is stored";
-      input String matrixName "Name / identifier of the matrix on the file";
+      input String matrixName "Name / identifier of the 2D Real array on the file";
       output Integer Size[2] "Number of rows and columns of the 2D Real array";
       external "C" ED_getDimDoubleArray2D(fileName, matrixName, Size) annotation(
         __iti_dll = "ITI_ED_2D.dll",
@@ -507,10 +507,10 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
 
     function readMatrix "Get 2D Real values from file"
       input String fileName "File where external data is stored";
-      input String matrixName "Name / identifier of the matrix on the file";
+      input String matrixName "Name / identifier of the 2D Real array on the file";
       input Integer rows "Number of rows" annotation(__OpenModelica_UnusedVariable=true);
       input Integer columns "Number of columns" annotation(__OpenModelica_UnusedVariable=true);
-      output Real matrix[rows, columns];
+      output Real matrix[rows, columns] "2D Real array";
       external "C" ED_getDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2)) annotation(
         __iti_dll = "ITI_ED_2D.dll",
         __iti_dllNoExport = true,
@@ -518,6 +518,20 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
         Library = {"ED_MATFile", "ED_XMLFile", "bsxml-json", "expat", "zlib"});
       annotation(Documentation(info="<html><p>Read a 2D Real array from a binary MATLAB MAT or textual XML file.</p></html>"));
     end readMatrix;
+
+    function writeMatrix "Store 2D Real values to file"
+      input String fileName "File where external data is to be stored";
+      input String matrixName "Name / identifier of the 2D Real array on the file";
+      input Real matrix[:,:] "2D Real array";
+      input Boolean append =  false "Append values to file";
+      output Boolean status "true if successful";
+      external "C" status=ED_writeDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append) annotation(
+        __iti_dll = "ITI_ED_2D.dll",
+        __iti_dllNoExport = true,
+        Include = "#include \"ED_2D.c\"",
+        Library = {"ED_MATFile", "ED_XMLFile", "bsxml-json", "expat", "zlib"});
+      annotation(Documentation(info="<html><p>Write a 2D Real array to a binary MATLAB MAT file.</p></html>"));
+    end writeMatrix;
 
     package INI
       extends Modelica.Icons.Package;
