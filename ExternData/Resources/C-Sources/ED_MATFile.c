@@ -256,14 +256,6 @@ int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_
 		double* aT;
 		int newFile = 0;
 
-		aT = (double*)malloc(m*n*sizeof(double));
-		if (aT == NULL) {
-			ModelicaError("Memory allocation error\n");
-			return 0;
-		}
-		memcpy(aT, a, m*n*sizeof(double));
-		transpose(aT, n, m);
-
 		if (append == 0) {
 			FILE* fp = fopen(mat->fileName, "r+b");
 			if (fp != NULL) {
@@ -279,11 +271,11 @@ int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_
 		}
 		else {
 			FILE* fp = fopen(mat->fileName, "r+b");
-			if (fp == NULL) {
-				newFile = 1;
+			if (fp != NULL) {
+				fclose(fp);
 			}
 			else {
-				fclose(fp);
+				newFile = 1;
 			}
 		}
 
@@ -300,6 +292,15 @@ int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_
 				Mat_VarDelete(matfp, varName);
 			}
 		}
+
+		/* MAT file array is stored column-wise -> need to transpose */
+		aT = (double*)malloc(m*n*sizeof(double));
+		if (aT == NULL) {
+			ModelicaError("Memory allocation error\n");
+			return 0;
+		}
+		memcpy(aT, a, m*n*sizeof(double));
+		transpose(aT, n, m);
 
 		dims[0] = m;
 		dims[1] = n;
