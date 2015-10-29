@@ -2,7 +2,7 @@
 Modelica library for reading data from INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
 
 ## Build status
-[![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest)
+[![Build Status](https://travis-ci.org/tbeu/ExternData.svg)](https://travis-ci.org/tbeu/ExternData)
 
 ## Library description
 ExternData is a small utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
@@ -27,7 +27,7 @@ Gilles Vollant's Zip and UnZip library
 * [libxls](http://sourceforge.net/projects/libxls) -
 David Hoerl's C library for parsing Excel files
 * [uthash](https://github.com/troydhanson/uthash) -
-Troy D. Hanson's C macros for hash tables and more 
+Troy D. Hanson's C macros for hash tables and more
 * [zlib](https://github.com/madler/zlib) -
 Jean-loup Gailly's and Mark Adler's massively spiffy yet delicately unobtrusive compression library
 
