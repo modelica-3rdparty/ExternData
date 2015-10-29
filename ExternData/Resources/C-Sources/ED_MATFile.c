@@ -20,6 +20,7 @@
  */
 
 #include <string.h>
+#include <stdio.h>
 #if defined(_MSC_VER)
 #define strdup _strdup
 #endif
@@ -99,11 +100,11 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 {
 	MATFile* edmat = (MATFile*)_mat;
 	if (edmat != NULL) {
-		mat_t* mat;
+		mat_t* matfp;
 		matvar_t* matvar;
 
-		mat = Mat_Open(edmat->fileName, (int)MAT_ACC_RDONLY);
-		if (mat == NULL) {
+		matfp = Mat_Open(edmat->fileName, (int)MAT_ACC_RDONLY);
+		if (matfp == NULL) {
 			dim[0] = 0;
 			dim[1] = 0;
 			ModelicaFormatError("Not possible to open file \"%s\": "
@@ -111,11 +112,11 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 			return;
 		}
 
-		matvar = Mat_VarReadInfo(mat, varName);
+		matvar = Mat_VarReadInfo(matfp, varName);
 		if (matvar == NULL) {
 			dim[0] = 0;
 			dim[1] = 0;
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
 				edmat->fileName);
@@ -127,7 +128,7 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 			dim[0] = 0;
 			dim[1] = 0;
 			Mat_VarFree(matvar);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Array \"%s\" has not the required rank 2.\n", varName);
 			return;
@@ -137,7 +138,7 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 		dim[1] = (int)matvar->dims[1];
 
 		Mat_VarFree(matvar);
-		(void)Mat_Close(mat);
+		(void)Mat_Close(matfp);
 	}
 }
 
@@ -145,21 +146,21 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 {
 	MATFile* edmat = (MATFile*)_mat;
 	if (edmat != NULL) {
-		mat_t* mat;
+		mat_t* matfp;
 		matvar_t* matvar;
 		size_t nRow, nCol;
 		int tableReadError = 0;
 
-		mat = Mat_Open(edmat->fileName, (int)MAT_ACC_RDONLY);
-		if (mat == NULL) {
+		matfp = Mat_Open(edmat->fileName, (int)MAT_ACC_RDONLY);
+		if (matfp == NULL) {
 			ModelicaFormatError("Not possible to open file \"%s\": "
 				"No such file or directory\n", edmat->fileName);
 			return;
 		}
 
-		matvar = Mat_VarReadInfo(mat, varName);
+		matvar = Mat_VarReadInfo(matfp, varName);
 		if (matvar == NULL) {
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
 				edmat->fileName);
@@ -169,7 +170,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		/* Check if array is a matrix */
 		if (matvar->rank != 2) {
 			Mat_VarFree(matvar);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Array \"%s\" has not the required rank 2.\n", varName);
 			return;
@@ -178,7 +179,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		/* Check if array is of double precision class (and thus non-sparse) */
 		if (matvar->class_type != MAT_C_DOUBLE) {
 			Mat_VarFree(matvar);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError("2D array \"%s\" has not the required "
 				"double precision class.\n", varName);
 			return;
@@ -187,7 +188,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		/* Check if array is purely real-valued */
 		if (matvar->isComplex) {
 			Mat_VarFree(matvar);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError("2D array  \"%s\" must not be complex.\n",
 				varName);
 			return;
@@ -196,10 +197,10 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		nRow = matvar->dims[0];
 		nCol = matvar->dims[1];
 
-		/* Check if number of rows match */
+		/* Check if number of rows matches */
 		if (m != nRow) {
 			Mat_VarFree(matvar);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Cannot read %lu rows of matrix \"%s(%lu,%lu)\" "
 				"from file \"%s\"\n", (unsigned long)m, varName,
@@ -207,10 +208,10 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			return;
 		}
 
-		/* Check if number of columns match */
+		/* Check if number of columns matches */
 		if (n != nCol) {
 			Mat_VarFree(matvar);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Cannot read %lu columns of matrix \"%s(%lu,%lu)\" "
 				"from file \"%s\"\n", (unsigned long)n, varName,
@@ -224,11 +225,11 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			int edge[2];
 			edge[0] = (int)nRow;
 			edge[1] = (int)nCol;
-			tableReadError = Mat_VarReadData(mat, matvar, a, start, stride, edge);
+			tableReadError = Mat_VarReadData(matfp, matvar, a, start, stride, edge);
 		}
 
 		Mat_VarFree(matvar);
-		(void)Mat_Close(mat);
+		(void)Mat_Close(matfp);
 
 		if (tableReadError == 0) {
 			/* Array is stored column-wise -> need to transpose */
@@ -246,5 +247,75 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 
 int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append)
 {
-	return 0;
+	int status = 0;
+	MATFile* mat = (MATFile*)_mat;
+	if (mat != NULL) {
+		mat_t* matfp;
+		matvar_t* matvar;
+		size_t dims[2];
+		double* aT;
+		int newFile = 0;
+
+		aT = (double*)malloc(m*n*sizeof(double));
+		if (aT == NULL) {
+			ModelicaError("Memory allocation error\n");
+			return 0;
+		}
+		memcpy(aT, a, m*n*sizeof(double));
+		transpose(aT, n, m);
+
+		if (append == 0) {
+			FILE* fp = fopen(mat->fileName, "r+b");
+			if (fp != NULL) {
+				fclose(fp);
+				status = remove(mat->fileName);
+				if (status != 0) {
+					return 0;
+				}
+				else {
+					newFile = 1;
+				}
+			}
+		}
+		else {
+			FILE* fp = fopen(mat->fileName, "r+b");
+			if (fp == NULL) {
+				newFile = 1;
+			}
+			else {
+				fclose(fp);
+			}
+		}
+
+		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDWR|MAT_FT_MAT4);
+		if (matfp == NULL) {
+			ModelicaFormatError("Not possible to open file \"%s\"\n", mat->fileName);
+			return 0;
+		}
+
+		if (newFile == 0) {
+			matvar = Mat_VarReadInfo(matfp, varName);
+			if (matvar != NULL) {
+				Mat_VarFree(matvar);
+				Mat_VarDelete(matfp, varName);
+			}
+		}
+
+		dims[0] = m;
+		dims[1] = n;
+		matvar = Mat_VarCreate(varName, MAT_C_DOUBLE, MAT_T_DOUBLE, 2, dims, aT, MAT_F_DONT_COPY_DATA);
+		status = Mat_VarWrite(matfp, matvar, MAT_COMPRESSION_ZLIB);
+		if (status != 0) {
+			Mat_VarFree(matvar);
+			(void)Mat_Close(matfp);
+			free(aT);
+			ModelicaFormatError("Cannot write variable \"%s\" to \"%s\"\n", varName, mat->fileName);
+			return 0;
+		}
+		Mat_VarFree(matvar);
+		(void)Mat_Close(matfp);
+		free(aT);
+		status = 1;
+	}
+	return status;
 }
