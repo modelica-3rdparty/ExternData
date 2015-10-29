@@ -62,7 +62,7 @@ void* ED_createXML(const char* fileName)
 				XmlParser_getErrorString(&xmlParser), XmlParser_getErrorLine(&xmlParser), fileName);
 		}
 		else {
-			ModelicaFormatError("Cannot read \"%s\": %s\n", fileName, XmlParser_getErrorLine(&xmlParser));
+			ModelicaFormatError("Cannot read \"%s\": %s\n", fileName, XmlParser_getErrorString(&xmlParser));
 		}
 		return NULL;
 	}
