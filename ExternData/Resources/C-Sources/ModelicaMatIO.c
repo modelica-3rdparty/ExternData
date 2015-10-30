@@ -9236,7 +9236,7 @@ Mat_Open(const char *matname,int mode)
             /* Does not seem to be a valid V4 file */
             Mat_Close(mat);
             mat = NULL;
-            Mat_Critical("%s does not seem to be a valid MAT file",matname);
+            Mat_Critical("\"%s\" does not seem to be a valid MAT file",matname);
         } else {
             Mat_VarFree(var);
             Mat_Rewind(mat);
