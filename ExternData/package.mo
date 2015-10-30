@@ -1,5 +1,5 @@
 ﻿// CP: 65001
-/* package.mo - Modelica library to read data from INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
+/* package.mo - Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015 tbeu
  *
@@ -21,7 +21,7 @@
  */
 
 within;
-package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files"
+package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   package UsersGuide "User's Guide"
     extends Modelica.Icons.Information;
@@ -505,7 +505,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
       annotation(Documentation(info="<html><p>Read the 2D dimensions from a binary MATLAB MAT or textual XML file.</p></html>"));
     end readMatrixSize;
 
-    function readMatrix "Get 2D Real values from file"
+    function readMatrix "Get 2D Real values from MATLAB MAT or XML file"
       input String fileName "File where external data is stored";
       input String matrixName "Name / identifier of the 2D Real array on the file";
       input Integer rows "Number of rows" annotation(__OpenModelica_UnusedVariable=true);
@@ -519,7 +519,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
       annotation(Documentation(info="<html><p>Read a 2D Real array from a binary MATLAB MAT or textual XML file.</p></html>"));
     end readMatrix;
 
-    function writeMatrix "Store 2D Real values to file"
+    function writeMatrix "Save 2D Real values to v4 MATLAB MAT file"
       input String fileName "File where external data is to be stored";
       input String matrixName "Name / identifier of the 2D Real array on the file";
       input Real matrix[:,:] "2D Real array";
@@ -530,7 +530,7 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
         __iti_dllNoExport = true,
         Include = "#include \"ED_2D.c\"",
         Library = {"ED_MATFile", "ED_XMLFile", "bsxml-json", "expat", "zlib"});
-      annotation(Documentation(info="<html><p>Write a 2D Real array to a binary MATLAB MAT file.</p></html>"));
+      annotation(Documentation(info="<html><p>Write a 2D Real array to a legacy v4 MATLAB MAT file.</p></html>"));
     end writeMatrix;
 
     package INI
@@ -1174,5 +1174,5 @@ package ExternData "Library to read data from INI, JSON, MATLAB MAT, Excel XLS/X
   end Types;
 
   annotation(uses(Modelica(version="3.2.1")), version="2.0.0-dev",
-    Documentation(info="<html><p>Library <strong>ExternData</strong> is a Modelica utility library for reading data from <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
+    Documentation(info="<html><p>Library <strong>ExternData</strong> is a Modelica utility library for data I/O of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
 end ExternData;

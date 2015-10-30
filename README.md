@@ -1,14 +1,27 @@
 # ExternData
-Modelica library for reading data from INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
-
-## Build status
-[![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest) 
-[![Build Status](https://travis-ci.org/tbeu/ExternData.svg?branch=master)](https://travis-ci.org/tbeu/ExternData)
+Free Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
 
 ## Library description
-ExternData is a small utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
+ExternData is a utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
 for convenient model initialization / parametrization.
+There also is support for saving 2D Modelica arrays as legacy v4 MATLAB MAT files.
+
+### Main features
+* Read support of file formats
+  * [INI](https://en.wikipedia.org/wiki/INI_file)
+  * [JSON](https://en.wikipedia.org/wiki/JSON)
+  * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6 or v7
+  * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
+  * [XML](https://en.wikipedia.org/wiki/XML)
+* Support of simple matrix I/O
+  * Read 2D arrays from MATLAB MAT (v4, v6 or v7) or XML files with function `readMatrix`
+  * Write 2D arrays to MATLAB MAT files (legacy v4 set by default) with function `writeMatrix`
+* Pure C (and not C++) code for external functions and objects
+* Cross-platform (Windows and Linux)
+
+All data I/O access is implemented using external Modelica functions. Furthermore, high level interfaces
+on these functions are provided via Modelica models.
 
 ## License
 ExternData is released under the terms of the GPL v2.
