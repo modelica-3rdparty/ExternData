@@ -2,7 +2,8 @@
 Modelica library for reading data from INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
 
 ## Build status
-[![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest) [![Build Status](https://travis-ci.org/tbeu/ExternData.svg?branch=master)](https://travis-ci.org/tbeu/ExternData)
+[![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest) 
+[![Build Status](https://travis-ci.org/tbeu/ExternData.svg?branch=master)](https://travis-ci.org/tbeu/ExternData)
 
 ## Library description
 ExternData is a small utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
