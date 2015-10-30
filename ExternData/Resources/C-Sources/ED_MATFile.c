@@ -254,48 +254,24 @@ int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_
 		matvar_t* matvar;
 		size_t dims[2];
 		double* aT;
-		int newFile = 0;
 
-		if (append == 0) {
-			FILE* fp = fopen(mat->fileName, "r+b");
-			if (fp != NULL) {
-				fclose(fp);
-				status = remove(mat->fileName);
-				if (status != 0) {
-					return 0;
-				}
-				else {
-					newFile = 1;
-				}
-			}
-		}
-		else {
-			FILE* fp = fopen(mat->fileName, "r+b");
-			if (fp != NULL) {
-				fclose(fp);
-			}
-			else {
-				newFile = 1;
-			}
-		}
+		matfp = append == 0 ?
+			Mat_CreateVer(mat->fileName, NULL, MAT_FT_MAT4) :
+			Mat_Open(mat->fileName, (int)MAT_ACC_RDWR | MAT_FT_MAT4);
 
-		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDWR|MAT_FT_MAT4);
 		if (matfp == NULL) {
 			ModelicaFormatError("Not possible to open file \"%s\"\n", mat->fileName);
 			return 0;
 		}
 
-		if (newFile == 0) {
-			matvar = Mat_VarReadInfo(matfp, varName);
-			if (matvar != NULL) {
-				Mat_VarFree(matvar);
-				Mat_VarDelete(matfp, varName);
-			}
+		if (append != 0) {
+			(void)Mat_VarDelete(matfp, varName);
 		}
 
 		/* MAT file array is stored column-wise -> need to transpose */
 		aT = (double*)malloc(m*n*sizeof(double));
 		if (aT == NULL) {
+			(void)Mat_Close(matfp);
 			ModelicaError("Memory allocation error\n");
 			return 0;
 		}
