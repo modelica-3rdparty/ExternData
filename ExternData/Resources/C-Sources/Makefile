@@ -1,4 +1,3 @@
-CC = gcc
 AR = ar -ru
 RM = rm -f
 

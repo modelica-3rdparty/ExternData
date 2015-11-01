@@ -6,17 +6,21 @@ git:
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - gcc-4.8-multilib
-    - linux-libc-dev:i386
+      - gcc-4.8-multilib
+      - linux-libc-dev:i386
 
 env: LIBS="libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
 
+compiler:
+  - gcc-4.8
+  - clang
+
 script:
   - cd ExternData/Resources/C-Sources
-  - make CC="gcc-4.8" CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"
-  - make CC="gcc-4.8" CFLAGS="-O3 -fPIC"
+  - make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"
+  - make CFLAGS="-O3 -fPIC"
   - cd ../Library/linux32
   - tar cJf linux32.tar.xz $LIBS
   - cd ../linux64
