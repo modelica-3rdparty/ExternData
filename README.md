@@ -32,18 +32,18 @@ ExternData is released under the terms of the GPL v2.
 
 ## Acknowledgement
 ExternData is based on the following third-party C projects
-* [expat](http://sourceforge.net/projects/expat) -
-James Clark's Expat XML parser library
 * [bsxml-json](https://github.com/bsapundzhiev/bsxml-json) -
 Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
+* [expat](http://sourceforge.net/projects/expat) -
+James Clark's Expat XML parser library
 * [libmatio](http://sourceforge.net/projects/matio) -
 Christopher Hulbert's C library for reading and writing MATLAB MAT-files
+* [libxls](http://sourceforge.net/projects/libxls) -
+David Hoerl's C library for parsing Excel files
 * [minIni](https://github.com/compuphase/minIni) -
 Thiadmer Riemersma's small and portable INI file library with read/write support
 * [minizip](http://www.winimage.com/zLibDll/minizip.html) -
 Gilles Vollant's Zip and UnZip library
-* [libxls](http://sourceforge.net/projects/libxls) -
-David Hoerl's C library for parsing Excel files
 * [uthash](https://github.com/troydhanson/uthash) -
 Troy D. Hanson's C macros for hash tables and more
 * [zlib](https://github.com/madler/zlib) -
