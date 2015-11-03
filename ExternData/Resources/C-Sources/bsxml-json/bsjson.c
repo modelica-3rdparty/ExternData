@@ -439,8 +439,8 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
 
             if( pi->quote_begin) {
                 char prev = JsonParser_prev_char(p, i);
-                if(prev != Json_elem(JSON_COMMA) && prev !=  Json_elem(JSON_COLON)
-                        && prev != Json_elem(JSON_OBJ_B) &&  prev != Json_elem(JSON_ARR_B) ) {
+                if(prev != Json_elem(JSON_COMMA) && prev != Json_elem(JSON_COLON)
+                        && prev != Json_elem(JSON_OBJ_B) && prev != Json_elem(JSON_ARR_B) ) {
                     pi->error = JSON_ERR_SYN;
                     break;
                 }
@@ -607,14 +607,19 @@ static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
 {
     long i;
     for(i = 0; i < size; i++) {
-        if((buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#' || buff[i] == '"') {
+        if(((i < size - 1) && buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#' || buff[i] == '"') {
             char s = buff[i];
-            while(buff[i] != '\n' && buff[i] != 0) {
+            long j = i;
+            do {
                 if(s != '"') {
                     buff[i] = ' ';
                 }
+                else if (i > j && buff[i] == '"') {
+                    i++;
+                    break;
+                }
                 i++;
-            }
+            } while(buff[i] != '\n' && buff[i] != 0);
         }
     }
 }
@@ -633,7 +638,7 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
         buffer = (char*) malloc (length + 1);
         if (buffer) {
             read = fread (buffer, sizeof(char), length, f);
-            buffer[length] = '\0';
+            buffer[read] = '\0';
         }
         fclose (f);
         if (read > 0) {
