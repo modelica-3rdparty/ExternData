@@ -28,7 +28,7 @@ All data I/O access is implemented using external Modelica functions. Furthermor
 on these functions are provided via Modelica models.
 
 ## License
-ExternData is released under the terms of the GPL v2.
+ExternData is released under the terms of the Simplified BSD License.
 
 ## Acknowledgement
 ExternData is based on the following third-party C projects
