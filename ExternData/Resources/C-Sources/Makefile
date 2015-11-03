@@ -10,7 +10,6 @@ TARGETDIR = linux64
 BS_OBJS = \
 	bsxml-json/array.o \
 	bsxml-json/bsjson.o \
-	bsxml-json/bsstr.o \
 	bsxml-json/bsxml.o
 
 INI_OBJS = \

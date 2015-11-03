@@ -14,10 +14,14 @@
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
-#include "bsstr.h"
+#define oom break
+#include "utstring.h"
 #include "bsjson.h"
 
 #define JSON_STACK_SIZE 32
+
+#define isNullorEmpty(str) \
+    (str == NULL || strlen(str) == 0)
 
 enum eElemType {
     JSON_OBJ_B, JSON_OBJ_E, JSON_ARR_B, JSON_ARR_E,
@@ -55,7 +59,7 @@ JsonNode * JsonNode_Create()
     node->m_name = NULL;
     node->m_parent = NULL;
     node->m_pairs = cpo_array_create(4 , sizeof(JsonPair));
-    node->m_childs =  cpo_array_create(4 , sizeof(JsonNode));
+    node->m_childs = cpo_array_create(4 , sizeof(JsonNode));
     return node;
 }
 
@@ -66,7 +70,7 @@ JsonNode * JsonNode_createChild(JsonNode * node, String name, int type)
     child->m_parent = node;
     child->m_name = (name != NULL) ? strdup(name) : NULL;
     child->m_pairs = cpo_array_create(4 , sizeof(JsonPair));
-    child->m_childs =  cpo_array_create(4 , sizeof(JsonNode));
+    child->m_childs = cpo_array_create(4 , sizeof(JsonNode));
     return child;
 }
 
@@ -83,8 +87,8 @@ JsonNode * JsonNode_createArray(JsonNode * node, String name)
 void JsonNode_setPair(JsonNode * node, const String key, const String value )
 {
     JsonPair *a = (JsonPair*)cpo_array_push( node->m_pairs );
-    a->key =  strdup(key);
-    a->value =  strdup(value);
+    a->key = strdup(key);
+    a->value = strdup(value);
 }
 
 static int JsonPair_comparer(const void *a, const void *b)
@@ -197,18 +201,19 @@ void JsonNode_deleteTree(JsonNode *root)
         root = NULL;
     }
 }
-
-String JsonNode_getJSON(JsonNode *node)
+/* return allocated UT_string */
+static UT_string *JsonNode_getJSON_UT(JsonNode *node, String last)
 {
     int i, nPairs, nChilds;
-    String JSON = NULL;
-    bsstr *buff = bsstr_create("");
+    UT_string *buff;
+    utstring_new(buff);
+    if (buff == NULL) return NULL;
 
     if (!isNullorEmpty(node->m_name)) {
-        bsstr_printf(buff, "\"%s\":", node->m_name);
+        utstring_printf(buff, "\"%s\":", node->m_name);
     }
 
-    bsstr_printf(buff, "%s\n",  JSON_IS_OBJ(node) ? "{" : "[");
+    utstring_printf(buff, "%s\n",  JSON_IS_OBJ(node) ? "{" : "[");
     nPairs = JsonNode_getPairCount(node);
     nChilds = JsonNode_getChildCount(node);
 
@@ -216,29 +221,31 @@ String JsonNode_getJSON(JsonNode *node)
         JsonPair *pair = JsonNode_getPair(node, i);
 
         if (JSON_IS_ARRAY(node)) {
-            bsstr_printf(buff, "\"%s\"", pair->key);
+            utstring_printf(buff, "\"%s\"", pair->key);
         } else {
-            bsstr_printf(buff, "\"%s\":\"%s\"", pair->key, pair->value);
+            utstring_printf(buff, "\"%s\":\"%s\"", pair->key, pair->value);
         }
 
-        bsstr_printf(buff, "%s\n", (i < nPairs -1 || nChilds > 0) ? "," : "");
+        utstring_printf(buff, "%s\n", (i < nPairs -1 || nChilds > 0) ? "," : "");
     }
 
     for (i = 0; i < nChilds; i++) {
         JsonNode* child = JsonNode_getChild(node, i);
-        String childJSON = JsonNode_getJSON(child);
-        bsstr_add(buff, childJSON);
-        if (i < nChilds -1) {
-            int len = bsstr_length(buff)-1;
-            strncpy(bsstr_get_bufref(buff) + len, ",", 1);
-            bsstr_addchr(buff, '\n');
+        UT_string *childJSON = JsonNode_getJSON_UT(child, i == nChilds - 1 ? "\n" : ",\n");
+        if (childJSON != NULL) {
+            utstring_concat(buff, childJSON);
+            utstring_free(childJSON);
         }
-        free(childJSON);
     }
 
-    bsstr_printf(buff, "%s\n",  JSON_IS_OBJ(node) ? "}" : "]");
-    JSON = bsstr_release(buff);
-    return JSON;
+    utstring_printf(buff, "%s%s",  JSON_IS_OBJ(node) ? "}" : "]", last);
+    return buff;
+}
+/* return allocated string */
+String JsonNode_getJSON(JsonNode *node)
+{
+    UT_string *buff = JsonNode_getJSON_UT(node, "\n");
+    return utstring_release(buff);
 }
 /********************************************************************************/
 /* Parse JSON                                                                   */
@@ -255,8 +262,8 @@ struct  ParserInternal { /*Jsonlexer*/
     int line;
     int quote_begin;
     int is_value;
-    bsstr *key;
-    bsstr *value;
+    UT_string *key;
+    UT_string *value;
     cpo_array_t stack;
     struct JsonParser *parser;
     void (*startElem)(struct JsonParser *, const String, int);
@@ -268,8 +275,8 @@ static void JsonParser_internalCreate(struct ParserInternal *pi)
 {
     pi->error = JSON_ERR_NONE;
     pi->line = 0;
-    pi->key = bsstr_create("");
-    pi->value = bsstr_create("");
+    utstring_new(pi->key);
+    utstring_new(pi->value);
     pi->stack.v = calloc(JSON_STACK_SIZE, sizeof(char*));
     pi->stack.num = 0;
     pi->stack.max = JSON_STACK_SIZE;
@@ -282,21 +289,24 @@ static void JsonParser_internalCreate(struct ParserInternal *pi)
 static void JsonParser_internalReset(struct ParserInternal *pi)
 {
     pi->quote_begin = pi->is_value = 0;
-    bsstr_clear(pi->key);
-    bsstr_clear(pi->value);
+    utstring_clear(pi->key);
+    utstring_clear(pi->value);
 }
 
 static void JsonParser_internalDelete(struct ParserInternal *pi)
 {
-    bsstr_delete(pi->key);
-    bsstr_delete(pi->value);
+    utstring_free(pi->key);
+    utstring_free(pi->value);
     free(pi->stack.v);
 }
 
 static int JsonParser_internalBeginObj(struct  ParserInternal *pi, enum eElemType elemType)
 {
-    char *name = bsstr_get_buf(pi->key);
+    char *name = utstring_body(pi->key);
     void *ptr = stack_push_back(&(pi)->stack);
+    pi->key->n = 64;
+    pi->key->d = (char*)calloc(64, 1);
+    pi->key->i = 0;
     ARR_VAL(ptr) = ARR_VAL2PTR(name);
     if (elemType != JSON_ARR_B && elemType != JSON_OBJ_B) {
         pi->error = JSNON_ERR_NOTOBJ;
@@ -337,10 +347,10 @@ static int JsonParser_internalData(struct  ParserInternal *pi)
         return JSON_NOK;
     }
 
-    if (bsstr_length(pi->key) || bsstr_length(pi->value)) {
+    if (utstring_len(pi->key) > 0 || utstring_len(pi->value) > 0) {
 
         if (pi->elemData) {
-            pi->elemData(pi->parser,  bsstr_get_bufref(pi->key), bsstr_get_bufref(pi->value) );
+            pi->elemData(pi->parser, utstring_body(pi->key), utstring_body(pi->value) );
         }
     }
 
@@ -434,8 +444,12 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
                 pi->is_value = 1;
             } else {
                 /* colon in value */
-                bsstr *data = (!pi->is_value) ? pi->key : pi->value;
-                bsstr_addchr(data, Json_elem(JSON_COLON));
+                UT_string *data = (!pi->is_value) ? pi->key : pi->value;
+                UT_string tmp;
+                utstring_init(&tmp);
+                utstring_printf(&tmp, "%c", Json_elem(JSON_COLON));
+                utstring_concat(data, &tmp);
+                utstring_done(&tmp);
             }
             break;
         case JSON_COMMA:
@@ -443,8 +457,12 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
                 JsonParser_internalData(pi);
             } else {
                 /* comma in value */
-                bsstr *data = (!pi->is_value) ? pi->key : pi->value;
-                bsstr_addchr(data, Json_elem(JSON_COMMA));
+                UT_string *data = (!pi->is_value) ? pi->key : pi->value;
+                UT_string tmp;
+                utstring_init(&tmp);
+                utstring_printf(&tmp, "%c", Json_elem(JSON_COMMA));
+                utstring_concat(data, &tmp);
+                utstring_done(&tmp);
             }
             break;
 
@@ -465,9 +483,17 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
         case JSON_HEX:  /*TODO:*/
         case JSON_INVALID:
             if (pi->quote_begin && !pi->is_value) {
-                bsstr_addchr(pi->key, ch);
+                UT_string tmp;
+                utstring_init(&tmp);
+                utstring_printf(&tmp, "%c", ch);
+                utstring_concat(pi->key, &tmp);
+                utstring_done(&tmp);
             } else if (pi->quote_begin && pi->is_value) {
-                bsstr_addchr(pi->value, ch);
+                UT_string tmp;
+                utstring_init(&tmp);
+                utstring_printf(&tmp, "%c", ch);
+                utstring_concat(pi->value, &tmp);
+                utstring_done(&tmp);
             } else {
                 //printf("[skiped] '%c' [0x%x]\n", ch,ch);
             }

@@ -29,13 +29,11 @@
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsjson.h" />
-    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h" />
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C-Sources\bsxml-json\array.c" />
     <ClCompile Include="..\..\C-Sources\bsxml-json\bsjson.c" />
-    <ClCompile Include="..\..\C-Sources\bsxml-json\bsstr.c" />
     <ClCompile Include="..\..\C-Sources\bsxml-json\bsxml.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -15,7 +15,8 @@
 #include <assert.h>
 #include <ctype.h>
 #include <errno.h>
-#include "bsstr.h"
+#define oom break
+#include "utstring.h"
 #include "bsxml.h"
 /* initial size */
 #define XMLTREE_CHILDSIZE   8
@@ -23,6 +24,18 @@
 #define XMLTREE_STACKSIZE   32
 
 #define ENC_TYPE_UTF8   "UTF-8"
+
+#define isNullorEmpty(str) \
+    (str == NULL || strlen(str) == 0)
+
+#define isAlpha(c) \
+    ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+
+#define isDigit(c) \
+    (c >= '0' && c <= '9')
+
+#define isAlphaNumeric(c) \
+    (isDigit(c) || isAlpha(c))
 
 XmlNode * XmlNode_Create(const String tag)
 {
@@ -247,9 +260,9 @@ void XmlNode_setValue(struct XmlNode *node, const String value )
             size_t end = strlen(node->m_content);
             size_t len = strlen(value);
             unsigned last = isAlphaNumeric(*(node->m_content + end-1)) ? 2:1;
-            char *new = realloc(node->m_content,(end + len + last));
-            if (!new) return;
-            node->m_content = new;
+            char *tmp = realloc(node->m_content,(end + len + last));
+            if (tmp == NULL) return;
+            node->m_content = tmp;
 
             if (last == 2) {
                 strcat(node->m_content, " ");
@@ -335,83 +348,89 @@ void XmlNode_setSubNodeValueFloat(struct XmlNode *node, const String tag, float 
 
     XmlNode_setValueFloat(child, value);
 }
-/* return allocated string */
-String XmlNode_getXML(struct XmlNode *node)
+/* return allocated UT_string */
+static UT_string *XmlNode_getXML_UT(struct XmlNode *node)
 {
-    String xmlStr = NULL;
-    bsstr *buff = bsstr_create("");
     int i;
+    UT_string *buff;
+    utstring_new(buff);
+    if (buff == NULL) return NULL;
     if (node->m_attributes->num == 0) {
-        bsstr_printf(buff, "<%s>\n", node->m_tag);
+        utstring_printf(buff, "<%s>\n", node->m_tag);
     } else {
-        bsstr_printf(buff, "<%s ",node->m_tag);
+        utstring_printf(buff, "<%s ",node->m_tag);
         // Put attributes.
         for (i =0; i< node->m_attributes->num; i++) {
             XmlAttribute *a = cpo_array_get_at(node->m_attributes, i);
-            bsstr_printf(buff, "%s =\"%s\" ",a->key , a->value);
+            utstring_printf(buff, "%s =\"%s\" ",a->key , a->value);
         }
 
         if (isNullorEmpty(node->m_content) && !node->m_childs->num) {
-            bsstr_printf(buff, "/>\n");
-            xmlStr = bsstr_release(buff);
-            return xmlStr;
+            utstring_printf(buff, "/>\n");
+            return buff;
         }
-        bsstr_printf(buff, ">\n");
+        utstring_printf(buff, ">\n");
     }
 
     if (!isNullorEmpty(node->m_content)) {
-
         size_t pos;
         char *p = node->m_content;
         for (pos = 0; pos < strlen(node->m_content); ++pos) {
             switch (p[pos]) {
             case '&':
-                bsstr_printf(buff,"&amp;");
+                utstring_printf(buff,"&amp;");
                 break;
             case '\"':
-                bsstr_printf(buff,"&quot;");
+                utstring_printf(buff,"&quot;");
                 break;
             case '\'':
-                bsstr_printf(buff,"&apos;");
+                utstring_printf(buff,"&apos;");
                 break;
             case '<':
-                bsstr_printf(buff,"&lt;");
+                utstring_printf(buff,"&lt;");
                 break;
             case '>':
-                bsstr_printf(buff,"&gt;");
+                utstring_printf(buff,"&gt;");
                 break;
             default:
-                bsstr_printf(buff,"%c", p[pos]);
+                utstring_printf(buff,"%c", p[pos]);
                 break;
             }
         }
-        bsstr_printf(buff,"\n");
+        utstring_printf(buff,"\n");
     }
 
     for (i = 0; i < node->m_childs->num; i++) {
         XmlNodeRef child = cpo_array_get_at(node->m_childs, i);
-        String childXML = XmlNode_getXML(child);
-        bsstr_add(buff, childXML);
-        free(childXML);
+        UT_string* childXML = XmlNode_getXML_UT(child);
+        if (childXML != NULL) {
+            utstring_concat(buff, childXML);
+            utstring_free(childXML);
+        }
     }
 
     // End tag.
-    bsstr_printf(buff, "</%s>\n", node->m_tag);
-    xmlStr = bsstr_release(buff);
-    return xmlStr;
+    utstring_printf(buff, "</%s>\n", node->m_tag);
+    return buff;
+}
+/* return allocated string */
+String XmlNode_getXML(struct XmlNode *node)
+{
+    UT_string *buff = XmlNode_getXML_UT(node);
+    return utstring_release(buff);
 }
 
 void XmlNode_toFile(struct XmlNode *node, const char *fileName)
 {
     FILE *f = fopen (fileName, "w+b");
-    if (f) {
-        char *buffer = XmlNode_getXML(node);
-        size_t len = strlen(buffer);
-
-        if (buffer) {
-            fprintf(f, "<?xml version=\"1.0\" encoding=\"%s\"?>", ENC_TYPE_UTF8);
-            fwrite(buffer, sizeof(char),len , f);
-            free(buffer);
+    if (f != NULL) {
+        UT_string *buff = XmlNode_getXML_UT(node);
+        if (buff != NULL) {
+            if (utstring_body(buff) != NULL) {
+                fprintf(f, "<?xml version=\"1.0\" encoding=\"%s\"?>", ENC_TYPE_UTF8);
+                fwrite(utstring_body(buff), sizeof(char), utstring_len(buff), f);
+            }
+            utstring_free(buff);
         }
         fclose (f);
     } else {
