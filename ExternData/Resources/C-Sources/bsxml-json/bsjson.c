@@ -14,7 +14,7 @@
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
-#define oom break
+#define oom() break
 #include "utstring.h"
 #include "bsjson.h"
 

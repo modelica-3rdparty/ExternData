@@ -15,7 +15,7 @@
 #include <assert.h>
 #include <ctype.h>
 #include <errno.h>
-#define oom break
+#define oom() break
 #include "utstring.h"
 #include "bsxml.h"
 /* initial size */
