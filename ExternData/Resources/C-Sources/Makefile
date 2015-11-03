@@ -18,7 +18,7 @@ INI_OBJS = \
 
 JSON_OBJS = \
 	ED_JSONFile.o
-	
+
 MAT_OBJS = \
 	ED_MATFile.o \
 	ModelicaMatIO.o
