@@ -13,7 +13,6 @@
 #define __BSJSON_H
 
 #include "array.h"
-#include "bsstr.h"
 
 #if defined(_MSC_VER)
 #undef strdup

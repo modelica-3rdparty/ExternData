@@ -14,6 +14,7 @@
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
+#include "bsstr.h"
 #include "bsjson.h"
 
 #define JSON_STACK_SIZE 32
