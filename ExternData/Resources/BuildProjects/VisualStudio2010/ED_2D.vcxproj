@@ -227,12 +227,9 @@
     <ClCompile Include="..\..\Include\ED_2D.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
-    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h" />
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h" />
-    <ClInclude Include="..\..\Include\ED_2D.h" />
     <ClInclude Include="..\..\Include\ED_MATFile.h" />
     <ClInclude Include="..\..\Include\ED_XMLFile.h" />
   </ItemGroup>

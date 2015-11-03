@@ -35,15 +35,6 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsxml-json\array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsxml-json\bsstr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\ED_2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
