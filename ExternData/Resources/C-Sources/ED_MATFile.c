@@ -103,17 +103,17 @@ static void transpose(double* table, size_t nRow, size_t nCol)
 
 void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 {
-	MATFile* edmat = (MATFile*)_mat;
-	if (edmat != NULL) {
+	MATFile* mat = (MATFile*)_mat;
+	if (mat != NULL) {
 		mat_t* matfp;
 		matvar_t* matvar;
 
-		matfp = Mat_Open(edmat->fileName, (int)MAT_ACC_RDONLY);
+		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDONLY);
 		if (matfp == NULL) {
 			dim[0] = 0;
 			dim[1] = 0;
 			ModelicaFormatError("Not possible to open file \"%s\": "
-				"No such file or directory\n", edmat->fileName);
+				"No such file or directory\n", mat->fileName);
 			return;
 		}
 
@@ -124,7 +124,7 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
-				edmat->fileName);
+				mat->fileName);
 			return;
 		}
 
@@ -149,17 +149,17 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 
 void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size_t m, size_t n)
 {
-	MATFile* edmat = (MATFile*)_mat;
-	if (edmat != NULL) {
+	MATFile* mat = (MATFile*)_mat;
+	if (mat != NULL) {
 		mat_t* matfp;
 		matvar_t* matvar;
 		size_t nRow, nCol;
 		int tableReadError = 0;
 
-		matfp = Mat_Open(edmat->fileName, (int)MAT_ACC_RDONLY);
+		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDONLY);
 		if (matfp == NULL) {
 			ModelicaFormatError("Not possible to open file \"%s\": "
-				"No such file or directory\n", edmat->fileName);
+				"No such file or directory\n", mat->fileName);
 			return;
 		}
 
@@ -168,7 +168,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
-				edmat->fileName);
+				mat->fileName);
 			return;
 		}
 
@@ -194,7 +194,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		if (matvar->isComplex) {
 			Mat_VarFree(matvar);
 			(void)Mat_Close(matfp);
-			ModelicaFormatError("2D array  \"%s\" must not be complex.\n",
+			ModelicaFormatError("2D array \"%s\" must not be complex.\n",
 				varName);
 			return;
 		}
@@ -207,9 +207,9 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			Mat_VarFree(matvar);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
-				"Cannot read %lu rows of matrix \"%s(%lu,%lu)\" "
+				"Cannot read %lu rows of array \"%s(%lu,%lu)\" "
 				"from file \"%s\"\n", (unsigned long)m, varName,
-				(unsigned long)nRow, (unsigned long)nCol, edmat->fileName);
+				(unsigned long)nRow, (unsigned long)nCol, mat->fileName);
 			return;
 		}
 
@@ -218,9 +218,9 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			Mat_VarFree(matvar);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
-				"Cannot read %lu columns of matrix \"%s(%lu,%lu)\" "
+				"Cannot read %lu columns of array \"%s(%lu,%lu)\" "
 				"from file \"%s\"\n", (unsigned long)n, varName,
-				(unsigned long)nRow, (unsigned long)nCol, edmat->fileName);
+				(unsigned long)nRow, (unsigned long)nCol, mat->fileName);
 			return;
 		}
 
@@ -244,13 +244,13 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			ModelicaFormatError(
 				"Error when reading numeric data of matrix \"%s(%lu,%lu)\" "
 				"from file \"%s\"\n", varName, (unsigned long)nRow,
-				(unsigned long)nCol, edmat->fileName);
+				(unsigned long)nCol, mat->fileName);
 			return;
 		}
 	}
 }
 
-int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append)
+int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append)
 {
 	int status = 0;
 	MATFile* mat = (MATFile*)_mat;
@@ -269,10 +269,6 @@ int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_
 			return 0;
 		}
 
-		if (append != 0) {
-			(void)Mat_VarDelete(matfp, varName);
-		}
-
 		/* MAT file array is stored column-wise -> need to transpose */
 		aT = (double*)malloc(m*n*sizeof(double));
 		if (aT == NULL) {
@@ -282,6 +278,10 @@ int ED_writeDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_
 		}
 		memcpy(aT, a, m*n*sizeof(double));
 		transpose(aT, n, m);
+
+		if (append != 0) {
+			(void)Mat_VarDelete(matfp, varName);
+		}
 
 		dims[0] = m;
 		dims[1] = n;

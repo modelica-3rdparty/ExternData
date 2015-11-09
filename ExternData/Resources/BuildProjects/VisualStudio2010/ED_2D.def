@@ -1,4 +1,4 @@
 EXPORTS
 	ED_getDimDoubleArray2D
 	ED_getDoubleArray2D
-	ED_writeDoubleArray2D
+	ED_setDoubleArray2D

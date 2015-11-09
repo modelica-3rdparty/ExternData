@@ -530,7 +530,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       input Real matrix[:,:] "2D Real array";
       input Boolean append =  false "Append values to file";
       output Boolean status "true if successful";
-      external "C" status=ED_writeDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append) annotation(
+      external "C" status=ED_setDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append) annotation(
         __iti_dll = "ITI_ED_2D.dll",
         __iti_dllNoExport = true,
         Include = "#include \"ED_2D.c\"",
