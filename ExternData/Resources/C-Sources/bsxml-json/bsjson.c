@@ -35,6 +35,15 @@
 #define isNullorEmpty(str) \
     (str == NULL || strlen(str) == 0)
 
+#define utstring_addchr(s, c) \
+    do {\
+        UT_string tmp; \
+        utstring_init(&tmp); \
+        utstring_printf(&tmp, "%c", c); \
+        utstring_concat(s, &tmp); \
+        utstring_done(&tmp); \
+    } while(0)
+
 enum eElemType {
     JSON_OBJ_B, JSON_OBJ_E, JSON_ARR_B, JSON_ARR_E,
     JSON_COLON, JSON_COMMA, JSON_QUOTE, JSON_LEFT,
@@ -312,7 +321,7 @@ static void JsonParser_internalDelete(struct ParserInternal *pi)
     free(pi->stack.v);
 }
 
-static int JsonParser_internalBeginObj(struct  ParserInternal *pi, enum eElemType elemType)
+static int JsonParser_internalBeginObj(struct ParserInternal *pi, enum eElemType elemType)
 {
     char *name = utstring_body(pi->key);
     void *ptr = stack_push_back(&(pi)->stack);
@@ -332,7 +341,7 @@ static int JsonParser_internalBeginObj(struct  ParserInternal *pi, enum eElemTyp
     return JSON_OK;
 }
 
-static int JsonParser_internalEndObj(struct  ParserInternal *pi, enum eElemType elemType)
+static int JsonParser_internalEndObj(struct ParserInternal *pi, enum eElemType elemType)
 {
     char *name;
     void *ptr = stack_pop_back(&(pi)->stack);
@@ -352,7 +361,7 @@ static int JsonParser_internalEndObj(struct  ParserInternal *pi, enum eElemType 
     return 0;
 }
 
-static int JsonParser_internalData(struct  ParserInternal *pi)
+static int JsonParser_internalData(struct ParserInternal *pi)
 {
     if (pi->quote_begin) {
         pi->error = JSON_ERR_QUOTE;
@@ -406,7 +415,7 @@ static char JsonParser_prev_char(const char *p , int pos)
     (JsonParser_peek_char(p,pos) == Json_elem(JSON_CR)\
     || JsonParser_peek_char(p, pos) == Json_elem(JSON_LF))
 
-static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json , int len)
+static int JsonParser_internalParse(struct ParserInternal *pi, const char* json , int len)
 {
     int i;
     char ch;
@@ -435,12 +444,18 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
             break;
 
         case JSON_QUOTE:
-            pi->quote_begin = !pi->quote_begin;
+            /* escaped quote in value */
+            if(JsonParser_prev_char(p, i) == Json_elem(JSON_LEFT)) {
+                UT_string *data = (!pi->is_value) ? pi->key : pi->value;
+                utstring_addchr(data, Json_elem(JSON_QUOTE));
+                break;
+            }
 
-            if( pi->quote_begin) {
+            pi->quote_begin = !pi->quote_begin;
+            if(pi->quote_begin) {
                 char prev = JsonParser_prev_char(p, i);
                 if(prev != Json_elem(JSON_COMMA) && prev != Json_elem(JSON_COLON)
-                        && prev != Json_elem(JSON_OBJ_B) && prev != Json_elem(JSON_ARR_B) ) {
+                        && prev != Json_elem(JSON_OBJ_B) && prev != Json_elem(JSON_ARR_B)) {
                     pi->error = JSON_ERR_SYN;
                     break;
                 }
@@ -457,11 +472,7 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
             } else {
                 /* colon in value */
                 UT_string *data = (!pi->is_value) ? pi->key : pi->value;
-                UT_string tmp;
-                utstring_init(&tmp);
-                utstring_printf(&tmp, "%c", Json_elem(JSON_COLON));
-                utstring_concat(data, &tmp);
-                utstring_done(&tmp);
+                utstring_addchr(data, Json_elem(JSON_COLON));
             }
             break;
         case JSON_COMMA:
@@ -470,11 +481,7 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
             } else {
                 /* comma in value */
                 UT_string *data = (!pi->is_value) ? pi->key : pi->value;
-                UT_string tmp;
-                utstring_init(&tmp);
-                utstring_printf(&tmp, "%c", Json_elem(JSON_COMMA));
-                utstring_concat(data, &tmp);
-                utstring_done(&tmp);
+                utstring_addchr(data, Json_elem(JSON_COMMA));
             }
             break;
 
@@ -495,17 +502,9 @@ static int JsonParser_internalParse(struct  ParserInternal *pi, const char* json
         case JSON_HEX:  /*TODO:*/
         case JSON_INVALID:
             if (pi->quote_begin && !pi->is_value) {
-                UT_string tmp;
-                utstring_init(&tmp);
-                utstring_printf(&tmp, "%c", ch);
-                utstring_concat(pi->key, &tmp);
-                utstring_done(&tmp);
+                utstring_addchr(pi->key, ch);
             } else if (pi->quote_begin && pi->is_value) {
-                UT_string tmp;
-                utstring_init(&tmp);
-                utstring_printf(&tmp, "%c", ch);
-                utstring_concat(pi->value, &tmp);
-                utstring_done(&tmp);
+                utstring_addchr(pi->value, ch);
             } else {
                 //printf("[skiped] '%c' [0x%x]\n", ch,ch);
             }
@@ -629,19 +628,19 @@ JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName
     char * buffer = 0;
     long length = 0, read = 0;
     JsonNode * root = NULL;
-    FILE *f = fopen (fileName, "r");
+    FILE *f = fopen (fileName, "rb");
 
-    if (f) {
+    if (f != NULL) {
         fseek (f, 0, SEEK_END);
         length = ftell (f);
         fseek (f, 0, SEEK_SET);
         buffer = (char*) malloc (length + 1);
-        if (buffer) {
+        if (buffer != NULL) {
             read = fread (buffer, sizeof(char), length, f);
             buffer[read] = '\0';
         }
         fclose (f);
-        if (read > 0) {
+        if (read == length) {
             JsonParser_stripCommentsFromBuffer(buffer, length);
             root = JsonParser_parse(parser,  buffer);
         } else {

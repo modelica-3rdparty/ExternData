@@ -272,9 +272,9 @@ void XmlNode_setValue(struct XmlNode *node, const String value )
             size_t end = strlen(node->m_content);
             size_t len = strlen(value);
             unsigned last = isAlphaNumeric(*(node->m_content + end-1)) ? 2:1;
-            char *tmp = realloc(node->m_content,(end + len + last));
-            if (tmp == NULL) return;
-            node->m_content = tmp;
+            char *new = realloc(node->m_content,(end + len + last));
+            if (new == NULL) return;
+            node->m_content = new;
 
             if (last == 2) {
                 strcat(node->m_content, " ");
@@ -555,21 +555,21 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
 XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName )
 {
     char * buffer = 0;
-    long length =0, read = 0;
+    long length = 0, read = 0;
     XmlNodeRef root = NULL;
     FILE *f = fopen (fileName, "rb");
 
-    if (f) {
+    if (f != NULL) {
         fseek (f, 0, SEEK_END);
         length = ftell (f);
         fseek (f, 0, SEEK_SET);
         buffer = (char*) malloc (length + 1);
-        if (buffer) {
+        if (buffer != NULL) {
             read = fread (buffer, sizeof(char), length, f);
-            buffer[length] = '\0';
+            buffer[read] = '\0';
         }
         fclose (f);
-        if (read > 0) {
+        if (read == length) {
             root = XmlParser_parse(parser,  buffer);
         } else {
             parser->m_errorString = strerror(errno);

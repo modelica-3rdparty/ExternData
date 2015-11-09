@@ -72,8 +72,8 @@ struct JsonParser {
     JsonNode *m_root;
     cpo_array_t *m_nodeStack;
     String m_errorString;
-	int m_errorLine;
-	int m_errorLineSet;
+    int m_errorLine;
+    int m_errorLineSet;
 };
 
 JsonNode *JsonParser_parse(JsonParser *parser, const char * json);
