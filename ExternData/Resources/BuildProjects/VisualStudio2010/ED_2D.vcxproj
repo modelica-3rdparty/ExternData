@@ -125,7 +125,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;ED_MATFile.lib;ED_XMLFile.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -140,7 +140,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;ED_MATFile.lib;ED_XMLFile.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -156,7 +156,7 @@
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;ED_MATFile.lib;ED_XMLFile.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -173,7 +173,7 @@
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_2D.def</ModuleDefinitionFile>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;ED_MATFile.lib;ED_XMLFile.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -221,20 +221,14 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\C-Sources\ED_MATFile.c" />
-    <ClCompile Include="..\..\C-Sources\ED_XMLFile.c" />
-    <ClCompile Include="..\..\C-Sources\ModelicaMatIO.c" />
     <ClCompile Include="..\..\Include\ED_2D.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
-    <ClInclude Include="..\..\C-Sources\ED_locale.h" />
-    <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h" />
-    <ClInclude Include="..\..\Include\ED_MATFile.h" />
-    <ClInclude Include="..\..\Include\ED_XMLFile.h" />
+    <None Include="ED_2D.def" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ED_2D.def" />
+    <ClInclude Include="..\..\Include\ED_MATFile.h" />
+    <ClInclude Include="..\..\Include\ED_XMLFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
