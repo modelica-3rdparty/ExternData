@@ -48,7 +48,7 @@
 
 void ED_getDimDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _Out_ int* dim) MODELICA_NONNULLATTR;
 void ED_getDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _Out_ double* a, size_t m, size_t n) MODELICA_NONNULLATTR;
-int ED_setDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _In_ double* a, size_t m, size_t n, int append) MODELICA_NONNULLATTR;
+int ED_setDoubleArray2D(_In_z_ const char* fileName, _In_z_ const char* arrayName, _In_ double* a, size_t m, size_t n, int append, int version) MODELICA_NONNULLATTR;
 
 void ED_getDimDoubleArray2D(const char* fileName, const char* arrayName, int* dim)
 {
@@ -104,7 +104,7 @@ void ED_getDoubleArray2D(const char* fileName, const char* arrayName, double* a,
 	ModelicaFormatError("Function \"ED_getDoubleArray2D\" is not implemented for \"%s\"\n", fileName);
 }
 
-int ED_setDoubleArray2D(const char* fileName, const char* arrayName, double* a, size_t m, size_t n, int append)
+int ED_setDoubleArray2D(const char* fileName, const char* arrayName, double* a, size_t m, size_t n, int append, int version)
 {
 	/* File can be binary MATLAB MAT-file */
 	const char* ext = strrchr(fileName, '.');
@@ -114,7 +114,7 @@ int ED_setDoubleArray2D(const char* fileName, const char* arrayName, double* a, 
 			int status = 0;
 			void* ed = ED_createMAT(fileName);
 			if (ed != NULL) {
-				status = ED_setDoubleArray2DToMAT(ed, arrayName, a, m, n, append);
+				status = ED_setDoubleArray2DToMAT(ed, arrayName, a, m, n, append, version);
 				ED_destroyMAT(ed);
 			}
 			return status;

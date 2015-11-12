@@ -33,6 +33,6 @@ void* ED_createMAT(const char* fileName);
 void ED_destroyMAT(void* _mat);
 void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim);
 void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size_t m, size_t n);
-int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append);
+int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append, int version);
 
 #endif

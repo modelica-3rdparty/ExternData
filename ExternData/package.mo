@@ -524,18 +524,19 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Documentation(info="<html><p>Read a 2D Real array from a binary MATLAB MAT or textual XML file.</p></html>"));
     end readMatrix;
 
-    function writeMatrix "Save 2D Real values to v4 MATLAB MAT file"
+    function writeMatrix "Save 2D Real values in MATLAB MAT file"
       input String fileName "File where external data is to be stored";
       input String matrixName "Name / identifier of the 2D Real array on the file";
       input Real matrix[:,:] "2D Real array";
       input Boolean append =  false "Append values to file";
+      input Integer _version = 4 "MATLAB MAT file version: 4 -> v4, 6 -> v6, 7 -> v7";
       output Boolean status "true if successful";
-      external "C" status=ED_setDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append) annotation(
+      external "C" status=ED_setDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append, _version) annotation(
         __iti_dll = "ITI_ED_2D.dll",
         __iti_dllNoExport = true,
         Include = "#include \"ED_2D.c\"",
         Library = {"ED_MATFile", "ED_XMLFile", "bsxml-json", "expat", "zlib"});
-      annotation(Documentation(info="<html><p>Write a 2D Real array to a legacy v4 MATLAB MAT file.</p></html>"));
+      annotation(Documentation(info="<html><p>Save a 2D Real array in a MATLAB MAT file.</p></html>"));
     end writeMatrix;
 
     package INI

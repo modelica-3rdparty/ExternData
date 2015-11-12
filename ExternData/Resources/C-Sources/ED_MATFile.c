@@ -250,7 +250,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 	}
 }
 
-int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append)
+int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t m, size_t n, int append, int version)
 {
 	int status = 0;
 	MATFile* mat = (MATFile*)_mat;
@@ -259,10 +259,17 @@ int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t 
 		matvar_t* matvar;
 		size_t dims[2];
 		double* aT;
+		enum mat_ft matv;
 
+		if (version != 4 && version != 6 && version != 7) {
+			ModelicaFormatError("Invalid version %d for file \"%s\"\n", version, mat->fileName);
+			return 0;
+		}
+
+		matv = version == 4 ? MAT_FT_MAT4 : MAT_FT_MAT5;
 		matfp = append == 0 ?
-			Mat_CreateVer(mat->fileName, NULL, MAT_FT_MAT4) :
-			Mat_Open(mat->fileName, (int)MAT_ACC_RDWR | MAT_FT_MAT4);
+			Mat_CreateVer(mat->fileName, NULL, matv) :
+			Mat_Open(mat->fileName, (int)MAT_ACC_RDWR | matv);
 
 		if (matfp == NULL) {
 			ModelicaFormatError("Not possible to open file \"%s\"\n", mat->fileName);
@@ -286,7 +293,7 @@ int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t 
 		dims[0] = m;
 		dims[1] = n;
 		matvar = Mat_VarCreate(varName, MAT_C_DOUBLE, MAT_T_DOUBLE, 2, dims, aT, MAT_F_DONT_COPY_DATA);
-		status = Mat_VarWrite(matfp, matvar, MAT_COMPRESSION_ZLIB);
+		status = Mat_VarWrite(matfp, matvar, version == 7 ? MAT_COMPRESSION_ZLIB : MAT_COMPRESSION_NONE);
 		if (status != 0) {
 			Mat_VarFree(matvar);
 			(void)Mat_Close(matfp);
