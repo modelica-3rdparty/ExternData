@@ -18,6 +18,9 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsjson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\bsxml-json\utstring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C-Sources\bsxml-json\array.c">
