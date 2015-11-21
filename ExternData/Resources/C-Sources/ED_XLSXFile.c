@@ -50,7 +50,8 @@
 #define E_ELOCATE (30)
 #define E_EGETFILEINFO (31)
 
-#define WB "xl/workbook.xml"
+#define WB_XML "xl/workbook.xml"
+#define STR_XML "xl/sharedStrings.xml"
 
 typedef uint16_t WORD;
 
@@ -130,7 +131,7 @@ void* ED_createXLSX(const char* fileName)
 		ModelicaFormatError("Cannot open file \"%s\"\n", fileName);
 		return NULL;
 	}
-	rc = parseXML(xlsx->zfile, WB, &root);
+	rc = parseXML(xlsx->zfile, WB_XML, &root);
 	if (rc != 0) {
 		unzClose(xlsx->zfile);
 		free(xlsx->fileName);
@@ -140,19 +141,19 @@ void* ED_createXLSX(const char* fileName)
 				ModelicaError("Memory allocation error\n");
 				break;
 			case E_ELOCATE:
-				ModelicaFormatError("Cannot locate %s in file \"%s\"\n", WB, fileName);
+				ModelicaFormatError("Cannot locate %s in file \"%s\"\n", WB_XML, fileName);
 				break;
 			case E_EOPEN:
-				ModelicaFormatError("Cannot open %s in file \"%s\"\n", WB, fileName);
+				ModelicaFormatError("Cannot open %s in file \"%s\"\n", WB_XML, fileName);
 				break;
 			case E_EGETFILEINFO:
-				ModelicaFormatError("Cannot get file info of %s in file \"%s\"\n", WB, fileName);
+				ModelicaFormatError("Cannot get file info of %s in file \"%s\"\n", WB_XML, fileName);
 				break;
 			case E_EREAD:
-				ModelicaFormatError("Cannot read file %s in file \"%s\"\n", WB, fileName);
+				ModelicaFormatError("Cannot read file %s in file \"%s\"\n", WB_XML, fileName);
 				break;
 			case E_BAD_DATA:
-				ModelicaFormatError("Cannot parse file %s of file \"%s\"\n", WB, fileName);
+				ModelicaFormatError("Cannot parse file %s of file \"%s\"\n", WB_XML, fileName);
 				break;
 			default:
 				break;
@@ -188,7 +189,7 @@ void* ED_createXLSX(const char* fileName)
 	}
 
 	XmlNode_deleteTree(root);
-	parseXML(xlsx->zfile, "xl/sharedStrings.xml", &xlsx->sroot);
+	parseXML(xlsx->zfile, STR_XML, &xlsx->sroot);
 
 	xlsx->loc = ED_INIT_LOCALE;
 	return xlsx;
@@ -250,7 +251,7 @@ static XmlNodeRef findSheet(XLSXFile* xlsx, char** sheetName)
 	HASH_FIND_STR(xlsx->sheets, *sheetName, iter);
 	if (iter == NULL) {
 		ModelicaFormatError("Cannot find sheet name \"%s\" in file \"%s\" of file \"%s\"\n",
-			*sheetName, WB, xlsx->fileName);
+			*sheetName, WB_XML, xlsx->fileName);
 		return NULL;
 	}
 
@@ -299,9 +300,11 @@ static char* findValue(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root,
 	char* token = NULL;
 	XmlNodeRef iter = XmlNode_findChild(root, "sheetData");
 	if (iter != NULL) {
-		WORD i = 0;
-		while (cellAddress[i++] >= 'A');
-		iter = XmlNode_findRow(iter, &cellAddress[--i]);
+		{
+			WORD i = 0;
+			while (cellAddress[i++] >= 'A');
+			iter = XmlNode_findRow(iter, &cellAddress[--i]);
+		}
 		if (iter != NULL) {
 			iter = XmlNode_findRow(iter, cellAddress);
 			if (iter != NULL) {
