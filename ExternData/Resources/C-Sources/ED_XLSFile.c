@@ -253,7 +253,7 @@ const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char*
 
 int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 {
-	int ret = 0;
+	long ret = 0;
 	XLSFile* xls = (XLSFile*)_xls;
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
@@ -266,22 +266,22 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 		if (cell != NULL && !cell->isHidden) {
 			/* Get the value of the cell (either numeric or string) */
 			if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
-				ret = (int)cell->d;
+				ret = (long)cell->d;
 			}
 			else if (cell->id == XLS_RECORD_FORMULA) {
 				if (cell->l == 0) { /* It is a number */
-					ret = (int)cell->d;
+					ret = (long)cell->d;
 				}
 				else {
 					if (0 == strcmp((char*)cell->str, "bool")) { /* It is boolean */
-						ret = (int)cell->d ? 1 : 0;
+						ret = (long)cell->d ? 1 : 0;
 					}
 					else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
 						ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
 							(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 					}
 					else { /* Valid formula result */
-						if (ED_strtoi((char*)cell->str, xls->loc, &ret)) {
+						if (ED_strtol((char*)cell->str, xls->loc, &ret)) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 								(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 						}
@@ -289,7 +289,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 				}
 			}
 			else if (cell->str != NULL) {
-				if (ED_strtoi((char*)cell->str, xls->loc, &ret)) {
+				if (ED_strtol((char*)cell->str, xls->loc, &ret)) {
 					ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 				}
@@ -300,5 +300,5 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 				(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 		}
 	}
-	return ret;
+	return (int)ret;
 }

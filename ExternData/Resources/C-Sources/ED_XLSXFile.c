@@ -313,10 +313,10 @@ static char* findValue(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root,
 					if (ites != NULL) {
 						XmlNode_getValue(ites, &token);
 						if (token != NULL) {
-							int idx = 0;
-							if (!ED_strtoi(token, xlsx->loc, &idx)) {
-								if (xlsx->sroot != NULL && idx < XmlNode_getChildCount(xlsx->sroot)) {
-									iter = XmlNode_getChild(xlsx->sroot, idx);
+							long idx = 0;
+							if (!ED_strtol(token, xlsx->loc, &idx)) {
+								if (xlsx->sroot != NULL && (int)idx < XmlNode_getChildCount(xlsx->sroot)) {
+									iter = XmlNode_getChild(xlsx->sroot, (int)idx);
 								}
 							}
 						}
@@ -395,7 +395,7 @@ const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const cha
 
 int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName)
 {
-	int ret = 0;
+	long ret = 0;
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
@@ -403,7 +403,7 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 		if (root != NULL) {
 			char* token = findValue(xlsx, cellAddress, root, _sheetName);
 			if (token != NULL) {
-				if (ED_strtoi(token, xlsx->loc, &ret)) {
+				if (ED_strtol(token, xlsx->loc, &ret)) {
 					ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
 						token, xlsx->fileName);
 				}
@@ -414,5 +414,5 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 			}
 		}
 	}
-	return ret;
+	return (int)ret;
 }

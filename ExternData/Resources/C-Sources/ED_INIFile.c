@@ -220,14 +220,14 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 
 int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
 {
-	int ret = 0;
+	long ret = 0;
 	INIFile* ini = (INIFile*)_ini;
 	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
 		if (_section != NULL) {
 			INIPair* pair = findKey(_section, varName);
 			if (pair != NULL) {
-				if (ED_strtoi(pair->value, ini->loc, &ret)) {
+				if (ED_strtol(pair->value, ini->loc, &ret)) {
 					ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}
@@ -248,5 +248,5 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
 			}
 		}
 	}
-	return ret;
+	return (int)ret;
 }

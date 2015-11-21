@@ -47,11 +47,11 @@ int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val)
 	return ret;
 }
 
-int ED_strtoi(char* token, ED_LOCALE_TYPE loc, int* val)
+int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
 {
 	int ret = 0; /* OK */
 	char* endptr;
-	*val = (int)_strtol_l(token, &endptr, 10, loc);
+	*val = _strtol_l(token, &endptr, 10, loc);
 	if (*endptr != 0) {
 		*val = 0;
 		ret = 1;
@@ -76,11 +76,11 @@ int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val)
 	return ret;
 }
 
-int ED_strtoi(char* token, ED_LOCALE_TYPE loc, int* val)
+int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
 {
 	int ret = 0; /* OK */
 	char* endptr;
-	*val = (int)strtol_l(token, &endptr, 10, loc);
+	*val = strtol_l(token, &endptr, 10, loc);
 	if (*endptr != 0) {
 		*val = 0;
 		ret = 1;
@@ -125,11 +125,11 @@ int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val)
 	return ret;
 }
 
-int ED_strtoi(char* token, ED_LOCALE_TYPE loc, int* val)
+int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
 {
 	int ret = 0; /* OK */
 	char* endptr;
-	*val = (int)strtol(token, &endptr, 10);
+	*val = strtol(token, &endptr, 10);
 	if (*endptr != 0) {
 		*val = 0;
 		ret = 1;

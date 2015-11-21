@@ -169,13 +169,13 @@ const char* ED_getStringFromXML(void* _xml, const char* varName)
 
 int ED_getIntFromXML(void* _xml, const char* varName)
 {
-	int ret = 0;
+	long ret = 0;
 	XMLFile* xml = (XMLFile*)_xml;
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token != NULL) {
-			if (ED_strtoi(token, xml->loc, &ret)) {
+			if (ED_strtol(token, xml->loc, &ret)) {
 				ModelicaFormatError("Error in line %i: Cannot read int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -185,7 +185,7 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 				XmlNode_getLine(root), xml->fileName);
 		}
 	}
-	return ret;
+	return (int)ret;
 }
 
 void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size_t n)

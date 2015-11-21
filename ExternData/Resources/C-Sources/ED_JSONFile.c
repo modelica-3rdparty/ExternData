@@ -176,13 +176,13 @@ const char* ED_getStringFromJSON(void* _json, const char* varName)
 
 int ED_getIntFromJSON(void* _json, const char* varName)
 {
-	int ret = 0;
+	long ret = 0;
 	JSONFile* json = (JSONFile*)_json;
 	if (json != NULL) {
 		JsonNodeRef root = json->root;
 		char* token = findValue(&root, varName, json->fileName);
 		if (token != NULL) {
-			if (ED_strtoi(token, json->loc, &ret)) {
+			if (ED_strtol(token, json->loc, &ret)) {
 				ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
 					token, json->fileName);
 			}
@@ -192,5 +192,5 @@ int ED_getIntFromJSON(void* _json, const char* varName)
 				json->fileName);
 		}
 	}
-	return ret;
+	return (int)ret;
 }
