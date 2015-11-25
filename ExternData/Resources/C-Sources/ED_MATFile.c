@@ -107,26 +107,49 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 	if (mat != NULL) {
 		mat_t* matfp;
 		matvar_t* matvar;
+		char* varNameCopy;
+		char* token;
+
+		varNameCopy = strdup(varName);
+		if (varNameCopy == NULL) {
+			dim[0] = 0;
+			dim[1] = 0;
+			ModelicaError("Memory allocation error\n");
+			return;
+		}
 
 		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDONLY);
 		if (matfp == NULL) {
 			dim[0] = 0;
 			dim[1] = 0;
+			free(varNameCopy);
 			ModelicaFormatError("Not possible to open file \"%s\": "
 				"No such file or directory\n", mat->fileName);
 			return;
 		}
 
-		matvar = Mat_VarReadInfo(matfp, varName);
+		token = strtok(varNameCopy, ".");
+		matvar = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
 		if (matvar == NULL) {
 			dim[0] = 0;
 			dim[1] = 0;
+			free(varNameCopy);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
 				mat->fileName);
 			return;
 		}
+
+		token = strtok(NULL, ".");
+		/* Get field if array is of struct class and of 1x1 size */
+		while (token != NULL && matvar != NULL &&
+			matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
+			matvar->dims[0] == 1 && matvar->dims[1] == 1) {
+			matvar = Mat_VarGetStructField(matvar, (void*)token, MAT_BY_NAME, 0);
+			token = strtok(NULL, ".");
+		}
+		free(varNameCopy);
 
 		/* Check if array is a matrix */
 		if (matvar->rank != 2) {
@@ -155,22 +178,43 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		matvar_t* matvar;
 		size_t nRow, nCol;
 		int tableReadError = 0;
+		char* varNameCopy;
+		char* token;
+
+		varNameCopy = strdup(varName);
+		if (varNameCopy == NULL) {
+			ModelicaError("Memory allocation error\n");
+			return;
+		}
 
 		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDONLY);
 		if (matfp == NULL) {
+			free(varNameCopy);
 			ModelicaFormatError("Not possible to open file \"%s\": "
 				"No such file or directory\n", mat->fileName);
 			return;
 		}
 
-		matvar = Mat_VarReadInfo(matfp, varName);
+		token = strtok(varNameCopy, ".");
+		matvar = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
 		if (matvar == NULL) {
+			free(varNameCopy);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
 				mat->fileName);
 			return;
 		}
+
+		token = strtok(NULL, ".");
+		/* Get field if array is of struct class and of 1x1 size */
+		while (token != NULL && matvar != NULL &&
+			matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
+			matvar->dims[0] == 1 && matvar->dims[1] == 1) {
+			matvar = Mat_VarGetStructField(matvar, (void*)token, MAT_BY_NAME, 0);
+			token = strtok(NULL, ".");
+		}
+		free(varNameCopy);
 
 		/* Check if array is a matrix */
 		if (matvar->rank != 2) {
