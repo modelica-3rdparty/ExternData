@@ -107,6 +107,7 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 	if (mat != NULL) {
 		mat_t* matfp;
 		matvar_t* matvar;
+		matvar_t* matvarRoot;
 		char* varNameCopy;
 		char* token;
 
@@ -129,8 +130,8 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 		}
 
 		token = strtok(varNameCopy, ".");
-		matvar = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
-		if (matvar == NULL) {
+		matvarRoot = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
+		if (matvarRoot == NULL) {
 			dim[0] = 0;
 			dim[1] = 0;
 			free(varNameCopy);
@@ -141,8 +142,9 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 			return;
 		}
 
+		matvar = matvarRoot;
 		token = strtok(NULL, ".");
-		/* Get field if array is of struct class and of 1x1 size */
+		/* Get field while matvar is of struct class and of 1x1 size */
 		while (token != NULL && matvar != NULL &&
 			matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
 			matvar->dims[0] == 1 && matvar->dims[1] == 1) {
@@ -151,11 +153,11 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 		}
 		free(varNameCopy);
 
-		/* Check if array is a matrix */
+		/* Check if matvar is a matrix */
 		if (matvar->rank != 2) {
 			dim[0] = 0;
 			dim[1] = 0;
-			Mat_VarFree(matvar);
+			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Array \"%s\" has not the required rank 2.\n", varName);
@@ -165,7 +167,7 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 		dim[0] = (int)matvar->dims[0];
 		dim[1] = (int)matvar->dims[1];
 
-		Mat_VarFree(matvar);
+		Mat_VarFree(matvarRoot);
 		(void)Mat_Close(matfp);
 	}
 }
@@ -176,6 +178,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 	if (mat != NULL) {
 		mat_t* matfp;
 		matvar_t* matvar;
+		matvar_t* matvarRoot;
 		size_t nRow, nCol;
 		int tableReadError = 0;
 		char* varNameCopy;
@@ -196,8 +199,8 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		}
 
 		token = strtok(varNameCopy, ".");
-		matvar = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
-		if (matvar == NULL) {
+		matvarRoot = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
+		if (matvarRoot == NULL) {
 			free(varNameCopy);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
@@ -206,8 +209,9 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			return;
 		}
 
+		matvar = matvarRoot;
 		token = strtok(NULL, ".");
-		/* Get field if array is of struct class and of 1x1 size */
+		/* Get field while matvar is of struct class and of 1x1 size */
 		while (token != NULL && matvar != NULL &&
 			matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
 			matvar->dims[0] == 1 && matvar->dims[1] == 1) {
@@ -216,27 +220,27 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		}
 		free(varNameCopy);
 
-		/* Check if array is a matrix */
+		/* Check if matvar is a matrix */
 		if (matvar->rank != 2) {
-			Mat_VarFree(matvar);
+			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Array \"%s\" has not the required rank 2.\n", varName);
 			return;
 		}
 
-		/* Check if array is of double precision class (and thus non-sparse) */
+		/* Check if matvar is of double precision class (and thus non-sparse) */
 		if (matvar->class_type != MAT_C_DOUBLE) {
-			Mat_VarFree(matvar);
+			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError("2D array \"%s\" has not the required "
 				"double precision class.\n", varName);
 			return;
 		}
 
-		/* Check if array is purely real-valued */
+		/* Check if matvar is purely real-valued */
 		if (matvar->isComplex) {
-			Mat_VarFree(matvar);
+			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError("2D array \"%s\" must not be complex.\n",
 				varName);
@@ -248,7 +252,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 
 		/* Check if number of rows matches */
 		if (m != nRow) {
-			Mat_VarFree(matvar);
+			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Cannot read %lu rows of array \"%s(%lu,%lu)\" "
@@ -259,7 +263,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 
 		/* Check if number of columns matches */
 		if (n != nCol) {
-			Mat_VarFree(matvar);
+			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Cannot read %lu columns of array \"%s(%lu,%lu)\" "
@@ -277,7 +281,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			tableReadError = Mat_VarReadData(matfp, matvar, a, start, stride, edge);
 		}
 
-		Mat_VarFree(matvar);
+		Mat_VarFree(matvarRoot);
 		(void)Mat_Close(matfp);
 
 		if (tableReadError == 0) {
