@@ -2,7 +2,10 @@ CC = gcc
 AR = ar -ru
 RM = rm -f
 
-CFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -O3 -I"libxls/include" -I"expat/lib"
+CFLAGS = -O3
+CXXFLAGS = -DHAVE_MEMMOVE=1 -DNDEBUG -I"libxls/include" -I"expat/lib"
+
+TARGETDIR = linux64
 
 INI_OBJS = \
 	array.o \
@@ -38,8 +41,10 @@ EXPAT_OBJS = \
 
 ALL_OBJS = $(INI_OBJS) $(JSON_OBJS) $(XLS_OBJS) $(XML_OBJS) $(EXPAT_OBJS)
 
-all: libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
-	tar cJf ../Library/linux64/linux64.tar.xz $^
+all: clean libs
+
+libs: libED_INIFile.a libED_JSONFile.a libED_XLSFile.a libED_XMLFile.a libexpat.a
+	cp $^ ../Library/$(TARGETDIR)
 
 libED_INIFile.a: $(INI_OBJS)
 	$(AR) $@ $(INI_OBJS)
@@ -57,9 +62,10 @@ libexpat.a: $(EXPAT_OBJS)
 	$(AR) $@ $(EXPAT_OBJS)
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) $(CXXFLAGS)
 
 clean:
 	$(RM) $(ALL_OBJS)
 	$(RM) *.a
-	$(RM) ../Library/linux64/linux64.tar.xz
+	$(RM) ../Library/$(TARGETDIR)/*.a
+	$(RM) ../Library/$(TARGETDIR)/$(TARGETDIR).tar.xz

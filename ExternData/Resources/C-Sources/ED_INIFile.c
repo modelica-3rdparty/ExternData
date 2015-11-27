@@ -1,6 +1,10 @@
 #if !defined(ED_INIFILE_C)
 #define ED_INIFILE_C
 
+#if defined(__gnu_linux__)
+#define _GNU_SOURCE 1
+#endif
+
 #if !defined(_MSC_VER)
 #define _strdup strdup
 #endif
