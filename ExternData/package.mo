@@ -499,6 +499,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     extends Modelica.Icons.Package;
 
     function readMatrixSize "Get dimensions of a 2D Real array from file"
+      extends Modelica.Icons.Function;
       input String fileName "File where external data is stored";
       input String matrixName "Name / identifier of the 2D Real array on the file";
       output Integer Size[2] "Number of rows and columns of the 2D Real array";
@@ -511,6 +512,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     end readMatrixSize;
 
     function readMatrix "Get 2D Real values from MATLAB MAT or XML file"
+      extends Modelica.Icons.Function;
       input String fileName "File where external data is stored";
       input String matrixName "Name / identifier of the 2D Real array on the file";
       input Integer rows "Number of rows" annotation(__OpenModelica_UnusedVariable=true);
@@ -525,13 +527,14 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     end readMatrix;
 
     function writeMatrix "Save 2D Real values in MATLAB MAT file"
+      extends Modelica.Icons.Function;
       input String fileName "File where external data is to be stored";
       input String matrixName "Name / identifier of the 2D Real array on the file";
       input Real matrix[:,:] "2D Real array";
-      input Boolean append =  false "Append values to file";
-      input Integer _version = 4 "MATLAB MAT file version: 4 -> v4, 6 -> v6, 7 -> v7";
+      input Boolean append = false "Append values to file";
+      input Integer Version = 4 "MATLAB MAT file version: 4 -> v4, 6 -> v6, 7 -> v7";
       output Boolean status "true if successful";
-      external "C" status=ED_setDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append, _version) annotation(
+      external "C" status=ED_setDoubleArray2D(fileName, matrixName, matrix, size(matrix, 1), size(matrix, 2), append, Version) annotation(
         __iti_dll = "ITI_ED_2D.dll",
         __iti_dllNoExport = true,
         Include = "#include \"ED_2D.c\"",
