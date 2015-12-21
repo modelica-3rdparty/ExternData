@@ -342,16 +342,13 @@ int ED_setDoubleArray2DToMAT(void* _mat, const char* varName, double* a, size_t 
 		dims[1] = n;
 		matvar = Mat_VarCreate(varName, MAT_C_DOUBLE, MAT_T_DOUBLE, 2, dims, aT, MAT_F_DONT_COPY_DATA);
 		status = Mat_VarWrite(matfp, matvar, version == 7 ? MAT_COMPRESSION_ZLIB : MAT_COMPRESSION_NONE);
-		if (status != 0) {
-			Mat_VarFree(matvar);
-			(void)Mat_Close(matfp);
-			free(aT);
-			ModelicaFormatError("Cannot write variable \"%s\" to \"%s\"\n", varName, mat->fileName);
-			return 0;
-		}
 		Mat_VarFree(matvar);
 		(void)Mat_Close(matfp);
 		free(aT);
+		if (status != 0) {
+			ModelicaFormatError("Cannot write variable \"%s\" to \"%s\"\n", varName, mat->fileName);
+			return 0;
+		}
 		status = 1;
 	}
 	return status;
