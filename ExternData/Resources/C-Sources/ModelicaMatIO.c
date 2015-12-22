@@ -1,7 +1,7 @@
 /* ModelicaMatIO.c - MAT file I/O functions
 
    Copyright (C) 2005-2013, Christopher C. Hulbert
-   Copyright (C) 2013-2015, Modelica Association and ITI GmbH
+   Copyright (C) 2013-2016, Modelica Association and ITI GmbH
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -1551,6 +1551,12 @@ Mat_SizeOf(enum matio_types data_type)
             return sizeof(mat_int8_t);
         case MAT_T_UINT8:
             return sizeof(mat_uint8_t);
+        case MAT_T_UTF8:
+            return 1;
+        case MAT_T_UTF16:
+            return 2;
+        case MAT_T_UTF32:
+            return 4;
         default:
             return 0;
     }
