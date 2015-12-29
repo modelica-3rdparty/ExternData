@@ -9773,8 +9773,7 @@ Mat_VarDelete(mat_t *mat, const char *name)
     if ( NULL == mat || NULL == name )
         return err;
 
-    tmp_name = mktemp(temp);
-    if (tmp_name != NULL) {
+    if ( (tmp_name = mktemp(temp)) != NULL ) {
         enum mat_ft mat_file_ver = MAT_FT_DEFAULT;
         mat_t *tmp;
 
@@ -9792,7 +9791,6 @@ Mat_VarDelete(mat_t *mat, const char *name)
 
         tmp = Mat_CreateVer(tmp_name,mat->header,mat_file_ver);
         if ( tmp != NULL ) {
-            char *new_name;
             matvar_t *matvar;
             while ( NULL != (matvar = Mat_VarReadNext(mat)) ) {
                 if ( strcmp(matvar->name,name) )
@@ -9804,7 +9802,7 @@ Mat_VarDelete(mat_t *mat, const char *name)
             Mat_Close(tmp);
 
             if (err == 0) {
-                new_name = strdup_printf("%s",mat->filename);
+                char *new_name = strdup_printf("%s",mat->filename);
 #if defined(HAVE_HDF5)
                 if ( mat_file_ver == MAT_FT_MAT73 ) {
                     if ( mat->refs_id > -1 )
@@ -9835,9 +9833,8 @@ Mat_VarDelete(mat_t *mat, const char *name)
                             free(mat->filename);
                         memcpy(mat,tmp,sizeof(mat_t));
                         free(tmp);
-                    }
-                    else {
-                        Mat_Critical("Cannot open file \"%s\".",mat->filename);
+                    } else {
+                        Mat_Critical("Cannot open file \"%s\".",new_name);
                     }
                 }
                 free(new_name);
@@ -9845,8 +9842,7 @@ Mat_VarDelete(mat_t *mat, const char *name)
                 Mat_Critical("Cannot remove file \"%s\".",tmp_name);
             }
         }
-    }
-    else {
+    } else {
         Mat_Critical("Cannot create a unique file name.");
     }
     return err;
