@@ -3,10 +3,10 @@ DEBIAN_FRONTEND=noninteractive
 LIBS="libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
 
 #Commands
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 sudo apt-get update -qq
-sudo apt-get install -qq -y libc6-dev-i386
+sudo apt-get install -qq libc6-dev-i386
 echo 2 | sudo update-alternatives --config gcc
-gcc --version
 cd ExternData/Resources/C-Sources
 make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"
 make CFLAGS="-O3 -fPIC"
