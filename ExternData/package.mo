@@ -216,7 +216,6 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
 
   package Examples "Examples"
     extends Modelica.Icons.ExamplesPackage;
-/* TODO: Revise examples
     model XMLTest1 "XML Real read test with initial equation"
       extends Modelica.Icons.Example;
       XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
@@ -492,7 +491,6 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(experiment(StopTime=1), preferredView="text",
         Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
     end XLSXTest4;
-*/
   end Examples;
 
   package Functions "Functions"
