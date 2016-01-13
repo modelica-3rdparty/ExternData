@@ -195,7 +195,17 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
 
-    final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
+    function getReal
+      extends Modelica.Icons.Function;
+      input String varName;
+      input Types.ExternXMLFile _xml = xml;
+      output Real y;
+      algorithm
+        y := Functions.XML.Internal.getReal(xml=_xml, varName=varName);
+      annotation(Inline=true);
+    end getReal;
+
+    //final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
     final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file";
     final function getRealArray2D = Functions.XML.getRealArray2D(xml=xml) "Get 2D Real values from XML file";
     final function getInteger = Functions.XML.getInteger(xml=xml) "Get scalar Integer value from XML file";
