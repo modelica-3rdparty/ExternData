@@ -195,17 +195,19 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
 
-    function getReal
+    function __OpenModelica_getReal "Get 1D Real values from XML file"
       extends Modelica.Icons.Function;
+      input String fileName "File where external data is stored" annotation(Dialog(loadSelector(filter="XML files (*.xml)", caption="Open file")));
       input String varName;
-      input Types.ExternXMLFile _xml = xml;
       output Real y;
+      protected
+        Types.ExternXMLFile xml = Types.ExternXMLFile(fileName);
       algorithm
-        y := Functions.XML.Internal.getReal(xml=_xml, varName=varName);
+        y := Functions.XML.Internal.getReal(xml=xml, varName=varName);
       annotation(Inline=true);
-    end getReal;
+    end __OpenModelica_getReal;
 
-    //final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
+    final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
     final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file";
     final function getRealArray2D = Functions.XML.getRealArray2D(xml=xml) "Get 2D Real values from XML file";
     final function getInteger = Functions.XML.getInteger(xml=xml) "Get scalar Integer value from XML file";
@@ -232,7 +234,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
       Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
       initial equation
-        gain.k = xmlfile.getReal("set1.gain.k");
+        gain.k = xmlfile.__OpenModelica_getReal(xmlfile.fileName, "set1.gain.k");
       equation
         connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
       annotation(experiment(StopTime=1), preferredView="text",
