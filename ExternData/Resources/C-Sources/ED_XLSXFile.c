@@ -286,7 +286,7 @@ static int XmlNode_Rowcomparer(const void* a, const void* b)
 static XmlNodeRef XmlNode_findRow(XmlNodeRef node, const char* row)
 {
 	XmlNodeRef ret;
-	XmlNode tmpNode;
+	XmlNode tmpNode = {0};
 	tmpNode.m_type = NODE_CHILD;
 	tmpNode.m_attributes = cpo_array_create(1, sizeof(struct XmlAttribute));
 	XmlNode_setAttribute(&tmpNode, "r", row);
