@@ -153,6 +153,17 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 		}
 		free(varNameCopy);
 
+		if (matvar == NULL) {
+			dim[0] = 0;
+			dim[1] = 0;
+			Mat_VarFree(matvarRoot);
+			(void)Mat_Close(mat);
+			ModelicaFormatError(
+				"Variable \"%s\" not found on file \"%s\".\n", varName,
+				mat->fileName);
+			return;
+		}
+
 		/* Check if matvar is a matrix */
 		if (matvar->rank != 2) {
 			dim[0] = 0;
@@ -219,6 +230,15 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			token = strtok(NULL, ".");
 		}
 		free(varNameCopy);
+
+		if (matvar == NULL) {
+			Mat_VarFree(matvarRoot);
+			(void)Mat_Close(mat);
+			ModelicaFormatError(
+				"Variable \"%s\" not found on file \"%s\".\n", varName,
+				mat->fileName);
+			return;
+		}
 
 		/* Check if matvar is a matrix */
 		if (matvar->rank != 2) {
