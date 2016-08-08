@@ -497,13 +497,14 @@ static void endElement(void *userData, const char *name )
 static void characterData( void *userData, const char *s, int len )
 {
     XmlParser *parser = (XmlParser *)userData;
-    char *str = (char*)malloc(len + 1);
-    if (!str) return;
-    strncpy(str,s,len );
-    str[len] = 0;
+
     if (parser->m_nodeStack->num > 0) {
-        void *ptr =  stack_back(parser->m_nodeStack);
+        void *ptr = stack_back(parser->m_nodeStack);
         XmlNode *node = (XmlNode*) ARR_VAL(ptr);
+        char *str = (char*)malloc(len + 1);
+        if (!str) return;
+        strncpy(str,s,len);
+        str[len] = 0;
         XmlNode_setValue(node, str);
         free(str);
     }
