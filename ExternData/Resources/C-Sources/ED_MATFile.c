@@ -157,7 +157,7 @@ void ED_getDimDoubleArray2DFromMAT(void* _mat, const char* varName, int* dim)
 			dim[0] = 0;
 			dim[1] = 0;
 			Mat_VarFree(matvarRoot);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
 				mat->fileName);
@@ -233,7 +233,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 
 		if (matvar == NULL) {
 			Mat_VarFree(matvarRoot);
-			(void)Mat_Close(mat);
+			(void)Mat_Close(matfp);
 			ModelicaFormatError(
 				"Variable \"%s\" not found on file \"%s\".\n", varName,
 				mat->fileName);
