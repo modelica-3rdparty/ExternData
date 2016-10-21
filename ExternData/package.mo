@@ -54,7 +54,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.INI.getString(ini=ini) "Get scalar String value from INI file";
 
     protected
-      Types.ExternINIFile ini=Types.ExternINIFile(fileName);
+      parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName);
 
     annotation(
       defaultComponentName="inifile",
@@ -77,7 +77,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.JSON.getString(json=json) "Get scalar String value from JSON file";
 
     protected
-      Types.ExternJSONFile json=Types.ExternJSONFile(fileName);
+      parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName);
 
     annotation(
       defaultComponentName="jsonfile",
@@ -97,7 +97,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file";
 
     protected
-      Types.ExternMATFile mat=Types.ExternMATFile(fileName);
+      parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName);
 
     annotation(
       defaultComponentName="matfile",
@@ -127,7 +127,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.XLS.getString(xls=xls) "Get scalar String value from XLS file";
 
     protected
-      Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding);
+      parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding);
 
     annotation(
       defaultComponentName="xlsfile",
@@ -164,7 +164,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.XLSX.getString(xlsx=xlsx) "Get scalar String value from XLSX file";
 
     protected
-      Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName);
+      parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName);
 
     annotation(
       defaultComponentName="xlsxfile",
@@ -203,7 +203,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.XML.getString(xml=xml) "Get scalar String value from XML file";
 
     protected
-      Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
+      parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
 
     annotation(
       defaultComponentName="xmlfile",
