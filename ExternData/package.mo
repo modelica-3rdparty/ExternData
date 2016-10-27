@@ -1,4 +1,4 @@
-﻿// CP: 65001
+// CP: 65001
 /* package.mo - Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015, tbeu
