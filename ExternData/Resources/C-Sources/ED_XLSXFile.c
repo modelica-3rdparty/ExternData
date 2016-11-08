@@ -1,6 +1,6 @@
 /* ED_XLSXFile.c - Excel XLSX functions
  *
- * Copyright (C) 2015, tbeu
+ * Copyright (C) 2015-2016, tbeu
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
