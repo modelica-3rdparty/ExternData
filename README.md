@@ -10,7 +10,6 @@ Free Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX and 
 ExternData is a utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
 for convenient model initialization / parametrization.
-There also is support for saving 2D Modelica arrays in MATLAB MAT files.
 
 ### Main features
 * Read support of file formats
@@ -19,9 +18,6 @@ There also is support for saving 2D Modelica arrays in MATLAB MAT files.
   * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT
   * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
   * [XML](https://en.wikipedia.org/wiki/XML)
-* Support of simple matrix I/O
-  * Read 2D arrays from MATLAB MAT or XML files with function `readMatrix`
-  * Write 2D arrays to MATLAB MAT files with function `writeMatrix`
 * Pure C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
 
