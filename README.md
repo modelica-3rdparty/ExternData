@@ -20,9 +20,33 @@ for convenient model initialization / parametrization.
   * [XML](https://en.wikipedia.org/wiki/XML)
 * Pure C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
+* Tested in Dymola and SimulationX, with dependency on the Modelica Standard Library 3.2.1.
 
 All data I/O access is implemented using external Modelica functions. Furthermore, high level interfaces
 on these functions are provided via Modelica models.
+
+### Known issue with OpenModelica
+The example models of the library are known to fail with OpenModelica. However, as a workaround the functions can be rewritten to make them working in OpenModelica by replacing their short class definitions and their appropriate function calls. For example, the short class definition `ExternData.XMLFile.getReal`
+```mo
+final function getReal = Functions.XML.getReal(xml=xml)
+  "Get scalar Real value from XML file";
+```
+can be rewritten as function
+```mo
+function __OpenModelica_getReal "Get scalar Real value from XML file"
+  extends Modelica.Icons.Function;
+  input String fileName="" "File where external data is stored"
+    annotation(Dialog(loadSelector(filter="XML files (*.xml)", caption="Open file")));
+  input String varName "Key";
+  output Real y "Real value";
+  protected
+    Types.ExternXMLFile xml = Types.ExternXMLFile(fileName) "External XML file object";;
+  algorithm
+    y := Functions.XML.Internal.getReal(xml=xml, varName=varName);
+  annotation(Inline=true);
+end __OpenModelica_getReal;
+```
+taking the file name as explicit argument for the external object.
 
 ## License
 ExternData is released under the terms of the Simplified BSD License.
