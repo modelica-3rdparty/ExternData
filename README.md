@@ -9,13 +9,13 @@ Free Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX and 
 ## Library description
 ExternData is a utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
-for convenient model initialization / parametrization.
+for convenient model initialization and parametrization.
 
 ### Main features
 * Read support of file formats
   * [INI](https://en.wikipedia.org/wiki/INI_file)
   * [JSON](https://en.wikipedia.org/wiki/JSON)
-  * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT
+  * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 or v7.3
   * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
   * [XML](https://en.wikipedia.org/wiki/XML)
 * Pure C (and not C++) code for external functions and objects
