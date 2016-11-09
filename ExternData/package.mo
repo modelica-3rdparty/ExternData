@@ -551,7 +551,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end getString;
 
       package Internal "Internal INI file functions"
-        // extends Modelica.Icons.InternalPackage;
+        extends Modelica.Icons.InternalPackage;
         function getReal
           extends Interfaces.partialGetReal;
           input Types.ExternINIFile ini "External INI file object";
@@ -622,7 +622,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end getString;
 
       package Internal "Internal JSON file functions"
-        // extends Modelica.Icons.InternalPackage;
+        extends Modelica.Icons.InternalPackage;
         function getReal
           extends Interfaces.partialGetReal;
           input Types.ExternJSONFile json "External JSON file object";
@@ -670,7 +670,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end getRealArray2D;
 
       package Internal "Internal MAT file functions"
-        // extends Modelica.Icons.InternalPackage;
+        extends Modelica.Icons.InternalPackage;
         function getRealArray2D
           input String varName "Variable name";
           input Integer m=1 "Number of rows";
@@ -733,7 +733,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end getString;
 
       package Internal "Internal Excel XLS file functions"
-        // extends Modelica.Icons.InternalPackage;
+        extends Modelica.Icons.InternalPackage;
         function getReal
           extends Modelica.Icons.Function;
           input String cellAddress="A1" "Cell address";
@@ -822,7 +822,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end getString;
 
       package Internal "Internal Excel XLSX file functions"
-        // extends Modelica.Icons.InternalPackage;
+        extends Modelica.Icons.InternalPackage;
         function getReal
           extends Modelica.Icons.Function;
           input String cellAddress="A1" "Cell address";
@@ -922,7 +922,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end getString;
 
       package Internal "Internal XML file functions"
-        // extends Modelica.Icons.InternalPackage;
+        extends Modelica.Icons.InternalPackage;
         function getReal
           extends Interfaces.partialGetReal;
           input Types.ExternXMLFile xml "External XML file object";
