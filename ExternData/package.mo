@@ -39,7 +39,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Documentation(info="<html><p>The ExternData Modelica library is developed by <a href=\"https://github.com/tbeu\">tbeu</a> at <a href=\"https://github.com/tbeu/ExternData\">GitHub</a>.</p></html>"));
     end Contact;
     annotation(DocumentationClass=true,
-      Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"http://sourceforge.net/projects/expat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"http://sourceforge.net/projects/matio\">libmatio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li></ul></html>"));
+      Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"http://sourceforge.net/projects/expat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li></ul></html>"));
   end UsersGuide;
 
   model INIFile "Read data values from INI file"
@@ -90,19 +90,19 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
-  model MATFile "Read data values from MATLAB MAT file"
+  model MATFile "Read data values from MATLAB MAT-file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="MATLAB MAT-files (*.mat)",
         caption="Open file")));
 
-    final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file";
+    final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT-file";
 
     protected
       parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName);
 
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -655,27 +655,27 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end Internal;
     end JSON;
     
-    package MAT "MAT file functions"
+    package MAT "MAT-file functions"
       extends Modelica.Icons.Package;
-      function getRealArray2D "Get 2D Real values from MAT file"
+      function getRealArray2D "Get 2D Real values from MAT-file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
         input Integer m=1 "Number of rows";
         input Integer n=1 "Number of columns";
-        input Types.ExternMATFile mat "External MATLAB MAT file object";
+        input Types.ExternMATFile mat "External MATLAB MAT-file object";
         output Real y[m,n] "2D Real values";
         algorithm
           y := Internal.getRealArray2D(mat=mat, varName=varName, m=m, n=n);
         annotation(Inline=true);
       end getRealArray2D;
 
-      package Internal "Internal MAT file functions"
+      package Internal "Internal MAT-file functions"
         extends Modelica.Icons.InternalPackage;
         function getRealArray2D
           input String varName "Variable name";
           input Integer m=1 "Number of rows";
           input Integer n=1 "Number of columns";
-          input Types.ExternMATFile mat "External MATLAB MAT file object";
+          input Types.ExternMATFile mat "External MATLAB MAT-file object";
           output Real y[m,n] "2D Real values";
           external "C" ED_getDoubleArray2DFromMAT(mat, varName, y, size(y, 1), size(y, 2)) annotation(
             __iti_dll = "ITI_ED_MATFile.dll",
@@ -1013,8 +1013,8 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternINIFile "External INI file object"
       extends ExternalObject;
       function constructor "Parse INI file"
-        input String fileName;
-        output ExternINIFile ini;
+        input String fileName "File name";
+        output ExternINIFile ini "External INI file object";
         external "C" ini=ED_createINI(fileName) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
@@ -1023,7 +1023,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
-        input ExternINIFile ini;
+        input ExternINIFile ini "External INI file object";
         external "C" ED_destroyINI(ini) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
@@ -1035,8 +1035,8 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternJSONFile "External JSON file object"
       extends ExternalObject;
       function constructor "Parse JSON file"
-        input String fileName;
-        output ExternJSONFile json;
+        input String fileName "File name";
+        output ExternJSONFile json "External JSON file object";
         external "C" json=ED_createJSON(fileName) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
@@ -1045,7 +1045,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
-        input ExternJSONFile json;
+        input ExternJSONFile json "External JSON file object";
         external "C" ED_destroyJSON(json) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
@@ -1054,11 +1054,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end destructor;
     end ExternJSONFile;
 
-    class ExternMATFile "External MAT file object"
+    class ExternMATFile "External MAT-file object"
       extends ExternalObject;
-      function constructor "Only copy MAT file name (File not yet opened)"
-        input String fileName;
-        output ExternMATFile mat;
+      function constructor "Only copy MAT-file name (File not yet opened)"
+        input String fileName "File name";
+        output ExternMATFile mat "External MATLAB MAT-file object";
         external "C" mat=ED_createMAT(fileName) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
@@ -1067,7 +1067,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
-        input ExternMATFile mat;
+        input ExternMATFile mat "External MATLAB MAT-file object";
         external "C" ED_destroyMAT(mat) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
@@ -1079,9 +1079,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternXLSFile "External XLS file object"
       extends ExternalObject;
       function constructor "Open Excel XLS file"
-        input String fileName;
-        input String encoding="UTF-8";
-        output ExternXLSFile xls;
+        input String fileName "File name";
+        input String encoding="UTF-8" "Encoding";
+        output ExternXLSFile xls "External Excel XLS file object";
         external "C" xls=ED_createXLS(fileName, encoding) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
@@ -1090,7 +1090,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
-        input ExternXLSFile xls;
+        input ExternXLSFile xls "External Excel XLS file object";
         external "C" ED_destroyXLS(xls) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
@@ -1102,8 +1102,8 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternXLSXFile "External XLSX file object"
       extends ExternalObject;
       function constructor "Parse Excel XLSX file"
-        input String fileName;
-        output ExternXLSXFile xlsx;
+        input String fileName "File name";
+        output ExternXLSXFile xlsx "External Excel XLSX file object";
         external "C" xlsx=ED_createXLSX(fileName) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
@@ -1112,7 +1112,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
-        input ExternXLSXFile xlsx;
+        input ExternXLSXFile xlsx "External Excel XLSX file object";
         external "C" ED_destroyXLSX(xlsx) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
@@ -1124,8 +1124,8 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternXMLFile "External XML file object"
       extends ExternalObject;
       function constructor "Parse XML file"
-        input String fileName;
-        output ExternXMLFile xml;
+        input String fileName "File name";
+        output ExternXMLFile xml "External XML file object";
         external "C" xml=ED_createXML(fileName) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
@@ -1134,7 +1134,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
-        input ExternXMLFile xml;
+        input ExternXMLFile xml "External XML file object";
         external "C" ED_destroyXML(xml) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
