@@ -681,7 +681,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
             __iti_dll = "ITI_ED_MATFile.dll",
             __iti_dllNoExport = true,
             Include = "#include \"ED_MATFile.h\"",
-            Library = "ED_MATFile");
+            Library = {"ED_MATFile", "hdf5", "zlib"});
         end getRealArray2D;
       end Internal;
     end MAT;
@@ -1063,7 +1063,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "zlib"});
+          Library = {"ED_MATFile", "hdf5", "zlib"});
       end constructor;
 
       function destructor "Clean up"
@@ -1072,7 +1072,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "zlib"});
+          Library = {"ED_MATFile", "hdf5", "zlib"});
       end destructor;
     end ExternMATFile;
 
