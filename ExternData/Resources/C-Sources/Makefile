@@ -2,8 +2,8 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DNDEBUG
-INC = -I"bsxml-json" -I"expat/lib" -I"libxls/include" -I"minizip" -I"zlib"
+CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG
+INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"libxls/include" -I"minizip" -I"zlib"
 
 TARGETDIR = linux64
 
