@@ -1,6 +1,4 @@
 EXPORTS
 	ED_createMAT
 	ED_destroyMAT
-	ED_getDimDoubleArray2DFromMAT
 	ED_getDoubleArray2DFromMAT
-	ED_setDoubleArray2DToMAT

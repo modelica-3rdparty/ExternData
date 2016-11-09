@@ -279,11 +279,6 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 	}
 }
 
-void ED_getDimDoubleArray2DFromXML(void* _xml, const char* varName, int* dim)
-{
-	ModelicaError("Function \"ED_getDimDoubleArray2DFromXML\" is not implemented\n");
-}
-
 void ED_getDoubleArray2DFromXML(void* _xml, const char* varName, double* a, size_t m, size_t n)
 {
 	ED_getDoubleArray1DFromXML(_xml, varName, a, m*n);
