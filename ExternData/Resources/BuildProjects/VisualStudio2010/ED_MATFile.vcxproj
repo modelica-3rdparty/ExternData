@@ -118,14 +118,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;_DEBUG;_WINDOWS;_USRDLL;ED_MATFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;_DEBUG;_WINDOWS;_USRDLL;ED_MATFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>hdf5.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -133,14 +133,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;_DEBUG;_WINDOWS;_USRDLL;ED_XMLFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;_DEBUG;_WINDOWS;_USRDLL;ED_XMLFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>hdf5.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -149,14 +149,14 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>hdf5.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -167,13 +167,13 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>hdf5.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
@@ -184,11 +184,11 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
@@ -205,10 +205,10 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
