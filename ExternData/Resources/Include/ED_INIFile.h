@@ -29,7 +29,7 @@
 
 #include "msvc_compatibility.h"
 
-void* ED_createINI(const char* fileName);
+void* ED_createINI(const char* fileName, int verbose);
 void ED_destroyINI(void* _ini);
 double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section);
 const char* ED_getStringFromINI(void* _ini, const char* varName, const char* section);

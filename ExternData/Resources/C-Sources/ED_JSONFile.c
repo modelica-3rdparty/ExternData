@@ -43,7 +43,7 @@ typedef struct {
 	ED_LOCALE_TYPE loc;
 } JSONFile;
 
-void* ED_createJSON(const char* fileName)
+void* ED_createJSON(const char* fileName, int verbose)
 {
 	JsonParser jsonParser;
 	JSONFile* json = (JSONFile*)malloc(sizeof(JSONFile));
@@ -56,6 +56,11 @@ void* ED_createJSON(const char* fileName)
 		free(json);
 		ModelicaError("Memory allocation error\n");
 		return NULL;
+	}
+
+	if (verbose == 1) {
+		/* Print info message, that file is loading */
+		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
 	}
 
 	json->root = JsonParser_parseFile(&jsonParser, fileName);

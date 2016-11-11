@@ -107,7 +107,7 @@ static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
 	return 0;
 }
 
-void* ED_createXLSX(const char* fileName)
+void* ED_createXLSX(const char* fileName, int verbose)
 {
 	int i, rc;
 	XmlNodeRef root;
@@ -122,6 +122,11 @@ void* ED_createXLSX(const char* fileName)
 		free(xlsx);
 		ModelicaError("Memory allocation error\n");
 		return NULL;
+	}
+
+	if (verbose == 1) {
+		/* Print info message, that file is loading */
+		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
 	}
 
 	xlsx->zfile = unzOpen(fileName);

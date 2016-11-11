@@ -29,7 +29,7 @@
 
 #include "msvc_compatibility.h"
 
-void* ED_createXLSX(const char* fileName);
+void* ED_createXLSX(const char* fileName, int verbose);
 void ED_destroyXLSX(void* _xlsx);
 double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName);
 const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName);

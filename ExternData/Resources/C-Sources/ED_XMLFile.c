@@ -43,7 +43,7 @@ typedef struct {
 	ED_LOCALE_TYPE loc;
 } XMLFile;
 
-void* ED_createXML(const char* fileName)
+void* ED_createXML(const char* fileName, int verbose)
 {
 	XmlParser xmlParser;
 	XMLFile* xml = (XMLFile*)malloc(sizeof(XMLFile));
@@ -56,6 +56,11 @@ void* ED_createXML(const char* fileName)
 		free(xml);
 		ModelicaError("Memory allocation error\n");
 		return NULL;
+	}
+
+	if (verbose == 1) {
+		/* Print info message, that file is loading */
+		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
 	}
 
 	xml->root = XmlParser_parse_file(&xmlParser, fileName);

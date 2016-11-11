@@ -35,9 +35,10 @@
 
 typedef struct {
 	char* fileName;
+	int verbose;
 } MATFile;
 
-void* ED_createMAT(const char* fileName)
+void* ED_createMAT(const char* fileName, int verbose)
 {
 	MATFile* mat = (MATFile*)malloc(sizeof(MATFile));
 	if (mat == NULL) {
@@ -50,6 +51,7 @@ void* ED_createMAT(const char* fileName)
 		ModelicaError("Memory allocation error\n");
 		return NULL;
 	}
+	mat->verbose = verbose;
 
 	return mat;
 }
@@ -117,6 +119,11 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		if (varNameCopy == NULL) {
 			ModelicaError("Memory allocation error\n");
 			return;
+		}
+
+		if (mat->verbose == 1) {
+			/* Print info message, that file is loading */
+			ModelicaFormatMessage("... loading \"%s\" from \"%s\"\n", varName, mat->fileName);
 		}
 
 		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDONLY);

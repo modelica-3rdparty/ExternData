@@ -99,7 +99,7 @@ static int fillValues(const char *section, const char *key, const char *value, c
 	return 0;
 }
 
-void* ED_createINI(const char* fileName)
+void* ED_createINI(const char* fileName, int verbose)
 {
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
 	if (ini == NULL) {
@@ -114,6 +114,12 @@ void* ED_createINI(const char* fileName)
 	}
 
 	ini->sections = cpo_array_create(1 , sizeof(INISection));
+
+	if (verbose == 1) {
+		/* Print info message, that file is loading */
+		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
+	}
+
 	if (1 != ini_browse(fillValues, ini, fileName)) {
 		cpo_array_destroy(ini->sections);
 		free(ini->fileName);

@@ -53,7 +53,7 @@ typedef struct {
 	SheetShare* sheets;
 } XLSFile;
 
-void* ED_createXLS(const char* fileName, const char* encoding)
+void* ED_createXLS(const char* fileName, const char* encoding, int verbose)
 {
 	XLSFile* xls = (XLSFile*)malloc(sizeof(XLSFile));
 	if (xls == NULL) {
@@ -65,6 +65,11 @@ void* ED_createXLS(const char* fileName, const char* encoding)
 		free(xls);
 		ModelicaError("Memory allocation error\n");
 		return NULL;
+	}
+
+	if (verbose == 1) {
+		/* Print info message, that file is loading */
+		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
 	}
 
 	xls->pWB = xls_open(fileName, encoding);

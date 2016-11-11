@@ -51,6 +51,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Dialog(
         loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
         caption="Open file")));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
 
     final function getReal = Functions.INI.getReal(ini=ini) "Get scalar Real value from INI file";
     final function getInteger = Functions.INI.getInteger(ini=ini) "Get scalar Integer value from INI file";
@@ -58,7 +59,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.INI.getString(ini=ini) "Get scalar String value from INI file";
 
     protected
-      parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName);
+      parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead);
 
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
@@ -75,6 +76,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Dialog(
         loadSelector(filter="JSON files (*.json)",
         caption="Open file")));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
 
     final function getReal = Functions.JSON.getReal(json=json) "Get scalar Real value from JSON file";
     final function getInteger = Functions.JSON.getInteger(json=json) "Get scalar Integer value from JSON file";
@@ -82,7 +84,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.JSON.getString(json=json) "Get scalar String value from JSON file";
 
     protected
-      parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName);
+      parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead);
 
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
@@ -99,11 +101,12 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Dialog(
         loadSelector(filter="MATLAB MAT-files (*.mat)",
         caption="Open file")));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
 
     final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT-file";
 
     protected
-      parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName);
+      parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead);
 
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
@@ -127,6 +130,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="Excel files (*.xls)",
         caption="Open file")));
     parameter String encoding="UTF-8" "Encoding";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
 
     final function getReal = Functions.XLS.getReal(xls=xls) "Get scalar Real value from Excel XLS file";
     final function getInteger = Functions.XLS.getInteger(xls=xls) "Get scalar Integer value from Excel XLS file";
@@ -134,7 +138,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.XLS.getString(xls=xls) "Get scalar String value from Excel XLS file";
 
     protected
-      parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding);
+      parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead);
 
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
@@ -165,6 +169,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xlsx)",
         caption="Open file")));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
 
     final function getReal = Functions.XLSX.getReal(xlsx=xlsx) "Get scalar Real value from Excel XLSX file";
     final function getInteger = Functions.XLSX.getInteger(xlsx=xlsx) "Get scalar Integer value from Excel XLSX file";
@@ -172,7 +177,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.XLSX.getString(xlsx=xlsx) "Get scalar String value from Excel XLSX file";
 
     protected
-      parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName);
+      parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead);
 
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
@@ -203,6 +208,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
 
     final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
     final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file";
@@ -212,7 +218,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final function getString = Functions.XML.getString(xml=xml) "Get scalar String value from XML file";
 
     protected
-      parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName);
+      parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead);
 
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
@@ -742,7 +748,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getRealArray1D;
 
-      function getRealArray2D "Get 1D Real values from XML file"
+      function getRealArray2D "Get 2D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
@@ -820,8 +826,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function constructor "Parse INI file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternINIFile ini "External INI file object";
-        external "C" ini=ED_createINI(fileName) annotation(
+        external "C" ini=ED_createINI(fileName, verboseRead) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
@@ -844,8 +851,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function constructor "Parse JSON file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternJSONFile json "External JSON file object";
-        external "C" json=ED_createJSON(fileName) annotation(
+        external "C" json=ED_createJSON(fileName, verboseRead) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
@@ -868,8 +876,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function constructor "Only copy MAT-file name (File not yet opened)"
         extends Modelica.Icons.Function;
         input String fileName "File name";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternMATFile mat "External MATLAB MAT-file object";
-        external "C" mat=ED_createMAT(fileName) annotation(
+        external "C" mat=ED_createMAT(fileName, verboseRead) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
@@ -893,8 +902,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         extends Modelica.Icons.Function;
         input String fileName "File name";
         input String encoding="UTF-8" "Encoding";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternXLSFile xls "External Excel XLS file object";
-        external "C" xls=ED_createXLS(fileName, encoding) annotation(
+        external "C" xls=ED_createXLS(fileName, encoding, verboseRead) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
@@ -917,8 +927,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function constructor "Parse Excel XLSX file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternXLSXFile xlsx "External Excel XLSX file object";
-        external "C" xlsx=ED_createXLSX(fileName) annotation(
+        external "C" xlsx=ED_createXLSX(fileName, verboseRead) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
@@ -941,8 +952,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function constructor "Parse XML file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternXMLFile xml "External XML file object";
-        external "C" xml=ED_createXML(fileName) annotation(
+        external "C" xml=ED_createXML(fileName, verboseRead) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",

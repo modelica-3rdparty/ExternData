@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include "msvc_compatibility.h"
 
-void* ED_createMAT(const char* fileName);
+void* ED_createMAT(const char* fileName, int verbose);
 void ED_destroyMAT(void* _mat);
 void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size_t m, size_t n);
 
