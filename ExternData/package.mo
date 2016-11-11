@@ -676,6 +676,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       package Internal "Internal MAT-file functions"
         extends Modelica.Icons.InternalPackage;
         function getRealArray2D
+          extends Modelica.Icons.Function;
           input String varName "Variable name";
           input Integer m=1 "Number of rows";
           input Integer n=1 "Number of columns";
@@ -938,6 +939,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         end getReal;
 
         function getRealArray2D
+          extends Modelica.Icons.Function;
           input String varName "Key";
           input Integer m=1 "Number of rows";
           input Integer n=1 "Number of columns";
@@ -951,6 +953,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         end getRealArray2D;
 
         function getRealArray1D
+          extends Modelica.Icons.Function;
           input String varName "Key";
           input Integer n=1 "Number of values";
           input Types.ExternXMLFile xml "External XML file object";
@@ -1017,6 +1020,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternINIFile "External INI file object"
       extends ExternalObject;
       function constructor "Parse INI file"
+        extends Modelica.Icons.Function;
         input String fileName "File name";
         output ExternINIFile ini "External INI file object";
         external "C" ini=ED_createINI(fileName) annotation(
@@ -1027,6 +1031,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
+        extends Modelica.Icons.Function;
         input ExternINIFile ini "External INI file object";
         external "C" ED_destroyINI(ini) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
@@ -1039,6 +1044,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternJSONFile "External JSON file object"
       extends ExternalObject;
       function constructor "Parse JSON file"
+        extends Modelica.Icons.Function;
         input String fileName "File name";
         output ExternJSONFile json "External JSON file object";
         external "C" json=ED_createJSON(fileName) annotation(
@@ -1049,6 +1055,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
+        extends Modelica.Icons.Function;
         input ExternJSONFile json "External JSON file object";
         external "C" ED_destroyJSON(json) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -1061,6 +1068,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternMATFile "External MAT-file object"
       extends ExternalObject;
       function constructor "Only copy MAT-file name (File not yet opened)"
+        extends Modelica.Icons.Function;
         input String fileName "File name";
         output ExternMATFile mat "External MATLAB MAT-file object";
         external "C" mat=ED_createMAT(fileName) annotation(
@@ -1071,6 +1079,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
+        extends Modelica.Icons.Function;
         input ExternMATFile mat "External MATLAB MAT-file object";
         external "C" ED_destroyMAT(mat) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -1083,6 +1092,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternXLSFile "External XLS file object"
       extends ExternalObject;
       function constructor "Open Excel XLS file"
+        extends Modelica.Icons.Function;
         input String fileName "File name";
         input String encoding="UTF-8" "Encoding";
         output ExternXLSFile xls "External Excel XLS file object";
@@ -1094,6 +1104,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
+        extends Modelica.Icons.Function;
         input ExternXLSFile xls "External Excel XLS file object";
         external "C" ED_destroyXLS(xls) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -1106,6 +1117,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternXLSXFile "External XLSX file object"
       extends ExternalObject;
       function constructor "Parse Excel XLSX file"
+        extends Modelica.Icons.Function;
         input String fileName "File name";
         output ExternXLSXFile xlsx "External Excel XLSX file object";
         external "C" xlsx=ED_createXLSX(fileName) annotation(
@@ -1116,6 +1128,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
+        extends Modelica.Icons.Function;
         input ExternXLSXFile xlsx "External Excel XLSX file object";
         external "C" ED_destroyXLSX(xlsx) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -1128,6 +1141,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     class ExternXMLFile "External XML file object"
       extends ExternalObject;
       function constructor "Parse XML file"
+        extends Modelica.Icons.Function;
         input String fileName "File name";
         output ExternXMLFile xml "External XML file object";
         external "C" xml=ED_createXML(fileName) annotation(
@@ -1138,6 +1152,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       end constructor;
 
       function destructor "Clean up"
+        extends Modelica.Icons.Function;
         input ExternXMLFile xml "External XML file object";
         external "C" ED_destroyXML(xml) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
