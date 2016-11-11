@@ -28,54 +28,10 @@
 #define ED_MATFILE_H
 
 #include <stdlib.h>
+#include "msvc_compatibility.h"
 
 void* ED_createMAT(const char* fileName);
 void ED_destroyMAT(void* _mat);
 void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size_t m, size_t n);
-
-#if defined(_MSC_VER)
-/* Visual Studio compatibility handling for linking hdf5.lib compiled by Visual Studio 2010 */
-
-#if _MSC_VER >= 1400
-
-#include <time.h>
-#include "gconstructor.h"
-
-extern long timezone = 0;
-
-#if defined(G_HAS_CONSTRUCTORS)
-#ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(Timezone_initialize)
-#endif
-G_DEFINE_CONSTRUCTOR(Timezone_initialize)
-static void Timezone_initialize(void) {
-	_get_timezone(&timezone);
-}
-#endif
-
-#endif
-
-#if _MSC_VER >= 1900
-
-#include <stdio.h>
-
-extern FILE _iob[3];
-
-#undef stdin
-#undef stdout
-#undef stderr
-#define stdin _iob
-#define stdout (_iob+1)
-#define stderr (_iob+2)
-
-FILE* __iob_func(void) {
-	return _iob;
-}
-
-#pragma comment( lib, "legacy_stdio_definitions.lib" )
-
-#endif
-
-#endif
 
 #endif

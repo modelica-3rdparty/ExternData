@@ -27,6 +27,8 @@
 #if !defined(ED_JSONFILE_H)
 #define ED_JSONFILE_H
 
+#include "msvc_compatibility.h"
+
 void* ED_createJSON(const char* fileName);
 void ED_destroyJSON(void* _json);
 double ED_getDoubleFromJSON(void* _json, const char* varName);

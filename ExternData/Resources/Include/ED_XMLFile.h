@@ -28,6 +28,7 @@
 #define ED_XMLFILE_H
 
 #include <stdlib.h>
+#include "msvc_compatibility.h"
 
 void* ED_createXML(const char* fileName);
 void ED_destroyXML(void* _xml);

@@ -27,6 +27,8 @@
 #if !defined(ED_XLSXFILE_H)
 #define ED_XLSXFILE_H
 
+#include "msvc_compatibility.h"
+
 void* ED_createXLSX(const char* fileName);
 void ED_destroyXLSX(void* _xlsx);
 double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName);

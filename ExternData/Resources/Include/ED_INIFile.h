@@ -27,6 +27,8 @@
 #if !defined(ED_INIFILE_H)
 #define ED_INIFILE_H
 
+#include "msvc_compatibility.h"
+
 void* ED_createINI(const char* fileName);
 void ED_destroyINI(void* _ini);
 double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section);
