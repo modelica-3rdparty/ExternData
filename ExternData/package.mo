@@ -511,84 +511,46 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     package INI "INI file functions"
       extends Modelica.Icons.Package;
       function getReal "Get scalar Real value from INI file"
-        extends Modelica.Icons.Function;
-        input String varName "Key";
+        extends Interfaces.partialGetReal;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        output Real y "Real value";
-        algorithm
-          y := Internal.getReal(ini=ini, varName=varName, section=section);
-        annotation(Inline=true);
+        external "C" y=ED_getDoubleFromINI(ini, varName, section) annotation(
+          __iti_dll = "ITI_ED_INIFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_INIFile.h\"",
+          Library = {"ED_INIFile", "bsxml-json"});
       end getReal;
 
       function getInteger "Get scalar Integer value from INI file"
-        extends Modelica.Icons.Function;
-        input String varName "Key";
+        extends Interfaces.partialGetInteger;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        output Integer y "Integer value";
-        algorithm
-          y := Internal.getInteger(ini=ini, varName=varName, section=section);
-        annotation(Inline=true);
+        external "C" y=ED_getIntFromINI(ini, varName, section) annotation(
+          __iti_dll = "ITI_ED_INIFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_INIFile.h\"",
+          Library = {"ED_INIFile", "bsxml-json"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from INI file"
-        extends Modelica.Icons.Function;
-        input String varName "Key";
+        extends Interfaces.partialGetBoolean;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        output Boolean y "Boolean value";
         algorithm
-          y := Internal.getReal(ini=ini, varName=varName, section=section) <> 0;
+          y := getReal(ini=ini, varName=varName, section=section) <> 0;
         annotation(Inline=true);
       end getBoolean;
 
       function getString "Get scalar String value from INI file"
-        extends Modelica.Icons.Function;
-        input String varName "Key";
+        extends Interfaces.partialGetString;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        output String str "String value";
-        algorithm
-          str := Internal.getString(ini=ini, varName=varName, section=section);
-        annotation(Inline=true);
+        external "C" str=ED_getStringFromINI(ini, varName, section) annotation(
+          __iti_dll = "ITI_ED_INIFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_INIFile.h\"",
+          Library = {"ED_INIFile", "bsxml-json"});
       end getString;
-
-      package Internal "Internal INI file functions"
-        extends Modelica.Icons.InternalPackage;
-        function getReal
-          extends Interfaces.partialGetReal;
-          input Types.ExternINIFile ini "External INI file object";
-          input String section="" "Section";
-          external "C" y=ED_getDoubleFromINI(ini, varName, section) annotation(
-            __iti_dll = "ITI_ED_INIFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_INIFile.h\"",
-            Library = {"ED_INIFile", "bsxml-json"});
-        end getReal;
-
-        function getInteger
-          extends Interfaces.partialGetInteger;
-          input Types.ExternINIFile ini "External INI file object";
-          input String section="" "Section";
-          external "C" y=ED_getIntFromINI(ini, varName, section) annotation(
-            __iti_dll = "ITI_ED_INIFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_INIFile.h\"",
-            Library = {"ED_INIFile", "bsxml-json"});
-        end getInteger;
-
-        function getString
-          extends Interfaces.partialGetString;
-          input Types.ExternINIFile ini "External INI file object";
-          input String section="" "Section";
-          external "C" str=ED_getStringFromINI(ini, varName, section) annotation(
-            __iti_dll = "ITI_ED_INIFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_INIFile.h\"",
-            Library = {"ED_INIFile", "bsxml-json"});
-        end getString;
-      end Internal;
     end INI;
 
     package JSON "JSON file functions"
@@ -596,69 +558,42 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function getReal "Get scalar Real value from JSON file"
         extends Interfaces.partialGetReal;
         input Types.ExternJSONFile json "External JSON file object";
-        algorithm
-          y := Internal.getReal(json=json, varName=varName);
-        annotation(Inline=true);
+        external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "bsxml-json"});
       end getReal;
 
       function getInteger "Get scalar Integer value from JSON file"
         extends Interfaces.partialGetInteger;
         input Types.ExternJSONFile json "External JSON file object";
-        algorithm
-          y := Internal.getInteger(json=json, varName=varName);
-        annotation(Inline=true);
+        external "C" y=ED_getIntFromJSON(json, varName) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "bsxml-json"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from JSON file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternJSONFile json "External JSON file object";
         algorithm
-          y := Internal.getReal(json=json, varName=varName) <> 0;
+          y := getReal(json=json, varName=varName) <> 0;
         annotation(Inline=true);
       end getBoolean;
 
       function getString "Get scalar String value from JSON file"
         extends Interfaces.partialGetString;
         input Types.ExternJSONFile json "External JSON file object";
-        algorithm
-          str := Internal.getString(json=json, varName=varName);
-        annotation(Inline=true);
+        external "C" str=ED_getStringFromJSON(json, varName) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "bsxml-json"});
       end getString;
-
-      package Internal "Internal JSON file functions"
-        extends Modelica.Icons.InternalPackage;
-        function getReal
-          extends Interfaces.partialGetReal;
-          input Types.ExternJSONFile json "External JSON file object";
-          external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
-            __iti_dll = "ITI_ED_JSONFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_JSONFile.h\"",
-            Library = {"ED_JSONFile", "bsxml-json"});
-        end getReal;
-
-        function getInteger
-          extends Interfaces.partialGetInteger;
-          input Types.ExternJSONFile json "External JSON file object";
-          external "C" y=ED_getIntFromJSON(json, varName) annotation(
-            __iti_dll = "ITI_ED_JSONFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_JSONFile.h\"",
-            Library = {"ED_JSONFile", "bsxml-json"});
-        end getInteger;
-
-        function getString
-          extends Interfaces.partialGetString;
-          input Types.ExternJSONFile json "External JSON file object";
-          external "C" str=ED_getStringFromJSON(json, varName) annotation(
-            __iti_dll = "ITI_ED_JSONFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_JSONFile.h\"",
-            Library = {"ED_JSONFile", "bsxml-json"});
-        end getString;
-      end Internal;
     end JSON;
-    
+
     package MAT "MAT-file functions"
       extends Modelica.Icons.Package;
       function getRealArray2D "Get 2D Real values from MAT-file"
@@ -668,27 +603,12 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input Integer n=1 "Number of columns";
         input Types.ExternMATFile mat "External MATLAB MAT-file object";
         output Real y[m,n] "2D Real values";
-        algorithm
-          y := Internal.getRealArray2D(mat=mat, varName=varName, m=m, n=n);
-        annotation(Inline=true);
+        external "C" ED_getDoubleArray2DFromMAT(mat, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = {"ED_MATFile", "hdf5", "zlib"});
       end getRealArray2D;
-
-      package Internal "Internal MAT-file functions"
-        extends Modelica.Icons.InternalPackage;
-        function getRealArray2D
-          extends Modelica.Icons.Function;
-          input String varName "Variable name";
-          input Integer m=1 "Number of rows";
-          input Integer n=1 "Number of columns";
-          input Types.ExternMATFile mat "External MATLAB MAT-file object";
-          output Real y[m,n] "2D Real values";
-          external "C" ED_getDoubleArray2DFromMAT(mat, varName, y, size(y, 1), size(y, 2)) annotation(
-            __iti_dll = "ITI_ED_MATFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_MATFile.h\"",
-            Library = {"ED_MATFile", "hdf5", "zlib"});
-        end getRealArray2D;
-      end Internal;
     end MAT;
 
     package XLS "Excel XLS file functions"
@@ -699,9 +619,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Real y "Real value";
-        algorithm
-          y := Internal.getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
-        annotation(Inline=true);
+        external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName) annotation(
+          __iti_dll = "ITI_ED_XLSFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
       end getReal;
 
       function getInteger "Get scalar Integer value from Excel XLS file"
@@ -710,9 +632,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Integer y "Integer value";
-        algorithm
-          y := Internal.getInteger(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
-        annotation(Inline=true);
+        external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName) annotation(
+          __iti_dll = "ITI_ED_XLSFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from Excel XLS file"
@@ -722,7 +646,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Boolean y "Boolean value";
         algorithm
-          y := Internal.getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName) <> 0;
+          y := getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName) <> 0;
         annotation(Inline=true);
       end getBoolean;
 
@@ -732,52 +656,12 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output String str "String value";
-        algorithm
-          str := Internal.getString(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
-        annotation(Inline=true);
+        external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName) annotation(
+          __iti_dll = "ITI_ED_XLSFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
       end getString;
-
-      package Internal "Internal Excel XLS file functions"
-        extends Modelica.Icons.InternalPackage;
-        function getReal
-          extends Modelica.Icons.Function;
-          input String cellAddress="A1" "Cell address";
-          input Types.ExternXLSFile xls "External Excel XLS file object";
-          input String sheetName="" "Sheet name";
-          output Real y "Real value";
-          external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName) annotation(
-            __iti_dll = "ITI_ED_XLSFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XLSFile.h\"",
-            Library = "ED_XLSFile");
-        end getReal;
-
-        function getInteger
-          extends Modelica.Icons.Function;
-          input String cellAddress="A1" "Cell address";
-          input Types.ExternXLSFile xls "External Excel XLS file object";
-          input String sheetName="" "Sheet name";
-          output Integer y "Integer value";
-          external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName) annotation(
-            __iti_dll = "ITI_ED_XLSFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XLSFile.h\"",
-            Library = "ED_XLSFile");
-        end getInteger;
-
-        function getString
-          extends Modelica.Icons.Function;
-          input String cellAddress="A1" "Cell address";
-          input Types.ExternXLSFile xls "External Excel XLS file object";
-          input String sheetName="" "Sheet name";
-          output String str "String value";
-          external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName) annotation(
-            __iti_dll = "ITI_ED_XLSFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XLSFile.h\"",
-            Library = "ED_XLSFile");
-        end getString;
-      end Internal;
     end XLS;
 
     package XLSX "Excel XLSX file functions"
@@ -788,9 +672,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Real y "Real value";
-        algorithm
-          y := Internal.getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
-        annotation(Inline=true);
+        external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getReal;
 
       function getInteger "Get scalar Integer value from Excel XLSX file"
@@ -799,9 +685,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Integer y "Integer value";
-        algorithm
-          y := Internal.getInteger(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
-        annotation(Inline=true);
+        external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from Excel XLSX file"
@@ -811,7 +699,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Boolean y "Boolean value";
         algorithm
-          y := Internal.getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName) <> 0;
+          y := getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName) <> 0;
         annotation(Inline=true);
       end getBoolean;
 
@@ -821,52 +709,12 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output String str "String value";
-        algorithm
-          str := Internal.getString(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
-        annotation(Inline=true);
+        external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getString;
-
-      package Internal "Internal Excel XLSX file functions"
-        extends Modelica.Icons.InternalPackage;
-        function getReal
-          extends Modelica.Icons.Function;
-          input String cellAddress="A1" "Cell address";
-          input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
-          input String sheetName="" "Sheet name";
-          output Real y "Real value";
-          external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName) annotation(
-            __iti_dll = "ITI_ED_XLSXFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XLSXFile.h\"",
-            Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
-        end getReal;
-
-        function getInteger
-          extends Modelica.Icons.Function;
-          input String cellAddress="A1" "Cell address";
-          input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
-          input String sheetName="" "Sheet name";
-          output Integer y "Integer value";
-          external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName) annotation(
-            __iti_dll = "ITI_ED_XLSXFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XLSXFile.h\"",
-            Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
-        end getInteger;
-
-        function getString
-          extends Modelica.Icons.Function;
-          input String cellAddress="A1" "Cell address";
-          input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
-          input String sheetName="" "Sheet name";
-          output String str "String value";
-          external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName) annotation(
-            __iti_dll = "ITI_ED_XLSXFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XLSXFile.h\"",
-            Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
-        end getString;
-      end Internal;
     end XLSX;
 
     package XML "XML file functions"
@@ -874,9 +722,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       function getReal "Get scalar Real value from XML file"
         extends Interfaces.partialGetReal;
         input Types.ExternXMLFile xml "External XML file object";
-        algorithm
-          y := Internal.getReal(xml=xml, varName=varName);
-        annotation(Inline=true);
+        external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getReal;
 
       function getRealArray1D "Get 1D Real values from XML file"
@@ -885,106 +735,54 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         input Integer n=1 "Number of values";
         input Types.ExternXMLFile xml "External XML file object";
         output Real y[n] "1D Real values";
-        algorithm
-          y := Internal.getRealArray1D(xml=xml, varName=varName, n=n);
-        annotation(Inline=true);
+        external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getRealArray1D;
 
-      function getRealArray2D "Get 2D Real values from XML file"
+      function getRealArray2D "Get 1D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
         input Integer n=1 "Number of columns";
         input Types.ExternXMLFile xml "External XML file object";
         output Real y[m,n] "2D Real values";
-        algorithm
-          y := Internal.getRealArray2D(xml=xml, varName=varName, m=m, n=n);
-        annotation(Inline=true);
+        external "C" ED_getDoubleArray2DFromXML(xml, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getRealArray2D;
 
       function getInteger "Get scalar Integer value from XML file"
         extends Interfaces.partialGetInteger;
         input Types.ExternXMLFile xml "External XML file object";
-        algorithm
-          y := Internal.getInteger(xml=xml, varName=varName);
-        annotation(Inline=true);
+        external "C" y=ED_getIntFromXML(xml, varName) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from XML file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternXMLFile xml "External XML file object";
         algorithm
-          y := Internal.getReal(xml=xml, varName=varName) <> 0;
+          y := getReal(xml=xml, varName=varName) <> 0;
         annotation(Inline=true);
       end getBoolean;
 
       function getString "Get scalar String value from XML file"
         extends Interfaces.partialGetString;
         input Types.ExternXMLFile xml "External XML file object";
-        algorithm
-          str := Internal.getString(xml=xml, varName=varName);
-        annotation(Inline=true);
+        external "C" str=ED_getStringFromXML(xml, varName) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getString;
-
-      package Internal "Internal XML file functions"
-        extends Modelica.Icons.InternalPackage;
-        function getReal
-          extends Interfaces.partialGetReal;
-          input Types.ExternXMLFile xml "External XML file object";
-          external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
-            __iti_dll = "ITI_ED_XMLFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "bsxml-json", "expat"});
-        end getReal;
-
-        function getRealArray2D
-          extends Modelica.Icons.Function;
-          input String varName "Key";
-          input Integer m=1 "Number of rows";
-          input Integer n=1 "Number of columns";
-          input Types.ExternXMLFile xml "External XML file object";
-          output Real y[m,n] "2D Real values";
-          external "C" ED_getDoubleArray2DFromXML(xml, varName, y, size(y, 1), size(y, 2)) annotation(
-            __iti_dll = "ITI_ED_XMLFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "bsxml-json", "expat"});
-        end getRealArray2D;
-
-        function getRealArray1D
-          extends Modelica.Icons.Function;
-          input String varName "Key";
-          input Integer n=1 "Number of values";
-          input Types.ExternXMLFile xml "External XML file object";
-          output Real y[n] "1D Real values";
-          external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
-            __iti_dll = "ITI_ED_XMLFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "bsxml-json", "expat"});
-        end getRealArray1D;
-
-        function getInteger
-          extends Interfaces.partialGetInteger;
-          input Types.ExternXMLFile xml "External XML file object";
-          external "C" y=ED_getIntFromXML(xml, varName) annotation(
-            __iti_dll = "ITI_ED_XMLFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "bsxml-json", "expat"});
-        end getInteger;
-
-        function getString
-          extends Interfaces.partialGetString;
-          input Types.ExternXMLFile xml "External XML file object";
-          external "C" str=ED_getStringFromXML(xml, varName) annotation(
-            __iti_dll = "ITI_ED_XMLFile.dll",
-            __iti_dllNoExport = true,
-            Include = "#include \"ED_XMLFile.h\"",
-            Library = {"ED_XMLFile", "bsxml-json", "expat"});
-        end getString;
-      end Internal;
     end XML;
   end Functions;
 
