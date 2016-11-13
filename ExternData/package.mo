@@ -46,21 +46,94 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
   end UsersGuide;
 
+  package Examples "Examples"
+    extends Modelica.Icons.ExamplesPackage;
+    model INITest "INI file read test"
+      extends Modelica.Icons.Example;
+      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain1(k=inifile.getReal("gain.k", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+      Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      equation
+        connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+        connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>This example model reads the gain parameters from different sections of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.INIFile.getReal\">ExternData.INIFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.INIFile.getString\">ExternData.INIFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+    end INITest;
+
+    model JSONTest "JSON file read test"
+      extends Modelica.Icons.Example;
+      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain1(k=jsonfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+      Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(jsonfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      equation
+        connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+        connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>This example model reads the gain parameters from different nodes of the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.JSONFile.getReal\">ExternData.JSONFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.JSONFile.getString\">ExternData.JSONFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+    end JSONTest;
+
+    model MATTest "MAT-file read test"
+      extends Modelica.Icons.Example;
+      MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Sources.TimeTable timeTable1(table=matfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>This example model reads the table parameter from variable table1 of the HDF5-based MAT-file <a href=\"modelica://ExternData/Resources/Examples/test_v7.3.mat\">test_v7.3.mat</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.MATFile.getRealArray2D\">ExternData.MATFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
+    end MATTest;
+
+    model XLSTest "Excel XLS file read test"
+      extends Modelica.Icons.Example;
+      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain1(k=xlsfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+      Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      equation
+        connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+        connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>This example model reads the gain parameters from different cells and sheets of the Excel XLS file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XLSFile.getReal\">ExternData.XLSFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XLSFile.getString\">ExternData.XLSFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+    end XLSTest;
+
+    model XLSXTest "Excel XLSX file read test"
+      extends Modelica.Icons.Example;
+      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain1(k=xlsxfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+      Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      equation
+        connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+        connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>This example model reads the gain parameters from different cells and sheets of the Excel XLSX file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XLSXFile.getReal\">ExternData.XLSXFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XLSXFile.getString\">ExternData.XLSXFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+    end XLSXTest;
+
+    model XMLTest "XML file read test"
+      extends Modelica.Icons.Example;
+      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      Modelica.Blocks.Math.Gain gain1(k=xmlfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+      Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xmlfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+      Modelica.Blocks.Sources.TimeTable timeTable1(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
+      equation
+        connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+        connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+      annotation(experiment(StopTime=1),
+        Documentation(info="<html><p>This example model reads the gain and table parameters from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XMLFile.getReal\">ExternData.XMLFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XMLFile.getString\">ExternData.XMLFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For timeTable1 the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.XMLFile.getRealArray2D\">ExternData.XMLFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+    end XMLTest;
+  end Examples;
+
   model INIFile "Read data values from INI file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-
-    final function getReal = Functions.INI.getReal(ini=ini) "Get scalar Real value from INI file";
-    final function getInteger = Functions.INI.getInteger(ini=ini) "Get scalar Integer value from INI file";
-    final function getBoolean = Functions.INI.getBoolean(ini=ini) "Get scalar Boolean value from INI file";
-    final function getString = Functions.INI.getString(ini=ini) "Get scalar String value from INI file";
-
-    protected
-      parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead);
-
+    final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead) "External INI file object";
+    final function getReal = Functions.INI.getReal(final ini=ini) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.INI.getInteger(final ini=ini) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.INI.getBooleanfinal (ini=ini) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getString = Functions.INI.getString(final ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="inifile",
@@ -77,15 +150,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="JSON files (*.json)",
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-
-    final function getReal = Functions.JSON.getReal(json=json) "Get scalar Real value from JSON file";
-    final function getInteger = Functions.JSON.getInteger(json=json) "Get scalar Integer value from JSON file";
-    final function getBoolean = Functions.JSON.getBoolean(json=json) "Get scalar Boolean value from JSON file";
-    final function getString = Functions.JSON.getString(json=json) "Get scalar String value from JSON file";
-
-    protected
-      parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead);
-
+    final parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead) "External JSON file object";
+    final function getReal = Functions.JSON.getReal(final json=json) "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.JSON.getInteger(final json=json) "Get scalar Integer value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.JSON.getBoolean(final json=json) "Get scalar Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getString = Functions.JSON.getString(final json=json) "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
@@ -102,12 +171,8 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="MATLAB MAT-files (*.mat)",
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-
-    final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT-file";
-
-    protected
-      parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead);
-
+    final parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
+    final function getRealArray2D = Functions.MAT.getRealArray2D(final mat=mat) "Get 2D Real values from MAT-file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
@@ -131,15 +196,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         caption="Open file")));
     parameter String encoding="UTF-8" "Encoding";
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-
-    final function getReal = Functions.XLS.getReal(xls=xls) "Get scalar Real value from Excel XLS file";
-    final function getInteger = Functions.XLS.getInteger(xls=xls) "Get scalar Integer value from Excel XLS file";
-    final function getBoolean = Functions.XLS.getBoolean(xls=xls) "Get scalar Boolean value from Excel XLS file";
-    final function getString = Functions.XLS.getString(xls=xls) "Get scalar String value from Excel XLS file";
-
-    protected
-      parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead);
-
+    final parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead) "External Excel XLS file object";
+    final function getReal = Functions.XLS.getReal(final xls=xls) "Get scalar Real value from Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.XLS.getInteger(final xls=xls) "Get scalar Integer value from Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.XLS.getBoolean(final xls=xls) "Get scalar Boolean value from Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getString = Functions.XLS.getString(final xls=xls) "Get scalar String value from Excel XLS file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
@@ -170,15 +231,11 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="Excel files (*.xlsx)",
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-
-    final function getReal = Functions.XLSX.getReal(xlsx=xlsx) "Get scalar Real value from Excel XLSX file";
-    final function getInteger = Functions.XLSX.getInteger(xlsx=xlsx) "Get scalar Integer value from Excel XLSX file";
-    final function getBoolean = Functions.XLSX.getBoolean(xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file";
-    final function getString = Functions.XLSX.getString(xlsx=xlsx) "Get scalar String value from Excel XLSX file";
-
-    protected
-      parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead);
-
+    final parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead)  "External Excel XLSX file object";
+    final function getReal = Functions.XLSX.getReal(final xlsx=xlsx) "Get scalar Real value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.XLSX.getInteger(final xlsx=xlsx) "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.XLSX.getBoolean(final xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getString = Functions.XLSX.getString(final xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
@@ -209,17 +266,13 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-
-    final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file";
-    final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file";
-    final function getRealArray2D = Functions.XML.getRealArray2D(xml=xml) "Get 2D Real values from XML file";
-    final function getInteger = Functions.XML.getInteger(xml=xml) "Get scalar Integer value from XML file";
-    final function getBoolean = Functions.XML.getBoolean(xml=xml) "Get scalar Boolean value from XML file";
-    final function getString = Functions.XML.getString(xml=xml) "Get scalar String value from XML file";
-
-    protected
-      parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead);
-
+    final parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead) "External XML file object";
+    final function getReal = Functions.XML.getReal(final xml=xml) "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray1D = Functions.XML.getRealArray1D(final xml=xml) "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.XML.getRealArray2D(final xml=xml) "Get 2D Real values from XML file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.XML.getInteger(final xml=xml) "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.XML.getBoolean(final xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
+    final function getString = Functions.XML.getString(final xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
@@ -229,287 +282,6 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
         Text(lineColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
-
-  package Examples "Examples"
-    extends Modelica.Icons.ExamplesPackage;
-/* TODO: Revise examples
-    model XMLTest1 "XML Real read test with initial equation"
-      extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xmlfile.getReal("set1.gain.k");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end XMLTest1;
-
-    model XMLTest2 "XML Real read test with parameter binding"
-      extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1),
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola where external functions are generally assumed to be pure.</p></html>"));
-    end XMLTest2;
-
-    model XMLTest3 "XML Real read test with parameter binding and fixed=false"
-      extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)=xmlfile.getReal("set2.gain.k")) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1),
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real value to the gain block by a parameter binding. In comparison with <a href=\"modelica://ExternData.Examples.XMLTest2\">XMLTest2</a> <code>gain.k.fixed</code> is set to <code>false</code>.</p><p>This is non-standard Modelica but works in SimulationX though.</p></html>"));
-    end XMLTest3;
-
-    model XMLTest4 "XML String read test with initial equation"
-      extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = Modelica.Utilities.Strings.scanReal(xmlfile.getString("set1.gain.k"));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
-    end XMLTest4;
-
-    model XMLTest5 "XML Integer read test with initial equation"
-      extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xmlfile.getInteger("set1.gain.k");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
-    end XMLTest5;
-
-    model XMLTest6 "XML Real 2D array read test with parameter binding for table array of CombiTimeTable"
-      extends Modelica.Icons.Example;
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Sources.CombiTimeTable table(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      annotation(experiment(StopTime=1),
-        Documentation(info="<html><p>Reads the table array parameter <code>table1</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block by a parameter binding.</p><p>This probably is non-standard Modelica but works in Dymola where external functions are generally assumed to be pure.</p></html>"));
-    end XMLTest6;
-
-    model XMLTest7 "XML Real 2D array read test with with initial equation and parameter binding for table array of CombiTimeTable"
-      extends Modelica.Icons.Example;
-      final parameter Integer m = 3 "Number of rows";
-      final parameter Integer n = 2 "Number of columns";
-      XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Sources.CombiTimeTable table(table(fixed=fill(false, m, n))=fill(0., m, n)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        table.table = xmlfile.getRealArray2D("table3", m, n);
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the table array parameter <code>table3</code> from the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a> and assigns its Real values to the table matrix of the table block in an initial equation.</p><p>This works in Dymola with an unavoidable translation warning: The following parameters with fixed = false also have a binding: table.table = fill(0.0, m, n)</p></html>"));
-    end XMLTest7;
-
-    model INITest1 "INI Real read test with initial equation"
-      extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = inifile.getReal("gain.k");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the plain section of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end INITest1;
-
-    model INITest2 "INI Real read test from section with initial equation"
-      extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = inifile.getReal("gain.k", "set1");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the section [set1] of the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end INITest2;
-
-    model INITest3 "INI String read test from section with initial equation"
-      extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set1"));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
-    end INITest3;
-
-    model INITest4 "INI Integer read test from section with initial equation"
-      extends Modelica.Icons.Example;
-      INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = inifile.getInteger("gain.k", "set1");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the INI file <a href=\"modelica://ExternData/Resources/Examples/test.ini\">test.ini</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
-    end INITest4;
-
-    model JSONTest1 "JSON Real read test with initial equation"
-      extends Modelica.Icons.Example;
-      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = jsonfile.getReal("set1.gain.k");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end JSONTest1;
-
-    model JSONTest2 "JSON String read test with initial equation"
-      extends Modelica.Icons.Example;
-      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = Modelica.Utilities.Strings.scanReal(jsonfile.getString("set1.gain.k"));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
-    end JSONTest2;
-
-    model JSONTest3 "JSON Integer read test with initial equation"
-      extends Modelica.Icons.Example;
-      JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = jsonfile.getInteger("set2.gain.k");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the JSON file <a href=\"modelica://ExternData/Resources/Examples/test.json\">test.json</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
-    end JSONTest3;
-
-    model XLSTest1 "XLS Real read test from default sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xlsfile.getReal("B2");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first sheet of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end XLSTest1;
-
-    model XLSTest2 "XLS Real read test from sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xlsfile.getReal("B2", "set2");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end XLSTest2;
-
-    model XLSTest3 "XLS String read test from sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
-    end XLSTest3;
-
-    model XLSTest4 "XLS Integer read test from sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xlsfile.getInteger("B2", "set1");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xls\">test.xls</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
-    end XLSTest4;
-
-    model XLSXTest1 "XLSX Real read test from default sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xlsxfile.getReal("B2");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from the first sheet of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end XLSXTest1;
-
-    model XLSXTest2 "XLSX Real read test from sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xlsxfile.getReal("B2", "set2");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Real value in an initial equation to the gain block.</p></html>"));
-    end XLSXTest2;
-
-    model XLSXTest3 "XLSX String read test from sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"));
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set2 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a>, retrieves its String value and assigns the scanned Real value (using <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>) in an initial equation to the gain block.</p></html>"));
-    end XLSXTest3;
-
-    model XLSXTest4 "XLSX Integer read test from sheet with initial equation"
-      extends Modelica.Icons.Example;
-      XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      Modelica.Blocks.Math.Gain gain(k(fixed=false)) annotation(Placement(transformation(extent={{-20,60},{0,80}})));
-      Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-      initial equation
-        gain.k = xlsxfile.getInteger("B2", "set1");
-      equation
-        connect(clock.y,gain.u) annotation(Line(points={{-30,70},{-20,70}}));
-      annotation(experiment(StopTime=1), preferredView="text",
-        Documentation(info="<html><p>Reads the gain parameter <code>k</code> from sheet set1 of the Excel file <a href=\"modelica://ExternData/Resources/Examples/test.xlsx\">test.xlsx</a> and assigns its Integer value in an initial equation to the gain block.</p></html>"));
-    end XLSXTest4;
-*/
-  end Examples;
 
   package Functions "Functions"
     extends Modelica.Icons.Package;
