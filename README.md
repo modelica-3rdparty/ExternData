@@ -35,14 +35,13 @@ can be rewritten as function
 ```mo
 function __OpenModelica_getReal "Get scalar Real value from XML file"
   extends Modelica.Icons.Function;
-  input String fileName="" "File where external data is stored"
-    annotation(Dialog(loadSelector(filter="XML files (*.xml)", caption="Open file")));
+  input String fileName="" "File where external data is stored";
   input String varName "Key";
   output Real y "Real value";
   protected
-    Types.ExternXMLFile xml = Types.ExternXMLFile(fileName) "External XML file object";;
+    ExternData.Types.ExternXMLFile xml = ExternData.Types.ExternXMLFile(fileName) "External XML file object";;
   algorithm
-    y := Functions.XML.Internal.getReal(xml=xml, varName=varName);
+    y := ExternData.Functions.XML.Internal.getReal(xml=xml, varName=varName);
   annotation(Inline=true);
 end __OpenModelica_getReal;
 ```
