@@ -189,6 +189,8 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
@@ -209,6 +211,8 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
