@@ -87,7 +87,7 @@ extern "C" {
 #define HDgetlogin()        Wgetlogin()
 #define HDsnprintf          c99_snprintf /*varargs*/
 #define HDvsnprintf         c99_vsnprintf /*varargs*/
-#if _MSC_VER >= 1900  /* VS 2015 */
+#if _MSC_VER >= 1400  /* VS 2010 */
     /* In gcc and in Visual Studio prior to VS 2015 'timezone' is a global
      * variable declared in time.h. That variable was deprecated and in VS 2015
      * is removed, with _get_timezone replacing it.
