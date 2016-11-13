@@ -28,10 +28,11 @@
 #define MSVC_COMPATIBILITY_H
 
 #if defined(_MSC_VER)
-/* Compatibility handling for linking static libraries compiled by Visual Studio 2010 */
+/* MSVC compatibility handling for linking static libraries compiled by Visual Studio 2010 */
 
-#if _MSC_VER >= 1400
+#if _MSC_VER >= 1900
 
+#include <stdio.h>
 #include <time.h>
 #include "gconstructor.h"
 
@@ -46,12 +47,6 @@ static void Timezone_initialize(void) {
 	_get_timezone(&timezone);
 }
 #endif
-
-#endif
-
-#if _MSC_VER >= 1900
-
-#include <stdio.h>
 
 extern FILE _iob[3];
 
