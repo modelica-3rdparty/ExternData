@@ -32,7 +32,6 @@
     </ClCompile>
     <ClCompile Include="..\..\C-Sources\minizip\ioapi.c" />
     <ClCompile Include="..\..\C-Sources\minizip\iowin32.c" />
-    <ClCompile Include="..\..\C-Sources\minizip\miniunz.c" />
     <ClCompile Include="..\..\C-Sources\minizip\unzip.c" />
   </ItemGroup>
   <ItemGroup>

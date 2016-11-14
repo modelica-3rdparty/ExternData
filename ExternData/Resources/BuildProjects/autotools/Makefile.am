@@ -25,7 +25,6 @@ libED_XLSFile_la_SOURCES = \
 
 libED_XLSXFile_la_SOURCES = \
 	../../C-Sources/minizip/ioapi.c \
-	../../C-Sources/minizip/miniunz.c \
 	../../C-Sources/minizip/unzip.c \
 	../../C-Sources/ED_XLSXFile.c
 

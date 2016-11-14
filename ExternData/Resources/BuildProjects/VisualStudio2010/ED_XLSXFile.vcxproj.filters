@@ -24,9 +24,6 @@
     <ClCompile Include="..\..\C-Sources\minizip\iowin32.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\minizip\miniunz.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\C-Sources\minizip\unzip.c">
       <Filter>Source Files</Filter>
     </ClCompile>

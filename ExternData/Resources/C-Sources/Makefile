@@ -32,7 +32,6 @@ XLS_OBJS = \
 
 XLSX_OBJS = \
 	minizip/ioapi.o \
-	minizip/miniunz.o \
 	minizip/unzip.o \
 	ED_XLSXFile.o
 
