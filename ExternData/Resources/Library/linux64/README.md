@@ -1,0 +1,2 @@
+* The hdf5 static library is built with the matio project on [drone.io](https://drone.io/github.com/tbeu/matio) and can be downloaded from [hdf5-1.8.17_64.tar.xz](https://drone.io/github.com/tbeu/matio/files/hdf5_1_8_17/hdf5-1.8.17_64.tar.xz).
+* All other static libraries are built with the ExternData project on [drone.io](https://drone.io/github.com/tbeu/ExternData) and can be downloaded from [linux64.tar.xz](https://drone.io/github.com/tbeu/ExternData/files/ExternData/Resources/Library/linux64/linux64.tar.xz).

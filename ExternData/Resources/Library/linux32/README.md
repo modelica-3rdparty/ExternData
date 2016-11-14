@@ -1,0 +1,2 @@
+* The hdf5 static library is built with an hdf5 dummy project on [drone.io](https://drone.io/github.com/tbeu/hdf5) and can be downloaded from [hdf5-1.8.17_32.tar.xz](https://drone.io/github.com/tbeu/hdf5/files/hdf5_1_8_17/hdf5-1.8.17_32.tar.xz).
+* All other static libraries are built with the ExternData project on [drone.io](https://drone.io/github.com/tbeu/ExternData) and can be downloaded from [linux32.tar.xz](https://drone.io/github.com/tbeu/ExternData/files/ExternData/Resources/Library/linux32/linux32.tar.xz).
