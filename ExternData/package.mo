@@ -132,7 +132,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead) "External INI file object";
     final function getReal = Functions.INI.getReal(final ini=ini) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>"));
     final function getInteger = Functions.INI.getInteger(final ini=ini) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.INI.getBooleanfinal (ini=ini) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.INI.getBoolean(final ini=ini) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.INI.getString(final ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
