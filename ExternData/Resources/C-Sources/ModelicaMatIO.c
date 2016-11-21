@@ -79,7 +79,7 @@
 #define EXTENDED_SPARSE 1
 
 /* Define to 1 if you have the `asprintf' function. */
-#if defined(__CYGWIN__)
+#if defined(__CYGWIN__) || defined(__gnu_linux__)
 #define HAVE_ASPRINTF 1
 #else
 #undef HAVE_ASPRINTF
@@ -226,7 +226,7 @@
 #endif
 
 /* Define to 1 if you have the `vasprintf' function. */
-#if defined(__CYGWIN__)
+#if defined(__CYGWIN__) || defined(__gnu_linux__)
 #define HAVE_VASPRINTF 1
 #else
 #undef HAVE_VASPRINTF
