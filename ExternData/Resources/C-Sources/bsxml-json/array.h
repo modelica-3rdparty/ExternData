@@ -24,8 +24,10 @@
 #ifndef _CPO_ARRAY_H
 #define _CPO_ARRAY_H
 
-#define ARR_VAL(p)  *((long*)p)
-#define ARR_VAL2PTR(v)  ((long)(v))
+#include <stdint.h>
+
+#define ARR_VAL(p)  *((uintptr_t*)p)
+#define ARR_VAL2PTR(v)  ((uintptr_t)(v))
 
 typedef struct s_array {
     int num;
