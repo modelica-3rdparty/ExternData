@@ -35,6 +35,7 @@
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\minGlue.h" />
     <ClInclude Include="..\..\C-Sources\minIni.h" />
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
     <ClInclude Include="..\..\Include\ED_INIFile.h" />
   </ItemGroup>
   <ItemGroup>

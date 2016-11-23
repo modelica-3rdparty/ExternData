@@ -32,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsjson.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
     <ClInclude Include="..\..\Include\ED_JSONFile.h" />
   </ItemGroup>
   <ItemGroup>

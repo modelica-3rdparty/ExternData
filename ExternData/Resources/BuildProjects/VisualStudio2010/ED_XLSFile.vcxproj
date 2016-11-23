@@ -50,6 +50,7 @@
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h" />
     <ClInclude Include="..\..\C-Sources\libxls\src\config.h" />
     <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h" />
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
     <ClInclude Include="..\..\C-Sources\uthash.h" />
     <ClInclude Include="..\..\Include\ED_XLSFile.h" />
   </ItemGroup>

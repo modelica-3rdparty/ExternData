@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h" />
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
     <ClInclude Include="..\..\Include\ED_MATFile.h" />
   </ItemGroup>
   <ItemGroup>

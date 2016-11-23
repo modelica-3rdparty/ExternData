@@ -38,6 +38,9 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_INIFile.def">

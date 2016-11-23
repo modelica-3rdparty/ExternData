@@ -29,6 +29,9 @@
     <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_MATFile.def">

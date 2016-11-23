@@ -43,6 +43,7 @@
     <ClInclude Include="..\..\C-Sources\minizip\ioapi.h" />
     <ClInclude Include="..\..\C-Sources\minizip\iowin32.h" />
     <ClInclude Include="..\..\C-Sources\minizip\unzip.h" />
+    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
     <ClInclude Include="..\..\C-Sources\uthash.h" />
     <ClInclude Include="..\..\Include\ED_XLSXFile.h" />
   </ItemGroup>
