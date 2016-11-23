@@ -33,6 +33,8 @@
 #include "ModelicaMatIO.h"
 #include "../Include/ED_MATFile.h"
 
+#define MATLAB_NAME_LENGTH_MAX (64)
+
 typedef struct {
 	char* fileName;
 	int verbose;
@@ -137,22 +139,47 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		token = strtok(varNameCopy, ".");
 		matvarRoot = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
 		if (matvarRoot == NULL) {
-			free(varNameCopy);
 			(void)Mat_Close(matfp);
-			ModelicaFormatError(
-				"Variable \"%s\" not found on file \"%s\".\n", varName,
-				mat->fileName);
+			if (token == NULL) {
+				free(varNameCopy);
+				ModelicaFormatError(
+					"Variable \"%s\" not found on file \"%s\".\n",
+					varName, mat->fileName);
+			}
+			else {
+				char varNameBuf[MATLAB_NAME_LENGTH_MAX];
+				if (strlen(token) > MATLAB_NAME_LENGTH_MAX - 1) {
+					strncpy(varNameBuf, token, MATLAB_NAME_LENGTH_MAX - 1);
+					varNameBuf[MATLAB_NAME_LENGTH_MAX - 1] = '\0';
+					free(varNameCopy);
+					ModelicaFormatError(
+						"Variable \"%s...\" not found on file \"%s\".\n",
+						varNameBuf, mat->fileName);
+				}
+				else {
+					strcpy(varNameBuf, token);
+					free(varNameCopy);
+					ModelicaFormatError(
+						"Variable \"%s\" not found on file \"%s\".\n",
+						varNameBuf, mat->fileName);
+				}
+			}
 			return;
 		}
 
 		matvar = matvarRoot;
 		token = strtok(NULL, ".");
 		/* Get field while matvar is of struct class and of 1x1 size */
-		while (token != NULL && matvar != NULL &&
-			matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
-			matvar->dims[0] == 1 && matvar->dims[1] == 1) {
-			matvar = Mat_VarGetStructField(matvar, (void*)token, MAT_BY_NAME, 0);
-			token = strtok(NULL, ".");
+		while (token != NULL && matvar != NULL) {
+			if (matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
+				matvar->dims[0] == 1 && matvar->dims[1] == 1) {
+				matvar = Mat_VarGetStructField(matvar, (void*)token, MAT_BY_NAME, 0);
+				token = strtok(NULL, ".");
+			}
+			else {
+				matvar = NULL;
+				break;
+			}
 		}
 		free(varNameCopy);
 
