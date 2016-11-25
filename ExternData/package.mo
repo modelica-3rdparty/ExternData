@@ -96,6 +96,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
     final function getRealArray2D = Functions.MAT.getRealArray2D(final mat=mat) "Get 2D Real values from MAT-file" annotation(Documentation(info="<html></html>"));
+    final function getStringArray1D = Functions.MAT.getStringArray1D(final mat=mat) "Get 1D String values from MAT-file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
@@ -310,6 +311,19 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_MATFile.h\"",
           Library = {"ED_MATFile", "hdf5", "zlib"});
       end getRealArray2D;
+
+      function getStringArray1D "Get 1D String values from MAT-file"
+        extends Modelica.Icons.Function;
+        input String varName "Variable name";
+        input Integer m=1 "Number of rows";
+        input Types.ExternMATFile mat "External MATLAB MAT-file object";
+        output String str[m] "1D String values";
+        external "C" ED_getStringArray1DFromMAT(mat, varName, str, size(str, 1)) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = {"ED_MATFile", "hdf5", "zlib"});
+      end getStringArray1D;
     end MAT;
 
     package XLS "Excel XLS file functions"

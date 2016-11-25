@@ -113,7 +113,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 		matvar_t* matvar;
 		matvar_t* matvarRoot;
 		size_t nRow, nCol;
-		int tableReadError = 0;
+		int readError = 0;
 		char* varNameCopy;
 		char* token;
 
@@ -250,13 +250,13 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			int edge[2];
 			edge[0] = (int)nRow;
 			edge[1] = (int)nCol;
-			tableReadError = Mat_VarReadData(matfp, matvar, a, start, stride, edge);
+			readError = Mat_VarReadData(matfp, matvar, a, start, stride, edge);
 		}
 
 		Mat_VarFree(matvarRoot);
 		(void)Mat_Close(matfp);
 
-		if (tableReadError == 0) {
+		if (readError == 0) {
 			/* Array is stored column-wise -> need to transpose */
 			transpose(a, nRow, nCol);
 		}
@@ -267,5 +267,149 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 				(unsigned long)nCol, mat->fileName);
 			return;
 		}
+	}
+}
+
+void ED_getStringArray1DFromMAT(void* _mat, const char* varName, const char* string[], size_t m)
+{
+	MATFile* mat = (MATFile*)_mat;
+	if (mat != NULL) {
+		mat_t* matfp;
+		matvar_t* matvar;
+		matvar_t* matvarRoot;
+		size_t nRow, nCol, i;
+		char* varNameCopy;
+		char* token;
+
+		varNameCopy = strdup(varName);
+		if (varNameCopy == NULL) {
+			ModelicaError("Memory allocation error\n");
+			return;
+		}
+
+		if (mat->verbose == 1) {
+			/* Print info message, that file is loading */
+			ModelicaFormatMessage("... loading \"%s\" from \"%s\"\n", varName, mat->fileName);
+		}
+
+		matfp = Mat_Open(mat->fileName, (int)MAT_ACC_RDONLY);
+		if (matfp == NULL) {
+			free(varNameCopy);
+			ModelicaFormatError("Not possible to open file \"%s\": "
+				"No such file or directory\n", mat->fileName);
+			return;
+		}
+
+		token = strtok(varNameCopy, ".");
+		matvarRoot = Mat_VarReadInfo(matfp, token == NULL ? varName : token);
+		if (matvarRoot == NULL) {
+			(void)Mat_Close(matfp);
+			if (token == NULL) {
+				free(varNameCopy);
+				ModelicaFormatError(
+					"Variable \"%s\" not found on file \"%s\".\n",
+					varName, mat->fileName);
+			}
+			else {
+				char varNameBuf[MATLAB_NAME_LENGTH_MAX];
+				if (strlen(token) > MATLAB_NAME_LENGTH_MAX - 1) {
+					strncpy(varNameBuf, token, MATLAB_NAME_LENGTH_MAX - 1);
+					varNameBuf[MATLAB_NAME_LENGTH_MAX - 1] = '\0';
+					free(varNameCopy);
+					ModelicaFormatError(
+						"Variable \"%s...\" not found on file \"%s\".\n",
+						varNameBuf, mat->fileName);
+				}
+				else {
+					strcpy(varNameBuf, token);
+					free(varNameCopy);
+					ModelicaFormatError(
+						"Variable \"%s\" not found on file \"%s\".\n",
+						varNameBuf, mat->fileName);
+				}
+			}
+			return;
+		}
+
+		matvar = matvarRoot;
+		token = strtok(NULL, ".");
+		/* Get field while matvar is of struct class and of 1x1 size */
+		while (token != NULL && matvar != NULL) {
+			if (matvar->class_type == MAT_C_STRUCT && matvar->rank == 2 &&
+				matvar->dims[0] == 1 && matvar->dims[1] == 1) {
+				matvar = Mat_VarGetStructField(matvar, (void*)token, MAT_BY_NAME, 0);
+				token = strtok(NULL, ".");
+			}
+			else {
+				matvar = NULL;
+				break;
+			}
+		}
+		free(varNameCopy);
+
+		if (matvar == NULL) {
+			Mat_VarFree(matvarRoot);
+			(void)Mat_Close(matfp);
+			ModelicaFormatError(
+				"Variable \"%s\" not found on file \"%s\".\n", varName,
+				mat->fileName);
+			return;
+		}
+
+		/* Check if matvar is a matrix */
+		if (matvar->rank != 2) {
+			Mat_VarFree(matvarRoot);
+			(void)Mat_Close(matfp);
+			ModelicaFormatError(
+				"Array \"%s\" has not the required rank 2.\n", varName);
+			return;
+		}
+
+		/* Check if matvar is of character class */
+		if (matvar->class_type != MAT_C_CHAR) {
+			Mat_VarFree(matvarRoot);
+			(void)Mat_Close(matfp);
+			ModelicaFormatError("2D array \"%s\" has not the required "
+				"character class.\n", varName);
+			return;
+		}
+
+		nRow = matvar->dims[0];
+		nCol = matvar->dims[1];
+
+		/* Check number of rows */
+		if (m > nRow) {
+			Mat_VarFree(matvarRoot);
+			(void)Mat_Close(matfp);
+			ModelicaFormatError(
+				"Cannot read %lu rows of array \"%s(%lu,%lu)\" "
+				"from file \"%s\"\n", (unsigned long)m, varName,
+				(unsigned long)nRow, (unsigned long)nCol, mat->fileName);
+			return;
+		}
+
+		(void)Mat_VarReadDataAll(matfp, matvar);
+
+		for (i = 0; i < m; i++) {
+			char* str = ModelicaAllocateStringWithErrorReturn(nCol);
+			if (str != NULL) {
+				size_t j;
+				/* Array is stored column-wise -> need to transpose */
+				for (j = 0; j < nCol; j++) {
+					str[j] = ((char*)matvar->data)[i + j*nRow];
+				}
+				str[nCol] = '\0';
+				string[i] = str;
+			}
+			else {
+				Mat_VarFree(matvarRoot);
+				(void)Mat_Close(matfp);
+				ModelicaError("Memory allocation error\n");
+				return;
+			}
+		}
+
+		Mat_VarFree(matvarRoot);
+		(void)Mat_Close(matfp);
 	}
 }

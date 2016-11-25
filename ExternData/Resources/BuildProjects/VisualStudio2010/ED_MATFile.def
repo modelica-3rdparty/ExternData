@@ -2,3 +2,4 @@ EXPORTS
 	ED_createMAT
 	ED_destroyMAT
 	ED_getDoubleArray2DFromMAT
+	ED_getStringArray1DFromMAT
