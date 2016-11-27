@@ -324,7 +324,7 @@ int XmlNode_getSubNodeValueInt(struct XmlNode *node, const String tag, int *valu
 int XmlNode_getSubNodeValueFloat(struct XmlNode *node, const String tag, float *value )
 {
     XmlNodeRef child = XmlNode_findChild(node, tag );
-    if (node) {
+    if (child) {
         XmlNode_getValueFloat(child, value );
         return XML_OK;
     }
