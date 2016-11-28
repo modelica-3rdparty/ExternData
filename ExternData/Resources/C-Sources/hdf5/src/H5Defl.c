@@ -112,7 +112,7 @@ const H5D_layout_ops_t H5D_LOPS_EFL[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_construct
  *
@@ -187,7 +187,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_construct() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_is_space_alloc
  *
@@ -212,7 +212,7 @@ H5D__efl_is_space_alloc(const H5O_storage_t H5_ATTR_UNUSED *storage)
     FUNC_LEAVE_NOAPI(TRUE)
 } /* end H5D__efl_is_space_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_io_init
  *
@@ -237,7 +237,7 @@ H5D__efl_io_init(const H5D_io_info_t *io_info, const H5D_type_info_t H5_ATTR_UNU
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__efl_io_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__efl_read
  *
@@ -327,7 +327,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_write
  *
@@ -421,7 +421,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_readvv_cb
  *
@@ -450,7 +450,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_readvv_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_readvv
  *
@@ -505,7 +505,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_readvv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_writevv_cb
  *
@@ -534,7 +534,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_writevv_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__efl_writevv
  *
@@ -588,7 +588,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__efl_writevv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__efl_bh_info
  *

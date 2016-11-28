@@ -106,7 +106,7 @@ static H5G_obj_t H5G_obj_get_type_by_idx(H5O_loc_t *oloc, hsize_t idx,
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5G__init_deprec_interface -- Initialize interface-specific information
@@ -127,7 +127,7 @@ H5G__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5G__init())
 } /* H5G__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5G__term_deprec_interface -- Terminate interface
@@ -152,7 +152,7 @@ H5G__term_deprec_interface(void)
 } /* H5G__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_map_obj_type
  *
@@ -196,7 +196,7 @@ H5G_map_obj_type(H5O_type_t obj_type)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_map_obj_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gcreate1
  *
@@ -287,7 +287,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gcreate1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gopen1
  *
@@ -338,7 +338,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gopen1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Glink
  *
@@ -383,7 +383,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Glink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Glink2
  *
@@ -434,7 +434,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Glink2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_link_hard
  *
@@ -488,7 +488,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_link_hard() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gmove
  *
@@ -512,7 +512,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gmove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gmove2
  *
@@ -537,7 +537,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gmove2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_move
  *
@@ -594,7 +594,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_move() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gunlink
  *
@@ -625,7 +625,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gunlink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_linkval
  *
@@ -657,7 +657,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_linkval() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gset_comment
  *
@@ -696,7 +696,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gset_comment() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_comment
  *
@@ -743,7 +743,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_comment() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Giterate
  *
@@ -811,7 +811,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Giterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_num_objs
  *
@@ -860,7 +860,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_num_objs() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_objinfo
  *
@@ -902,7 +902,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_objinfo() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_get_objinfo_cb
  *
@@ -981,7 +981,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_get_objinfo_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_get_objinfo
  *
@@ -1051,7 +1051,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_get_objinfo() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_objname_by_idx
  *
@@ -1101,7 +1101,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_objname_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_objtype_by_idx
  *
@@ -1143,7 +1143,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_objtype_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_get_type_by_idx
  *

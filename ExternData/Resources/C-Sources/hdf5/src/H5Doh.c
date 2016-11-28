@@ -89,7 +89,7 @@ const H5O_obj_class_t H5O_OBJ_DATASET[1] = {{
 /* Declare a free list to manage the H5D_copy_file_ud_t struct */
 H5FL_DEFINE(H5D_copy_file_ud_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O__dset_get_copy_file_udata
  *
@@ -120,7 +120,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O__dset_get_copy_file_udata() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O__dset_free_copy_file_udata
  *
@@ -162,7 +162,7 @@ H5O__dset_free_copy_file_udata(void *_udata)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5O__dset_free_copy_file_udata() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O__dset_isa
  *
@@ -206,7 +206,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O__dset_isa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O__dset_open
  *
@@ -260,7 +260,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O__dset_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O__dset_create
  *
@@ -309,7 +309,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O__dset_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O__dset_get_oloc
  *
@@ -343,7 +343,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O__dset_get_oloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O__dset_bh_info
  *
@@ -358,8 +358,8 @@ done:
  *
  * Modification:Raymond Lu
  *              5 February, 2010
- *              I added the call to H5O_msg_reset after H5D_chunk_bh_info 
- *              to free the PLINE. 
+ *              I added the call to H5O_msg_reset after H5D_chunk_bh_info
+ *              to free the PLINE.
  *-------------------------------------------------------------------------
  */
 static herr_t
@@ -433,7 +433,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O__dset_bh_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O__dset_flush
  *
@@ -469,7 +469,7 @@ H5O__dset_flush(H5G_loc_t *obj_loc, hid_t dxpl_id)
     /* Open the dataset */
     if(NULL == (dset = H5D_open(obj_loc, H5P_DATASET_ACCESS_DEFAULT, dxpl_id)))
         HGOTO_ERROR(H5E_DATASET, H5E_CANTOPENOBJ, FAIL, "unable to open dataset")
-    
+
     if(H5D__flush_real(dset, dxpl_id) < 0)
 	HDONE_ERROR(H5E_DATASET, H5E_WRITEERROR, FAIL, "unable to flush cached dataset info")
 

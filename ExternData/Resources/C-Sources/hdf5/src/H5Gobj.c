@@ -110,7 +110,7 @@ static herr_t H5G_obj_remove_update_linfo(const H5O_loc_t *oloc, H5O_linfo_t *li
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__obj_create
  *
@@ -166,7 +166,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__obj_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__obj_create_real
  *
@@ -300,7 +300,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__obj_create_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__obj_get_linfo
  *
@@ -365,7 +365,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__obj_get_linfo() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_compact_to_dense_cb
  *
@@ -401,7 +401,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_compact_to_dense_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_stab_to_new_cb
  *
@@ -438,7 +438,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_stab_to_new_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_insert
  *
@@ -641,7 +641,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__obj_iterate
  *
@@ -712,7 +712,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__obj_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__obj_info
  *
@@ -791,7 +791,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__obj_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_get_name_by_idx
  *
@@ -855,7 +855,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_get_name_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_remove_update_linfo
  *
@@ -964,7 +964,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_remove_update_linfo() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_remove
  *
@@ -1029,7 +1029,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_remove_by_idx
  *
@@ -1106,7 +1106,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_obj_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__obj_lookup
  *
@@ -1160,7 +1160,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__obj_lookup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_obj_lookup_by_idx
  *

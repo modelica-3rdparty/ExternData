@@ -74,7 +74,7 @@ H5FL_SEQ_EXTERN(size_t);
 H5FL_SEQ_EXTERN(hsize_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__scatter_file
  *
@@ -168,7 +168,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__scatter_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__gather_file
  *
@@ -269,7 +269,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__gather_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__scatter_mem
  *
@@ -354,7 +354,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5D__scatter_mem() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__gather_mem
  *
@@ -441,7 +441,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5D__gather_mem() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__scatgath_read
  *
@@ -573,7 +573,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__scatgath_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__scatgath_write
  *
@@ -704,7 +704,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__scatgath_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compound_opt_read
  *
@@ -835,7 +835,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__compound_opt_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compound_opt_write
  *
@@ -900,7 +900,7 @@ H5D__compound_opt_write(size_t nelmts, const H5D_type_info_t *type_info)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__compound_opt_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Dscatter
  *
@@ -1000,7 +1000,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Dscatter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Dgather
  *

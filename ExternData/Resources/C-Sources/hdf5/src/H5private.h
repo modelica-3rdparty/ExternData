@@ -482,7 +482,7 @@
 #endif
 
 /* Double constant wrapper
- * 
+ *
  * Quiets gcc warnings from -Wunsuffixed-float-constants.
  *
  * This is a really annoying warning since the standard specifies that
@@ -1936,7 +1936,7 @@ static herr_t    H5_INTERFACE_INIT_FUNC(void);
    H5_INTERFACE_INIT(err)                  \
                                                                               \
    /* Push the name of this function on the function stack */                 \
-   H5_PUSH_FUNC            
+   H5_PUSH_FUNC
 
 /* Use this macro for all "normal" non-API functions */
 #define FUNC_ENTER_NOAPI(err) {                                     \

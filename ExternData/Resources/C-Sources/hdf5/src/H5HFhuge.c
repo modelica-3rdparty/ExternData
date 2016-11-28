@@ -88,7 +88,7 @@ static herr_t H5HF_huge_op_real(H5HF_hdr_t *hdr, hid_t dxpl_id,
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_create
  *
@@ -168,7 +168,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_bt2_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_init
  *
@@ -242,7 +242,7 @@ HDfprintf(stderr, "%s: hdr->filter_len = %u\n", "H5HF_huge_init", (unsigned)hdr-
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_huge_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_new_id
  *
@@ -291,7 +291,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_new_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_insert
  *
@@ -491,7 +491,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_get_obj_len
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_get_obj_len() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_op_real
  *
@@ -725,7 +725,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_op_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_write
  *
@@ -809,7 +809,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_read
  *
@@ -845,7 +845,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_op
  *
@@ -882,7 +882,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_op() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_remove
  *
@@ -991,7 +991,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_term
  *
@@ -1054,7 +1054,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_huge_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_delete
  *

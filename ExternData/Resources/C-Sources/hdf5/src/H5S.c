@@ -91,7 +91,7 @@ static const H5I_class_t H5I_DATASPACE_CLS[1] = {{
 }};
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5S_init_interface -- Initialize interface-specific information
@@ -119,7 +119,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_init_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_term_interface
@@ -162,7 +162,7 @@ H5S_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5S_term_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_create
@@ -241,7 +241,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Screate
@@ -289,7 +289,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Screate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_extent_release
  *
@@ -325,7 +325,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_extent_release() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_close
  *
@@ -362,7 +362,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sclose
  *
@@ -399,7 +399,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Sclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Scopy
  *
@@ -447,7 +447,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Scopy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sextent_copy
  *
@@ -492,7 +492,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Sextent_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_extent_copy
  *
@@ -563,7 +563,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_extent_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_copy
  *
@@ -615,7 +615,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_get_simple_extent_npoints
  *
@@ -654,7 +654,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_get_simple_extent_npoints() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sget_simple_extent_npoints
  *
@@ -691,7 +691,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Sget_simple_extent_npoints() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_get_npoints_max
  *
@@ -760,7 +760,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sget_simple_extent_ndims
  *
@@ -796,7 +796,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Sget_simple_extent_ndims() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_get_simple_extent_ndims
  *
@@ -845,7 +845,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_get_simple_extent_ndims() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sget_simple_extent_dims
  *
@@ -888,7 +888,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_extent_get_dims
  *
@@ -944,7 +944,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_extent_get_dims() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_get_simple_extent_dims
  *
@@ -980,7 +980,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_get_simple_extent_dims() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_write
  *
@@ -1014,7 +1014,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_append
  *
@@ -1055,7 +1055,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_append() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_read
  *
@@ -1103,7 +1103,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_read() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_is_simple
@@ -1135,7 +1135,7 @@ H5S_is_simple(const H5S_t *sdim)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_is_simple() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sis_simple
@@ -1169,7 +1169,7 @@ H5Sis_simple(hid_t space_id)
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sset_extent_simple
@@ -1246,7 +1246,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_set_extent_simple
  *
@@ -1300,7 +1300,7 @@ H5S_set_extent_simple(H5S_t *space, unsigned rank, const hsize_t *dims,
         } /* end for */
         space->extent.nelem = nelem;
 
-        /* Copy the maximum dimensions if specified. Otherwise, the maximal dimensions are the 
+        /* Copy the maximum dimensions if specified. Otherwise, the maximal dimensions are the
          * same as the dimension */
         space->extent.max = (hsize_t *)H5FL_ARR_MALLOC(hsize_t, (size_t)rank);
         if(max != NULL) {
@@ -1326,7 +1326,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5S_set_extent_simple() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Screate_simple
  *
@@ -1348,7 +1348,7 @@ done:
  *
  * Modification:
  *              Raymond Lu 03/30/2011
- *              We allow 0-dimension for non-unlimited dimension starting 
+ *              We allow 0-dimension for non-unlimited dimension starting
  *              from 1.8.7 release.
  *
  *-------------------------------------------------------------------------
@@ -1401,7 +1401,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Screate_simple() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_create_simple
  *
@@ -1442,7 +1442,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_create_simple() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sencode
  *
@@ -1481,7 +1481,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_encode
  *
@@ -1557,7 +1557,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sdecode
  *
@@ -1597,7 +1597,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Sdecode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_decode
  *
@@ -1678,7 +1678,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_get_simple_extent_type
  *
@@ -1716,7 +1716,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sget_simple_extent_type
  *
@@ -1754,7 +1754,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sset_extent_none
@@ -1792,7 +1792,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Sset_extent_none() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Soffset_simple
@@ -1835,7 +1835,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Soffset_simple() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5S_set_extent
  *
@@ -1883,7 +1883,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_set_extent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5S_has_extent
  *
@@ -1916,7 +1916,7 @@ H5S_has_extent(const H5S_t *ds)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_has_extent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5S_set_extent_real
  *
@@ -1963,7 +1963,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_set_extent_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Sextent_equal
  *
@@ -2000,7 +2000,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Sextent_equal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_extent_equal
@@ -2061,7 +2061,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_extent_equal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_extent_nelem
  *
@@ -2087,7 +2087,7 @@ H5S_extent_nelem(const H5S_extent_t *ext)
     FUNC_LEAVE_NOAPI(ext->nelem)
 } /* end H5S_extent_nelem() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5S_set_latest_version
  *
@@ -2115,7 +2115,7 @@ H5S_set_latest_version(H5S_t *ds)
 } /* end H5S_set_latest_version() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_extend
  *

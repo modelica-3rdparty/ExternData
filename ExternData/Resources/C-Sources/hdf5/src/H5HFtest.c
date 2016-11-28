@@ -69,7 +69,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_cparam_test
  *
@@ -107,7 +107,7 @@ H5HF_get_cparam_test(const H5HF_t *fh, H5HF_create_t *cparam)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_get_cparam_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cmp_cparam_test
  *
@@ -226,7 +226,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_cmp_cparam_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_max_root_rows
  *
@@ -257,7 +257,7 @@ H5HF_get_max_root_rows(const H5HF_t *fh)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_get_max_root_rows() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_dtable_width_test
  *
@@ -288,7 +288,7 @@ H5HF_get_dtable_width_test(const H5HF_t *fh)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_get_dtable_width_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_dtable_max_drows_test
  *
@@ -319,7 +319,7 @@ H5HF_get_dtable_max_drows_test(const H5HF_t *fh)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_get_dtable_max_drows_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_iblock_max_drows_test
  *
@@ -356,7 +356,7 @@ H5HF_get_iblock_max_drows_test(const H5HF_t *fh, unsigned pos)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_get_iblock_max_drows_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_dblock_size_test
  *
@@ -387,7 +387,7 @@ H5HF_get_dblock_size_test(const H5HF_t *fh, unsigned row)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_get_dblock_size_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_dblock_free_test
  *
@@ -419,7 +419,7 @@ H5HF_get_dblock_free_test(const H5HF_t *fh, unsigned row)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_get_dblock_free_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_id_off_test
  *
@@ -454,7 +454,7 @@ H5HF_get_id_off_test(const H5HF_t *fh, const void *_id, hsize_t *obj_off)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_get_id_off_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_id_type_test
  *
@@ -485,7 +485,7 @@ H5HF_get_id_type_test(const void *_id, unsigned char *obj_type)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_get_id_type_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_tiny_info_test
  *
@@ -518,7 +518,7 @@ H5HF_get_tiny_info_test(const H5HF_t *fh, size_t *max_len,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_get_tiny_info_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_get_huge_info_test
  *

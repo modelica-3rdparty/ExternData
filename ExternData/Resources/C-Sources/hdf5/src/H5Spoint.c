@@ -105,7 +105,7 @@ H5FL_DEFINE_STATIC(H5S_pnt_node_t);
 /* Declare a free list to manage the H5S_pnt_list_t struct */
 H5FL_DEFINE_STATIC(H5S_pnt_list_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_point_iter_init
  *
@@ -141,7 +141,7 @@ H5S_point_iter_init(H5S_sel_iter_t *iter, const H5S_t *space)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_iter_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_point_iter_coords
  *
@@ -172,7 +172,7 @@ H5S_point_iter_coords (const H5S_sel_iter_t *iter, hsize_t *coords)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_iter_coords() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_point_iter_block
  *
@@ -205,7 +205,7 @@ H5S_point_iter_block (const H5S_sel_iter_t *iter, hsize_t *start, hsize_t *end)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_iter_block() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_point_iter_nelmts
  *
@@ -231,7 +231,7 @@ H5S_point_iter_nelmts (const H5S_sel_iter_t *iter)
     FUNC_LEAVE_NOAPI(iter->elmt_left)
 }   /* H5S_point_iter_nelmts() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_iter_has_next_block
@@ -267,7 +267,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_iter_has_next_block() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_iter_next
@@ -304,7 +304,7 @@ H5S_point_iter_next(H5S_sel_iter_t *iter, size_t nelem)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_iter_next() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_iter_next_block
@@ -336,7 +336,7 @@ H5S_point_iter_next_block(H5S_sel_iter_t *iter)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_iter_next_block() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_iter_release
@@ -365,7 +365,7 @@ H5S_point_iter_release (H5S_sel_iter_t H5_ATTR_UNUSED * iter)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_iter_release() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_add
@@ -459,7 +459,7 @@ done:
 
         /* Release possible linked list of nodes */
         while(top) {
-            curr = top->next; 
+            curr = top->next;
             H5MM_xfree(top->pnt);
             top = H5FL_FREE(H5S_pnt_node_t, top);
             top = curr;
@@ -469,7 +469,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_add() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_release
@@ -515,7 +515,7 @@ H5S_point_release (H5S_t *space)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_release() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_elements
@@ -581,7 +581,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_elements() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_copy
@@ -660,7 +660,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_point_copy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_is_valid
@@ -711,7 +711,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_point_is_valid() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sget_select_elem_npoints
@@ -750,7 +750,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sget_select_elem_npoints() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_serial_size
@@ -797,7 +797,7 @@ H5S_point_serial_size (const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5S_point_serial_size() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_serialize
@@ -863,7 +863,7 @@ H5S_point_serialize (const H5S_t *space, uint8_t *buf)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_serialize() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_deserialize
@@ -927,7 +927,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_deserialize() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_get_select_elem_pointlist
@@ -991,7 +991,7 @@ H5S_get_select_elem_pointlist(H5S_t *space, hsize_t startpoint, hsize_t numpoint
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_get_select_elem_pointlist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sget_select_elem_pointlist
@@ -1045,7 +1045,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sget_select_elem_pointlist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_bounds
@@ -1115,7 +1115,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_bounds() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_offset
@@ -1179,7 +1179,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_offset() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_is_contiguous
@@ -1219,7 +1219,7 @@ H5S_point_is_contiguous(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_is_contiguous() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_is_single
@@ -1256,7 +1256,7 @@ H5S_point_is_single(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_is_single() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_is_regular
@@ -1297,7 +1297,7 @@ H5S_point_is_regular(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_is_regular() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_adjust_u
@@ -1349,7 +1349,7 @@ H5S_point_adjust_u(H5S_t *space, const hsize_t *offset)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_point_adjust_u() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_point_project_scalar
  *
@@ -1383,13 +1383,13 @@ H5S_point_project_scalar(const H5S_t *space, hsize_t *offset)
         HGOTO_ERROR(H5E_DATASPACE, H5E_BADRANGE, FAIL, "point selection of one element has more than one node!")
 
     /* Calculate offset of selection in projected buffer */
-    *offset = H5VM_array_offset(space->extent.rank, space->extent.size, node->pnt); 
+    *offset = H5VM_array_offset(space->extent.rank, space->extent.size, node->pnt);
 
 done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_project_scalar() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_point_project_simple
  *
@@ -1437,7 +1437,7 @@ H5S_point_project_simple(const H5S_t *base_space, H5S_t *new_space, hsize_t *off
         /* Calculate offset of selection in projected buffer */
         HDmemset(block, 0, sizeof(block));
         HDmemcpy(block, base_space->select.sel_info.pnt_lst->head->pnt, sizeof(hsize_t) * rank_diff);
-        *offset = H5VM_array_offset(base_space->extent.rank, base_space->extent.size, block); 
+        *offset = H5VM_array_offset(base_space->extent.rank, base_space->extent.size, block);
 
         /* Iterate through base space's point nodes, copying the point information */
         base_node = base_space->select.sel_info.pnt_lst->head;
@@ -1516,7 +1516,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_point_project_simple() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sselect_elements
@@ -1577,7 +1577,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sselect_elements() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_point_get_seq_list

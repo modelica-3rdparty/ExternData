@@ -27,7 +27,7 @@
 #include "H5Iprivate.h"		/* ID Functions		                */
 #include "H5MMprivate.h"	/* Memory management			*/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_debug
  *

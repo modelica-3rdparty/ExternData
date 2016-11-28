@@ -67,7 +67,7 @@ const H5O_msg_class_t H5O_MSG_EFL[1] = {{
 
 #define H5O_EFL_VERSION		1
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_decode
  *
@@ -178,7 +178,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_efl_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_encode
  *
@@ -237,7 +237,7 @@ H5O_efl_encode(H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, uint8_t *p, cons
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_efl_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_copy
  *
@@ -321,7 +321,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_efl_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_size
  *
@@ -362,7 +362,7 @@ H5O_efl_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const void *
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_efl_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_reset
  *
@@ -399,7 +399,7 @@ H5O_efl_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_efl_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_total_size
  *
@@ -438,7 +438,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_efl_total_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_efl_copy_file
  *
@@ -527,7 +527,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_efl_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_efl_debug
  *

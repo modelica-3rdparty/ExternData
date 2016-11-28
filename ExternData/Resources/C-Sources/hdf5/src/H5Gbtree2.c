@@ -145,7 +145,7 @@ const H5B2_class_t H5G_BT2_CORDER[1]={{ /* B-tree class information */
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_fh_name_cmp
  *
@@ -189,7 +189,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_fh_name_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_name_store
  *
@@ -218,7 +218,7 @@ H5G_dense_btree2_name_store(void *_nrecord, const void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_name_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_name_compare
  *
@@ -281,7 +281,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5G_dense_btree2_name_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_name_encode
  *
@@ -309,7 +309,7 @@ H5G_dense_btree2_name_encode(uint8_t *raw, const void *_nrecord, void H5_ATTR_UN
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_name_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_name_decode
  *
@@ -337,7 +337,7 @@ H5G_dense_btree2_name_decode(const uint8_t *raw, void *_nrecord, void H5_ATTR_UN
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_name_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_name_debug
  *
@@ -369,7 +369,7 @@ H5G_dense_btree2_name_debug(FILE *stream, const H5F_t H5_ATTR_UNUSED *f, hid_t H
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_name_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_corder_store
  *
@@ -398,7 +398,7 @@ H5G_dense_btree2_corder_store(void *_nrecord, const void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_corder_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_corder_compare
  *
@@ -446,7 +446,7 @@ for(u = 0; u < H5G_DENSE_FHEAP_ID_LEN; u++)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_corder_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_corder_encode
  *
@@ -474,7 +474,7 @@ H5G_dense_btree2_corder_encode(uint8_t *raw, const void *_nrecord, void H5_ATTR_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_corder_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_corder_decode
  *
@@ -502,7 +502,7 @@ H5G_dense_btree2_corder_decode(const uint8_t *raw, void *_nrecord, void H5_ATTR_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5G_dense_btree2_corder_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_btree2_corder_debug
  *

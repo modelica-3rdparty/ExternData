@@ -100,7 +100,7 @@ const H5O_msg_class_t H5O_MSG_LINK[1] = {{
 /* Declare a free list to manage the H5O_link_t struct */
 H5FL_DEFINE_STATIC(H5O_link_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_decode
  *
@@ -265,7 +265,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_link_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_encode
  *
@@ -389,7 +389,7 @@ H5O_link_encode(H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, uint8_t *p, con
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_link_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_copy
  *
@@ -456,7 +456,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_link_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_size
  *
@@ -533,7 +533,7 @@ H5O_link_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const void 
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_link_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_link_reset
  *
@@ -568,7 +568,7 @@ H5O_link_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_link_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_link_free
  *
@@ -597,7 +597,7 @@ H5O_link_free(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_link_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_delete
  *
@@ -669,7 +669,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_link_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_pre_copy_file
  *
@@ -706,7 +706,7 @@ H5O_link_pre_copy_file(H5F_t H5_ATTR_UNUSED *file_src, const void H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_link_pre_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_copy_file
  *
@@ -749,7 +749,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_link_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_post_copy_file
  *
@@ -791,7 +791,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_link_post_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_link_debug
  *

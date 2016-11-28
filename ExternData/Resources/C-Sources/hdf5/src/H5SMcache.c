@@ -98,7 +98,7 @@ const H5AC_class_t H5AC_SOHM_LIST[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_table_load
  *
@@ -233,7 +233,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_table_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_table_flush
  *
@@ -341,7 +341,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_table_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_table_dest
  *
@@ -373,7 +373,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_table_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_table_clear
  *
@@ -409,7 +409,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_table_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_table_size
  *
@@ -438,7 +438,7 @@ H5SM_table_size(const H5F_t H5_ATTR_UNUSED *f, const H5SM_master_table_t *table,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_table_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_list_load
  *
@@ -543,7 +543,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_list_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_list_flush
  *
@@ -635,7 +635,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_list_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_list_dest
  *
@@ -679,7 +679,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_list_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_list_clear
  *
@@ -715,7 +715,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end of H5SM_list_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_list_size
  *

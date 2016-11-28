@@ -131,7 +131,7 @@ const H5AC_class_t H5AC_BT2_LEAF[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_hdr_load
  *
@@ -255,7 +255,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_hdr_load() */ /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_hdr_flush
  *
@@ -359,7 +359,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2__cache_hdr_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_hdr_dest
  *
@@ -403,7 +403,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_hdr_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_hdr_clear
  *
@@ -440,7 +440,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_hdr_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B2__cache_hdr_size
  *
@@ -472,7 +472,7 @@ H5B2__cache_hdr_size(const H5F_t H5_ATTR_UNUSED *f, const H5B2_hdr_t *hdr, size_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2__cache_hdr_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_internal_load
  *
@@ -604,7 +604,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2__cache_internal_load() */ /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_internal_flush
  *
@@ -701,7 +701,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2__cache_internal_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_internal_dest
  *
@@ -746,7 +746,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_internal_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_internal_clear
  *
@@ -783,7 +783,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_internal_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_internal_size
  *
@@ -815,7 +815,7 @@ H5B2__cache_internal_size(const H5F_t H5_ATTR_UNUSED *f, const H5B2_internal_t *
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2__cache_internal_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_leaf_load
  *
@@ -926,7 +926,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2__cache_leaf_load() */ /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_leaf_flush
  *
@@ -1009,7 +1009,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2__cache_leaf_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_leaf_dest
  *
@@ -1054,7 +1054,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_leaf_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_leaf_clear
  *
@@ -1091,7 +1091,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2__cache_leaf_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2__cache_leaf_size
  *

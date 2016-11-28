@@ -45,7 +45,7 @@ const H5Z_class2_t H5Z_FLETCHER32[1] = {{
 
 #define FLETCHER_LEN       4
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_filter_fletcher32
  *

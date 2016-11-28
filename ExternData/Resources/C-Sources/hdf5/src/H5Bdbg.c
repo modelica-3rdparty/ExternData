@@ -40,7 +40,7 @@
 #include "H5MMprivate.h"	/* Memory management			*/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_debug
  *
@@ -154,7 +154,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_assert
  *

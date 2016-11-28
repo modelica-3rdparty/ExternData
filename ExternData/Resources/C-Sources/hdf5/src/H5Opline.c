@@ -94,7 +94,7 @@ const H5O_msg_class_t H5O_MSG_PLINE[1] = {{
 /* Declare a free list to manage the H5O_pline_t struct */
 H5FL_DEFINE(H5O_pline_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_decode
  *
@@ -223,7 +223,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_pline_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_encode
  *
@@ -321,7 +321,7 @@ H5O_pline_encode(H5F_t H5_ATTR_UNUSED *f, uint8_t *p/*out*/, const void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_pline_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_copy
  *
@@ -414,7 +414,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_pline_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_size
  *
@@ -475,7 +475,7 @@ H5O_pline_size(const H5F_t H5_ATTR_UNUSED *f, const void *mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_pline_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_reset
  *
@@ -524,7 +524,7 @@ H5O_pline_reset(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_pline_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_free
  *
@@ -549,7 +549,7 @@ H5O_pline_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_pline_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_pline_pre_copy_file
  *
@@ -590,7 +590,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_pline_pre_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pline_debug
  *
@@ -663,7 +663,7 @@ H5O_pline_debug(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id, const voi
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_pline_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_pline_set_latest_version
  *

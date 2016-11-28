@@ -55,7 +55,7 @@ H5CS_t		H5CS_stack_g[1];
 #define H5CS_get_my_stack()	(H5CS_stack_g+0)
 #endif /* H5_HAVE_THREADSAFE */
 
-
+
 #ifdef H5_HAVE_THREADSAFE
 /*-------------------------------------------------------------------------
  * Function:	H5CS_get_stack
@@ -105,7 +105,7 @@ H5CS_get_stack(void)
 } /* end H5CS_get_stack() */
 #endif  /* H5_HAVE_THREADSAFE */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5CS_print_stack
  *
@@ -153,7 +153,7 @@ H5CS_print_stack(const H5CS_t *fstack, FILE *stream)
     FUNC_LEAVE_NOAPI_NOFS(SUCCEED);
 } /* end H5CS_print_stack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5CS_print
  *
@@ -184,7 +184,7 @@ H5CS_print(FILE *stream)
     FUNC_LEAVE_NOAPI_NOFS(SUCCEED);
 } /* end H5CS_print() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5CS_push
  *
@@ -222,7 +222,7 @@ H5CS_push(const char *func_name)
     FUNC_LEAVE_NOAPI_NOFS(SUCCEED);
 } /* end H5CS_push() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5CS_pop
  *
@@ -255,7 +255,7 @@ H5CS_pop(void)
     FUNC_LEAVE_NOAPI_NOFS(SUCCEED);
 } /* end H5CS_pop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5CS_copy_stack
  *
@@ -290,7 +290,7 @@ H5CS_copy_stack(H5CS_t *new_stack)
     FUNC_LEAVE_NOAPI_NOFS(SUCCEED);
 } /* end H5CS_copy_stack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5CS_close_stack
  *

@@ -74,7 +74,7 @@ const H5O_msg_class_t H5O_MSG_REFCOUNT[1] = {{
 /* Declare a free list to manage the H5O_refcount_t struct */
 H5FL_DEFINE_STATIC(H5O_refcount_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_refcount_decode
  *
@@ -123,7 +123,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_refcount_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_refcount_encode
  *
@@ -158,7 +158,7 @@ H5O_refcount_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shar
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_refcount_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_refcount_copy
  *
@@ -198,7 +198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_refcount_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_refcount_size
  *
@@ -230,7 +230,7 @@ H5O_refcount_size(const H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_refcount_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_refcount_free
  *
@@ -255,7 +255,7 @@ H5O_refcount_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_refcount_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_refcount_pre_copy_file
  *
@@ -288,7 +288,7 @@ H5O_refcount_pre_copy_file(H5F_t H5_ATTR_UNUSED *file_src, const void H5_ATTR_UN
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_refcount_pre_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_refcount_debug
  *

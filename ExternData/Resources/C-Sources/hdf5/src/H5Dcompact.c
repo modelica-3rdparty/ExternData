@@ -103,7 +103,7 @@ const H5D_layout_ops_t H5D_LOPS_COMPACT[1] = {{
 H5FL_BLK_EXTERN(type_conv);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compact_fill
  *
@@ -155,7 +155,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__compact_fill() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compact_construct
  *
@@ -215,7 +215,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__compact_construct() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compact_is_space_alloc
  *
@@ -240,7 +240,7 @@ H5D__compact_is_space_alloc(const H5O_storage_t H5_ATTR_UNUSED *storage)
     FUNC_LEAVE_NOAPI(TRUE)
 } /* end H5D__compact_is_space_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compact_io_init
  *
@@ -266,7 +266,7 @@ H5D__compact_io_init(const H5D_io_info_t *io_info, const H5D_type_info_t H5_ATTR
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__compact_io_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__compact_readvv
  *
@@ -304,7 +304,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__compact_readvv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__compact_writevv
  *
@@ -348,7 +348,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__compact_writevv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__compact_flush
  *
@@ -382,7 +382,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__compact_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__compact_copy
  *

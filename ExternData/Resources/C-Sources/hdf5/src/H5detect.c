@@ -60,7 +60,7 @@ static const char *FileHeader = "\n\
 
 #define MAXDETECT 64
 
-/* The ALIGNMENT test code may generate the SIGBUS, SIGSEGV, or SIGILL signals. 
+/* The ALIGNMENT test code may generate the SIGBUS, SIGSEGV, or SIGILL signals.
  * We use setjmp/longjmp in the signal handlers for recovery. But setjmp/longjmp
  * do not necessary restore the signal blocking status while sigsetjmp/siglongjmp
  * do. If sigsetjmp/siglongjmp are not supported, need to use sigprocmask to
@@ -149,7 +149,7 @@ static int verify_signal_handlers(int signum, void (*handler)(int));
 static H5JMP_BUF jbuf_g;
 #endif
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	precision
  *
@@ -203,7 +203,7 @@ precision (detected_t *d)
     }
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	DETECT_I/DETECT_BYTE
  *
@@ -280,7 +280,7 @@ precision (detected_t *d)
     DETECT_I_BYTE_CORE(TYPE,VAR,INFO,TYPE)                                    \
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	DETECT_F
  *
@@ -385,7 +385,7 @@ precision (detected_t *d)
     }                                                                         \
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	DETECT_M
  *
@@ -465,7 +465,7 @@ precision (detected_t *d)
 }
 #endif
 
-
+
 #if defined(H5LONGJMP) && defined(H5_HAVE_SIGNAL)
 /*-------------------------------------------------------------------------
  * Function:	sigsegv_handler
@@ -503,7 +503,7 @@ sigsegv_handler(int H5_ATTR_UNUSED signo)
 }
 #endif
 
-
+
 #if defined(H5LONGJMP) && defined(H5_HAVE_SIGNAL)
 /*-------------------------------------------------------------------------
  * Function:	sigbus_handler
@@ -541,7 +541,7 @@ sigbus_handler(int H5_ATTR_UNUSED signo)
 }
 #endif
 
-
+
 #if defined(H5LONGJMP) && defined(H5_HAVE_SIGNAL)
 /*-------------------------------------------------------------------------
  * Function:	sigill_handler
@@ -577,7 +577,7 @@ sigill_handler(int H5_ATTR_UNUSED signo)
 }
 #endif
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	print_results
  *
@@ -861,7 +861,7 @@ done:\n\
     printf("/* sigill_handler called: %d times */\n", sigill_handler_called_g);
 } /* end print_results() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	iprint
  *
@@ -940,7 +940,7 @@ iprint(detected_t *d)
     }
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	byte_cmp
  *
@@ -975,7 +975,7 @@ byte_cmp(int n, const void *_a, const void *_b, const unsigned char *pad_mask)
     return -1;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	bit_cmp
  *
@@ -1020,7 +1020,7 @@ bit_cmp(int nbytes, int *perm, volatile void *_a, volatile void *_b,
     return -1;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	fix_order
  *
@@ -1086,7 +1086,7 @@ fix_order(int n, int last, int *perm, const char **mesg)
     }
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	imp_bit
  *
@@ -1151,7 +1151,7 @@ imp_bit(int n, int *perm, volatile void *_a, volatile void *_b,
     return (a[perm[major]] >> minor) & 0x01 ? 0 : 1;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	find_bias
  *
@@ -1194,7 +1194,7 @@ find_bias(int epos, int esize, int *perm, volatile void *_a)
     return bias;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	print_header
  *
@@ -1336,7 +1336,7 @@ bit.\n";
 
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C89_integers
  *
@@ -1364,7 +1364,7 @@ detect_C89_integers(void)
     DETECT_I(unsigned long,	  ULONG,        d_g[nd_g]); nd_g++;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C89_floats
  *
@@ -1386,7 +1386,7 @@ detect_C89_floats(void)
     DETECT_F(double,    DOUBLE,     d_g[nd_g]); nd_g++;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C99_integers8
  *
@@ -1448,7 +1448,7 @@ detect_C99_integers8(void)
 #endif
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C99_integers16
  *
@@ -1486,7 +1486,7 @@ detect_C99_integers16(void)
 #endif
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C99_integers32
  *
@@ -1524,7 +1524,7 @@ detect_C99_integers32(void)
 #endif
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C99_integers64
  *
@@ -1575,7 +1575,7 @@ detect_C99_integers64(void)
 #endif
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C99_integers
  *
@@ -1601,7 +1601,7 @@ detect_C99_integers(void)
     detect_C99_integers64();
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_C99_floats
  *
@@ -1632,7 +1632,7 @@ detect_C99_floats(void)
 #endif
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	detect_alignments
  *
@@ -1657,7 +1657,7 @@ detect_alignments(void)
     DETECT_M(hdset_reg_ref_t,     HDSETREGREF,  m_g[na_g]); na_g++;
 }
 
-
+
 #if defined(H5SETJMP) && defined(H5_HAVE_SIGNAL)
 /* Verify the signal handler for signal signum works correctly multiple times.
  * One possible cause of failure is that the signal handling is blocked or
@@ -1665,33 +1665,33 @@ detect_alignments(void)
  * Return  0 for success, -1 for failure.
  */
 static int verify_signal_handlers(int signum, void (*handler)(int))
-{						      
-    void	(*save_handler)(int) = HDsignal(signum, handler);    
+{
+    void	(*save_handler)(int) = HDsignal(signum, handler);
     int i, val;
     int ntries=5;
     volatile int nfailures=0;
     volatile int nsuccesses=0;
-									      
-    for (i=0;i<ntries; i++){    
+
+    for (i=0;i<ntries; i++){
 	val=H5SETJMP(jbuf_g);
 	if (val==0)
-	{    
-	    /* send self the signal to trigger the handler */    
+	{
+	    /* send self the signal to trigger the handler */
 	    signal_handler_tested_g++;
-	    HDraise(signum);    
+	    HDraise(signum);
 	    /* Should not reach here. Record error. */
 	    nfailures++;
 	}else{
-	    if (val==signum){ 
+	    if (val==signum){
 		/* return from signum handler. Record a sucess. */
 		nsuccesses++;
 	    }else{
 		fprintf(stderr, "Unknown return value (%d) from H5SETJMP",
-		    val);    
+		    val);
 		nfailures++;
 	    }
 	}
-    }    
+    }
     /* restore save handler, check results and report failures */
     HDsignal(signum, save_handler);
     if (nfailures>0 || nsuccesses != ntries){
@@ -1703,10 +1703,10 @@ static int verify_signal_handlers(int signum, void (*handler)(int))
 	/* all succeeded */
 	return(0);
     }
-}    
+}
 #endif
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	main
  *

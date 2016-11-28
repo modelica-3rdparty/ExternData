@@ -142,7 +142,7 @@ static herr_t H5G_loc_get_comment_cb(H5G_loc_t *grp_loc, const char *name,
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc
  *
@@ -257,7 +257,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__loc_copy
  *
@@ -291,7 +291,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__loc_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_reset
  *
@@ -324,7 +324,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_free
  *
@@ -357,7 +357,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_find_cb
  *
@@ -395,7 +395,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_find_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_find
  *
@@ -433,7 +433,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_find() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_find_by_idx_cb
  *
@@ -500,7 +500,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_find_by_idx_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_find_by_idx
  *
@@ -544,7 +544,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_find_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__loc_insert
  *
@@ -593,7 +593,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__loc_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_exists_cb
  *
@@ -631,7 +631,7 @@ H5G_loc_exists_cb(H5G_loc_t H5_ATTR_UNUSED *grp_loc/*in*/, const char H5_ATTR_UN
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_loc_exists_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_exists
  *
@@ -671,7 +671,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_exists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_info_cb
  *
@@ -709,7 +709,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_info_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_info
  *
@@ -750,7 +750,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_set_comment_cb
  *
@@ -803,7 +803,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_set_comment_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_set_comment
  *
@@ -842,7 +842,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_set_comment() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_get_comment_cb
  *
@@ -890,7 +890,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_loc_get_comment_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_loc_get_comment
  *

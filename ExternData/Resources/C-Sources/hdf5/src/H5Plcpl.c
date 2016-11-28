@@ -102,7 +102,7 @@ const H5P_libclass_t H5P_CLS_LCRT[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P_lcrt_reg_prop
  *
@@ -130,7 +130,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_lcrt_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_create_intermediate_group
  *
@@ -167,7 +167,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_create_intermediate_group() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_create_intermediate_group
  *

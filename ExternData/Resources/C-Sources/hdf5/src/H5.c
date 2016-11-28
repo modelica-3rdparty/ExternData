@@ -133,8 +133,8 @@ H5_init_library(void)
         if (mpi_initialized && !mpi_finalized) {
             int key_val;
 
-            if(MPI_SUCCESS != (mpi_code = MPI_Comm_create_keyval(MPI_NULL_COPY_FN, 
-                                                                 (MPI_Comm_delete_attr_function *)H5_mpi_delete_cb, 
+            if(MPI_SUCCESS != (mpi_code = MPI_Comm_create_keyval(MPI_NULL_COPY_FN,
+                                                                 (MPI_Comm_delete_attr_function *)H5_mpi_delete_cb,
                                                                  &key_val, NULL)))
                 HMPI_GOTO_ERROR(FAIL, "MPI_Comm_create_keyval failed", mpi_code)
 
@@ -223,7 +223,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5_init_library() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_term_library
  *
@@ -369,7 +369,7 @@ done:
     return;
 } /* end H5_term_library() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5dont_atexit
  *
@@ -411,7 +411,7 @@ H5dont_atexit(void)
     FUNC_LEAVE_API_NOFS(ret_value)
 } /* end H5dont_atexit() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5garbage_collect
  *
@@ -450,7 +450,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5garbage_collect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5set_free_list_limits
  *
@@ -504,7 +504,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5set_free_list_limits() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_debug_mask
  *
@@ -606,11 +606,11 @@ H5_debug_mask(const char *s)
 } /* end H5_debug_mask() */
 
 #ifdef H5_HAVE_PARALLEL
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_mpi_delete_cb
  *
- * Purpose:	Callback attribute on MPI_COMM_SELF to terminate the HDF5 
+ * Purpose:	Callback attribute on MPI_COMM_SELF to terminate the HDF5
  *              library when the communicator is destroyed, i.e. on MPI_Finalize.
  *
  * Return:	MPI_SUCCESS
@@ -626,7 +626,7 @@ static int H5_mpi_delete_cb(MPI_Comm H5_ATTR_UNUSED comm, int H5_ATTR_UNUSED key
 }
 #endif /*H5_HAVE_PARALLEL*/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5get_libversion
  *
@@ -667,7 +667,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5get_libversion() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5check_version
  *
@@ -801,7 +801,7 @@ done:
     FUNC_LEAVE_API_NOFS(ret_value)
 } /* end H5check_version() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5open
  *
@@ -831,7 +831,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5close
  *
@@ -862,7 +862,7 @@ H5close(void)
     FUNC_LEAVE_API_NOFS(SUCCEED)
 } /* end H5close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5allocate_memory
  *
@@ -882,7 +882,7 @@ H5close(void)
  * Return:
  *
  *      Success:    A pointer to the allocated buffer.
- *  
+ *
  *      Failure:    NULL
  *
  *-------------------------------------------------------------------------
@@ -904,7 +904,7 @@ H5allocate_memory(size_t size, hbool_t clear)
 
 } /* end H5allocate_memory() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5resize_memory
  *
@@ -924,7 +924,7 @@ H5allocate_memory(size_t size, hbool_t clear)
  * Return:
  *
  *      Success:    A pointer to the resized buffer.
- *  
+ *
  *      Failure:    NULL (the input buffer will be unchanged)
  *
  *-------------------------------------------------------------------------
@@ -943,7 +943,7 @@ H5resize_memory(void *mem, size_t size)
 
 } /* end H5resize_memory() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5free_memory
  *
@@ -969,7 +969,7 @@ H5free_memory(void *mem)
 
 } /* end H5free_memory() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5is_library_threadsafe
  *
@@ -989,7 +989,7 @@ H5is_library_threadsafe(hbool_t *is_ts)
     H5TRACE1("e", "*b", is_ts);
 
     HDassert(is_ts);
- 
+
 #ifdef H5_HAVE_THREADSAFE
     *is_ts = TRUE;
 #else /* H5_HAVE_THREADSAFE */
@@ -999,7 +999,7 @@ H5is_library_threadsafe(hbool_t *is_ts)
     FUNC_LEAVE_API(ret_value)
 } /* end H5is_library_threadsafe() */
 
-
+
 #if defined(H5_HAVE_THREADSAFE) && defined(H5_BUILT_AS_DYNAMIC_LIB) \
     && defined(H5_HAVE_WIN32_API) && defined(H5_HAVE_WIN_THREADS)
 /*-------------------------------------------------------------------------

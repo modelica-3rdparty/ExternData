@@ -636,7 +636,7 @@ H5_DLL herr_t H5D__chunk_dump_index(H5D_t *dset, hid_t dxpl_id, FILE *stream);
 H5_DLL herr_t H5D__chunk_dest(H5F_t *f, hid_t dxpl_id, H5D_t *dset);
 H5_DLL herr_t H5D__chunk_delete(H5F_t *f, hid_t dxpl_id, H5O_t *oh,
     H5O_storage_t *store);
-H5_DLL herr_t H5D__chunk_direct_write(const H5D_t *dset, hid_t dxpl_id, uint32_t filters, 
+H5_DLL herr_t H5D__chunk_direct_write(const H5D_t *dset, hid_t dxpl_id, uint32_t filters,
          hsize_t *offset, uint32_t data_size, const void *buf);
 #ifdef H5D_CHUNK_DEBUG
 H5_DLL herr_t H5D__chunk_stats(const H5D_t *dset, hbool_t headers);

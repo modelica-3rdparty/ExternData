@@ -72,7 +72,7 @@
 H5FL_DEFINE(H5MP_pool_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_create
  *
@@ -122,7 +122,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MP_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_new_page
  *
@@ -192,7 +192,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MP_new_page() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_malloc
  *
@@ -330,7 +330,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MP_malloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_free
  *
@@ -419,7 +419,7 @@ HDfprintf(stderr,"%s: Freeing from page = %p\n", "H5MP_free", spc_page);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MP_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_close
  *

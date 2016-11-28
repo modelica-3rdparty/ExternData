@@ -31,7 +31,7 @@
 
 /* Package variables */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_get_pool_free_size
  *
@@ -63,7 +63,7 @@ H5MP_get_pool_free_size(const H5MP_pool_t *mp, size_t *free_size)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5MP_get_pool_free_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_get_pool_first_page
  *
@@ -95,7 +95,7 @@ H5MP_get_pool_first_page(const H5MP_pool_t *mp, H5MP_page_t **page)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5MP_get_pool_first_page() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_pool_is_free_size_correct
  *
@@ -171,7 +171,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5MP_pool_is_free_size_correct() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_get_page_free_size
  *
@@ -203,7 +203,7 @@ H5MP_get_page_free_size(const H5MP_page_t *page, size_t *free_size)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5MP_get_page_free_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MP_get_page_next_page
  *

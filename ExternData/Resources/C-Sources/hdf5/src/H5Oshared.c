@@ -88,7 +88,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shared_read
  *
@@ -198,7 +198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shared_link_adj
  *
@@ -294,7 +294,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_link_adj() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shared_decode
  *
@@ -382,7 +382,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shared_encode
  *
@@ -431,7 +431,7 @@ H5O_shared_encode(const H5F_t *f, uint8_t *buf/*out*/, const H5O_shared_t *sh_me
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_shared_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_set_shared
  *
@@ -460,7 +460,7 @@ H5O_set_shared(H5O_shared_t *dst, const H5O_shared_t *src)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_set_shared() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shared_size
  *
@@ -496,7 +496,7 @@ H5O_shared_size(const H5F_t *f, const H5O_shared_t *sh_mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_shared_delete
  *
@@ -538,7 +538,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_shared_link
  *
@@ -572,7 +572,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_shared_copy_file
  *
@@ -632,7 +632,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_shared_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_shared_post_copy_file
  *
@@ -692,7 +692,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shared_post_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shared_debug
  *

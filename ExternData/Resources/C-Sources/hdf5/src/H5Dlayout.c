@@ -59,7 +59,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__layout_set_io_ops
  *
@@ -114,7 +114,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__layout_set_io_ops() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__layout_meta_size
  *
@@ -179,7 +179,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__layout_meta_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__layout_oh_create
  *
@@ -305,7 +305,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__layout_oh_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__layout_oh_read
  *
@@ -449,7 +449,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__layout_oh_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__layout_oh_write
  *

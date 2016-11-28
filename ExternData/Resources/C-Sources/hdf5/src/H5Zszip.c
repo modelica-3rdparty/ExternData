@@ -52,7 +52,7 @@ H5Z_class2_t H5Z_SZIP[1] = {{
 }};
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_can_apply_szip
  *
@@ -111,7 +111,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_can_apply_szip() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_set_local_szip
  *
@@ -255,7 +255,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_set_local_szip() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_filter_szip
  *

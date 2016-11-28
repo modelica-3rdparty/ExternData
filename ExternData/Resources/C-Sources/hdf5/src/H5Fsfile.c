@@ -40,7 +40,7 @@ H5FL_DEFINE_STATIC(H5F_sfile_node_t);
 /* Declare a local variable to track the shared file information */
 H5F_sfile_node_t *H5F_sfile_head_g = NULL;
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_sfile_assert_num
  *
@@ -84,7 +84,7 @@ H5F_sfile_assert_num(unsigned n)
     FUNC_LEAVE_NOAPI_VOID
 } /* H5F_sfile_assert_num() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_sfile_add
  *
@@ -125,7 +125,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_sfile_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_sfile_search
  *
@@ -167,7 +167,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_sfile_search() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_sfile_remove
  *

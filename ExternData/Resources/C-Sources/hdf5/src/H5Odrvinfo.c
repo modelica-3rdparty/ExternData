@@ -64,7 +64,7 @@ const H5O_msg_class_t H5O_MSG_DRVINFO[1] = {{
 /* Current version of driver info information */
 #define H5O_DRVINFO_VERSION 	0
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_drvinfo_decode
  *
@@ -125,7 +125,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_drvinfo_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_drvinfo_encode
  *
@@ -161,7 +161,7 @@ H5O_drvinfo_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_share
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_drvinfo_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_drvinfo_copy
  *
@@ -209,7 +209,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_drvinfo_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_drvinfo_size
  *
@@ -244,7 +244,7 @@ H5O_drvinfo_size(const H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_s
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_drvinfo_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_drvinfo_reset
  *
@@ -275,7 +275,7 @@ H5O_drvinfo_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_drvinfo_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_drvinfo_debug
  *

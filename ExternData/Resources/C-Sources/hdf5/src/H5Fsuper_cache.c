@@ -93,7 +93,7 @@ H5FL_EXTERN(H5F_super_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_sblock_load
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_sblock_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_sblock_flush
  *
@@ -789,7 +789,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_sblock_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_sblock_dest
  *
@@ -820,7 +820,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_sblock_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_sblock_clear
  *
@@ -856,7 +856,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_sblock_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_sblock_size
  *

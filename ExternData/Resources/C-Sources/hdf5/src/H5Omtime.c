@@ -101,7 +101,7 @@ static hbool_t ntzset = FALSE;
 /* Declare a free list to manage the time_t struct */
 H5FL_DEFINE(time_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_new_decode
  *
@@ -154,7 +154,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_mtime_new_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_decode
  *
@@ -253,7 +253,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_mtime_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_new_encode
  *
@@ -293,7 +293,7 @@ H5O_mtime_new_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_sha
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_mtime_new_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_encode
  *
@@ -331,7 +331,7 @@ H5O_mtime_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shared,
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_copy
  *
@@ -374,7 +374,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_new_size
  *
@@ -407,7 +407,7 @@ H5O_mtime_new_size(const H5F_t H5_ATTR_UNUSED * f, hbool_t H5_ATTR_UNUSED disabl
     FUNC_LEAVE_NOAPI(8)
 } /* end H5O_mtime_new_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_size
  *
@@ -440,7 +440,7 @@ H5O_mtime_size(const H5F_t H5_ATTR_UNUSED * f, hbool_t H5_ATTR_UNUSED disable_sh
     FUNC_LEAVE_NOAPI(16)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_reset
  *
@@ -464,7 +464,7 @@ H5O_mtime_reset(void H5_ATTR_UNUSED *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_free
  *
@@ -491,7 +491,7 @@ H5O_mtime_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_mtime_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_mtime_debug
  *

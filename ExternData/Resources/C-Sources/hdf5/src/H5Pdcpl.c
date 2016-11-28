@@ -165,7 +165,7 @@ static hbool_t H5P_dcrt_def_layout_init_g = FALSE;
 #endif /* H5_HAVE_C99_DESIGNATED_INITIALIZER */
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dcrt_reg_prop
  *
@@ -208,7 +208,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dcrt_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__dcrt_copy
  *
@@ -322,7 +322,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dcrt_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P__dcrt_close
  *
@@ -370,7 +370,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dcrt_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__dcrt_layout_cmp
  *
@@ -441,7 +441,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dcrt_layout_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P_fill_value_cmp
  *
@@ -502,7 +502,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_fill_value_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__dcrt_ext_file_list_cmp
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dcrt_ext_file_list_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5P__set_layout
  *
@@ -650,7 +650,7 @@ done:
 } /* end H5P__set_layout() */
 
 #ifndef H5_HAVE_C99_DESIGNATED_INITIALIZER
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5P__init_def_layout
  *
@@ -685,7 +685,7 @@ H5P__init_def_layout(void)
 } /* end H5P__init_def_layout() */
 #endif /* H5_HAVE_C99_DESIGNATED_INITIALIZER */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_layout
  *
@@ -760,7 +760,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_layout() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_layout
  *
@@ -807,7 +807,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* ed H5Pget_layout() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_chunk
  *
@@ -889,7 +889,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_chunk
  *
@@ -949,7 +949,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_external
  *
@@ -1033,7 +1033,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_external() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_external_count
  *
@@ -1080,7 +1080,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_external_count() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_external
  *
@@ -1146,7 +1146,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_external() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_szip
  *
@@ -1218,7 +1218,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_szip() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_shuffle
  *
@@ -1265,7 +1265,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_shuffle() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_nbit
  *
@@ -1311,7 +1311,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_nbit() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_scaleoffset
  *
@@ -1390,7 +1390,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_scaleoffset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_fill_value
  *
@@ -1487,7 +1487,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_fill_value() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_fill_value
  *
@@ -1582,7 +1582,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_get_fill_value() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_fill_value
  *
@@ -1627,7 +1627,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_fill_value() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P_is_fill_value_defined
  *
@@ -1668,7 +1668,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_is_fill_value_defined() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P_fill_value_defined
  *
@@ -1703,7 +1703,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_fill_value_defined() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pfill_value_defined
  *
@@ -1739,7 +1739,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pfill_value_defined() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_alloc_time
  *
@@ -1828,7 +1828,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Pset_alloc_time() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_alloc_time
  *
@@ -1872,7 +1872,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_alloc_time() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_fill_time
  *
@@ -1919,7 +1919,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_fill_time() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_fill_time
  *

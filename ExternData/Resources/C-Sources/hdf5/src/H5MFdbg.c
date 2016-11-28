@@ -85,7 +85,7 @@ typedef struct {
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sects_debug_cb
  *
@@ -139,7 +139,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_sects_debug_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sects_dump
  *

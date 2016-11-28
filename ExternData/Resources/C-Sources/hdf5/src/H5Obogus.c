@@ -69,7 +69,7 @@ const H5O_msg_class_t H5O_MSG_BOGUS[1] = {{
     H5O_bogus_debug         	/*debug the message             */
 }};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_bogus_decode
  *
@@ -120,7 +120,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_bogus_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_bogus_encode
  *
@@ -150,7 +150,7 @@ H5O_bogus_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shared,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_bogus_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_bogus_size
  *
@@ -177,7 +177,7 @@ H5O_bogus_size(const H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_sha
     FUNC_LEAVE_NOAPI(4)
 } /* end H5O_bogus_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_bogus_debug
  *

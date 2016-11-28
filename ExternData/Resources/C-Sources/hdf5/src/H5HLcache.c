@@ -117,7 +117,7 @@ const H5AC_class_t H5AC_LHEAP_DBLK[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_fl_deserialize
  *
@@ -188,7 +188,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_fl_deserialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_fl_serialize
  *
@@ -231,7 +231,7 @@ H5HL_fl_serialize(const H5HL_t *heap)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5HL_fl_serialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prefix_load
  *
@@ -374,7 +374,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_prefix_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prefix_flush
  *
@@ -479,7 +479,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_prefix_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prefix_dest
  *
@@ -535,7 +535,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_prefix_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prefix_clear
  *
@@ -571,7 +571,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_prefix_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prefix_size
  *
@@ -608,7 +608,7 @@ H5HL_prefix_size(const H5F_t H5_ATTR_UNUSED *f, const void *thing, size_t *size_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HL_prefix_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_datablock_load
  *
@@ -674,7 +674,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_datablock_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_datablock_flush
  *
@@ -730,7 +730,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_datablock_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_datablock_dest
  *
@@ -780,7 +780,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_datablock_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_datablock_clear
  *
@@ -816,7 +816,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_datablock_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_datablock_size
  *

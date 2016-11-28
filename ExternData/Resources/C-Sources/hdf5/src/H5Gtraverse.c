@@ -104,7 +104,7 @@ static herr_t H5G_traverse_real(const H5G_loc_t *loc, const char *name,
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_traverse_slink_cb
  *
@@ -151,7 +151,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_traverse_slink_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_traverse_link_ud
  *
@@ -293,7 +293,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_traverse_ud() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_traverse_slink
  *
@@ -378,7 +378,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_traverse_slink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__traverse_special
  *
@@ -462,7 +462,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__traverse_special() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_traverse_real
  *
@@ -810,7 +810,7 @@ done:
    FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_traverse_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_traverse
  *

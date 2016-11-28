@@ -66,7 +66,7 @@ const H5O_msg_class_t H5O_MSG_NAME[1] = {{
     H5O_name_debug         	/*debug the message             */
 }};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_name_decode
  *
@@ -114,7 +114,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_name_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_name_encode
  *
@@ -148,7 +148,7 @@ H5O_name_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shared, 
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_name_copy
  *
@@ -198,7 +198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_name_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_name_size
  *
@@ -236,7 +236,7 @@ H5O_name_size(const H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shar
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_name_reset
  *
@@ -269,7 +269,7 @@ H5O_name_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_name_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_name_debug
  *

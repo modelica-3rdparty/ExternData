@@ -77,7 +77,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_start
  *
@@ -148,7 +148,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_start() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_add
  *
@@ -196,7 +196,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_find
  *
@@ -244,7 +244,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_find() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_revert_root_cb
  *
@@ -290,7 +290,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_revert_root_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_revert_root
  *
@@ -329,7 +329,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_revert_root() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_create_root_cb
  *
@@ -382,7 +382,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_create_root_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_create_root
  *
@@ -423,7 +423,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_create_root() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_size
  *
@@ -468,7 +468,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_remove
  *
@@ -505,7 +505,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_close
  *
@@ -561,7 +561,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_delete
  *
@@ -596,7 +596,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_space_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_space_change_sect_class
  *

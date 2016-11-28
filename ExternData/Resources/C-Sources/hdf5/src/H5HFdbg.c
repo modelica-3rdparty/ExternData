@@ -98,7 +98,7 @@ static herr_t H5HF_dtable_debug(const H5HF_dtable_t *dtable, FILE *stream,
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_debug
  *
@@ -170,7 +170,7 @@ H5HF_dtable_debug(const H5HF_dtable_t *dtable, FILE *stream, int indent, int fwi
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_dtable_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_print
  *
@@ -291,7 +291,7 @@ H5HF_hdr_print(const H5HF_hdr_t *hdr, hid_t dxpl_id, hbool_t dump_internal, FILE
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5HF_hdr_print() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_debug
  *
@@ -336,7 +336,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dblock_debug_cb
  *
@@ -420,7 +420,7 @@ H5HF_dblock_debug_cb(H5FS_section_info_t *_sect, void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_dblock_debug_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dblock_debug
  *
@@ -550,7 +550,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_dblock_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_print
  *
@@ -682,7 +682,7 @@ H5HF_iblock_print(const H5HF_indirect_t *iblock,
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5HF_iblock_print() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_debug
  *
@@ -740,7 +740,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_iblock_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sects_debug_cb
  *
@@ -795,7 +795,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sects_debug_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sects_debug
  *

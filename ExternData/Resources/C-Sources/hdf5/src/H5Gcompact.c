@@ -67,7 +67,7 @@ static herr_t H5G_compact_build_table(const H5O_loc_t *oloc, hid_t dxpl_id,
     const H5O_linfo_t *linfo, H5_index_t idx_type, H5_iter_order_t order,
     H5G_link_table_t *ltable);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_compact_build_table_cb
  *
@@ -107,7 +107,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_compact_build_table_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_compact_build_table
  *
@@ -169,7 +169,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_compact_build_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_insert
  *
@@ -205,7 +205,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__compact_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_get_name_by_idx
  *
@@ -258,7 +258,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__compact_get_name_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_compact_remove_common_cb
  *
@@ -300,7 +300,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_compact_remove_common_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_remove
  *
@@ -339,7 +339,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__compact_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_remove_by_idx
  *
@@ -392,7 +392,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__compact_remove_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_iterate
  *
@@ -436,7 +436,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__compact_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_compact_lookup_cb
  *
@@ -483,7 +483,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_compact_lookup_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_lookup
  *
@@ -529,7 +529,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__compact_lookup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_lookup_by_idx
  *
@@ -579,7 +579,7 @@ done:
 } /* end H5G__compact_lookup_by_idx() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__compact_get_type_by_idx
  *

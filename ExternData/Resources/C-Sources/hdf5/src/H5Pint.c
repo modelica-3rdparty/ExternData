@@ -311,7 +311,7 @@ static const H5I_class_t H5I_GENPROPLST_CLS[1] = {{
 }};
 
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_do_prop_cb1
@@ -380,7 +380,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_do_prop_cb1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_init
  *
@@ -409,7 +409,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_init() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5P_init_interface -- Initialize interface-specific information
@@ -492,7 +492,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_init_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_term_interface
@@ -617,7 +617,7 @@ H5P_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5P_term_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_copy_pclass
@@ -690,7 +690,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_copy_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_copy_plist
@@ -910,7 +910,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_copy_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_dup_prop
@@ -1007,7 +1007,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_dup_prop() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_create_prop
@@ -1106,7 +1106,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_create_prop() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_add_prop
@@ -1144,7 +1144,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5P_add_prop() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P__find_prop_plist
@@ -1204,7 +1204,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P__find_prop_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_find_prop_pclass
@@ -1241,7 +1241,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_find_prop_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_free_prop
@@ -1280,7 +1280,7 @@ H5P_free_prop(H5P_genprop_t *prop)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5P_free_prop() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_free_prop_cb
@@ -1321,7 +1321,7 @@ H5P_free_prop_cb(void *item, void H5_ATTR_UNUSED *key, void *op_data)
     FUNC_LEAVE_NOAPI(0)
 }   /* H5P_free_prop_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_free_del_name_cb
@@ -1356,7 +1356,7 @@ H5P_free_del_name_cb(void *item, void H5_ATTR_UNUSED *key, void H5_ATTR_UNUSED *
     FUNC_LEAVE_NOAPI(0)
 }   /* H5P_free_del_name_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_access_class
@@ -1449,7 +1449,7 @@ H5P_access_class(H5P_genclass_t *pclass, H5P_class_mod_t mod)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5P_access_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_open_class_path_cb
@@ -1496,7 +1496,7 @@ H5P_open_class_path_cb(void *_obj, hid_t H5_ATTR_UNUSED id, void *_key)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_open_class_path_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_create_class
@@ -1601,7 +1601,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_create_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_create
@@ -1744,7 +1744,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_create_id
@@ -1820,7 +1820,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_create_id() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_register_real
@@ -2019,7 +2019,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_register_real() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_register
@@ -2246,7 +2246,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_register() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_insert
@@ -2454,7 +2454,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5P_insert() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_set
@@ -2615,7 +2615,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_set() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_exist_plist
@@ -2675,7 +2675,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_exist_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_exist_pclass
@@ -2730,7 +2730,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_exist_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_size_plist
@@ -2776,7 +2776,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_size_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_size_pclass
@@ -2822,7 +2822,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_size_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_nprops_plist
@@ -2857,7 +2857,7 @@ H5P_get_nprops_plist(const H5P_genplist_t *plist, size_t *nprops)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5P_get_nprops_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_nprops_pclass
@@ -2903,7 +2903,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_nprops_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_cmp_prop
@@ -2993,7 +2993,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_cmp_prop() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_cmp_class
@@ -3099,7 +3099,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_cmp_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P__cmp_plist_cb
@@ -3160,7 +3160,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__cmp_plist_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_cmp_plist
@@ -3242,7 +3242,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_cmp_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_class_isa
@@ -3291,7 +3291,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_class_isa() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_isa_class
@@ -3340,7 +3340,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_isa_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_object_verify
@@ -3388,7 +3388,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_object_verify() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P__iterate_plist_cb
@@ -3442,7 +3442,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__iterate_plist_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P__iterate_plist_pclass_cb
@@ -3487,7 +3487,7 @@ H5P__iterate_plist_pclass_cb(void *_item, void *_key, void *_udata)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__iterate_plist_pclass_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_iterate_plist
@@ -3603,7 +3603,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_iterate_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P__iterate_pclass_cb
@@ -3654,7 +3654,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__iterate_pclass_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_iterate_pclass
@@ -3739,7 +3739,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_iterate_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_peek_unsigned
@@ -3784,7 +3784,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_peek_unsigned() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_peek_hid_t
@@ -3829,7 +3829,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_peek_hid_t() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_peek_voidp
@@ -3874,7 +3874,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_peek_voidp() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_peek_size_t
@@ -3919,7 +3919,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_peek_size_t() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get
@@ -4067,7 +4067,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_remove
@@ -4198,7 +4198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_remove() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_copy_prop_plist
@@ -4308,7 +4308,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_copy_prop_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_copy_prop_pclass
@@ -4395,7 +4395,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_copy_prop_pclass() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_unregister
@@ -4449,7 +4449,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_unregister() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_close
@@ -4621,7 +4621,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_close() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_class_name
@@ -4658,7 +4658,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_class_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_class_path
@@ -4721,7 +4721,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_class_path() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_open_class_path
@@ -4806,7 +4806,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5P_open_class_path() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_class_parent
@@ -4841,7 +4841,7 @@ H5P_get_class_parent(const H5P_genclass_t *pclass)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_class_parent() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_close_class
@@ -4877,7 +4877,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_close_class() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_plist_id
  *
@@ -4905,7 +4905,7 @@ H5P_get_plist_id(const H5P_genplist_t *plist)
     FUNC_LEAVE_NOAPI(plist->plist_id)
 } /* end H5P_get_plist_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_class
  *

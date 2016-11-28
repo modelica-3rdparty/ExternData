@@ -95,7 +95,7 @@ static herr_t H5MF_alloc_close(H5F_t *f, hid_t dxpl_id, H5FD_mem_t type);
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_init_merge_flags
  *
@@ -209,7 +209,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_init_merge_flags() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_alloc_open
  *
@@ -256,7 +256,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_alloc_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_alloc_create
  *
@@ -311,7 +311,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_alloc_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_alloc_start
  *
@@ -356,7 +356,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_alloc_start() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_alloc_close
  *
@@ -395,7 +395,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_alloc_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_alloc
  *
@@ -481,7 +481,7 @@ HDfprintf(stderr, "%s: Check 1.6, freeing node\n", FUNC);
                     udata.dxpl_id = dxpl_id;
                     udata.alloc_type = alloc_type;
                     udata.allow_sect_absorb = TRUE;
-		    udata.allow_eoa_shrink_only = FALSE; 
+		    udata.allow_eoa_shrink_only = FALSE;
 
 #ifdef H5MF_ALLOC_DEBUG_MORE
 HDfprintf(stderr, "%s: Check 1.7, re-adding node, node->sect_info.size = %Hu\n", FUNC, node->sect_info.size);
@@ -515,7 +515,7 @@ H5MF_sects_dump(f, dxpl_id, stderr);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_alloc_tmp
  *
@@ -575,7 +575,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_alloc_tmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_xfree
  *
@@ -688,7 +688,7 @@ HDfprintf(stderr, "%s: dropping addr = %a, size = %Hu, on the floor!\n", FUNC, a
     udata.dxpl_id = dxpl_id;
     udata.alloc_type = alloc_type;
     udata.allow_sect_absorb = TRUE;
-    udata.allow_eoa_shrink_only = FALSE; 
+    udata.allow_eoa_shrink_only = FALSE;
 
     /* Add to the free space for the file */
 #ifdef H5MF_ALLOC_DEBUG_MORE
@@ -716,7 +716,7 @@ H5MF_sects_dump(f, dxpl_id, stderr);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_xfree() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_try_extend
  *
@@ -793,7 +793,7 @@ H5MF_sects_dump(f, dxpl_id, stderr);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_try_extend() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_get_freespace
  *
@@ -929,7 +929,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_get_freespace() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_try_shrink
  *
@@ -973,7 +973,7 @@ HDfprintf(stderr, "%s: Entering - alloc_type = %u, addr = %a, size = %Hu\n", FUN
     udata.dxpl_id = dxpl_id;
     udata.alloc_type = alloc_type;
     udata.allow_sect_absorb = FALSE;    /* Force section to be absorbed into aggregator */
-    udata.allow_eoa_shrink_only = FALSE; 
+    udata.allow_eoa_shrink_only = FALSE;
 
     /* Call the "can shrink" callback for the section */
     if((ret_value = H5MF_sect_simple_can_shrink((const H5FS_section_info_t *)node, &udata)) < 0)
@@ -995,7 +995,7 @@ HDfprintf(stderr, "%s: Leaving, ret_value = %d\n", FUNC, ret_value);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_try_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_close_shrink_eoa
  *
@@ -1026,8 +1026,8 @@ H5MF_close_shrink_eoa(H5F_t *f, hid_t dxpl_id)
     /* Construct user data for callbacks */
     udata.f = f;
     udata.dxpl_id = dxpl_id;
-    udata.allow_sect_absorb = FALSE;    
-    udata.allow_eoa_shrink_only = TRUE; 
+    udata.allow_sect_absorb = FALSE;
+    udata.allow_eoa_shrink_only = TRUE;
 
     /* Iterate until no more EOA shrinking occurs */
     do {
@@ -1055,7 +1055,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_close_shrink_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MF_close
  *

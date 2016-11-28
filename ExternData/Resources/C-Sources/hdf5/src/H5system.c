@@ -73,7 +73,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  HDfprintf
  *
@@ -428,7 +428,7 @@ HDfprintf(FILE *stream, const char *fmt, ...)
     return nout;
 } /* end HDfprintf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  HDstrtoll
  *
@@ -549,7 +549,7 @@ HDstrtoll(const char *s, const char **rest, int base)
     return acc;
 } /* end HDstrtoll() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  HDrand/HDsrand
  *
@@ -641,7 +641,7 @@ Wgettimeofday(struct timeval *tv, struct timezone *tz)
   return 0;
 } /* end Wgettimeofday() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    Wsetenv
  *
@@ -722,7 +722,7 @@ int c99_vsnprintf(char* str, size_t size, const char* format, va_list ap)
 
 #endif
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5_build_extpath
  *
@@ -842,7 +842,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5_build_extpath() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:    H5_combine_path
  *
@@ -877,7 +877,7 @@ H5_combine_path(const char* path1, const char* path2, char **full_name /*out*/)
         if(NULL == (*full_name = (char *)H5MM_strdup(path2)))
             HGOTO_ERROR(H5E_RESOURCE, H5E_NOSPACE, FAIL, "memory allocation failed")
 
-    } /* end if */ 
+    } /* end if */
     else if(H5_CHECK_ABS_PATH(path2)) {
 
         /* On windows path2 is a path absolute name */

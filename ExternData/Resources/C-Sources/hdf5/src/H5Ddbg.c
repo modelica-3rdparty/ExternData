@@ -61,7 +61,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__init_dbg_interface -- Initialize interface-specific information
@@ -82,7 +82,7 @@ H5D__init_dbg_interface(void)
     FUNC_LEAVE_NOAPI(H5D_init())
 } /* H5D__init_dbg_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Ddebug
  *

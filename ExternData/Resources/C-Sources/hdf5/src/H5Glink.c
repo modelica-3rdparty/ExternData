@@ -84,7 +84,7 @@ static int H5G_link_cmp_corder_dec(const void *lnk1, const void *lnk2);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_link_cmp_name_inc
  *
@@ -111,7 +111,7 @@ H5G_link_cmp_name_inc(const void *lnk1, const void *lnk2)
     FUNC_LEAVE_NOAPI(HDstrcmp(((const H5O_link_t *)lnk1)->name, ((const H5O_link_t *)lnk2)->name))
 } /* end H5G_link_cmp_name_inc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_link_cmp_name_dec
  *
@@ -138,7 +138,7 @@ H5G_link_cmp_name_dec(const void *lnk1, const void *lnk2)
     FUNC_LEAVE_NOAPI(HDstrcmp(((const H5O_link_t *)lnk2)->name, ((const H5O_link_t *)lnk1)->name))
 } /* end H5G_link_cmp_name_dec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_link_cmp_corder_inc
  *
@@ -173,7 +173,7 @@ H5G_link_cmp_corder_inc(const void *lnk1, const void *lnk2)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_link_cmp_corder_inc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_link_cmp_corder_dec
  *
@@ -208,7 +208,7 @@ H5G_link_cmp_corder_dec(const void *lnk1, const void *lnk2)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_link_cmp_corder_dec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__ent_to_link
  *
@@ -265,7 +265,7 @@ H5G__ent_to_link(H5O_link_t *lnk, const H5HL_t *heap,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G__ent_to_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_link_to_info
  *
@@ -341,7 +341,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_link_to_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__link_to_loc
  *
@@ -389,7 +389,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__link_to_loc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__link_sort_table
  *
@@ -434,7 +434,7 @@ H5G__link_sort_table(H5G_link_table_t *ltable, H5_index_t idx_type,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G__link_sort_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__link_iterate_table
  *
@@ -484,7 +484,7 @@ H5G__link_iterate_table(const H5G_link_table_t *ltable, hsize_t skip,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__link_iterate_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__link_release_table
  *
@@ -526,7 +526,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__link_release_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__link_name_replace
  *

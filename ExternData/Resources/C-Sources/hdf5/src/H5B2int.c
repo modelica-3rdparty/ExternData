@@ -110,7 +110,7 @@ H5FL_DEFINE(H5B2_leaf_t);
 H5FL_SEQ_EXTERN(H5B2_node_info_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_locate_record
  *
@@ -161,7 +161,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_locate_record */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_split1
  *
@@ -348,7 +348,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_split1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_split_root
  *
@@ -426,7 +426,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_split_root() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_redistribute2
  *
@@ -655,7 +655,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_redistribute2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_redistribute3
  *
@@ -1042,7 +1042,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_redistribute3() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_merge2
  *
@@ -1195,7 +1195,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_merge2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_merge3
  *
@@ -1423,7 +1423,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_merge3() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_swap_leaf
  *
@@ -1514,7 +1514,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_swap_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_insert_leaf
  *
@@ -1612,7 +1612,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_insert_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_insert_internal
  *
@@ -1656,7 +1656,7 @@ H5B2_insert_internal(H5B2_hdr_t *hdr, hid_t dxpl_id, unsigned depth,
         size_t      split_nrec; /* Number of records to split node at */
 
         /* Locate node pointer for child */
-        if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native, 
+        if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native,
                                udata, &idx, &cmp) < 0)
             HGOTO_ERROR(H5E_BTREE, H5E_CANTCOMPARE, FAIL, "can't compare btree2 records")
         if(cmp == 0)
@@ -1715,7 +1715,7 @@ H5B2_insert_internal(H5B2_hdr_t *hdr, hid_t dxpl_id, unsigned depth,
 
             /* Locate node pointer for child (after split/redistribute) */
             /* Actually, this can be easily updated (for 2-node redistrib.) and shouldn't require re-searching */
-            if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native, 
+            if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native,
                                    udata, &idx, &cmp) < 0)
                 HGOTO_ERROR(H5E_BTREE, H5E_CANTCOMPARE, FAIL, "can't compare btree2 records")
             if(cmp == 0)
@@ -1764,7 +1764,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_insert_internal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_create_leaf
  *
@@ -1833,7 +1833,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_create_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_protect_leaf
  *
@@ -1873,7 +1873,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_protect_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_create_internal
  *
@@ -1952,7 +1952,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_create_internal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_protect_internal
  *
@@ -1994,7 +1994,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_protect_internal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_iterate_node
  *
@@ -2107,7 +2107,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_iterate_node() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_remove_leaf
  *
@@ -2210,7 +2210,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_remove_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_remove_internal
  *
@@ -2299,7 +2299,7 @@ H5B2_remove_internal(H5B2_hdr_t *hdr, hid_t dxpl_id, hbool_t *depth_decreased,
         if(swap_loc)
             idx = 0;
         else {
-            if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native, 
+            if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native,
                                    udata, &idx, &cmp) < 0)
                 HGOTO_ERROR(H5E_BTREE, H5E_CANTCOMPARE, FAIL, "can't compare btree2 records")
             if(cmp >= 0)
@@ -2430,7 +2430,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_remove_internal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_remove_leaf_by_idx
  *
@@ -2528,7 +2528,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_remove_leaf_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_remove_internal_by_idx
  *
@@ -2802,7 +2802,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_remove_internal_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_neighbor_leaf
  *
@@ -2889,7 +2889,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_neighbor_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_neighbor_internal
  *
@@ -2940,7 +2940,7 @@ H5B2_neighbor_internal(H5B2_hdr_t *hdr, hid_t dxpl_id, unsigned depth,
         HGOTO_ERROR(H5E_BTREE, H5E_CANTPROTECT, FAIL, "unable to protect B-tree internal node")
 
     /* Locate node pointer for child */
-    if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native, 
+    if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native,
                            udata, &idx, &cmp) < 0)
         HGOTO_ERROR(H5E_BTREE, H5E_CANTCOMPARE, FAIL, "can't compare btree2 records")
     if(cmp > 0)
@@ -2976,7 +2976,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_neighbor_internal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_delete_node
  *
@@ -3057,7 +3057,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_delete_node() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B2_node_size
  *
@@ -3112,7 +3112,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_node_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_internal_free
  *
@@ -3157,7 +3157,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_internal_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_leaf_free
  *
@@ -3199,7 +3199,7 @@ done:
 } /* end H5B2_leaf_free() */
 
 #ifdef H5B2_DEBUG
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_assert_leaf
  *
@@ -3222,7 +3222,7 @@ H5B2_assert_leaf(const H5B2_hdr_t *hdr, const H5B2_leaf_t *leaf)
     return(0);
 } /* end H5B2_assert_leaf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_assert_leaf2
  *
@@ -3245,7 +3245,7 @@ H5B2_assert_leaf2(const H5B2_hdr_t *hdr, const H5B2_leaf_t *leaf, const H5B2_lea
     return(0);
 } /* end H5B2_assert_leaf2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_assert_internal
  *
@@ -3286,7 +3286,7 @@ H5B2_assert_internal(hsize_t parent_all_nrec, const H5B2_hdr_t *hdr, const H5B2_
     return(0);
 } /* end H5B2_assert_internal() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_assert_internal2
  *

@@ -55,7 +55,7 @@
 static herr_t H5D__write(H5D_t *dataset, hid_t mem_type_id,
     const H5S_t *mem_space, const H5S_t *file_space, hid_t dset_xfer_plist,
     const void *buf);
-static herr_t H5D__pre_write(H5D_t *dset, hbool_t direct_write, hid_t mem_type_id, 
+static herr_t H5D__pre_write(H5D_t *dset, hbool_t direct_write, hid_t mem_type_id,
     const H5S_t *mem_space, const H5S_t *file_space, hid_t dxpl_id, const void *buf);
 
 /* Setup/teardown routines */
@@ -91,7 +91,7 @@ static herr_t H5D__typeinfo_term(const H5D_type_info_t *type_info);
 H5FL_BLK_DEFINE(type_conv);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dread
  *
@@ -176,7 +176,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dread() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dwrite
  *
@@ -267,18 +267,18 @@ H5Dwrite(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id,
 	} /* end if */
     }
 
-    if(H5D__pre_write(dset, direct_write, mem_type_id, mem_space, file_space, dxpl_id, buf) < 0) 
+    if(H5D__pre_write(dset, direct_write, mem_type_id, mem_space, file_space, dxpl_id, buf) < 0)
 	HGOTO_ERROR(H5E_DATASET, H5E_WRITEERROR, FAIL, "can't prepare for writing data")
 
 done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dwrite() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__pre_write
  *
- * Purpose:	Preparation for writing data.  
+ * Purpose:	Preparation for writing data.
  *
  * Return:	Non-negative on success/Negative on failure
  *
@@ -288,8 +288,8 @@ done:
  *-------------------------------------------------------------------------
  */
 static herr_t
-H5D__pre_write(H5D_t *dset, hbool_t direct_write, hid_t mem_type_id, 
-         const H5S_t *mem_space, const H5S_t *file_space, 
+H5D__pre_write(H5D_t *dset, hbool_t direct_write, hid_t mem_type_id,
+         const H5S_t *mem_space, const H5S_t *file_space,
          hid_t dxpl_id, const void *buf)
 {
     herr_t                  ret_value = SUCCEED;  /* Return value */
@@ -322,8 +322,8 @@ H5D__pre_write(H5D_t *dset, hbool_t direct_write, hid_t mem_type_id,
         if(H5P_get(plist, H5D_XFER_DIRECT_CHUNK_WRITE_DATASIZE_NAME, &direct_datasize) < 0)
             HGOTO_ERROR(H5E_PLIST, H5E_CANTGET, FAIL, "error getting data size for direct chunk write")
 
-	/* The library's chunking code requires the offset terminates with a zero. So transfer the 
-         * offset array to an internal offset array */ 
+	/* The library's chunking code requires the offset terminates with a zero. So transfer the
+         * offset array to an internal offset array */
 	if((ndims = H5S_get_simple_extent_dims(dset->shared->space, dims, NULL)) < 0)
 	    HGOTO_ERROR(H5E_DATASPACE, H5E_CANTGET, FAIL, "can't retrieve dataspace extent dims")
 
@@ -336,10 +336,10 @@ H5D__pre_write(H5D_t *dset, hbool_t direct_write, hid_t mem_type_id,
 	    if(direct_offset[u] % dset->shared->layout.u.chunk.dim[u])
 		HGOTO_ERROR(H5E_DATASPACE, H5E_BADTYPE, FAIL, "offset doesn't fall on chunks's boundary")
 
-	    internal_offset[u] = direct_offset[u]; 
+	    internal_offset[u] = direct_offset[u];
 	} /* end for */
-	   
-	/* Terminate the offset with a zero */ 
+
+	/* Terminate the offset with a zero */
 	internal_offset[ndims] = 0;
 
 	/* write raw data */
@@ -356,7 +356,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__pre_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__read
  *
@@ -430,7 +430,7 @@ H5D__read(H5D_t *dataset, hid_t mem_type_id, const H5S_t *mem_space,
 
 #ifdef H5_HAVE_PARALLEL
     /* Collective access is not permissible without a MPI based VFD */
-    if(dxpl_cache->xfer_mode == H5FD_MPIO_COLLECTIVE && 
+    if(dxpl_cache->xfer_mode == H5FD_MPIO_COLLECTIVE &&
        !(H5F_HAS_FEATURE(dataset->oloc.file, H5FD_FEAT_HAS_MPI)))
         HGOTO_ERROR(H5E_DATASET, H5E_UNSUPPORTED, FAIL, "collective access for MPI-based drivers only")
 #endif /*H5_HAVE_PARALLEL*/
@@ -459,16 +459,16 @@ H5D__read(H5D_t *dataset, hid_t mem_type_id, const H5S_t *mem_space,
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "memory dataspace does not have extent set")
 
     /* H5S_select_shape_same() has been modified to accept topologically identical
-     * selections with different rank as having the same shape (if the most 
-     * rapidly changing coordinates match up), but the I/O code still has 
+     * selections with different rank as having the same shape (if the most
+     * rapidly changing coordinates match up), but the I/O code still has
      * difficulties with the notion.
      *
-     * To solve this, we check to see if H5S_select_shape_same() returns true, 
-     * and if the ranks of the mem and file spaces are different.  If the are, 
-     * construct a new mem space that is equivalent to the old mem space, and 
+     * To solve this, we check to see if H5S_select_shape_same() returns true,
+     * and if the ranks of the mem and file spaces are different.  If the are,
+     * construct a new mem space that is equivalent to the old mem space, and
      * use that instead.
      *
-     * Note that in general, this requires us to touch up the memory buffer as 
+     * Note that in general, this requires us to touch up the memory buffer as
      * well.
      */
     if(TRUE == H5S_select_shape_same(mem_space, file_space) &&
@@ -575,7 +575,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__write
  *
@@ -715,17 +715,17 @@ H5D__write(H5D_t *dataset, hid_t mem_type_id, const H5S_t *mem_space,
     if(!(H5S_has_extent(mem_space)))
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "memory dataspace does not have extent set")
 
-    /* H5S_select_shape_same() has been modified to accept topologically 
-     * identical selections with different rank as having the same shape 
-     * (if the most rapidly changing coordinates match up), but the I/O 
+    /* H5S_select_shape_same() has been modified to accept topologically
+     * identical selections with different rank as having the same shape
+     * (if the most rapidly changing coordinates match up), but the I/O
      * code still has difficulties with the notion.
      *
-     * To solve this, we check to see if H5S_select_shape_same() returns 
-     * true, and if the ranks of the mem and file spaces are different.  
-     * If the are, construct a new mem space that is equivalent to the 
+     * To solve this, we check to see if H5S_select_shape_same() returns
+     * true, and if the ranks of the mem and file spaces are different.
+     * If the are, construct a new mem space that is equivalent to the
      * old mem space, and use that instead.
      *
-     * Note that in general, this requires us to touch up the memory buffer 
+     * Note that in general, this requires us to touch up the memory buffer
      * as well.
      */
     if(TRUE == H5S_select_shape_same(mem_space, file_space) &&
@@ -833,7 +833,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__ioinfo_init
  *
@@ -902,7 +902,7 @@ const
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__ioinfo_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__typeinfo_init
  *
@@ -1059,7 +1059,7 @@ done:
 } /* end H5D__typeinfo_init() */
 
 #ifdef H5_HAVE_PARALLEL
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__ioinfo_adjust
  *
@@ -1151,7 +1151,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__ioinfo_adjust() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__ioinfo_term
  *
@@ -1207,7 +1207,7 @@ done:
 
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__typeinfo_term
  *

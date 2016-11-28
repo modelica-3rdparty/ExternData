@@ -168,7 +168,7 @@ typedef struct H5A_bt2_ud_rmbi_t {
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_create
  *
@@ -290,7 +290,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_fnd_cb
  *
@@ -324,7 +324,7 @@ H5A__dense_fnd_cb(const H5A_t *attr, hbool_t *took_ownership, void *_user_attr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5A__dense_fnd_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_open
  *
@@ -416,7 +416,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_insert
  *
@@ -576,7 +576,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_write_bt2_cb2
  *
@@ -614,7 +614,7 @@ H5A__dense_write_bt2_cb2(void *_record, void *_op_data, hbool_t *changed)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5A__dense_write_bt2_cb2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_write_bt2_cb
  *
@@ -729,7 +729,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__dense_write_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_write
  *
@@ -829,7 +829,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_copy_fh_cb
  *
@@ -873,7 +873,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__dense_copy_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_rename
  *
@@ -1028,7 +1028,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_rename() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_iterate_bt2_cb
  *
@@ -1125,7 +1125,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__dense_iterate_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_iterate
  *
@@ -1263,7 +1263,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_remove_bt2_cb
  *
@@ -1327,7 +1327,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__dense_remove_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_remove
  *
@@ -1418,7 +1418,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_remove_by_idx_bt2_cb
  *
@@ -1545,7 +1545,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__dense_remove_by_idx_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_remove_by_idx
  *
@@ -1676,7 +1676,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_remove_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_exists
  *
@@ -1766,7 +1766,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_exists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__dense_delete_bt2_cb
  *
@@ -1831,7 +1831,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__dense_delete_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_delete
  *

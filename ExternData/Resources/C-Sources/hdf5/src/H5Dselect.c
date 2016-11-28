@@ -69,7 +69,7 @@ H5FL_SEQ_DEFINE(size_t);
 H5FL_SEQ_DEFINE(hsize_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__select_io
  *
@@ -250,7 +250,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__select_io() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__select_read
  *
@@ -281,7 +281,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__select_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__select_write
  *

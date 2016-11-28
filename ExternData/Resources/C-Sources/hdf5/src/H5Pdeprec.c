@@ -82,7 +82,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5P__init_deprec_interface -- Initialize interface-specific information
@@ -103,7 +103,7 @@ H5P__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5P_init())
 } /* H5P__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5P__term_deprec_interface -- Terminate interface
@@ -128,7 +128,7 @@ H5P__term_deprec_interface(void)
 } /* H5P__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pregister1
@@ -313,7 +313,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pregister1() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pinsert1

@@ -63,7 +63,7 @@ const H5O_msg_class_t H5O_MSG_BTREEK[1] = {{
 /* Current version of v1 B-tree 'K' value information */
 #define H5O_BTREEK_VERSION 	0
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_btreek_decode
  *
@@ -111,7 +111,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_btreek_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_btreek_encode
  *
@@ -145,7 +145,7 @@ H5O_btreek_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shared
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_btreek_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_btreek_copy
  *
@@ -185,7 +185,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_btreek_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_btreek_size
  *
@@ -218,7 +218,7 @@ H5O_btreek_size(const H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_sh
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_btreek_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_btreek_debug
  *

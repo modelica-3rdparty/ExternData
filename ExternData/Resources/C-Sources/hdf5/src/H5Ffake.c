@@ -26,7 +26,7 @@
 
 /* PRIVATE PROTOTYPES */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5F_init_fake_interface -- Initialize interface-specific information
@@ -48,7 +48,7 @@ H5F_init_fake_interface(void)
     FUNC_LEAVE_NOAPI(H5F_init())
 } /* H5F_init_fake_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_fake_alloc
  *
@@ -96,7 +96,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_fake_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_fake_free
  *

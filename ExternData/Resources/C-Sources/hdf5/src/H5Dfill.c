@@ -87,7 +87,7 @@ H5FL_BLK_DEFINE_STATIC(non_zero_fill);
 /* Declare the free list to manage blocks of zero fill-value data */
 H5FL_BLK_DEFINE_STATIC(zero_fill);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Dfill
@@ -140,7 +140,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Dfill() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__fill
@@ -350,7 +350,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__fill() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__fill_init
  *
@@ -549,7 +549,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__fill_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__fill_refill_vl
  *
@@ -630,7 +630,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__fill_refill_vl() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__fill_release
  *
@@ -668,7 +668,7 @@ H5D__fill_release(H5D_fill_buf_info_t *fb_info)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__fill_release() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__fill_term
  *

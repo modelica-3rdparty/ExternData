@@ -44,7 +44,7 @@ const H5Z_class2_t H5Z_SHUFFLE[1] = {{
 /* Local macros */
 #define H5Z_SHUFFLE_PARM_SIZE      0       /* "Local" parameter for shuffling size */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_set_local_shuffle
  *
@@ -98,7 +98,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_set_local_shuffle() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_filter_shuffle
  *

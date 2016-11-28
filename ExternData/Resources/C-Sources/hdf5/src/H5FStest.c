@@ -67,7 +67,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FS_get_cparam_test
  *
@@ -100,7 +100,7 @@ H5FS_get_cparam_test(const H5FS_t *frsp, H5FS_create_t *cparam)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5FS_get_cparam_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FS_cmp_cparam_test
  *

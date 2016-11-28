@@ -74,7 +74,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__print_stats
  *
@@ -145,7 +145,7 @@ H5T__print_stats(H5T_path_t H5_ATTR_UNUSED * path, int H5_ATTR_UNUSED * nprint/*
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5T__print_stats() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_debug
  *

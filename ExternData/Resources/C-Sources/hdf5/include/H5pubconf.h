@@ -26,7 +26,8 @@
 /* Define if building universal (internal helper macro) */
 /* #undef H5_AC_APPLE_UNIVERSAL_BUILD */
 
-/* Define if the memory buffers being written to disk should be cleared before writing. */
+/* Define if the memory buffers being written to disk should be cleared before
+   writing. */
 #define H5_CLEAR_MEMORY 1
 
 /* Define if C++ compiler recognizes offsetof */
@@ -507,8 +508,7 @@
    with special algorithm. */
 /* #undef H5_LONG_TO_LDOUBLE_SPECIAL */
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #if defined(__gnu_linux__)
 #define H5_LT_OBJDIR ".libs/"
 #endif
@@ -532,7 +532,7 @@
 #define H5_PACKAGE_NAME "HDF5"
 
 /* Define to the full name and version of this package. */
-#define H5_PACKAGE_STRING "HDF5 1.8.17"
+#define H5_PACKAGE_STRING "HDF5 1.8.18"
 
 /* Define to the one symbol short name of this package. */
 #define H5_PACKAGE_TARNAME "hdf5"
@@ -541,7 +541,7 @@
 #define H5_PACKAGE_URL "http://www.hdfgroup.org"
 
 /* Define to the version of this package. */
-#define H5_PACKAGE_VERSION "1.8.17"
+#define H5_PACKAGE_VERSION "1.8.18"
 
 /* Width for printf() for type `long long' or `__int64', use `ll' */
 #if defined(_WIN32)
@@ -754,7 +754,7 @@
 /* #undef H5_USING_MEMCHECKER */
 
 /* Version number of package */
-#define H5_VERSION "1.8.17"
+#define H5_VERSION "1.8.18"
 
 /* Data accuracy is prefered to speed during data conversions */
 #define H5_WANT_DATA_ACCURACY 1

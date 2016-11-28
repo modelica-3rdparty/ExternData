@@ -73,7 +73,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_is_attr_dense_test
@@ -136,7 +136,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5O_is_attr_dense_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_is_attr_empty_test
@@ -223,7 +223,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5O_is_attr_empty_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_num_attrs_test
@@ -307,7 +307,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5O_num_attrs_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_attr_dense_info_test
@@ -396,7 +396,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5O_attr_dense_info_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_check_msg_marked_test
@@ -459,7 +459,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5O_check_msg_marked_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_expunge_chunks_test
@@ -518,7 +518,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5O_expunge_chunks_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_get_rc

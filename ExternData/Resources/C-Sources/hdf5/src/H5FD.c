@@ -122,7 +122,7 @@ static const H5I_class_t H5I_VFL_CLS[1] = {{
 }};
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_init
  *
@@ -148,7 +148,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_init_interface
  *
@@ -182,7 +182,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_term_interface
  *
@@ -248,7 +248,7 @@ H5FD_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5FD_term_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_free_cls
  *
@@ -277,7 +277,7 @@ H5FD_free_cls(H5FD_class_t *cls)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_free_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDregister
  *
@@ -334,7 +334,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDregister() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_register
  *
@@ -398,7 +398,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_register() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDunregister
  *
@@ -436,7 +436,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDunregister() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_class
  *
@@ -487,7 +487,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_get_class() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_sb_size
  *
@@ -522,7 +522,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_sb_encode
  *
@@ -560,7 +560,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_sb_decode
  *
@@ -589,7 +589,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sb_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_pl_copy
  *
@@ -640,7 +640,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_pl_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_pl_close
  *
@@ -679,7 +679,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_pl_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_fapl_get
  *
@@ -722,7 +722,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_fapl_get() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_fapl_open
  *
@@ -768,7 +768,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_fapl_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_fapl_copy
  *
@@ -804,7 +804,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_fapl_close
  *
@@ -842,7 +842,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_fapl_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDopen
  *
@@ -920,7 +920,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_open
  *
@@ -1029,7 +1029,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDclose
  *
@@ -1065,7 +1065,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_close
  *
@@ -1107,7 +1107,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDcmp
  *
@@ -1146,7 +1146,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_cmp
  *
@@ -1196,7 +1196,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDquery
  *
@@ -1230,7 +1230,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_query
  *
@@ -1264,7 +1264,7 @@ H5FD_query(const H5FD_t *f, unsigned long *flags/*out*/)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_query() */
 
-
+
 /*-------------------------------------------------------------------------
 * Function:    H5FD_driver_query
 *
@@ -1294,13 +1294,13 @@ H5FD_driver_query(const H5FD_class_t *driver, unsigned long *flags/*out*/)
     /* Check for the driver to query and then query it */
     if(driver->query)
         ret_value = (driver->query)(NULL, flags);
-    else 
+    else
         *flags = 0;
 
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_driver_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDalloc
  *
@@ -1372,7 +1372,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDalloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDfree
  *
@@ -1422,7 +1422,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDfree() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDget_eoa
  *
@@ -1462,7 +1462,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDget_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDset_eoa
  *
@@ -1512,7 +1512,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDset_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDget_eof
  *
@@ -1562,7 +1562,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDget_eof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_maxaddr
  *
@@ -1592,7 +1592,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_get_maxaddr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_feature_flags
  *
@@ -1620,7 +1620,7 @@ H5FD_get_feature_flags(const H5FD_t *file, unsigned long *feature_flags)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_get_feature_flags() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_fs_type_map
  *
@@ -1659,7 +1659,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_get_fs_type_map() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDread
  *
@@ -1715,7 +1715,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDread() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDwrite
  *
@@ -1768,7 +1768,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDwrite() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDflush
  *
@@ -1813,7 +1813,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_flush
  *
@@ -1843,7 +1843,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FDtruncate
  *
@@ -1882,7 +1882,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_truncate
  *
@@ -1912,7 +1912,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_truncate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_fileno
  *
@@ -1941,7 +1941,7 @@ H5FD_get_fileno(const H5FD_t *file, unsigned long *filenum)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_get_fileno() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:    H5FDget_vfd_handle
  *
@@ -1975,7 +1975,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5FDget_vfd_handle() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:    H5FD_get_vfd_handle
  *
@@ -2008,7 +2008,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_get_vfd_handle() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:    H5FD_set_base_addr
  *
@@ -2035,7 +2035,7 @@ H5FD_set_base_addr(H5FD_t *file, haddr_t base_addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_set_base_addr() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:    H5FD_get_base_addr
  *

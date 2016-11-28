@@ -92,7 +92,7 @@ H5FL_SEQ_DEFINE_STATIC(size_t);
 H5FL_SEQ_DEFINE(H5B2_node_info_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_init
  *
@@ -221,7 +221,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_hdr_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_alloc
  *
@@ -267,7 +267,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_hdr_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_create
  *
@@ -323,7 +323,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_hdr_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_incr
  *
@@ -359,7 +359,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_incr_hdr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_decr
  *
@@ -396,7 +396,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_hdr_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B2_hdr_fuse_incr
  *
@@ -424,7 +424,7 @@ H5B2_hdr_fuse_incr(H5B2_hdr_t *hdr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5B2_hdr_fuse_incr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B2_hdr_fuse_decr
  *
@@ -453,7 +453,7 @@ H5B2_hdr_fuse_decr(H5B2_hdr_t *hdr)
     FUNC_LEAVE_NOAPI(hdr->file_rc)
 } /* end H5B2_hdr_fuse_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_dirty
  *
@@ -485,7 +485,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_hdr_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_free
  *
@@ -559,7 +559,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B2_hdr_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_hdr_delete
  *

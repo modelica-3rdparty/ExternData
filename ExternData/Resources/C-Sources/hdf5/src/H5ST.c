@@ -29,7 +29,7 @@ H5FL_DEFINE_STATIC(H5ST_node_t);
 /* Declare a free list to manage the H5ST_tree_t struct */
 H5FL_DEFINE_STATIC(H5ST_tree_t);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_create
@@ -65,7 +65,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_close_internal
@@ -101,7 +101,7 @@ H5ST_close_internal(H5ST_ptr_t p)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5ST_close_internal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_close
@@ -142,7 +142,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_close() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_insert
@@ -220,7 +220,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_insert() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_search
@@ -265,7 +265,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_search() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_find_internal
@@ -308,7 +308,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_find_internal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_find
@@ -343,7 +343,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_find() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_locate
@@ -382,7 +382,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5ST_locate() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_findfirst_internal
@@ -428,7 +428,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_findfirst_internal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_findfirst
@@ -461,7 +461,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_findfirst() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_getnext
@@ -519,7 +519,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_getnext() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_findnext
@@ -560,7 +560,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_findnext() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_delete_internal
@@ -637,7 +637,7 @@ H5ST_delete_internal(H5ST_ptr_t *root, H5ST_ptr_t p)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5ST_delete_internal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_delete
@@ -672,7 +672,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5ST_delete() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_remove
@@ -716,7 +716,7 @@ done:
 } /* H5ST_remove() */
 
 #ifdef H5ST_DEBUG
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_dump_internal
@@ -760,7 +760,7 @@ H5ST_dump_internal(H5ST_ptr_t p)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5ST_dump_internal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5ST_dump

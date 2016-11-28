@@ -117,7 +117,7 @@ static herr_t H5A__attr_sort_table(H5A_attr_table_t *atable, H5_index_t idx_type
 typedef H5A_t*	H5A_t_ptr;
 H5FL_SEQ_DEFINE(H5A_t_ptr);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_create
  *
@@ -202,6 +202,11 @@ H5A_create(const H5G_loc_t *loc, const char *name, const H5T_t *type,
     if(NULL == (attr->shared->dt = H5T_copy(type, H5T_COPY_ALL)))
         HGOTO_ERROR(H5E_ATTR, H5E_CANTGET, NULL, "can't get shared datatype info")
 
+    /* Convert a datatype (if committed) to a transient type if the committed datatype's file
+       location is different from the file location where the attribute will be created */
+    if(H5T_convert_committed_datatype(attr->shared->dt, loc->oloc->file) < 0)
+        HGOTO_ERROR(H5E_ATTR, H5E_CANTGET, NULL, "can't get shared datatype info")
+
     /* Mark datatype as being on disk now */
     if(H5T_set_loc(attr->shared->dt, loc->oloc->file, H5T_LOC_DISK) < 0)
         HGOTO_ERROR(H5E_DATATYPE, H5E_CANTINIT, NULL, "invalid datatype location")
@@ -284,7 +289,7 @@ done:
 
 } /* H5A_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_open_common
  *
@@ -341,7 +346,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_open_common() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_open_by_idx
  *
@@ -405,7 +410,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_open_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_open_by_name
  *
@@ -470,7 +475,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_open_by_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5A_write
@@ -584,7 +589,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_write() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5A_read
@@ -687,7 +692,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_get_space
  *
@@ -719,7 +724,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_get_space() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_get_type
  *
@@ -773,7 +778,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_get_type() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5A_get_create_plist
@@ -818,7 +823,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Aget_create_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5A_get_name
@@ -864,7 +869,7 @@ H5A_get_name(H5A_t *attr, size_t buf_size, char *buf)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_get_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_get_info
  *
@@ -902,7 +907,7 @@ H5A_get_info(const H5A_t *attr, H5A_info_t *ainfo)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5A_get_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_copy
  *
@@ -969,7 +974,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_free
  *
@@ -1016,7 +1021,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_close
  *
@@ -1073,7 +1078,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_oloc
  *
@@ -1104,7 +1109,7 @@ H5A_oloc(H5A_t *attr)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_oloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_nameof
  *
@@ -1135,7 +1140,7 @@ H5A_nameof(H5A_t *attr)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_nameof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_type
  *
@@ -1164,7 +1169,7 @@ H5A_type(const H5A_t *attr)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_exists_by_name
  *
@@ -1212,7 +1217,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_exists_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__compact_build_table_cb
  *
@@ -1277,7 +1282,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__compact_build_table_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_compact_build_table
  *
@@ -1342,7 +1347,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_compact_build_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_build_table_cb
  *
@@ -1386,7 +1391,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_build_table_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_dense_build_table
  *
@@ -1472,7 +1477,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_build_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__attr_cmp_name_inc
  *
@@ -1500,7 +1505,7 @@ H5A__attr_cmp_name_inc(const void *attr1, const void *attr2)
             (*(const H5A_t * const *)attr2)->shared->name))
 } /* end H5A__attr_cmp_name_inc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__attr_cmp_name_dec
  *
@@ -1528,7 +1533,7 @@ H5A__attr_cmp_name_dec(const void *attr1, const void *attr2)
             (*(const H5A_t * const *)attr1)->shared->name))
 } /* end H5A__attr_cmp_name_dec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__attr_cmp_corder_inc
  *
@@ -1563,7 +1568,7 @@ H5A__attr_cmp_corder_inc(const void *attr1, const void *attr2)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__attr_cmp_corder_inc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__attr_cmp_corder_dec
  *
@@ -1598,7 +1603,7 @@ H5A__attr_cmp_corder_dec(const void *attr1, const void *attr2)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A__attr_cmp_corder_dec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A__attr_sort_table
  *
@@ -1643,7 +1648,7 @@ H5A__attr_sort_table(H5A_attr_table_t *atable, H5_index_t idx_type,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5A__attr_sort_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_attr_iterate_table
  *
@@ -1726,7 +1731,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_attr_iterate_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	  H5A_attr_release_table
  *
@@ -1768,7 +1773,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_attr_release_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_get_ainfo
  *
@@ -1832,7 +1837,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_get_ainfo() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_set_version
  *
@@ -1888,7 +1893,7 @@ H5A_set_version(const H5F_t *f, H5A_t *attr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5A_set_version() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_attr_copy_file
  *
@@ -1921,6 +1926,7 @@ H5A_attr_copy_file(const H5A_t *attr_src, H5F_t *file_dst, hbool_t *recompute_si
     hid_t       tid_mem = -1;           /* Datatype ID for memory datatype */
     void       *buf = NULL;             /* Buffer for copying data */
     void       *reclaim_buf = NULL;     /* Buffer for reclaiming data */
+    void       *bkg_buf = NULL;     	/* Background buffer */
     hid_t       buf_sid = -1;           /* ID for buffer dataspace */
 
     H5A_t       *ret_value;             /* Return value */
@@ -2092,14 +2098,24 @@ H5A_attr_copy_file(const H5A_t *attr_src, H5F_t *file_dst, hbool_t *recompute_si
 
             HDmemcpy(buf, attr_src->shared->data, attr_src->shared->data_size);
 
+            /* Allocate background memory */
+            if(H5T_path_bkg(tpath_src_mem) || H5T_path_bkg(tpath_mem_dst)) {
+                if(NULL == (bkg_buf = H5FL_BLK_CALLOC(attr_buf, buf_size)))
+                    HGOTO_ERROR(H5E_ATTR, H5E_CANTALLOC, FAIL, "memory allocation failed")
+            }
+
             /* Convert from source file to memory */
-            if(H5T_convert(tpath_src_mem, tid_src, tid_mem, nelmts, (size_t)0, (size_t)0, buf, NULL, dxpl_id) < 0)
+            if(H5T_convert(tpath_src_mem, tid_src, tid_mem, nelmts, (size_t)0, (size_t)0, buf, bkg_buf, dxpl_id) < 0)
                 HGOTO_ERROR(H5E_DATATYPE, H5E_CANTINIT, NULL, "datatype conversion NULLed")
 
             HDmemcpy(reclaim_buf, buf, buf_size);
 
+            /* Set background buffer to all zeros */
+            if(bkg_buf)
+                HDmemset(bkg_buf, 0, buf_size);
+
             /* Convert from memory to destination file */
-            if(H5T_convert(tpath_mem_dst, tid_mem, tid_dst, nelmts, (size_t)0, (size_t)0, buf, NULL, dxpl_id) < 0)
+            if(H5T_convert(tpath_mem_dst, tid_mem, tid_dst, nelmts, (size_t)0, (size_t)0, buf, bkg_buf, dxpl_id) < 0)
                 HGOTO_ERROR(H5E_DATATYPE, H5E_CANTINIT, NULL, "datatype conversion NULLed")
 
             HDmemcpy(attr_dst->shared->data, buf, attr_dst->shared->data_size);
@@ -2146,6 +2162,8 @@ done:
         buf = H5FL_BLK_FREE(attr_buf, buf);
     if(reclaim_buf)
         reclaim_buf = H5FL_BLK_FREE(attr_buf, reclaim_buf);
+    if(bkg_buf)
+        bkg_buf = H5FL_BLK_FREE(attr_buf, bkg_buf);
 
     /* Release destination attribute information on failure */
     if(!ret_value && attr_dst && H5A_close(attr_dst) < 0)
@@ -2154,7 +2172,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_attr_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_attr_post_copy_file
  *
@@ -2252,7 +2270,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5A_attr_post_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_dense_post_copy_file_cb
  *
@@ -2306,7 +2324,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_post_copy_file_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5A_dense_post_copy_file_all
  *
@@ -2356,7 +2374,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_dense_post_copy_file_all */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_rename_by_name
  *

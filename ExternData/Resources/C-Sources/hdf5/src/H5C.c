@@ -167,7 +167,7 @@ static herr_t H5C_verify_not_in_index(H5C_t * cache_ptr,
                                       H5C_cache_entry_t * entry_ptr);
 #endif /* H5C_DO_EXTREME_SANITY_CHECKS */
 
-
+
 /****************************************************************************
  *
  * #defines and declarations for epoch marker cache entries.
@@ -311,26 +311,26 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_apply_candidate_list
  *
  * Purpose:     Apply the supplied candidate list.
  *
- *		We used to do this by simply having each process write 
- *		every mpi_size-th entry in the candidate list, starting 
- *		at index mpi_rank, and mark all the others clean.  
+ *		We used to do this by simply having each process write
+ *		every mpi_size-th entry in the candidate list, starting
+ *		at index mpi_rank, and mark all the others clean.
  *
- *		However, this can cause unnecessary contention in a file 
- *		system by increasing the number of processes writing to 
+ *		However, this can cause unnecessary contention in a file
+ *		system by increasing the number of processes writing to
  *		adjacent locations in the HDF5 file.
  *
- *		To attempt to minimize this, we now arange matters such 
- *		that each process writes n adjacent entries in the 
+ *		To attempt to minimize this, we now arange matters such
+ *		that each process writes n adjacent entries in the
  *		candidate list, and marks all others clean.  We must do
- *		this in such a fashion as to guarantee that each entry 
- *		on the candidate list is written by exactly one process, 
- *		and marked clean by all others.  
+ *		this in such a fashion as to guarantee that each entry
+ *		on the candidate list is written by exactly one process,
+ *		and marked clean by all others.
  *
  *		To do this, first construct a table mapping mpi_rank
  *		to the index of the first entry in the candidate list to
@@ -340,7 +340,7 @@ done:
  *
  *		Note that the table must be identical on all processes, as
  *		all see the same candidate list, mpi_size, and mpi_rank --
- *		the inputs used to construct the table.  
+ *		the inputs used to construct the table.
  *
  *		We construct the table as follows.  Let:
  *
@@ -348,18 +348,18 @@ done:
  *
  *			m = num_candidates % mpi_size;
  *
- *		Now allocate an array of integers of length mpi_size + 1, 
- *		and call this array candidate_assignment_table. 
+ *		Now allocate an array of integers of length mpi_size + 1,
+ *		and call this array candidate_assignment_table.
  *
  *		Conceptually, if the number of candidates is a multiple
  *		of the mpi_size, we simply pass through the candidate list
- *		and assign n entries to each process to flush, with the 
- *		index of the first entry to flush in the location in 
+ *		and assign n entries to each process to flush, with the
+ *		index of the first entry to flush in the location in
  *		the candidate_assignment_table indicated by the mpi_rank
- *		of the process.  
+ *		of the process.
  *
- *		In the more common case in which the candidate list isn't 
- *		isn't a multiple of the mpi_size, we pretend it is, and 
+ *		In the more common case in which the candidate list isn't
+ *		isn't a multiple of the mpi_size, we pretend it is, and
  *		give num_candidates % mpi_size processes one extra entry
  *		each to make things work out.
  *
@@ -368,22 +368,22 @@ done:
  *
  *	 	first_entry_to_flush = candidate_assignment_table[mpi_rank]
  *
- *		last_entry_to_flush = 
+ *		last_entry_to_flush =
  *			candidate_assignment_table[mpi_rank + 1] - 1;
- *		
- *		With these values determined, we simply scan through the 
- *		candidate list, marking all entries in the range 
+ *
+ *		With these values determined, we simply scan through the
+ *		candidate list, marking all entries in the range
  *		[first_entry_to_flush, last_entry_to_flush] for flush,
  *		and all others to be cleaned.
  *
- *		Finally, we scan the LRU from tail to head, flushing 
+ *		Finally, we scan the LRU from tail to head, flushing
  *		or marking clean the candidate entries as indicated.
  *		If necessary, we scan the pinned list as well.
  *
- *		Note that this function will fail if any protected or 
+ *		Note that this function will fail if any protected or
  *		clean entries appear on the candidate list.
  *
- *		This function is used in managing sync points, and 
+ *		This function is used in managing sync points, and
  *		shouldn't be used elsewhere.
  *
  * Return:      Success:        SUCCEED
@@ -395,7 +395,7 @@ done:
  *
  * Modifications:
  *
- *		Heavily reworked to have each process flush a group of 
+ *		Heavily reworked to have each process flush a group of
  *		adjacent entries.
  *						JRM -- 4/15/10
  *
@@ -449,13 +449,13 @@ H5C_apply_candidate_list(H5F_t * f,
     HDassert( mpi_rank < mpi_size );
 
 #if H5C_APPLY_CANDIDATE_LIST__DEBUG
-    HDfprintf(stdout, "%s:%d: setting up candidate assignment table.\n", 
+    HDfprintf(stdout, "%s:%d: setting up candidate assignment table.\n",
               FUNC, mpi_rank);
     for ( i = 0; i < 1024; i++ ) tbl_buf[i] = '\0';
     sprintf(&(tbl_buf[0]), "candidate list = ");
     for ( i = 0; i < num_candidates; i++ )
     {
-        sprintf(&(tbl_buf[HDstrlen(tbl_buf)]), " 0x%llx", 
+        sprintf(&(tbl_buf[HDstrlen(tbl_buf)]), " 0x%llx",
                 (long long)(*(candidates_list_ptr + i)));
     }
     sprintf(&(tbl_buf[HDstrlen(tbl_buf)]), "\n");
@@ -477,7 +477,7 @@ H5C_apply_candidate_list(H5F_t * f,
         for(i = 1; i < mpi_size; i++)
             candidate_assignment_table[i] = candidate_assignment_table[i - 1] + n;
     } /* end if */
-    else { 
+    else {
         for(i = 1; i <= m; i++)
             candidate_assignment_table[i] = candidate_assignment_table[i - 1] + n + 1;
 
@@ -494,7 +494,7 @@ H5C_apply_candidate_list(H5F_t * f,
 
 #if H5C_DO_SANITY_CHECKS
     /* verify that the candidate assignment table has the expected form */
-    for ( i = 1; i < mpi_size - 1; i++ ) 
+    for ( i = 1; i < mpi_size - 1; i++ )
     {
         int a, b;
 
@@ -519,7 +519,7 @@ H5C_apply_candidate_list(H5F_t * f,
     sprintf(&(tbl_buf[HDstrlen(tbl_buf)]), "\n");
     HDfprintf(stdout, "%s", tbl_buf);
 
-    HDfprintf(stdout, "%s:%d: flush entries [%d, %d].\n", 
+    HDfprintf(stdout, "%s:%d: flush entries [%d, %d].\n",
               FUNC, mpi_rank, first_entry_to_flush, last_entry_to_flush);
 
     HDfprintf(stdout, "%s:%d: marking entries.\n", FUNC, mpi_rank);
@@ -549,14 +549,14 @@ H5C_apply_candidate_list(H5F_t * f,
         } else if ( entry_ptr->is_protected ) {
             /* For now at least, we can't deal with protected entries.
              * If we encounter one, scream and die.  If it becomes an
-             * issue, we should be able to work around this. 
+             * issue, we should be able to work around this.
              */
             HGOTO_ERROR(H5E_CACHE, H5E_SYSTEM, FAIL, "Listed entry is protected?!?!?.")
         } else {
             /* determine whether the entry is to be cleared or flushed,
-             * and mark it accordingly.  We will scan the protected and 
+             * and mark it accordingly.  We will scan the protected and
              * pinned list shortly, and clear or flush according to these
-             * markings.  
+             * markings.
              */
             if((i >= first_entry_to_flush) && (i <= last_entry_to_flush)) {
                 entries_to_flush++;
@@ -570,13 +570,13 @@ H5C_apply_candidate_list(H5F_t * f,
     } /* end for */
 
 #if H5C_APPLY_CANDIDATE_LIST__DEBUG
-    HDfprintf(stdout, "%s:%d: num candidates/to clear/to flush = %d/%d/%d.\n", 
+    HDfprintf(stdout, "%s:%d: num candidates/to clear/to flush = %d/%d/%d.\n",
               FUNC, mpi_rank, (int)num_candidates, (int)entries_to_clear,
               (int)entries_to_flush);
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
 
-    /* We have now marked all the entries on the candidate list for 
+    /* We have now marked all the entries on the candidate list for
      * either flush or clear -- now scan the LRU and the pinned list
      * for these entries and do the deed.
      *
@@ -604,7 +604,7 @@ H5C_apply_candidate_list(H5F_t * f,
             entries_cleared++;
 
 #if ( H5C_APPLY_CANDIDATE_LIST__DEBUG > 1 )
-    HDfprintf(stdout, "%s:%d: clearing 0x%llx.\n", FUNC, mpi_rank, 
+    HDfprintf(stdout, "%s:%d: clearing 0x%llx.\n", FUNC, mpi_rank,
               (long long)clear_ptr->addr);
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
@@ -624,7 +624,7 @@ H5C_apply_candidate_list(H5F_t * f,
             entries_flushed++;
 
 #if ( H5C_APPLY_CANDIDATE_LIST__DEBUG > 1 )
-    HDfprintf(stdout, "%s:%d: flushing 0x%llx.\n", FUNC, mpi_rank, 
+    HDfprintf(stdout, "%s:%d: flushing 0x%llx.\n", FUNC, mpi_rank,
               (long long)flush_ptr->addr);
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
@@ -645,8 +645,8 @@ H5C_apply_candidate_list(H5F_t * f,
     } /* end while */
 
 #if H5C_APPLY_CANDIDATE_LIST__DEBUG
-    HDfprintf(stdout, "%s:%d: entries examined/cleared/flushed = %d/%d/%d.\n", 
-              FUNC, mpi_rank, entries_examined, 
+    HDfprintf(stdout, "%s:%d: entries examined/cleared/flushed = %d/%d/%d.\n",
+              FUNC, mpi_rank, entries_examined,
               entries_cleared, entries_flushed);
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
@@ -655,7 +655,7 @@ H5C_apply_candidate_list(H5F_t * f,
      */
 
 #if H5C_APPLY_CANDIDATE_LIST__DEBUG
-    HDfprintf(stdout, "%s:%d: scanning pinned entry list. len = %d\n", 
+    HDfprintf(stdout, "%s:%d: scanning pinned entry list. len = %d\n",
              FUNC, mpi_rank, (int)(cache_ptr->pel_len));
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
@@ -669,7 +669,7 @@ H5C_apply_candidate_list(H5F_t * f,
             entries_cleared++;
 
 #if ( H5C_APPLY_CANDIDATE_LIST__DEBUG > 1 )
-            HDfprintf(stdout, "%s:%d: clearing 0x%llx.\n", FUNC, mpi_rank, 
+            HDfprintf(stdout, "%s:%d: clearing 0x%llx.\n", FUNC, mpi_rank,
                       (long long)clear_ptr->addr);
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
@@ -689,7 +689,7 @@ H5C_apply_candidate_list(H5F_t * f,
             entries_flushed++;
 
 #if ( H5C_APPLY_CANDIDATE_LIST__DEBUG > 1 )
-            HDfprintf(stdout, "%s:%d: flushing 0x%llx.\n", FUNC, mpi_rank, 
+            HDfprintf(stdout, "%s:%d: flushing 0x%llx.\n", FUNC, mpi_rank,
                       (long long)flush_ptr->addr);
 #endif /* H5C_APPLY_CANDIDATE_LIST__DEBUG */
 
@@ -708,9 +708,9 @@ H5C_apply_candidate_list(H5F_t * f,
     } /* end while */
 
 #if H5C_APPLY_CANDIDATE_LIST__DEBUG
-    HDfprintf(stdout, 
-              "%s:%d: pel entries examined/cleared/flushed = %d/%d/%d.\n", 
-              FUNC, mpi_rank, entries_examined, 
+    HDfprintf(stdout,
+              "%s:%d: pel entries examined/cleared/flushed = %d/%d/%d.\n",
+              FUNC, mpi_rank, entries_examined,
               entries_cleared, entries_flushed);
     HDfprintf(stdout, "%s:%d: done.\n", FUNC, mpi_rank);
 
@@ -728,14 +728,14 @@ done:
 } /* H5C_apply_candidate_list() */
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_construct_candidate_list__clean_cache
  *
- * Purpose:     Construct the list of entries that should be flushed to 
+ * Purpose:     Construct the list of entries that should be flushed to
  *		clean all entries in the cache.
  *
- *		This function is used in managing sync points, and 
+ *		This function is used in managing sync points, and
  *		shouldn't be used elsewhere.
  *
  * Return:      Success:        SUCCEED
@@ -769,9 +769,9 @@ H5C_construct_candidate_list__clean_cache(H5C_t * cache_ptr)
      * point, it is possible that some dirty entries may reside on the
      * pinned list at this point.
      */
-    HDassert( cache_ptr->slist_size <= 
+    HDassert( cache_ptr->slist_size <=
               (cache_ptr->dLRU_list_size + cache_ptr->pel_size) );
-    HDassert( cache_ptr->slist_len  <= 
+    HDassert( cache_ptr->slist_len  <=
               (cache_ptr->dLRU_list_len + cache_ptr->pel_len) );
 
     if(space_needed > 0) { /* we have work to do */
@@ -783,7 +783,7 @@ H5C_construct_candidate_list__clean_cache(H5C_t * cache_ptr)
         HDassert( cache_ptr->slist_len > 0 );
 
         /* Scan the dirty LRU list from tail forward and nominate sufficient
-         * entries to free up the necessary space. 
+         * entries to free up the necessary space.
          */
         entry_ptr = cache_ptr->dLRU_tail_ptr;
         while((nominated_entries_size < space_needed) &&
@@ -805,7 +805,7 @@ H5C_construct_candidate_list__clean_cache(H5C_t * cache_ptr)
         } /* end while */
         HDassert( entry_ptr == NULL );
 
-        /* it is possible that there are some dirty entries on the 
+        /* it is possible that there are some dirty entries on the
          * protected entry list as well -- scan it too if necessary
          */
         entry_ptr = cache_ptr->pel_head_ptr;
@@ -839,14 +839,14 @@ done:
 } /* H5C_construct_candidate_list__clean_cache() */
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_construct_candidate_list__min_clean
  *
- * Purpose:     Construct the list of entries that should be flushed to 
+ * Purpose:     Construct the list of entries that should be flushed to
  *		get the cache back within its min clean constraints.
  *
- *		This function is used in managing sync points, and 
+ *		This function is used in managing sync points, and
  *		shouldn't be used elsewhere.
  *
  * Return:      Success:        SUCCEED
@@ -870,7 +870,7 @@ H5C_construct_candidate_list__min_clean(H5C_t * cache_ptr)
     HDassert( cache_ptr != NULL );
     HDassert( cache_ptr->magic == H5C__H5C_T_MAGIC );
 
-    /* compute the number of bytes (if any) that must be flushed to get the 
+    /* compute the number of bytes (if any) that must be flushed to get the
      * cache back within its min clean constraints.
      */
     if(cache_ptr->max_cache_size > cache_ptr->index_size) {
@@ -898,7 +898,7 @@ H5C_construct_candidate_list__min_clean(H5C_t * cache_ptr)
         HDassert( cache_ptr->slist_len > 0 );
 
         /* Scan the dirty LRU list from tail forward and nominate sufficient
-         * entries to free up the necessary space. 
+         * entries to free up the necessary space.
          */
         entry_ptr = cache_ptr->dLRU_tail_ptr;
         while((nominated_entries_size < space_needed) &&
@@ -929,7 +929,7 @@ done:
 } /* H5C_construct_candidate_list__min_clean() */
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_create
  *
@@ -1174,7 +1174,7 @@ done:
 
 } /* H5C_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_def_auto_resize_rpt_fcn
  *
@@ -1360,7 +1360,7 @@ H5C_def_auto_resize_rpt_fcn(H5C_t * cache_ptr,
 
 } /* H5C_def_auto_resize_rpt_fcn() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_dest
  *
@@ -1417,7 +1417,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5C_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_expunge_entry
@@ -1528,7 +1528,7 @@ done:
 
 } /* H5C_expunge_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_flush_cache
  *
@@ -1893,7 +1893,7 @@ done:
 
 } /* H5C_flush_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_flush_to_min_clean
  *
@@ -2087,7 +2087,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5C_flush_to_min_clean() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_get_cache_auto_resize_config
  *
@@ -2131,7 +2131,7 @@ done:
 
 } /* H5C_get_cache_auto_resize_config() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_get_cache_size
  *
@@ -2190,7 +2190,7 @@ done:
 
 } /* H5C_get_cache_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_get_cache_hit_rate
  *
@@ -2245,7 +2245,7 @@ done:
 
 } /* H5C_get_cache_hit_rate() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_get_entry_status
@@ -2341,7 +2341,7 @@ done:
 
 } /* H5C_get_entry_status() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_get_evictions_enabled()
  *
@@ -2382,7 +2382,7 @@ done:
 
 } /* H5C_get_evictions_enabled() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_get_trace_file_ptr
  *
@@ -2413,7 +2413,7 @@ H5C_get_trace_file_ptr(const H5C_t *cache_ptr, FILE **trace_file_ptr_ptr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5C_get_trace_file_ptr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_get_trace_file_ptr_from_entry
  *
@@ -2445,7 +2445,7 @@ H5C_get_trace_file_ptr_from_entry(const H5C_cache_entry_t *entry_ptr,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5C_get_trace_file_ptr_from_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_insert_entry
  *
@@ -2742,7 +2742,7 @@ done:
 
 } /* H5C_insert_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_mark_entries_as_clean
@@ -3034,7 +3034,7 @@ done:
 } /* H5C_mark_entries_as_clean() */
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_mark_entry_dirty
  *
@@ -3114,7 +3114,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5C_mark_entry_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_move_entry
@@ -3292,7 +3292,7 @@ done:
 
 } /* H5C_move_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_resize_entry
  *
@@ -3398,7 +3398,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5C_resize_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_pin_protected_entry()
  *
@@ -3448,7 +3448,7 @@ done:
 
 } /* H5C_pin_protected_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_protect
  *
@@ -3870,7 +3870,7 @@ done:
 
 } /* H5C_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_reset_cache_hit_rate_stats()
@@ -3904,7 +3904,7 @@ done:
 
 } /* H5C_reset_cache_hit_rate_stats() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_set_cache_auto_resize_config
  *
@@ -4187,7 +4187,7 @@ done:
 
 } /* H5C_set_cache_auto_resize_config() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_set_evictions_enabled()
  *
@@ -4242,7 +4242,7 @@ done:
 
 } /* H5C_set_evictions_enabled() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_set_prefix
  *
@@ -4281,7 +4281,7 @@ done:
 
 } /* H5C_set_prefix() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_set_trace_file_ptr
  *
@@ -4321,7 +4321,7 @@ done:
 
 } /* H5C_set_trace_file_ptr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_stats
  *
@@ -4780,7 +4780,7 @@ done:
 
 } /* H5C_stats() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_stats__reset
@@ -4894,7 +4894,7 @@ H5C_stats__reset(H5C_t H5_ATTR_UNUSED * cache_ptr)
 
 } /* H5C_stats__reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_dump_cache
  *
@@ -5025,7 +5025,7 @@ done:
 
 } /* H5C_dump_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_unpin_entry()
  *
@@ -5080,7 +5080,7 @@ done:
 
 } /* H5C_unpin_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_unprotect
  *
@@ -5449,7 +5449,7 @@ done:
 
 } /* H5C_unprotect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_validate_resize_config()
  *
@@ -5707,7 +5707,7 @@ done:
 
 } /* H5C_validate_resize_config() */
 
-
+
 /*************************************************************************/
 /**************************** Private Functions: *************************/
 /*************************************************************************/
@@ -6065,7 +6065,7 @@ done:
 
 } /* H5C__auto_adjust_cache_size() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__autoadjust__ageout
@@ -6190,7 +6190,7 @@ done:
 
 } /* H5C__autoadjust__ageout() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__autoadjust__ageout__cycle_epoch_marker
@@ -6284,7 +6284,7 @@ done:
 
 } /* H5C__autoadjust__ageout__cycle_epoch_marker() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__autoadjust__ageout__evict_aged_out_entries
@@ -6537,7 +6537,7 @@ done:
 
 } /* H5C__autoadjust__ageout__evict_aged_out_entries() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__autoadjust__ageout__insert_new_marker
@@ -6615,7 +6615,7 @@ done:
 
 } /* H5C__autoadjust__ageout__insert_new_marker() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__autoadjust__ageout__remove_all_markers
@@ -6694,7 +6694,7 @@ done:
 
 } /* H5C__autoadjust__ageout__remove_all_markers() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__autoadjust__ageout__remove_excess_markers
@@ -6782,7 +6782,7 @@ done:
 
 } /* H5C__autoadjust__ageout__remove_excess_markers() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__flash_increase_cache_size
@@ -6946,7 +6946,7 @@ done:
 
 } /* H5C__flash_increase_cache_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5C_flush_invalidate_cache
  *
@@ -7468,7 +7468,7 @@ done:
 
 } /* H5C_flush_invalidate_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_flush_single_entry
@@ -7905,7 +7905,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5C_flush_single_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_load_entry
@@ -8020,7 +8020,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5C_load_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_make_space_in_cache
@@ -8371,7 +8371,7 @@ done:
 
 } /* H5C_make_space_in_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_validate_lru_list
@@ -8489,7 +8489,7 @@ done:
 
 #endif /* H5C_DO_EXTREME_SANITY_CHECKS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C_verify_not_in_index

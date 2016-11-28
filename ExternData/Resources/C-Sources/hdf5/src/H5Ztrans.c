@@ -107,10 +107,10 @@ static void H5Z_XFORM_DEBUG(H5Z_node *tree);
 static void H5Z_print(H5Z_node *tree, FILE *stream);
 #endif  /* H5Z_XFORM_DEBUG */
 
-/* PGCC (11.8-0) has trouble with the command *p++ = *p OP tree_val. It increments P first before 
+/* PGCC (11.8-0) has trouble with the command *p++ = *p OP tree_val. It increments P first before
  * doing the operation.  So I break down the command into two lines:
  *     *p = *p OP tree_val; p++;
- * Actually, the behavior of *p++ = *p OP tree_val is undefined. (SLU - 2012/3/19) 
+ * Actually, the behavior of *p++ = *p OP tree_val is undefined. (SLU - 2012/3/19)
  */
 #define H5Z_XFORM_DO_OP1(RESL,RESR,TYPE,OP,SIZE)                            \
 {   								  	    \
@@ -266,9 +266,9 @@ static void H5Z_print(H5Z_node *tree, FILE *stream);
     H5VM_array_fill(array, &val, sizeof(TYPE), (SIZE));                                             \
 }
 
-/* The difference of this macro from H5Z_XFORM_DO_OP3 is that it handles the operations when the left operand is empty, like -x or +x.  
- * The reason that it's seperated from H5Z_XFORM_DO_OP3 is because compilers don't accept operations like *x or /x.  So in H5Z_do_op, 
- * these two macros are called in different ways. (SLU 2012/3/20) 
+/* The difference of this macro from H5Z_XFORM_DO_OP3 is that it handles the operations when the left operand is empty, like -x or +x.
+ * The reason that it's seperated from H5Z_XFORM_DO_OP3 is because compilers don't accept operations like *x or /x.  So in H5Z_do_op,
+ * these two macros are called in different ways. (SLU 2012/3/20)
  */
 #define H5Z_XFORM_DO_OP6(OP)                                                                                                                    \
 {                                                                                                                                               \
@@ -329,7 +329,7 @@ static void H5Z_print(H5Z_node *tree, FILE *stream);
  *      // FLOAT is a C double
  */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_unget_token
  * Purpose:     Rollback the H5Z_token to the previous H5Z_token retrieved. There
@@ -358,7 +358,7 @@ H5Z_unget_token(H5Z_token *current)
     FUNC_LEAVE_NOAPI_VOID
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_get_token
  *
@@ -496,7 +496,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_xform_destroy_parse_tree
  * Purpose:     Recursively destroys the expression tree.
@@ -524,7 +524,7 @@ H5Z_xform_destroy_parse_tree(H5Z_node *tree)
     FUNC_LEAVE_NOAPI_VOID
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_parse
  *
@@ -560,7 +560,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_parse_expression
  * Purpose:     Beginning of the recursive descent parser to parse the
@@ -655,7 +655,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_parse_term
  * Purpose:     Parses a term in our expression language. A term is:
@@ -741,7 +741,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_parse_factor
  * Purpose:     Parses a factor in our expression language. A factor is:
@@ -889,7 +889,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_new_node
  * Purpose:     Create and initilize a new H5Z_node structure.
@@ -918,7 +918,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_xform_eval
  * Purpose: 	If the transform is trivial, this function applies it.
@@ -1029,7 +1029,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_xform_eval() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_xform_eval_full
  * Purpose: 	Does a full evaluation of the parse tree contained in tree
@@ -1125,7 +1125,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_xform_eval_full() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_find_type
  * Return:      Native type of datatype that is passed in
@@ -1146,15 +1146,15 @@ H5Z_xform_find_type(const H5T_t* type)
     HDassert(type);
 
     /* Check for SHORT type */
-    if((tmp = (H5T_t *)H5I_object(H5T_NATIVE_SHORT)) 
+    if((tmp = (H5T_t *)H5I_object(H5T_NATIVE_SHORT))
             && 0 == H5T_cmp(type, tmp, FALSE))
 	HGOTO_DONE(H5T_NATIVE_SHORT)
     /* Check for INT type */
-    else if((tmp = (H5T_t *)H5I_object(H5T_NATIVE_INT)) 
+    else if((tmp = (H5T_t *)H5I_object(H5T_NATIVE_INT))
             && 0 == H5T_cmp(type, tmp, FALSE))
         HGOTO_DONE(H5T_NATIVE_INT)
     /* Check for LONG type */
-    else if((tmp = (H5T_t *)H5I_object(H5T_NATIVE_LONG)) 
+    else if((tmp = (H5T_t *)H5I_object(H5T_NATIVE_LONG))
             && 0 == H5T_cmp(type, tmp, FALSE))
 	HGOTO_DONE(H5T_NATIVE_LONG)
     /* Check for LONGLONG type */
@@ -1210,7 +1210,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_xform_find_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_xform_copy_tree
  * Purpose:     Makes a copy of the parse tree passed in.
@@ -1287,10 +1287,10 @@ H5Z_xform_copy_tree(H5Z_node* tree, H5Z_datval_ptrs* dat_val_pointers, H5Z_datva
             FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_op_is_numbs
- * Purpose:     Internal function to facilitate the condition check in 
+ * Purpose:     Internal function to facilitate the condition check in
  *              H5Z_xform_reduce_tree to reduce the bulkiness of the code.
  * Return:      TRUE or FALSE
  * Programmer:  Raymond Lu
@@ -1314,10 +1314,10 @@ H5Z_op_is_numbs(H5Z_node* _tree)
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_op_is_numbs2
- * Purpose:     Internal function to facilitate the condition check in 
+ * Purpose:     Internal function to facilitate the condition check in
  *              H5Z_xform_reduce_tree to reduce the bulkiness of the code.
  *              The difference from H5Z_op_is_numbs is that the left child
  *              can be empty, like -x or +x.
@@ -1344,7 +1344,7 @@ H5Z_op_is_numbs2(H5Z_node* _tree)
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_xform_reduce_tree
  * Purpose:     Simplifies parse tree passed in by performing any obvious
@@ -1399,7 +1399,7 @@ H5Z_xform_reduce_tree(H5Z_node* tree)
     FUNC_LEAVE_NOAPI_VOID;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Z_do_op
  * Purpose:     If the root of the tree passed in points to a simple
@@ -1435,7 +1435,7 @@ H5Z_do_op(H5Z_node* tree)
     FUNC_LEAVE_NOAPI_VOID;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5D_xform_create
  *
@@ -1526,7 +1526,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5Z_xform_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Z_xform_destroy
  *
@@ -1572,7 +1572,7 @@ H5Z_xform_destroy(H5Z_data_xform_t *data_xform_prop)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5Z_xform_destroy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Z_xform_copy
  *
@@ -1656,7 +1656,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5Z_xform_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Z_xform_noop
  *
@@ -1686,7 +1686,7 @@ H5Z_xform_noop(const H5Z_data_xform_t *data_xform_prop)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5Z_xform_noop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Z_xform_extract_xform_str
  *

@@ -96,7 +96,7 @@ static herr_t H5O_copy_mesg(H5F_t *f, hid_t dxpl_id, H5O_t *oh, size_t idx,
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_create
  *
@@ -142,7 +142,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_append_oh
  *
@@ -187,7 +187,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_append_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_append_real
  *
@@ -234,7 +234,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_append_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_write
  *
@@ -291,7 +291,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_write_oh
  *
@@ -338,7 +338,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_write_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_write_real
  *
@@ -436,7 +436,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_write_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_read
  *
@@ -490,7 +490,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_read_oh
  *
@@ -556,7 +556,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_read_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_reset
  *
@@ -593,7 +593,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_reset_real
  *
@@ -632,7 +632,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_reset_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_free
  *
@@ -667,7 +667,7 @@ H5O_msg_free(unsigned type_id, void *mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_free_mesg
  *
@@ -694,7 +694,7 @@ H5O_msg_free_mesg(H5O_mesg_t *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_msg_free_mesg() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_free_real
  *
@@ -729,7 +729,7 @@ H5O_msg_free_real(const H5O_msg_class_t *type, void *msg_native)
     FUNC_LEAVE_NOAPI(NULL)
 } /* end H5O_msg_free_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_copy
  *
@@ -767,7 +767,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_count
  *
@@ -816,7 +816,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_count() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_count_real
  *
@@ -852,7 +852,7 @@ H5O_msg_count_real(const H5O_t *oh, const H5O_msg_class_t *type)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_count_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_exists
  *
@@ -898,7 +898,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_exists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_exists_oh
  *
@@ -940,7 +940,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_exists_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_remove
  *
@@ -995,7 +995,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_remove_op
  *
@@ -1047,7 +1047,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_remove_op() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_remove_cb
  *
@@ -1064,7 +1064,7 @@ done:
  * Modifications:
  *	Vailin Choi; Sept 2011
  *	Indicate that the object header is modified and might possibly need
- *	to condense messages in the object header 
+ *	to condense messages in the object header
  *-------------------------------------------------------------------------
  */
 static herr_t
@@ -1115,7 +1115,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_remove_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_remove_real
  *
@@ -1176,7 +1176,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_remove_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_iterate
  *
@@ -1242,7 +1242,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_iterate_real
  *
@@ -1349,7 +1349,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_iterate_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_raw_size
  *
@@ -1389,7 +1389,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_raw_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_size_f
  *
@@ -1453,7 +1453,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_size_f() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_size_oh
  *
@@ -1505,7 +1505,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_size_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_msg_can_share
  *
@@ -1555,7 +1555,7 @@ H5O_msg_can_share(unsigned type_id, const void *mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_can_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_msg_can_share_in_ohdr
  *
@@ -1592,7 +1592,7 @@ H5O_msg_can_share_in_ohdr(unsigned type_id)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_can_share_in_ohdr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_msg_is_shared
  *
@@ -1631,7 +1631,7 @@ H5O_msg_is_shared(unsigned type_id, const void *mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_is_shared() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_set_share
  *
@@ -1682,7 +1682,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_set_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_reset_share
  *
@@ -1717,7 +1717,7 @@ H5O_msg_reset_share(unsigned type_id, void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_msg_reset_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_msg_get_crt_index
  *
@@ -1759,7 +1759,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_get_crt_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_encode
  *
@@ -1799,7 +1799,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_decode
  *
@@ -1845,7 +1845,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_msg_copy_file
  *
@@ -1892,7 +1892,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_alloc
  *
@@ -1958,7 +1958,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_copy_mesg
  *
@@ -2027,7 +2027,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_mesg() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_msg_delete
  *
@@ -2073,7 +2073,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_delete_mesg
  *
@@ -2115,7 +2115,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_delete_mesg() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_flush
  *
@@ -2216,7 +2216,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_flush_msgs
  *
@@ -2263,7 +2263,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_flush_msgs() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_chunkno
  *
@@ -2319,7 +2319,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_get_chunkno() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_lock
  *
@@ -2378,7 +2378,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_msg_lock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_msg_unlock
  *

@@ -123,7 +123,7 @@ H5FL_DEFINE(haddr_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Ocopy
  *
@@ -293,7 +293,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Ocopy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_header_real
  *
@@ -318,7 +318,7 @@ done:
  *	When the object is opened, call the object's flush class action
  *	to ensure that cached data is flushed so that H5Ocopy will get
  *	the correct data.
- *	
+ *
  *-------------------------------------------------------------------------
  */
 static herr_t
@@ -361,7 +361,7 @@ H5O_copy_header_real(const H5O_loc_t *oloc_src, H5O_loc_t *oloc_dst /*out*/,
 
     /* Check if the object at the address is already open in the file */
     if(H5FO_opened(oloc_src->file, oloc_src->addr) != NULL) {
-	
+
 	H5G_loc_t   tmp_loc; 	/* Location of object */
 	H5O_loc_t   tmp_oloc; 	/* Location of object */
 	H5G_name_t  tmp_path;	/* Object's path */
@@ -890,7 +890,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_header_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_header_map
  *
@@ -988,7 +988,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_header_map() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_copy_free_addrmap_cb
@@ -1030,7 +1030,7 @@ H5O_copy_free_addrmap_cb(void *_item, void H5_ATTR_UNUSED *key, void H5_ATTR_UNU
     FUNC_LEAVE_NOAPI(0)
 }   /* H5O_copy_free_addrmap_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_header
  *
@@ -1126,7 +1126,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_header() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_obj
  *
@@ -1190,7 +1190,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_obj() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_obj_by_ref
  *
@@ -1252,7 +1252,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_obj_by_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_copy_expand_ref
  *
@@ -1387,7 +1387,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_expand_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_free_comm_dt_cb
  *
@@ -1419,7 +1419,7 @@ H5O_copy_free_comm_dt_cb(void *item, void *_key, void H5_ATTR_UNUSED *op_data)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_copy_free_comm_dt_cb */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_comm_dt_cmp
  *
@@ -1459,7 +1459,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_comm_dt_cmp */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_search_comm_dt_attr_cb
  *
@@ -1541,7 +1541,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_search_comm_dt_attr_cb */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_search_comm_dt_check
  *
@@ -1645,7 +1645,7 @@ H5O_copy_search_comm_dt_check(H5O_loc_t *obj_oloc,
     attr_op.u.lib_op = H5O_copy_search_comm_dt_attr_cb;
     udata->obj_oloc.file = obj_oloc->file;
     udata->obj_oloc.addr = obj_oloc->addr;
-    if(H5O_attr_iterate_real((hid_t)-1, obj_oloc, udata->dxpl_id, H5_INDEX_NAME, 
+    if(H5O_attr_iterate_real((hid_t)-1, obj_oloc, udata->dxpl_id, H5_INDEX_NAME,
                              H5_ITER_NATIVE, (hsize_t)0, NULL, &attr_op, udata) < 0)
         HGOTO_ERROR(H5E_OHDR, H5E_BADITER, FAIL, "error iterating over attributes");
 
@@ -1666,7 +1666,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_search_comm_dt_check */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_search_comm_dt_cb
  *
@@ -1726,7 +1726,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_search_comm_dt_cb */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_search_comm_dt
  *
@@ -1901,7 +1901,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_copy_search_comm_dt */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_copy_insert_comm_dt
  *

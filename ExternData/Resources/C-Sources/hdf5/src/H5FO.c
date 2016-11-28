@@ -51,7 +51,7 @@ H5FL_DEFINE_STATIC(H5FO_open_obj_t);
 /* Declare a free list to manage the H5FO_obj_count_t struct */
 H5FL_DEFINE_STATIC(H5FO_obj_count_t);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_create
@@ -89,7 +89,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_opened
@@ -135,7 +135,7 @@ H5FO_opened(const H5F_t *f, haddr_t addr)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_opened() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_insert
@@ -189,7 +189,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_insert() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_delete
@@ -240,7 +240,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_delete() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_mark
@@ -283,7 +283,7 @@ H5FO_mark(const H5F_t *f, haddr_t addr, hbool_t deleted)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_mark() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_marked
@@ -325,7 +325,7 @@ H5FO_marked(const H5F_t *f, haddr_t addr)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_marked() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_dest
@@ -370,7 +370,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_dest() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_top_create
@@ -407,7 +407,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_top_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_top_incr
@@ -462,7 +462,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_top_incr() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_top_decr
@@ -516,7 +516,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_top_decr() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_top_count
@@ -558,7 +558,7 @@ H5FO_top_count(const H5F_t *f, haddr_t addr)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FO_top_count() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5FO_top_dest

@@ -109,7 +109,7 @@ H5FL_DEFINE(H5FS_sinfo_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_new
  *
@@ -184,7 +184,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sinfo_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_lock
  *
@@ -294,7 +294,7 @@ HDfprintf(stderr, "%s: fspace->alloc_sect_size = %Hu, fspace->sect_size = %Hu\n"
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sinfo_lock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_unlock
  *
@@ -456,7 +456,7 @@ HDfprintf(stderr, "%s: Leaving, ret_value = %d\n", FUNC, ret_value);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sinfo_unlock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_serialize_size
  *
@@ -520,7 +520,7 @@ HDfprintf(stderr, "%s: fspace->serial_sect_count = %Hu\n", "H5FS_sect_serialize_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5FS_sect_serialize_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_increase
  *
@@ -582,7 +582,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_increase() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_decrease
  *
@@ -641,7 +641,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_decrease() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_size_node_decr
  *
@@ -729,7 +729,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_size_node_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_unlink_size
  *
@@ -784,7 +784,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_unlink_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_unlink_rest
  *
@@ -841,7 +841,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_unlink_rest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_remove_real
  *
@@ -883,7 +883,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_remove_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_remove
  *
@@ -928,7 +928,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_link_size
  *
@@ -1036,7 +1036,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_link_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_link_rest
  *
@@ -1088,7 +1088,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_link_rest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_link
  *
@@ -1140,7 +1140,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_merge
  *
@@ -1356,7 +1356,7 @@ HDfprintf(stderr, "%s: Leaving, ret_value = %d\n", FUNC, ret_value);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_add
  *
@@ -1446,7 +1446,7 @@ HDfprintf(stderr, "%s: Leaving, ret_value = %d\n", FUNC, ret_value);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_try_extend
  *
@@ -1577,7 +1577,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_try_extend() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_find_node
  *
@@ -1733,7 +1733,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_find_node() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_find
  *
@@ -1810,7 +1810,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_find() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_iterate_sect_cb
  *
@@ -1848,7 +1848,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_iterate_sect_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_iterate_node_cb
  *
@@ -1887,7 +1887,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_iterate_node_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_iterate
  *
@@ -1955,7 +1955,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_stats
  *
@@ -1986,7 +1986,7 @@ H5FS_sect_stats(const H5FS_t *fspace, hsize_t *tot_space, hsize_t *nsects)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5FS_sect_stats() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_change_class
  *
@@ -2158,7 +2158,7 @@ done:
 } /* H5FS_sect_change_class() */
 
 #ifdef H5FS_DEBUG_ASSERT
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_assert
  *
@@ -2309,7 +2309,7 @@ HDfprintf(stderr, "%s: sect->size = %Hu, sect->addr = %a, sect->type = %u\n", "H
 } /* end H5FS_sect_assert() */
 #endif /* H5FS_DEBUG_ASSERT */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_try_shrink_eoa
  *
@@ -2379,7 +2379,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sect_try_shrink_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sect_query_last_sect
  *

@@ -91,7 +91,7 @@ H5FL_SEQ_DEFINE(H5HF_indirect_ptr_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_pin
  *
@@ -158,7 +158,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_iblock_pin() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_unpin
  *
@@ -225,7 +225,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_iblock_unpin() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_incr
  *
@@ -262,7 +262,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_iblock_incr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_decr
  *
@@ -340,7 +340,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_iblock_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_iblock_dirty
  *
@@ -372,7 +372,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_iblock_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_root_create
  *
@@ -505,7 +505,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_root_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_root_double
  *
@@ -692,7 +692,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_root_double() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_root_halve
  *
@@ -827,7 +827,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_root_halve() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_root_revert
  *
@@ -908,7 +908,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_root_revert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_alloc_row
  *
@@ -976,7 +976,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_alloc_row() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_create
  *
@@ -1110,7 +1110,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_protect
  *
@@ -1238,7 +1238,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_unprotect
  *
@@ -1292,7 +1292,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_unprotect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_attach
  *
@@ -1357,7 +1357,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_attach() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_detach
  *
@@ -1477,7 +1477,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_detach() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_entry_addr
  *
@@ -1508,7 +1508,7 @@ H5HF_man_iblock_entry_addr(H5HF_indirect_t *iblock, unsigned entry, haddr_t *chi
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_man_iblock_entry_addr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_delete
  *
@@ -1616,7 +1616,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5HF_man_iblock_size
@@ -1685,7 +1685,7 @@ done:
    FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iblock_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iblock_dest
  *

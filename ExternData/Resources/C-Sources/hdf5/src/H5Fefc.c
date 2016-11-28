@@ -72,7 +72,7 @@ static void H5F_efc_try_close_tag2(H5F_file_t *sf, H5F_file_t **tail);
 H5FL_DEFINE_STATIC(H5F_efc_ent_t);
 H5FL_DEFINE_STATIC(H5F_efc_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_create
  *
@@ -119,7 +119,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_efc_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_open
  *
@@ -314,7 +314,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_efc_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_close
  *
@@ -378,7 +378,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_efc_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_max_nfiles
  *
@@ -403,7 +403,7 @@ H5F_efc_max_nfiles(H5F_efc_t *efc)
     FUNC_LEAVE_NOAPI(efc->max_nfiles)
 } /* end H5F_efc_max_nfiles */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_release
  *
@@ -465,7 +465,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5F_efc_release() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_destroy
  *
@@ -517,7 +517,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5F_efc_destroy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_remove_ent
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_efc_remove_ent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_try_close_tag1
  *
@@ -657,7 +657,7 @@ H5F_efc_try_close_tag1(H5F_file_t *sf, H5F_file_t **tail)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5F_efc_try_close_tag1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_try_close_tag2
  *
@@ -728,7 +728,7 @@ H5F_efc_try_close_tag2(H5F_file_t *sf, H5F_file_t **tail)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5F_efc_try_close_tag2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_efc_try_close
  *
@@ -838,7 +838,7 @@ H5F_efc_try_close(H5F_t *f)
         HGOTO_DONE(SUCCEED)
 
     /* If the file EFC were locked, that should always mean that there exists
-     * a reference to this file that is not in an EFC (it may have just been 
+     * a reference to this file that is not in an EFC (it may have just been
      * removed from an EFC), and should have been caught by the above check */
     /* If we get here then we must be beginning a new run.  Make sure that the
      * temporary variables in f->shared->efc are at the default value */

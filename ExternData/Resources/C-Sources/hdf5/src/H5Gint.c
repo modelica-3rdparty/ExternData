@@ -118,7 +118,7 @@ H5FL_DEFINE(H5_obj_t);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5G_init_int_interface -- Initialize interface-specific information
@@ -146,7 +146,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5G_init_int_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__create_named
  *
@@ -201,7 +201,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__create_named() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__create
  *
@@ -278,7 +278,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__open_name
  *
@@ -342,7 +342,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__open_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_open
  *
@@ -435,7 +435,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_open_oid
  *
@@ -487,7 +487,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_open_oid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_close
  *
@@ -560,7 +560,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_oloc
  *
@@ -583,7 +583,7 @@ H5G_oloc(H5G_t *grp)
     FUNC_LEAVE_NOAPI(grp ? &(grp->oloc) : NULL)
 } /* end H5G_oloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_nameof
  *
@@ -606,7 +606,7 @@ H5G_nameof(H5G_t *grp)
     FUNC_LEAVE_NOAPI(grp ? &(grp->path) : NULL)
 } /* end H5G_nameof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_fileof
  *
@@ -632,7 +632,7 @@ H5G_fileof(H5G_t *grp)
     FUNC_LEAVE_NOAPI(grp->oloc.file)
 } /* end H5G_fileof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_get_shared_count
  *
@@ -656,7 +656,7 @@ H5G_get_shared_count(H5G_t *grp)
     FUNC_LEAVE_NOAPI(grp->shared->fo_count)
 } /* end H5G_get_shared_count() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_mount
  *
@@ -684,7 +684,7 @@ H5G_mount(H5G_t *grp)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_mount() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_mounted
  *
@@ -708,7 +708,7 @@ H5G_mounted(H5G_t *grp)
     FUNC_LEAVE_NOAPI(grp->shared->mounted)
 } /* end H5G_mounted() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_unmount
  *
@@ -736,7 +736,7 @@ H5G_unmount(H5G_t *grp)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_unmount() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_iterate_cb
  *
@@ -791,7 +791,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_iterate_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_iterate
  *
@@ -855,7 +855,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_free_visit_visited
  *
@@ -878,7 +878,7 @@ H5G_free_visit_visited(void *item, void H5_ATTR_UNUSED *key, void H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_free_visit_visited() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_visit_cb
  *
@@ -1040,7 +1040,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_visit_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_visit
  *

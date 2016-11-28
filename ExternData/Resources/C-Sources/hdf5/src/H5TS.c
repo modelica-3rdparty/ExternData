@@ -38,7 +38,7 @@ H5TS_key_t H5TS_errstk_key_g;
 H5TS_key_t H5TS_funcstk_key_g;
 H5TS_key_t H5TS_cancel_key_g;
 
-
+
 /*--------------------------------------------------------------------------
  * NAME
  *    H5TS_key_destructor
@@ -66,7 +66,7 @@ H5TS_key_destructor(void *key_val)
         HDfree(key_val);
 }
 
-
+
 #ifndef H5_HAVE_WIN_THREADS
 
 /*--------------------------------------------------------------------------
@@ -92,7 +92,7 @@ void
 H5TS_pthread_first_thread_init(void)
 {
     H5_g.H5_libinit_g = FALSE;
-    
+
 #ifdef H5_HAVE_WIN32_API
 # ifdef PTW32_STATIC_LIB
     pthread_win32_process_attach_np();
@@ -115,7 +115,7 @@ H5TS_pthread_first_thread_init(void)
 }
 #endif /* H5_HAVE_WIN_THREADS */
 
-
+
 /*--------------------------------------------------------------------------
  * NAME
  *    H5TS_mutex_lock
@@ -140,7 +140,7 @@ herr_t
 H5TS_mutex_lock(H5TS_mutex_t *mutex)
 {
 #ifdef  H5_HAVE_WIN_THREADS
-    EnterCriticalSection( &mutex->CriticalSection); 
+    EnterCriticalSection( &mutex->CriticalSection);
     return 0;
 #else /* H5_HAVE_WIN_THREADS */
     herr_t ret_value = pthread_mutex_lock(&mutex->atomic_lock);
@@ -161,11 +161,11 @@ H5TS_mutex_lock(H5TS_mutex_t *mutex)
         mutex->lock_count = 1;
     }
 
-    return pthread_mutex_unlock(&mutex->atomic_lock); 
+    return pthread_mutex_unlock(&mutex->atomic_lock);
 #endif /* H5_HAVE_WIN_THREADS */
 }
 
-
+
 /*--------------------------------------------------------------------------
  * NAME
  *    H5TS_mutex_unlock
@@ -192,7 +192,7 @@ H5TS_mutex_unlock(H5TS_mutex_t *mutex)
 #ifdef  H5_HAVE_WIN_THREADS
     /* Releases ownership of the specified critical section object. */
     LeaveCriticalSection(&mutex->CriticalSection);
-    return 0; 
+    return 0;
 #else  /* H5_HAVE_WIN_THREADS */
     herr_t ret_value = pthread_mutex_lock(&mutex->atomic_lock);
 
@@ -211,11 +211,11 @@ H5TS_mutex_unlock(H5TS_mutex_t *mutex)
             ret_value = err;
     } /* end if */
 
-    return ret_value; 
+    return ret_value;
 #endif /* H5_HAVE_WIN_THREADS */
 } /* H5TS_mutex_unlock */
 
-
+
 /*--------------------------------------------------------------------------
  * NAME
  *    H5TS_cancel_count_inc
@@ -248,9 +248,9 @@ H5TS_cancel_count_inc(void)
     return SUCCEED;
 #else /* H5_HAVE_WIN_THREADS */
     H5TS_cancel_t *cancel_counter;
-    herr_t ret_value = SUCCEED; 
+    herr_t ret_value = SUCCEED;
 
-    cancel_counter = (H5TS_cancel_t *)H5TS_get_thread_local_value(H5TS_cancel_key_g); 
+    cancel_counter = (H5TS_cancel_t *)H5TS_get_thread_local_value(H5TS_cancel_key_g);
 
     if (!cancel_counter) {
         /*
@@ -276,11 +276,11 @@ H5TS_cancel_count_inc(void)
 
     ++cancel_counter->cancel_count;
 
-    return ret_value; 
+    return ret_value;
 #endif /* H5_HAVE_WIN_THREADS */
 }
 
-
+
 /*--------------------------------------------------------------------------
  * NAME
  *    H5TS_cancel_count_dec
@@ -306,25 +306,25 @@ H5TS_cancel_count_inc(void)
 herr_t
 H5TS_cancel_count_dec(void)
 {
-#ifdef  H5_HAVE_WIN_THREADS 
+#ifdef  H5_HAVE_WIN_THREADS
     /* unsupported; will just return 0 */
     return SUCCEED;
 #else /* H5_HAVE_WIN_THREADS */
-    register H5TS_cancel_t *cancel_counter; 
+    register H5TS_cancel_t *cancel_counter;
     herr_t ret_value = SUCCEED;
 
-    cancel_counter = (H5TS_cancel_t *)H5TS_get_thread_local_value(H5TS_cancel_key_g); 
+    cancel_counter = (H5TS_cancel_t *)H5TS_get_thread_local_value(H5TS_cancel_key_g);
 
     if (cancel_counter->cancel_count == 1)
         ret_value = pthread_setcancelstate(cancel_counter->previous_state, NULL);
 
-    --cancel_counter->cancel_count; 
+    --cancel_counter->cancel_count;
 
     return ret_value;
 #endif /* H5_HAVE_WIN_THREADS */
 }
 
-
+
 #ifdef H5_HAVE_WIN_THREADS
 /*--------------------------------------------------------------------------
  * NAME
@@ -338,7 +338,7 @@ H5TS_cancel_count_dec(void)
  *
  *--------------------------------------------------------------------------
  */
-H5_DLL BOOL CALLBACK 
+H5_DLL BOOL CALLBACK
 H5TS_win32_process_enter(PINIT_ONCE InitOnce, PVOID Parameter, PVOID *lpContex)
 {
     BOOL ret_value = TRUE;
@@ -359,7 +359,7 @@ H5TS_win32_process_enter(PINIT_ONCE InitOnce, PVOID Parameter, PVOID *lpContex)
 } /* H5TS_win32_process_enter() */
 #endif /* H5_HAVE_WIN_THREADS */
 
-
+
 #ifdef H5_HAVE_WIN_THREADS
 /*--------------------------------------------------------------------------
  * NAME
@@ -390,7 +390,7 @@ H5TS_win32_thread_enter(void)
 } /* H5TS_win32_thread_enter() */
 #endif /* H5_HAVE_WIN_THREADS */
 
-
+
 #ifdef H5_HAVE_WIN_THREADS
 /*--------------------------------------------------------------------------
  * NAME
@@ -429,7 +429,7 @@ H5TS_win32_process_exit(void)
 } /* H5TS_win32_process_exit() */
 #endif /* H5_HAVE_WIN_THREADS */
 
-
+
 #ifdef H5_HAVE_WIN_THREADS
 /*--------------------------------------------------------------------------
  * NAME
@@ -472,7 +472,7 @@ H5TS_win32_thread_exit(void)
 } /* H5TS_win32_thread_exit() */
 #endif /* H5_HAVE_WIN_THREADS */
 
-
+
 /*--------------------------------------------------------------------------
  * NAME
  *    H5TS_create_thread
@@ -493,7 +493,7 @@ H5TS_create_thread(void *(*func)(void *), H5TS_attr_t *attr, void *udata)
 {
     H5TS_thread_t ret_value;
 
-#ifdef  H5_HAVE_WIN_THREADS 
+#ifdef  H5_HAVE_WIN_THREADS
 
     /* When calling C runtime functions, you should use _beginthread or
      * _beginthreadex instead of CreateThread.  Threads created with

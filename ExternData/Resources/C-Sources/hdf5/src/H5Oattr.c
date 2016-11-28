@@ -101,7 +101,7 @@ H5FL_EXTERN(H5S_t);
 /* Declare external the free list for H5S_extent_t's */
 H5FL_EXTERN(H5S_extent_t);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_attr_decode
@@ -252,7 +252,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_decode() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_attr_encode
@@ -361,7 +361,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5O_attr_encode() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_attr_copy
@@ -395,7 +395,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_copy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_attr_size
@@ -456,7 +456,7 @@ H5O_attr_size(const H5F_t H5_ATTR_UNUSED *f, const void *_mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_reset
  *
@@ -485,7 +485,7 @@ H5O_attr_reset(void H5_ATTR_UNUSED *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_attr_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_free
  *
@@ -519,7 +519,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_delete
  *
@@ -556,7 +556,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_link
  *
@@ -597,7 +597,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_pre_copy_file
  *
@@ -632,7 +632,7 @@ H5O_attr_pre_copy_file(H5F_t H5_ATTR_UNUSED *file_src, const void H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_attr_pre_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_copy_file
  *
@@ -675,7 +675,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_attr_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_post_copy_file
  *
@@ -709,7 +709,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_attr_post_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_get_crt_index
  *
@@ -739,7 +739,7 @@ H5O_attr_get_crt_index(const void *_mesg, H5O_msg_crt_idx_t *crt_idx /*out*/)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_attr_get_crt_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_set_crt_index
  *
@@ -768,7 +768,7 @@ H5O_attr_set_crt_index(void *_mesg, H5O_msg_crt_idx_t crt_idx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_attr_set_crt_index() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_attr_debug

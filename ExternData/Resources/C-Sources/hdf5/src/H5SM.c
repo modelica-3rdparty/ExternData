@@ -59,7 +59,7 @@ static herr_t H5SM_create_index(H5F_t *f, H5SM_index_header_t *header,
 static herr_t H5SM_delete_index(H5F_t *f, H5SM_index_header_t *header,
                                 hid_t dxpl_id, hbool_t delete_heap);
 static haddr_t H5SM_create_list(H5F_t *f, H5SM_index_header_t *header, hid_t dxpl_id);
-static herr_t H5SM_find_in_list(const H5SM_list_t *list, const H5SM_mesg_key_t *key, 
+static herr_t H5SM_find_in_list(const H5SM_list_t *list, const H5SM_mesg_key_t *key,
                                 size_t *empty_pos, size_t *list_pos);
 static herr_t H5SM_convert_list_to_btree(H5F_t * f, H5SM_index_header_t * header,
                 H5SM_list_t **_list, H5HF_t *fheap, H5O_t *open_oh, hid_t dxpl_id);
@@ -101,7 +101,7 @@ H5FL_ARR_DEFINE(H5SM_sohm_t, H5O_SHMESG_MAX_LIST_SIZE);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_init
  *
@@ -239,7 +239,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_type_to_flag
  *
@@ -281,7 +281,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_type_to_flag() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_get_index
  *
@@ -325,7 +325,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_get_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_type_shared
  *
@@ -381,7 +381,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_type_shared() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_get_fheap_addr
  *
@@ -431,7 +431,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_get_fheap_addr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_create_index
  *
@@ -531,7 +531,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_create_index */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_delete_index
  *
@@ -605,7 +605,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_delete_index */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_create_list
  *
@@ -675,7 +675,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_create_list */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_convert_list_to_btree
  *
@@ -790,7 +790,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5SM_convert_list_to_btree() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_convert_btree_to_list
  *
@@ -849,7 +849,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_convert_btree_to_list() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_can_share_common
  *
@@ -894,7 +894,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_can_share_common() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_can_share
  *
@@ -970,7 +970,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_can_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_try_share
  *
@@ -1127,7 +1127,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_try_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_incr_ref
  *
@@ -1188,7 +1188,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_incr_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_write_mesg
  *
@@ -1494,7 +1494,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_write_mesg() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_delete
  *
@@ -1585,7 +1585,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_find_in_list
  *
@@ -1654,7 +1654,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_find_in_list */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_get_hash_fh_cb
  *
@@ -1682,7 +1682,7 @@ H5SM_get_hash_fh_cb(const void *obj, size_t obj_len, void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_get_hash_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_decr_ref
  *
@@ -1728,7 +1728,7 @@ H5SM_decr_ref(void *record, void *op_data, hbool_t *changed)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_decr_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_delete_from_index
  *
@@ -1928,7 +1928,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_delete_from_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_get_info
  *
@@ -2045,7 +2045,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_get_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_reconstitute
  *
@@ -2077,7 +2077,7 @@ H5SM_reconstitute(H5O_shared_t *sh_mesg, H5F_t *f, unsigned msg_type_id,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_reconstitute() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_get_refcount_bt2_cb
  *
@@ -2110,7 +2110,7 @@ H5SM_get_refcount_bt2_cb(const void *_record, void *_op_data)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_get_refcount_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_get_refcount
  *
@@ -2239,7 +2239,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_get_refcount() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_read_iter_op
  *
@@ -2305,7 +2305,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_read_iter_op() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_read_mesg_fh_cb
  *
@@ -2340,7 +2340,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_read_mesg_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_read_mesg
  *
@@ -2441,7 +2441,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_read_mesg */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_table_free
  *
@@ -2470,7 +2470,7 @@ H5SM_table_free(H5SM_master_table_t *table)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_table_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_list_free
  *
@@ -2498,7 +2498,7 @@ H5SM_list_free(H5SM_list_t *list)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_list_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_table_debug
  *
@@ -2588,7 +2588,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_table_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_list_debug
  *
@@ -2678,7 +2678,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_list_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5SM_ih_size
  *

@@ -88,7 +88,7 @@ H5FL_BLK_DEFINE(lheap_chunk);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_create
  *
@@ -191,7 +191,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_dblk_realloc
  *
@@ -303,7 +303,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_dblk_realloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5HL_minimize_heap_space
  *
@@ -425,7 +425,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HL_minimize_heap_space() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5HL_protect
  *
@@ -516,7 +516,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5HL_offset_into
  *
@@ -548,7 +548,7 @@ H5HL_offset_into(const H5HL_t *heap, size_t offset)
     FUNC_LEAVE_NOAPI(heap->dblk_image + offset)
 } /* end H5HL_offset_into() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5HL_unprotect
  *
@@ -599,7 +599,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_unprotect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_remove_free
  *
@@ -630,7 +630,7 @@ H5HL_remove_free(H5HL_t *heap, H5HL_free_t *fl)
     FUNC_LEAVE_NOAPI((H5HL_free_t *)H5FL_FREE(H5HL_free_t, fl))
 } /* end H5HL_remove_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_dirty
  *
@@ -673,7 +673,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_insert
  *
@@ -882,7 +882,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HL_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_remove
  *
@@ -1040,7 +1040,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_delete
  *
@@ -1117,7 +1117,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_get_size
  *
@@ -1169,7 +1169,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_get_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5HL_heapsize
  *

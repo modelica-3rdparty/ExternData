@@ -129,7 +129,7 @@ const H5AC_class_t H5AC_FSPACE_SINFO[1] = {{
 H5FL_BLK_DEFINE_STATIC(sect_block);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_hdr_load
  *
@@ -264,7 +264,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_cache_hdr_load() */ /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_hdr_flush
  *
@@ -428,7 +428,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_cache_hdr_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_hdr_dest
  *
@@ -477,7 +477,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_cache_hdr_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_hdr_clear
  *
@@ -514,7 +514,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_cache_hdr_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_hdr_size
  *
@@ -546,7 +546,7 @@ H5FS_cache_hdr_size(const H5F_t H5_ATTR_UNUSED *f, const H5FS_t *fspace, size_t 
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5FS_cache_hdr_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_sinfo_load
  *
@@ -709,7 +709,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_cache_sinfo_load() */ /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_serialize_sect_cb
  *
@@ -765,7 +765,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sinfo_serialize_sect_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_serialize_node_cb
  *
@@ -811,7 +811,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_sinfo_serialize_node_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_sinfo_flush
  *
@@ -909,7 +909,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_cache_sinfo_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_sinfo_dest
  *
@@ -955,7 +955,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_cache_sinfo_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_sinfo_clear
  *
@@ -992,7 +992,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_cache_sinfo_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_cache_sinfo_size
  *

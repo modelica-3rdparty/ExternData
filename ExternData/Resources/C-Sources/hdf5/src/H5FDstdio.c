@@ -116,7 +116,7 @@ typedef struct H5FD_stdio_t {
     DWORD           nFileIndexLow;
     DWORD           nFileIndexHigh;
     DWORD           dwVolumeSerialNumber;
-    
+
     HANDLE          hFile;      /* Native windows file handle */
 #endif  /* H5_HAVE_WIN32_API */
 } H5FD_stdio_t;
@@ -214,7 +214,7 @@ static const H5FD_class_t H5FD_stdio_g = {
     H5FD_FLMAP_DICHOTOMY	/* fl_map       */
 };
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_init
  *
@@ -241,7 +241,7 @@ H5FD_stdio_init(void)
     return H5FD_STDIO_g;
 } /* end H5FD_stdio_init() */
 
-
+
 /*---------------------------------------------------------------------------
  * Function:  H5FD_stdio_term
  *
@@ -263,7 +263,7 @@ H5FD_stdio_term(void)
     return;
 } /* end H5FD_stdio_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_fapl_stdio
  *
@@ -294,7 +294,7 @@ H5Pset_fapl_stdio(hid_t fapl_id)
     return H5Pset_driver(fapl_id, H5FD_STDIO, NULL);
 } /* end H5Pset_fapl_stdio() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_open
  *
@@ -441,7 +441,7 @@ H5FD_stdio_open( const char *name, unsigned flags, hid_t fapl_id,
     return (H5FD_t*)file;
 } /* end H5FD_stdio_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5F_stdio_close
  *
@@ -474,7 +474,7 @@ H5FD_stdio_close(H5FD_t *_file)
     return 0;
 } /* end H5FD_stdio_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_cmp
  *
@@ -528,7 +528,7 @@ H5FD_stdio_cmp(const H5FD_t *_f1, const H5FD_t *_f2)
     return 0;
 } /* H5FD_stdio_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_query
  *
@@ -562,7 +562,7 @@ H5FD_stdio_query(const H5FD_t *_f, unsigned long *flags /* out */)
     return 0;
 } /* end H5FD_stdio_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_alloc
  *
@@ -609,7 +609,7 @@ H5FD_stdio_alloc(H5FD_t *_file, H5FD_mem_t /*H5_ATTR_UNUSED*/ type, hid_t /*H5_A
     return addr;
 } /* end H5FD_stdio_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_get_eoa
  *
@@ -640,7 +640,7 @@ H5FD_stdio_get_eoa(const H5FD_t *_file, H5FD_mem_t /*H5_ATTR_UNUSED*/ type)
     return file->eoa;
 } /* end H5FD_stdio_get_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_set_eoa
  *
@@ -673,7 +673,7 @@ H5FD_stdio_set_eoa(H5FD_t *_file, H5FD_mem_t /*H5_ATTR_UNUSED*/ type, haddr_t ad
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_get_eof
  *
@@ -703,7 +703,7 @@ H5FD_stdio_get_eof(const H5FD_t *_file)
     return MAX(file->eof, file->eoa);
 } /* end H5FD_stdio_get_eof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_stdio_get_handle
  *
@@ -735,7 +735,7 @@ H5FD_stdio_get_handle(H5FD_t *_file, hid_t fapl, void** file_handle)
     return 0;
 } /* end H5FD_stdio_get_handle() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_read
  *
@@ -822,13 +822,13 @@ H5FD_stdio_read(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr, siz
             file->pos = HADDR_UNDEF;
             H5Epush_ret(func, H5E_ERR_CLS, H5E_IO, H5E_READERROR, "fread failed", -1)
         } /* end if */
-        
+
         if(0 == bytes_read && feof(file->fp)) {
             /* end of file but not end of format address space */
             memset((unsigned char *)buf, 0, size);
             break;
         } /* end if */
-        
+
         size -= bytes_read;
         addr += (haddr_t)bytes_read;
         buf = (char *)buf + bytes_read;
@@ -841,7 +841,7 @@ H5FD_stdio_read(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr, siz
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_write
  *
@@ -912,7 +912,7 @@ H5FD_stdio_write(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr,
             file->pos = HADDR_UNDEF;
             H5Epush_ret(func, H5E_ERR_CLS, H5E_IO, H5E_WRITEERROR, "fwrite failed", -1)
         } /* end if */
-        
+
         assert(bytes_wrote > 0);
         assert((size_t)bytes_wrote <= size);
 
@@ -932,7 +932,7 @@ H5FD_stdio_write(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr,
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_flush
  *
@@ -976,7 +976,7 @@ H5FD_stdio_flush(H5FD_t *_file, hid_t dxpl_id, unsigned closing)
     return 0;
 } /* end H5FD_stdio_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_stdio_truncate
  *
@@ -1037,7 +1037,7 @@ H5FD_stdio_truncate(H5FD_t *_file, hid_t dxpl_id, hbool_t closing)
                 if(dwError != NO_ERROR )
                     H5Epush_ret(func, H5E_ERR_CLS, H5E_FILE, H5E_FILEOPEN, "unable to set file pointer", -1)
             }
-            
+
             bError = SetEndOfFile(file->hFile);
             if(0 == bError)
                 H5Epush_ret(func, H5E_ERR_CLS, H5E_IO, H5E_SEEKERROR, "unable to truncate/extend file properly", -1)
@@ -1067,7 +1067,7 @@ H5FD_stdio_truncate(H5FD_t *_file, hid_t dxpl_id, hbool_t closing)
     return 0;
 } /* end H5FD_stdio_truncate() */
 
-
+
 #ifdef _H5private_H
 /*
  * This is not related to the functionality of the driver code.

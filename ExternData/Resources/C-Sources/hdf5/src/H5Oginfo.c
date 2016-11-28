@@ -77,7 +77,7 @@ const H5O_msg_class_t H5O_MSG_GINFO[1] = {{
 /* Declare a free list to manage the H5O_ginfo_t struct */
 H5FL_DEFINE_STATIC(H5O_ginfo_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ginfo_decode
  *
@@ -153,7 +153,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ginfo_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ginfo_encode
  *
@@ -202,7 +202,7 @@ H5O_ginfo_encode(H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_shared,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_ginfo_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ginfo_copy
  *
@@ -243,7 +243,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ginfo_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ginfo_size
  *
@@ -284,7 +284,7 @@ H5O_ginfo_size(const H5F_t H5_ATTR_UNUSED *f, hbool_t H5_ATTR_UNUSED disable_sha
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ginfo_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_ginfo_free
  *
@@ -309,7 +309,7 @@ H5O_ginfo_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_ginfo_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ginfo_debug
  *

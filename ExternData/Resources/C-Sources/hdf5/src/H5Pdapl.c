@@ -130,7 +130,7 @@ const H5P_libclass_t H5P_CLS_DACC[1] = {{
 static const char *H5D_def_efile_prefix_g = H5D_ACS_EFILE_PREFIX_DEF; /* Default external file prefix string */
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dacc_reg_prop
  *
@@ -166,7 +166,7 @@ H5P__dacc_reg_prop(H5P_genclass_t *pclass)
          HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 
     /* Register property for external file prefix */
-    if(H5P_register_real(pclass, H5D_ACS_EFILE_PREFIX_NAME, H5D_ACS_EFILE_PREFIX_SIZE, &H5D_def_efile_prefix_g, 
+    if(H5P_register_real(pclass, H5D_ACS_EFILE_PREFIX_NAME, H5D_ACS_EFILE_PREFIX_SIZE, &H5D_def_efile_prefix_g,
             NULL, H5D_ACS_EFILE_PREFIX_SET, H5D_ACS_EFILE_PREFIX_GET,
             H5D_ACS_EFILE_PREFIX_DEL, H5D_ACS_EFILE_PREFIX_COPY, H5D_ACS_EFILE_PREFIX_CMP, H5D_ACS_EFILE_PREFIX_CLOSE) < 0)
          HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
@@ -175,7 +175,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dacc_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dapl_efile_pref_set
  *
@@ -201,7 +201,7 @@ H5P__dapl_efile_pref_set(hid_t H5_ATTR_UNUSED prop_id, const char H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P__dapl_efile_pref_set() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dapl_efile_pref_get
  *
@@ -227,7 +227,7 @@ H5P__dapl_efile_pref_get(hid_t H5_ATTR_UNUSED prop_id, const char H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P__dapl_efile_pref_get() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dapl_efile_pref_del
  *
@@ -250,7 +250,7 @@ H5P__dapl_efile_pref_del(hid_t H5_ATTR_UNUSED prop_id, const char H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P__dapl_efile_pref_del() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dapl_efile_pref_copy
  *
@@ -272,7 +272,7 @@ H5P__dapl_efile_pref_copy(const char H5_ATTR_UNUSED *name, size_t H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P__dapl_efile_pref_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__dapl_efile_pref_cmp
  *
@@ -304,7 +304,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dapl_efile_pref_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dapl_efile_pref_close
  *
@@ -326,7 +326,7 @@ H5P__dapl_efile_pref_close(const char H5_ATTR_UNUSED *name, size_t H5_ATTR_UNUSE
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P__dapl_efile_pref_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_chunk_cache
  *
@@ -387,7 +387,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_chunk_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_chunk_cache
  *
@@ -454,7 +454,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_efile_prefix
  *
@@ -494,7 +494,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_efile_prefix() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_efile_prefix
  *

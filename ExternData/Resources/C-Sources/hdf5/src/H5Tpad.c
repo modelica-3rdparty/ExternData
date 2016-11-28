@@ -29,7 +29,7 @@
 #include "H5Iprivate.h"		/* IDs			  		*/
 #include "H5Tpkg.h"		/* Datatypes				*/
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_pad_interface -- Initialize interface-specific information
@@ -51,7 +51,7 @@ H5T_init_pad_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_pad_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_pad
  *
@@ -97,7 +97,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_pad
  *

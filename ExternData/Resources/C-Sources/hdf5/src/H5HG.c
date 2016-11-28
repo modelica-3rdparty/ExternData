@@ -111,7 +111,7 @@ H5FL_BLK_DEFINE(gheap_chunk);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_create
  *
@@ -232,7 +232,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* H5HG_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_protect
  *
@@ -271,7 +271,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HG_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_alloc
  *
@@ -394,7 +394,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HG_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_extend
  *
@@ -491,7 +491,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HG_extend() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_insert
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HG_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_read
  *
@@ -657,7 +657,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HG_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_link
  *
@@ -716,7 +716,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HG_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_remove
  *
@@ -811,7 +811,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HG_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HG_free
  *

@@ -59,7 +59,7 @@ H5FL_DEFINE_STATIC(H5HP_t);
 /* Declare a free list to manage sequences of H5HP_ent_t */
 H5FL_SEQ_DEFINE_STATIC(H5HP_ent_t);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_swim_max
@@ -117,7 +117,7 @@ H5HP_swim_max(H5HP_t *heap, size_t loc)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_swim_max() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_swim_min
@@ -175,7 +175,7 @@ H5HP_swim_min(H5HP_t *heap, size_t loc)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_swim_min() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_sink_max
@@ -244,7 +244,7 @@ H5HP_sink_max(H5HP_t *heap, size_t loc)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_sink_max() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_sink_min
@@ -313,7 +313,7 @@ H5HP_sink_min(H5HP_t *heap, size_t loc)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_sink_min() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_create
@@ -389,7 +389,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_count
@@ -434,7 +434,7 @@ H5HP_count(const H5HP_t *heap)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_count() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_insert
@@ -516,7 +516,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_insert() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_top
@@ -560,7 +560,7 @@ H5HP_top(const H5HP_t *heap, int *val)
     FUNC_LEAVE_NOAPI(SUCCEED);
 } /* end H5HP_top() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_remove
@@ -643,7 +643,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_remove() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_change
@@ -729,7 +729,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_change() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_incr
@@ -801,7 +801,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_incr() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_decr
@@ -873,7 +873,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5HP_decr() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5HP_close

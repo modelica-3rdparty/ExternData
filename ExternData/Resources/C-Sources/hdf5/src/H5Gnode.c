@@ -138,7 +138,7 @@ H5FL_SEQ_DEFINE(H5G_entry_t);
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_get_shared
  *
@@ -167,7 +167,7 @@ H5G_node_get_shared(const H5F_t *f, const void H5_ATTR_UNUSED *_udata)
     FUNC_LEAVE_NOAPI(H5F_GRP_BTREE_SHARED(f))
 } /* end H5G_node_get_shared() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_decode_key
  *
@@ -197,7 +197,7 @@ H5G_node_decode_key(const H5B_shared_t *shared, const uint8_t *raw, void *_key)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_node_decode_key() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_encode_key
  *
@@ -227,7 +227,7 @@ H5G_node_encode_key(const H5B_shared_t *shared, uint8_t *raw, const void *_key)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_node_encode_key() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_debug_key
  *
@@ -268,7 +268,7 @@ H5G_node_debug_key(FILE *stream, int indent, int fwidth, const void *_key,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_node_debug_key() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_free
  *
@@ -302,7 +302,7 @@ H5G__node_free(H5G_node_t *sym)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G__node_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_create
  *
@@ -372,7 +372,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_cmp2
  *
@@ -427,7 +427,7 @@ H5G_node_cmp2(void *_lt_key, void *_udata, void *_rt_key)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5G_node_cmp2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_cmp3
  *
@@ -490,7 +490,7 @@ H5G_node_cmp3(void *_lt_key, void *_udata, void *_rt_key)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_cmp3() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_found
  *
@@ -577,7 +577,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_found() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_insert
  *
@@ -754,7 +754,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_remove
  *
@@ -967,7 +967,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_iterate
  *
@@ -1046,7 +1046,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__node_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_sumup
  *
@@ -1090,7 +1090,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__node_sumup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_by_idx
  *
@@ -1151,7 +1151,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__node_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_init
  *
@@ -1196,7 +1196,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__node_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_close
  *
@@ -1227,7 +1227,7 @@ H5G_node_close(const H5F_t *f)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_node_close */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_copy
  *
@@ -1377,7 +1377,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__node_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__node_build_table
  *
@@ -1452,7 +1452,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__node_build_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__node_iterate_size
  *
@@ -1483,7 +1483,7 @@ H5G__node_iterate_size(H5F_t *f, hid_t H5_ATTR_UNUSED dxpl_id, const void H5_ATT
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G__node_iterate_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_debug
  *

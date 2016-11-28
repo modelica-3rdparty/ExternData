@@ -105,7 +105,7 @@ const H5B2_class_t H5B2_TEST[1]={{   /* B-tree class information */
 /* Declare a free list to manage the H5B2_test_ctx_t struct */
 H5FL_DEFINE_STATIC(H5B2_test_ctx_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_crt_context
  *
@@ -145,7 +145,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_test_crt_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_dst_context
  *
@@ -175,7 +175,7 @@ H5B2_test_dst_context(void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_test_dst_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_store
  *
@@ -199,7 +199,7 @@ H5B2_test_store(void *nrecord, const void *udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_test_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_compare
  *
@@ -224,7 +224,7 @@ H5B2_test_compare(const void *rec1, const void *rec2, int *result)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_test_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_encode
  *
@@ -253,7 +253,7 @@ H5B2_test_encode(uint8_t *raw, const void *nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_test_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_decode
  *
@@ -282,7 +282,7 @@ H5B2_test_decode(const uint8_t *raw, void *nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_test_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_debug
  *
@@ -311,7 +311,7 @@ H5B2_test_debug(FILE *stream, const H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSE
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_test_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_test_crt_dbg_context
  *
@@ -350,7 +350,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_test_crt_dbg_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_get_root_addr_test
  *
@@ -379,7 +379,7 @@ H5B2_get_root_addr_test(H5B2_t *bt2, haddr_t *root_addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5B2_get_root_addr_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_get_node_info_test
  *
@@ -436,7 +436,7 @@ H5B2_get_node_info_test(H5B2_t *bt2, hid_t dxpl_id, void *udata,
             HGOTO_ERROR(H5E_BTREE, H5E_CANTPROTECT, FAIL, "unable to load B-tree internal node")
 
         /* Locate node pointer for child */
-        if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native, 
+        if(H5B2_locate_record(hdr->cls, internal->nrec, hdr->nat_off, internal->int_native,
                                udata, &idx, &cmp) < 0)
             HGOTO_ERROR(H5E_BTREE, H5E_CANTCOMPARE, FAIL, "can't compare btree2 records")
 
@@ -479,7 +479,7 @@ H5B2_get_node_info_test(H5B2_t *bt2, hid_t dxpl_id, void *udata,
             HGOTO_ERROR(H5E_BTREE, H5E_CANTPROTECT, FAIL, "unable to protect B-tree leaf node")
 
         /* Locate record */
-        if(H5B2_locate_record(hdr->cls, leaf->nrec, hdr->nat_off, leaf->leaf_native, 
+        if(H5B2_locate_record(hdr->cls, leaf->nrec, hdr->nat_off, leaf->leaf_native,
                                udata, &idx, &cmp) < 0)
             HGOTO_ERROR(H5E_BTREE, H5E_CANTCOMPARE, FAIL, "can't compare btree2 records")
 
@@ -500,7 +500,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5B2_get_node_info_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B2_get_node_depth_test
  *

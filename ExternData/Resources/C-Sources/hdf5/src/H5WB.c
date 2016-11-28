@@ -89,7 +89,7 @@ H5FL_DEFINE_STATIC(H5WB_t);
 H5FL_BLK_DEFINE_STATIC(extra_buf);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5WB_wrap
  *
@@ -142,7 +142,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5WB_wrap() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5WB_actual
  *
@@ -210,7 +210,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5WB_actual() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5WB_actual_clear
  *
@@ -250,7 +250,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5WB_actual_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5WB_unwrap
  *

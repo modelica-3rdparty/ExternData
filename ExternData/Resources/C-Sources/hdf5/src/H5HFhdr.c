@@ -92,7 +92,7 @@ H5FL_DEFINE_STATIC(H5HF_hdr_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_alloc
  *
@@ -135,7 +135,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_free_space
  *
@@ -191,7 +191,7 @@ H5HF_hdr_compute_free_space(H5HF_hdr_t *hdr, unsigned iblock_row)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_compute_free_space() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_finish_init_phase1
  *
@@ -230,7 +230,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_finish_init_phase1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_finish_init_phase2
  *
@@ -285,7 +285,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_finish_init_phase2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_finish_init
  *
@@ -323,7 +323,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_finish_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_create
  *
@@ -514,7 +514,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_protect
  *
@@ -562,7 +562,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_incr
  *
@@ -598,7 +598,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_incr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_decr
  *
@@ -637,7 +637,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_fuse_incr
  *
@@ -665,7 +665,7 @@ H5HF_hdr_fuse_incr(H5HF_hdr_t *hdr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_hdr_fuse_incr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_fuse_decr
  *
@@ -694,7 +694,7 @@ H5HF_hdr_fuse_decr(H5HF_hdr_t *hdr)
     FUNC_LEAVE_NOAPI(hdr->file_rc)
 } /* end H5HF_hdr_fuse_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_dirty
  *
@@ -732,7 +732,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_adj_free
  *
@@ -770,7 +770,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_adj_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_adjust_heap
  *
@@ -810,7 +810,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_adjust_heap() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_inc_alloc
  *
@@ -841,7 +841,7 @@ H5HF_hdr_inc_alloc(H5HF_hdr_t *hdr, size_t alloc_size)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_hdr_inc_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_start_iter
  *
@@ -879,7 +879,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_start_iter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_reset_iter
  *
@@ -916,7 +916,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_reset_iter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_skip_blocks
  *
@@ -965,7 +965,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_skip_blocks() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_update_iter
  *
@@ -1147,7 +1147,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_update_iter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_inc_iter
  *
@@ -1186,7 +1186,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_inc_iter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_reverse_iter
  *
@@ -1332,7 +1332,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_reverse_iter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_empty
  *
@@ -1380,7 +1380,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_empty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_free
  *
@@ -1422,7 +1422,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_hdr_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_hdr_delete
  *

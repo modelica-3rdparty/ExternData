@@ -81,7 +81,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_get_sohm_mesg_count_test
  *
@@ -116,7 +116,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_get_sohm_mesg_count_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_check_cached_stab_test
  *
@@ -153,7 +153,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_check_cached_stab_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_get_maxaddr_test
  *

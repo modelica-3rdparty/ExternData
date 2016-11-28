@@ -43,7 +43,7 @@ static H5T_t* H5T_get_native_bitfield(size_t prec, H5T_direction_t direction,
 static herr_t H5T_cmp_offset(size_t *comp_size, size_t *offset, size_t elem_size,
                          size_t nelems, size_t align, size_t *struct_align);
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_native_interface -- Initialize interface-specific information
@@ -65,7 +65,7 @@ H5T_init_native_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_native_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Tget_native_type
  *
@@ -132,7 +132,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5T_get_native_type
  *
@@ -540,7 +540,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_get_native_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5T_get_native_integer
  *
@@ -681,7 +681,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_get_native_integer() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5T_get_native_float
  *
@@ -805,7 +805,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5T_get_native_bitfield
  *
@@ -891,7 +891,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_cmp_offset
  *

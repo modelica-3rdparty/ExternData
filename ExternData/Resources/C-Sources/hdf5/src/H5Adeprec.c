@@ -84,7 +84,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5A__init_deprec_interface -- Initialize interface-specific information
@@ -105,7 +105,7 @@ H5A__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5A_init())
 } /* H5A__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5A__term_deprec_interface -- Terminate interface
@@ -130,7 +130,7 @@ H5A__term_deprec_interface(void)
 } /* H5A__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Acreate1
@@ -197,7 +197,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Acreate1() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aopen_name
@@ -255,7 +255,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aopen_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aopen_idx
@@ -311,7 +311,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aopen_idx() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aget_num_attrs
@@ -388,7 +388,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aget_num_attrs() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aiterate1

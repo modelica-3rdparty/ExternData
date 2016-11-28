@@ -96,7 +96,7 @@
  *
  *						JRM - 9/26/05
  *
- * magic:	Unsigned 32 bit integer always set to H5C__H5C_T_MAGIC. 
+ * magic:	Unsigned 32 bit integer always set to H5C__H5C_T_MAGIC.
  * 		This field is used to validate pointers to instances of
  * 		H5C_t.
  *
@@ -185,7 +185,7 @@
  * 		this flag is set to FALSE, the metadata cache will not
  * 		attempt to evict entries to make space for newly protected
  * 		entries, and instead the will grow without limit.
- * 		
+ *
  * 		Needless to say, this feature must be used with care.
  *
  *
@@ -649,7 +649,7 @@
  *		id equal to the array index has been inserted into the
  *		cache in the current epoch.
  *
- * pinned_insertions:  Array of int64 of length H5C__MAX_NUM_TYPE_IDS + 1. 
+ * pinned_insertions:  Array of int64 of length H5C__MAX_NUM_TYPE_IDS + 1.
  * 		The cells are used to record the number of times an entry
  * 		with type id equal to the array index has been inserted
  * 		pinned into the cache in the current epoch.
@@ -674,12 +674,12 @@
  *		id equal to the array index has been moved in the current
  *		epoch.
  *
- * entry_flush_moves: Array of int64 of length H5C__MAX_NUM_TYPE_IDS + 1. 
+ * entry_flush_moves: Array of int64 of length H5C__MAX_NUM_TYPE_IDS + 1.
  * 		The cells are used to record the number of times an entry
  * 		with type id equal to the array index has been moved
  * 		during its flush callback in the current epoch.
  *
- * cache_flush_moves: Array of int64 of length H5C__MAX_NUM_TYPE_IDS + 1. 
+ * cache_flush_moves: Array of int64 of length H5C__MAX_NUM_TYPE_IDS + 1.
  * 		The cells are used to record the number of times an entry
  * 		with type id equal to the array index has been moved
  * 		during a cache flush in the current epoch.
@@ -997,7 +997,7 @@ struct H5C_t
     char			prefix[H5C__PREFIX_LEN];
 };
 
-
+
 /****************************************************************************/
 /***************************** Macro Definitions ****************************/
 /****************************************************************************/
@@ -1407,7 +1407,7 @@ if ( ( (entry_ptr) == NULL ) ||                                                \
            (Size) -= entry_ptr->size;                                        \
         }
 
-
+
 /***********************************************************************
  *
  * Stats collection macros
@@ -1721,7 +1721,7 @@ if ( ( (entry_ptr) == NULL ) ||                                                \
 
 #endif /* H5C_COLLECT_CACHE_STATS */
 
-
+
 /***********************************************************************
  *
  * Hash table access and manipulation macros:
@@ -2097,7 +2097,7 @@ if ( (cache_ptr)->index_size !=                                             \
                                       entry_ptr)                         \
 }
 
-
+
 /**************************************************************************
  *
  * Skip list insertion and deletion macros:
@@ -2212,7 +2212,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_DO_SANITY_CHECKS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__REMOVE_ENTRY_FROM_SLIST
@@ -2270,7 +2270,7 @@ if ( (cache_ptr)->index_size !=                                             \
     (entry_ptr)->in_slist = FALSE;                                  \
 } /* H5C__REMOVE_ENTRY_FROM_SLIST */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5C__UPDATE_SLIST_FOR_SIZE_CHANGE
@@ -2344,7 +2344,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_DO_SANITY_CHECKS */
 
-
+
 /**************************************************************************
  *
  * Replacement policy update macros:
@@ -2486,7 +2486,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_EVICTION
@@ -2597,7 +2597,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_FLUSH
@@ -2741,7 +2741,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_INSERTION
@@ -2875,7 +2875,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_PROTECT
@@ -3033,7 +3033,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_MOVE
@@ -3166,7 +3166,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_SIZE_CHANGE
@@ -3293,7 +3293,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_UNPIN
@@ -3416,7 +3416,7 @@ if ( (cache_ptr)->index_size !=                                             \
 
 #endif /* H5C_MAINTAIN_CLEAN_AND_DIRTY_LRU_LISTS */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Macro:	H5C__UPDATE_RP_FOR_UNPROTECT

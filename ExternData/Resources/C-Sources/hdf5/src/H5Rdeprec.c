@@ -83,7 +83,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5R__init_deprec_interface -- Initialize interface-specific information
@@ -104,7 +104,7 @@ H5R__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5R_init())
 } /* H5R__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5R__term_deprec_interface -- Terminate interface
@@ -129,7 +129,7 @@ H5R__term_deprec_interface(void)
 } /* H5R__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Rget_obj_type1

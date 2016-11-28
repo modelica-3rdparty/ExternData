@@ -88,7 +88,7 @@ typedef struct H5FD_sec2_t {
     DWORD           nFileIndexLow;
     DWORD           nFileIndexHigh;
     DWORD           dwVolumeSerialNumber;
-    
+
     HANDLE          hFile;      /* Native windows file handle */
 #endif  /* H5_HAVE_WIN32_API */
 
@@ -175,7 +175,7 @@ static const H5FD_class_t H5FD_sec2_g = {
 /* Declare a free list to manage the H5FD_sec2_t struct */
 H5FL_DEFINE_STATIC(H5FD_sec2_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_init_interface
  *
@@ -194,7 +194,7 @@ H5FD_sec2_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_sec2_init())
 } /* H5FD_sec2_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_init
  *
@@ -226,7 +226,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_init() */
 
-
+
 /*---------------------------------------------------------------------------
  * Function:    H5FD_sec2_term
  *
@@ -250,7 +250,7 @@ H5FD_sec2_term(void)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5FD_sec2_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_fapl_sec2
  *
@@ -283,7 +283,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_fapl_sec2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_open
  *
@@ -402,7 +402,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_close
  *
@@ -438,7 +438,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_cmp
  *
@@ -492,7 +492,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_query
  *
@@ -530,7 +530,7 @@ H5FD_sec2_query(const H5FD_t *_file, unsigned long *flags /* out */)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_sec2_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_get_eoa
  *
@@ -555,7 +555,7 @@ H5FD_sec2_get_eoa(const H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type)
     FUNC_LEAVE_NOAPI(file->eoa)
 } /* end H5FD_sec2_get_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_set_eoa
  *
@@ -582,7 +582,7 @@ H5FD_sec2_set_eoa(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, haddr_t addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_sec2_set_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_get_eof
  *
@@ -590,7 +590,7 @@ H5FD_sec2_set_eoa(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, haddr_t addr)
  *              either the filesystem end-of-file or the HDF5 end-of-address
  *              markers.
  *
- * Return:      End of file address, the first address past the end of the 
+ * Return:      End of file address, the first address past the end of the
  *              "file", either the filesystem file or the HDF5 file.
  *
  * Programmer:  Robb Matzke
@@ -608,7 +608,7 @@ H5FD_sec2_get_eof(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(MAX(file->eof, file->eoa))
 } /* end H5FD_sec2_get_eof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_sec2_get_handle
  *
@@ -638,7 +638,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_get_handle() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_read
  *
@@ -685,7 +685,7 @@ H5FD_sec2_read(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, hid_t H5_ATTR_UNUS
     while(size > 0) {
 
         h5_posix_io_t       bytes_in        = 0;    /* # of bytes to read       */
-        h5_posix_io_ret_t   bytes_read      = -1;   /* # of bytes actually read */ 
+        h5_posix_io_ret_t   bytes_read      = -1;   /* # of bytes actually read */
 
         /* Trying to read more bytes than the return type can handle is
          * undefined behavior in POSIX.
@@ -698,7 +698,7 @@ H5FD_sec2_read(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, hid_t H5_ATTR_UNUS
         do {
             bytes_read = HDread(file->fd, buf, bytes_in);
         } while(-1 == bytes_read && EINTR == errno);
-        
+
         if(-1 == bytes_read) { /* error */
             int myerrno = errno;
             time_t mytime = HDtime(NULL);
@@ -706,16 +706,16 @@ H5FD_sec2_read(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, hid_t H5_ATTR_UNUS
 
             HGOTO_ERROR(H5E_IO, H5E_READERROR, FAIL, "file read failed: time = %s, filename = '%s', file descriptor = %d, errno = %d, error message = '%s', buf = %p, total read size = %llu, bytes this sub-read = %llu, bytes actually read = %llu, offset = %llu", HDctime(&mytime), file->filename, file->fd, myerrno, HDstrerror(myerrno), buf, (unsigned long long)size, (unsigned long long)bytes_in, (unsigned long long)bytes_read, (unsigned long long)myoffset);
         } /* end if */
-        
+
         if(0 == bytes_read) {
             /* end of file but not end of format address space */
             HDmemset(buf, 0, size);
             break;
         } /* end if */
-        
+
         HDassert(bytes_read >= 0);
         HDassert((size_t)bytes_read <= size);
-        
+
         size -= (size_t)bytes_read;
         addr += (haddr_t)bytes_read;
         buf = (char *)buf + bytes_read;
@@ -735,7 +735,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_write
  *
@@ -780,7 +780,7 @@ H5FD_sec2_write(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, hid_t H5_ATTR_UNU
     while(size > 0) {
 
         h5_posix_io_t       bytes_in        = 0;    /* # of bytes to write  */
-        h5_posix_io_ret_t   bytes_wrote     = -1;   /* # of bytes written   */ 
+        h5_posix_io_ret_t   bytes_wrote     = -1;   /* # of bytes written   */
 
         /* Trying to write more bytes than the return type can handle is
          * undefined behavior in POSIX.
@@ -793,7 +793,7 @@ H5FD_sec2_write(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, hid_t H5_ATTR_UNU
         do {
             bytes_wrote = HDwrite(file->fd, buf, bytes_in);
         } while(-1 == bytes_wrote && EINTR == errno);
-        
+
         if(-1 == bytes_wrote) { /* error */
             int myerrno = errno;
             time_t mytime = HDtime(NULL);
@@ -801,7 +801,7 @@ H5FD_sec2_write(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, hid_t H5_ATTR_UNU
 
             HGOTO_ERROR(H5E_IO, H5E_WRITEERROR, FAIL, "file write failed: time = %s, filename = '%s', file descriptor = %d, errno = %d, error message = '%s', buf = %p, total write size = %llu, bytes this sub-write = %llu, bytes actually written = %llu, offset = %llu", HDctime(&mytime), file->filename, file->fd, myerrno, HDstrerror(myerrno), buf, (unsigned long long)size, (unsigned long long)bytes_in, (unsigned long long)bytes_wrote, (unsigned long long)myoffset);
         } /* end if */
-        
+
         HDassert(bytes_wrote > 0);
         HDassert((size_t)bytes_wrote <= size);
 
@@ -826,7 +826,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_sec2_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_sec2_truncate
  *

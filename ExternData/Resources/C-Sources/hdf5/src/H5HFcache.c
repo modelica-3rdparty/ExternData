@@ -144,7 +144,7 @@ const H5AC_class_t H5AC_FHEAP_DBLOCK[1] = {{
 H5FL_BLK_DEFINE(direct_block);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_decode
  *
@@ -194,7 +194,7 @@ H5HF_dtable_decode(H5F_t *f, const uint8_t **pp, H5HF_dtable_t *dtable)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_dtable_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_encode
  *
@@ -244,7 +244,7 @@ H5HF_dtable_encode(H5F_t *f, uint8_t **pp, const H5HF_dtable_t *dtable)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_dtable_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_hdr_load
  *
@@ -433,7 +433,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_hdr_load() */ /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_hdr_flush
  *
@@ -567,7 +567,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_cache_hdr_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_hdr_dest
  *
@@ -613,7 +613,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_hdr_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_hdr_clear
  *
@@ -650,7 +650,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_hdr_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_hdr_size
  *
@@ -682,7 +682,7 @@ H5HF_cache_hdr_size(const H5F_t H5_ATTR_UNUSED *f, const H5HF_hdr_t *hdr, size_t
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_cache_hdr_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_iblock_load
  *
@@ -885,7 +885,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_iblock_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_iblock_flush
  *
@@ -1072,7 +1072,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_cache_iblock_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_iblock_dest
  *
@@ -1123,7 +1123,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_iblock_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_iblock_clear
  *
@@ -1160,7 +1160,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_iblock_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_iblock_size
  *
@@ -1191,7 +1191,7 @@ H5HF_cache_iblock_size(const H5F_t H5_ATTR_UNUSED *f, const H5HF_indirect_t *ibl
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_cache_iblock_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_dblock_load
  *
@@ -1370,7 +1370,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_dblock_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_dblock_flush
  *
@@ -1643,7 +1643,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_cache_dblock_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_dblock_dest
  *
@@ -1695,7 +1695,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_dblock_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_dblock_clear
  *
@@ -1732,7 +1732,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_cache_dblock_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_cache_dblock_size
  *

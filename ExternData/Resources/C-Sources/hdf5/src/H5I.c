@@ -155,7 +155,7 @@ static H5I_id_info_t *H5I__find_id(hid_t id);
 static herr_t H5I__debug(H5I_type_t type);
 #endif /* H5I_DEBUG_OUTPUT */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5I_init_interface -- Initialize interface-specific information
@@ -176,7 +176,7 @@ H5I_init_interface(void)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5I_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_term_interface
  *
@@ -228,7 +228,7 @@ H5I_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5I_term_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iregister_type
  *
@@ -313,7 +313,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iregister_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_register_type
  *
@@ -384,7 +384,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_register_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Itype_exists
  *
@@ -418,7 +418,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Itype_exists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Inmembers
  *
@@ -469,7 +469,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Inmembers() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_nmembers
  *
@@ -505,7 +505,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_nmembers() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iclear_type
  *
@@ -539,7 +539,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iclear_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__free_cb
  *
@@ -568,7 +568,7 @@ H5I__free_cb(void *_item, void H5_ATTR_UNUSED *_key, void H5_ATTR_UNUSED *_udata
     FUNC_LEAVE_NOAPI(H5_ITER_CONT)
 } /* end H5I__free_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_clear_type
  *
@@ -617,7 +617,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_clear_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5I__clear_type_cb
  *
@@ -685,7 +685,7 @@ H5I__clear_type_cb(void *_id, void H5_ATTR_UNUSED *key, void *_udata)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__clear_type_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Idestroy_type
  *
@@ -719,7 +719,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Idestroy_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__destroy_type
  *
@@ -774,7 +774,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__destroy_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iregister
  *
@@ -805,7 +805,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iregister() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__wrapped_cb
  *
@@ -846,7 +846,7 @@ H5I__wrapped_cb(void *_item, void H5_ATTR_UNUSED *_key, void *_udata)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__wrapped_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_register
  *
@@ -886,7 +886,7 @@ H5I_register(H5I_type_t type, const void *object, hbool_t app_ref)
         /* Use existing available ID struct */
         if(NULL == (id_ptr = (H5I_id_info_t *)H5SL_remove_first(type_ptr->avail_ids)))
             HGOTO_ERROR(H5E_ATOM, H5E_CANTREMOVE, FAIL, "can't remove ID from available ID list")
-    
+
         /* Decrease count of available ID structures */
         type_ptr->avail_count--;
     } /* end if */
@@ -955,7 +955,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_register() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_subst
  *
@@ -993,7 +993,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end if */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_object
  *
@@ -1026,7 +1026,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end if */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iobject_verify
  *
@@ -1064,7 +1064,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iobject_verify() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_object_verify
  *
@@ -1101,7 +1101,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5I_object_verify() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_get_type
  *
@@ -1134,7 +1134,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_get_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iget_type
  *
@@ -1167,7 +1167,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iget_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iremove_verify
  *
@@ -1203,7 +1203,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iremove_verify() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__remove_verify
  *
@@ -1236,7 +1236,7 @@ H5I__remove_verify(hid_t id, H5I_type_t id_type)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__remove_verify() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__remove_common
  *
@@ -1311,7 +1311,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__remove_common() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_remove
  *
@@ -1351,7 +1351,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Idec_ref
  *
@@ -1387,7 +1387,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Idec_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_dec_ref
  *
@@ -1429,10 +1429,10 @@ H5I_dec_ref(hid_t id)
      * reference count without calling the free method.
      *
      * Beware: the free method may call other H5I functions.
-     * 
-     * If an object is closing, we can remove the ID even though the free 
+     *
+     * If an object is closing, we can remove the ID even though the free
      * method might fail.  This can happen when a mandatory filter fails to
-     * write when a dataset is closed and the chunk cache is flushed to the 
+     * write when a dataset is closed and the chunk cache is flushed to the
      * file.  We have to close the dataset anyway. (SLU - 2010/9/7)
      */
     if(1 == id_ptr->count) {
@@ -1460,7 +1460,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_dec_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_dec_app_ref
  *
@@ -1508,7 +1508,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_dec_app_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_dec_app_ref_always_close
  *
@@ -1539,9 +1539,9 @@ H5I_dec_app_ref_always_close(hid_t id)
     /* Check for failure */
     if(ret_value < 0) {
         /*
-         * If an object is closing, we can remove the ID even though the free 
+         * If an object is closing, we can remove the ID even though the free
          * method might fail.  This can happen when a mandatory filter fails to
-         * write when a dataset is closed and the chunk cache is flushed to the 
+         * write when a dataset is closed and the chunk cache is flushed to the
          * file.  We have to close the dataset anyway. (SLU - 2010/9/7)
          */
         H5I_remove(id);
@@ -1553,7 +1553,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_dec_app_ref_always_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iinc_ref
  *
@@ -1587,7 +1587,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iinc_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_inc_ref
  *
@@ -1628,7 +1628,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_inc_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iget_ref
  *
@@ -1662,7 +1662,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iget_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_get_ref
  *
@@ -1698,7 +1698,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_get_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iinc_type_ref
  *
@@ -1736,7 +1736,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iinc_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__inc_type_ref
  *
@@ -1774,7 +1774,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__inc_type_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Idec_type_ref
  *
@@ -1814,7 +1814,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Idec_type_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_dec_type_ref
  *
@@ -1869,7 +1869,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_dec_type_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iget_type_ref
  *
@@ -1907,7 +1907,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iget_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__get_type_ref
  *
@@ -1946,7 +1946,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__get_type_ref() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iis_valid
  *
@@ -1983,7 +1983,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iis_valid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__search_cb
  *
@@ -2016,7 +2016,7 @@ H5I__search_cb(void *obj, hid_t id, void *_udata)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__search_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Isearch
  *
@@ -2059,7 +2059,7 @@ H5Isearch(H5I_type_t type, H5I_search_func_t func, void *key)
     udata.app_key = key;
     udata.ret_obj = NULL;
 
-    /* Note that H5I_iterate returns an error code.  We ignore it 
+    /* Note that H5I_iterate returns an error code.  We ignore it
      * here, as we can't do anything with it without revising the API.
      */
     (void)H5I_iterate(type, H5I__search_cb, &udata, TRUE);
@@ -2071,7 +2071,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Isearch() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__iterate_cb
  *
@@ -2111,26 +2111,26 @@ H5I__iterate_cb(void *_item, void H5_ATTR_UNUSED *_key, void *_udata)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__iterate_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_iterate
  *
- * Purpose:	Apply function FUNC to each member of type TYPE (with 
- *		non-zero application reference count if app_ref is TRUE).  
- *		Stop if FUNC returns a non zero value (i.e. anything 
- *		other than H5_ITER_CONT).  
+ * Purpose:	Apply function FUNC to each member of type TYPE (with
+ *		non-zero application reference count if app_ref is TRUE).
+ *		Stop if FUNC returns a non zero value (i.e. anything
+ *		other than H5_ITER_CONT).
  *
- *		If FUNC returns a positive value (i.e. H5_ITER_STOP), 
+ *		If FUNC returns a positive value (i.e. H5_ITER_STOP),
  *		return SUCCEED.
  *
- *		If FUNC returns a negative value (i.e. H5_ITER_ERROR), 
+ *		If FUNC returns a negative value (i.e. H5_ITER_ERROR),
  *		return FAIL.
- *		
- *		The FUNC should take a pointer to the object and the 
- *		udata as arguments and return non-zero to terminate 
+ *
+ *		The FUNC should take a pointer to the object and the
+ *		udata as arguments and return non-zero to terminate
  *		siteration, and zero to continue.
  *
- * Limitation:	Currently there is no way to start the iteration from 
+ * Limitation:	Currently there is no way to start the iteration from
  *		where a previous iteration left off.
  *
  * Return:	Success:	SUCCEED
@@ -2173,7 +2173,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__find_id
  *
@@ -2213,7 +2213,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5I__find_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Iget_name
  *
@@ -2260,7 +2260,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iget_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Iget_file_id
  *
@@ -2291,7 +2291,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Iget_file_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I_get_file_id
  *
@@ -2343,7 +2343,7 @@ done:
 } /* end H5I_get_file_id() */
 
 #ifdef H5I_DEBUG_OUTPUT
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__debug_cb
  *
@@ -2399,7 +2399,7 @@ H5I__debug_cb(void *_item, void H5_ATTR_UNUSED *_key, void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5I__debug_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5I__debug
  *

@@ -40,7 +40,7 @@ static herr_t H5S_select_iter_next_block(H5S_sel_iter_t *iter);
 #endif /* LATER */
 
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_offset
@@ -79,7 +79,7 @@ H5S_select_offset(H5S_t *space, const hssize_t *offset)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_select_offset() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_copy
@@ -126,7 +126,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_select_release
  *
@@ -160,7 +160,7 @@ H5S_select_release(H5S_t *ds)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_select_release() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_select_get_seq_list
  *
@@ -197,7 +197,7 @@ H5S_select_get_seq_list(const H5S_t *space, unsigned flags,
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_select_get_seq_list() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_select_serial_size
  *
@@ -232,7 +232,7 @@ H5S_select_serial_size(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_select_serial_size() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_serialize
@@ -271,7 +271,7 @@ H5S_select_serialize(const H5S_t *space, uint8_t *buf)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_select_serialize() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sget_select_npoints
@@ -308,7 +308,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sget_select_npoints() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_get_select_npoints
@@ -340,7 +340,7 @@ H5S_get_select_npoints(const H5S_t *space)
     FUNC_LEAVE_NOAPI((hssize_t)space->select.num_elem)
 }   /* H5S_get_select_npoints() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sselect_valid
@@ -382,7 +382,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sselect_valid() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_valid
@@ -420,7 +420,7 @@ H5S_select_valid(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_valid() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_deserialize
@@ -483,7 +483,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_deserialize() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sget_select_bounds
@@ -535,7 +535,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sget_select_bounds() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_get_select_bounds
@@ -580,7 +580,7 @@ H5S_get_select_bounds(const H5S_t *space, hsize_t *start, hsize_t *end)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_get_select_bounds() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_get_select_offset
@@ -620,7 +620,7 @@ H5S_get_select_offset(const H5S_t *space, hsize_t *offset)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_get_select_offset() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_is_contiguous
@@ -657,7 +657,7 @@ H5S_select_is_contiguous(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_is_contiguous() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_is_single
@@ -694,7 +694,7 @@ H5S_select_is_single(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_is_single() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_is_regular
@@ -731,7 +731,7 @@ H5S_select_is_regular(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_is_regular() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_adjust_u
@@ -768,7 +768,7 @@ H5S_select_adjust_u(H5S_t *space, const hsize_t *offset)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_adjust_u() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_project_scalar
@@ -807,7 +807,7 @@ H5S_select_project_scalar(const H5S_t *space, hsize_t *offset)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_project_scalar() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_project_simple
@@ -848,7 +848,7 @@ H5S_select_project_simple(const H5S_t *space, H5S_t *new_space, hsize_t *offset)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_project_simple() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_init
@@ -898,7 +898,7 @@ H5S_select_iter_init(H5S_sel_iter_t *sel_iter, const H5S_t *space, size_t elmt_s
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_iter_init() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_coords
@@ -939,7 +939,7 @@ H5S_select_iter_coords(const H5S_sel_iter_t *sel_iter, hsize_t *coords)
 }   /* H5S_select_iter_coords() */
 
 #ifdef LATER
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_block
@@ -982,7 +982,7 @@ H5S_select_iter_block(const H5S_sel_iter_t *iter, hsize_t *start, hsize_t *end)
 }   /* H5S_select_iter_block() */
 #endif /* LATER */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_nelmts
@@ -1020,7 +1020,7 @@ H5S_select_iter_nelmts(const H5S_sel_iter_t *sel_iter)
 }   /* H5S_select_iter_nelmts() */
 
 #ifdef LATER
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_has_next_block
@@ -1059,7 +1059,7 @@ H5S_select_iter_has_next_block(const H5S_sel_iter_t *iter)
 }   /* H5S_select_iter_has_next_block() */
 #endif /* LATER */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_next
@@ -1103,7 +1103,7 @@ H5S_select_iter_next(H5S_sel_iter_t *iter, size_t nelem)
 }   /* H5S_select_iter_next() */
 
 #ifdef LATER
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_next_block
@@ -1144,7 +1144,7 @@ H5S_select_iter_next_block(H5S_sel_iter_t *iter)
 }   /* H5S_select_iter_next_block() */
 #endif /* LATER */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iter_release
@@ -1181,7 +1181,7 @@ H5S_select_iter_release(H5S_sel_iter_t *sel_iter)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_iter_release() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_iterate
@@ -1334,7 +1334,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_select_iterate() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sget_select_type
@@ -1370,7 +1370,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Sget_select_type() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_get_select_type
@@ -1406,7 +1406,7 @@ H5S_get_select_type(const H5S_t *space)
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5S_get_select_type() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_shape_same
@@ -1427,7 +1427,7 @@ H5S_get_select_type(const H5S_t *space)
     Assumes that there is only a single "block" for hyperslab selections.
  EXAMPLES
  REVISION LOG
-    Modified function to view identical shapes with different dimensions 
+    Modified function to view identical shapes with different dimensions
     as being the same under some circumstances.
 --------------------------------------------------------------------------*/
 htri_t
@@ -1460,13 +1460,13 @@ H5S_select_shape_same(const H5S_t *space1, const H5S_t *space2)
         /* need to be able to handle spaces of different rank:
          *
          * To simplify logic, let space_a point to the element of the set
-         * {space1, space2} with the largest rank or space1 if the ranks 
+         * {space1, space2} with the largest rank or space1 if the ranks
          * are identical.
          *
          * Similarly, let space_b point to the element of {space1, space2}
          * with the smallest rank, or space2 if they are identical.
          *
-         * Let:  space_a_rank be the rank of space_a, 
+         * Let:  space_a_rank be the rank of space_a,
          *       space_b_rank be the rank of space_b,
          *       delta_rank = space_a_rank - space_b_rank.
          *
@@ -1508,7 +1508,7 @@ H5S_select_shape_same(const H5S_t *space1, const H5S_t *space2)
             space_a_dim = (int)space_a_rank - 1;
             space_b_dim = (int)space_b_rank - 1;
 
-            /* recall that space_a_rank >= space_b_rank. 
+            /* recall that space_a_rank >= space_b_rank.
              *
              * In the following while loop, we test to see if space_a and space_b
              * have identical size in all dimensions they have in common.
@@ -1521,7 +1521,7 @@ H5S_select_shape_same(const H5S_t *space1, const H5S_t *space2)
                 space_b_dim--;
             } /* end while */
 
-            /* Since we are selecting the entire spaces, we must also verify that space_a 
+            /* Since we are selecting the entire spaces, we must also verify that space_a
              * has size 1 in all dimensions that it does not share with space_b.
              */
             while(space_a_dim >= 0) {
@@ -1546,7 +1546,7 @@ H5S_select_shape_same(const H5S_t *space1, const H5S_t *space2)
              * block == 1 in all dimensions that appear only in space_a.
              */
             while(space_b_dim >= 0) {
-                if(space_a->select.sel_info.hslab->opt_diminfo[space_a_dim].stride != 
+                if(space_a->select.sel_info.hslab->opt_diminfo[space_a_dim].stride !=
                         space_b->select.sel_info.hslab->opt_diminfo[space_b_dim].stride)
                     HGOTO_DONE(FALSE)
 
@@ -1554,7 +1554,7 @@ H5S_select_shape_same(const H5S_t *space1, const H5S_t *space2)
                         space_b->select.sel_info.hslab->opt_diminfo[space_b_dim].count)
                     HGOTO_DONE(FALSE)
 
-                if(space_a->select.sel_info.hslab->opt_diminfo[space_a_dim].block != 
+                if(space_a->select.sel_info.hslab->opt_diminfo[space_a_dim].block !=
                         space_b->select.sel_info.hslab->opt_diminfo[space_b_dim].block)
                     HGOTO_DONE(FALSE)
 
@@ -1606,11 +1606,11 @@ H5S_select_shape_same(const H5S_t *space1, const H5S_t *space2)
                 space_a_dim = (int)space_a_rank - 1;
                 space_b_dim = (int)space_b_rank - 1;
 
-                /* The first block only compares the sizes and sets the 
-                 * relative offsets for later blocks 
+                /* The first block only compares the sizes and sets the
+                 * relative offsets for later blocks
                  */
                 if(first_block) {
-                    /* If the block sizes in the common dimensions from 
+                    /* If the block sizes in the common dimensions from
                      * each selection don't match, get out
                      */
                     while(space_b_dim >= 0) {
@@ -1705,31 +1705,31 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_shape_same() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_construct_projection
 
  PURPOSE
     Given a dataspace a of rank n with some selection, construct a new
-    dataspace b of rank m (m != n), with the selection in a being 
-    topologically identical to that in b (as verified by 
+    dataspace b of rank m (m != n), with the selection in a being
+    topologically identical to that in b (as verified by
     H5S_select_shape_same().
 
-    This function exists, as some I/O code chokes of topologically 
-    identical selections with different ranks.  At least to begin 
+    This function exists, as some I/O code chokes of topologically
+    identical selections with different ranks.  At least to begin
     with, we will deal with the issue by constructing projections
-    of the memory dataspace with ranks equaling those of the file 
+    of the memory dataspace with ranks equaling those of the file
     dataspace.
 
-    Note that if m > n, it is possible that the starting point in the 
-    buffer associated with the memory dataspace will have to be 
+    Note that if m > n, it is possible that the starting point in the
+    buffer associated with the memory dataspace will have to be
     adjusted to match the projected dataspace.  If the buf parameter
     is not NULL, the function must return an adjusted buffer base
     address in *adj_buf_ptr.
 
  USAGE
-    htri_t H5S_select_construct_projection(base_space, 
+    htri_t H5S_select_construct_projection(base_space,
                                            new_space_ptr,
                                            new_space_rank,
                                            buf,
@@ -1738,30 +1738,30 @@ done:
         H5S_t ** new_space_ptr;     OUT: Ptr to location in which to return
 					 the address of the projected space
         int new_space_rank;	     IN: Rank of the projected space.
-        const void * buf;            IN: Base address of the buffer 
+        const void * buf;            IN: Base address of the buffer
 					 associated with the base space.
 					 May be NULL.
         void ** adj_buf_ptr;        OUT: If buf != NULL, store the base
-					 address of the section of buf 
+					 address of the section of buf
 					 that is described by *new_space_ptr
 					 in *adj_buf_ptr.
-					 
+
  RETURNS
     Non-negative on success/Negative on failure.
 
  DESCRIPTION
-    Construct a new dataspace and associated selection which is a 
-    projection of the supplied dataspace and associated selection into 
+    Construct a new dataspace and associated selection which is a
+    projection of the supplied dataspace and associated selection into
     the specified rank.  Return it in *new_space_ptr.
 
-    If buf is supplied, computes the base address of the projected 
+    If buf is supplied, computes the base address of the projected
     selection in buf, and stores the base address in *adj_buf_ptr.
-    
+
  GLOBAL VARIABLES
  COMMENTS, BUGS, ASSUMPTIONS
-    The selection in the supplied base_space has thickness 1 in all 
+    The selection in the supplied base_space has thickness 1 in all
     dimensions greater than new_space_rank.  Note that here we count
-    dimensions from the fastest changing coordinate to the slowest 
+    dimensions from the fastest changing coordinate to the slowest
     changing changing coordinate.
  EXAMPLES
  REVISION LOG
@@ -1807,28 +1807,28 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
         /* Create new scalar dataspace */
         if(NULL == (new_space = H5S_create(H5S_SCALAR)))
             HGOTO_ERROR(H5E_DATASPACE, H5E_CANTCREATE, FAIL, "unable to create scalar dataspace")
-    
+
         /* No need to register the dataspace(i.e. get an ID) as
          * we will just be discarding it shortly.
          */
 
-        /* Selection for the new space will be either all or 
+        /* Selection for the new space will be either all or
          * none, depending on whether the base space has 0 or
          * 1 elements selected.
          *
-         * Observe that the base space can't have more than 
+         * Observe that the base space can't have more than
          * one selected element, since its selection has the
-         * same shape as the file dataspace, and that data 
+         * same shape as the file dataspace, and that data
          * space is scalar.
          */
         if(1 == npoints) {
             /* Assuming that the selection in the base dataspace is not
-             * empty, we must compute the offset of the selected item in 
+             * empty, we must compute the offset of the selected item in
              * the buffer associated with the base dataspace.
              *
-             * Since the new space rank is zero, we know that the 
-             * the base space must have rank at least 1 -- and 
-             * hence it is a simple dataspace.  However, the 
+             * Since the new space rank is zero, we know that the
+             * the base space must have rank at least 1 -- and
+             * hence it is a simple dataspace.  However, the
              * selection, may be either point, hyperspace, or all.
              *
              */
@@ -1846,25 +1846,25 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
         hsize_t new_space_dims[H5S_MAX_RANK];   /* Current dimensions for new dataspace */
         hsize_t new_space_maxdims[H5S_MAX_RANK];/* Maximum dimensions for new dataspace */
         unsigned rank_diff;             /* Difference in ranks */
-    
+
         /* Set up the dimensions of the new, projected dataspace.
          *
-         * How we do this depends on whether we are projecting up into 
-         * increased dimensions, or down into a reduced number of 
+         * How we do this depends on whether we are projecting up into
+         * increased dimensions, or down into a reduced number of
          * dimensions.
          *
-         * If we are projecting up (the first half of the following 
-         * if statement), we copy the dimensions of the base data 
-         * space into the fastest changing dimensions of the new 
+         * If we are projecting up (the first half of the following
+         * if statement), we copy the dimensions of the base data
+         * space into the fastest changing dimensions of the new
          * projected dataspace, and set the remaining dimensions to
          * one.
          *
          * If we are projecting down (the second half of the following
-         * if statement), we just copy the dimensions with the most 
+         * if statement), we just copy the dimensions with the most
          * quickly changing dimensions into the dims for the projected
          * data set.
          *
-         * This works, because H5S_select_shape_same() will return 
+         * This works, because H5S_select_shape_same() will return
          * true on selections of different rank iff:
          *
          * 1) the selection in the lower rank dataspace matches that
@@ -1872,13 +1872,13 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
          *    the larger rank dataspace, and
          *
          * 2) the selection has thickness 1 in all ranks that appear
-         *    only in the higher rank dataspace (i.e. those with 
+         *    only in the higher rank dataspace (i.e. those with
          *    more slowly changing indicies).
-         */ 
+         */
         if(new_space_rank > base_space_rank) {
             hsize_t tmp_dim_size = 1;   /* Temporary dimension value, for filling arrays */
 
-            /* we must copy the dimensions of the base space into 
+            /* we must copy the dimensions of the base space into
              * the fastest changing dimensions of the new space,
              * and set the remaining dimensions to 1
              */
@@ -1889,7 +1889,7 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
             HDmemcpy(&new_space_maxdims[rank_diff], base_space_maxdims, sizeof(new_space_maxdims[0]) * base_space_rank);
         } /* end if */
         else { /* new_space_rank < base_space_rank */
-            /* we must copy the fastest changing dimension of the 
+            /* we must copy the fastest changing dimension of the
              * base space into the dimensions of the new space.
              */
             rank_diff = base_space_rank - new_space_rank;
@@ -1897,12 +1897,12 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
             HDmemcpy(new_space_maxdims, &base_space_maxdims[rank_diff], sizeof(new_space_maxdims[0]) * new_space_rank);
         } /* end else */
 
-        /* now have the new space rank and dimensions set up -- 
+        /* now have the new space rank and dimensions set up --
          * so we can create the new simple dataspace.
          */
         if(NULL == (new_space = H5S_create_simple(new_space_rank, new_space_dims, new_space_maxdims)))
             HGOTO_ERROR(H5E_DATASPACE, H5E_CANTCREATE, FAIL, "can't create simple dataspace")
-    
+
         /* No need to register the dataspace(i.e. get an ID) as
          * we will just be discarding it shortly.
          */
@@ -1913,13 +1913,13 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
          */
         if(H5S_SELECT_PROJECT_SIMPLE(base_space, new_space, &projected_space_element_offset) < 0)
             HGOTO_ERROR(H5E_DATASPACE, H5E_CANTSET, FAIL, "unable to project simple selection")
-    
+
         /* If we get this far, we have created the new dataspace, and projected
          * the selection in the base dataspace into the new dataspace.
          *
-         * If the base dataspace is simple, check to see if the 
-         * offset_changed flag on the base selection has been set -- if so, 
-         * project the offset into the new dataspace and set the 
+         * If the base dataspace is simple, check to see if the
+         * offset_changed flag on the base selection has been set -- if so,
+         * project the offset into the new dataspace and set the
          * offset_changed flag.
          */
         if(H5S_GET_EXTENT_TYPE(base_space) == H5S_SIMPLE && base_space->select.offset_changed) {
@@ -1951,12 +1951,12 @@ H5S_select_construct_projection(const H5S_t *base_space, H5S_t **new_space_ptr,
              * Since we can't do pointer arithmetic on void pointers, we first
              * cast buf to a pointer to byte -- i.e. uint8_t.
              *
-             * We then multiply the projected space element offset we 
-             * calculated earlier by the supplied element size, add this 
-             * value to the type cast buf pointer, cast the result back 
+             * We then multiply the projected space element offset we
+             * calculated earlier by the supplied element size, add this
+             * value to the type cast buf pointer, cast the result back
              * to a pointer to void, and assign the result to *adj_buf_ptr.
              */
-            *adj_buf_ptr = (const void *)(((const uint8_t *)buf) + 
+            *adj_buf_ptr = (const void *)(((const uint8_t *)buf) +
                     ((size_t)(projected_space_element_offset * element_size)));
         } /* end if */
         else
@@ -1974,7 +1974,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_construct_projection() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_fill

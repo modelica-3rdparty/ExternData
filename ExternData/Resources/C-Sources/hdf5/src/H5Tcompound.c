@@ -79,7 +79,7 @@ static htri_t H5T_is_packed(const H5T_t *dt);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_compound_interface -- Initialize interface-specific information
@@ -99,7 +99,7 @@ H5T_init_compound_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_compound_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_member_offset
  *
@@ -142,7 +142,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_member_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_get_member_offset
  *
@@ -173,7 +173,7 @@ H5T_get_member_offset(const H5T_t *dt, unsigned membno)
     FUNC_LEAVE_NOAPI(dt->shared->u.compnd.memb[membno].offset)
 } /* end H5T_get_member_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_member_class
  *
@@ -214,7 +214,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_member_class() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_member_type
  *
@@ -261,7 +261,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_member_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_get_member_type
  *
@@ -297,7 +297,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_get_member_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__get_member_size
  *
@@ -322,7 +322,7 @@ H5T__get_member_size(const H5T_t *dt, unsigned membno)
     FUNC_LEAVE_NOAPI(dt->shared->u.compnd.memb[membno].type->shared->size)
 } /* end H5T__get_member_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tinsert
  *
@@ -377,7 +377,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tinsert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tpack
  *
@@ -414,7 +414,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tpack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__insert
  *
@@ -511,7 +511,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_pack
  *
@@ -586,7 +586,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_pack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_is_packed
  *
@@ -623,7 +623,7 @@ H5T_is_packed(const H5T_t *dt)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_is_packed() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__update_packed
  *

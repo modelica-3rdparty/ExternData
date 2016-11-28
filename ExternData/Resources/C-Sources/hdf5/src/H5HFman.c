@@ -89,7 +89,7 @@ static herr_t H5HF_man_op_real(H5HF_hdr_t *hdr, hid_t dxpl_id,
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_insert
  *
@@ -216,7 +216,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_op_real
  *
@@ -362,7 +362,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_op_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_read
  *
@@ -398,7 +398,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_write
  *
@@ -436,7 +436,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_op
  *
@@ -473,7 +473,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_op() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_remove
  *

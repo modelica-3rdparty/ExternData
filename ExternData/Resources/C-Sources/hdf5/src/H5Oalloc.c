@@ -94,7 +94,7 @@ H5FL_EXTERN(H5O_cont_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_add_gap
  *
@@ -213,7 +213,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_add_gap() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_eliminate_gap
  *
@@ -320,7 +320,7 @@ H5O_eliminate_gap(H5O_t *oh, hbool_t *chk_dirtied, H5O_mesg_t *mesg,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5O_eliminate_gap() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_alloc_null
@@ -428,7 +428,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_alloc_null() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_alloc_msgs
@@ -475,7 +475,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_alloc_msgs() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_alloc_extend_chunk
@@ -704,7 +704,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_alloc_extend_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_alloc_new_chunk
  *
@@ -1102,7 +1102,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_alloc_new_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_alloc
  *
@@ -1188,7 +1188,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_release_mesg
@@ -1261,7 +1261,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_release_mesg() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_move_cont
  *
@@ -1434,7 +1434,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_move_cont() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_move_msgs_forward
@@ -1722,7 +1722,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_move_msgs_forward() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_merge_null
@@ -1853,7 +1853,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_merge_null() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_remove_empty_chunks
@@ -2042,7 +2042,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_remove_empty_chunks() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_condense_header
@@ -2108,7 +2108,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_condense_header() */
 
-
+
 /*-------------------------------------------------------------------------
  *
  * Function:    H5O_alloc_shrink_chunk

@@ -103,7 +103,7 @@ H5FL_EXTERN(H5G_node_t);
 /* Declare extern the free list to manage sequences of H5G_entry_t's */
 H5FL_SEQ_EXTERN(H5G_entry_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_load
  *
@@ -197,7 +197,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_flush
  *
@@ -287,7 +287,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_dest
  *
@@ -336,7 +336,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_clear
  *
@@ -377,7 +377,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_node_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_node_size
  *

@@ -81,7 +81,7 @@ const H5B2_class_t H5SM_INDEX[1]={{   /* B-tree class information */
 H5FL_DEFINE_STATIC(H5SM_bt2_ctx_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_bt2_crt_context
  *
@@ -121,7 +121,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5SM_bt2_crt_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_bt2_dst_context
  *
@@ -151,7 +151,7 @@ H5SM_bt2_dst_context(void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5SM_bt2_dst_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_bt2_store
  *
@@ -180,7 +180,7 @@ H5SM_bt2_store(void *native, const void *udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_bt2_store */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_bt2_debug
  *
@@ -216,7 +216,7 @@ H5SM_bt2_debug(FILE *stream, const H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_bt2_debug */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_bt2_crt_dbg_context
  *
@@ -255,7 +255,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5SM_bt2_crt_dbg_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_bt2_convert_to_list_op
  *

@@ -30,7 +30,7 @@
 #include "H5MMprivate.h"	/*memory management			  */
 #include "H5Tpkg.h"		/*data-type functions			  */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_fields_interface -- Initialize interface-specific information
@@ -52,7 +52,7 @@ H5T_init_fields_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_fields_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_nmembers
  *
@@ -93,7 +93,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_nmembers() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_get_nmembers
  *
@@ -134,7 +134,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_get_nmembers() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_member_name
  *
@@ -176,7 +176,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__get_member_name
  *
@@ -237,7 +237,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Tget_member_index
  *
@@ -303,7 +303,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_member_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__sort_value
  *
@@ -406,7 +406,7 @@ H5T__sort_value(const H5T_t *dt, int *map)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__sort_value() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__sort_name
  *

@@ -172,7 +172,7 @@ static const H5O_obj_class_t *const H5O_obj_class_g[] = {
 };
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_init_interface
  *
@@ -203,7 +203,7 @@ H5O_init_interface(void)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oopen
  *
@@ -249,7 +249,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oopen() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oopen_by_idx
  *
@@ -325,7 +325,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oopen_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oopen_by_addr
  *
@@ -397,7 +397,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oopen_by_addr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Olink
  *
@@ -455,7 +455,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Olink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oincr_refcount
  *
@@ -496,7 +496,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5O_incr_refcount() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Odecr_refcount
  *
@@ -537,7 +537,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Odecr_refcount() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oexists_by_name
  *
@@ -579,7 +579,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oexists_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oget_info
  *
@@ -616,7 +616,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oget_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oget_info_by_name
  *
@@ -660,7 +660,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oget_info_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oget_info_by_idx
  *
@@ -729,7 +729,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oget_info_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oset_comment
  *
@@ -768,7 +768,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oset_comment() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oset_comment_by_name
  *
@@ -815,7 +815,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oset_comment_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oget_comment
  *
@@ -853,7 +853,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oget_comment() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oget_comment_by_name
  *
@@ -899,7 +899,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oget_comment_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Ovisit
  *
@@ -957,7 +957,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Ovisit() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Ovisit_by_name
  *
@@ -1023,7 +1023,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Ovisit_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Oclose
  *
@@ -1083,7 +1083,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Oclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_create
  *
@@ -1273,7 +1273,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_open
  *
@@ -1318,7 +1318,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_open_name
  *
@@ -1370,7 +1370,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_open_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_open_by_loc
  *
@@ -1407,7 +1407,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_open_by_loc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_close
  *
@@ -1463,7 +1463,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_link_oh
  *
@@ -1578,7 +1578,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_link_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_link
  *
@@ -1626,7 +1626,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_protect
  *
@@ -1846,7 +1846,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_pin
  *
@@ -1895,7 +1895,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_pin() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_unpin
  *
@@ -1930,7 +1930,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_unpin() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_unprotect
  *
@@ -1966,7 +1966,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_unprotect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_touch_oh
  *
@@ -2060,7 +2060,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_touch_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_touch
  *
@@ -2107,7 +2107,7 @@ done:
 } /* end H5O_touch() */
 
 #ifdef H5O_ENABLE_BOGUS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_bogus_oh
  *
@@ -2168,7 +2168,7 @@ done:
 } /* end H5O_bogus_oh() */
 #endif /* H5O_ENABLE_BOGUS */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_delete
  *
@@ -2222,7 +2222,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_delete_oh
  *
@@ -2266,7 +2266,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_delete_oh() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_obj_type
  *
@@ -2303,7 +2303,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_obj_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_obj_type_real
  *
@@ -2344,7 +2344,7 @@ H5O_obj_type_real(H5O_t *oh, H5O_type_t *obj_type)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_obj_type_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_obj_class
  *
@@ -2381,7 +2381,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_obj_class() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_obj_class_real
  *
@@ -2424,7 +2424,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_obj_class_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_loc
  *
@@ -2482,7 +2482,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_get_loc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_loc_reset
  *
@@ -2511,7 +2511,7 @@ H5O_loc_reset(H5O_loc_t *loc)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_loc_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_loc_copy
  *
@@ -2561,7 +2561,7 @@ H5O_loc_copy(H5O_loc_t *dst, H5O_loc_t *src, H5_copy_depth_t depth)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_loc_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_loc_hold_file
  *
@@ -2594,7 +2594,7 @@ H5O_loc_hold_file(H5O_loc_t *loc)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_loc_hold_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_loc_free
  *
@@ -2634,7 +2634,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_loc_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_hdr_info
  *
@@ -2678,7 +2678,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_get_hdr_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_hdr_info_real
  *
@@ -2759,7 +2759,7 @@ H5O_get_hdr_info_real(const H5O_t *oh, H5O_hdr_info_t *hdr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_get_hdr_info_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_info
  *
@@ -2882,7 +2882,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_get_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_create_plist
  *
@@ -2937,7 +2937,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_get_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_nlinks
  *
@@ -2977,7 +2977,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_get_nlinks() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_obj_create
  *
@@ -3025,7 +3025,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_obj_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_oh_addr
  *
@@ -3055,7 +3055,7 @@ H5O_get_oh_addr(const H5O_t *oh)
     FUNC_LEAVE_NOAPI(oh->chunk[0].addr)
 } /* end H5O_get_oh_addr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_get_rc_and_type
  *
@@ -3100,7 +3100,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_get_rc_and_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_free_visit_visited
  *
@@ -3123,7 +3123,7 @@ H5O_free_visit_visited(void *item, void H5_ATTR_UNUSED *key, void H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_free_visit_visited() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_visit_cb
  *
@@ -3215,7 +3215,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_visit_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_visit
  *
@@ -3355,7 +3355,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_visit() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_inc_rc
  *
@@ -3391,7 +3391,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_inc_rc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dec_rc
  *
@@ -3427,7 +3427,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dec_rc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:   H5O_dec_rc_by_loc
  *
@@ -3470,7 +3470,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dec_rc_by_loc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_free
  *

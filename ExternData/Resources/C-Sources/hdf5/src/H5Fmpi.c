@@ -77,7 +77,7 @@
 
 
 #ifdef H5_HAVE_PARALLEL
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_mpi_get_rank
  *
@@ -111,7 +111,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_mpi_get_rank() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_mpi_get_comm
  *
@@ -145,7 +145,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_mpi_get_comm() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_mpi_get_size
  *
@@ -179,7 +179,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_mpi_get_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fset_mpi_atomicity
  *
@@ -219,7 +219,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fget_mpi_atomicity
  *

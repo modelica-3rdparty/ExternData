@@ -84,7 +84,7 @@ static const H5I_class_t H5I_REFERENCE_CLS[1] = {{
 }};
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5R_init
  *
@@ -110,7 +110,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5R_init() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5R_init_interface -- Initialize interface-specific information
@@ -138,7 +138,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5R_term_interface
@@ -184,7 +184,7 @@ H5R_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5R_term_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5R_create
@@ -325,7 +325,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5R_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Rcreate
@@ -387,7 +387,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Rcreate() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5R_dereference
@@ -440,7 +440,7 @@ H5R_dereference(H5F_t *file, hid_t dxpl_id, H5R_type_t ref_type, const void *_re
 	    if(!H5F_addr_defined(oloc.addr) || oloc.addr == 0)
 	      HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "Undefined reference pointer")
 	      break;
-            
+
         case H5R_DATASET_REGION:
         {
             H5HG_t hobjid;  /* Heap object ID */
@@ -544,7 +544,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5R_dereference() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Rdereference
@@ -596,7 +596,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Rdereference() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5R_get_region
@@ -665,7 +665,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5R_get_region() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Rget_region
@@ -719,7 +719,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Rget_region() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5R_get_obj_type
@@ -805,7 +805,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5R_get_obj_type() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Rget_obj_type2
@@ -855,7 +855,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Rget_obj_type2() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5R_get_name
@@ -956,7 +956,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5R_get_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Rget_name

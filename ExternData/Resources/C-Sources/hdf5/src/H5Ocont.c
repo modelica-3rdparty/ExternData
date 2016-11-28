@@ -73,7 +73,7 @@ const H5O_msg_class_t H5O_MSG_CONT[1] = {{
 /* Declare the free list for H5O_cont_t's */
 H5FL_DEFINE(H5O_cont_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_cont_decode
  *
@@ -118,7 +118,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cont_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_cont_encode
  *
@@ -153,7 +153,7 @@ H5O_cont_encode(H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, uint8_t *p, con
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_cont_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_cont_size
  *
@@ -185,7 +185,7 @@ H5O_cont_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const void 
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cont_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_cont_free
  *
@@ -210,7 +210,7 @@ H5O_cont_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_cont_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_cont_delete
  *
@@ -244,7 +244,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cont_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_cont_debug
  *

@@ -29,7 +29,7 @@
 #include "H5WBprivate.h"        /* Wrapped Buffers                      */
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_copy
  *
@@ -161,7 +161,7 @@ H5T__bit_copy(uint8_t *dst, size_t dst_offset, const uint8_t *src,
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5T__bit_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_shift
  *
@@ -239,7 +239,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__bit_shift() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_get_d
  *
@@ -296,7 +296,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__bit_get_d() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_set_d
  *
@@ -343,7 +343,7 @@ H5T__bit_set_d(uint8_t *buf, size_t offset, size_t size, uint64_t val)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5T__bit_set_d() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_set
  *
@@ -399,7 +399,7 @@ H5T__bit_set(uint8_t *buf, size_t offset, size_t size, hbool_t value)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5T__bit_set() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_find
  *
@@ -510,7 +510,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__bit_find() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_inc
  *
@@ -580,7 +580,7 @@ H5T__bit_inc(uint8_t *buf, size_t start, size_t size)
     FUNC_LEAVE_NOAPI(carry ? TRUE : FALSE)
 } /* end H5T__bit_inc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_dec
  *
@@ -659,7 +659,7 @@ H5T__bit_dec(uint8_t *buf, size_t start, size_t size)
     FUNC_LEAVE_NOAPI(borrow ? TRUE : FALSE)
 } /* end H5T__bit_dec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__bit_neg
  *

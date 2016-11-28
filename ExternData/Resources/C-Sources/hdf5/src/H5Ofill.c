@@ -167,7 +167,7 @@ H5FL_DEFINE(H5O_fill_t);
 /* Declare extern the free list to manage blocks of type conversion data */
 H5FL_BLK_EXTERN(type_conv);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_new_decode
  *
@@ -283,7 +283,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_fill_new_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_fill_old_decode
  *
@@ -343,7 +343,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_fill_old_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_new_encode
  *
@@ -441,7 +441,7 @@ H5O_fill_new_encode(H5F_t H5_ATTR_UNUSED *f, uint8_t *p, const void *_fill)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_fill_new_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_fill_old_encode
  *
@@ -472,7 +472,7 @@ H5O_fill_old_encode(H5F_t H5_ATTR_UNUSED *f, uint8_t *p, const void *_fill)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_fill_old_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_copy
  *
@@ -589,7 +589,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_fill_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_new_size
  *
@@ -639,7 +639,7 @@ H5O_fill_new_size(const H5F_t H5_ATTR_UNUSED *f, const void *_fill)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_fill_new_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_fill_old_size
  *
@@ -667,7 +667,7 @@ H5O_fill_old_size(const H5F_t H5_ATTR_UNUSED *f, const void *_fill)
     FUNC_LEAVE_NOAPI(4 + (size_t)fill->size)
 } /* end H5O_fill_old_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_reset_dyn
  *
@@ -733,7 +733,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_fill_reset_dyn() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_reset
  *
@@ -766,7 +766,7 @@ H5O_fill_reset(void *_fill)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_fill_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_free
  *
@@ -791,7 +791,7 @@ H5O_fill_free(void *fill)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_fill_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_debug
  *
@@ -893,7 +893,7 @@ H5O_fill_debug(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id, const void
     FUNC_LEAVE_NOAPI(SUCCEED);
 } /* end H5O_fill_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_fill_convert
  *
@@ -996,7 +996,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5O_fill_convert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_fill_set_latest_version
  *

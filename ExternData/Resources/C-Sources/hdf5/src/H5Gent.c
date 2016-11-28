@@ -74,7 +74,7 @@ H5FL_BLK_EXTERN(str_buf);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__ent_decode_vec
  *
@@ -114,7 +114,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__ent_decode_vec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_ent_decode
  *
@@ -179,7 +179,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_ent_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__ent_encode_vec
  *
@@ -219,7 +219,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5G__ent_encode_vec() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_ent_encode
  *
@@ -294,7 +294,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_ent_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__ent_copy
  *
@@ -344,7 +344,7 @@ H5G__ent_copy(H5G_entry_t *dst, const H5G_entry_t *src, H5_copy_depth_t depth)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5G__ent_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__ent_reset
  *
@@ -373,7 +373,7 @@ H5G__ent_reset(H5G_entry_t *ent)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5G__ent_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__ent_convert
  *
@@ -525,7 +525,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__ent_convert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__ent_debug
  *

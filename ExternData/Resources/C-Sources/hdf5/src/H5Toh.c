@@ -81,7 +81,7 @@ const H5O_obj_class_t H5O_OBJ_DATATYPE[1] = {{
     NULL 			/* flush an opened object of this class */
 }};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_isa
  *
@@ -115,7 +115,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_isa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_open
  *
@@ -155,7 +155,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_create
  *
@@ -199,7 +199,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_get_oloc
  *

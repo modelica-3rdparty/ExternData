@@ -32,7 +32,7 @@
 /* Static local functions */
 static herr_t H5T_set_offset(const H5T_t *dt, size_t offset);
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_offset_interface -- Initialize interface-specific information
@@ -54,7 +54,7 @@ H5T_init_offset_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_offset_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_offset
  *
@@ -105,7 +105,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_get_offset
  *
@@ -155,7 +155,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_get_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_offset
  *
@@ -224,7 +224,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_set_offset
  *

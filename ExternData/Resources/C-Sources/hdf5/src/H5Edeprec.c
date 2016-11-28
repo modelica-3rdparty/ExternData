@@ -82,7 +82,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5E__init_deprec_interface -- Initialize interface-specific information
@@ -103,7 +103,7 @@ H5E__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5E_init())
 } /* H5E__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5E__term_deprec_interface -- Terminate interface
@@ -128,7 +128,7 @@ H5E__term_deprec_interface(void)
 } /* H5E__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Eget_major
  *
@@ -181,7 +181,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Eget_major() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Eget_minor
  *
@@ -234,7 +234,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Eget_minor() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Epush1
  *
@@ -273,7 +273,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Epush1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Eclear1
  *
@@ -304,7 +304,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Eclear1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Eprint1
  *
@@ -342,7 +342,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Eprint1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Ewalk1
  *
@@ -381,7 +381,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Ewalk1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Eget_auto1
  *
@@ -398,8 +398,8 @@ done:
  *
  * Modification:Raymond Lu
  *              4 October 2010
- *              If the printing function isn't the default H5Eprint1 or 2, 
- *              and H5Eset_auto2 has been called to set the new style 
+ *              If the printing function isn't the default H5Eprint1 or 2,
+ *              and H5Eset_auto2 has been called to set the new style
  *              printing function, a call to H5Eget_auto1 should fail.
  *-------------------------------------------------------------------------
  */
@@ -432,7 +432,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Eget_auto1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Eset_auto1
  *

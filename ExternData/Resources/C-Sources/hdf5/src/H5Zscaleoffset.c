@@ -671,7 +671,7 @@ H5Z_class2_t H5Z_SCALEOFFSET[1] = {{
       H5Z_scaleoffset_modify_4(i, type, buf, d_nelmts, min, D_val)                     \
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_can_apply_scaleoffset
  *
@@ -725,7 +725,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_can_apply_scaleoffset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_scaleoffset_get_type
  *
@@ -786,7 +786,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_scaleoffset_set_parms_fillval
  *
@@ -838,7 +838,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_scaleoffset_set_parms_fillval() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_set_local_scaleoffset
  *
@@ -1016,7 +1016,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5Z_set_local_scaleoffset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_filter_scaleoffset
  *
@@ -1313,7 +1313,7 @@ done:
  * atomic datatype is treated on byte basis
  */
 
-
+
 /* change byte order of input buffer either from little-endian to big-endian
  * or from big-endian to little-endian  2/21/2005
  */

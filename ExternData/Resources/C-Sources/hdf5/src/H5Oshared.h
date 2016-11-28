@@ -29,7 +29,7 @@
 #ifndef H5Oshared_H
 #define H5Oshared_H
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_DECODE
  *
@@ -89,7 +89,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_DECODE() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_ENCODE
  *
@@ -144,7 +144,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_ENCODE() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_SIZE
  *
@@ -196,7 +196,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_SIZE() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_DELETE
  *
@@ -248,7 +248,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_DELETE() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_LINK
  *
@@ -300,7 +300,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_LINK() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_COPY_FILE
  *
@@ -364,7 +364,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_COPY_FILE() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_POST_COPY_FILE
  *
@@ -435,7 +435,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_SHARED_POST_COPY_FILE() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_SHARED_DEBUG
  *

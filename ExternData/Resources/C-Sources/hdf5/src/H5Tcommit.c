@@ -82,7 +82,7 @@ static H5T_t *H5T_open_oid(const H5G_loc_t *loc, hid_t dxpl_id);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_commit_interface -- Initialize interface-specific information
@@ -104,7 +104,7 @@ H5T_init_commit_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_commit_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tcommit2
  *
@@ -166,7 +166,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tcommit2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__commit_named
  *
@@ -248,7 +248,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__commit_named() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tcommit_anon
  *
@@ -319,7 +319,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tcommit_anon() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__commit
  *
@@ -441,7 +441,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5T__commit() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tcommitted
  *
@@ -476,7 +476,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tcommitted() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_committed
  *
@@ -500,7 +500,7 @@ H5T_committed(const H5T_t *type)
     FUNC_LEAVE_NOAPI(H5T_STATE_OPEN == type->shared->state || H5T_STATE_NAMED == type->shared->state)
 } /* end H5T_committed() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_link
  *
@@ -533,7 +533,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Topen2
  *
@@ -617,7 +617,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Topen2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_create_plist
  *
@@ -685,7 +685,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_open
  *
@@ -802,7 +802,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_open_oid
  *
@@ -860,7 +860,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_open_oid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_update_shared
  *

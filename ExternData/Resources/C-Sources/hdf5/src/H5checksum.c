@@ -80,7 +80,7 @@ static uint32_t H5_crc_table[256];
 static hbool_t H5_crc_table_computed = FALSE;
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_checksum_fletcher32
  *
@@ -152,7 +152,7 @@ H5_checksum_fletcher32(const void *_data, size_t _len)
     FUNC_LEAVE_NOAPI((sum2 << 16) | sum1)
 } /* end H5_checksum_fletcher32() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_checksum_crc_make_table
  *
@@ -188,7 +188,7 @@ H5_checksum_crc_make_table(void)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5_checksum_crc_make_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_checksum_crc_make_table
  *
@@ -222,7 +222,7 @@ H5_checksum_crc_update(uint32_t crc, const uint8_t *buf, size_t len)
     FUNC_LEAVE_NOAPI(crc)
 } /* end H5_checksum_crc_update() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_checksum_crc
  *
@@ -432,7 +432,7 @@ done:
     FUNC_LEAVE_NOAPI(c)
 } /* end H5_checksum_lookup3() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_checksum_metadata
  *
@@ -461,7 +461,7 @@ H5_checksum_metadata(const void *data, size_t len, uint32_t initval)
     FUNC_LEAVE_NOAPI(H5_checksum_lookup3(data, len, initval))
 } /* end H5_checksum_metadata() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_hash_string
  *

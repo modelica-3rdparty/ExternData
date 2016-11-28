@@ -82,7 +82,7 @@ static herr_t H5HF_tiny_op_real(H5HF_hdr_t *hdr, const uint8_t *id,
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_init
  *
@@ -129,7 +129,7 @@ H5HF_tiny_init(H5HF_hdr_t *hdr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_tiny_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_insert
  *
@@ -194,7 +194,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_tiny_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_get_obj_len
  *
@@ -237,7 +237,7 @@ H5HF_tiny_get_obj_len(H5HF_hdr_t *hdr, const uint8_t *id, size_t *obj_len_p)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_tiny_get_obj_len() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_op_real
  *
@@ -297,7 +297,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_tiny_op_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_read
  *
@@ -333,7 +333,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_tiny_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_op
  *
@@ -370,7 +370,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_tiny_op() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_tiny_remove
  *

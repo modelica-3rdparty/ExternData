@@ -31,7 +31,7 @@
 #include "H5Eprivate.h"
 #include "H5MMprivate.h"
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MM_malloc
  *
@@ -42,7 +42,7 @@
  *              difficult to check as a return value. This is still
  *              considered an error condition since allocations of zero
  *              bytes usually indicate problems.
- *  
+ *
  * Return:  Success:    Pointer new memory
  *
  *          Failure:	NULL
@@ -70,7 +70,7 @@ H5MM_malloc(size_t size)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5MM_malloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MM_calloc
  *
@@ -111,7 +111,7 @@ H5MM_calloc(size_t size)
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5MM_calloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MM_realloc
  *
@@ -145,7 +145,7 @@ H5MM_realloc(void *mem, size_t size)
 
     HDassert(mem || size);
 
-    if(NULL == mem && 0 == size) {  
+    if(NULL == mem && 0 == size) {
         /* Not defined in the standard, return NULL */
         ret_value = NULL;
     }
@@ -160,7 +160,7 @@ H5MM_realloc(void *mem, size_t size)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MM_realloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MM_xstrdup
  *
@@ -193,7 +193,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MM_xstrdup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5MM_strdup
  *
@@ -229,7 +229,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MM_strdup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MM_xfree
  *

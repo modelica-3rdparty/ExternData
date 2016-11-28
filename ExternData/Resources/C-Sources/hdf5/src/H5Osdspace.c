@@ -90,7 +90,7 @@ H5FL_EXTERN(H5S_extent_t);
 /* Declare external the free list for hsize_t arrays */
 H5FL_ARR_EXTERN(hsize_t);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_sdspace_decode
@@ -198,7 +198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_sdspace_decode() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_sdspace_encode
@@ -281,7 +281,7 @@ H5O_sdspace_encode(H5F_t *f, uint8_t *p, const void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_sdspace_encode() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_sdspace_copy
@@ -326,7 +326,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_sdspace_copy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_sdspace_size
@@ -372,7 +372,7 @@ H5O_sdspace_size(const H5F_t *f, const void *_mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_sdspace_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_sdspace_reset
  *
@@ -400,7 +400,7 @@ H5O_sdspace_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_sdsdpace_free
  *
@@ -425,7 +425,7 @@ H5O_sdspace_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_sdspace_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_sdspace_pre_copy_file
  *
@@ -475,7 +475,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dspace_pre_copy_file() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_sdspace_debug

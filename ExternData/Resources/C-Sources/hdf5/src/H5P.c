@@ -72,7 +72,7 @@ typedef struct {
 /* Local Variables */
 /*******************/
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5P__init_pub_interface -- Initialize interface-specific information
@@ -93,7 +93,7 @@ H5P__init_pub_interface(void)
     FUNC_LEAVE_NOAPI(H5P_init())
 } /* H5P__init_pub_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5P__term_pub_interface -- Terminate interface
@@ -117,7 +117,7 @@ H5P__term_pub_interface(void)
     FUNC_LEAVE_NOAPI(0)
 } /* H5P__term_pub_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pcopy
@@ -181,7 +181,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pcopy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pcreate_class
@@ -262,7 +262,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pcreate_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pcreate
@@ -306,7 +306,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pcreate() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pregister2
@@ -507,7 +507,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pregister2() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pinsert2
@@ -676,7 +676,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pinsert2() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pset
@@ -733,7 +733,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pset() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pexist
@@ -793,7 +793,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pexist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pget_size
@@ -859,7 +859,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pget_size() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pget_class
@@ -913,7 +913,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pget_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pget_nprops
@@ -973,7 +973,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pget_nprops() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pequal
@@ -1032,7 +1032,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pequal() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pisa_class
@@ -1078,7 +1078,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pisa_class() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P__iterate_cb
@@ -1118,7 +1118,7 @@ H5P__iterate_cb(H5P_genprop_t *prop, void *_udata)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__iterate_cb() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Piterate
@@ -1214,7 +1214,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Piterate() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pget
@@ -1268,7 +1268,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pget() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Premove
@@ -1318,7 +1318,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Premove() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pcopy_prop
@@ -1394,7 +1394,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pcopy_prop() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Punregister
@@ -1439,7 +1439,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Punregister() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pclose
@@ -1484,7 +1484,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pclose() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pget_class_name
@@ -1526,7 +1526,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pget_class_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pget_class_parent
@@ -1579,7 +1579,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Pget_class_parent() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Pclose_class

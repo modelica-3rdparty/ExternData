@@ -34,7 +34,7 @@
 
 /* Local typedefs */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_get_class_path_test
@@ -77,7 +77,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_get_class_path_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_open_class_path_test
@@ -125,7 +125,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5P_open_class_path_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5P_reset_external_file_test

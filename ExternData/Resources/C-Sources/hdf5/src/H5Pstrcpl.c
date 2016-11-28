@@ -101,7 +101,7 @@ const H5P_libclass_t H5P_CLS_STRCRT[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__strcrt_reg_prop
  *
@@ -129,7 +129,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__strcrt_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_char_encoding
  *
@@ -166,7 +166,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5P_set_char_encoding() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_char_encoding
  *

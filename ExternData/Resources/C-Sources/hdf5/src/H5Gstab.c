@@ -115,7 +115,7 @@ typedef struct H5G_bt_it_lbi_t {
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_create_components
  *
@@ -181,7 +181,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_create_components() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_create
  *
@@ -242,7 +242,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_insert_real
  *
@@ -298,7 +298,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_insert_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_insert
  *
@@ -341,7 +341,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_remove
  *
@@ -393,7 +393,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_remove_by_idx
  *
@@ -455,7 +455,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_remove_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_delete
  *
@@ -513,7 +513,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_iterate
  *
@@ -605,7 +605,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_count
  *
@@ -645,7 +645,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_count() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_bh_size
  *
@@ -691,7 +691,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_bh_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_stab_get_name_by_idx_cb
  *
@@ -729,7 +729,7 @@ H5G_stab_get_name_by_idx_cb(const H5G_entry_t *ent, void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_stab_get_name_by_idx_cb */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_get_name_by_idx
  *
@@ -819,7 +819,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_get_name_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_stab_lookup_cb
  *
@@ -852,7 +852,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_stab_lookup_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_lookup
  *
@@ -914,7 +914,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__stab_lookup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_stab_lookup_by_idx_cb
  *
@@ -955,7 +955,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_stab_lookup_by_idx_cb */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_lookup_by_idx
  *
@@ -1029,7 +1029,7 @@ done:
 } /* end H5G__stab_lookup_by_idx() */
 
 #ifndef H5_STRICT_FORMAT_CHECKS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_valid
  *
@@ -1111,7 +1111,7 @@ done:
 #endif /* H5_STRICT_FORMAT_CHECKS */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_stab_get_type_by_idx_cb
  *
@@ -1170,7 +1170,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_stab_get_type_by_idx_cb */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__stab_get_type_by_idx
  *

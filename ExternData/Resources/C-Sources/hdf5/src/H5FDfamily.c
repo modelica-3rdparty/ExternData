@@ -142,7 +142,7 @@ static const H5FD_class_t H5FD_family_g = {
     H5FD_FLMAP_DICHOTOMY                        /*fl_map                */
 };
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5FD_family_init_interface -- Initialize interface-specific information
@@ -164,7 +164,7 @@ H5FD_family_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_family_init())
 } /* H5FD_family_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_init
  *
@@ -199,7 +199,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FD_family_init() */
 
-
+
 /*---------------------------------------------------------------------------
  * Function:	H5FD_family_term
  *
@@ -225,7 +225,7 @@ H5FD_family_term(void)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5FD_family_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_fapl_family
  *
@@ -286,7 +286,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_fapl_family
  *
@@ -338,7 +338,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_fapl_get
  *
@@ -385,7 +385,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_fapl_copy
  *
@@ -440,7 +440,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_fapl_free
  *
@@ -473,7 +473,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_sb_size
  *
@@ -501,7 +501,7 @@ H5FD_family_sb_size(H5FD_t H5_ATTR_UNUSED *_file)
     FUNC_LEAVE_NOAPI(8)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_sb_encode
  *
@@ -546,7 +546,7 @@ H5FD_family_sb_encode(H5FD_t *_file, char *name/*out*/, unsigned char *buf/*out*
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_family_sb_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_sb_decode
  *
@@ -606,7 +606,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_family_sb_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_open
  *
@@ -782,7 +782,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_family_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_close
  *
@@ -834,7 +834,7 @@ H5FD_family_close(H5FD_t *_file)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_family_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_cmp
  *
@@ -871,7 +871,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_query
  *
@@ -910,7 +910,7 @@ H5FD_family_query(const H5FD_t * _file, unsigned long *flags /* out */)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_family_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_get_eoa
  *
@@ -942,7 +942,7 @@ H5FD_family_get_eoa(const H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type)
     FUNC_LEAVE_NOAPI(file->eoa)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_set_eoa
  *
@@ -1021,7 +1021,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_get_eof
  *
@@ -1079,7 +1079,7 @@ H5FD_family_get_eof(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_family_get_handle
  *
@@ -1121,7 +1121,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_read
  *
@@ -1191,7 +1191,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_write
  *
@@ -1260,7 +1260,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_flush
  *
@@ -1294,7 +1294,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_family_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_family_truncate
  *

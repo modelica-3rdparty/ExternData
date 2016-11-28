@@ -74,7 +74,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_init
  *
@@ -136,7 +136,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_dtable_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_lookup
  *
@@ -184,7 +184,7 @@ HDfprintf(stderr, "%s: high_bit = %u, off_mask = %Hu\n", "H5HF_dtable_lookup", h
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_dtable_lookup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_dest
  *
@@ -223,7 +223,7 @@ H5HF_dtable_dest(H5HF_dtable_t *dtable)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_dtable_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_size_to_row
  *
@@ -257,7 +257,7 @@ H5HF_dtable_size_to_row(const H5HF_dtable_t *dtable, size_t block_size)
     FUNC_LEAVE_NOAPI(row)
 } /* end H5HF_dtable_size_to_row() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_size_to_rows
  *
@@ -288,7 +288,7 @@ H5HF_dtable_size_to_rows(const H5HF_dtable_t *dtable, hsize_t size)
     FUNC_LEAVE_NOAPI(rows)
 } /* end H5HF_dtable_size_to_rows() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_dtable_span_size
  *

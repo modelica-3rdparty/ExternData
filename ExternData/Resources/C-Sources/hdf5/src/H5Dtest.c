@@ -61,7 +61,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__layout_version_test
@@ -100,7 +100,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5D__layout_version_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__layout_contig_size_test
@@ -141,7 +141,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5D__layout_contig_size_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__current_cache_size_test

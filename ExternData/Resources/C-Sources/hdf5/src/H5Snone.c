@@ -98,7 +98,7 @@ static const H5S_sel_iter_class_t H5S_sel_iter_none[1] = {{
     H5S_none_iter_release,
 }};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_none_iter_init
  *
@@ -128,7 +128,7 @@ H5S_none_iter_init(H5S_sel_iter_t *iter, const H5S_t H5_ATTR_UNUSED *space)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_none_iter_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_none_iter_coords
  *
@@ -156,7 +156,7 @@ H5S_none_iter_coords(const H5S_sel_iter_t H5_ATTR_UNUSED *iter, hsize_t H5_ATTR_
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_iter_coords() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_none_iter_block
  *
@@ -185,7 +185,7 @@ H5S_none_iter_block(const H5S_sel_iter_t H5_ATTR_UNUSED *iter, hsize_t H5_ATTR_U
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_iter_block() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_none_iter_nelmts
  *
@@ -211,7 +211,7 @@ H5S_none_iter_nelmts(const H5S_sel_iter_t H5_ATTR_UNUSED *iter)
     FUNC_LEAVE_NOAPI(0)
 }   /* H5S_none_iter_nelmts() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_iter_has_next_block
@@ -240,7 +240,7 @@ H5S_none_iter_has_next_block(const H5S_sel_iter_t H5_ATTR_UNUSED *iter)
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_iter_has_next_block() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_iter_next
@@ -271,7 +271,7 @@ H5S_none_iter_next(H5S_sel_iter_t H5_ATTR_UNUSED *iter, size_t H5_ATTR_UNUSED ne
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_none_iter_next() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_iter_next_block
@@ -300,7 +300,7 @@ H5S_none_iter_next_block(H5S_sel_iter_t H5_ATTR_UNUSED *iter)
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_iter_next_block() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_iter_release
@@ -329,7 +329,7 @@ H5S_none_iter_release(H5S_sel_iter_t H5_ATTR_UNUSED * iter)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_none_iter_release() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_release
@@ -358,7 +358,7 @@ H5S_none_release(H5S_t H5_ATTR_UNUSED * space)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_none_release() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_copy
@@ -392,7 +392,7 @@ H5S_none_copy(H5S_t *dst, const H5S_t H5_ATTR_UNUSED *src, hbool_t H5_ATTR_UNUSE
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5S_none_copy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_is_valid
@@ -423,7 +423,7 @@ H5S_none_is_valid(const H5S_t H5_ATTR_UNUSED *space)
     FUNC_LEAVE_NOAPI(TRUE)
 } /* end H5S_none_is_valid() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_serial_size
@@ -457,7 +457,7 @@ H5S_none_serial_size(const H5S_t H5_ATTR_UNUSED *space)
     FUNC_LEAVE_NOAPI(16)
 } /* end H5S_none_serial_size() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_serialize
@@ -493,7 +493,7 @@ H5S_none_serialize(const H5S_t *space, uint8_t *buf)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5S_none_serialize() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_deserialize
@@ -530,7 +530,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_none_deserialize() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_bounds
@@ -568,7 +568,7 @@ H5S_none_bounds(const H5S_t H5_ATTR_UNUSED *space, hsize_t H5_ATTR_UNUSED *start
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5Sget_none_bounds() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_offset
@@ -600,7 +600,7 @@ H5S_none_offset(const H5S_t H5_ATTR_UNUSED *space, hsize_t H5_ATTR_UNUSED *offse
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_offset() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_is_contiguous
@@ -629,7 +629,7 @@ H5S_none_is_contiguous(const H5S_t H5_ATTR_UNUSED *space)
     FUNC_LEAVE_NOAPI(FALSE)
 }   /* H5S_none_is_contiguous() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_is_single
@@ -658,7 +658,7 @@ H5S_none_is_single(const H5S_t H5_ATTR_UNUSED *space)
     FUNC_LEAVE_NOAPI(FALSE)
 }   /* H5S_none_is_single() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_is_regular
@@ -689,7 +689,7 @@ H5S_none_is_regular(const H5S_t H5_ATTR_UNUSED *space)
     FUNC_LEAVE_NOAPI(TRUE)
 }   /* H5S_none_is_regular() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_adjust_u
@@ -720,7 +720,7 @@ H5S_none_adjust_u(H5S_t H5_ATTR_UNUSED *space, const hsize_t H5_ATTR_UNUSED *off
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_adjust_u() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_none_project_scalar
  *
@@ -745,7 +745,7 @@ H5S_none_project_scalar(const H5S_t H5_ATTR_UNUSED *space, hsize_t H5_ATTR_UNUSE
     FUNC_LEAVE_NOAPI(FAIL)
 }   /* H5S_none_project_scalar() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5S_none_project_simple
  *
@@ -779,7 +779,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_none_project_simple() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_none
@@ -821,7 +821,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5S_select_none() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Sselect_none
@@ -860,7 +860,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* H5Sselect_none() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_none_get_seq_list

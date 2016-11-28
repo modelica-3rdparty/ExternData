@@ -587,7 +587,7 @@ static H5FL_fac_head_t **H5SL_fac_g;
 static size_t H5SL_fac_nused_g;
 static size_t H5SL_fac_nalloc_g;
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_init_interface
@@ -623,7 +623,7 @@ H5SL_init_interface(void)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SL_init_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_new_node
@@ -673,7 +673,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_new_node() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_insert_common
@@ -790,7 +790,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_insert_common() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_release_common
@@ -863,7 +863,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_release_common() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_close_common
@@ -915,7 +915,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_close_common() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_create
@@ -986,7 +986,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_count
@@ -1022,7 +1022,7 @@ H5SL_count(H5SL_t *slist)
     FUNC_LEAVE_NOAPI(slist->nobjs)
 } /* end H5SL_count() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_insert
@@ -1069,7 +1069,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_insert() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_add
@@ -1119,7 +1119,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_add() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_remove
@@ -1206,7 +1206,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_remove() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_remove_first
@@ -1309,7 +1309,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_remove_first() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_search
@@ -1399,7 +1399,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_search() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_less
@@ -1508,7 +1508,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_less() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_greater
@@ -1608,7 +1608,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_greater() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_find
@@ -1700,7 +1700,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_find() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_below
@@ -1806,7 +1806,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_below() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_above
@@ -1903,7 +1903,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_above() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_first
@@ -1940,7 +1940,7 @@ H5SL_first(H5SL_t *slist)
     FUNC_LEAVE_NOAPI(slist->header->forward[0])
 } /* end H5SL_first() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_next
@@ -1977,7 +1977,7 @@ H5SL_next(H5SL_node_t *slist_node)
     FUNC_LEAVE_NOAPI(slist_node->forward[0])
 } /* end H5SL_next() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_prev
@@ -2015,7 +2015,7 @@ H5SL_prev(H5SL_node_t *slist_node)
     FUNC_LEAVE_NOAPI(slist_node->backward->key==NULL ? NULL : slist_node->backward)
 } /* end H5SL_prev() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_last
@@ -2053,7 +2053,7 @@ H5SL_last(H5SL_t *slist)
     FUNC_LEAVE_NOAPI(slist->last==slist->header ? NULL : slist->last)
 } /* end H5SL_last() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_item
@@ -2089,7 +2089,7 @@ H5SL_item(H5SL_node_t *slist_node)
     FUNC_LEAVE_NOAPI(slist_node->item)
 } /* end H5SL_item() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_iterate
@@ -2157,7 +2157,7 @@ H5SL_iterate(H5SL_t *slist, H5SL_operator_t op, void *op_data)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_iterate() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_release
@@ -2198,7 +2198,7 @@ H5SL_release(H5SL_t *slist)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SL_release() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_free
@@ -2247,7 +2247,7 @@ H5SL_free(H5SL_t *slist, H5SL_operator_t op, void *op_data)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SL_free() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_try_free_safe
@@ -2426,7 +2426,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_try_free_safe() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_destroy
@@ -2472,7 +2472,7 @@ H5SL_destroy(H5SL_t *slist, H5SL_operator_t op, void *op_data)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SL_destroy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_close
@@ -2509,7 +2509,7 @@ H5SL_close(H5SL_t *slist)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SL_close() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5SL_term_interface

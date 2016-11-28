@@ -90,7 +90,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_cwfs_add
  *
@@ -145,7 +145,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_cwfs_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_cwfs_find_free_heap
  *
@@ -242,7 +242,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_cwfs_find_free_heap() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_cwfs_advance_heap
  *
@@ -284,7 +284,7 @@ H5F_cwfs_advance_heap(H5F_t *f, H5HG_heap_t *heap, hbool_t add_heap)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5F_cwfs_advance_heap() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_cwfs_remove_heap
  *

@@ -81,7 +81,7 @@ const H5AC_class_t H5AC_BT[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B__load
  *
@@ -190,7 +190,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B__load() */  /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B__flush
  *
@@ -281,7 +281,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B__flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B__dest
  *
@@ -334,7 +334,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B__dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B__clear
  *
@@ -371,7 +371,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B__clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B__compute_size
  *

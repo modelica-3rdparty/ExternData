@@ -111,7 +111,7 @@ H5FL_BLK_EXTERN(str_buf);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__component
  *
@@ -145,7 +145,7 @@ H5G__component(const char *name, size_t *size_p)
     FUNC_LEAVE_NOAPI(name)
 } /* end H5G__component() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_normalize
  *
@@ -209,7 +209,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_normalize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5G_common_path
  *
@@ -275,7 +275,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_common_path() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5G_build_fullpath
  *
@@ -336,7 +336,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_build_fullpath() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_build_fullpath_refstr_str
  *
@@ -372,7 +372,7 @@ H5G_build_fullpath_refstr_str(H5RS_str_t *prefix_r, const char *name)
 } /* end H5G_build_fullpath_refstr_str() */
 
 #ifdef NOT_YET
-
+
 /*-------------------------------------------------------------------------
  * Function: H5G_name_build_refstr_refstr
  *
@@ -409,7 +409,7 @@ H5G_build_fullpath_refstr_refstr(const H5RS_str_t *prefix_r, const H5RS_str_t *n
 } /* end H5G_build_fullpath_refstr_refstr() */
 #endif /* NOT_YET */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__name_init
  *
@@ -441,7 +441,7 @@ H5G__name_init(H5G_name_t *name, const char *path)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G__name_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_name_set
  *
@@ -487,7 +487,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_name_set() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_name_copy
  *
@@ -540,7 +540,7 @@ H5G_name_copy(H5G_name_t *dst, const H5G_name_t *src, H5_copy_depth_t depth)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_name_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_get_name
  *
@@ -617,7 +617,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_get_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_name_reset
  *
@@ -645,7 +645,7 @@ H5G_name_reset(H5G_name_t *name)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_name_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_name_free
  *
@@ -680,7 +680,7 @@ H5G_name_free(H5G_name_t *name)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_name_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_name_move_path
  *
@@ -783,7 +783,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_name_move_path() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5G_name_replace_cb
  *
@@ -1057,7 +1057,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value);
 } /* end H5G_name_replace_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5G_name_replace
  *
@@ -1198,7 +1198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_name_replace() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_get_name_by_addr_cb
  *
@@ -1268,7 +1268,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_get_name_by_addr_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_get_name_by_addr
  *

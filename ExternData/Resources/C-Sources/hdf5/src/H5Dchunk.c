@@ -299,11 +299,11 @@ H5FL_DEFINE(H5D_chunk_info_t);
 /* Declare a free list to manage the chunk sequence information */
 H5FL_BLK_DEFINE_STATIC(chunk);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_direct_write
  *
- * Purpose:	Internal routine to write a chunk 
+ * Purpose:	Internal routine to write a chunk
  *              directly into the file.
  *
  * Return:	Non-negative on success/Negative on failure
@@ -314,7 +314,7 @@ H5FL_BLK_DEFINE_STATIC(chunk);
  *-------------------------------------------------------------------------
  */
 herr_t
-H5D__chunk_direct_write(const H5D_t *dset, hid_t dxpl_id, uint32_t filters, hsize_t *offset, 
+H5D__chunk_direct_write(const H5D_t *dset, hid_t dxpl_id, uint32_t filters, hsize_t *offset,
      uint32_t data_size, const void *buf)
 {
     const H5O_layout_t *layout = &(dset->shared->layout);       /* Dataset layout */
@@ -395,7 +395,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_direct_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_set_info_real
  *
@@ -438,7 +438,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_set_info_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_set_info
  *
@@ -481,7 +481,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_set_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_construct
  *
@@ -572,7 +572,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_construct() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_init
  *
@@ -650,7 +650,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_is_space_alloc
  *
@@ -679,7 +679,7 @@ H5D__chunk_is_space_alloc(const H5O_storage_t *storage)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_is_space_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_io_init
  *
@@ -980,7 +980,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_io_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_alloc
  *
@@ -1013,7 +1013,7 @@ H5D__chunk_alloc(size_t size, const H5O_pline_t *pline)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_xfree
  *
@@ -1045,7 +1045,7 @@ H5D__chunk_xfree(void *chk, const H5O_pline_t *pline)
     FUNC_LEAVE_NOAPI(NULL)
 } /* H5D__chunk_xfree() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_realloc
  *
@@ -1078,7 +1078,7 @@ H5D__chunk_realloc(void *chk, size_t size, const H5O_pline_t *pline)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_realloc() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__free_chunk_info
@@ -1121,7 +1121,7 @@ H5D__free_chunk_info(void *item, void H5_ATTR_UNUSED *key, void H5_ATTR_UNUSED *
     FUNC_LEAVE_NOAPI(0)
 }   /* H5D__free_chunk_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__create_chunk_map_single
  *
@@ -1202,7 +1202,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__create_chunk_map_single() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__create_chunk_file_map_hyper
  *
@@ -1379,7 +1379,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__create_chunk_file_map_hyper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__create_chunk_mem_map_hyper
  *
@@ -1491,7 +1491,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__create_chunk_mem_map_hyper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_file_cb
  *
@@ -1610,7 +1610,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_file_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_mem_cb
  *
@@ -1689,7 +1689,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_mem_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_cacheable
  *
@@ -1764,7 +1764,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_cacheable() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_read
  *
@@ -1916,7 +1916,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_write
  *
@@ -2065,7 +2065,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_flush
  *
@@ -2115,7 +2115,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_io_term
  *
@@ -2166,7 +2166,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_io_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_chunk_idx_reset
  *
@@ -2198,7 +2198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_chunk_idx_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_cinfo_cache_reset
  *
@@ -2225,7 +2225,7 @@ H5D__chunk_cinfo_cache_reset(H5D_chunk_cached_t *last)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5D__chunk_cinfo_cache_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_cinfo_cache_update
  *
@@ -2262,7 +2262,7 @@ H5D__chunk_cinfo_cache_update(H5D_chunk_cached_t *last, const H5D_chunk_ud_t *ud
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5D__chunk_cinfo_cache_update() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_cinfo_cache_found
  *
@@ -2311,7 +2311,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_cinfo_cache_found() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_create
  *
@@ -2363,7 +2363,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_lookup
  *
@@ -2449,7 +2449,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_lookup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_flush_entry
  *
@@ -2606,7 +2606,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_flush_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_cache_evict
  *
@@ -2669,7 +2669,7 @@ H5D__chunk_cache_evict(const H5D_t *dset, hid_t dxpl_id, const H5D_dxpl_cache_t 
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_cache_evict() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_cache_prune
  *
@@ -2777,7 +2777,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_cache_prune() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_lock
  *
@@ -3055,7 +3055,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_lock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_unlock
  *
@@ -3142,7 +3142,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_unlock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_allocated_cb
  *
@@ -3169,7 +3169,7 @@ H5D__chunk_allocated_cb(const H5D_chunk_rec_t *chunk_rec, void *_udata)
     FUNC_LEAVE_NOAPI(H5_ITER_CONT)
 } /* H5D__chunk_allocated_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_allocated
  *
@@ -3229,7 +3229,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_allocated() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_allocate
  *
@@ -3534,7 +3534,7 @@ H5D__chunk_allocate(const H5D_t *dset, hid_t dxpl_id, hbool_t full_overwrite,
                 } /* end if */
                 else {
 #endif /* H5_HAVE_PARALLEL */
-                    if(H5F_block_write(dset->oloc.file, H5FD_MEM_DRAW, udata.addr, chunk_size, 
+                    if(H5F_block_write(dset->oloc.file, H5FD_MEM_DRAW, udata.addr, chunk_size,
                                        dxpl_id, fb_info.fill_buf) < 0)
                         HGOTO_ERROR(H5E_IO, H5E_WRITEERROR, FAIL, "unable to write raw data to file")
 #ifdef H5_HAVE_PARALLEL
@@ -3595,12 +3595,12 @@ done:
 } /* end H5D__chunk_allocate() */
 
 #ifdef H5_HAVE_PARALLEL
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_collective_fill
  *
  * Purpose:     Use MPIO collective write to fill the chunks (if number of
- *              chunks to fill is greater than the number of MPI procs; 
+ *              chunks to fill is greater than the number of MPI procs;
  *              otherwise use independent I/O).
  *
  * Return:	Non-negative on success/Negative on failure
@@ -3683,13 +3683,13 @@ H5D__chunk_collective_fill(const H5D_t *dset, hid_t dxpl_id,
        distributing. If there are, then round robin the distribution
        to processes 0 -> leftover. */
     if(leftover && leftover > mpi_rank) {
-        chunk_disp_array[blocks] = (MPI_Aint)chunk_info->addr[blocks*mpi_size + mpi_rank];        
+        chunk_disp_array[blocks] = (MPI_Aint)chunk_info->addr[blocks*mpi_size + mpi_rank];
         block_lens[blocks] = block_len;
         blocks++;
     }
 
     /* MSC
-     * should not have a special case for blocks == 0, but ompi (as of 1.8.1) has a bug 
+     * should not have a special case for blocks == 0, but ompi (as of 1.8.1) has a bug
      * in file_set_view when a zero size datatype is create with hindexed or hvector.
      */
     if(0 == blocks) {
@@ -3701,11 +3701,11 @@ H5D__chunk_collective_fill(const H5D_t *dset, hid_t dxpl_id,
             HMPI_GOTO_ERROR(FAIL, "MPI_Type_contiguous failed", mpi_code)
     }
     else {
-        /* MSC 
-         * should use this if MPI_type_create_hindexed block is working 
+        /* MSC
+         * should use this if MPI_type_create_hindexed block is working
          * mpi_code = MPI_Type_create_hindexed_block(blocks, block_len, chunk_disp_array, MPI_BYTE, &file_type);
          */
-        mpi_code = MPI_Type_create_hindexed(blocks, block_lens, chunk_disp_array, 
+        mpi_code = MPI_Type_create_hindexed(blocks, block_lens, chunk_disp_array,
                                             MPI_BYTE, &file_type);
         if(mpi_code != MPI_SUCCESS)
             HMPI_GOTO_ERROR(FAIL, "MPI_Type_create_hindexed failed", mpi_code)
@@ -3740,7 +3740,7 @@ H5D__chunk_collective_fill(const H5D_t *dset, hid_t dxpl_id,
     }
 
     /* low level write */
-    if(H5F_block_write(dset->oloc.file, H5FD_MEM_DRAW, (haddr_t)0, (blocks) ? (size_t)1 : (size_t)0, 
+    if(H5F_block_write(dset->oloc.file, H5FD_MEM_DRAW, (haddr_t)0, (blocks) ? (size_t)1 : (size_t)0,
                        data_dxpl_id, fill_buf) < 0)
         HGOTO_ERROR(H5E_IO, H5E_WRITEERROR, FAIL, "unable to write raw data to file")
 
@@ -3764,7 +3764,7 @@ done:
 } /* end H5D__chunk_collective_fill() */
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_prune_fill
  *
@@ -3886,7 +3886,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_prune_fill */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_prune_by_extent
  *
@@ -4291,7 +4291,7 @@ done:
 } /* end H5D__chunk_prune_by_extent() */
 
 #ifdef H5_HAVE_PARALLEL
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_addrmap_cb
  *
@@ -4326,7 +4326,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__chunk_addrmap_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_addrmap
  *
@@ -4377,7 +4377,7 @@ done:
 } /* end H5D__chunk_addrmap() */
 #endif /* H5_HAVE_PARALLEL */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_delete
  *
@@ -4454,7 +4454,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_update_cache
  *
@@ -4541,7 +4541,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_update_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_copy_cb
  *
@@ -4715,7 +4715,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_copy_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_copy
  *
@@ -4973,7 +4973,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_bh_info
  *
@@ -5017,7 +5017,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_bh_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_dump_index_cb
  *
@@ -5063,7 +5063,7 @@ H5D__chunk_dump_index_cb(const H5D_chunk_rec_t *chunk_rec, void *_udata)
     FUNC_LEAVE_NOAPI(H5_ITER_CONT)
 } /* H5D__chunk_dump_index_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_dump_index
  *
@@ -5118,7 +5118,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_dump_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_dest
  *
@@ -5158,7 +5158,7 @@ H5D__chunk_dest(H5F_t *f, hid_t dxpl_id, H5D_t *dset)
 	if(H5D__chunk_cache_evict(dset, dxpl_id, dxpl_cache, ent, TRUE) < 0)
 	    nerrors++;
     } /* end for */
-    
+
     /* Continue even if there are failures. */
     if(nerrors)
 	HDONE_ERROR(H5E_IO, H5E_CANTFLUSH, FAIL, "unable to flush one or more raw data chunks")
@@ -5185,7 +5185,7 @@ done:
 } /* end H5D__chunk_dest() */
 
 #ifdef H5D_CHUNK_DEBUG
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__chunk_stats
  *
@@ -5248,7 +5248,7 @@ done:
 } /* end H5D__chunk_stats() */
 #endif /* H5D_CHUNK_DEBUG */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__nonexistent_readvv_cb
  *
@@ -5297,7 +5297,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__nonexistent_readvv_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__nonexistent_readvv
  *

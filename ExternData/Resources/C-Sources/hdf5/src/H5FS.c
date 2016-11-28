@@ -83,7 +83,7 @@ H5FL_DEFINE(H5FS_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_create
  *
@@ -170,7 +170,7 @@ HDfprintf(stderr, "%s: Leaving, ret_value = %d\n", FUNC, ret_value);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_open
  *
@@ -245,7 +245,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_delete
  *
@@ -337,7 +337,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_close
  *
@@ -503,7 +503,7 @@ HDfprintf(stderr, "%s: Leaving, ret_value = %d, fspace->rc = %u\n", FUNC, ret_va
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_new
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5FS_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FS_size
  *
@@ -615,7 +615,7 @@ H5FS_size(const H5F_t *f, const H5FS_t *fspace, hsize_t *meta_size)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FS_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FS_incr
  *
@@ -656,7 +656,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_incr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FS_decr
  *
@@ -704,7 +704,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_dirty
  *
@@ -741,7 +741,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_hdr_dest
  *
@@ -787,7 +787,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FS_hdr_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_free_sect_cb
  *
@@ -818,7 +818,7 @@ H5FS_sinfo_free_sect_cb(void *_sect, void H5_ATTR_UNUSED *key, void *op_data)
     FUNC_LEAVE_NOAPI(0)
 }   /* H5FS_sinfo_free_sect_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_free_node_cb
  *
@@ -852,7 +852,7 @@ H5FS_sinfo_free_node_cb(void *item, void H5_ATTR_UNUSED *key, void *op_data)
     FUNC_LEAVE_NOAPI(0)
 }   /* H5FS_sinfo_free_node_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_sinfo_dest
  *
@@ -913,7 +913,7 @@ done:
 } /* end H5FS_sinfo_dest() */
 
 #ifdef H5FS_DEBUG_ASSERT
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FS_assert
  *

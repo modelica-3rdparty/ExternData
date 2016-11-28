@@ -188,7 +188,7 @@ const H5B2_class_t H5HF_HUGE_BT2_FILT_DIR[1]={{ /* B-tree class information */
 H5FL_DEFINE_STATIC(H5HF_huge_bt2_ctx_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_crt_context
  *
@@ -231,7 +231,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_huge_bt2_crt_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dst_context
  *
@@ -263,7 +263,7 @@ H5HF_huge_bt2_dst_context(void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_dst_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_crt_dbg_context
  *
@@ -303,7 +303,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_huge_bt2_crt_dbg_context() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_found
  *
@@ -334,7 +334,7 @@ HDfprintf(stderr, "%s: nrecord = {%a, %Hu, %Hu}\n", "H5HF_huge_bt2_indir_found",
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_indir_found() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_remove
  *
@@ -368,7 +368,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_huge_bt2_indir_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_store
  *
@@ -392,7 +392,7 @@ H5HF_huge_bt2_indir_store(void *nrecord, const void *udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_indir_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_compare
  *
@@ -412,13 +412,13 @@ H5HF_huge_bt2_indir_compare(const void *_rec1, const void *_rec2, int *result)
 {
     FUNC_ENTER_NOAPI_NOINIT_NOERR
 
-    *result = (int)(((const H5HF_huge_bt2_indir_rec_t *)_rec1)->id - 
+    *result = (int)(((const H5HF_huge_bt2_indir_rec_t *)_rec1)->id -
                     ((const H5HF_huge_bt2_indir_rec_t *)_rec2)->id);
 
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_indir_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_encode
  *
@@ -451,7 +451,7 @@ H5HF_huge_bt2_indir_encode(uint8_t *raw, const void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_indir_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_decode
  *
@@ -484,7 +484,7 @@ H5HF_huge_bt2_indir_decode(const uint8_t *raw, void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_indir_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_indir_debug
  *
@@ -513,7 +513,7 @@ H5HF_huge_bt2_indir_debug(FILE *stream, const H5F_t H5_ATTR_UNUSED *f, hid_t H5_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_indir_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_found
  *
@@ -546,7 +546,7 @@ HDfprintf(stderr, "%s: nrecord = {%a, %Hu, %x, %Hu, %Hu}\n", "H5HF_huge_bt2_filt
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_indir_found() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_remove
  *
@@ -580,7 +580,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_huge_bt2_filt_indir_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_store
  *
@@ -604,7 +604,7 @@ H5HF_huge_bt2_filt_indir_store(void *nrecord, const void *udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_indir_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_compare
  *
@@ -624,13 +624,13 @@ H5HF_huge_bt2_filt_indir_compare(const void *_rec1, const void *_rec2, int *resu
 {
     FUNC_ENTER_NOAPI_NOINIT_NOERR
 
-    *result = (int)(((const H5HF_huge_bt2_filt_indir_rec_t *)_rec1)->id - 
+    *result = (int)(((const H5HF_huge_bt2_filt_indir_rec_t *)_rec1)->id -
                     ((const H5HF_huge_bt2_filt_indir_rec_t *)_rec2)->id);
 
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_indir_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_encode
  *
@@ -665,7 +665,7 @@ H5HF_huge_bt2_filt_indir_encode(uint8_t *raw, const void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_indir_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_decode
  *
@@ -700,7 +700,7 @@ H5HF_huge_bt2_filt_indir_decode(const uint8_t *raw, void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_indir_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_indir_debug
  *
@@ -729,7 +729,7 @@ H5HF_huge_bt2_filt_indir_debug(FILE *stream, const H5F_t H5_ATTR_UNUSED *f, hid_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_indir_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dir_remove
  *
@@ -763,7 +763,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_huge_bt2_dir_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dir_store
  *
@@ -787,7 +787,7 @@ H5HF_huge_bt2_dir_store(void *nrecord, const void *udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_dir_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dir_compare
  *
@@ -828,7 +828,7 @@ HDfprintf(stderr, "%s: rec2 = {%a, %Hu}\n", "H5HF_huge_bt2_dir_compare", rec2->a
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_dir_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dir_encode
  *
@@ -860,7 +860,7 @@ H5HF_huge_bt2_dir_encode(uint8_t *raw, const void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_dir_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dir_decode
  *
@@ -892,7 +892,7 @@ H5HF_huge_bt2_dir_decode(const uint8_t *raw, void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_dir_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_dir_debug
  *
@@ -921,7 +921,7 @@ H5HF_huge_bt2_dir_debug(FILE *stream, const H5F_t H5_ATTR_UNUSED *f, hid_t H5_AT
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_dir_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_found
  *
@@ -953,7 +953,7 @@ HDfprintf(stderr, "%s: nrecord = {%a, %Hu, %x, %Hu}\n", "H5HF_huge_bt2_filt_dir_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_dir_found() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_remove
  *
@@ -987,7 +987,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_huge_bt2_filt_dir_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_store
  *
@@ -1011,7 +1011,7 @@ H5HF_huge_bt2_filt_dir_store(void *nrecord, const void *udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_dir_store() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_compare
  *
@@ -1052,7 +1052,7 @@ HDfprintf(stderr, "%s: rec2 = {%a, %Hu, %x, %Hu}\n", "H5HF_huge_bt2_filt_dir_com
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_dir_compare() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_encode
  *
@@ -1086,7 +1086,7 @@ H5HF_huge_bt2_filt_dir_encode(uint8_t *raw, const void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_dir_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_decode
  *
@@ -1120,7 +1120,7 @@ H5HF_huge_bt2_filt_dir_decode(const uint8_t *raw, void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_huge_bt2_filt_dir_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_huge_bt2_filt_dir_debug
  *

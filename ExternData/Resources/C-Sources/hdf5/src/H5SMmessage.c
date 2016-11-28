@@ -70,7 +70,7 @@ static herr_t H5SM_compare_iter_op(H5O_t *oh, H5O_mesg_t *mesg, unsigned sequenc
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_compare_cb
  *
@@ -106,7 +106,7 @@ H5SM_compare_cb(const void *obj, size_t obj_len, void *_udata)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_compare_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_compare_iter_op
  *
@@ -172,7 +172,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_compare_iter_op() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_message_compare
  *
@@ -278,7 +278,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5SM_message_compare */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_message_encode
  *
@@ -322,7 +322,7 @@ H5SM_message_encode(uint8_t *raw, const void *_nrecord, void *_ctx)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5SM_message_encode */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5SM_message_decode
  *

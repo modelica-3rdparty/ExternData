@@ -47,7 +47,7 @@ H5VM_stride_copy2(hsize_t nelmts, hsize_t elmt_size,
      unsigned src_n, const hsize_t *src_size, const ssize_t *src_stride, const void *_src);
 #endif /* LATER */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_stride_optimize1
  *
@@ -93,7 +93,7 @@ H5VM_stride_optimize1(unsigned *np/*in,out*/, hsize_t *elmt_size/*in,out*/,
     FUNC_LEAVE_NOAPI_VOID
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_stride_optimize2
  *
@@ -222,7 +222,7 @@ H5VM_stride_optimize2(unsigned *np/*in,out*/, hsize_t *elmt_size/*in,out*/,
     FUNC_LEAVE_NOAPI_VOID
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_hyper_stride
  *
@@ -331,7 +331,7 @@ H5VM_hyper_stride(unsigned n, const hsize_t *size,
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_hyper_eq
  *
@@ -384,7 +384,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_hyper_disjointp
  *
@@ -434,7 +434,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5VM_hyper_disjointp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_hyper_fill
  *
@@ -499,7 +499,7 @@ H5VM_hyper_fill(unsigned n, const hsize_t *_size,
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_hyper_copy
  *
@@ -684,7 +684,7 @@ H5VM_hyper_copy(unsigned n, const hsize_t *_size,
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_stride_fill
  *
@@ -738,7 +738,7 @@ H5VM_stride_fill(unsigned n, hsize_t elmt_size, const hsize_t *size,
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_stride_copy
  *
@@ -807,7 +807,7 @@ H5VM_stride_copy(unsigned n, hsize_t elmt_size, const hsize_t *size,
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_stride_copy_s
  *
@@ -877,7 +877,7 @@ H5VM_stride_copy_s(unsigned n, hsize_t elmt_size, const hsize_t *size,
 }
 
 #ifdef LATER
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_stride_copy2
  *
@@ -956,7 +956,7 @@ H5VM_stride_copy2(hsize_t nelmts, hsize_t elmt_size,
 }
 #endif /* LATER */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_array_fill
  *
@@ -1012,7 +1012,7 @@ H5VM_array_fill(void *_dst, const void *src, size_t size, size_t count)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5VM_array_fill() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_array_down
  *
@@ -1052,7 +1052,7 @@ H5VM_array_down(unsigned n, const hsize_t *total_size, hsize_t *down)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5VM_array_down() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_array_offset_pre
  *
@@ -1095,7 +1095,7 @@ H5VM_array_offset_pre(unsigned n, const hsize_t *acc, const hsize_t *offset)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5VM_array_offset_pre() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_array_offset
  *
@@ -1139,7 +1139,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5VM_array_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_array_calc_pre
  *
@@ -1179,7 +1179,7 @@ H5VM_array_calc_pre(hsize_t offset, unsigned n, const hsize_t *down,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5VM_array_calc_pre() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_array_calc
  *
@@ -1225,7 +1225,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5VM_array_calc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_chunk_index
  *
@@ -1293,7 +1293,7 @@ H5VM_chunk_index(unsigned ndims, const hsize_t *coord, const uint32_t *chunk,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5VM_chunk_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_opvv
  *
@@ -1499,7 +1499,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5VM_opvv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_memcpyvv
  *

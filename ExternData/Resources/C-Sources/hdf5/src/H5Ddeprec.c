@@ -85,7 +85,7 @@ static herr_t H5D__extend(H5D_t *dataset, const hsize_t *size, hid_t dxpl_id);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__init_deprec_interface -- Initialize interface-specific information
@@ -106,7 +106,7 @@ H5D__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5D_init())
 } /* H5D__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__term_deprec_interface -- Terminate interface
@@ -131,7 +131,7 @@ H5D__term_deprec_interface(void)
 } /* H5D__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dcreate1
  *
@@ -204,7 +204,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dcreate1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dopen1
  *
@@ -284,7 +284,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dopen1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dextend
  *
@@ -324,7 +324,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dextend() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__extend
  *

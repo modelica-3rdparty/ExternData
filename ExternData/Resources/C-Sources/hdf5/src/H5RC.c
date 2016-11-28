@@ -30,7 +30,7 @@
 /* Declare a free list to manage the H5RC_t struct */
 H5FL_DEFINE_STATIC(H5RC_t);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RC_create
@@ -76,7 +76,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RC_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RC_decr

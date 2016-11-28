@@ -206,7 +206,7 @@ static size_t           H5L_table_alloc_g = 0;
 static size_t           H5L_table_used_g = 0;
 static H5L_class_t      *H5L_table_g = NULL;
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_init
  *
@@ -233,7 +233,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_init_interface
  *
@@ -261,7 +261,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_term_interface
  *
@@ -291,7 +291,7 @@ H5L_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* H5L_term_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lmove
  *
@@ -352,7 +352,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lmove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lcopy
  *
@@ -410,7 +410,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lcopy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lcreate_soft
  *
@@ -457,7 +457,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lcreate_soft() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lcreate_hard
  *
@@ -519,7 +519,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lcreate_hard() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lcreate_ud
  *
@@ -571,7 +571,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lcreate_ud() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Ldelete
  *
@@ -612,7 +612,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Ldelete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Ldelete_by_idx
  *
@@ -672,7 +672,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Ldelete_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lget_val
  *
@@ -721,7 +721,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lget_val() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lget_val_by_idx
  *
@@ -785,7 +785,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lget_val_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lexists
  *
@@ -827,7 +827,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lexists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lget_info
  *
@@ -871,7 +871,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lget_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lget_info_by_idx
  *
@@ -930,7 +930,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lget_info_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lregister
  *
@@ -981,7 +981,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lregister() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lunregister
  *
@@ -1017,7 +1017,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lunregister() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lis_registered
  *
@@ -1057,7 +1057,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lis_registered() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lget_name_by_idx
  *
@@ -1123,7 +1123,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lget_name_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Literate
  *
@@ -1190,7 +1190,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Literate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Literate_by_name
  *
@@ -1262,7 +1262,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Literate_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lvisit
  *
@@ -1320,7 +1320,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lvisit() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lvisit_by_name
  *
@@ -1390,7 +1390,7 @@ done:
  *-------------------------------------------------------------------------
  */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_find_class_idx
  *
@@ -1422,7 +1422,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_find_class_idx */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_find_class
  *
@@ -1456,7 +1456,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_find_class */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_register
  *
@@ -1510,7 +1510,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_register */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_unregister
  *
@@ -1553,7 +1553,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_unregister() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_link
  *
@@ -1598,7 +1598,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_link() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_link_object
  *
@@ -1641,7 +1641,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_link_object() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_link_cb
  *
@@ -1798,7 +1798,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_link_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5L_create_real
  *
@@ -1889,7 +1889,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_create_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_create_hard
  *
@@ -1963,7 +1963,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_create_hard() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_create_soft
  *
@@ -2011,7 +2011,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_create_soft() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_create_ud
  *
@@ -2070,7 +2070,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_create_ud() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_val_real
  *
@@ -2126,7 +2126,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_get_val_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_val_cb
  *
@@ -2164,7 +2164,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_get_val_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_val
  *
@@ -2209,7 +2209,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5L_get_val() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_val_by_idx_cb
  *
@@ -2261,7 +2261,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_get_val_by_idx_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_delete_cb
  *
@@ -2308,7 +2308,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_delete_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_delete
  *
@@ -2351,7 +2351,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_delete_by_idx_cb
  *
@@ -2391,7 +2391,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_delete_by_idx_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_move_dest_cb
  *
@@ -2505,7 +2505,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_move_dest_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_move_cb
  *
@@ -2615,7 +2615,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_move_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_move
  *
@@ -2707,7 +2707,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_move() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_exists_cb
  *
@@ -2739,7 +2739,7 @@ H5L_exists_cb(H5G_loc_t H5_ATTR_UNUSED *grp_loc/*in*/, const char H5_ATTR_UNUSED
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5L_exists_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_exists
  *
@@ -2771,7 +2771,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5L_exists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_info_cb
  *
@@ -2810,7 +2810,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_get_info_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_info
  *
@@ -2843,7 +2843,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5L_get_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_info_by_idx_cb
  *
@@ -2895,7 +2895,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_get_info_by_idx_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_default_lcpl
  *
@@ -2923,7 +2923,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5L_get_default_lcpl */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_get_name_by_idx_cb
  *
@@ -2964,7 +2964,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_get_name_by_idx_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_link_copy_file
  *

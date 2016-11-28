@@ -153,7 +153,7 @@ static htri_t H5O_attr_find_opened_attr(const H5O_loc_t *loc, H5A_t **attr,
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_to_dense_cb
  *
@@ -206,7 +206,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_to_dense_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_create
  *
@@ -403,7 +403,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_open_cb
  *
@@ -456,7 +456,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_open_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_open_by_name
  *
@@ -561,7 +561,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_open_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_open_by_idx_cb
  *
@@ -596,7 +596,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_open_by_idx_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_open_by_idx
  *
@@ -680,7 +680,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_open_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_find_opened_attr
  *
@@ -761,7 +761,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_find_opened_attr */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_update_shared
  *
@@ -837,7 +837,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_update_shared() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_write_cb
  *
@@ -884,7 +884,7 @@ H5O_attr_write_cb(H5O_t *oh, H5O_mesg_t *mesg/*in,out*/,
             HGOTO_ERROR(H5E_ATTR, H5E_CANTPROTECT, H5_ITER_ERROR, "unable to load object header chunk")
 
         /* Because the attribute structure is shared now. The only situation that requires
-         * copying the data is when the metadata cache evicts and reloads this attribute. 
+         * copying the data is when the metadata cache evicts and reloads this attribute.
          * The shared attribute structure will be different in that situation. SLU-2010/7/29 */
         if(((H5A_t *)mesg->native)->shared != udata->attr->shared) {
             /* Sanity check */
@@ -929,7 +929,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_write_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_write
  *
@@ -1005,7 +1005,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_write */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_rename_chk_cb
  *
@@ -1050,7 +1050,7 @@ H5O_attr_rename_chk_cb(H5O_t H5_ATTR_UNUSED *oh, H5O_mesg_t *mesg/*in,out*/,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_rename_chk_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_rename_mod_cb
  *
@@ -1183,7 +1183,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_rename_mod_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_rename
  *
@@ -1272,7 +1272,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_rename */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_iterate_real
  *
@@ -1359,7 +1359,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_iterate_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_iterate
  *
@@ -1397,7 +1397,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_remove_update
  *
@@ -1521,7 +1521,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_remove_update() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_remove_cb
  *
@@ -1574,7 +1574,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_remove_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_remove
  *
@@ -1656,7 +1656,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_remove_by_idx
  *
@@ -1750,7 +1750,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_remove_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_count_real
  *
@@ -1804,7 +1804,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_count_real */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_exists_cb
  *
@@ -1848,7 +1848,7 @@ H5O_attr_exists_cb(H5O_t H5_ATTR_UNUSED *oh, H5O_mesg_t *mesg/*in,out*/,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_exists_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_exists
  *
@@ -1919,7 +1919,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_attr_exists */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_attr_bh_info
  *
@@ -2003,7 +2003,7 @@ done:
 }   /* H5O_attr_bh_info() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_attr_count
  *

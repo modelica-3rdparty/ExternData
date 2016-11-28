@@ -88,7 +88,7 @@ const H5O_obj_class_t H5O_OBJ_GROUP[1] = {{
 /* Declare the external free list to manage the H5O_ginfo_t struct */
 H5FL_DEFINE(H5G_copy_file_ud_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_group_get_copy_file_udata
  *
@@ -121,7 +121,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_group_get_copy_file_udata() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_group_free_copy_file_udata
  *
@@ -154,7 +154,7 @@ H5O_group_free_copy_file_udata(void *_udata)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5O_group_free_copy_file_udata() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_group_isa
  *
@@ -195,7 +195,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_group_isa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_group_open
  *
@@ -235,7 +235,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_group_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_group_create
  *
@@ -284,7 +284,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_group_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_group_get_oloc
  *
@@ -318,7 +318,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_group_get_oloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_group_bh_info
  *

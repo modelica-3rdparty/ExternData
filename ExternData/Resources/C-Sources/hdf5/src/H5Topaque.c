@@ -30,7 +30,7 @@
 #include "H5MMprivate.h"	/* Memory management			*/
 #include "H5Tpkg.h"		/* Datatypes				*/
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_opaque_interface -- Initialize interface-specific information
@@ -52,7 +52,7 @@ H5T_init_opaque_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_opaque_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_tag
  *
@@ -98,7 +98,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_tag
  *

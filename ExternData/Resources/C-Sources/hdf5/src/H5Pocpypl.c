@@ -58,7 +58,7 @@
 #define H5O_CPY_MERGE_COMM_DT_LIST_CLOSE       H5P__ocpy_merge_comm_dt_list_close
 /* Definitions for callback function when completing the search for a matching committed datatype from the committed dtype list */
 #define H5O_CPY_MCDT_SEARCH_CB_SIZE           sizeof(H5O_mcdt_cb_info_t)
-#define H5O_CPY_MCDT_SEARCH_CB_DEF            {NULL,NULL} 
+#define H5O_CPY_MCDT_SEARCH_CB_DEF            {NULL,NULL}
 
 
 /******************/
@@ -124,7 +124,7 @@ const H5P_libclass_t H5P_CLS_OCPY[1] = {{
 H5FL_DEFINE(H5O_copy_dtype_merge_list_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__ocpy_reg_prop
  *
@@ -162,7 +162,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__ocpy_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__free_merge_comm_dtype_list
  *
@@ -192,7 +192,7 @@ H5P__free_merge_comm_dtype_list(H5O_copy_dtype_merge_list_t *dt_list)
     FUNC_LEAVE_NOAPI(NULL);
 } /* H5P__free_merge_comm_dtype_list */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:	H5P__ocpy_merge_comm_dt_list_copy
  *
@@ -259,7 +259,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__ocpy_merge_comm_dt_list_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__ocpy_merge_comm_dt_list_cmp
  *
@@ -311,7 +311,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__ocpy_merge_comm_dt_list_cmp() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:	H5P__ocpy_merge_comm_dt_list_close
  *
@@ -339,7 +339,7 @@ H5P__ocpy_merge_comm_dt_list_close(const char H5_ATTR_UNUSED *name, size_t H5_AT
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P__ocpy_merge_comm_dt_list_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_copy_object
  *
@@ -386,7 +386,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_copy_object() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_copy_object
  *
@@ -421,7 +421,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_copy_object() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Padd_merge_committed_dtype_path
  *
@@ -486,7 +486,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Padd_merge_committed_dtype_path() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pfree_merge_committed_dtype_paths
  *
@@ -532,7 +532,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pfree_merge_committed_dtype_paths() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_mcdt_search_cb
  *
@@ -582,11 +582,11 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_mcdt_search_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_mcdt_search_cb
  *
- * Purpose:     Retrieves the callback function and user data from the specified 
+ * Purpose:     Retrieves the callback function and user data from the specified
  *		object copy property list.
  *
  * Usage:       H5Pget_mcdt_search_cb(plist_id, H5O_mcdt_search_cb_t *func, void **op_data)
@@ -617,7 +617,7 @@ H5Pget_mcdt_search_cb(hid_t plist_id, H5O_mcdt_search_cb_t *func, void **op_data
     /* Get callback info */
     if(H5P_get(plist, H5O_CPY_MCDT_SEARCH_CB_NAME, &cb_info) < 0)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTGET, FAIL, "can't get callback info")
-    
+
     if(func)
 	*func = cb_info.func;
 

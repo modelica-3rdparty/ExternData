@@ -114,7 +114,7 @@ const H5O_msg_class_t H5O_MSG_DTYPE[1] = {{
     H5O_dtype_shared_debug	/* debug the message		*/
 }};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_decode_helper
  *
@@ -310,7 +310,11 @@ H5O_dtype_decode_helper(H5F_t *f, unsigned *ioflags/*in,out*/, const uint8_t **p
                     if(version == H5O_DTYPE_VERSION_1) {
                         /* Decode the number of dimensions */
                         ndims = *(*pp)++;
-                        HDassert(ndims <= 4);
+
+                        /* Check that ndims is valid */
+                        if(ndims > 4)
+                            HGOTO_ERROR(H5E_DATATYPE, H5E_BADTYPE, FAIL, "invalid number of dimensions for array")
+
                         *pp += 3;		/*reserved bytes */
 
                         /* Skip dimension permutation */
@@ -518,7 +522,8 @@ H5O_dtype_decode_helper(H5F_t *f, unsigned *ioflags/*in,out*/, const uint8_t **p
             dt->shared->u.array.ndims = *(*pp)++;
 
             /* Double-check the number of dimensions */
-            HDassert(dt->shared->u.array.ndims <= H5S_MAX_RANK);
+            if(dt->shared->u.array.ndims > H5S_MAX_RANK)
+                HGOTO_ERROR(H5E_DATATYPE, H5E_CANTLOAD, FAIL, "too many dimensions for array datatype")
 
             /* Skip reserved bytes, if version has them */
             if(version < H5O_DTYPE_VERSION_3)
@@ -575,7 +580,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_decode_helper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_encode_helper
  *
@@ -1068,7 +1073,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_encode_helper() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_dtype_decode
@@ -1115,7 +1120,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_decode() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_dtype_encode
@@ -1154,7 +1159,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_encode() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_dtype_copy
@@ -1202,7 +1207,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_copy() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_dtype_size
@@ -1338,7 +1343,7 @@ H5O_dtype_size(const H5F_t *f, const void *_mesg)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_dtype_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_reset
  *
@@ -1367,7 +1372,7 @@ H5O_dtype_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_dtype_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_free
  *
@@ -1395,7 +1400,7 @@ H5O_dtype_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_dtype_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_set_share
  *
@@ -1446,7 +1451,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_set_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dtype_can_share
  *
@@ -1490,7 +1495,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_can_share() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_dtype_pre_copy_file
  *
@@ -1542,7 +1547,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_pre_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_dtype_copy_file
  *
@@ -1582,7 +1587,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dtype_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_dtype_shared_post_copy_upd
  *
@@ -1616,7 +1621,7 @@ H5O_dtype_shared_post_copy_upd(const H5O_loc_t H5_ATTR_UNUSED *src_oloc,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_dtype_shared_post_copy_upd */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5O_dtype_debug

@@ -28,7 +28,7 @@
 
 #ifdef H5_HAVE_FILTER_DEFLATE
 
-#if defined(H5_HAVE_ZLIB_H) && !defined(H5_ZLIB_HEADER) 
+#if defined(H5_HAVE_ZLIB_H) && !defined(H5_ZLIB_HEADER)
 # define H5_ZLIB_HEADER "zlib.h"
 #endif
 #if defined(H5_ZLIB_HEADER)
@@ -53,7 +53,7 @@ const H5Z_class2_t H5Z_DEFLATE[1] = {{
 
 #define H5Z_DEFLATE_SIZE_ADJUST(s) (HDceil(((double)(s)) * (double)1.001f) + 12)
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Z_filter_deflate
  *

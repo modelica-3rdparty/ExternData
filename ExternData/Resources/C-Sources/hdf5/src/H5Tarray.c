@@ -77,7 +77,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_array_interface -- Initialize interface-specific information
@@ -99,7 +99,7 @@ H5T_init_array_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_array_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tarray_create2
  *
@@ -158,7 +158,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Tarray_create2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__array_create
  *
@@ -220,7 +220,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T__array_create */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_array_ndims
  *
@@ -256,7 +256,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Tget_array_ndims */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__get_array_ndims
  *
@@ -283,7 +283,7 @@ H5T__get_array_ndims(const H5T_t *dt)
     FUNC_LEAVE_NOAPI((int)dt->shared->u.array.ndims)
 }   /* end H5T__get_array_ndims */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_array_dims2
  *
@@ -319,7 +319,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Tget_array_dims2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__get_array_dims
  *
@@ -354,7 +354,7 @@ H5T__get_array_dims(const H5T_t *dt, hsize_t dims[])
 }   /* end H5T__get_array_dims */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tarray_create1
  *
@@ -414,7 +414,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Tarray_create1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_array_dims1
  *

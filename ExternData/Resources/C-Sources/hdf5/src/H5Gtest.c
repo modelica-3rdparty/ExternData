@@ -71,7 +71,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__is_empty_test
@@ -184,7 +184,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__is_empty_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__has_links_test
@@ -244,7 +244,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__has_links_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__has_stab_test
@@ -293,7 +293,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__has_stab_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__is_new_dense_test
@@ -361,7 +361,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__is_new_dense_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__new_dense_info_test
@@ -440,7 +440,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__new_dense_info_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__lheap_size_test
@@ -486,7 +486,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__lheap_size_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5G__user_path_test
@@ -585,7 +585,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5G__user_path_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__verify_cached_stab_test
  *
@@ -642,7 +642,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__verify_cached_stab_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G_verify_cached_stabs_test_cb
  *
@@ -737,7 +737,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_verify_cached_stabs_test_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5G__verify_cached_stabs_test
  *

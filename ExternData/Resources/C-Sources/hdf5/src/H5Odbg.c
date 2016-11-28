@@ -75,7 +75,7 @@
 
 
 #ifdef H5O_DEBUG
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_assert
  *
@@ -227,7 +227,7 @@ H5O_assert(const H5O_t *oh)
 } /* end H5O_assert() */
 #endif /* H5O_DEBUG */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_debug_id
  *
@@ -271,7 +271,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_debug_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_debug_real
  *
@@ -531,7 +531,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_debug_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_debug
  *

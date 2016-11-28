@@ -111,7 +111,7 @@ typedef struct H5FD_log_t {
     DWORD           nFileIndexLow;
     DWORD           nFileIndexHigh;
     DWORD           dwVolumeSerialNumber;
-    
+
     HANDLE          hFile;      /* Native windows file handle */
 #endif  /* H5_HAVE_WIN32_API */
 
@@ -217,7 +217,7 @@ static const H5FD_class_t H5FD_log_g = {
 /* Declare a free list to manage the H5FD_log_t struct */
 H5FL_DEFINE_STATIC(H5FD_log_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_init_interface
  *
@@ -236,7 +236,7 @@ H5FD_log_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_log_init())
 } /* H5FD_log_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_init
  *
@@ -268,7 +268,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_init() */
 
-
+
 /*---------------------------------------------------------------------------
  * Function:    H5FD_log_term
  *
@@ -292,7 +292,7 @@ H5FD_log_term(void)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5FD_log_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_fapl_log
  *
@@ -320,8 +320,8 @@ H5Pset_fapl_log(hid_t fapl_id, const char *logfile, unsigned long long flags, si
     if(NULL == (plist = H5P_object_verify(fapl_id, H5P_FILE_ACCESS)))
         HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "not a file access property list")
 
-    /* This shallow copy is correct! The string will be properly 
-     * copied deep down in the H5P code. 
+    /* This shallow copy is correct! The string will be properly
+     * copied deep down in the H5P code.
      */
     fa.logfile = (char *)logfile;
 
@@ -333,7 +333,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_fapl_log() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_fapl_get
  *
@@ -364,7 +364,7 @@ H5FD_log_fapl_get(H5FD_t *_file)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_fapl_get() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_fapl_copy
  *
@@ -415,7 +415,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_fapl_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_fapl_free
  *
@@ -443,7 +443,7 @@ H5FD_log_fapl_free(void *_fa)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_log_fapl_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_open
  *
@@ -644,7 +644,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_close
  *
@@ -792,7 +792,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_cmp
  *
@@ -848,7 +848,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_cmp() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_query
  *
@@ -886,7 +886,7 @@ H5FD_log_query(const H5FD_t *_file, unsigned long *flags /* out */)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_log_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_alloc
  *
@@ -939,7 +939,7 @@ H5FD_log_alloc(H5FD_t *_file, H5FD_mem_t type, hid_t H5_ATTR_UNUSED dxpl_id, hsi
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_get_eoa
  *
@@ -965,7 +965,7 @@ H5FD_log_get_eoa(const H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type)
     FUNC_LEAVE_NOAPI(file->eoa)
 } /* end H5FD_log_get_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_set_eoa
  *
@@ -1009,7 +1009,7 @@ H5FD_log_set_eoa(H5FD_t *_file, H5FD_mem_t type, haddr_t addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5FD_log_set_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_get_eof
  *
@@ -1037,7 +1037,7 @@ H5FD_log_get_eof(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(MAX(file->eof, file->eoa))
 } /* end H5FD_log_get_eof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_log_get_handle
  *
@@ -1067,7 +1067,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_get_handle() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_read
  *
@@ -1175,7 +1175,7 @@ H5FD_log_read(H5FD_t *_file, H5FD_mem_t type, hid_t H5_ATTR_UNUSED dxpl_id, hadd
     while(size > 0) {
 
         h5_posix_io_t       bytes_in        = 0;    /* # of bytes to read       */
-        h5_posix_io_ret_t   bytes_read      = -1;   /* # of bytes actually read */ 
+        h5_posix_io_ret_t   bytes_read      = -1;   /* # of bytes actually read */
 
         /* Trying to read more bytes than the return type can handle is
          * undefined behavior in POSIX.
@@ -1208,7 +1208,7 @@ H5FD_log_read(H5FD_t *_file, H5FD_mem_t type, hid_t H5_ATTR_UNUSED dxpl_id, hadd
 
         HDassert(bytes_read >= 0);
         HDassert((size_t)bytes_read <= size);
-        
+
         size -= (size_t)bytes_read;
         addr += (haddr_t)bytes_read;
         buf = (char *)buf + bytes_read;
@@ -1266,7 +1266,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_write
  *
@@ -1377,7 +1377,7 @@ H5FD_log_write(H5FD_t *_file, H5FD_mem_t type, hid_t H5_ATTR_UNUSED dxpl_id, had
     while(size > 0) {
 
         h5_posix_io_t       bytes_in        = 0;    /* # of bytes to write  */
-        h5_posix_io_ret_t   bytes_wrote     = -1;   /* # of bytes written   */ 
+        h5_posix_io_ret_t   bytes_wrote     = -1;   /* # of bytes written   */
 
         /* Trying to write more bytes than the return type can handle is
          * undefined behavior in POSIX.
@@ -1467,7 +1467,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_log_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_log_truncate
  *

@@ -85,7 +85,7 @@
 H5FL_DEFINE(H5FD_free_t);
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5FD_space_init_interface -- Initialize interface-specific information
@@ -107,7 +107,7 @@ H5FD_space_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_init())
 } /* H5FD_space_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_extend
  *
@@ -180,7 +180,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_extend() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_alloc_real
  *
@@ -230,7 +230,7 @@ HDfprintf(stderr, "%s: ret_value = %a\n", FUNC, ret_value);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_alloc_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_alloc
  *
@@ -276,7 +276,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_free_real
  *
@@ -355,7 +355,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_free_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_free
  *
@@ -400,7 +400,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_try_extend
  *

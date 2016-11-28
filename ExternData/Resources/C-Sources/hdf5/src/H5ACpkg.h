@@ -174,10 +174,10 @@
  *		broadcast.  This field is reset to zero after each such
  *		broadcast.
  *
- * metadata_write_strategy: Integer code indicating how we will be 
- *		writing the metadata.  In the first incarnation of 
+ * metadata_write_strategy: Integer code indicating how we will be
+ *		writing the metadata.  In the first incarnation of
  *		this code, all writes were done from process 0.  This
- *		field exists to facilitate experiments with other 
+ *		field exists to facilitate experiments with other
  *		strategies.
  *
  * dirty_bytes_propagations: This field only exists when the
@@ -231,7 +231,7 @@
  *
  * Things have changed a bit since the following four fields were defined.
  * If metadata_write_strategy is H5AC_METADATA_WRITE_STRATEGY__PROCESS_0_ONLY,
- * all comments hold as before -- with the caviate that pending further 
+ * all comments hold as before -- with the caviate that pending further
  * coding, the process 0 metadata cache is forbidden to flush entries outside
  * of a sync point.
  *
@@ -314,16 +314,16 @@
  *              needed.
  *
  *		Note: This field has been extended for use by all processes
- *		      with the addition of support for the distributed 
- *		      metadata write strategy.        
+ *		      with the addition of support for the distributed
+ *		      metadata write strategy.
  *                                                     JRM -- 5/9/10
  *
  * sync_point_done:  In the parallel test bed, it is necessary to verify
  *		that the expected writes, and only the expected writes,
  *		have taken place at the end of each sync point.
  *
- *		The sync_point_done callback allows t_cache to perform 
- *		this verification.  The field is set to NULL when the 
+ *		The sync_point_done callback allows t_cache to perform
+ *		this verification.  The field is set to NULL when the
  *		callback is not needed.
  *
  ****************************************************************************/
@@ -379,7 +379,7 @@ typedef struct H5AC_aux_t
 
     void	(* write_done)(void);
 
-    void	(* sync_point_done)(int num_writes, 
+    void	(* sync_point_done)(int num_writes,
                                     haddr_t * written_entries_tbl);
 
 } H5AC_aux_t; /* struct H5AC_aux_t */

@@ -79,7 +79,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5FD_int_init_interface -- Initialize interface-specific information
@@ -101,7 +101,7 @@ H5FD_int_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_init())
 } /* H5FD_int_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_locate_signature
  *
@@ -165,7 +165,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_locate_signature() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_read
  *
@@ -203,7 +203,7 @@ H5FD_read(H5FD_t *file, const H5P_genplist_t *dxpl, H5FD_mem_t type, haddr_t add
     if(HADDR_UNDEF == (eoa = (file->cls->get_eoa)(file, type)))
 	HGOTO_ERROR(H5E_VFL, H5E_CANTINIT, FAIL, "driver get_eoa request failed")
     if((addr + file->base_addr + size) > eoa)
-        HGOTO_ERROR(H5E_ARGS, H5E_OVERFLOW, FAIL, "addr overflow, addr = %llu, size=%llu, eoa=%llu", 
+        HGOTO_ERROR(H5E_ARGS, H5E_OVERFLOW, FAIL, "addr overflow, addr = %llu, size=%llu, eoa=%llu",
                     (unsigned long long)(addr+ file->base_addr), (unsigned long long)size, (unsigned long long)eoa)
 
     /* Dispatch to driver */
@@ -214,7 +214,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_write
  *
@@ -252,7 +252,7 @@ H5FD_write(H5FD_t *file, const H5P_genplist_t *dxpl, H5FD_mem_t type, haddr_t ad
     if(HADDR_UNDEF == (eoa = (file->cls->get_eoa)(file, type)))
 	HGOTO_ERROR(H5E_VFL, H5E_CANTINIT, FAIL, "driver get_eoa request failed")
     if((addr + file->base_addr + size) > eoa)
-        HGOTO_ERROR(H5E_ARGS, H5E_OVERFLOW, FAIL, "addr overflow, addr = %llu, size=%llu, eoa=%llu", 
+        HGOTO_ERROR(H5E_ARGS, H5E_OVERFLOW, FAIL, "addr overflow, addr = %llu, size=%llu, eoa=%llu",
                     (unsigned long long)(addr+ file->base_addr), (unsigned long long)size, (unsigned long long)eoa)
 
     /* Dispatch to driver */
@@ -263,7 +263,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_set_eoa
  *
@@ -300,7 +300,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_set_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_eoa
  *
@@ -339,7 +339,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_get_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_eof
  *

@@ -81,7 +81,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_trace
  *
@@ -694,7 +694,7 @@ H5_trace(const double *returning, const char *func, const char *type, ...)
 
                     if(status >= 0)
                         fprintf(out, "SUCCEED");
-                    else 
+                    else
                         fprintf(out, "FAIL");
                 } /* end else */
                 break;

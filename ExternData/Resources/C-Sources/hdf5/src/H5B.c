@@ -195,7 +195,7 @@ H5FL_BLK_DEFINE_STATIC(page);
 H5FL_SEQ_DEFINE_STATIC(size_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_create
  *
@@ -276,7 +276,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_create() */        /*lint !e818 Can't make udata a pointer to const */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_find
  *
@@ -373,7 +373,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_find() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_split
  *
@@ -541,7 +541,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_split() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_insert
  *
@@ -696,7 +696,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_insert_child
  *
@@ -769,7 +769,7 @@ H5B_insert_child(H5B_t *bt, unsigned *bt_flags, unsigned idx,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5B_insert_child() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_insert_helper
  *
@@ -1117,7 +1117,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_insert_helper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_iterate_helper
  *
@@ -1184,7 +1184,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_iterate_helper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_iterate
  *
@@ -1223,7 +1223,7 @@ H5B_iterate(H5F_t *f, hid_t dxpl_id, const H5B_class_t *type, haddr_t addr,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_remove_helper
  *
@@ -1557,7 +1557,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_remove_helper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_remove
  *
@@ -1605,7 +1605,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_delete
  *
@@ -1680,7 +1680,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_shared_new
  *
@@ -1755,7 +1755,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_shared_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_shared_free
  *
@@ -1787,7 +1787,7 @@ H5B_shared_free(void *_shared)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5B_shared_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_copy
  *
@@ -1855,7 +1855,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5B_get_info_helper
  *
@@ -1962,7 +1962,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_get_info_helper() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B_get_info
  *
@@ -2014,7 +2014,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_get_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B_valid
  *
@@ -2070,7 +2070,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5B_valid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5B_node_dest
  *

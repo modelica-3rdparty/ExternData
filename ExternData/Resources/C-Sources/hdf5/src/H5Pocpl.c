@@ -82,7 +82,7 @@ static herr_t H5P__ocrt_close(hid_t dxpl_id, void *close_data);
 static int H5P__ocrt_pipeline_cmp(const void *value1, const void *value2, size_t size);
 
 /* Local routines */
-static herr_t H5P__set_filter(H5P_genplist_t *plist, H5Z_filter_t filter, 
+static herr_t H5P__set_filter(H5P_genplist_t *plist, H5Z_filter_t filter,
     unsigned int flags, size_t cd_nelmts, const unsigned int cd_values[/*cd_nelmts*/]);
 
 /*********************/
@@ -120,7 +120,7 @@ const H5P_libclass_t H5P_CLS_OCRT[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__ocrt_reg_prop
  *
@@ -164,7 +164,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__ocrt_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__ocrt_copy
  *
@@ -213,7 +213,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__ocrt_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P__ocrt_close
  *
@@ -255,7 +255,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__ocrt_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_attr_phase_change
  *
@@ -309,7 +309,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_attr_phase_change */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_attr_phase_change
  *
@@ -349,7 +349,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_attr_phase_change() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_attr_creation_order
  *
@@ -399,7 +399,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_attr_creation_order() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_attr_creation_order
  *
@@ -446,7 +446,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_attr_creation_order() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_obj_track_times
  *
@@ -505,7 +505,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_obj_track_times() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_obj_track_times
  *
@@ -547,7 +547,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_obj_track_times() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_modify_filter
  *
@@ -609,7 +609,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_modify_filter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pmodify_filter
  *
@@ -684,7 +684,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pmodify_filter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_filter
  *
@@ -759,7 +759,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_filter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P__set_filter
  *
@@ -785,7 +785,7 @@ done:
  *		If this bit is set but encoding is disabled for a filter,
  *		attempting to write will generate an error.
  *
- *              If the filter is not registered, this function tries to load 
+ *              If the filter is not registered, this function tries to load
  *              it dynamically during run time.
  *
  * Return:	Non-negative on success/Negative on failure
@@ -835,7 +835,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__set_filter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_nfilters
  *
@@ -888,7 +888,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_nfilters */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_filter2
  *
@@ -982,7 +982,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_filter2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_filter_by_id
  *
@@ -1032,7 +1032,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_get_filter_by_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_filter_by_id2
  *
@@ -1110,7 +1110,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_filter_by_id2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pall_filters_avail
  *
@@ -1159,12 +1159,12 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pall_filters_avail() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_filter_in_pline
  *
  * Purpose:	Check whether the filter is in the pipeline of the object
- *              creation property list.  
+ *              creation property list.
  *
  * Return:	TRUE:		found
  *		FALSE:		not found
@@ -1195,7 +1195,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_get_filter_by_id() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Premove_filter
  *
@@ -1249,7 +1249,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Premove_filter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_deflate
  *
@@ -1314,7 +1314,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_deflate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_fletcher32
  *
@@ -1365,7 +1365,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_fletcher32() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_filter
  *
@@ -1441,7 +1441,7 @@ H5P_get_filter(const H5Z_filter_info_t *filter, unsigned int *flags/*out*/,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5P_get_filter() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5P__ocrt_pipeline_cmp
  *
@@ -1524,7 +1524,7 @@ done:
 } /* end H5P__ocrt_pipeline_cmp() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_filter1
  *
@@ -1609,7 +1609,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_filter1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_filter_by_id1
  *

@@ -139,7 +139,7 @@ static const H5I_class_t H5I_GROUP_CLS[1] = {{
 }};
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__init
  *
@@ -165,7 +165,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_init_interface
  *
@@ -200,7 +200,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_term_interface
  *
@@ -244,7 +244,7 @@ H5G_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5G_term_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gcreate2
  *
@@ -323,7 +323,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gcreate2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gcreate_anon
  *
@@ -421,7 +421,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gcreate_anon() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gopen2
  *
@@ -479,7 +479,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gopen2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_create_plist
  *
@@ -516,7 +516,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_get_create_plist
  *
@@ -611,7 +611,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_get_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_info
  *
@@ -654,7 +654,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_info_by_name
  *
@@ -716,7 +716,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_info_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gget_info_by_idx
  *
@@ -785,7 +785,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Gget_info_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Gclose
  *

@@ -84,7 +84,7 @@
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T__init_deprec_interface -- Initialize interface-specific information
@@ -105,7 +105,7 @@ H5T__init_deprec_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T__init_deprec_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T__term_deprec_interface -- Terminate interface
@@ -130,7 +130,7 @@ H5T__term_deprec_interface(void)
 } /* H5T__term_deprec_interface() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tcommit1
  *
@@ -173,7 +173,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tcommit1() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Topen1
  *

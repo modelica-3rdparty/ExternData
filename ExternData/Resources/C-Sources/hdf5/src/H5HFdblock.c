@@ -78,7 +78,7 @@ H5FL_DEFINE(H5HF_direct_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_create
  *
@@ -203,7 +203,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_dblock_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_destroy
  *
@@ -320,7 +320,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_dblock_destroy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_new
  *
@@ -418,7 +418,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_dblock_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_protect
  *
@@ -495,7 +495,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_dblock_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_locate
  *
@@ -596,7 +596,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_dblock_locate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_delete
  *
@@ -670,7 +670,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_dblock_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_dblock_dest
  *

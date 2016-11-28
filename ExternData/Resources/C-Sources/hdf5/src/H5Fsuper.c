@@ -76,7 +76,7 @@ H5FL_DEFINE(H5F_super_t);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5F_init_super_interface -- Initialize interface-specific information
@@ -98,7 +98,7 @@ H5F_init_super_interface(void)
     FUNC_LEAVE_NOAPI(H5F_init())
 } /* H5F_init_super_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_ext_create
  *
@@ -151,7 +151,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_super_ext_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_ext_open
  *
@@ -189,7 +189,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_super_ext_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:   H5F_super_ext_close
  *
@@ -235,7 +235,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_super_ext_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_read
  *
@@ -312,7 +312,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_super_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_init
  *
@@ -577,7 +577,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_super_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_dirty
  *
@@ -611,7 +611,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_super_dirty() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_free
  *
@@ -642,7 +642,7 @@ H5F_super_free(H5F_super_t *sblock)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5F_super_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_size
  *
@@ -699,7 +699,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F_super_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F_super_ext_write_msg()
  *

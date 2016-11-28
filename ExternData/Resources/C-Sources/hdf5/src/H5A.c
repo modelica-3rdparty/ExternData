@@ -96,7 +96,7 @@ static const H5I_class_t H5I_ATTR_CLS[1] = {{
 }};
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_init
  *
@@ -122,7 +122,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_init() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5A_init_interface -- Initialize interface-specific information
@@ -152,7 +152,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_init_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5A_term_interface
@@ -197,7 +197,7 @@ H5A_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* H5A_term_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Acreate2
@@ -270,7 +270,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Acreate2() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Acreate_by_name
@@ -364,7 +364,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Acreate_by_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aopen
@@ -423,7 +423,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aopen() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aopen_by_name
@@ -488,7 +488,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aopen_by_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aopen_by_idx
@@ -559,7 +559,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aopen_by_idx() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Awrite
@@ -602,7 +602,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Awrite() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aread
@@ -645,7 +645,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aread() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aget_space
@@ -692,7 +692,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aget_space() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aget_type
@@ -739,7 +739,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aget_type() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aget_create_plist
@@ -781,7 +781,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Aget_create_plist() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aget_name
@@ -826,7 +826,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aget_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aget_name_by_idx
  *
@@ -896,7 +896,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Aget_name_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aget_storage_size
  *
@@ -934,7 +934,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Aget_storage_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aget_info
  *
@@ -969,7 +969,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Aget_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aget_info_by_name
  *
@@ -1027,7 +1027,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Aget_info_by_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aget_info_by_idx
  *
@@ -1089,7 +1089,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Aget_info_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Arename
  *
@@ -1120,7 +1120,7 @@ H5Arename(hid_t loc_id, const char *old_name, const char *new_name)
     /* Avoid thrashing things if the names are the same */
     if(HDstrcmp(old_name, new_name)) {
         H5G_loc_t	loc;	                /* Object location */
-  
+
         if(H5G_loc(loc_id, & loc) < 0)
             HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "not a location")
 
@@ -1133,7 +1133,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Arename() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Arename_by_name
  *
@@ -1188,7 +1188,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Arename_by_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aiterate2
@@ -1267,7 +1267,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aiterate2() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aiterate_by_name
@@ -1387,7 +1387,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aiterate_by_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Adelete
@@ -1427,7 +1427,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Adelete() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Adelete_by_name
@@ -1495,7 +1495,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Adelete_by_name() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Adelete_by_idx
@@ -1573,7 +1573,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Adelete_by_idx() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5Aclose
@@ -1609,7 +1609,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aexists
  *
@@ -1649,7 +1649,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Aexists() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Aexists_by_name
  *

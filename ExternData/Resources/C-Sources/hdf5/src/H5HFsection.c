@@ -307,7 +307,7 @@ H5FL_DEFINE(H5HF_free_section_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_init_cls
  *
@@ -349,7 +349,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_init_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_term_cls
  *
@@ -388,7 +388,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_term_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_node_new
  *
@@ -434,7 +434,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_node_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_node_free
  *
@@ -470,7 +470,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5HF_sect_node_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_new
  *
@@ -522,7 +522,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_single_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_locate_parent
  *
@@ -584,7 +584,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_single_locate_parent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_revive
  *
@@ -633,7 +633,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_single_revive() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_dblock_info
  *
@@ -679,7 +679,7 @@ H5HF_sect_single_dblock_info(H5HF_hdr_t *hdr, hid_t dxpl_id,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_sect_single_dblock_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_reduce
  *
@@ -731,7 +731,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_single_reduce() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_full_dblock
  *
@@ -794,7 +794,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_full_dblock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_add
  *
@@ -846,7 +846,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_deserialize
  *
@@ -885,7 +885,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_deserialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_can_merge
  *
@@ -930,7 +930,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_can_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_merge
  *
@@ -988,7 +988,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_can_shrink
  *
@@ -1047,7 +1047,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_can_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_shrink
  *
@@ -1114,7 +1114,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_single_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_free
  *
@@ -1156,7 +1156,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5HF_sect_single_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_single_valid
  *
@@ -1241,7 +1241,7 @@ H5HF_sect_single_valid(const H5FS_section_class_t H5_ATTR_UNUSED *cls, const H5F
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5HF_sect_single_valid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_create
  *
@@ -1289,7 +1289,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_from_single
  *
@@ -1338,7 +1338,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_row_from_single() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_revive
  *
@@ -1376,7 +1376,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_row_revive() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_reduce
  *
@@ -1454,7 +1454,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_row_reduce() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_first
  *
@@ -1496,7 +1496,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_row_first() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_get_iblock
  *
@@ -1530,7 +1530,7 @@ H5HF_sect_row_get_iblock(H5HF_free_section_t *sect)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_row_get_iblock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_init_cls
  *
@@ -1574,7 +1574,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_init_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_term_cls
  *
@@ -1610,7 +1610,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_term_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_serialize
  *
@@ -1651,7 +1651,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_serialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_deserialize
  *
@@ -1695,7 +1695,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_deserialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_can_merge
  *
@@ -1752,7 +1752,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_can_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_merge
  *
@@ -1819,7 +1819,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_can_shrink
  *
@@ -1860,7 +1860,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_can_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_shrink
  *
@@ -1906,7 +1906,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_row_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_free_real
  *
@@ -1938,7 +1938,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5HF_sect_row_free_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_free
  *
@@ -1976,7 +1976,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5HF_sect_row_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_valid
  *
@@ -2037,7 +2037,7 @@ H5HF_sect_row_valid(const H5FS_section_class_t *cls, const H5FS_section_info_t *
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5HF_sect_row_valid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_row_debug
  *
@@ -2085,7 +2085,7 @@ H5HF_sect_row_debug(const H5FS_section_info_t *_sect,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5HF_sect_row_debug() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_iblock_off
  *
@@ -2116,7 +2116,7 @@ H5HF_sect_indirect_iblock_off(const H5HF_free_section_t *sect)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_iblock_off() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_top
  *
@@ -2150,7 +2150,7 @@ H5HF_sect_indirect_top(H5HF_free_section_t *sect)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_top() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_init_cls
  *
@@ -2188,7 +2188,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_indirect_init_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_term_cls
  *
@@ -2221,7 +2221,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_indirect_term_cls() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_new
  *
@@ -2294,7 +2294,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_for_row
  *
@@ -2357,7 +2357,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_for_row() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_init_rows
  *
@@ -2609,7 +2609,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_init_rows() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_add
  *
@@ -2688,7 +2688,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_decr
  *
@@ -2739,7 +2739,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_decr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_revive_row
  *
@@ -2806,7 +2806,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_revive_row() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_revive
  *
@@ -2864,7 +2864,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_revive() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_reduce_row
  *
@@ -3135,7 +3135,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_reduce_row() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_reduce
  *
@@ -3371,7 +3371,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_reduce() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_is_first
  *
@@ -3406,7 +3406,7 @@ H5HF_sect_indirect_is_first(H5HF_free_section_t *sect)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_is_first() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_first
  *
@@ -3458,7 +3458,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_first() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_get_iblock
  *
@@ -3487,7 +3487,7 @@ H5HF_sect_indirect_get_iblock(H5HF_free_section_t *sect)
     FUNC_LEAVE_NOAPI(sect->u.indirect.u.iblock)
 } /* end H5HF_sect_indirect_get_iblock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_merge_row
  *
@@ -3732,7 +3732,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_merge_row() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_build_parent
  *
@@ -3803,7 +3803,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_build_parent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_shrink
  *
@@ -3859,7 +3859,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_sect_indirect_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_serialize
  *
@@ -3916,7 +3916,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_indirect_serialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_deserialize
  *
@@ -3996,7 +3996,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5HF_sect_indirect_deserialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_free
  *
@@ -4042,7 +4042,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5HF_sect_indirect_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_valid
  *
@@ -4145,7 +4145,7 @@ H5HF_sect_indirect_valid(const H5HF_hdr_t *hdr, const H5HF_free_section_t *sect)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5HF_sect_indirect_valid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_sect_indirect_debug
  *

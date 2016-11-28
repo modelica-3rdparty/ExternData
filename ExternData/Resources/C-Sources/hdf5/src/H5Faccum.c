@@ -92,7 +92,7 @@ typedef enum {
 H5FL_BLK_DEFINE_STATIC(meta_accum);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F__accum_read
  *
@@ -267,7 +267,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F__accum_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F__accum_adjust
  *
@@ -373,7 +373,7 @@ H5F__accum_adjust(H5F_meta_accum_t *accum, const H5F_io_info_t *fio_info,
 
             /* Trim the accumulator's use of its buffer */
             accum->size = remnant_size;
-            
+
             /* When appending, need to adjust location of accumulator */
             if (H5F_ACCUM_APPEND == adjust) {
                 /* Move remnant of accumulator down */
@@ -405,7 +405,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F__accum_adjust() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F__accum_write
  *
@@ -829,7 +829,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F__accum_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5F__accum_free
  *
@@ -994,7 +994,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F__accum_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F__accum_flush
  *
@@ -1033,7 +1033,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F__accum_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F__accum_reset
  *

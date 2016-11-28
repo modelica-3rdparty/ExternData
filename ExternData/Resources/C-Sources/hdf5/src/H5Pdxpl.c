@@ -103,7 +103,7 @@
 #define H5D_MPIO_ACTUAL_IO_MODE_DEF     H5D_MPIO_NO_COLLECTIVE
 /* Definitions for cause of broken collective io property */
 #define H5D_MPIO_NO_COLLECTIVE_CAUSE_SIZE   sizeof(uint32_t)
-#define H5D_MPIO_NO_COLLECTIVE_CAUSE_DEF   H5D_MPIO_COLLECTIVE 
+#define H5D_MPIO_NO_COLLECTIVE_CAUSE_DEF   H5D_MPIO_COLLECTIVE
 /* Definitions for memory MPI type property */
 #define H5FD_MPI_XFER_MEM_MPI_TYPE_SIZE        sizeof(MPI_Datatype)
 #define H5FD_MPI_XFER_MEM_MPI_TYPE_DEF         MPI_DATATYPE_NULL
@@ -196,7 +196,7 @@ const H5P_libclass_t H5P_CLS_DXFR[1] = {{
 /***************************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P__dxfr_reg_prop
  *
@@ -229,7 +229,7 @@ H5P__dxfr_reg_prop(H5P_genclass_t *pclass)
     unsigned def_mpio_chunk_opt_ratio = H5D_XFER_MPIO_CHUNK_OPT_RATIO_DEF;
     H5D_mpio_actual_chunk_opt_mode_t def_mpio_actual_chunk_opt_mode = H5D_MPIO_ACTUAL_CHUNK_OPT_MODE_DEF;
     H5D_mpio_actual_io_mode_t def_mpio_actual_io_mode = H5D_MPIO_ACTUAL_IO_MODE_DEF;
-    H5D_mpio_no_collective_cause_t def_mpio_no_collective_cause = H5D_MPIO_NO_COLLECTIVE_CAUSE_DEF; 
+    H5D_mpio_no_collective_cause_t def_mpio_no_collective_cause = H5D_MPIO_NO_COLLECTIVE_CAUSE_DEF;
     MPI_Datatype btype = H5FD_MPI_XFER_MEM_MPI_TYPE_DEF;  /* Default value for MPI buffer type */
     MPI_Datatype ftype = H5FD_MPI_XFER_FILE_MPI_TYPE_DEF; /* Default value for MPI file type */
 #endif /* H5_HAVE_PARALLEL */
@@ -315,12 +315,12 @@ H5P__dxfr_reg_prop(H5P_genclass_t *pclass)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 
     /* Register the MPI memory type property */
-    if(H5P_register_real(pclass, H5FD_MPI_XFER_MEM_MPI_TYPE_NAME, H5FD_MPI_XFER_MEM_MPI_TYPE_SIZE, 
+    if(H5P_register_real(pclass, H5FD_MPI_XFER_MEM_MPI_TYPE_NAME, H5FD_MPI_XFER_MEM_MPI_TYPE_SIZE,
                          &btype, NULL, NULL, NULL, NULL, NULL, NULL, NULL) < 0)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 
     /* Register the MPI file type property */
-    if(H5P_register_real(pclass, H5FD_MPI_XFER_FILE_MPI_TYPE_NAME, H5FD_MPI_XFER_FILE_MPI_TYPE_SIZE, 
+    if(H5P_register_real(pclass, H5FD_MPI_XFER_FILE_MPI_TYPE_NAME, H5FD_MPI_XFER_FILE_MPI_TYPE_SIZE,
                          &ftype, NULL, NULL, NULL, NULL, NULL, NULL, NULL) < 0)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 #endif /* H5_HAVE_PARALLEL */
@@ -369,7 +369,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dxfr_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P_dxfr_xform_del
  *
@@ -400,7 +400,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dxfr_xform_del() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P__dxfr_xform_copy
  *
@@ -432,7 +432,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dxfr_xform_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P__dxfr_xform_cmp
  *
@@ -467,7 +467,7 @@ H5P__dxfr_xform_cmp(const void *_xform1, const void *_xform2, size_t H5_ATTR_UNU
 
     if(*xform1) {
         HDassert(*xform2);
-    
+
         /* Get the transform expressions */
         pexp1 = H5Z_xform_extract_xform_str(*xform1);
         pexp2 = H5Z_xform_extract_xform_str(*xform2);
@@ -486,7 +486,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dxfr_xform_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P__dxfr_xform_close
  *
@@ -517,7 +517,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P__dxfr_xform_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_data_transform
  *
@@ -573,7 +573,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_data_transform() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_data_transform
  *
@@ -640,7 +640,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_data_transform() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_buffer
  *
@@ -691,7 +691,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_buffer() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_buffer
  *
@@ -739,7 +739,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_buffer() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_preserve
  *
@@ -779,7 +779,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_preserve() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_preserve
  *
@@ -819,7 +819,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_preserve() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_edc_check
  *
@@ -860,7 +860,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_edc_check() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_edc_check
  *
@@ -897,7 +897,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_edc_check() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_filter_callback
  *
@@ -939,7 +939,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_type_conv_cb
  *
@@ -981,7 +981,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_type_conv_cb
  *
@@ -1024,7 +1024,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_btree_ratios
  *
@@ -1071,7 +1071,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_btree_ratios() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_btree_ratios
  *
@@ -1126,7 +1126,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_btree_ratios() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_set_vlen_mem_manager
  *
@@ -1170,7 +1170,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_set_vlen_mem_manager() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_vlen_mem_manager
  *
@@ -1213,7 +1213,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_vlen_mem_manager() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_vlen_mem_manager
  *
@@ -1257,7 +1257,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_vlen_mem_manager() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_hyper_vector_size
  *
@@ -1304,7 +1304,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_hyper_vector_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_hyper_vector_size
  *
@@ -1340,7 +1340,7 @@ done:
 } /* end H5Pget_hyper_vector_size() */
 
 #ifdef H5_HAVE_PARALLEL
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_mpio_actual_chunk_opt_mode
  *
@@ -1358,7 +1358,7 @@ H5Pget_mpio_actual_chunk_opt_mode(hid_t plist_id, H5D_mpio_actual_chunk_opt_mode
 {
     H5P_genplist_t     *plist;
     herr_t ret_value = SUCCEED;   /* return value */
-    
+
     FUNC_ENTER_API(FAIL)
     H5TRACE2("e", "i*Do", plist_id, actual_chunk_opt_mode);
 
@@ -1375,7 +1375,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_mpio_actual_chunk_opt_mode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_mpio_actual_io_mode
  *
@@ -1394,7 +1394,7 @@ H5Pget_mpio_actual_io_mode(hid_t plist_id, H5D_mpio_actual_io_mode_t *actual_io_
 {
     H5P_genplist_t     *plist;
     herr_t ret_value = SUCCEED;   /* return value */
-    
+
     FUNC_ENTER_API(FAIL)
     H5TRACE2("e", "i*Di", plist_id, actual_io_mode);
 
@@ -1427,7 +1427,7 @@ H5Pget_mpio_no_collective_cause(hid_t plist_id, uint32_t *local_no_collective_ca
 {
     H5P_genplist_t     *plist;
     herr_t ret_value = SUCCEED;   /* return value */
-    
+
     FUNC_ENTER_API(FAIL)
     H5TRACE3("e", "i*Iu*Iu", plist_id, local_no_collective_cause,
              global_no_collective_cause);

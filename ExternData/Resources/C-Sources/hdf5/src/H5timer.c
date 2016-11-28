@@ -78,7 +78,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_timer_reset
  *
@@ -99,7 +99,7 @@ H5_timer_reset (H5_timer_t *timer)
     HDmemset(timer, 0, sizeof *timer);
 } /* end H5_timer_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_timer_begin
  *
@@ -142,7 +142,7 @@ H5_timer_begin (H5_timer_t *timer)
 #endif
 } /* end H5_timer_begin() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_timer_end
  *
@@ -177,7 +177,7 @@ H5_timer_end (H5_timer_t *sum/*in,out*/, H5_timer_t *timer/*in,out*/)
     }
 } /* end H5_timer_end() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_bandwidth
  *
@@ -239,7 +239,7 @@ H5_bandwidth(char *buf/*out*/, double nbytes, double nseconds)
     }
 } /* end H5_bandwidth() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5_now
  *

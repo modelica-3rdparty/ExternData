@@ -38,7 +38,7 @@ H5FL_DEFINE_STATIC(H5RS_str_t);
 /* Declare the PQ free list for the wrapped strings */
 H5FL_BLK_DEFINE(str_buf);
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_xstrdup
@@ -78,7 +78,7 @@ H5RS_xstrdup(const char *s)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RS_xstrdup() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_create
@@ -118,7 +118,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RS_create() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_wrap
@@ -158,7 +158,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RS_wrap() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_own
@@ -200,7 +200,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RS_own() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_decr
@@ -239,7 +239,7 @@ H5RS_decr(H5RS_str_t *rs)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5RS_decr() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_incr
@@ -282,7 +282,7 @@ H5RS_incr(H5RS_str_t *rs)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5RS_incr() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_dup
@@ -315,7 +315,7 @@ H5RS_dup(H5RS_str_t *ret_value)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RS_dup() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_dup_str
@@ -363,7 +363,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5RS_dup_str() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_cmp
@@ -400,7 +400,7 @@ H5RS_cmp(const H5RS_str_t *rs1, const H5RS_str_t *rs2)
     FUNC_LEAVE_NOAPI(HDstrcmp(rs1->s, rs2->s))
 } /* end H5RS_cmp() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_len
@@ -431,7 +431,7 @@ H5RS_len(const H5RS_str_t *rs)
     FUNC_LEAVE_NOAPI((ssize_t)HDstrlen(rs->s))
 } /* end H5RS_len() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_get_str
@@ -465,7 +465,7 @@ H5RS_get_str(const H5RS_str_t *rs)
     FUNC_LEAVE_NOAPI(rs->s)
 } /* end H5RS_get_str() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5RS_get_count

@@ -114,7 +114,7 @@ H5FS_section_class_t H5MF_FSPACE_SECT_CLS_SIMPLE[1] = {{
 H5FL_DEFINE(H5MF_free_section_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_new
  *
@@ -158,7 +158,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5MF_sect_simple_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_deserialize
  *
@@ -197,7 +197,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5MF_sect_simple_deserialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_can_merge
  *
@@ -235,7 +235,7 @@ H5MF_sect_simple_can_merge(const H5FS_section_info_t *_sect1,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5MF_sect_simple_can_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_merge
  *
@@ -279,7 +279,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5MF_sect_simple_merge() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_can_shrink
  *
@@ -378,7 +378,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5MF_sect_simple_can_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_shrink
  *
@@ -438,7 +438,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5MF_sect_simple_shrink() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_free
  *
@@ -468,7 +468,7 @@ H5MF_sect_simple_free(H5FS_section_info_t *_sect)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* H5MF_sect_simple_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5MF_sect_simple_valid
  *

@@ -116,7 +116,7 @@ int	H5E_mpi_error_str_len;
 #endif /* H5_HAVE_PARALLEL */
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5E_init_int_interface -- Initialize interface-specific information
@@ -137,7 +137,7 @@ H5E_init_int_interface(void)
     FUNC_LEAVE_NOAPI(H5E_init())
 } /* H5E_init_int_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_get_msg
  *
@@ -180,7 +180,7 @@ H5E_get_msg(const H5E_msg_t *msg, H5E_type_t *type, char *msg_str, size_t size)
 } /* end H5E_get_msg() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_walk1_cb
  *
@@ -309,7 +309,7 @@ done:
 } /* end H5E_walk1_cb() */
 #endif /* H5_NO_DEPRECATED_SYMBOLS */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_walk2_cb
  *
@@ -440,7 +440,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_walk2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_print
  *
@@ -500,7 +500,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_print() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_walk
  *
@@ -614,7 +614,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_walk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_get_auto
  *
@@ -646,7 +646,7 @@ H5E_get_auto(const H5E_t *estack, H5E_auto_op_t *op, void **client_data)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5E_get_auto2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_set_auto
  *
@@ -684,7 +684,7 @@ H5E_set_auto(H5E_t *estack, const H5E_auto_op_t *op, void *client_data)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5E_set_auto() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_printf_stack
  *
@@ -773,7 +773,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_printf_stack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_push_stack
  *
@@ -860,7 +860,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_push_stack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_clear_entries
  *
@@ -916,7 +916,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_clear_entries() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_clear_stack
  *
@@ -952,7 +952,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_clear_stack() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_pop
  *
@@ -985,7 +985,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5E_pop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5E_dump_api_stack
  *
@@ -1016,7 +1016,7 @@ H5E_dump_api_stack(int is_api)
 #ifdef H5_NO_DEPRECATED_SYMBOLS
             if(estack->auto_op.func2)
                 (void)((estack->auto_op.func2)(H5E_DEFAULT, estack->auto_data));
-#else /* H5_NO_DEPRECATED_SYMBOLS */ 
+#else /* H5_NO_DEPRECATED_SYMBOLS */
         if(estack->auto_op.vers == 1) {
             if(estack->auto_op.func1)
                 (void)((estack->auto_op.func1)(estack->auto_data));

@@ -83,7 +83,7 @@ H5FL_DEFINE_STATIC(H5HL_dblk_t);
 H5FL_DEFINE_STATIC(H5HL_prfx_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_new
  *
@@ -127,7 +127,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_inc_rc
  *
@@ -156,7 +156,7 @@ H5HL_inc_rc(H5HL_t *heap)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HL_inc_rc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_dec_rc
  *
@@ -189,7 +189,7 @@ H5HL_dec_rc(H5HL_t *heap)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HL_dec_rc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_dest
  *
@@ -231,7 +231,7 @@ H5HL_dest(H5HL_t *heap)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HL_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prfx_new
  *
@@ -276,7 +276,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_prfx_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_prfx_dest
  *
@@ -321,7 +321,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_prfx_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_dblk_new
  *
@@ -366,7 +366,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HL_dblk_new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HL_dblk_dest
  *

@@ -203,7 +203,7 @@ H5B_class_t H5B_BTREE[1] = {{
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_get_shared
  *
@@ -235,7 +235,7 @@ H5D__btree_get_shared(const H5F_t H5_ATTR_UNUSED *f, const void *_udata)
     FUNC_LEAVE_NOAPI(udata->storage->u.btree.shared)
 } /* end H5D__btree_get_shared() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_new_node
  *
@@ -309,7 +309,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_new_node() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_cmp2
  *
@@ -350,7 +350,7 @@ H5D__btree_cmp2(void *_lt_key, void *_udata, void *_rt_key)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_cmp2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_cmp3
  *
@@ -418,7 +418,7 @@ H5D__btree_cmp3(void *_lt_key, void *_udata, void *_rt_key)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_cmp3() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_found
  *
@@ -476,7 +476,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_found() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_insert
  *
@@ -613,7 +613,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_remove
  *
@@ -653,7 +653,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_decode_key
  *
@@ -691,7 +691,7 @@ H5D__btree_decode_key(const H5B_shared_t *shared, const uint8_t *raw, void *_key
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__btree_decode_key() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_encode_key
  *
@@ -729,7 +729,7 @@ H5D__btree_encode_key(const H5B_shared_t *shared, uint8_t *raw, const void *_key
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__btree_encode_key() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_debug_key
  *
@@ -765,7 +765,7 @@ H5D__btree_debug_key(FILE *stream, int indent, int fwidth, const void *_key,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__btree_debug_key() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_shared_create
  *
@@ -807,7 +807,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_shared_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_init
  *
@@ -846,7 +846,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_create
  *
@@ -893,7 +893,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_is_space_alloc
  *
@@ -922,7 +922,7 @@ H5D__btree_idx_is_space_alloc(const H5O_storage_chunk_t *storage)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_is_space_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_insert
  *
@@ -962,7 +962,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__btree_idx_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_get_addr
  *
@@ -1001,7 +1001,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__btree_idx_get_addr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_iterate_cb
  *
@@ -1049,7 +1049,7 @@ H5D__btree_idx_iterate_cb(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__btree_idx_iterate_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_iterate
  *
@@ -1095,7 +1095,7 @@ H5D__btree_idx_iterate(const H5D_chk_idx_info_t *idx_info,
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_remove
  *
@@ -1133,7 +1133,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__btree_idx_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_delete
  *
@@ -1194,7 +1194,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_copy_setup
  *
@@ -1242,7 +1242,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_copy_setup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_copy_shutdown
  *
@@ -1277,7 +1277,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_copy_shutdown() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__btree_idx_size
  *
@@ -1337,7 +1337,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_reset
  *
@@ -1365,7 +1365,7 @@ H5D__btree_idx_reset(H5O_storage_chunk_t *storage, hbool_t reset_addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__btree_idx_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_dump
  *
@@ -1391,7 +1391,7 @@ H5D__btree_idx_dump(const H5O_storage_chunk_t *storage, FILE *stream)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__btree_idx_dump() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__btree_idx_dest
  *
@@ -1427,7 +1427,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__btree_idx_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_btree_debug
  *

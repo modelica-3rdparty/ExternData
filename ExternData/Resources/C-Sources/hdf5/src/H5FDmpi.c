@@ -31,7 +31,7 @@
 
 #ifdef H5_HAVE_PARALLEL
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_mpi_get_rank
  *
@@ -70,7 +70,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpi_get_rank() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_mpi_get_size
  *
@@ -108,7 +108,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpi_get_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_mpi_get_comm
  *
@@ -146,7 +146,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpi_get_comm() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpi_MPIOff_to_haddr
  *
@@ -184,7 +184,7 @@ H5FD_mpi_MPIOff_to_haddr(MPI_Offset mpi_off)
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpi_haddr_to_MPIOff
  *
@@ -230,7 +230,7 @@ H5FD_mpi_haddr_to_MPIOff(haddr_t addr, MPI_Offset *mpi_off/*out*/)
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpi_comm_info_dup
  *
@@ -294,7 +294,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpi_comm_info_free
  *
@@ -335,7 +335,7 @@ done:
 }
 
 #ifdef NOT_YET
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_mpio_wait_for_left_neighbor
  *
@@ -390,7 +390,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_mpio_signal_right_neighbor
  *
@@ -439,7 +439,7 @@ done:
 }
 #endif /* NOT_YET */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_mpi_setup_collective
  *

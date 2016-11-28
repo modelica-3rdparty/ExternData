@@ -79,7 +79,7 @@ const H5O_msg_class_t H5O_MSG_STAB[1] = {{
 /* Declare a free list to manage the H5O_stab_t struct */
 H5FL_DEFINE_STATIC(H5O_stab_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_decode
  *
@@ -127,7 +127,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_stab_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_encode
  *
@@ -160,7 +160,7 @@ H5O_stab_encode(H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, uint8_t *p, con
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_copy
  *
@@ -201,7 +201,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_stab_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_size
  *
@@ -232,7 +232,7 @@ H5O_stab_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const void 
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_stab_free
  *
@@ -259,7 +259,7 @@ H5O_stab_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_stab_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_delete
  *
@@ -291,7 +291,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_stab_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_copy_file
  *
@@ -351,7 +351,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_stab_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_post_copy_file
  *
@@ -402,7 +402,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_stab_post_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_stab_debug
  *

@@ -86,7 +86,7 @@ static const H5I_class_t H5I_FILE_CLS[1] = {{
     (H5I_free_t)H5F_close	/* Callback routine for closing objects of this class */
 }};
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5F__init_pub_interface -- Initialize interface-specific information
@@ -116,7 +116,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5F__init_pub_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_init
  *
@@ -142,7 +142,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5F_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5F_term_interface
  *
@@ -189,7 +189,7 @@ H5F_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5F_term_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fget_create_plist
  *
@@ -229,7 +229,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fget_access_plist
  *
@@ -272,7 +272,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_access_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fget_obj_count
  *
@@ -313,7 +313,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_obj_count() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fget_object_ids
  *
@@ -361,7 +361,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_obj_ids() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_vfd_handle
  *
@@ -401,7 +401,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_vfd_handle() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fis_hdf5
  *
@@ -443,7 +443,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fis_hdf5() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fcreate
  *
@@ -536,7 +536,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fcreate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fopen
  *
@@ -617,7 +617,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fopen() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fflush
  *
@@ -737,7 +737,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fflush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fclose
  *
@@ -798,7 +798,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Freopen
  *
@@ -854,7 +854,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Freopen() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Fget_intent
  *
@@ -898,7 +898,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_intent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_freespace
  *
@@ -937,7 +937,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_freespace() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_filesize
  *
@@ -981,38 +981,38 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_filesize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_file_image
  *
- * Purpose:     If a buffer is provided (via the buf_ptr argument) and is 
+ * Purpose:     If a buffer is provided (via the buf_ptr argument) and is
  *		big enough (size in buf_len argument), load *buf_ptr with
- *		an image of the open file whose ID is provided in the 
+ *		an image of the open file whose ID is provided in the
  *		file_id parameter, and return the number of bytes copied
  *		to the buffer.
  *
  *		If the buffer exists, but is too small to contain an image
  *		of the indicated file, return a negative number.
  *
- *		Finally, if no buffer is provided, return the size of the 
- *		buffer needed.  This value is simply the eoa of the target 
+ *		Finally, if no buffer is provided, return the size of the
+ *		buffer needed.  This value is simply the eoa of the target
  *		file.
  *
  *		Note that any user block is skipped.
  *
- *		Also note that the function may not be used on files 
+ *		Also note that the function may not be used on files
  *		opened with either the split/multi file driver or the
  *		family file driver.
  *
- *		In the former case, the sparse address space makes the 
+ *		In the former case, the sparse address space makes the
  *		get file image operation impractical, due to the size of
  *		the image typically required.
  *
  *		In the case of the family file driver, the problem is
  *		the driver message in the super block, which will prevent
  *		the image being opened with any driver other than the
- *		family file driver -- which negates the purpose of the 
- *		operation.  This can be fixed, but no resources for 
+ *		family file driver -- which negates the purpose of the
+ *		operation.  This can be fixed, but no resources for
  *		this now.
  *
  * Return:      Success:        Bytes copied / number of bytes needed.
@@ -1044,7 +1044,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Fget_file_image() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_mdc_config
  *
@@ -1086,7 +1086,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Fget_mdc_config() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fset_mdc_config
  *
@@ -1123,7 +1123,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Fset_mdc_config() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_mdc_hit_rate
  *
@@ -1164,7 +1164,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Fget_mdc_hit_rate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_mdc_size
  *
@@ -1210,7 +1210,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Fget_mdc_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Freset_mdc_hit_rate_stats
  *
@@ -1252,7 +1252,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Freset_mdc_hit_rate_stats() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_name
  *
@@ -1317,7 +1317,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fget_info
  *		1. Get storage size for superblock extension if there is one
@@ -1380,7 +1380,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Fget_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Fclear_elink_file_cache
  *

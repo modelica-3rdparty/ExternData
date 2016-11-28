@@ -146,7 +146,7 @@ H5FL_BLK_DEFINE(sieve_buf);
 H5FL_BLK_EXTERN(type_conv);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_alloc
  *
@@ -178,7 +178,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_alloc */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_fill
  *
@@ -342,7 +342,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_fill() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_delete
  *
@@ -374,7 +374,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_delete */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_construct
  *
@@ -454,7 +454,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_construct() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_is_space_alloc
  *
@@ -483,7 +483,7 @@ H5D__contig_is_space_alloc(const H5O_storage_t *storage)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_is_space_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_io_init
  *
@@ -509,7 +509,7 @@ H5D__contig_io_init(const H5D_io_info_t *io_info, const H5D_type_info_t H5_ATTR_
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5D__contig_io_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_read
  *
@@ -546,7 +546,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_write
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_write_one
  *
@@ -621,7 +621,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_write_one() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_readvv_sieve_cb
  *
@@ -769,7 +769,7 @@ H5D__contig_readvv_sieve_cb(hsize_t dst_off, hsize_t src_off, size_t len,
                  * the end of the data element, and don't read more than
                  * the buffer size.
                  */
-                min = MIN3(rel_eoa - dset_contig->sieve_loc, max_data, dset_contig->sieve_buf_size); 
+                min = MIN3(rel_eoa - dset_contig->sieve_loc, max_data, dset_contig->sieve_buf_size);
                 H5_CHECKED_ASSIGN(dset_contig->sieve_size, size_t, min, hsize_t);
 
                 /* Update local copies of sieve information */
@@ -794,7 +794,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_readvv_sieve_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_readvv_cb
  *
@@ -824,7 +824,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_readvv_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_readvv
  *
@@ -898,7 +898,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_readvv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_writevv_sieve_cb
  *
@@ -972,7 +972,7 @@ if(dset_contig->sieve_size > len)
             max_data = store_contig->dset_size - dst_off;
 
             /* Compute the size of the sieve buffer */
-            min = MIN3(rel_eoa - dset_contig->sieve_loc, max_data, dset_contig->sieve_buf_size); 
+            min = MIN3(rel_eoa - dset_contig->sieve_loc, max_data, dset_contig->sieve_buf_size);
             H5_CHECKED_ASSIGN(dset_contig->sieve_size, size_t, min, hsize_t);
 
             /* Check if there is any point in reading the data from the file */
@@ -1093,7 +1093,7 @@ if(dset_contig->sieve_size > len)
                      * the end of the data element, and don't read more than
                      * the buffer size.
                      */
-                    min = MIN3(rel_eoa - dset_contig->sieve_loc, max_data, dset_contig->sieve_buf_size); 
+                    min = MIN3(rel_eoa - dset_contig->sieve_loc, max_data, dset_contig->sieve_buf_size);
                     H5_CHECKED_ASSIGN(dset_contig->sieve_size, size_t, min, hsize_t);
 
                     /* Update local copies of sieve information */
@@ -1122,7 +1122,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_writevv_sieve_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_writevv_cb
  *
@@ -1151,7 +1151,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_writevv_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_writevv
  *
@@ -1225,7 +1225,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__contig_writevv() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_flush
  *
@@ -1256,7 +1256,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__contig_copy
  *

@@ -79,7 +79,7 @@ const H5O_msg_class_t H5O_MSG_LAYOUT[1] = {{
 /* Declare a free list to manage the H5O_layout_t struct */
 H5FL_DEFINE(H5O_layout_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_decode
  *
@@ -259,7 +259,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_encode
  *
@@ -354,7 +354,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_copy
  *
@@ -414,7 +414,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_size
  *
@@ -450,7 +450,7 @@ H5O_layout_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const voi
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_layout_reset
  *
@@ -483,7 +483,7 @@ H5O_layout_reset(void *_mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_layout_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_layout_free
  *
@@ -516,7 +516,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_delete
  *
@@ -570,7 +570,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_copy_file
  *
@@ -668,7 +668,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_layout_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_layout_debug
  *

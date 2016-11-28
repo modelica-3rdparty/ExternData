@@ -129,7 +129,7 @@ const H5P_libclass_t H5P_CLS_FCRT[1] = {{
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P_fcrt_reg_prop
  *
@@ -202,7 +202,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_fcrt_reg_prop() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_version
  *
@@ -255,7 +255,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_version() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_userblock
  *
@@ -301,7 +301,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_userblock() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_userblock
  *
@@ -344,7 +344,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_sizes
  *
@@ -400,7 +400,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_sizes() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_sizes
  *
@@ -449,7 +449,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_sizes() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_sym_k
  *
@@ -513,7 +513,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_sym_k
  *
@@ -562,7 +562,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_istore_k
  *
@@ -614,7 +614,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_istore_k
  *
@@ -661,7 +661,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_istore_k() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_shared_mesg_nindexes
  *
@@ -705,7 +705,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_shared_mesg_nindexes() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_shared_mesg_nindexes
  *
@@ -739,7 +739,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_shared_mesg_nindexes() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_shared_mesg_index
  *
@@ -805,7 +805,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_shared_mesg_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_shared_mesg_index
  *
@@ -860,7 +860,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_shared_mesg_index() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_shared_mesg_phase_change
  *
@@ -920,7 +920,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_shared_mesg_phase_change() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_shared_mesg_phase_change
  *

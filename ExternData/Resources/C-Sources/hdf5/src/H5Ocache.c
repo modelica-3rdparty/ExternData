@@ -137,7 +137,7 @@ H5FL_SEQ_DEFINE(H5O_cont_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_load
  *
@@ -353,7 +353,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_flush
  *
@@ -499,7 +499,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_dest
  *
@@ -546,7 +546,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_clear
  *
@@ -558,17 +558,17 @@ done:
  *		koziol@ncsa.uiuc.edu
  *		Mar 20 2003
  *
- * Changes:	In the parallel case, there is the possibility that the 
+ * Changes:	In the parallel case, there is the possibility that the
  *		the object header may be flushed by different processes
  *		over the life of the computation.  Thus we must ensure
  *		that the chunk images are up to date before we mark the
  *		messages clean -- as otherwise we may overwrite valid
  *		data with a blank section of a chunk image.
  *
- *		To deal with this, I have added code to call 
- *		H5O_chunk_serialize() for all chunks before we 
- *		mark all messages as clean if we are not destroying the 
- *		object.  Do this in the parallel case only, as the problem 
+ *		To deal with this, I have added code to call
+ *		H5O_chunk_serialize() for all chunks before we
+ *		mark all messages as clean if we are not destroying the
+ *		object.  Do this in the parallel case only, as the problem
  *		can only occur in this context.
  *
  *						JRM -- 10/12/10
@@ -603,7 +603,7 @@ H5O_clear(H5F_t *f, H5O_t *oh, hbool_t destroy)
 
             if ( H5O_chunk_serialize(f, oh, i) < 0 ) {
 
-                HGOTO_ERROR(H5E_OHDR, H5E_CANTSERIALIZE, FAIL, 
+                HGOTO_ERROR(H5E_OHDR, H5E_CANTSERIALIZE, FAIL,
 			    "unable to serialize object header chunk")
 	    }
         }
@@ -630,7 +630,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_size
  *
@@ -663,7 +663,7 @@ H5O_size(const H5F_t H5_ATTR_UNUSED *f, const H5O_t *oh, size_t *size_ptr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5O_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_cache_chk_load
  *
@@ -761,7 +761,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cache_chk_load() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_cache_chk_flush
  *
@@ -808,7 +808,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cache_chk_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_cache_chk_dest
  *
@@ -855,7 +855,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cache_chk_dest() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_cache_chk_clear
  *
@@ -867,26 +867,26 @@ done:
  *              koziol@hdfgroup.org
  *              July 12, 2008
  *
- * Changes:	In the parallel case, there is the possibility that the 
- *		the object header chunk may be flushed by different 
- *		processes over the life of the computation.  Thus we must 
+ * Changes:	In the parallel case, there is the possibility that the
+ *		the object header chunk may be flushed by different
+ *		processes over the life of the computation.  Thus we must
  *		ensure that the chunk image is up to date before we mark its
  *		messages clean -- as otherwise we may overwrite valid
  *		data with a blank section of a chunk image.
  *
- *		To deal with this, I have added code to call 
- *		H5O_chunk_serialize() for this chunk before we 
- *		mark all messages as clean if we are not destroying the 
+ *		To deal with this, I have added code to call
+ *		H5O_chunk_serialize() for this chunk before we
+ *		mark all messages as clean if we are not destroying the
  *		chunk.
  *
- *		Do this in the parallel case only, as the problem 
+ *		Do this in the parallel case only, as the problem
  *		can only occur in this context.
  *
  *		Note that at present at least, it seems that this fix
- *		is not necessary, as we don't seem to be able to 
+ *		is not necessary, as we don't seem to be able to
  *		generate a dirty chunk without creating a dirty object
  *		header.  However, the object header code will be changing
- *		a lot in the near future, so I'll leave this fix in 
+ *		a lot in the near future, so I'll leave this fix in
  *		for now, unless Quincey requests otherwise.
  *
  *						JRM -- 10/12/10
@@ -909,7 +909,7 @@ H5O_cache_chk_clear(H5F_t *f, H5O_chunk_proxy_t *chk_proxy, hbool_t destroy)
 
         if ( H5O_chunk_serialize(f, chk_proxy->oh, chk_proxy->chunkno) < 0 ) {
 
-            HGOTO_ERROR(H5E_OHDR, H5E_CANTSERIALIZE, FAIL, 
+            HGOTO_ERROR(H5E_OHDR, H5E_CANTSERIALIZE, FAIL,
                        "unable to serialize object header chunk")
         }
     }
@@ -931,7 +931,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_cache_chk_clear() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_cache_chk_size
  *
@@ -962,7 +962,7 @@ H5O_cache_chk_size(const H5F_t H5_ATTR_UNUSED *f, const H5O_chunk_proxy_t *chk_p
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* H5O_cache_chk_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_add_cont_msg
  *
@@ -1011,7 +1011,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_add_cont_msg() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_deserialize
  *
@@ -1134,6 +1134,10 @@ H5O_chunk_deserialize(H5O_t *oh, haddr_t addr, size_t len, const uint8_t *image,
             HGOTO_ERROR(H5E_OHDR, H5E_CANTLOAD, FAIL, "bad flag combination for message")
         if((flags & H5O_MSG_FLAG_WAS_UNKNOWN) && !(flags & H5O_MSG_FLAG_MARK_IF_UNKNOWN))
             HGOTO_ERROR(H5E_OHDR, H5E_CANTLOAD, FAIL, "bad flag combination for message")
+        if((flags & H5O_MSG_FLAG_SHAREABLE)
+                && H5O_msg_class_g[id]
+                && !(H5O_msg_class_g[id]->share_flags & H5O_SHARE_IS_SHARABLE))
+            HGOTO_ERROR(H5E_OHDR, H5E_CANTLOAD, FAIL, "message of unsharable class flagged as sharable")
 
         /* Reserved bytes/creation index */
         if(oh->version == H5O_VERSION_1)
@@ -1206,7 +1210,7 @@ H5O_chunk_deserialize(H5O_t *oh, haddr_t addr, size_t len, const uint8_t *image,
                 oh->mesg[mesgno].type = H5O_msg_class_g[H5O_UNKNOWN_ID];
 
                 /* Check for "fail if unknown" message flag */
-                if((udata->file_intent & H5F_ACC_RDWR) && 
+                if((udata->file_intent & H5F_ACC_RDWR) &&
                    (flags & H5O_MSG_FLAG_FAIL_IF_UNKNOWN_AND_OPEN_FOR_WRITE))
                     HGOTO_ERROR(H5E_OHDR, H5E_BADMESG, FAIL, "unknown message with 'fail if unknown' flag found")
                 /* Check for "mark if unknown" message flag, etc. */
@@ -1350,7 +1354,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_chunk_deserialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_serialize
  *
@@ -1415,7 +1419,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_chunk_serialize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_proxy_dest
  *

@@ -120,7 +120,7 @@ static const H5I_class_t H5I_DATASET_CLS[1] = {{
 }};
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_init
  *
@@ -147,7 +147,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_init() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__init_interface -- Initialize interface-specific information
@@ -207,7 +207,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_term_interface
  *
@@ -276,7 +276,7 @@ H5D_term_interface(void)
     FUNC_LEAVE_NOAPI(n)
 } /* end H5D_term_interface() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__get_dxpl_cache_real
@@ -359,7 +359,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D__get_dxpl_cache_real() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5D__get_dxpl_cache
@@ -403,7 +403,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* H5D__get_dxpl_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__create_named
  *
@@ -462,7 +462,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__create_named() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__get_space_status
  *
@@ -530,7 +530,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__get_space_status() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__new
  *
@@ -591,7 +591,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__new() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__init_type
  *
@@ -638,6 +638,11 @@ H5D__init_type(H5F_t *file, const H5D_t *dset, hid_t type_id, const H5T_t *type)
         if((dset->shared->type = H5T_copy(type, H5T_COPY_ALL)) == NULL)
             HGOTO_ERROR(H5E_DATASET, H5E_CANTCOPY, FAIL, "can't copy datatype")
 
+	/* Convert a datatype (if committed) to a transient type if the committed datatype's file
+	   location is different from the file location where the dataset will be created */
+        if(H5T_convert_committed_datatype(dset->shared->type, file) < 0)
+            HGOTO_ERROR(H5E_DATASET, H5E_CANTINIT, FAIL, "can't get shared datatype info")
+
         /* Mark any datatypes as being on disk now */
         if(H5T_set_loc(dset->shared->type, file, H5T_LOC_DISK) < 0)
             HGOTO_ERROR(H5E_DATASET, H5E_CANTINIT, FAIL, "can't set datatype location")
@@ -665,7 +670,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__init_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__init_space
  *
@@ -713,7 +718,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__init_space() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__update_oh_info
  *
@@ -904,7 +909,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__update_oh_info() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:    H5D_build_extfile_prefix
  *
@@ -926,9 +931,10 @@ H5D_build_extfile_prefix(const H5D_t *dset, hid_t dapl_id, char **extfile_prefix
     size_t          extpath_len;          /* length of extpath                              */
     size_t          prefix_len;           /* length of prefix                               */
     size_t          extfile_prefix_len;   /* length of expanded prefix                      */
+    hbool_t         free_prefix = FALSE;  /* Did the library allocate memory for prefix?    */
     H5P_genplist_t  *plist = NULL;        /* Property list pointer                          */
     herr_t          ret_value = SUCCEED;  /* Return value                                   */
-    
+
 
     FUNC_ENTER_NOAPI_NOINIT
 
@@ -949,6 +955,7 @@ H5D_build_extfile_prefix(const H5D_t *dset, hid_t dapl_id, char **extfile_prefix
             HGOTO_ERROR(H5E_ATOM, H5E_BADATOM, FAIL, "can't find object for ID")
         /* No error checking possible here */
         prefix = (char *)H5P_peek_voidp(plist, H5D_ACS_EFILE_PREFIX_NAME);
+        free_prefix = TRUE;
     } /* end if */
 
     /* Prefix has to be checked for NULL / empty string again because the
@@ -967,7 +974,7 @@ H5D_build_extfile_prefix(const H5D_t *dset, hid_t dapl_id, char **extfile_prefix
             extpath_len = HDstrlen(extpath);
             prefix_len = HDstrlen(prefix);
             extfile_prefix_len = extpath_len + prefix_len - HDstrlen("${ORIGIN}") + 1;
-        
+
             if(NULL == (*extfile_prefix = (char *)H5MM_malloc(extfile_prefix_len)))
                 HGOTO_ERROR(H5E_RESOURCE, H5E_NOSPACE, FAIL, "unable to allocate buffer")
             HDsnprintf(*extfile_prefix, extfile_prefix_len, "%s%s", extpath, prefix + HDstrlen("${ORIGIN}"));
@@ -979,10 +986,12 @@ H5D_build_extfile_prefix(const H5D_t *dset, hid_t dapl_id, char **extfile_prefix
     } /* end else */
 
 done:
+    if(free_prefix && prefix)
+        H5MM_xfree(prefix);
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D_build_extfile_prefix() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__create
  *
@@ -1189,7 +1198,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__create() */
 
-
+
 /*
  *-------------------------------------------------------------------------
  * Function:	H5D_open
@@ -1311,7 +1320,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_open() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__open_oid
  *
@@ -1468,7 +1477,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__open_oid() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_close
  *
@@ -1538,7 +1547,7 @@ H5D_close(H5D_t *dataset)
                     dataset->shared->cache.chunk.single_chunk_info = NULL;
                 } /* end if */
 
-                /* Flush and destroy chunks in the cache. Continue to close even if 
+                /* Flush and destroy chunks in the cache. Continue to close even if
                  * it fails. */
                 if(H5D__chunk_dest(dataset->oloc.file, H5AC_dxpl_id, dataset) < 0)
                     HDONE_ERROR(H5E_DATASET, H5E_CANTRELEASE, FAIL, "unable to destroy chunk cache")
@@ -1620,7 +1629,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_oloc
  *
@@ -1643,7 +1652,7 @@ H5D_oloc(H5D_t *dataset)
     FUNC_LEAVE_NOAPI(dataset ? &(dataset->oloc) : (H5O_loc_t *)NULL)
 } /* end H5D_oloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_nameof
  *
@@ -1666,7 +1675,7 @@ H5D_nameof(H5D_t *dataset)
     FUNC_LEAVE_NOAPI(dataset ? &(dataset->path) : (H5G_name_t *)NULL)
 } /* end H5D_nameof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_typeof
  *
@@ -1694,7 +1703,7 @@ H5D_typeof(const H5D_t *dset)
     FUNC_LEAVE_NOAPI(dset->shared->type)
 } /* end H5D_typeof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__alloc_storage
  *
@@ -1776,8 +1785,8 @@ H5D__alloc_storage(const H5D_t *dset, hid_t dxpl_id, H5D_time_alloc_t time_alloc
             case H5D_COMPACT:
                 /* Check if space is already allocated */
                 if(NULL == layout->storage.u.compact.buf) {
-                    /* Reserve space in layout header message for the entire array. 
-                     * Starting from the 1.8.7 release, we allow dataspace to have 
+                    /* Reserve space in layout header message for the entire array.
+                     * Starting from the 1.8.7 release, we allow dataspace to have
                      * zero dimension size.  So the storage size can be zero.
                      * SLU 2011/4/4 */
                     if(layout->storage.u.compact.size > 0) {
@@ -1855,7 +1864,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__alloc_storage() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__init_storage
  *
@@ -1928,7 +1937,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__init_storage() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__get_storage_size
  *
@@ -1981,7 +1990,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__get_storage_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__get_offset
  *
@@ -2029,7 +2038,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__get_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_vlen_reclaim
  *
@@ -2080,7 +2089,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5D_vlen_reclaim() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__vlen_get_buf_size_alloc
  *
@@ -2114,7 +2123,7 @@ H5D__vlen_get_buf_size_alloc(size_t size, void *info)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__vlen_get_buf_size_alloc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__vlen_get_buf_size
  *
@@ -2173,7 +2182,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__vlen_get_buf_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__check_filters
  *
@@ -2227,7 +2236,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__check_filters() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D__set_extent
  *
@@ -2334,7 +2343,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__set_extent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__flush_sieve_buf
  *
@@ -2375,7 +2384,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__flush_sieve_buf() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__flush_real
  *
@@ -2446,7 +2455,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__flush_real() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__mark
  *
@@ -2480,7 +2489,7 @@ H5D__mark(const H5D_t *dataset, hid_t H5_ATTR_UNUSED dxpl_id, unsigned flags)
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__mark() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__flush_cb
  *
@@ -2517,7 +2526,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__flush_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D_flush
  *
@@ -2554,7 +2563,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_get_create_plist
  *
@@ -2671,14 +2680,14 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_get_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_get_access_plist
  *
  * Purpose:	Returns a copy of the dataset access property list.
  *
  * Return:	Success:	ID for a copy of the dataset access
- *				property list. 
+ *				property list.
  *
  *		Failure:	FAIL
  *
@@ -2728,7 +2737,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_get_access_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_get_space
  *
@@ -2768,7 +2777,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D_get_space() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5D_get_type
  *

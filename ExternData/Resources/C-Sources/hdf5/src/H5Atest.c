@@ -77,7 +77,7 @@
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_is_shared_test
  *
@@ -110,7 +110,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5A_is_shared_test() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5A_get_shared_rc_test
  *

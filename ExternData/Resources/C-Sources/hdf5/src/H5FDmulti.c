@@ -92,7 +92,7 @@ typedef struct H5FD_multi_t {
     haddr_t	memb_next[H5FD_MEM_NTYPES];/*addr of next member	*/
     H5FD_t	*memb[H5FD_MEM_NTYPES];	/*member pointers		*/
     haddr_t     memb_eoa[H5FD_MEM_NTYPES]; /*EOA for individual files,
-    				 *end of allocated addresses.  v1.6 library 
+    				 *end of allocated addresses.  v1.6 library
                                  *have the EOA for the entire file. But it's
                                  *meaningless for MULTI file.  We replaced it
                                  *with the EOAs for individual files    */
@@ -174,7 +174,7 @@ static const H5FD_class_t H5FD_multi_g = {
     H5FD_FLMAP_DEFAULT 				/*fl_map		*/
 };
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	my_strdup
  *
@@ -207,7 +207,7 @@ my_strdup(const char *s)
     return x;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_init
  *
@@ -237,7 +237,7 @@ H5FD_multi_init(void)
     return H5FD_MULTI_g;
 }
 
-
+
 /*---------------------------------------------------------------------------
  * Function:	H5FD_multi_term
  *
@@ -260,7 +260,7 @@ H5FD_multi_term(void)
 
 } /* end H5FD_multi_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_fapl_split
  *
@@ -357,7 +357,7 @@ H5Pset_fapl_split(hid_t fapl, const char *meta_ext, hid_t meta_plist_id,
     return H5Pset_fapl_multi(fapl, memb_map, memb_fapl, memb_name, memb_addr, TRUE);
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_fapl_multi
  *
@@ -524,7 +524,7 @@ H5Pset_fapl_multi(hid_t fapl_id, const H5FD_mem_t *memb_map,
     return H5Pset_driver(fapl_id, H5FD_MULTI, &fa);
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_fapl_multi
  *
@@ -594,7 +594,7 @@ H5Pget_fapl_multi(hid_t fapl_id, H5FD_mem_t *memb_map/*out*/,
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_sb_size
  *
@@ -639,7 +639,7 @@ H5FD_multi_sb_size(H5FD_t *_file)
     return nbytes;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_sb_encode
  *
@@ -725,7 +725,7 @@ H5FD_multi_sb_encode(H5FD_t *_file, char *name/*out*/,
     return 0;
 } /* end H5FD_multi_sb_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_sb_decode
  *
@@ -858,15 +858,15 @@ H5FD_multi_sb_decode(H5FD_t *_file, const char *name, const unsigned char *buf)
         if (file->memb[mt])
             if(H5FDset_eoa(file->memb[mt], mt, memb_eoa[mt])<0)
                 H5Epush_ret(func, H5E_ERR_CLS, H5E_INTERNAL, H5E_CANTSET, "set_eoa() failed", -1)
-       
-        /* Save the individual EOAs in one place for later comparison (in H5FD_multi_set_eoa) */ 
-        file->memb_eoa[mt] = memb_eoa[mt]; 
+
+        /* Save the individual EOAs in one place for later comparison (in H5FD_multi_set_eoa) */
+        file->memb_eoa[mt] = memb_eoa[mt];
     } END_MEMBERS;
 
     return 0;
 } /* end H5FD_multi_sb_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_fapl_get
  *
@@ -897,7 +897,7 @@ H5FD_multi_fapl_get(H5FD_t *_file)
     return H5FD_multi_fapl_copy(&(file->fa));
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_fapl_copy
  *
@@ -953,7 +953,7 @@ H5FD_multi_fapl_copy(const void *_old_fa)
     return new_fa;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_fapl_free
  *
@@ -991,7 +991,7 @@ H5FD_multi_fapl_free(void *_fa)
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_open
  *
@@ -1032,7 +1032,7 @@ H5FD_multi_open(const char *name, unsigned flags, hid_t fapl_id,
     /*
      * Initialize the file from the file access properties, using default
      * values if necessary.  Make sure to use CALLOC here because the code
-     * in H5FD_multi_set_eoa depends on the proper initialization of memb_eoa 
+     * in H5FD_multi_set_eoa depends on the proper initialization of memb_eoa
      * in H5FD_multi_t.
      */
     if(NULL == (file = (H5FD_multi_t *)calloc((size_t)1, sizeof(H5FD_multi_t))))
@@ -1091,7 +1091,7 @@ error:
     return NULL;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_close
  *
@@ -1143,7 +1143,7 @@ H5FD_multi_close(H5FD_t *_file)
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_cmp
  *
@@ -1190,7 +1190,7 @@ H5FD_multi_cmp(const H5FD_t *_f1, const H5FD_t *_f2)
     return H5FDcmp(f1->memb[out_mt], f2->memb[out_mt]);
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_query
  *
@@ -1224,7 +1224,7 @@ H5FD_multi_query(const H5FD_t *_f, unsigned long *flags /* out */)
     return(0);
 } /* end H5FD_multi_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_get_type_map
  *
@@ -1249,7 +1249,7 @@ H5FD_multi_get_type_map(const H5FD_t *_file, H5FD_mem_t *type_map)
     return(0);
 } /* end H5FD_multi_get_type_map() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_get_eoa
  *
@@ -1342,7 +1342,7 @@ H5FD_multi_get_eoa(const H5FD_t *_file, H5FD_mem_t type)
     return eoa;
 } /* end H5FD_multi_get_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_set_eoa
  *
@@ -1386,12 +1386,12 @@ H5FD_multi_set_eoa(H5FD_t *_file, H5FD_mem_t type, haddr_t eoa)
     if(H5FD_MEM_DEFAULT == mmt)
         mmt = type;
 
-    /* Handle backward compatibility in a quick and simple way.  v1.6 library had EOA for the entire virtual 
-     * file.  But it wasn't meaningful.  So v1.8 library doesn't have it anymore.  It saves the EOA for the 
-     * metadata file, instead.  Here we try to figure out whether the EOA is from a v1.6 file by comparing its 
-     * value.  If it is a big value, we assume it's from v1.6 and simply discard it. This is the normal case 
+    /* Handle backward compatibility in a quick and simple way.  v1.6 library had EOA for the entire virtual
+     * file.  But it wasn't meaningful.  So v1.8 library doesn't have it anymore.  It saves the EOA for the
+     * metadata file, instead.  Here we try to figure out whether the EOA is from a v1.6 file by comparing its
+     * value.  If it is a big value, we assume it's from v1.6 and simply discard it. This is the normal case
      * when the metadata file has the smallest starting address.  If the metadata file has the biggest address,
-     * the EOAs of v1.6 and v1.8 files are the same.  It won't cause any trouble.  (Please see Issue 2598 
+     * the EOAs of v1.6 and v1.8 files are the same.  It won't cause any trouble.  (Please see Issue 2598
      * in Jira) SLU - 2011/6/21
      */
     if(H5FD_MEM_SUPER == type && file->memb_eoa[H5FD_MEM_SUPER] > 0 && eoa > file->memb_eoa[H5FD_MEM_SUPER])
@@ -1409,7 +1409,7 @@ H5FD_multi_set_eoa(H5FD_t *_file, H5FD_mem_t type, haddr_t eoa)
     return 0;
 } /* end H5FD_multi_set_eoa() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_get_eof
  *
@@ -1484,7 +1484,7 @@ H5FD_multi_get_eof(const H5FD_t *_file)
     return MAX(eoa, eof);
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_multi_get_handle
  *
@@ -1517,7 +1517,7 @@ H5FD_multi_get_handle(H5FD_t *_file, hid_t fapl, void** file_handle)
     return (H5FDget_vfd_handle(file->memb[mmt], fapl, file_handle));
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_alloc
  *
@@ -1566,7 +1566,7 @@ H5FD_multi_alloc(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, hsize_t size)
     return addr;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_free
  *
@@ -1600,7 +1600,7 @@ H5FD_multi_free(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr, hsi
     return H5FDfree(file->memb[mmt], mmt, dxpl_id, addr-file->fa.memb_addr[mmt], size);
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_read
  *
@@ -1652,7 +1652,7 @@ H5FD_multi_read(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr,
             addr - start_addr, size, _buf);
 } /* end H5FD_multi_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_write
  *
@@ -1703,7 +1703,7 @@ H5FD_multi_write(H5FD_t *_file, H5FD_mem_t type, hid_t dxpl_id, haddr_t addr,
             addr - start_addr, size, _buf);
 } /* end H5FD_multi_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_flush
  *
@@ -1775,7 +1775,7 @@ H5FD_multi_flush(H5FD_t *_file, hid_t dxpl_id, unsigned closing)
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_multi_truncate
  *
@@ -1815,7 +1815,7 @@ H5FD_multi_truncate(H5FD_t *_file, hid_t dxpl_id, hbool_t closing)
     return 0;
 } /* end H5FD_multi_truncate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	compute_next
  *
@@ -1859,7 +1859,7 @@ compute_next(H5FD_multi_t *file)
     return 0;
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	open_members
  *
@@ -1909,7 +1909,7 @@ open_members(H5FD_multi_t *file)
     return 0;
 }
 
-
+
 #ifdef _H5private_H
 /*
  * This is not related to the functionality of the driver code.

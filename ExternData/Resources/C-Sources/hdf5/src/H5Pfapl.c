@@ -194,7 +194,7 @@ const H5P_libclass_t H5P_CLS_FACC[1] = {{
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5P_facc_reg_prop
  *
@@ -322,12 +322,12 @@ H5P_facc_reg_prop(H5P_genclass_t *pclass)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 
     /* Register the core VFD backing store write tracking flag */
-    if(H5P_register_real(pclass, H5F_ACS_CORE_WRITE_TRACKING_FLAG_NAME, H5F_ACS_CORE_WRITE_TRACKING_FLAG_SIZE, &core_write_tracking_flag, 
+    if(H5P_register_real(pclass, H5F_ACS_CORE_WRITE_TRACKING_FLAG_NAME, H5F_ACS_CORE_WRITE_TRACKING_FLAG_SIZE, &core_write_tracking_flag,
             NULL, NULL, NULL, NULL, NULL, NULL, NULL) < 0)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 
     /* Register the size of the core VFD backing store page size */
-    if(H5P_register_real(pclass, H5F_ACS_CORE_WRITE_TRACKING_PAGE_SIZE_NAME, H5F_ACS_CORE_WRITE_TRACKING_PAGE_SIZE_SIZE, &core_write_tracking_page_size, 
+    if(H5P_register_real(pclass, H5F_ACS_CORE_WRITE_TRACKING_PAGE_SIZE_NAME, H5F_ACS_CORE_WRITE_TRACKING_PAGE_SIZE_SIZE, &core_write_tracking_page_size,
             NULL, NULL, NULL, NULL, NULL, NULL, NULL) < 0)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTINSERT, FAIL, "can't insert property into class")
 
@@ -335,7 +335,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_facc_reg_prop() */
 
-
+
 /*----------------------------------------------------------------------------
  * Function:	H5P_facc_create
  *
@@ -386,7 +386,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_facc_create() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:	H5P_facc_copy
  *
@@ -437,7 +437,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_facc_copy() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function:	H5P_facc_close
  *
@@ -487,7 +487,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_facc_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_alignment
  *
@@ -545,7 +545,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_alignment
  *
@@ -586,11 +586,11 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_alignment() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_set_driver
  *
- * Purpose:	Set the file driver (DRIVER_ID) for a file access 
+ * Purpose:	Set the file driver (DRIVER_ID) for a file access
  *		property list (PLIST_ID) and supply an optional
  *		struct containing the driver-specific properites
  *		(DRIVER_INFO).  The driver properties will be copied into the
@@ -640,11 +640,11 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_set_driver() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_driver
  *
- * Purpose:	Set the file driver (DRIVER_ID) for a file access 
+ * Purpose:	Set the file driver (DRIVER_ID) for a file access
  *		property list (PLIST_ID) and supply an optional
  *		struct containing the driver-specific properites
  *		(DRIVER_INFO).  The driver properties will be copied into the
@@ -683,7 +683,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_driver() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_driver
  *
@@ -724,7 +724,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_get_driver() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_driver
  *
@@ -763,7 +763,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_driver() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5P_get_driver_info
  *
@@ -802,7 +802,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_get_driver_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_driver_info
  *
@@ -842,7 +842,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_driver_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_family_offset
  *
@@ -881,7 +881,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_family_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_family_offset
  *
@@ -922,7 +922,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_family_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_multi_type
  *
@@ -961,7 +961,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_multi_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_multi_type
  *
@@ -1002,7 +1002,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_multi_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_cache
  *
@@ -1056,7 +1056,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_cache
  *
@@ -1108,7 +1108,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_cache() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_mdc_config
  *
@@ -1152,7 +1152,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Pset_mdc_config() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_mdc_config
  *
@@ -1203,7 +1203,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Pget_mdc_config() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_gc_references
  *
@@ -1256,7 +1256,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_gc_references
  *
@@ -1299,7 +1299,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_fclose_degree
  *
@@ -1335,7 +1335,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_fclose_degree() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_fclose_degree
  *
@@ -1370,7 +1370,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_fclose_degree() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_meta_block_size
  *
@@ -1421,7 +1421,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_meta_block_size
  *
@@ -1465,7 +1465,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_sieve_buf_size
  *
@@ -1516,7 +1516,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_sieve_buf_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_sieve_buf_size
  *
@@ -1559,7 +1559,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_sieve_buf_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_small_data_block_size
  *
@@ -1605,7 +1605,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_small_data_block_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_small_data_block_size
  *
@@ -1644,7 +1644,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_small_data_block_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_libver_bounds
  *
@@ -1762,7 +1762,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_libver_bounds() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_libver_bounds
  *
@@ -1806,7 +1806,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_libver_bounds() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pset_elink_file_cache_size
  *
@@ -1844,7 +1844,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_elink_file_cache_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Pget_elink_file_cache_size
  *
@@ -1883,13 +1883,13 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_elink_file_cache_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Pset_file_image
  *
- * Purpose:     Sets the initial file image. Some file drivers can initialize 
- *              the starting data in a file from a buffer. 
- *              
+ * Purpose:     Sets the initial file image. Some file drivers can initialize
+ *              the starting data in a file from a buffer.
+ *
  * Return:      Non-negative on success/Negative on failure
  *
  * Programmer:  Jacob Gruber
@@ -1903,22 +1903,22 @@ H5Pset_file_image(hid_t fapl_id, void *buf_ptr, size_t buf_len)
     H5P_genplist_t *fapl;               /* Property list pointer */
     H5FD_file_image_info_t image_info;  /* File image info */
     herr_t ret_value = SUCCEED;         /* Return value */
-    
+
     FUNC_ENTER_API(FAIL)
     H5TRACE3("e", "i*xz", fapl_id, buf_ptr, buf_len);
 
     /* validate parameters */
     if(!(((buf_ptr == NULL) && (buf_len == 0)) || ((buf_ptr != NULL) && (buf_len > 0))))
         HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "inconsistant buf_ptr and buf_len")
-   
+
     /* Get the plist structure */
     if(NULL == (fapl = H5P_object_verify(fapl_id, H5P_FILE_ACCESS)))
         HGOTO_ERROR(H5E_ATOM, H5E_BADATOM, FAIL, "can't find object for ID")
-        
+
     /* Get old image info */
     if(H5P_get(fapl, H5F_ACS_FILE_IMAGE_INFO_NAME, &image_info) < 0)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTGET, FAIL, "can't get old file image pointer")
-        
+
     /* Release previous buffer, if it exists */
     if(image_info.buffer != NULL) {
         if(image_info.callbacks.image_free) {
@@ -1927,8 +1927,8 @@ H5Pset_file_image(hid_t fapl_id, void *buf_ptr, size_t buf_len)
         } /* end if */
         else
             H5MM_xfree(image_info.buffer);
-    } /* end if */  
-    
+    } /* end if */
+
     /* Update struct */
     if(buf_ptr) {
         /* Allocate memory */
@@ -1940,11 +1940,11 @@ H5Pset_file_image(hid_t fapl_id, void *buf_ptr, size_t buf_len)
          else
             if(NULL == (image_info.buffer = H5MM_malloc(buf_len)))
                 HGOTO_ERROR(H5E_RESOURCE, H5E_NOSPACE, FAIL, "unable to allocate memory block")
-    
+
         /* Copy data */
         if(image_info.callbacks.image_memcpy) {
-            if(image_info.buffer != image_info.callbacks.image_memcpy(image_info.buffer, 
-                   buf_ptr, buf_len, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_SET, 
+            if(image_info.buffer != image_info.callbacks.image_memcpy(image_info.buffer,
+                   buf_ptr, buf_len, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_SET,
                    image_info.callbacks.udata))
 	        HGOTO_ERROR(H5E_RESOURCE, H5E_CANTCOPY, FAIL, "image_memcpy callback failed")
         } /* end if */
@@ -1964,27 +1964,27 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_file_image() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Pget_file_image
  *
- * Purpose:     If the file image exists and buf_ptr_ptr is not NULL, 
- *		allocate a buffer of the correct size, copy the image into 
- *		the new buffer, and return the buffer to the caller in 
+ * Purpose:     If the file image exists and buf_ptr_ptr is not NULL,
+ *		allocate a buffer of the correct size, copy the image into
+ *		the new buffer, and return the buffer to the caller in
  *		*buf_ptr_ptr.  Do this using the file image callbacks
- *		if defined.  
+ *		if defined.
  *
- *		NB: It is the responsibility of the caller to free the 
+ *		NB: It is the responsibility of the caller to free the
  *		buffer whose address is returned in *buf_ptr_ptr.  Do
- *		this using free if the file image callbacks are not 
- *		defined, or with whatever method is appropriate if 
+ *		this using free if the file image callbacks are not
+ *		defined, or with whatever method is appropriate if
  *		the callbacks are defined.
  *
- *              If buf_ptr_ptr is not NULL, and no image exists, set 
+ *              If buf_ptr_ptr is not NULL, and no image exists, set
  *		*buf_ptr_ptr to NULL.
  *
  *		If buf_len_ptr is not NULL, set *buf_len_ptr equal
- *		to the length of the file image if it exists, and 
+ *		to the length of the file image if it exists, and
  *		to 0 if it does not.
  *
  * Return:      Non-negative on success/Negative on failure
@@ -2013,7 +2013,7 @@ H5Pget_file_image(hid_t fapl_id, void **buf_ptr_ptr, size_t *buf_len_ptr)
         HGOTO_ERROR(H5E_PLIST, H5E_CANTGET, FAIL, "can't get file image info")
 
     /* verify file image field consistancy */
-    HDassert(((image_info.buffer != NULL) && (image_info.size > 0)) || 
+    HDassert(((image_info.buffer != NULL) && (image_info.size > 0)) ||
              ((image_info.buffer == NULL) && (image_info.size == 0)));
 
     /* Set output size */
@@ -2034,11 +2034,11 @@ H5Pget_file_image(hid_t fapl_id, void **buf_ptr_ptr, size_t *buf_len_ptr)
             else
                 if(NULL == (copy_ptr = H5MM_malloc(image_info.size)))
                     HGOTO_ERROR(H5E_RESOURCE, H5E_NOSPACE, FAIL, "unable to allocate copy")
-    
+
             /* Copy data */
             if(image_info.callbacks.image_memcpy) {
                 if(copy_ptr != image_info.callbacks.image_memcpy(copy_ptr, image_info.buffer,
-                        image_info.size, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_GET, 
+                        image_info.size, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_GET,
                         image_info.callbacks.udata))
                     HGOTO_ERROR(H5E_RESOURCE, H5E_CANTCOPY, FAIL, "image_memcpy callback failed")
             } /* end if */
@@ -2053,13 +2053,13 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_file_image */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Pset_file_image_callbacks
  *
  * Purpose:     Sets the callbacks for file images. Some file drivers allow
  *              the use of user-defined callbacks for allocating, freeing and
- *              copying the drivers internal buffer, potentially allowing a 
+ *              copying the drivers internal buffer, potentially allowing a
  *              clever user to do optimizations such as avoiding large mallocs
  *              and memcpys or to perform detailed logging.
  *
@@ -2089,7 +2089,7 @@ H5Pset_file_image_callbacks(hid_t fapl_id, H5FD_file_image_callbacks_t *callback
         HGOTO_ERROR(H5E_PLIST, H5E_CANTGET, FAIL, "can't get old file image info")
 
     /* verify file image field consistancy */
-    HDassert(((info.buffer != NULL) && (info.size > 0)) || 
+    HDassert(((info.buffer != NULL) && (info.size > 0)) ||
              ((info.buffer == NULL) && (info.size == 0)));
 
     /* Make sure a file image hasn't already been set */
@@ -2130,13 +2130,13 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_file_image_callbacks() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Pget_file_image_callbacks
  *
  * Purpose:     Sets the callbacks for file images. Some file drivers allow
  *              the use of user-defined callbacks for allocating, freeing and
- *              copying the drivers internal buffer, potentially allowing a 
+ *              copying the drivers internal buffer, potentially allowing a
  *              clever user to do optimizations such as avoiding large mallocs
  *
  * Return:      Non-negative on success/Negative on failure
@@ -2165,7 +2165,7 @@ H5Pget_file_image_callbacks(hid_t fapl_id, H5FD_file_image_callbacks_t *callback
         HGOTO_ERROR(H5E_PLIST, H5E_CANTGET, FAIL, "can't get file image info")
 
     /* verify file image field consistancy */
-    HDassert(((info.buffer != NULL) && (info.size > 0)) || 
+    HDassert(((info.buffer != NULL) && (info.size > 0)) ||
              ((info.buffer == NULL) && (info.size == 0)));
 
     /* verify that callbacks_ptr is not NULL */
@@ -2186,13 +2186,13 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_file_image_callbacks() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P_file_image_info_del
  *
  * Purpose:     Delete callback for the file image info property, called
  *              when the property is deleted from the plist. The buffer
- *              and udata may need to be freed, possibly using their 
+ *              and udata may need to be freed, possibly using their
  *              respective callbacks so the default free won't work.
  *
  * Return:      Non-negative on success/Negative on failure
@@ -2214,7 +2214,7 @@ H5P_file_image_info_del(hid_t H5_ATTR_UNUSED prop_id, const char H5_ATTR_UNUSED 
         info = *(H5FD_file_image_info_t *)value;
 
         /* verify file image field consistancy */
-        HDassert(((info.buffer != NULL) && (info.size > 0)) || 
+        HDassert(((info.buffer != NULL) && (info.size > 0)) ||
                  ((info.buffer == NULL) && (info.size == 0)));
 
         if(info.buffer && info.size > 0) {
@@ -2241,12 +2241,12 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_file_image_info_del() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P_file_image_info_copy
  *
  * Purpose:     Copy callback for the file image info property. The buffer
- *              and udata may need to be copied, possibly using their 
+ *              and udata may need to be copied, possibly using their
  *              respective callbacks so the default copy won't work.
  *
  * Return:      Non-negative on success/Negative on failure
@@ -2269,7 +2269,7 @@ H5P_file_image_info_copy(const char H5_ATTR_UNUSED *name, size_t H5_ATTR_UNUSED 
         info = (H5FD_file_image_info_t *)value;
 
         /* verify file image field consistancy */
-        HDassert(((info->buffer != NULL) && (info->size > 0)) || 
+        HDassert(((info->buffer != NULL) && (info->size > 0)) ||
                  ((info->buffer == NULL) && (info->size == 0)));
 
         if(info->buffer && info->size > 0) {
@@ -2288,11 +2288,11 @@ H5P_file_image_info_copy(const char H5_ATTR_UNUSED *name, size_t H5_ATTR_UNUSED 
                 if(NULL == (info->buffer = H5MM_malloc(info->size)))
                     HGOTO_ERROR(H5E_RESOURCE, H5E_NOSPACE, FAIL, "unable to allocate memory block")
             } /* end else */
-            
+
             /* Copy data to new buffer */
             if(info->callbacks.image_memcpy) {
-                if(info->buffer != info->callbacks.image_memcpy(info->buffer, old_buffer, 
-			info->size, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_COPY, 
+                if(info->buffer != info->callbacks.image_memcpy(info->buffer, old_buffer,
+			info->size, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_COPY,
 			info->callbacks.udata))
 		    HGOTO_ERROR(H5E_RESOURCE, H5E_CANTCOPY, FAIL, "image_memcpy callback failed")
             } /* end if */
@@ -2316,12 +2316,12 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_file_image_info_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5P_file_image_info_close
  *
  * Purpose:     Close callback for the file image info property. The buffer
- *              and udata may need to be freed, possibly using their 
+ *              and udata may need to be freed, possibly using their
  *              respective callbacks so the standard free won't work.
  *
  * Return:      Non-negative on success/Negative on failure
@@ -2342,8 +2342,8 @@ H5P_file_image_info_close(const char H5_ATTR_UNUSED *name, size_t H5_ATTR_UNUSED
         H5FD_file_image_info_t *info;        /* Image info struct */
 
         info = (H5FD_file_image_info_t *)value;
-             
-        if(info->buffer != NULL && info->size > 0) { 
+
+        if(info->buffer != NULL && info->size > 0) {
             /* Free buffer */
             if(info->callbacks.image_free) {
                 if(info->callbacks.image_free(info->buffer, H5FD_FILE_IMAGE_OP_PROPERTY_LIST_CLOSE,
@@ -2367,7 +2367,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5P_file_image_info_close() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pset_core_write_tracking
  *
@@ -2405,7 +2405,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Pget_core_write_tracking
  *

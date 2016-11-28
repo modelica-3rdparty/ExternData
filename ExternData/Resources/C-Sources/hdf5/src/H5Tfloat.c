@@ -29,7 +29,7 @@
 #include "H5Iprivate.h"		/*ID functions		   		  */
 #include "H5Tpkg.h"		/*data-type functions			  */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_float_interface -- Initialize interface-specific information
@@ -51,7 +51,7 @@ H5T_init_float_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_float_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_fields
  *
@@ -106,7 +106,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_fields() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_fields
  *
@@ -170,7 +170,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tset_fields() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_ebias
  *
@@ -209,7 +209,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_ebias() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_ebias
  *
@@ -252,7 +252,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tset_ebias() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_norm
  *
@@ -292,7 +292,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_norm() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_norm
  *
@@ -334,7 +334,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tset_norm() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_inpad
  *
@@ -376,7 +376,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tget_inpad() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_inpad
  *

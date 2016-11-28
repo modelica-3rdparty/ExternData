@@ -56,7 +56,7 @@ const H5L_class_t H5L_EXTERN_LINK_CLASS[1] = {{
 /* Size of local link name buffer for traversing external links */
 #define H5L_EXT_TRAVERSE_BUF_SIZE       256
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5L_init_extern_interface -- Initialize interface-specific information
@@ -79,7 +79,7 @@ H5L_init_extern_interface(void)
     FUNC_LEAVE_NOAPI(H5L_init())
 } /* H5L_init_extern_interface() */
 
-
+
 
 /*--------------------------------------------------------------------------
  * Function: H5L_getenv_prefix_name --
@@ -115,7 +115,7 @@ H5L_getenv_prefix_name(char **env_prefix/*in,out*/)
     FUNC_LEAVE_NOAPI(retptr)
 } /* end H5L_getenv_prefix_name() */
 
-
+
 /*--------------------------------------------------------------------------
  * Function: H5L_build_name
  *
@@ -150,7 +150,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5L_build_name() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_extern_traverse
  *
@@ -469,7 +469,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_extern_traverse() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5L_extern_query
  *
@@ -519,7 +519,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_extern_query() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Lcreate_external
  *
@@ -596,7 +596,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Lcreate_external() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5L_register_external
  *
@@ -625,7 +625,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5L_register_external() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5Lunpack_elink_val
  *

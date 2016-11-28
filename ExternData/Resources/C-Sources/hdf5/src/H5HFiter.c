@@ -76,7 +76,7 @@
 H5FL_DEFINE(H5HF_block_loc_t);
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_init
  *
@@ -108,7 +108,7 @@ H5HF_man_iter_init(H5HF_block_iter_t *biter)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_man_iter_init() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_start_offset
  *
@@ -264,7 +264,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iter_start_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_set_entry
  *
@@ -296,7 +296,7 @@ H5HF_man_iter_set_entry(const H5HF_hdr_t *hdr, H5HF_block_iter_t *biter, unsigne
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_man_iter_set_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_start_entry
  *
@@ -356,7 +356,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iter_start_entry() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_reset
  *
@@ -417,7 +417,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iter_reset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_next
  *
@@ -453,7 +453,7 @@ H5HF_man_iter_next(H5HF_hdr_t *hdr, H5HF_block_iter_t *biter, unsigned nentries)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_man_iter_next() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_up
  *
@@ -501,7 +501,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iter_up() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_down
  *
@@ -556,7 +556,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5HF_man_iter_down() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_curr
  *
@@ -595,7 +595,7 @@ H5HF_man_iter_curr(H5HF_block_iter_t *biter, unsigned *row, unsigned *col,
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_man_iter_curr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_offset
  *
@@ -635,7 +635,7 @@ H5HF_man_iter_offset(H5HF_hdr_t *hdr, H5HF_block_iter_t *biter, hsize_t *offset)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5HF_man_iter_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5HF_man_iter_ready
  *

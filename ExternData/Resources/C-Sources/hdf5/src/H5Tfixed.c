@@ -29,7 +29,7 @@
 #include "H5Iprivate.h"		/*ID functions		   		  */
 #include "H5Tpkg.h"		/*data-type functions			  */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_fixed_interface -- Initialize interface-specific information
@@ -51,7 +51,7 @@ H5T_init_fixed_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_fixed_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_sign
  *
@@ -88,7 +88,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_get_sign
  *
@@ -131,7 +131,7 @@ done:
 }
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tset_sign
  *

@@ -137,7 +137,7 @@ static herr_t H5D__mpio_get_sum_chunk(const H5D_io_info_t *io_info,
 /* Local Variables */
 /*******************/
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__mpio_opt_possible
  *
@@ -241,7 +241,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5D__mpio_opt_possible() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__mpio_select_read
  *
@@ -270,7 +270,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__mpio_select_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__mpio_select_write
  *
@@ -300,7 +300,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__mpio_select_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__ioinfo_xfer_mode
  *
@@ -344,7 +344,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__ioinfo_xfer_mode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__ioinfo_coll_opt_mode
  *
@@ -375,7 +375,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__ioinfo_coll_opt_mode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__mpio_get_min_chunk
  *
@@ -410,7 +410,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__mpio_get_min_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__mpio_get_sum_chunk
  *
@@ -448,7 +448,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__mpio_get_sum_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__contig_collective_read
  *
@@ -495,7 +495,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_collective_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__contig_collective_write
  *
@@ -542,7 +542,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__contig_collective_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_collective_io
  *
@@ -610,7 +610,7 @@ H5D__chunk_collective_io(H5D_io_info_t *io_info, const H5D_type_info_t *type_inf
         io_option = H5D_ONE_LINK_CHUNK_IO;      /*no opt*/
     /* direct request to multi-chunk-io */
     else if(H5FD_MPIO_CHUNK_MULTI_IO == chunk_opt_mode)
-        io_option = H5D_MULTI_CHUNK_IO;         
+        io_option = H5D_MULTI_CHUNK_IO;
     /* via default path. branch by num threshold */
     else {
         unsigned one_link_chunk_io_threshold;   /* Threshhold to use single collective I/O for all chunks */
@@ -698,7 +698,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_collective_io */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_collective_read
  *
@@ -729,7 +729,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_collective_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__chunk_collective_write
  *
@@ -760,7 +760,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__chunk_collective_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__link_chunk_collective_io
  *
@@ -930,9 +930,9 @@ if(H5DEBUG(D))
 
             /* Obtain MPI derived datatype from all individual chunks */
             for(u = 0; u < num_chunk; u++) {
-                hsize_t *permute_map = NULL; /* array that holds the mapping from the old, 
-                                                out-of-order displacements to the in-order 
-                                                displacements of the MPI datatypes of the 
+                hsize_t *permute_map = NULL; /* array that holds the mapping from the old,
+                                                out-of-order displacements to the in-order
+                                                displacements of the MPI datatypes of the
                                                 point selection of the file space */
                 hbool_t is_permuted = FALSE;
 
@@ -942,8 +942,8 @@ if(H5DEBUG(D))
                  *              where it will be freed.
                  */
                 if(H5S_mpio_space_type(chunk_addr_info_array[u].chunk_info.fspace,
-                                       type_info->src_type_size, 
-                                       &chunk_ftype[u], /* OUT: datatype created */ 
+                                       type_info->src_type_size,
+                                       &chunk_ftype[u], /* OUT: datatype created */
                                        &chunk_mpi_file_counts[u], /* OUT */
                                        &(chunk_mft_is_derived_array[u]), /* OUT */
                                        TRUE, /* this is a file space,
@@ -961,9 +961,9 @@ if(H5DEBUG(D))
                 if(is_permuted)
                     HDassert(permute_map);
                 if(H5S_mpio_space_type(chunk_addr_info_array[u].chunk_info.mspace,
-                                       type_info->dst_type_size, &chunk_mtype[u], 
-                                       &chunk_mpi_mem_counts[u], 
-                                       &(chunk_mbt_is_derived_array[u]), 
+                                       type_info->dst_type_size, &chunk_mtype[u],
+                                       &chunk_mpi_mem_counts[u],
+                                       &(chunk_mbt_is_derived_array[u]),
                                        FALSE, /* this is a memory
                                                  space, so if the file
                                                  space is not
@@ -1091,7 +1091,7 @@ if(H5DEBUG(D))
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__link_chunk_collective_io */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__multi_chunk_collective_io
  *
@@ -1305,7 +1305,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__multi_chunk_collective_io */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__inter_collective_io
  *
@@ -1334,9 +1334,9 @@ H5D__inter_collective_io(H5D_io_info_t *io_info, const H5D_type_info_t *type_inf
 
     if((file_space != NULL) && (mem_space != NULL)) {
         int  mpi_file_count;         /* Number of file "objects" to transfer */
-        hsize_t *permute_map = NULL; /* array that holds the mapping from the old, 
-                                        out-of-order displacements to the in-order 
-                                        displacements of the MPI datatypes of the 
+        hsize_t *permute_map = NULL; /* array that holds the mapping from the old,
+                                        out-of-order displacements to the in-order
+                                        displacements of the MPI datatypes of the
                                         point selection of the file space */
         hbool_t is_permuted = FALSE;
 
@@ -1345,8 +1345,8 @@ H5D__inter_collective_io(H5D_io_info_t *io_info, const H5D_type_info_t *type_inf
          *              and will be fed into the next call to H5S_mpio_space_type
          *              where it will be freed.
          */
-        if(H5S_mpio_space_type(file_space, type_info->src_type_size, 
-                               &mpi_file_type, &mpi_file_count, &mft_is_derived, /* OUT: datatype created */  
+        if(H5S_mpio_space_type(file_space, type_info->src_type_size,
+                               &mpi_file_type, &mpi_file_count, &mft_is_derived, /* OUT: datatype created */
                                TRUE, /* this is a file space, so
                                         permute the datatype if the
                                         point selection is out of
@@ -1355,13 +1355,13 @@ H5D__inter_collective_io(H5D_io_info_t *io_info, const H5D_type_info_t *type_inf
                                                 the permutation of
                                                 points selected in
                                                 case they are out of
-                                                order */ 
+                                                order */
                                &is_permuted /* OUT */) < 0)
             HGOTO_ERROR(H5E_DATASPACE, H5E_BADTYPE, FAIL, "couldn't create MPI file type")
         /* Sanity check */
         if(is_permuted)
             HDassert(permute_map);
-        if(H5S_mpio_space_type(mem_space, type_info->src_type_size, 
+        if(H5S_mpio_space_type(mem_space, type_info->src_type_size,
                                &mpi_buf_type, &mpi_buf_count, &mbt_is_derived, /* OUT: datatype created */
                                FALSE, /* this is a memory space, so if
                                          the file space is not
@@ -1373,7 +1373,7 @@ H5D__inter_collective_io(H5D_io_info_t *io_info, const H5D_type_info_t *type_inf
                                                generated by the
                                                file_space selection
                                                and applied to the
-                                               memory selection */, 
+                                               memory selection */,
                                &is_permuted /* IN */) < 0)
             HGOTO_ERROR(H5E_DATASPACE, H5E_BADTYPE, FAIL, "couldn't create MPI buffer type")
         /* Sanity check */
@@ -1413,7 +1413,7 @@ if(H5DEBUG(D))
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__inter_collective_io() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__final_collective_io
  *
@@ -1455,7 +1455,7 @@ if(H5DEBUG(D))
       FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__final_collective_io */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__cmp_chunk_addr
  *
@@ -1483,7 +1483,7 @@ H5D__cmp_chunk_addr(const void *chunk_addr_info1, const void *chunk_addr_info2)
    FUNC_LEAVE_NOAPI(H5F_addr_cmp(addr1, addr2))
 } /* end H5D__cmp_chunk_addr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__sort_chunk
  *
@@ -1627,7 +1627,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5D__sort_chunk() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5D__obtain_mpio_mode
  *

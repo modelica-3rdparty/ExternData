@@ -177,7 +177,7 @@ static const H5FD_class_t H5FD_direct_g = {
 /* Declare a free list to manage the H5FD_direct_t struct */
 H5FL_DEFINE_STATIC(H5FD_direct_t);
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5FD_direct_init_interface -- Initialize interface-specific information
@@ -199,7 +199,7 @@ H5FD_direct_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_direct_init())
 } /* H5FD_direct_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_init
  *
@@ -234,7 +234,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*---------------------------------------------------------------------------
  * Function:  H5FD_direct_term
  *
@@ -260,7 +260,7 @@ H5FD_direct_term(void)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5FD_direct_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_fapl_direct
  *
@@ -316,7 +316,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pget_fapl_direct
  *
@@ -362,7 +362,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_fapl_get
  *
@@ -397,7 +397,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_direct_fapl_get() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_fapl_copy
  *
@@ -430,7 +430,7 @@ H5FD_direct_fapl_copy(const void *_old_fa)
     FUNC_LEAVE_NOAPI(new_fa)
 } /* end H5FD_direct_fapl_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_open
  *
@@ -575,7 +575,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_close
  *
@@ -609,7 +609,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_cmp
  *
@@ -666,7 +666,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_query
  *
@@ -701,7 +701,7 @@ H5FD_direct_query(const H5FD_t H5_ATTR_UNUSED * _f, unsigned long *flags /* out 
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_get_eoa
  *
@@ -733,7 +733,7 @@ H5FD_direct_get_eoa(const H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type)
     FUNC_LEAVE_NOAPI(file->eoa)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_set_eoa
  *
@@ -767,7 +767,7 @@ H5FD_direct_set_eoa(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, haddr_t addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_get_eof
  *
@@ -798,7 +798,7 @@ H5FD_direct_get_eof(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(MAX(file->eof, file->eoa))
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_diect_get_handle
  *
@@ -829,7 +829,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_read
  *
@@ -1013,7 +1013,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_write
  *
@@ -1246,7 +1246,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_direct_truncate
  *

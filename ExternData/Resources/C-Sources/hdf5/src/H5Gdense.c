@@ -252,7 +252,7 @@ typedef struct {
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_create
  *
@@ -369,7 +369,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_insert
  *
@@ -482,7 +482,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_insert() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_lookup_cb
  *
@@ -519,7 +519,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_lookup_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_lookup
  *
@@ -583,7 +583,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_lookup() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_lookup_by_idx_fh_cb
  *
@@ -623,7 +623,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_lookup_by_idx_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_lookup_by_idx_bt2_cb
  *
@@ -662,7 +662,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_lookup_by_idx_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_lookup_by_idx
  *
@@ -772,7 +772,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_lookup_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_build_table_cb
  *
@@ -812,7 +812,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_build_table_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_build_table
  *
@@ -873,7 +873,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_build_table() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_iterate_fh_cb
  *
@@ -910,7 +910,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_iterate_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_iterate_bt2_cb
  *
@@ -968,7 +968,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_iterate_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_iterate
  *
@@ -1085,7 +1085,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_iterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_get_name_by_idx_fh_cb
  *
@@ -1130,7 +1130,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_get_name_by_idx_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_get_name_by_idx_bt2_cb
  *
@@ -1173,7 +1173,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_get_name_by_idx_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_get_name_by_idx
  *
@@ -1293,7 +1293,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_get_name_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_remove_fh_cb
  *
@@ -1358,7 +1358,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_remove_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_remove_bt2_cb
  *
@@ -1403,7 +1403,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_remove_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_remove
  *
@@ -1470,7 +1470,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_remove() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_remove_by_idx_fh_cb
  *
@@ -1502,7 +1502,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_remove_by_idx_fh_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_dense_remove_by_idx_bt2_cb
  *
@@ -1611,7 +1611,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_dense_remove_by_idx_bt2_cb() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_remove_by_idx
  *
@@ -1723,7 +1723,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G__dense_remove_by_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_delete
  *
@@ -1811,7 +1811,7 @@ done:
 } /* end H5G__dense_delete() */
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G__dense_get_type_by_idx
  *

@@ -76,7 +76,7 @@ H5FL_DEFINE(H5O_chunk_proxy_t);
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_add
  *
@@ -130,7 +130,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_chunk_add() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_protect
  *
@@ -204,7 +204,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_chunk_protect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_unprotect
  *
@@ -257,7 +257,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_chunk_unprotect() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_resize
  *
@@ -299,7 +299,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_chunk_resize() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_update_idx
  *
@@ -351,7 +351,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_chunk_update_idx() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_chunk_delete
  *

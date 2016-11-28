@@ -94,10 +94,10 @@ extern "C" {
 /* Version numbers */
 #define H5_VERS_MAJOR	1	/* For major interface/format changes  	     */
 #define H5_VERS_MINOR	8	/* For minor interface/format changes  	     */
-#define H5_VERS_RELEASE	17	/* For tweaks, bug-fixes, or development     */
+#define H5_VERS_RELEASE	18	/* For tweaks, bug-fixes, or development     */
 #define H5_VERS_SUBRELEASE ""	/* For pre-releases like snap0       */
 				/* Empty string for real releases.           */
-#define H5_VERS_INFO    "HDF5 library version: 1.8.17"      /* Full version string */
+#define H5_VERS_INFO    "HDF5 library version: 1.8.18"      /* Full version string */
 
 #define H5check()	H5check_version(H5_VERS_MAJOR,H5_VERS_MINOR,	      \
 				        H5_VERS_RELEASE)
@@ -340,5 +340,5 @@ H5_DLL void *H5resize_memory(void *mem, size_t size);
 }
 #endif
 #endif /* _H5public_H */
- 
+
 

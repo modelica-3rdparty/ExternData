@@ -64,7 +64,7 @@ static H5T_vlen_alloc_info_t H5T_vlen_def_vl_alloc_info ={
     H5D_VLEN_FREE_INFO
 };
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_vlen_interface -- Initialize interface-specific information
@@ -86,7 +86,7 @@ H5T_init_vlen_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_vlen_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tvlen_create
  *
@@ -128,7 +128,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Tvlen_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__vlen_create
  *
@@ -189,7 +189,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T__vlen_create() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function: H5T__vlen_set_loc
  *
@@ -300,7 +300,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T__vlen_set_loc() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_seq_mem_getlen
  *
@@ -337,7 +337,7 @@ H5T_vlen_seq_mem_getlen(const void *_vl)
 #endif
 }   /* end H5T_vlen_seq_mem_getlen() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_seq_mem_getptr
  *
@@ -374,7 +374,7 @@ H5T_vlen_seq_mem_getptr(void *_vl)
 #endif
 }   /* end H5T_vlen_seq_mem_getptr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_seq_mem_isnull
  *
@@ -412,7 +412,7 @@ H5T_vlen_seq_mem_isnull(const H5F_t H5_ATTR_UNUSED *f, void *_vl)
 #endif
 }   /* end H5T_vlen_seq_mem_isnull() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_seq_mem_read
  *
@@ -454,7 +454,7 @@ H5T_vlen_seq_mem_read(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id, voi
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* end H5T_vlen_seq_mem_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_seq_mem_write
  *
@@ -511,7 +511,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_seq_mem_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_seq_mem_setnull
  *
@@ -545,7 +545,7 @@ H5T_vlen_seq_mem_setnull(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id, 
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* end H5T_vlen_seq_mem_setnull() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_str_mem_getlen
  *
@@ -580,7 +580,7 @@ H5T_vlen_str_mem_getlen(const void *_vl)
     FUNC_LEAVE_NOAPI((ssize_t)HDstrlen(s))
 }   /* end H5T_vlen_str_mem_getlen() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_str_mem_getptr
  *
@@ -615,7 +615,7 @@ H5T_vlen_str_mem_getptr(void *_vl)
     FUNC_LEAVE_NOAPI(s)
 }   /* end H5T_vlen_str_mem_getptr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_str_mem_isnull
  *
@@ -647,7 +647,7 @@ H5T_vlen_str_mem_isnull(const H5F_t H5_ATTR_UNUSED *f, void *_vl)
     FUNC_LEAVE_NOAPI(s==NULL ? TRUE : FALSE)
 }   /* end H5T_vlen_str_mem_isnull() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_str_mem_read
  *
@@ -688,7 +688,7 @@ H5T_vlen_str_mem_read(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id, voi
     FUNC_LEAVE_NOAPI(SUCCEED)
 }   /* end H5T_vlen_str_mem_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_str_mem_write
  *
@@ -735,7 +735,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value) /*lint !e429 The pointer in 't' has been copied */
 }   /* end H5T_vlen_str_mem_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_str_mem_setnull
  *
@@ -762,7 +762,7 @@ H5T_vlen_str_mem_setnull(H5F_t H5_ATTR_UNUSED *f, hid_t H5_ATTR_UNUSED dxpl_id, 
     FUNC_LEAVE_NOAPI(SUCCEED) /*lint !e429 The pointer in 't' has been copied */
 }   /* end H5T_vlen_str_mem_setnull() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_disk_getlen
  *
@@ -791,7 +791,7 @@ H5T_vlen_disk_getlen(const void *_vl)
     FUNC_LEAVE_NOAPI((ssize_t)seq_len)
 }   /* end H5T_vlen_disk_getlen() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_disk_getptr
  *
@@ -816,7 +816,7 @@ H5T_vlen_disk_getptr(void H5_ATTR_UNUSED *vl)
     FUNC_LEAVE_NOAPI(NULL)
 }   /* end H5T_vlen_disk_getptr() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_disk_isnull
  *
@@ -849,7 +849,7 @@ H5T_vlen_disk_isnull(const H5F_t *f, void *_vl)
     FUNC_LEAVE_NOAPI(addr==0 ? TRUE : FALSE)
 }   /* end H5T_vlen_disk_isnull() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_disk_read
  *
@@ -895,7 +895,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_disk_read() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_disk_write
  *
@@ -961,7 +961,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_disk_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_disk_setnull
  *
@@ -1018,7 +1018,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_disk_setnull() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5T_vlen_reclaim_recurse
@@ -1127,7 +1127,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_reclaim_recurse() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5T_vlen_reclaim
@@ -1178,7 +1178,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_reclaim() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5T_vlen_get_alloc_info
@@ -1236,13 +1236,13 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }   /* end H5T_vlen_get_alloc_info() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_vlen_reclaim_elmt
  *
  * Purpose: Alternative method to reclaim any VL data for a buffer element.
- * 
- *          Use this function when the datatype is already available, but 
+ *
+ *          Use this function when the datatype is already available, but
  *          the allocation info is needed from the dxpl_id before jumping
  *          into recursion.
  *

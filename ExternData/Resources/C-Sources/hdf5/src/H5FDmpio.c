@@ -161,7 +161,7 @@ static int H5FD_mpio_Debug[256] =
           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 #endif
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5FD_mpio_init_interface -- Initialize interface-specific information
@@ -183,7 +183,7 @@ H5FD_mpio_init_interface(void)
     FUNC_LEAVE_NOAPI(H5FD_mpio_init())
 } /* H5FD_mpio_init_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_init
  *
@@ -240,7 +240,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpio_init() */
 
-
+
 /*---------------------------------------------------------------------------
  * Function:  H5FD_mpio_term
  *
@@ -266,7 +266,7 @@ H5FD_mpio_term(void)
     FUNC_LEAVE_NOAPI_VOID
 } /* end H5FD_mpio_term() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_fapl_mpio
  *
@@ -356,7 +356,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pget_fapl_mpio
  *
@@ -445,7 +445,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_dxpl_mpio
  *
@@ -494,7 +494,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_dxpl_mpio() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pget_dxpl_mpio
  *
@@ -533,7 +533,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pget_dxpl_mpio() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_dxpl_mpio_collective_opt
  *
@@ -621,7 +621,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_dxpl_mpio_chunk_opt() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_dxpl_mpio_chunk_opt_num
  *
@@ -663,7 +663,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_dxpl_mpio_chunk_opt_num() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5Pset_dxpl_mpio_chunk_opt_ratio
  *
@@ -708,7 +708,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Pset_dxpl_mpio_chunk_opt_ratio() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_fapl_get
  *
@@ -751,7 +751,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_fapl_copy
  *
@@ -804,7 +804,7 @@ fprintf(stderr, "leaving H5FD_mpio_fapl_copy\n");
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpio_fapl_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_fapl_free
  *
@@ -846,7 +846,7 @@ fprintf(stderr, "leaving H5FD_mpio_fapl_free\n");
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpio_fapl_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_set_mpio_atomicity
  *
@@ -893,7 +893,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5FD_get_mpio_atomicity
  *
@@ -940,7 +940,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpio_open
  *
@@ -1122,7 +1122,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpio_close
  *
@@ -1178,7 +1178,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_query
  *
@@ -1220,7 +1220,7 @@ H5FD_mpio_query(const H5FD_t H5_ATTR_UNUSED *_file, unsigned long *flags /* out 
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_get_eoa
  *
@@ -1255,7 +1255,7 @@ H5FD_mpio_get_eoa(const H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type)
     FUNC_LEAVE_NOAPI(file->eoa)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_set_eoa
  *
@@ -1292,7 +1292,7 @@ H5FD_mpio_set_eoa(H5FD_t *_file, H5FD_mem_t H5_ATTR_UNUSED type, haddr_t addr)
     FUNC_LEAVE_NOAPI(SUCCEED)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_get_eof
  *
@@ -1335,7 +1335,7 @@ H5FD_mpio_get_eof(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(file->eof)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:       H5FD_mpio_get_handle
  *
@@ -1367,7 +1367,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_read
  *
@@ -1604,7 +1604,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_write
  *
@@ -1894,7 +1894,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpio_write() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpio_flush
  *
@@ -1940,7 +1940,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpio_flush() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5FD_mpio_truncate
  *
@@ -2006,7 +2006,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5FD_mpio_truncate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_mpi_rank
  *
@@ -2035,7 +2035,7 @@ H5FD_mpio_mpi_rank(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(file->mpi_rank)
 } /* end H5FD_mpio_mpi_rank() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_mpi_size
  *
@@ -2064,7 +2064,7 @@ H5FD_mpio_mpi_size(const H5FD_t *_file)
     FUNC_LEAVE_NOAPI(file->mpi_size)
 } /* end H5FD_mpio_mpi_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:  H5FD_mpio_communicator
  *

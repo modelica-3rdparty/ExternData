@@ -36,7 +36,7 @@ static char *H5T_enum_nameof(const H5T_t *dt, const void *value, char *name/*out
 static herr_t H5T_enum_valueof(const H5T_t *dt, const char *name,
 				void *value/*out*/);
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5T_init_enum_interface -- Initialize interface-specific information
@@ -58,7 +58,7 @@ H5T_init_enum_interface(void)
     FUNC_LEAVE_NOAPI(H5T_init())
 } /* H5T_init_enum_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tenum_create
  *
@@ -101,7 +101,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__enum_create
  *
@@ -141,7 +141,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tenum_insert
  *
@@ -190,7 +190,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__enum_insert
  *
@@ -256,7 +256,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tget_member_value
  *
@@ -298,7 +298,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T__get_member_value
  *
@@ -331,7 +331,7 @@ H5T__get_member_value(const H5T_t *dt, unsigned membno, void *value/*out*/)
 }
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tenum_nameof
  *
@@ -380,7 +380,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_enum_nameof
  *
@@ -480,7 +480,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5T_enum_nameof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Tenum_valueof
  *
@@ -529,7 +529,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* H5Tenum_valueof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5T_enum_valueof
  *

@@ -18,7 +18,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Created:		Nov 10, 2016
- *			
+ *
  *
  * Purpose:		This machine-generated source code contains
  *			information about the library build configuration

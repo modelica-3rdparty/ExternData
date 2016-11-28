@@ -89,7 +89,7 @@ const H5O_msg_class_t H5O_MSG_AINFO[1] = {{
 /* Declare a free list to manage the H5O_ainfo_t struct */
 H5FL_DEFINE_STATIC(H5O_ainfo_t);
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_decode
  *
@@ -164,7 +164,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ainfo_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_encode
  *
@@ -218,7 +218,7 @@ H5O_ainfo_encode(H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, uint8_t *p, co
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_ainfo_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_copy
  *
@@ -258,7 +258,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ainfo_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_size
  *
@@ -294,7 +294,7 @@ H5O_ainfo_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const void
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ainfo_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_ainfo_free
  *
@@ -319,7 +319,7 @@ H5O_ainfo_free(void *mesg)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_ainfo_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_delete
  *
@@ -353,7 +353,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_ainfo_delete() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_pre_copy_file
  *
@@ -387,7 +387,7 @@ H5O_ainfo_pre_copy_file(H5F_t H5_ATTR_UNUSED *file_src, const void H5_ATTR_UNUSE
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_ainfo_pre_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_copy_file
  *
@@ -444,7 +444,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_ainfo_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_post_copy_file
  *
@@ -483,7 +483,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5O_ainfo_post_copy_file() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5O_ainfo_debug
  *

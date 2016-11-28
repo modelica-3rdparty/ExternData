@@ -79,7 +79,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_rootof
  *
@@ -125,7 +125,7 @@ H5G_rootof(H5F_t *f)
     FUNC_LEAVE_NOAPI(f->shared->root_grp)
 } /* end H5G_rootof() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_mkroot
  *
@@ -328,7 +328,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5G_mkroot() */
 
-
+
 /*-------------------------------------------------------------------------
 * Function:    H5G_root_free
 *
@@ -362,7 +362,7 @@ H5G_root_free(H5G_t *grp)
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5G_root_free() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5G_root_loc
  *

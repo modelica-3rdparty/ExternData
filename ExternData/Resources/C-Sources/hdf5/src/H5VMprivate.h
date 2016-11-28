@@ -247,7 +247,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5VM_vector_cmp_s
  *
@@ -289,7 +289,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5VM_vector_inc
  *
@@ -331,7 +331,7 @@ static const unsigned char LogTable256[] =
     7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7
 };
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5VM_log2_gen
  *
@@ -380,7 +380,7 @@ static const unsigned MultiplyDeBruijnBitPosition[32] =
         31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9
 };
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5VM_log2_of2
  *
@@ -408,7 +408,7 @@ H5VM_log2_of2(uint32_t n)
     return(MultiplyDeBruijnBitPosition[(n * (uint32_t)0x077CB531UL) >> 27]);
 } /* H5VM_log2_of2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5VM_limit_enc_size
  *
@@ -431,7 +431,7 @@ H5VM_limit_enc_size(uint64_t limit)
 static const unsigned char H5VM_bit_set_g[8] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
 static const unsigned char H5VM_bit_clear_g[8] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5VM_bit_get
  *
@@ -458,7 +458,7 @@ H5VM_bit_get(const unsigned char *buf, size_t offset)
     return (hbool_t)((buf[offset / 8] & (H5VM_bit_set_g[offset % 8])) ? TRUE : FALSE);
 } /* end H5VM_bit_get() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5VM_bit_set
  *

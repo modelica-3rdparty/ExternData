@@ -28,7 +28,7 @@
 #include "H5Iprivate.h"		/* IDs			  		*/
 #include "H5Spkg.h"		/* Dataspaces 				*/
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_select_shape_same_test
@@ -72,7 +72,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* H5S_select_shape_same_test() */
 
-
+
 /*--------------------------------------------------------------------------
  NAME
     H5S_get_rebuild_status_test

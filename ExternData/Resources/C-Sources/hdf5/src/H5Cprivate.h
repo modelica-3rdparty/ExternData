@@ -368,11 +368,11 @@ typedef herr_t (*H5C_log_flush_func_t)(H5C_t * cache_ptr,
  *		the unprotect, the entry's is_dirty flag is reset by flushing
  *		it with the H5C__FLUSH_CLEAR_ONLY_FLAG.
  *
- * flush_immediately:  Boolean flag used only in Phdf5 -- and then only 
+ * flush_immediately:  Boolean flag used only in Phdf5 -- and then only
  *		for H5AC_METADATA_WRITE_STRATEGY__DISTRIBUTED.
  *
- *		When a destributed metadata write is triggered at a 
- *		sync point, this field is used to mark entries that 
+ *		When a destributed metadata write is triggered at a
+ *		sync point, this field is used to mark entries that
  *		must be flushed before leaving the sync point.  At all
  *		other times, this field should be set to FALSE.
  *

@@ -60,7 +60,7 @@ const H5O_msg_class_t H5O_MSG_SHMESG[1] = {{
     H5O_shmesg_debug              /*debug the message			*/
 }};
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shmesg_decode
  *
@@ -103,7 +103,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shmesg_decode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shmesg_encode
  *
@@ -136,7 +136,7 @@ H5O_shmesg_encode(H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, uint8_t *p, c
     FUNC_LEAVE_NOAPI(SUCCEED)
 } /* end H5O_shmesg_encode() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shmesg_copy
  *
@@ -176,7 +176,7 @@ done:
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shmesg_copy() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shmesg_size
  *
@@ -208,7 +208,7 @@ H5O_shmesg_size(const H5F_t *f, hbool_t H5_ATTR_UNUSED disable_shared, const voi
     FUNC_LEAVE_NOAPI(ret_value)
 } /* end H5O_shmesg_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5O_shmesg_debug
  *
