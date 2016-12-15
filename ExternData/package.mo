@@ -253,6 +253,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_INIFile.h\"",
           Library = {"ED_INIFile", "bsxml-json"});
       end getString;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end INI;
 
     package JSON "JSON file functions"
@@ -294,6 +295,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_JSONFile.h\"",
           Library = {"ED_JSONFile", "bsxml-json"});
       end getString;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end JSON;
 
     package MAT "MAT-file functions"
@@ -324,6 +326,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_MATFile.h\"",
           Library = {"ED_MATFile", "hdf5", "zlib"});
       end getStringArray1D;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end MAT;
 
     package XLS "Excel XLS file functions"
@@ -377,6 +380,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_XLSFile.h\"",
           Library = "ED_XLSFile");
       end getString;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLS;
 
     package XLSX "Excel XLSX file functions"
@@ -430,6 +434,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getString;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLSX;
 
     package XML "XML file functions"
@@ -498,7 +503,9 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_XMLFile.h\"",
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getString;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XML;
+    annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
   end Functions;
 
   package Interfaces "Interfaces"
