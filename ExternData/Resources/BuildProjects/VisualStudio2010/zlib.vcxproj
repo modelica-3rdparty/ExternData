@@ -453,6 +453,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\zlib\crc32.h" />
     <ClInclude Include="..\..\C-Sources\zlib\deflate.h" />
+    <ClInclude Include="..\..\C-Sources\zlib\gzguts.h" />
     <ClInclude Include="..\..\C-Sources\zlib\inffast.h" />
     <ClInclude Include="..\..\C-Sources\zlib\inffixed.h" />
     <ClInclude Include="..\..\C-Sources\zlib\inflate.h" />
@@ -460,6 +461,7 @@
     <ClInclude Include="..\..\C-Sources\zlib\trees.h" />
     <ClInclude Include="..\..\C-Sources\zlib\zconf.h" />
     <ClInclude Include="..\..\C-Sources\zlib\zlib.h" />
+    <ClInclude Include="..\..\C-Sources\zlib\zutil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
