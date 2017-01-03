@@ -3,7 +3,7 @@
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
-/* @(#) $Id: zutil.c 9598 2017-01-02 08:03:42Z beutlich $ */
+/* @(#) $Id$ */
 
 #include "zutil.h"
 #ifndef Z_SOLO
@@ -113,7 +113,7 @@ uLong ZEXPORT zlibCompileFlags()
 }
 
 #ifdef ZLIB_DEBUG
-
+#include <stdlib.h>
 #  ifndef verbose
 #    define verbose 0
 #  endif
