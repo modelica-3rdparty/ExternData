@@ -300,57 +300,54 @@ static XmlNodeRef XmlNode_findRow(XmlNodeRef node, const char* row)
 	return ret;
 }
 
+static char* findValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
+{
+	char* token = NULL;
+	XmlNodeRef iter = XmlNode_findRow(root, cellAddress);
+	if (iter != NULL) {
+		char* t = XmlNode_getAttributeValue(iter, "t");
+		if (t != NULL && 0 == strncmp(t, "s", 1)) {
+			/* Shared string */
+			XmlNodeRef ites = XmlNode_getChild(iter, 0);
+			iter = NULL;
+			if (ites != NULL) {
+				XmlNode_getValue(ites, &token);
+				if (token != NULL) {
+					long idx = 0;
+					if (!ED_strtol(token, xlsx->loc, &idx)) {
+						if (xlsx->sroot != NULL && (int)idx < XmlNode_getChildCount(xlsx->sroot)) {
+							iter = XmlNode_getChild(xlsx->sroot, (int)idx);
+						}
+					}
+					token = NULL;
+				}
+			}
+		}
+		if (iter != NULL) {
+			iter = XmlNode_getChild(iter, 0);
+			if (iter != NULL) {
+				XmlNode_getValue(iter, &token);
+			}
+		}
+	}
+	return token;
+}
+
 static char* findValue(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
 {
 	char* token = NULL;
 	XmlNodeRef iter = XmlNode_findChild(root, "sheetData");
 	if (iter != NULL) {
-		{
-			WORD i = 0;
-			while (cellAddress[i++] >= 'A');
-			iter = XmlNode_findRow(iter, &cellAddress[--i]);
-		}
+		WORD i = 0;
+		while (cellAddress[i++] >= 'A');
+		iter = XmlNode_findRow(iter, &cellAddress[--i]);
 		if (iter != NULL) {
-			iter = XmlNode_findRow(iter, cellAddress);
-			if (iter != NULL) {
-				char* t = XmlNode_getAttributeValue(iter, "t");
-				if (t != NULL && 0 == strncmp(t, "s", 1)) {
-					/* Shared string */
-					XmlNodeRef ites = XmlNode_getChild(iter, 0);
-					iter = NULL;
-					if (ites != NULL) {
-						XmlNode_getValue(ites, &token);
-						if (token != NULL) {
-							long idx = 0;
-							if (!ED_strtol(token, xlsx->loc, &idx)) {
-								if (xlsx->sroot != NULL && (int)idx < XmlNode_getChildCount(xlsx->sroot)) {
-									iter = XmlNode_getChild(xlsx->sroot, (int)idx);
-								}
-							}
-						}
-						token = NULL;
-					}
-				}
-				if (iter != NULL) {
-					iter = XmlNode_getChild(iter, 0);
-					if (iter != NULL) {
-						XmlNode_getValue(iter, &token);
-					}
-				}
-			}
-			else {
-				WORD row = 0, col = 0;
-				rc(cellAddress, &row, &col);
-				ModelicaFormatError("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
-					(unsigned int)row, (unsigned int)col, sheetName, xlsx->fileName);
-			}
+			token = findValueFromRow(xlsx, cellAddress, root, sheetName);
 		}
-		else {
-			WORD row = 0, col = 0;
-			rc(cellAddress, &row, &col);
-			ModelicaFormatError("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
-				(unsigned int)row, (unsigned int)col, sheetName, xlsx->fileName);
-		}
+	}
+	else {
+		ModelicaFormatError("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
+			sheetName, xlsx->fileName);
 	}
 	return token;
 }
@@ -371,8 +368,10 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 				}
 			}
 			else {
-				ModelicaFormatError("Cannot read double value from file \"%s\"\n",
-					xlsx->fileName);
+				WORD row = 0, col = 0;
+				rc(cellAddress, &row, &col);
+				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					(unsigned int)row, (unsigned int)col, sheetName, xlsx->fileName);
 			}
 		}
 	}
@@ -393,8 +392,10 @@ const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const cha
 				return (const char*)ret;
 			}
 			else {
-				ModelicaFormatError("Cannot read value from file \"%s\"\n",
-					xlsx->fileName);
+				WORD row = 0, col = 0;
+				rc(cellAddress, &row, &col);
+				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					(unsigned int)row, (unsigned int)col, sheetName, xlsx->fileName);
 			}
 		}
 	}
@@ -417,8 +418,10 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 				}
 			}
 			else {
-				ModelicaFormatError("Cannot read int value from file \"%s\"\n",
-					xlsx->fileName);
+				WORD row = 0, col = 0;
+				rc(cellAddress, &row, &col);
+				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					(unsigned int)row, (unsigned int)col, sheetName, xlsx->fileName);
 			}
 		}
 	}

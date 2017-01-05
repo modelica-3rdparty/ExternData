@@ -204,7 +204,7 @@ const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char*
 			}
 		}
 		else {
-			ModelicaFormatError("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+			ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 				(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 		}
 	}
@@ -256,7 +256,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 			}
 		}
 		else {
-			ModelicaFormatError("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+			ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 				(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 		}
 	}
@@ -309,7 +309,8 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 					}
 				}
 				else {
-					ModelicaFormatError("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					a[i*n + j] = 0.;
+					ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				}
 			}
