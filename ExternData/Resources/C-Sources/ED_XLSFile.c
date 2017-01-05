@@ -1,6 +1,6 @@
 /* ED_XLSFile.c - Excel XLS functions
  *
- * Copyright (C) 2015-2016, tbeu
+ * Copyright (C) 2015-2017, tbeu
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

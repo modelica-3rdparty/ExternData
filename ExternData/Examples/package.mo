@@ -1,7 +1,7 @@
 // CP: 65001
 /* package.mo - Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
  *
- * Copyright (C) 2015-2016, tbeu
+ * Copyright (C) 2015-2017, tbeu
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
