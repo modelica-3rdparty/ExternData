@@ -291,12 +291,12 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 							}
 							else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
 								ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
-									(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+									(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 							}
 							else { /* Valid formula result */
 								if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j])) {
 									ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
-										(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
+										(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 								}
 							}
 						}
@@ -304,14 +304,14 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 					else if (cell->str != NULL) {
 						if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j])) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
-								(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
+								(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 						}
 					}
 				}
 				else {
 					a[i*n + j] = 0.;
 					ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
-						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+						(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 				}
 			}
 		}
