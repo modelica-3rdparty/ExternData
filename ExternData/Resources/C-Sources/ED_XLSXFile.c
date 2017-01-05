@@ -223,18 +223,28 @@ void ED_destroyXLSX(void* _xlsx)
 	}
 }
 
-static void rc(const char* cellAddr, WORD* row, WORD* col)
+static void rc(const char* cellAddress, WORD* row, WORD* col)
 {
 	WORD i = 0, j, colVal = 0, rowVal;
-	while (cellAddr[i++] >= 'A');
+	while (cellAddress[i++] >= 'A');
 	i--;
 	/* i now points to first character of row address */
 	for (j = 0; j < i; j++) {
-		colVal = 26*colVal + toupper(cellAddr[j]) - 'A' + 1;
+		colVal = 26*colVal + toupper(cellAddress[j]) - 'A' + 1;
 	}
 	*col = colVal > 0 ? (colVal - 1) : 0;
-	rowVal = (WORD)atoi(cellAddr + i);
+	rowVal = (WORD)atoi(cellAddress + i);
 	*row =  rowVal > 0 ? (rowVal - 1) : 0;
+}
+
+static ca(char* colAddress, WORD idx)
+{
+	char c = (idx % 26) + 'A';
+	WORD quotient = idx/26;
+	if (quotient > 0) {
+		ca(colAddress, quotient - 1);
+	}
+	strncat(colAddress, &c, 1);
 }
 
 static XmlNodeRef findSheet(XLSXFile* xlsx, char** sheetName)
@@ -300,7 +310,7 @@ static XmlNodeRef XmlNode_findRow(XmlNodeRef node, const char* row)
 	return ret;
 }
 
-static char* findValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
+static char* findCellValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
 {
 	char* token = NULL;
 	XmlNodeRef iter = XmlNode_findRow(root, cellAddress);
@@ -333,21 +343,27 @@ static char* findValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNodeRe
 	return token;
 }
 
-static char* findValue(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
+static XmlNodeRef findRow(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
 {
-	char* token = NULL;
 	XmlNodeRef iter = XmlNode_findChild(root, "sheetData");
 	if (iter != NULL) {
 		WORD i = 0;
 		while (cellAddress[i++] >= 'A');
 		iter = XmlNode_findRow(iter, &cellAddress[--i]);
-		if (iter != NULL) {
-			token = findValueFromRow(xlsx, cellAddress, root, sheetName);
-		}
 	}
 	else {
 		ModelicaFormatError("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
 			sheetName, xlsx->fileName);
+	}
+	return iter;
+}
+
+static char* findCellValue(XLSXFile* xlsx, const char* cellAddress, XmlNodeRef root, const char* sheetName)
+{
+	char* token = NULL;
+	XmlNodeRef iter = findRow(xlsx, cellAddress, root, sheetName);
+	if (iter != NULL) {
+		token = findCellValueFromRow(xlsx, cellAddress, iter, sheetName);
 	}
 	return token;
 }
@@ -360,7 +376,7 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 		char* _sheetName = (char*)sheetName;
 		XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
-			char* token = findValue(xlsx, cellAddress, root, _sheetName);
+			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			if (token != NULL) {
 				if (ED_strtod(token, xlsx->loc, &ret)) {
 					ModelicaFormatError("Cannot read double value \"%s\" from file \"%s\"\n",
@@ -385,7 +401,7 @@ const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const cha
 		char* _sheetName = (char*)sheetName;
 		XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
-			char* token = findValue(xlsx, cellAddress, root, _sheetName);
+			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			if (token != NULL) {
 				char* ret = ModelicaAllocateString(strlen(token));
 				strcpy(ret, token);
@@ -410,7 +426,7 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 		char* _sheetName = (char*)sheetName;
 		XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
-			char* token = findValue(xlsx, cellAddress, root, _sheetName);
+			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			if (token != NULL) {
 				if (ED_strtol(token, xlsx->loc, &ret)) {
 					ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
@@ -426,4 +442,40 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 		}
 	}
 	return (int)ret;
+}
+
+void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, double* a, size_t m, size_t n)
+{
+	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	if (xlsx != NULL) {
+		char* _sheetName = (char*)sheetName;
+		XmlNodeRef root = findSheet(xlsx, &_sheetName);
+		if (root != NULL) {
+			WORD row = 0, col = 0;
+			WORD i, j;
+			char cell[63];
+			char tmp[63];
+			rc(cellAddress, &row, &col);
+			for (i = 0; i < m; i++) {
+				for (j = 0; j < n; j++) {
+					char* token;
+					tmp[0] = '\0';
+					ca(tmp, col + j);
+					sprintf(cell, "%s%u", tmp, (unsigned int)(row + i + 1));
+					token = findCellValue(xlsx, cell, root, _sheetName);
+					if (token != NULL) {
+						if (ED_strtod(token, xlsx->loc, &a[i*n + j])) {
+							ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+								(unsigned int)(row + i), (unsigned int)(col + j), token, _sheetName, xlsx->fileName);
+						}
+					}
+					else {
+						a[i*n + j] = 0.;
+						ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+							(unsigned int)(row +i), (unsigned int)(col + j), _sheetName, xlsx->fileName);
+					}
+				}
+			}
+		}
+	}
 }

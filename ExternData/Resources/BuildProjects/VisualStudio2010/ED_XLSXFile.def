@@ -4,3 +4,4 @@ EXPORTS
 	ED_getDoubleFromXLSX
 	ED_getStringFromXLSX
 	ED_getIntFromXLSX
+	ED_getDoubleArray2DFromXLSX

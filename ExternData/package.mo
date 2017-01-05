@@ -158,6 +158,7 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead)  "External Excel XLSX file object";
     final function getReal = Functions.XLSX.getReal(final xlsx=xlsx) "Get scalar Real value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.XLSX.getRealArray2D(final xlsx=xlsx) "Get 2D Real values from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     final function getInteger = Functions.XLSX.getInteger(final xlsx=xlsx) "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     final function getBoolean = Functions.XLSX.getBoolean(final xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XLSX.getString(final xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
@@ -413,6 +414,21 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
           Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getReal;
+
+      function getRealArray2D "Get 2D Real values from Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String cellAddress="A1" "Start cell address";
+        input String sheetName="" "Sheet name";
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
+        output Real y[m,n] "2D Real values";
+        external "C" ED_getDoubleArray2DFromXLSX(xlsx, cellAddress, sheetName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+      end getRealArray2D;
 
       function getInteger "Get scalar Integer value from Excel XLSX file"
         extends Modelica.Icons.Function;
