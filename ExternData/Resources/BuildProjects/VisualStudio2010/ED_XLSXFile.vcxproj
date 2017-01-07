@@ -133,6 +133,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>ITI_$(ProjectName)</TargetName>
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\Library\win64\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -145,8 +146,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>ED_XLSXFile.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
@@ -162,6 +163,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
       <ModuleDefinitionFile>ED_XLSXFile.def</ModuleDefinitionFile>
+      <AdditionalDependencies>bsxml-json.lib;expat.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

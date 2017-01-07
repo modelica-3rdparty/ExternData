@@ -99,9 +99,6 @@
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5Defl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\hdf5\src\H5detect.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5Dfill.c">
       <Filter>Source Files</Filter>
     </ClCompile>

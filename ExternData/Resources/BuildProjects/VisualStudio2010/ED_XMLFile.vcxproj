@@ -139,7 +139,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_XMLFile.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>bsxml-json.lib;expat.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
