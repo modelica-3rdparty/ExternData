@@ -12,6 +12,9 @@ BS_OBJS = \
 	bsxml-json/bsjson.o \
 	bsxml-json/bsxml.o
 
+CSV_OBJS = \
+	ED_CSVFile.o
+
 INI_OBJS = \
 	minIni.o \
 	ED_INIFile.o
@@ -62,15 +65,18 @@ ZLIB_OBJS = \
 	zlib/uncompr.o \
 	zlib/zutil.o
 
-ALL_OBJS = $(BS_OBJS) $(INI_OBJS) $(JSON_OBJS) $(MAT_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS)
+ALL_OBJS = $(BS_OBJS) $(CSV_OBJS) $(INI_OBJS) $(JSON_OBJS) $(MAT_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS)
 
 all: clean libs
 
-libs: libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a
+libs: libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a
 	cp $^ ../Library/$(TARGETDIR)
 
 libbsxml-json.a: $(BS_OBJS)
 	$(AR) $@ $(BS_OBJS)
+
+libED_CSVFile.a: $(CSV_OBJS)
+	$(AR) $@ $(CSV_OBJS)
 
 libED_INIFile.a: $(INI_OBJS)
 	$(AR) $@ $(INI_OBJS)

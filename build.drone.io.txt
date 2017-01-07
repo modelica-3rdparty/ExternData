@@ -1,6 +1,6 @@
 #Environment variables
 DEBIAN_FRONTEND=noninteractive
-LIBS="libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
+LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
 
 #Commands
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections

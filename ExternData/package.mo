@@ -1,5 +1,5 @@
 // CP: 65001
-/* package.mo - Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
+/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015-2017, tbeu
  * All rights reserved.
@@ -26,13 +26,13 @@
  */
 
 within;
-package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files"
+package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   package UsersGuide "User's Guide"
     extends Modelica.Icons.Information;
     class References "References"
       extends Modelica.Icons.References;
-      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"http://sourceforge.net/projects/expat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li></ul></html>"));
+      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"http://sourceforge.net/projects/expat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;ss tring processing library for C</li></ul></html>"));
     end References;
     class License "Simplified BSD License"
       extends Modelica.Icons.Information;
@@ -43,8 +43,28 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
       annotation(Documentation(info="<html><p>The ExternData Modelica library is developed by <a href=\"https://github.com/tbeu\">tbeu</a> at <a href=\"https://github.com/tbeu/ExternData\">GitHub</a>.</p></html>"));
     end Contact;
     annotation(DocumentationClass=true,
-      Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
+      Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a>, <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
   end UsersGuide;
+
+  model CSVFile "Read data values from CSV file"
+    parameter String fileName="" "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="Comma-separated values files (*.csv);;Text files (*.txt)",
+        caption="Open file")));
+    parameter String delimiter="," "Column delimiter character";
+    parameter String quotation="\"" "Quotation character";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+    final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External INI file object";
+    final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
+    annotation(
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
+      defaultComponentName="csvfile",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="c%delimiter s%delimiter v"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+  end CSVFile;
 
   model INIFile "Read data values from INI file"
     parameter String fileName="" "File where external data is stored"
@@ -211,6 +231,24 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
 
   package Functions "Functions"
     extends Modelica.Icons.Package;
+
+    package CSV "CSV file functions"
+      extends Modelica.Icons.Package;
+      function getRealArray2D "Get 2D Real values from CSV file"
+        extends Modelica.Icons.Function;
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Integer line(min=1)=1 "Start line";
+        input Types.ExternCSVFile csv "External CSV file object";
+        output Real y[m,n] "2D Real values";
+        external "C" ED_getDoubleArray2DFromCSV(csv, line, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_CSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_CSVFile.h\"",
+          Library = {"ED_CSVFile", "bsxml-json"});
+      end getRealArray2D;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
+    end CSV;
 
     package INI "INI file functions"
       extends Modelica.Icons.Package;
@@ -569,6 +607,33 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
 
   package Types "Types"
     extends Modelica.Icons.TypesPackage;
+    class ExternCSVFile "External CSV file object"
+      extends ExternalObject;
+      function constructor "Parse CSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String delimiter="," "Column delimiter character";
+        input String quotation="\"" "Quotation character";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        output ExternCSVFile csv "External CSV file object";
+        external "C" csv=ED_createCSV(fileName, delimiter, quotation, verboseRead) annotation(
+          __iti_dll = "ITI_ED_CSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_CSVFile.h\"",
+          Library = {"ED_INIFile", "bsxml-json"});
+      end constructor;
+
+      function destructor "Clean up"
+        extends Modelica.Icons.Function;
+        input ExternCSVFile csv "External CSV file object";
+        external "C" ED_destroyINI(csv) annotation(
+          __iti_dll = "ITI_ED_CSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_CSVFile.h\"",
+          Library = {"ED_INIFile", "bsxml-json"});
+      end destructor;
+    end ExternCSVFile;
+
     class ExternINIFile "External INI file object"
       extends ExternalObject;
       function constructor "Parse INI file"
@@ -721,6 +786,6 @@ package ExternData "Library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLS
     end ExternXMLFile;
   end Types;
 
-  annotation(uses(Modelica(version="3.2.1")), version="2.1.0",
-    Documentation(info="<html><p>Library <strong>ExternData</strong> is a Modelica utility library for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
+  annotation(uses(Modelica(version="3.2.2")), version="2.2.0",
+    Documentation(info="<html><p>Library <strong>ExternData</strong> is a Modelica utility library for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a>, <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
 end ExternData;

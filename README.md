@@ -1,5 +1,5 @@
 # ExternData
-Free Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
+Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX and XML files.
 
 ## Build status
 [![Build Status](https://drone.io/github.com/tbeu/ExternData/status.png)](https://drone.io/github.com/tbeu/ExternData/latest)
@@ -7,12 +7,13 @@ Free Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX and 
 [![Build Status](https://ci.appveyor.com/api/projects/status/k77hnpxp99djcong/branch/master?svg=true)](https://ci.appveyor.com/project/tbeu/externdata/branch/master)
 
 ## Library description
-ExternData is a utility library to access data stored in INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
+ExternData is a utility library to access data stored in CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets
 for convenient model initialization and parametrization.
 
 ### Main features
 * Read support of file formats
+  * [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
   * [INI](https://en.wikipedia.org/wiki/INI_file)
   * [JSON](https://en.wikipedia.org/wiki/JSON)
   * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 and v7.3
@@ -20,7 +21,7 @@ for convenient model initialization and parametrization.
   * [XML](https://en.wikipedia.org/wiki/XML)
 * Pure C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
-* Tested in Dymola and SimulationX, with dependency on the Modelica Standard Library 3.2.1.
+* Tested in Dymola and SimulationX, with dependency on the Modelica Standard Library v3.2.2.
 
 All data I/O access is implemented using external Modelica functions. Furthermore, high level interfaces
 on these functions are provided via Modelica models.
@@ -70,6 +71,8 @@ Gilles Vollant's Zip and UnZip library
 Troy D. Hanson's C macros for hash tables and more
 * [zlib](https://github.com/madler/zlib) -
 Jean-loup Gailly's and Mark Adler's massively spiffy yet delicately unobtrusive compression library
+* [zstring](https://github.com/fnoyanisi/zString) -
+Fehmi Noyan ISI's string processing library for C
 
 ## Development and contribution
 * [tbeu](https://github.com/tbeu)

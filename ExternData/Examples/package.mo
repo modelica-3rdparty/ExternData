@@ -1,5 +1,5 @@
 // CP: 65001
-/* package.mo - Modelica library for data I/O of INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
+/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015-2017, tbeu
  * All rights reserved.
@@ -28,6 +28,14 @@
 within ExternData;
 package Examples "Test examples"
   extends Modelica.Icons.ExamplesPackage;
+  model CSVTest "CSV file read test"
+    extends Modelica.Icons.Example;
+    CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    Modelica.Blocks.Sources.TimeTable timeTable(table=csvfile.getRealArray2D(3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    annotation(experiment(StopTime=1),
+      Documentation(info="<html><p>This example model reads the table parameter from the CSV file <a href=\"modelica://ExternData/Resources/Examples/test.csv\">test.csv</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.CSVFile.getRealArray2D\">ExternData.CSVFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
+  end CSVTest;
+
   model INITest "INI file read test"
     extends Modelica.Icons.Example;
     INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));

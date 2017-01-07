@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_XMLFile", "ED_XMLFile.vcxproj", "{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
@@ -39,6 +39,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_MATFile", "ED_MATFile.vc
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5", "hdf5.vcxproj", "{A1DE2344-17D2-456A-B663-14B743276B1C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_CSVFile", "ED_CSVFile.vcxproj", "{BD637748-4793-4DA5-AA90-A9331173E352}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -170,6 +175,18 @@ Global
 		{A1DE2344-17D2-456A-B663-14B743276B1C}.Release|Win32.Build.0 = Release|Win32
 		{A1DE2344-17D2-456A-B663-14B743276B1C}.Release|x64.ActiveCfg = Release|x64
 		{A1DE2344-17D2-456A-B663-14B743276B1C}.Release|x64.Build.0 = Release|x64
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Debug|Win32.Build.0 = Debug|Win32
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Debug|x64.ActiveCfg = Debug|x64
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Debug|x64.Build.0 = Debug|x64
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release Lib|Win32.ActiveCfg = Release Lib|Win32
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release Lib|Win32.Build.0 = Release Lib|Win32
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release Lib|x64.ActiveCfg = Release Lib|x64
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release Lib|x64.Build.0 = Release Lib|x64
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|Win32.ActiveCfg = Release|Win32
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|Win32.Build.0 = Release|Win32
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|x64.ActiveCfg = Release|x64
+		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

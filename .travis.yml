@@ -1,7 +1,7 @@
 language: c
 
 git:
-  depth: 1
+  depth: 5
 
 addons:
   apt:
@@ -11,7 +11,7 @@ addons:
       - gcc-4.8-multilib
       - linux-libc-dev:i386
 
-env: LIBS="libbsxml-json.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
+env: LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
 
 compiler:
   - gcc-4.8
@@ -25,7 +25,7 @@ script:
   - tar cJf linux32.tar.xz $LIBS
   - cd ../linux64
   - tar cJf linux64.tar.xz $LIBS
-# deployment rules are currently missing but can be added for, e.g, github releases
+# deployment rules are currently missing but can be added for, e.g, GitHub releases
 
 notifications:
   email: false
