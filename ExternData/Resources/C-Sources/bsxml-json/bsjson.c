@@ -164,29 +164,29 @@ JsonNode * JsonNode_findChild(JsonNode *node, const String name, int type)
     return ret;
 }
 
-int JsonNode_getChildCount(JsonNode *node)
+asize_t JsonNode_getChildCount(JsonNode *node)
 {
     return node->m_childs->num;
 }
 
-int JsonNode_getPairCount(JsonNode *node)
+asize_t JsonNode_getPairCount(JsonNode *node)
 {
     return node->m_pairs->num;
 }
 
-JsonNode * JsonNode_getChild(JsonNode *node, int index)
+JsonNode * JsonNode_getChild(JsonNode *node, asize_t index)
 {
     return (JsonNode *)cpo_array_get_at(node->m_childs, index);
 }
 
-JsonPair * JsonNode_getPair(JsonNode *node, int index)
+JsonPair * JsonNode_getPair(JsonNode *node, asize_t index)
 {
     return (JsonPair *)cpo_array_get_at(node->m_pairs, index);
 }
 
 void JsonNode_delete(JsonNode *node)
 {
-    int i;
+    asize_t i;
     if (!node) return;
     for (i=0; i < JsonNode_getPairCount(node); i++) {
         JsonPair *pair = JsonNode_getPair(node, i);
@@ -208,7 +208,7 @@ void JsonNode_delete(JsonNode *node)
 
 void JsonNode_deleteTree(JsonNode *root)
 {
-    int i;
+    asize_t i;
     if (!root) return;
     for (i=0 ; i < JsonNode_getChildCount(root); i++) {
         JsonNode *node = JsonNode_getChild(root, i);
@@ -225,7 +225,7 @@ void JsonNode_deleteTree(JsonNode *root)
 /* return allocated UT_string */
 static UT_string *JsonNode_getJSON_UT(JsonNode *node, String last)
 {
-    int i, nPairs, nChilds;
+    asize_t i, nPairs, nChilds;
     UT_string *buff;
     utstring_new(buff);
     if (buff == NULL) return NULL;
@@ -626,11 +626,12 @@ static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
 JsonNode * JsonParser_parseFile(struct JsonParser *parser, const char * fileName)
 {
     char * buffer = 0;
-    long length = 0, read = 0;
+    long length = 0;
     JsonNode * root = NULL;
     FILE *f = fopen (fileName, "rb");
 
     if (f != NULL) {
+        size_t read = 0;
         fseek (f, 0, SEEK_END);
         length = ftell (f);
         fseek (f, 0, SEEK_SET);

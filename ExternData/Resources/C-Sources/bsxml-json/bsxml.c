@@ -67,7 +67,7 @@ XmlAttributes *XmlNode_getAttributes(struct XmlNode * node)
     return node->m_attributes;
 }
 
-int XmlNode_getAttributesCount(struct XmlNode * node)
+asize_t XmlNode_getAttributesCount(struct XmlNode * node)
 {
     return node->m_attributes->num;
 }
@@ -77,7 +77,7 @@ String XmlNode_getTag(struct XmlNode * node)
     return node->m_tag;
 }
 
-int XmlNode_getChildCount(struct XmlNode * node)
+asize_t XmlNode_getChildCount(struct XmlNode * node)
 {
     return node->m_childs->num;
 }
@@ -104,7 +104,7 @@ void XmlNode_setLine(struct XmlNode * node, int line )
 
 void XmlNode_delete(struct XmlNode *node)
 {
-    int i;
+    asize_t i;
     if (node == NULL) return;
     //printf("delete %s\n", node->m_tag);
     for (i=0; i < node->m_attributes->num; i++) {
@@ -129,7 +129,7 @@ void XmlNode_delete(struct XmlNode *node)
 
 void XmlNode_deleteTree(struct XmlNode *root)
 {
-    int i;
+    asize_t i;
     if (root == NULL) return;
     for (i=0 ; i < root->m_childs->num; i++) {
         XmlNode *node = cpo_array_get_at(root->m_childs, i);
@@ -146,7 +146,7 @@ void XmlNode_deleteTree(struct XmlNode *root)
 
 void XmlNode_print(struct XmlNode *root)
 {
-    int i;
+    asize_t i;
     for (i=0 ; i < root->m_childs->num; i++) {
         XmlNode *node = cpo_array_get_at(root->m_childs, i);
         XmlNode_print(node);
@@ -232,9 +232,9 @@ void XmlNode_addChild(struct XmlNode *node, const XmlNodeRef child )
     }
 }
 
-XmlNodeRef XmlNode_getChild(struct XmlNode *node, int i)
+XmlNodeRef XmlNode_getChild(struct XmlNode *node, asize_t i)
 {
-    assert( i >= 0 && i < node->m_childs->num );
+    assert( i < node->m_childs->num );
     return (XmlNodeRef)cpo_array_get_at(node->m_childs, i);
 }
 
@@ -363,7 +363,7 @@ void XmlNode_setSubNodeValueFloat(struct XmlNode *node, const String tag, float 
 /* return allocated UT_string */
 static UT_string *XmlNode_getXML_UT(struct XmlNode *node)
 {
-    int i;
+    asize_t i;
     UT_string *buff;
     utstring_new(buff);
     if (buff == NULL) return NULL;
@@ -452,7 +452,7 @@ void XmlNode_toFile(struct XmlNode *node, const char *fileName)
 /*parser */
 static void startElement(void *userData, const char *name, const char **atts)
 {
-    int i = 0;
+    asize_t i = 0;
     void *ptr = NULL;
     XmlNodeRef parent= NULL, node=NULL;
     XmlParser *parser = (XmlParser *)userData;
@@ -556,11 +556,12 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
 XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName )
 {
     char * buffer = 0;
-    long length = 0, read = 0;
+    long length = 0;
     XmlNodeRef root = NULL;
     FILE *f = fopen (fileName, "rb");
 
     if (f != NULL) {
+        size_t read = 0;
         fseek (f, 0, SEEK_END);
         length = ftell (f);
         fseek (f, 0, SEEK_SET);

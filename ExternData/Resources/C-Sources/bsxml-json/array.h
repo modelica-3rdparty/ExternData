@@ -29,27 +29,29 @@
 #define ARR_VAL(p)  *((uintptr_t*)p)
 #define ARR_VAL2PTR(v)  ((uintptr_t)(v))
 
+typedef size_t asize_t;
+
 typedef struct s_array {
-    int num;
-    int max;
+    asize_t num;
+    asize_t max;
     void *v;
-    int elem_size;
+    asize_t elem_size;
 } cpo_array_t;
 
 cpo_array_t *
-cpo_array_create(int size , int elem_size);
+cpo_array_create(asize_t size, asize_t elem_size);
 
 void *
-cpo_array_get_at(cpo_array_t *a, int index);
+cpo_array_get_at(cpo_array_t *a, asize_t index);
 
 void *
 cpo_array_push(cpo_array_t *a);
 
 void *
-cpo_array_insert_at(cpo_array_t *a, int index);
+cpo_array_insert_at(cpo_array_t *a, asize_t index);
 
 void *
-cpo_array_remove(cpo_array_t *a, int index);
+cpo_array_remove(cpo_array_t *a, asize_t index);
 
 void
 cpo_array_qsort(cpo_array_t *a, int (*cmp_func)(const void *, const void *));

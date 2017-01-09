@@ -29,11 +29,17 @@
 #include <errno.h>
 #include "array.h"
 
+#ifdef _MSC_VER
+#define SIZE_T_FMTSTR "Iu"
+#else
+#define SIZE_T_FMTSTR "zu"
+#endif
+
 static int
-cpo_array_setsize(cpo_array_t *a, int elements);
+cpo_array_setsize(cpo_array_t *a, asize_t elements);
 
 cpo_array_t *
-cpo_array_create(int size, int elem_size)
+cpo_array_create(asize_t size, asize_t elem_size)
 {
     cpo_array_t *a = malloc(sizeof(cpo_array_t));
     if (a == NULL)
@@ -47,10 +53,10 @@ cpo_array_create(int size, int elem_size)
     return a;
 }
 
-static int cpo_array_preallocate(cpo_array_t *a, int elements)
+static int cpo_array_preallocate(cpo_array_t *a, asize_t elements)
 {
     void *newv;
-    int newmax = a->max;
+    asize_t newmax = a->max;
 
     assert(a->num >= 0 && a->num <= a->max);
 
@@ -68,7 +74,7 @@ static int cpo_array_preallocate(cpo_array_t *a, int elements)
     return 0;
 }
 
-static int cpo_array_setsize(cpo_array_t *a, int elements)
+static int cpo_array_setsize(cpo_array_t *a, asize_t elements)
 {
     int result;
 
@@ -86,7 +92,7 @@ static int cpo_array_setsize(cpo_array_t *a, int elements)
 }
 
 void *
-cpo_array_get_at(cpo_array_t *a, int index)
+cpo_array_get_at(cpo_array_t *a, asize_t index)
 {
     void *elt;
     assert(a->num <= a->max);
@@ -99,7 +105,8 @@ cpo_array_get_at(cpo_array_t *a, int index)
 void *
 cpo_array_push(cpo_array_t *a)
 {
-    int ix, result;
+    int result;
+    asize_t ix;
     void * elt;
     ix = a->num;
 
@@ -113,9 +120,9 @@ cpo_array_push(cpo_array_t *a)
 }
 
 void *
-cpo_array_insert_at(cpo_array_t *a, int index)
+cpo_array_insert_at(cpo_array_t *a, asize_t index)
 {
-    int i,nmove;
+    asize_t i,nmove;
     void *elt;
     elt =  cpo_array_push(a);
     elt =  cpo_array_get_at(a, index);
@@ -152,10 +159,10 @@ cpo_array_remove(cpo_array_t *a, int index)
 }
 */
 void *
-cpo_array_remove(cpo_array_t *a, int index)
+cpo_array_remove(cpo_array_t *a, asize_t index)
 {
     void *elt;
-    int i, nmove;
+    asize_t i, nmove;
     assert(a->num <= a->max);
     assert(index >= 0 && index < a->num);
 
@@ -220,20 +227,19 @@ int array_cmp_str_dsc(const void *a, const void *b)
 /* d */
 void cpo_array_dump_int(cpo_array_t *arr)
 {
-    int i = 0;
-    void* x;
+    asize_t i = 0;
     for (i = 0; i < arr->num; i++) {
-        x =  cpo_array_get_at(arr, i);
-        printf("[%d] %d\n",i, *((int*)x) );
+        void *x = cpo_array_get_at(arr, i);
+        printf("[%" SIZE_T_FMTSTR "] %d\n",i, *((int*)x) );
     }
 }
 
 void cpo_array_dump_str(cpo_array_t *arr)
 {
-    int i = 0;
+    asize_t i = 0;
     for (i = 0; i < arr->num; i++) {
         char *x = cpo_array_get_at(arr, i);
-        printf("[%d] %s\n",i, x);
+        printf("[%" SIZE_T_FMTSTR "] %s\n",i, x);
     }
 }
 
