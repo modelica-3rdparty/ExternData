@@ -140,12 +140,12 @@ void ED_destroyINI(void* _ini)
 		}
 		ED_FREE_LOCALE(ini->loc);
 		if (ini->sections != NULL) {
-			int i;
+			size_t i;
 			for (i = 0; i < ini->sections->num; i++) {
 				INISection* section = (INISection*)cpo_array_get_at(ini->sections, i);
 				free(section->name);
 				if (section->pairs != NULL) {
-					int j;
+					size_t j;
 					for (j = 0; j < section->pairs->num; j++) {
 						INIPair* pair = (INIPair*)cpo_array_get_at(section->pairs, j);
 						free(pair->key);

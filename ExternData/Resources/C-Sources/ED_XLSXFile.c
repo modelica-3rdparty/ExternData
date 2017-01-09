@@ -109,7 +109,8 @@ static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
 
 void* ED_createXLSX(const char* fileName, int verbose)
 {
-	int i, rc;
+	size_t i;
+	int rc;
 	XmlNodeRef root;
 	XmlNodeRef sheets;
 	XLSXFile* xlsx = (XLSXFile*)malloc(sizeof(XLSXFile));
@@ -325,7 +326,7 @@ static char* findCellValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNo
 				if (token != NULL) {
 					long idx = 0;
 					if (!ED_strtol(token, xlsx->loc, &idx)) {
-						if (xlsx->sroot != NULL && (int)idx < XmlNode_getChildCount(xlsx->sroot)) {
+						if (xlsx->sroot != NULL && (size_t)idx < XmlNode_getChildCount(xlsx->sroot)) {
 							iter = XmlNode_getChild(xlsx->sroot, (int)idx);
 						}
 					}

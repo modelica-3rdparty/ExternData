@@ -104,7 +104,7 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 			elementError = 1;
 		}
 		while (token != NULL && elementError == 0) {
-			int i;
+			size_t i;
 			int foundToken = 0;
 			for (i = 0; i < JsonNode_getChildCount(*root); i++) {
 				JsonNodeRef child = JsonNode_findChild(*root, token, JSON_OBJ);

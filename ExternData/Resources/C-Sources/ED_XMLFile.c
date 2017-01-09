@@ -104,7 +104,7 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 			elementError = 1;
 		}
 		while (token != NULL && elementError == 0) {
-			int i;
+			size_t i;
 			int foundToken = 0;
 			for (i = 0; i < XmlNode_getChildCount(*root); i++) {
 				XmlNodeRef child = XmlNode_getChild(*root, i);
@@ -210,9 +210,9 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 			char* buf = strdup(token);
 			if (buf != NULL) {
 				size_t i = 0;
-				int iSibling = 0;
+				size_t iSibling = 0;
 				XmlNodeRef parent = XmlNode_getParent(root);
-				int nSiblings = XmlNode_getChildCount(parent);
+				size_t nSiblings = XmlNode_getChildCount(parent);
 				int line = XmlNode_getLine(root);
 				int foundSibling = 0;
 				token = strtok(buf, "[]{},; \t");

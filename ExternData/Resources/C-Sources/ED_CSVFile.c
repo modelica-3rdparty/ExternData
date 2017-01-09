@@ -183,7 +183,7 @@ void ED_destroyCSV(void* _csv)
 		}
 		ED_FREE_LOCALE(csv->loc);
 		if (csv->lines != NULL) {
-			int i;
+			size_t i;
 			for (i = 0; i < csv->lines->num; i++) {
 				Line* line = (Line*)cpo_array_get_at(csv->lines, i);
 				utstring_done(line);
@@ -198,11 +198,12 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int line1, double* a, size_t m, size
 {
 	CSVFile* csv = (CSVFile*)_csv;
 	if (csv != NULL) {
-		int i, j;
+		size_t i;
 		for (i = 0; i < m; i++) {
 			Line* line = (Line*)cpo_array_get_at(csv->lines, line1 + i - 1);
 			char* nextToken = NULL;
 			char* token = zstring_strtok_dquotes(utstring_body(line), csv->sep, csv->quote, &nextToken);
+			size_t j;
 			for (j = 0; j < n; j++) {
 				if (token != NULL) {
 					if (token[0] == csv->sep[0]) {
