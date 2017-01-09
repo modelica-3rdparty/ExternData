@@ -37,6 +37,24 @@
 #include "ModelicaUtilities.h"
 #include "../Include/ED_JSONFile.h"
 
+/* The standard way to detect posix is to check _POSIX_VERSION,
+ * which is defined in <unistd.h>
+ */
+#if defined(__unix__) || defined(__linux__) || defined(__APPLE_CC__)
+#include <unistd.h>
+#endif
+#if !defined(_POSIX_) && defined(_POSIX_VERSION)
+#define _POSIX_ 1
+#endif
+
+/* Use re-entrant string tokenize function if available */
+#if defined(_POSIX_)
+#elif defined(_MSC_VER) && _MSC_VER >= 1400
+#define strtok_r(str, delim, saveptr) strtok_s((str), (delim), (saveptr))
+#else
+#define strtok_r(str, delim, saveptr) strtok((str), (delim))
+#endif
+
 typedef struct {
 	char* fileName;
 	JsonNodeRef root;
@@ -99,7 +117,8 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 	char* buf = strdup(varName);
 	if (buf != NULL) {
 		int elementError = 0;
-		token = strtok(buf, ".");
+		char* nextToken = NULL;
+		token = strtok_r(buf, ".", &nextToken);
 		if (token == NULL) {
 			elementError = 1;
 		}
@@ -110,7 +129,7 @@ static char* findValue(JsonNodeRef* root, const char* varName, const char* fileN
 				JsonNodeRef child = JsonNode_findChild(*root, token, JSON_OBJ);
 				if (child != NULL) {
 					*root = child;
-					token = strtok(NULL, ".");
+					token = strtok_r(NULL, ".", &nextToken);
 					foundToken = 1;
 					break;
 				}

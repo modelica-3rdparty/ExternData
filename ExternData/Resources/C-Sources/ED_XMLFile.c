@@ -37,6 +37,24 @@
 #include "ModelicaUtilities.h"
 #include "../Include/ED_XMLFile.h"
 
+/* The standard way to detect posix is to check _POSIX_VERSION,
+ * which is defined in <unistd.h>
+ */
+#if defined(__unix__) || defined(__linux__) || defined(__APPLE_CC__)
+#include <unistd.h>
+#endif
+#if !defined(_POSIX_) && defined(_POSIX_VERSION)
+#define _POSIX_ 1
+#endif
+
+/* Use re-entrant string tokenize function if available */
+#if defined(_POSIX_)
+#elif defined(_MSC_VER) && _MSC_VER >= 1400
+#define strtok_r(str, delim, saveptr) strtok_s((str), (delim), (saveptr))
+#else
+#define strtok_r(str, delim, saveptr) strtok((str), (delim))
+#endif
+
 typedef struct {
 	char* fileName;
 	XmlNodeRef root;
@@ -99,7 +117,8 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 	char* buf = strdup(varName);
 	if (buf != NULL) {
 		int elementError = 0;
-		token = strtok(buf, ".");
+		char* nextToken = NULL;
+		token = strtok_r(buf, ".", &nextToken);
 		if (token == NULL) {
 			elementError = 1;
 		}
@@ -110,7 +129,7 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 				XmlNodeRef child = XmlNode_getChild(*root, i);
 				if (XmlNode_isTag(child, token)) {
 					*root = child;
-					token = strtok(NULL, ".");
+					token = strtok_r(NULL, ".", &nextToken);
 					foundToken = 1;
 					break;
 				}
@@ -215,7 +234,8 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 				size_t nSiblings = XmlNode_getChildCount(parent);
 				int line = XmlNode_getLine(root);
 				int foundSibling = 0;
-				token = strtok(buf, "[]{},; \t");
+				char* nextToken = NULL;
+				token = strtok_r(buf, "[]{},; \t", &nextToken);
 				while (i < n) {
 					if (token != NULL) {
 						if (ED_strtod(token, xml->loc, &a[i++])) {
@@ -224,7 +244,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 								line, token, xml->fileName);
 							return;
 						}
-						token = strtok(NULL, "[]{},; \t");
+						token = strtok_r(NULL, "[]{},; \t", &nextToken);
 					}
 					else if (++iSibling < nSiblings) {
 						/* Retrieve value from next sibling */
@@ -237,7 +257,8 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 							if (token != NULL) {
 								buf = strdup(token);
 								if (buf != NULL) {
-									token = strtok(buf, "[]{},; \t");
+									char* nextToken = NULL;
+									token = strtok_r(buf, "[]{},; \t", &nextToken);
 								}
 								else {
 									ModelicaError("Memory allocation error\n");
