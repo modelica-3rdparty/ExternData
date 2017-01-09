@@ -33,15 +33,16 @@
 #if defined(_MSC_VER)
 #define strdup _strdup
 #endif
-#if !defined(LINE_BUFFER_LENGTH)
-#define LINE_BUFFER_LENGTH (64)
-#endif
 #include "ED_locale.h"
 #include "array.h"
 #include "utstring.h"
 #include "zstring_strtok_dquotes.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_CSVFile.h"
+
+#if !defined(LINE_BUFFER_LENGTH)
+#define LINE_BUFFER_LENGTH (64)
+#endif
 
 typedef UT_string Line;
 
