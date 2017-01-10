@@ -626,7 +626,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       function destructor "Clean up"
         extends Modelica.Icons.Function;
         input ExternCSVFile csv "External CSV file object";
-        external "C" ED_destroyINI(csv) annotation(
+        external "C" ED_destroyCSV(csv) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
