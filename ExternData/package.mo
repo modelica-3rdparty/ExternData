@@ -51,8 +51,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       annotation(Dialog(
         loadSelector(filter="Comma-separated values files (*.csv);;Text files (*.txt)",
         caption="Open file")));
-    parameter String delimiter="," "Column delimiter character";
-    parameter String quotation="\"" "Quotation character";
+    parameter String delimiter="," "Column delimiter character" annotation(choices(choice=" " "Blank", choice="," "Comma", choice="\t" "Horizontal tabulator", choice=";" "Semicolon"));
+    parameter String quotation="\"" "Quotation character" annotation(choices(choice="\"" "Double quotation mark", choice="'" "Single quotation mark"));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External INI file object";
     final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
