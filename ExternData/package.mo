@@ -620,7 +620,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"});
       end constructor;
 
       function destructor "Clean up"
@@ -630,7 +630,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"});
       end destructor;
     end ExternCSVFile;
 
