@@ -238,7 +238,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         extends Modelica.Icons.Function;
         input Integer m=1 "Number of rows";
         input Integer n=1 "Number of columns";
-        input Integer line(min=1)=1 "Start line";
+        input Integer field(each min=1)={1,1} "Start field {row, col}";
         input Types.ExternCSVFile csv "External CSV file object";
         output Real y[m,n] "2D Real values";
         external "C" ED_getDoubleArray2DFromCSV(csv, line, y, size(y, 1), size(y, 2)) annotation(

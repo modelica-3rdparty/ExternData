@@ -196,16 +196,21 @@ void ED_destroyCSV(void* _csv)
 	}
 }
 
-void ED_getDoubleArray2DFromCSV(void* _csv, int line1, double* a, size_t m, size_t n)
+void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, size_t n)
 {
 	CSVFile* csv = (CSVFile*)_csv;
 	if (csv != NULL) {
 		size_t i;
 		for (i = 0; i < m; i++) {
-			Line* line = (Line*)cpo_array_get_at(csv->lines, line1 + i - 1);
+			Line* line = (Line*)cpo_array_get_at(csv->lines, field[0] + i - 1);
 			char* nextToken = NULL;
 			char* token = zstring_strtok_dquotes(utstring_body(line), csv->sep, csv->quote, &nextToken);
 			size_t j;
+			int k;
+			for (k = 0; k < field[1] - 1; k++) {
+				// Ignore leading tokens
+				token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
+			}
 			for (j = 0; j < n; j++) {
 				if (token != NULL) {
 					size_t len;
@@ -219,15 +224,15 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int line1, double* a, size_t m, size
 						token[len - 1] = '\0';
 					}
 					if (ED_strtod(token, csv->loc, &a[i*n + j])) {
-						ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" from file \"%s\"\n",
-							line1 + i - 1, token, csv->fileName);
+						ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" at column %i from file \"%s\"\n",
+							field[0] + (int)i, field[1] + (int)j, token, csv->fileName);
 						return;
 					}
 					token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
 				}
 				else {
 					ModelicaFormatError("Error in line %i: Cannot read double value at column %i from file \"%s\"\n",
-						line1 + i, j + 1, csv->fileName);
+						field[0] + (int)i, field[1] + (int)j, csv->fileName);
 				}
 			}
 		}
