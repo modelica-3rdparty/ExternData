@@ -43,5 +43,8 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\utstring.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\zstring_rtrim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

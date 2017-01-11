@@ -37,6 +37,7 @@
 #include "array.h"
 #include "utstring.h"
 #include "zstring_strtok_dquotes.h"
+#include "zstring_rtrim.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_CSVFile.h"
 
@@ -162,7 +163,7 @@ void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int
 	while (readLine(&buf, &bufLen, fp) == 0) {
 		Line* line = (Line*)cpo_array_push(csv->lines);
 		utstring_init(line);
-		utstring_bincpy(line, buf, strlen(buf));
+		utstring_bincpy(line, zstring_rtrim(buf), strlen(buf));
 	}
 
     free(buf);
@@ -207,10 +208,17 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int line1, double* a, size_t m, size
 			size_t j;
 			for (j = 0; j < n; j++) {
 				if (token != NULL) {
+					size_t len;
 					if (token[0] == csv->sep[0]) {
 						a[i*n + j] = 0.;
+						continue;
 					}
-					else if (ED_strtod(token, csv->loc, &a[i*n + j])) {
+					len = strlen(token);
+					if (token[0] == csv->quote && token[len - 1] == csv->quote) {
+						token[0] = ' ';
+						token[len - 1] = '\0';
+					}
+					if (ED_strtod(token, csv->loc, &a[i*n + j])) {
 						ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" from file \"%s\"\n",
 							line1 + i - 1, token, csv->fileName);
 						return;

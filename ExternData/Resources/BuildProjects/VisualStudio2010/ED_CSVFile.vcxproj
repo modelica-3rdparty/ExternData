@@ -39,6 +39,7 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\utstring.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
+    <ClInclude Include="..\..\C-Sources\zstring_rtrim.h" />
     <ClInclude Include="..\..\C-Sources\zstring_strtok_dquotes.h" />
     <ClInclude Include="..\..\Include\ED_CSVFile.h" />
   </ItemGroup>
