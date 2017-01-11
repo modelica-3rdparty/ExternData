@@ -81,7 +81,7 @@ char *zstring_strtok_dquotes(char *str, const char *delim, const char quote, cha
         str = *context;
 
     /* get the string length */
-    while(str[strlength])
+    while (str[strlength])
         strlength++;
 
     /* find the first occurrence of delim outside of an phrase */
@@ -102,7 +102,7 @@ char *zstring_strtok_dquotes(char *str, const char *delim, const char quote, cha
 
     /* if delim is not contained in str, return str */
     if (!found) {
-        *context = *context;
+        *context = NULL;
         return str;
     }
 

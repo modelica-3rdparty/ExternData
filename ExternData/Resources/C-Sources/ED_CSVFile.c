@@ -199,14 +199,27 @@ void ED_destroyCSV(void* _csv)
 void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, size_t n)
 {
 	CSVFile* csv = (CSVFile*)_csv;
+	if (field[0] < 1) {
+		ModelicaError("Invalid line mumber, must be greater than or equal to one.\n");
+	}
+	if (field[1] < 1) {
+		ModelicaError("Invalid column mumber, must be greater than or equal to one.\n");
+	}
 	if (csv != NULL) {
 		size_t i;
 		for (i = 0; i < m; i++) {
-			Line* line = (Line*)cpo_array_get_at(csv->lines, field[0] + i - 1);
+			size_t j = field[0] + i - 1;
+			Line* line;
+			char* token;
 			char* nextToken = NULL;
-			char* token = zstring_strtok_dquotes(utstring_body(line), csv->sep, csv->quote, &nextToken);
-			size_t j;
 			int k;
+			if (j >= csv->lines->num) {
+				ModelicaFormatError("Error in line %i: Cannot read line from file \"%s\"\n",
+					field[0] + (int)i, csv->fileName);
+				return;
+			}
+			line = (Line*)cpo_array_get_at(csv->lines, j);
+			token = zstring_strtok_dquotes(utstring_body(line), csv->sep, csv->quote, &nextToken);
 			for (k = 0; k < field[1] - 1; k++) {
 				// Ignore leading tokens
 				token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
