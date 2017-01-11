@@ -56,13 +56,17 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External INI file object";
     final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
+    protected
+      final parameter String c = "c";
+      final parameter String s = "s";
+      final parameter String v = "v";
     annotation(
       Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
-        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="c%delimiter s%delimiter v"),
+        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="%c%delimiter%s%delimiter%v"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end CSVFile;
 
@@ -238,10 +242,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         extends Modelica.Icons.Function;
         input Integer m=1 "Number of rows";
         input Integer n=1 "Number of columns";
-        input Integer field(each min=1)={1,1} "Start field {row, col}";
+        input Integer field[2](each min=1)={1,1} "Start field {row, col}";
         input Types.ExternCSVFile csv "External CSV file object";
         output Real y[m,n] "2D Real values";
-        external "C" ED_getDoubleArray2DFromCSV(csv, line, y, size(y, 1), size(y, 2)) annotation(
+        external "C" ED_getDoubleArray2DFromCSV(csv, field, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
