@@ -9,23 +9,33 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - gcc-4.8-multilib
+      - linux-libc-dev
       - linux-libc-dev:i386
 
-env: LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
+env:
+  global:
+    - DEPLOY_LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
+    # BBPASS
+    - secure: "JwXQBxm9acImq0n2WhYEMLsdxGxgHC0I2NtSznxXiUDTGYuIVl+Op2D4MNncd2Ir+B6pMfseU0SxavzqrYzdTlg1dn4NGFC+yQQr/SCAwtEZFGNU3ABw8hKdal+7P/Ukj5V+UMbZOM5NMVgmBFaBU3V8h+sJs+JG+u3YSnR4fCFlLwweIsxRPDgfURBf0z+TO8j9nshD1srXb1A2PyylfBagP9mvFd+A5AIWDUK3PT8CEKFOLVuPBhL7Y4GxD3UDAi0dyb+f/YL4CS0qNMATQg1Q1RlBctzxrigpLkzfxgIHazTaQQo7pG7FfIgtEbxkcUJWc2vsy8nZiYxHDOjKKpkdwZ4GEnxzuY45YSnQUsUTRnvLcQkRWMbVhsjeyCEwYxbUCAJzKMAALpzUyFobrfCpLAP8USb8yuBu6Snwn7j/ark5oA/ISnCCN693yEm9dWKuKBZpl/kjDpzIBP4eN41S2KPPXyr6OAY6kexQNIQAIClrX8PwTniFdKsje/gZbSCjsS6lMFdFg9nszBGMGEhBrjmDMFt+Hqz+BjNMrcOz+WPn3ch+S2RqoKgBgilcPoVHXtOVIHMjQkpSyhCUp2x/1ZsjxA+CfcvoEpzWOBsPp32XKWWxdS6vqgTmi9wsB2nH2pMDojYrIDhb5cXASiNcWi+n4xI2rzFOcRBpzN8="
 
 compiler:
   - gcc-4.8
   - clang
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - curl https://bitbucket.org/Swyter/bitbucket-curl-upload-to-repo-downloads/raw/default/upload-to-bitbucket.sh -O -J && chmod +x ./upload-to-bitbucket.sh
 
 script:
   - cd ExternData/Resources/C-Sources
   - make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"
   - make CFLAGS="-O3 -fPIC"
   - cd ../Library/linux32
-  - tar cJf linux32.tar.xz $LIBS
+  - tar cJf ExternData_linux32.tar.xz $DEPLOY_LIBS
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_linux32.tar.xz; fi
   - cd ../linux64
-  - tar cJf linux64.tar.xz $LIBS
-# deployment rules are currently missing but can be added for, e.g, GitHub releases
+  - tar cJf ExternData_linux64.tar.xz $DEPLOY_LIBS
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_linux64.tar.xz; fi
 
 notifications:
   email: false
