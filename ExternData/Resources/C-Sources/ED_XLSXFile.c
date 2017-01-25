@@ -238,7 +238,7 @@ static void rc(const char* cellAddress, WORD* row, WORD* col)
 	*row =  rowVal > 0 ? (rowVal - 1) : 0;
 }
 
-static ca(char* colAddress, WORD idx)
+static void ca(char* colAddress, WORD idx)
 {
 	char c = (idx % 26) + 'A';
 	WORD quotient = idx/26;
