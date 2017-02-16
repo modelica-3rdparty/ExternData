@@ -48,6 +48,8 @@ static void Timezone_initialize(void) {
 }
 #endif
 
+/* Dymola 2017 FD01 defines __iob_func in dsutil.h */
+#if !defined(HACK_SUPPORT_VS2015)
 extern FILE _iob[3];
 
 #undef stdin
@@ -60,6 +62,7 @@ extern FILE _iob[3];
 FILE* __iob_func(void) {
 	return _iob;
 }
+#endif
 
 #pragma comment( lib, "legacy_stdio_definitions.lib" )
 
