@@ -355,7 +355,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getRealArray2D;
 
       function getStringArray1D "Get 1D String values from MAT-file"
@@ -368,7 +368,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getStringArray1D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end MAT;
@@ -699,7 +699,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end constructor;
 
       function destructor "Clean up"
@@ -709,7 +709,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end destructor;
     end ExternMATFile;
 
