@@ -218,24 +218,29 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
 			ModelicaFormatError(
-				"Array \"%s\" has not the required rank 2.\n", varName);
+				"Variable \"%s\" has not the required rank 2.\n", varName);
 			return;
 		}
 
-		/* Check if matvar is of double precision class (and thus non-sparse) */
-		if (matvar->class_type != MAT_C_DOUBLE) {
+		/* Check if variable class of matvar is numeric (and thus non-sparse) */
+		if (matvar->class_type != MAT_C_DOUBLE && matvar->class_type != MAT_C_SINGLE &&
+			matvar->class_type != MAT_C_INT8 && matvar->class_type != MAT_C_UINT8 &&
+			matvar->class_type != MAT_C_INT16 && matvar->class_type != MAT_C_UINT16 &&
+			matvar->class_type != MAT_C_INT32 && matvar->class_type != MAT_C_UINT32 &&
+			matvar->class_type != MAT_C_INT64 && matvar->class_type != MAT_C_UINT64) {
 			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
-			ModelicaFormatError("2D array \"%s\" has not the required "
-				"double precision class.\n", varName);
+			ModelicaFormatError("Matrix \"%s\" has not the required "
+				"numeric variable class.\n", varName);
 			return;
 		}
+		matvar->class_type = MAT_C_DOUBLE;
 
 		/* Check if matvar is purely real-valued */
 		if (matvar->isComplex) {
 			Mat_VarFree(matvarRoot);
 			(void)Mat_Close(matfp);
-			ModelicaFormatError("2D array \"%s\" must not be complex.\n",
+			ModelicaFormatError("Matrix \"%s\" must not be complex.\n",
 				varName);
 			return;
 		}
