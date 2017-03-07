@@ -54,7 +54,7 @@ ExternData is released under the terms of the Simplified BSD License.
 ExternData is based on the following third-party C projects
 * [bsxml-json](https://github.com/bsapundzhiev/bsxml-json) -
 Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
-* [expat](http://sourceforge.net/projects/expat) -
+* [expat](https://github.com/libexpat/libexpat) -
 James Clark's Expat XML parser library
 * [hdf5](https://support.hdfgroup.org/HDF5) -
 The HDF Group's data model, library and file format for storing and managing data
