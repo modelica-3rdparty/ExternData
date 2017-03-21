@@ -35,9 +35,9 @@
 
 #include "detail_endian.h"
 
-#if defined(BOOST_LITTLE_ENDIAN)
+#if defined(BOOST_LITTLE_ENDIAN) && !defined(__LITTLE_ENDIAN__)
 #define __LITTLE_ENDIAN__
-#elif defined(BOOST_BIG_ENDIAN)
+#elif defined(BOOST_BIG_ENDIAN) && !defined(__BIG_ENDIAN__)
 #define __BIG_ENDIAN__
 #endif
 

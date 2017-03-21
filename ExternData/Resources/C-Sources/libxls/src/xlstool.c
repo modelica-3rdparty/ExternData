@@ -31,7 +31,7 @@
  */
 
 #if defined(__gnu_linux__)
-#define _GNU_SOURCE 1 
+#define _GNU_SOURCE 1
 #endif
 
 #include "config.h"
@@ -339,7 +339,7 @@ BYTE* unicode_decode(const BYTE *s, int len, size_t *newlen, const char* to_enc)
     short *x;
 	if (setlocale(LC_CTYPE, "") == NULL) {
 		printf("setlocale failed: %d\n", errno);
-		return "*null*";
+		return NULL;
 	}
 
     x=(short *)s;
@@ -365,10 +365,10 @@ BYTE* unicode_decode(const BYTE *s, int len, size_t *newlen, const char* to_enc)
 	if (count2 <= 0) {
 		printf("wcstombs failed (%d)\n", len);
 		if (newlen) *newlen = 0;
-		return converted;
+		return (BYTE*)converted;
 	} else {
 		if (newlen) *newlen = count2;
-		return converted;
+		return (BYTE*)converted;
 	}
 #endif
 }
