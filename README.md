@@ -41,8 +41,8 @@ function __OpenModelica_getReal "Get scalar Real value from XML file"
   protected
     ExternData.Types.ExternXMLFile xml = ExternData.Types.ExternXMLFile(fileName) "External XML file object";
   algorithm
-    y := ExternData.Functions.XML.Internal.getReal(xml=xml, varName=varName);
-  annotation(Inline=true);
+    y := ExternData.Functions.XML.getReal(xml=xml, varName=varName);
+  annotation(Inline=false);
 end __OpenModelica_getReal;
 ```
 taking the file name as explicit argument for the external object.
