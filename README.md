@@ -22,8 +22,7 @@ for convenient model initialization and parametrization.
 * Cross-platform (Windows and Linux)
 * Tested in [Dymola](http://www.dynasim.se) and [SimulationX](http://simulationx.com), with dependency on the [Modelica Standard Library](https://github.com/modelica/Modelica) v3.2.2.
 
-All data I/O access is implemented using external Modelica functions. Furthermore, high level interfaces
-on these functions are provided via Modelica models.
+All data I/O access is implemented using external Modelica functions.
 
 ### Known issue with OpenModelica
 The example models of the library are known to fail with [OpenModelica](https://openmodelica.org). However, as a workaround the functions can be rewritten to make them working in OpenModelica by replacing their short class definitions and their appropriate function calls. For example, the short class definition `ExternData.XMLFile.getReal`
