@@ -56,43 +56,44 @@ typedef struct {
 } CSVFile;
 
 static int readLine(char** buf, int* bufLen, FILE* fp) {
-    char* offset;
-    int oldBufLen;
+	char* offset;
+	int oldBufLen;
 
-    if (fgets(*buf, *bufLen, fp) == NULL) {
-        return EOF;
-    }
+	if (fgets(*buf, *bufLen, fp) == NULL) {
+		return EOF;
+	}
 
-    do {
-        char* p;
-        char* tmp;
+	do {
+		char* p;
+		char* tmp;
 
-        if ((p = strchr(*buf, '\n')) != NULL) {
-            *p = '\0';
-            return 0;
-        }
+		if ((p = strchr(*buf, '\n')) != NULL) {
+			*p = '\0';
+			return 0;
+		}
 
-        oldBufLen = *bufLen;
-        *bufLen *= 2;
-        tmp = (char*)realloc(*buf, (size_t)*bufLen);
-        if (tmp == NULL) {
-            fclose(fp);
-            free(*buf);
-            ModelicaError("Memory allocation error\n");
-            return 1;
-        }
-        *buf = tmp;
-        offset = &((*buf)[oldBufLen - 1]);
+		oldBufLen = *bufLen;
+		*bufLen *= 2;
+		tmp = (char*)realloc(*buf, (size_t)*bufLen);
+		if (tmp == NULL) {
+			fclose(fp);
+			free(*buf);
+			ModelicaError("Memory allocation error\n");
+			return 1;
+		}
+		*buf = tmp;
+		offset = &((*buf)[oldBufLen - 1]);
 
-    } while (fgets(offset, oldBufLen + 1, fp));
+	} while (fgets(offset, oldBufLen + 1, fp));
 
-    return 0;
+	return 0;
 }
 
 void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int verbose)
 {
 	char* buf;
 	int bufLen = LINE_BUFFER_LENGTH;
+	int readError;
 	FILE* fp;
 	CSVFile* csv;
 	
@@ -160,14 +161,16 @@ void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int
 	}
 
 	/* Loop over lines of file */
-	while (readLine(&buf, &bufLen, fp) == 0) {
+	while ((readError = readLine(&buf, &bufLen, fp)) == 0) {
 		Line* line = (Line*)cpo_array_push(csv->lines);
 		utstring_init(line);
 		utstring_bincpy(line, zstring_rtrim(buf), strlen(buf));
 	}
 
-    free(buf);
-    fclose(fp);
+	if (1 != readError) {
+		free(buf);
+		fclose(fp);
+	}
 
 	csv->loc = ED_INIT_LOCALE;
 	return csv;

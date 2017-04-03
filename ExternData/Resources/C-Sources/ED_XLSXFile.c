@@ -251,10 +251,10 @@ static void ca(char* colAddress, WORD idx)
 static XmlNodeRef findSheet(XLSXFile* xlsx, char** sheetName)
 {
 	SheetShare* iter;
-	SheetShare* tmp;
 	XmlNodeRef root;
 
 	if (strlen(*sheetName) == 0) {
+		SheetShare* tmp;
 		/* Resolve default sheet name */
 		HASH_ITER(hh, xlsx->sheets, iter, tmp) {
 			if (0 == strcmp(iter->sheetId, "1")) {

@@ -140,7 +140,6 @@ void XmlNode_deleteTree(struct XmlNode *root)
 
     if (root->m_type == NODE_ROOT) {
         free(root);
-        root = NULL;
     }
 }
 
@@ -555,12 +554,12 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
 
 XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName )
 {
-    char * buffer = 0;
-    long length = 0;
     XmlNodeRef root = NULL;
     FILE *f = fopen (fileName, "rb");
 
     if (f != NULL) {
+        char * buffer;
+        long length;
         size_t read = 0;
         fseek (f, 0, SEEK_END);
         length = ftell (f);
