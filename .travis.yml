@@ -18,9 +18,20 @@ env:
     # BBPASS
     - secure: "JwXQBxm9acImq0n2WhYEMLsdxGxgHC0I2NtSznxXiUDTGYuIVl+Op2D4MNncd2Ir+B6pMfseU0SxavzqrYzdTlg1dn4NGFC+yQQr/SCAwtEZFGNU3ABw8hKdal+7P/Ukj5V+UMbZOM5NMVgmBFaBU3V8h+sJs+JG+u3YSnR4fCFlLwweIsxRPDgfURBf0z+TO8j9nshD1srXb1A2PyylfBagP9mvFd+A5AIWDUK3PT8CEKFOLVuPBhL7Y4GxD3UDAi0dyb+f/YL4CS0qNMATQg1Q1RlBctzxrigpLkzfxgIHazTaQQo7pG7FfIgtEbxkcUJWc2vsy8nZiYxHDOjKKpkdwZ4GEnxzuY45YSnQUsUTRnvLcQkRWMbVhsjeyCEwYxbUCAJzKMAALpzUyFobrfCpLAP8USb8yuBu6Snwn7j/ark5oA/ISnCCN693yEm9dWKuKBZpl/kjDpzIBP4eN41S2KPPXyr6OAY6kexQNIQAIClrX8PwTniFdKsje/gZbSCjsS6lMFdFg9nszBGMGEhBrjmDMFt+Hqz+BjNMrcOz+WPn3ch+S2RqoKgBgilcPoVHXtOVIHMjQkpSyhCUp2x/1ZsjxA+CfcvoEpzWOBsPp32XKWWxdS6vqgTmi9wsB2nH2pMDojYrIDhb5cXASiNcWi+n4xI2rzFOcRBpzN8="
 
-compiler:
-  - gcc-4.8
-  - clang
+matrix:
+  include:
+    - os: linux
+      compiler: gcc-4.8
+      env:
+        - PLATFORM=32
+    - os: linux
+      compiler: gcc-4.8
+      env:
+        - PLATFORM=64
+    - os: linux
+      compiler: clang
+      env:
+        - PLATFORM=64
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
@@ -28,14 +39,11 @@ before_install:
 
 script:
   - cd ExternData/Resources/C-Sources
-  - make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"
-  - make CFLAGS="-O3 -fPIC"
-  - cd ../Library/linux32
-  - tar cJf ExternData_linux32.tar.xz $DEPLOY_LIBS
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_linux32.tar.xz; fi
-  - cd ../linux64
-  - tar cJf ExternData_linux64.tar.xz $DEPLOY_LIBS
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_linux64.tar.xz; fi
+  - if [[ "$PLATFORM" == "32" ]]; then make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"; fi
+  - if [[ "$PLATFORM" == "64" ]]; then make CFLAGS="-O3 -fPIC"; fi
+  - cd ../Library/linux$PLATFORM
+  - tar cJf ExternData_linux$PLATFORM.tar.xz $DEPLOY_LIBS
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_linux$PLATFORM.tar.xz; fi
 
 notifications:
   email: false
