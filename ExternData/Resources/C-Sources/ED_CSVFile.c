@@ -96,7 +96,7 @@ void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int
 	int readError;
 	FILE* fp;
 	CSVFile* csv;
-	
+
 	if (strlen(sep) != 1) {
 		ModelicaError("Invalid column delimiter, must be a single character.\n");
 		return NULL;
