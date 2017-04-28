@@ -50,7 +50,7 @@
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h" />
     <ClInclude Include="..\..\C-Sources\libxls\src\config.h" />
     <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h" />
-    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h" />
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h" />
     <ClInclude Include="..\..\C-Sources\uthash.h" />
     <ClInclude Include="..\..\Include\ED_XLSFile.h" />
   </ItemGroup>
@@ -147,7 +147,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;_WINDOWS;_USRDLL;ED_XLSFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -163,7 +163,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -182,7 +182,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_XLSFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -199,7 +199,7 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_XLSFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -217,7 +217,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <DebugInformationFormat>
       </DebugInformationFormat>
@@ -237,7 +237,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>

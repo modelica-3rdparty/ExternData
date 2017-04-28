@@ -76,7 +76,7 @@
     <ClInclude Include="..\..\C-Sources\uthash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h">
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

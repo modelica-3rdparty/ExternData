@@ -3,7 +3,7 @@ RM = rm -f
 
 CFLAGS = -O3
 CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG
-INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"libxls/include" -I"minizip" -I"zlib"
+INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"libxls/include" -I"minizip" -I"modelica" -I"zlib"
 
 TARGETDIR = linux64
 
@@ -24,7 +24,7 @@ JSON_OBJS = \
 
 MAT_OBJS = \
 	ED_MATFile.o \
-	ModelicaMatIO.o
+	modelica/ModelicaMatIO.o
 
 XLS_OBJS = \
 	libxls/src/endian.o \

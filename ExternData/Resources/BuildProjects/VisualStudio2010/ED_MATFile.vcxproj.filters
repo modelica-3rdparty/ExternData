@@ -18,7 +18,7 @@
     <ClCompile Include="..\..\C-Sources\ED_MATFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\ModelicaMatIO.c">
+    <ClCompile Include="..\..\C-Sources\modelica\ModelicaMatIO.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,10 +26,16 @@
     <ClInclude Include="..\..\Include\ED_MATFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\ModelicaMatIO.h">
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaMatIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h">
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.c">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

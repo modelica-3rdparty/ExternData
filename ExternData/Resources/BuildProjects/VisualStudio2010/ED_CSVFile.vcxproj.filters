@@ -31,9 +31,6 @@
     <ClInclude Include="..\..\C-Sources\ED_locale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\ModelicaUtilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\C-Sources\zstring_strtok_dquotes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -44,6 +41,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\zstring_rtrim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
