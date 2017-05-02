@@ -604,20 +604,17 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
 static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
 {
     long i;
-    for(i = 0; i < size; i++) {
-        if(((i < size - 1) && buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#' || buff[i] == '"') {
-            char s = buff[i];
-            long j = i;
-            do {
-                if(s != '"') {
-                    buff[i] = ' ';
-                }
-                else if (i > j && buff[i] == '"') {
-                    i++;
-                    break;
-                }
+    unsigned char is_string = 0;
+
+    for (i = 0; i < size; i++) {
+        if (buff[i] == Json_elem(JSON_QUOTE))
+            is_string = !is_string;
+        /* strip // and # comments */
+        if (!is_string && (buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#') {
+            while(buff[i] != '\n' && buff[i] != 0) {
+                buff[i] = ' ';
                 i++;
-            } while(buff[i] != '\n' && buff[i] != 0);
+            }
         }
     }
 }
