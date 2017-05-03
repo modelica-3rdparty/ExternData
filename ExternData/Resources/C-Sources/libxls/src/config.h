@@ -72,10 +72,10 @@
 #define LIBXLS_MAJOR_VERSION 1
 
 /* Micro version */
-#define LIBXLS_MICRO_VERSION 1
+#define LIBXLS_MICRO_VERSION 0
 
 /* Minor version */
-#define LIBXLS_MINOR_VERSION 2
+#define LIBXLS_MINOR_VERSION 4
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
@@ -108,8 +108,15 @@
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
+/* Enable GNU extensions on systems that have them.  */
+#if defined(__gnu_linux__)
+#ifndef _GNU_SOURCE
+# define _GNU_SOURCE 1
+#endif
+#endif
+
 /* Version number of package */
-#define VERSION "1.2.1"
+#define VERSION "1.4.0"
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */

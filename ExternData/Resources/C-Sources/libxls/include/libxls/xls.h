@@ -32,6 +32,11 @@
 #ifndef XLS_INCLUDE
 #define XLS_INCLUDE
 
+#ifdef __cplusplus
+namespace xls {
+extern "C" {
+#endif
+
 #include "libxls/xlstypes.h"
 #include "libxls/xlsstruct.h"
 #include "libxls/xlstool.h"
@@ -57,5 +62,10 @@ extern void xls_close_summaryInfo(xlsSummaryInfo *pSI);
 // utility function
 xlsRow *xls_row(xlsWorkSheet* pWS, WORD cellRow);
 xlsCell	*xls_cell(xlsWorkSheet* pWS, WORD cellRow, WORD cellCol);
+
+#ifdef __cplusplus
+} // extern c block
+} // namespace
+#endif
 
 #endif

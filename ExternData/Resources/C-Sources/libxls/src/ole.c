@@ -558,5 +558,3 @@ static size_t read_MSAT(OLE2* ole2, OLE2Header* oleh)
 
     return 0;
 }
-
-

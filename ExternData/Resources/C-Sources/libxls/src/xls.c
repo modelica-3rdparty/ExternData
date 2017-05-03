@@ -918,13 +918,13 @@ void xls_parseWorkBook(xlsWorkBook* pWB)
 			break;
 
 		case XLS_RECORD_DEFINEDNAME:
-			{
+			if(xls_debug) {
 				int i;
 				printf("DEFINEDNAME: ");
 				for(i=0; i<bof1.size; ++i) printf("%2.2x ", buf[i]);
 				printf("\n");
-				break;
-			 }
+			}
+			break;
 
 #ifdef DEBUG_DRAWINGS
 		case XLS_RECORD_MSODRAWINGGROUP:

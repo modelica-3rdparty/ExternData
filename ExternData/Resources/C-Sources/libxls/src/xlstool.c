@@ -30,10 +30,6 @@
  *
  */
 
-#if defined(__gnu_linux__)
-#define _GNU_SOURCE 1
-#endif
-
 #include "config.h"
 
 #include <math.h>
