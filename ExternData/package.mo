@@ -59,6 +59,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"csvfile\" component is defined, please drag ExternData.CSVFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
@@ -80,6 +82,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="inifile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"inifile\" component is defined, please drag ExternData.INIFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
@@ -101,6 +105,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"jsonfile\" component is defined, please drag ExternData.JSONFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
@@ -120,6 +126,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"matfile\" component is defined, please drag ExternData.MATFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={241,219,48},fillPattern=FillPattern.Solid),
@@ -149,6 +157,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"xlsfile\" component is defined, please drag ExternData.XLSFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
@@ -185,6 +195,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"xlsxfile\" component is defined, please drag ExternData.XLSXFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
@@ -222,6 +234,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage = "No \"xmlfile\" component is defined, please drag ExternData.XMLFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid),
