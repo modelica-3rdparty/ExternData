@@ -46,7 +46,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a>, <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
   end UsersGuide;
 
-  model CSVFile "Read data values from CSV file"
+  record CSVFile "Read data values from CSV file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Comma-separated values files (*.csv);;Text files (*.txt)",
@@ -57,7 +57,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External INI file object";
     final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -66,7 +66,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end CSVFile;
 
-  model INIFile "Read data values from INI file"
+  record INIFile "Read data values from INI file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
@@ -78,7 +78,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final function getBoolean = Functions.INI.getBoolean(final ini=ini) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.INI.getString(final ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="inifile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -87,7 +87,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end INIFile;
 
-  model JSONFile "Read data values from JSON file"
+  record JSONFile "Read data values from JSON file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="JSON files (*.json)",
@@ -99,7 +99,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final function getBoolean = Functions.JSON.getBoolean(final json=json) "Get scalar Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.JSON.getString(final json=json) "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -108,7 +108,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
-  model MATFile "Read data values from MATLAB MAT-file"
+  record MATFile "Read data values from MATLAB MAT-file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="MATLAB MAT-files (*.mat)",
@@ -118,7 +118,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final function getRealArray2D = Functions.MAT.getRealArray2D(final mat=mat) "Get 2D Real values from MAT-file" annotation(Documentation(info="<html></html>"));
     final function getStringArray1D = Functions.MAT.getStringArray1D(final mat=mat) "Get 1D String values from MAT-file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -133,7 +133,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end MATFile;
 
-  model XLSFile "Read data values from Excel XLS file"
+  record XLSFile "Read data values from Excel XLS file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xls)",
@@ -147,7 +147,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final function getBoolean = Functions.XLS.getBoolean(final xls=xls) "Get scalar Boolean value from Excel XLS file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XLS.getString(final xls=xls) "Get scalar String value from Excel XLS file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -170,7 +170,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSFile;
 
-  model XLSXFile "Read data values from Excel XLSX file"
+  record XLSXFile "Read data values from Excel XLSX file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xlsx)",
@@ -183,7 +183,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final function getBoolean = Functions.XLSX.getBoolean(final xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XLSX.getString(final xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -206,7 +206,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSXFile;
 
-  model XMLFile "Read data values from XML file"
+  record XMLFile "Read data values from XML file"
     parameter String fileName="" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
@@ -220,7 +220,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     final function getBoolean = Functions.XML.getBoolean(final xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XML.getString(final xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
     annotation(
-      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
