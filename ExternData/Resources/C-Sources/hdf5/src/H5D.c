@@ -5,12 +5,10 @@
  *                                                                           *
  * This file is part of HDF5.  The full HDF5 copyright notice, including     *
  * terms governing use, modification, and redistribution, is contained in    *
- * the files COPYING and Copyright.html.  COPYING can be found at the root   *
- * of the source code distribution tree; Copyright.html can be found at the  *
- * root level of an installed copy of the electronic HDF5 document set and   *
- * is linked from the top-level documents page.  It can also be found at     *
- * http://hdfgroup.org/HDF5/doc/Copyright.html.  If you do not have          *
- * access to either file, you may request a copy from help@hdfgroup.org.     *
+ * the COPYING file, which can be found at the root of the source code       *
+ * distribution tree, or in https://support.hdfgroup.org/ftp/HDF5/releases.  *
+ * If you do not have access to either file, you may request a copy from     *
+ * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /****************/
@@ -72,7 +70,7 @@ H5FL_BLK_EXTERN(type_conv);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__init_pub_interface -- Initialize interface-specific information
@@ -93,7 +91,7 @@ H5D__init_pub_interface(void)
     FUNC_LEAVE_NOAPI(H5D_init())
 } /* H5D__init_pub_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__term_pub_interface -- Terminate interface
@@ -117,7 +115,7 @@ H5D__term_pub_interface(void)
     FUNC_LEAVE_NOAPI(0)
 } /* H5D__term_pub_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dcreate2
  *
@@ -203,7 +201,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dcreate2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dcreate_anon
  *
@@ -301,7 +299,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dcreate_anon() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dopen2
  *
@@ -387,7 +385,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dopen2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dclose
  *
@@ -416,7 +414,7 @@ H5Dclose(hid_t dset_id)
 
     /*
      * Decrement the counter on the dataset.  It will be freed if the count
-     * reaches zero.  
+     * reaches zero.
      *
      * Pass in TRUE for the 3rd parameter to tell the function to remove
      * dataset's ID even though the freeing function might fail.  Please
@@ -429,7 +427,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_space
  *
@@ -466,7 +464,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_space_status
  *
@@ -502,7 +500,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_type
  *
@@ -540,7 +538,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_create_plist
  *
@@ -577,7 +575,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_access_plist
  *
@@ -588,13 +586,13 @@ done:
  *
  *      The chunk cache parameters in the returned property lists will be
  *      those used by the dataset.  If the properties in the file access
- *      property list were used to determine the dataset’s chunk cache
+ *      property list were used to determine the dataset's chunk cache
  *      configuration, then those properties will be present in the
  *      returned dataset access property list.  If the dataset does not
  *      use a chunked layout, then the chunk cache properties will be set
  *      to the default.  The chunk cache properties in the returned list
- *      are considered to be “set”, and any use of this list will override
- *      the corresponding properties in the file’s file access property
+ *      are considered to be "set", and any use of this list will override
+ *      the corresponding properties in the file's file access property
  *      list.
  *
  *      All link access properties in the returned list will be set to the
@@ -631,7 +629,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_access_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_storage_size
  *
@@ -671,7 +669,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_storage_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_offset
  *
@@ -706,7 +704,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Diterate
  *
@@ -802,7 +800,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Diterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dvlen_reclaim
  *
@@ -849,7 +847,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Dvlen_reclaim() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dvlen_get_buf_size
  *
@@ -965,7 +963,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Dvlen_get_buf_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dset_extent
  *
@@ -1001,4 +999,45 @@ H5Dset_extent(hid_t dset_id, const hsize_t size[])
 done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dset_extent() */
+
+
+/*-------------------------------------------------------------------------
+ * Function:    H5Dget_chunk_storage_size
+ *
+ * Purpose:     Returns the size of an allocated of chunk.
+ *
+ * Return:	Non-negative on success, negative on failure
+ *
+ * Programmer:  Matthew Strong (GE Healthcare)
+ *              20 October 2016
+ *
+ *-------------------------------------------------------------------------
+ */
+herr_t
+H5Dget_chunk_storage_size(hid_t dset_id, const hsize_t *offset, hsize_t *chunk_nbytes)
+{
+    H5D_t       *dset = NULL;
+    herr_t      ret_value = SUCCEED;
+
+    FUNC_ENTER_API(FAIL)
+    H5TRACE3("e", "i*h*h", dset_id, offset, chunk_nbytes);
+
+    /* Check arguments */
+    if(NULL == (dset = (H5D_t *)H5I_object_verify(dset_id, H5I_DATASET)))
+        HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "not a dataset")
+    if( NULL == offset )
+        HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "invalid argument (null)")
+    if( NULL == chunk_nbytes )
+        HGOTO_ERROR(H5E_ARGS, H5E_BADVALUE, FAIL, "invalid argument (null)")
+
+    if(H5D_CHUNKED != dset->shared->layout.type)
+        HGOTO_ERROR(H5E_ARGS, H5E_BADTYPE, FAIL, "not a chunked dataset")
+
+    /* Call private function */
+    if(H5D__get_chunk_storage_size(dset, H5AC_ind_dxpl_id, offset, chunk_nbytes) < 0)
+        HGOTO_ERROR(H5E_DATASET, H5E_CANTGET, FAIL, "can't get storage size of chunk")
+
+done:
+    FUNC_LEAVE_API(ret_value);
+}
 

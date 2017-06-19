@@ -11,32 +11,38 @@
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/*
- *  Header file for function stacks, etc.
- */
-#ifndef _H5CSprivate_H
-#define _H5CSprivate_H
+#ifndef H5PL_PACKAGE
+#error "Do not include this file outside the H5PL package!"
+#endif
 
-#ifdef NOT_YET
-#include "H5CSpublic.h"
-#endif /* NOT_YET */
+#ifndef _H5PLpkg_H
+#define _H5PLpkg_H
 
-/* Private headers needed by this file */
-#include "H5private.h"
+/* Include private header file */
+#include "H5PLprivate.h"          /* Filter functions                */
 
-#define H5CS_NSLOTS	48	/*number of slots in an function stack	     */
+/* Other private headers needed by this file */
 
-/* A function stack */
-typedef struct H5CS_t {
-    unsigned	nused;			        /*num slots currently used in stack  */
-    const char *slot[H5CS_NSLOTS];	/*array of function records	     */
-} H5CS_t;
+/**************************/
+/* Package Private Macros */
+/**************************/
 
-H5_DLL herr_t H5CS_push (const char *func_name);
-H5_DLL herr_t H5CS_pop (void);
-H5_DLL herr_t H5CS_print (FILE *stream);
-H5_DLL herr_t H5CS_print_stack (const H5CS_t *stack, FILE *stream);
-H5_DLL herr_t H5CS_copy_stack (H5CS_t *stack);
-H5_DLL herr_t H5CS_close_stack (H5CS_t *stack);
+#define H5PL_MAX_PATH_NUM       16
 
-#endif /* _H5CSprivate_H */
+
+/****************************/
+/* Package Private Typedefs */
+/****************************/
+
+
+/*****************************/
+/* Package Private Variables */
+/*****************************/
+
+
+/******************************/
+/* Package Private Prototypes */
+/******************************/
+
+#endif /* _H5PLpkg_H */
+

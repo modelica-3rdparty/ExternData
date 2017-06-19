@@ -5,12 +5,10 @@
  *                                                                           *
  * This file is part of HDF5.  The full HDF5 copyright notice, including     *
  * terms governing use, modification, and redistribution, is contained in    *
- * the files COPYING and Copyright.html.  COPYING can be found at the root   *
- * of the source code distribution tree; Copyright.html can be found at the  *
- * root level of an installed copy of the electronic HDF5 document set and   *
- * is linked from the top-level documents page.  It can also be found at     *
- * http://hdfgroup.org/HDF5/doc/Copyright.html.  If you do not have          *
- * access to either file, you may request a copy from help@hdfgroup.org.     *
+ * the COPYING file, which can be found at the root of the source code       *
+ * distribution tree, or in https://support.hdfgroup.org/ftp/HDF5/releases.  *
+ * If you do not have access to either file, you may request a copy from     *
+ * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /*
@@ -189,7 +187,7 @@ typedef enum H5F_mem_t	H5FD_mem_t;
      * instead of the default H5D_ALLOC_TIME_LATE
      */
 #define H5FD_FEAT_ALLOCATE_EARLY        0x00000200
-    /*
+    /* 
      * Defining the H5FD_FEAT_ALLOW_FILE_IMAGE for a VFL driver means that
      * the driver is able to use a file image in the fapl as the initial
      * contents of a file.
@@ -272,7 +270,7 @@ struct H5FD_t {
 /* Define enum for the source of file image callbacks */
 typedef enum {
     H5FD_FILE_IMAGE_OP_NO_OP,
-    H5FD_FILE_IMAGE_OP_PROPERTY_LIST_SET,
+    H5FD_FILE_IMAGE_OP_PROPERTY_LIST_SET,     
     H5FD_FILE_IMAGE_OP_PROPERTY_LIST_COPY,
     H5FD_FILE_IMAGE_OP_PROPERTY_LIST_GET,
     H5FD_FILE_IMAGE_OP_PROPERTY_LIST_CLOSE,
@@ -283,13 +281,13 @@ typedef enum {
 
 /* Define structure to hold file image callbacks */
 typedef struct {
-    void   *(*image_malloc)(size_t size, H5FD_file_image_op_t file_image_op,
+    void   *(*image_malloc)(size_t size, H5FD_file_image_op_t file_image_op, 
                             void *udata);
     void   *(*image_memcpy)(void *dest, const void *src, size_t size,
                             H5FD_file_image_op_t file_image_op, void *udata);
-    void   *(*image_realloc)(void *ptr, size_t size,
+    void   *(*image_realloc)(void *ptr, size_t size, 
                             H5FD_file_image_op_t file_image_op, void *udata);
-    herr_t  (*image_free)(void *ptr, H5FD_file_image_op_t file_image_op,
+    herr_t  (*image_free)(void *ptr, H5FD_file_image_op_t file_image_op, 
                           void *udata);
     void   *(*udata_copy)(void *udata);
     herr_t  (*udata_free)(void *udata);
