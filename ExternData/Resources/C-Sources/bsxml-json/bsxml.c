@@ -367,7 +367,7 @@ static UT_string *XmlNode_getXML_UT(struct XmlNode *node)
     utstring_new(buff);
     if (buff == NULL) return NULL;
     if (node->m_attributes->num == 0) {
-        utstring_printf(buff, "<%s>\n", node->m_tag);
+        utstring_printf(buff, "<%s>", node->m_tag);
     } else {
         utstring_printf(buff, "<%s ",node->m_tag);
         // Put attributes.
@@ -380,7 +380,11 @@ static UT_string *XmlNode_getXML_UT(struct XmlNode *node)
             utstring_printf(buff, "/>\n");
             return buff;
         }
-        utstring_printf(buff, ">\n");
+        utstring_printf(buff, ">");
+    }
+
+    if (node->m_childs->num) {
+        utstring_printf(buff, "\n");
     }
 
     if (!isNullorEmpty(node->m_content)) {
@@ -408,7 +412,6 @@ static UT_string *XmlNode_getXML_UT(struct XmlNode *node)
                 break;
             }
         }
-        utstring_printf(buff,"\n");
     }
 
     for (i = 0; i < node->m_childs->num; i++) {
@@ -438,7 +441,7 @@ void XmlNode_toFile(struct XmlNode *node, const char *fileName)
         UT_string *buff = XmlNode_getXML_UT(node);
         if (buff != NULL) {
             if (utstring_body(buff) != NULL) {
-                fprintf(f, "<?xml version=\"1.0\" encoding=\"%s\"?>", ENC_TYPE_UTF8);
+                fprintf(f, "<?xml version=\"1.0\" encoding=\"%s\"?>\n", ENC_TYPE_UTF8);
                 fwrite(utstring_body(buff), sizeof(char), utstring_len(buff), f);
             }
             utstring_free(buff);

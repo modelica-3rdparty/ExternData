@@ -609,8 +609,10 @@ static void JsonParser_stripCommentsFromBuffer(char *buff, long size)
     for (i = 0; i < size; i++) {
         if (buff[i] == Json_elem(JSON_QUOTE))
             is_string = !is_string;
+        if (is_string)
+            continue;
         /* strip // and # comments */
-        if (!is_string && (buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#') {
+        if ((buff[i] == '/' && buff[i+1] == '/') || buff[i] == '#') {
             while(buff[i] != '\n' && buff[i] != 0) {
                 buff[i] = ' ';
                 i++;
