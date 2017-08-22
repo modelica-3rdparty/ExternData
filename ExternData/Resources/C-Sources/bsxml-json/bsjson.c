@@ -79,8 +79,8 @@ JsonNode * JsonNode_Create()
     node->m_type = JSON_ROOT;
     node->m_name = NULL;
     node->m_parent = NULL;
-    node->m_pairs = cpo_array_create(4 , sizeof(JsonPair));
-    node->m_childs = cpo_array_create(4 , sizeof(JsonNode));
+    node->m_pairs = cpo_array_create(4, sizeof(JsonPair));
+    node->m_childs = cpo_array_create(4, sizeof(JsonNode));
     return node;
 }
 
@@ -90,8 +90,8 @@ JsonNode * JsonNode_createChild(JsonNode * node, String name, int type)
     child->m_type = type;
     child->m_parent = node;
     child->m_name = (name != NULL) ? strdup(name) : NULL;
-    child->m_pairs = cpo_array_create(4 , sizeof(JsonPair));
-    child->m_childs = cpo_array_create(4 , sizeof(JsonNode));
+    child->m_pairs = cpo_array_create(4, sizeof(JsonPair));
+    child->m_childs = cpo_array_create(4, sizeof(JsonNode));
     return child;
 }
 
@@ -378,7 +378,7 @@ static int JsonParser_internalData(struct ParserInternal *pi)
     return 0;
 }
 
-static char JsonParser_next_char(const char *p , int pos)
+static char JsonParser_next_char(const char *p, int pos)
 {
     char ch;
     while ( (ch = *(p+ ++pos)) != '\0' ) {
@@ -389,7 +389,7 @@ static char JsonParser_next_char(const char *p , int pos)
     return ch;
 }
 
-static char JsonParser_prev_char(const char *p , int pos)
+static char JsonParser_prev_char(const char *p, int pos)
 {
     char ch;
     while ( (ch = *(p+ --pos)) != '\0' ) {
@@ -414,7 +414,7 @@ static char JsonParser_prev_char(const char *p , int pos)
     (JsonParser_peek_char(p,pos) == Json_elem(JSON_CR)\
     || JsonParser_peek_char(p, pos) == Json_elem(JSON_LF))
 
-static int JsonParser_internalParse(struct ParserInternal *pi, const char* json , int len)
+static int JsonParser_internalParse(struct ParserInternal *pi, const char* json, int len)
 {
     int i;
     enum eElemType elemType;
@@ -519,7 +519,7 @@ static void JsonParser_startElem(struct JsonParser *parser, const String name, i
     void *ptr = NULL;
     JsonNode* parent= NULL, *node=NULL;
 
-    DEBUG_PRINT("Json_startElem %s type %d\n", name ,type );
+    DEBUG_PRINT("Json_startElem %s type %d\n", name, type );
 
     if (parser->m_nodeStack->num > 0) {
         ptr = stack_back(parser->m_nodeStack);
@@ -543,7 +543,7 @@ static void JsonParser_startElem(struct JsonParser *parser, const String name, i
 
 static void JsonParser_endElem(struct JsonParser *parser, const String name, int type )
 {
-    DEBUG_PRINT("Json_endElem %s type %d\n", name ,type );
+    DEBUG_PRINT("Json_endElem %s type %d\n", name, type );
     assert( parser->m_nodeStack->num > 0 );
     if (parser->m_nodeStack->num > 0) {
         stack_pop_back(parser->m_nodeStack);
@@ -585,7 +585,7 @@ JsonNode * JsonParser_parse(struct JsonParser *parser, const char * json)
     pi.startElem = JsonParser_startElem;
     pi.endElem = JsonParser_endElem;
     pi.elemData = JsonParser_elemData;
-    parser->m_nodeStack = cpo_array_create(JSON_STACK_SIZE , sizeof(void*));
+    parser->m_nodeStack = cpo_array_create(JSON_STACK_SIZE, sizeof(void*));
     if (JsonParser_internalParse(&pi, json, (int)strlen(json)) == JSON_ERR_NONE) {
         root = parser->m_root;
     } else {

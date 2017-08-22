@@ -57,7 +57,6 @@ static int cpo_array_preallocate(cpo_array_t *a, asize_t elements)
     void *newv;
     asize_t newmax = a->max;
 
-
     while (elements >= newmax) {
         newmax = (newmax + 1);
     }

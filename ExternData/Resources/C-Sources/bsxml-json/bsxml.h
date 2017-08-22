@@ -118,10 +118,10 @@ void XmlNode_addChild(struct XmlNode * node, const XmlNodeRef child );
 asize_t XmlNode_getChildCount(struct XmlNode * node);
 
 //! Get XML Node child nodes.
-XmlNodeRef XmlNode_getChild(struct XmlNode * node, asize_t i ) ;
+XmlNodeRef XmlNode_getChild(struct XmlNode * node, asize_t i );
 
 //! Find node with specified tag.
-XmlNodeRef XmlNode_findChild(struct XmlNode * node, const String tag ) ;
+XmlNodeRef XmlNode_findChild(struct XmlNode * node, const String tag );
 
 //! Get parent XML node.
 XmlNodeRef  XmlNode_getParent(struct XmlNode * node);
@@ -138,10 +138,9 @@ void XmlNode_setLine(struct XmlNode * node, int line );
 String XmlNode_getXML(struct XmlNode * node);
 void XmlNode_toFile(struct XmlNode *node, const char *fileName);
 //! Get value of node.
-void XmlNode_getValue(struct XmlNode * node, String *value ) ;
-void XmlNode_getValuent(struct XmlNode * node, int *value ) ;
-//void getValue( float &value ) const;
-//void getValue(struct XmlNode * node, bool &value ) const { int v; getValue(v); value = (v != 0); }
+void XmlNode_getValue(struct XmlNode * node, String *value );
+void XmlNode_getValueInt(struct XmlNode * node, int *value );
+void XmlNode_getValueFloat(struct XmlNode *node, float *value );
 
 //! Set value of node.
 void XmlNode_setValue(struct XmlNode * node, const String value );
@@ -149,9 +148,9 @@ void XmlNode_setValueInt(struct XmlNode * node, int value );
 //void setValue( float value );
 
 //! Get value of sub node.
-int XmlNode_getSubNodeValue(struct XmlNode * node, const String tag, String *value ) ;
-int XmlNode_getSubNodeValueInt(struct XmlNode * node, const String tag, int *value ) ;
-int XmlNode_getSubNodeValueFloat(struct XmlNode * node, const String tag,float *value ) ;
+int XmlNode_getSubNodeValue(struct XmlNode * node, const String tag, String *value );
+int XmlNode_getSubNodeValueInt(struct XmlNode * node, const String tag, int *value );
+int XmlNode_getSubNodeValueFloat(struct XmlNode * node, const String tag,float *value );
 
 //! Set value of sub node (Create sub node if neccesarry).
 void XmlNode_setSubNodeValue(struct XmlNode * node, const String tag, const String value );

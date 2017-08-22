@@ -151,7 +151,7 @@ void XmlNode_print(struct XmlNode *root)
         XmlNode_print(node);
     }
 
-    printf("Node %s content:%s", root->m_tag , root->m_content != NULL ? root->m_content : NULL);
+    printf("Node %s content:%s", root->m_tag, root->m_content != NULL ? root->m_content : NULL);
 }
 
 int XmlNode_isTag(struct XmlNode *node, const String tag )
@@ -304,7 +304,7 @@ int XmlNode_getSubNodeValue(struct XmlNode *node, const String tag, String *valu
 {
     XmlNodeRef child = XmlNode_findChild(node, tag );
     if (child) {
-        XmlNode_getValue(child , value );
+        XmlNode_getValue(child, value );
         return XML_OK;
     }
     return XML_NOK;
@@ -467,7 +467,7 @@ static void startElement(void *userData, const char *name, const char **atts)
     }
 
     if (parent) {
-        node = XmlNode_createChild(parent, (const String)name , NULL);
+        node = XmlNode_createChild(parent, (const String)name, NULL);
     } else {
         node = parser->m_root;
     }
