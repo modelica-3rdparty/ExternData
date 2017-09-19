@@ -1,2 +1,2 @@
-* The hdf5 static library is built with an hdf5 dummy project on [Travis CI](https://travis-ci.org/tbeu/hdf5) and can be downloaded from [hdf5-1.8.18_linux32.tar.xz](https://bitbucket.org/tbeu/downloads/downloads/hdf5-1.8.18_linux32.tar.xz).
+* The hdf5 static library is built with an hdf5 dummy project on [Travis CI](https://travis-ci.org/tbeu/hdf5) and can be downloaded from [hdf5-1.8.19_linux32.tar.xz](https://bitbucket.org/tbeu/downloads/downloads/hdf5-1.8.19_linux32.tar.xz).
 * All other static libraries are built with the ExternData project on [Travis CI](https://travis-ci.org/tbeu/ExternData) and can be downloaded from [ExternData_linux32.tar.xz](https://bitbucket.org/tbeu/downloads/downloads/ExternData_linux32.tar.xz).
