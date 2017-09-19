@@ -26,6 +26,9 @@
     <ClCompile Include="..\..\C-Sources\expat\lib\xmltok_impl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C-Sources\expat\lib\loadlibrary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\expat\lib\xmltok_impl.h">
