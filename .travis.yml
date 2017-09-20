@@ -14,7 +14,7 @@ addons:
 
 env:
   global:
-    - DEPLOY_LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a"
+    - DEPLOY_LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a libparson.a"
     # BBPASS
     - secure: "JwXQBxm9acImq0n2WhYEMLsdxGxgHC0I2NtSznxXiUDTGYuIVl+Op2D4MNncd2Ir+B6pMfseU0SxavzqrYzdTlg1dn4NGFC+yQQr/SCAwtEZFGNU3ABw8hKdal+7P/Ukj5V+UMbZOM5NMVgmBFaBU3V8h+sJs+JG+u3YSnR4fCFlLwweIsxRPDgfURBf0z+TO8j9nshD1srXb1A2PyylfBagP9mvFd+A5AIWDUK3PT8CEKFOLVuPBhL7Y4GxD3UDAi0dyb+f/YL4CS0qNMATQg1Q1RlBctzxrigpLkzfxgIHazTaQQo7pG7FfIgtEbxkcUJWc2vsy8nZiYxHDOjKKpkdwZ4GEnxzuY45YSnQUsUTRnvLcQkRWMbVhsjeyCEwYxbUCAJzKMAALpzUyFobrfCpLAP8USb8yuBu6Snwn7j/ark5oA/ISnCCN693yEm9dWKuKBZpl/kjDpzIBP4eN41S2KPPXyr6OAY6kexQNIQAIClrX8PwTniFdKsje/gZbSCjsS6lMFdFg9nszBGMGEhBrjmDMFt+Hqz+BjNMrcOz+WPn3ch+S2RqoKgBgilcPoVHXtOVIHMjQkpSyhCUp2x/1ZsjxA+CfcvoEpzWOBsPp32XKWWxdS6vqgTmi9wsB2nH2pMDojYrIDhb5cXASiNcWi+n4xI2rzFOcRBpzN8="
 

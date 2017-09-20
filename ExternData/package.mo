@@ -32,7 +32,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     extends Modelica.Icons.Information;
     class References "References"
       extends Modelica.Icons.References;
-      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/libexpat/libexpat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;s string processing library for C</li></ul></html>"));
+      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/libexpat/libexpat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\https://github.com/kgabis/parson\">parson</a>&nbsp;-&nbsp;Krzysztof Gabis&#039; lightweight JSON library written in C</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;s string processing library for C</li></ul></html>"));
     end References;
     class License "Simplified BSD License"
       extends Modelica.Icons.Information;
@@ -60,7 +60,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"csvfile\" component is defined, please drag ExternData.CSVFile to the model top level",
+      missingInnerMessage="No \"csvfile\" component is defined, please drag ExternData.CSVFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
@@ -83,7 +83,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="inifile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"inifile\" component is defined, please drag ExternData.INIFile to the model top level",
+      missingInnerMessage="No \"inifile\" component is defined, please drag ExternData.INIFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
@@ -99,14 +99,24 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead) "External JSON file object";
     final function getReal = Functions.JSON.getReal(final json=json) "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray1D = Functions.JSON.getRealArray1D(final json=json) "Get 1D array Real value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.JSON.getRealArray2D(final json=json) "Get 2D array Real value from JSON file" annotation(Documentation(info="<html></html>"));
     final function getInteger = Functions.JSON.getInteger(final json=json) "Get scalar Integer value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getIntegerArray1D = Functions.JSON.getIntegerArray1D(final json=json) "Get 1D array Integer value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getIntegerArray2D = Functions.JSON.getIntegerArray2D(final json=json) "Get 2D array Integer value from JSON file" annotation(Documentation(info="<html></html>"));
     final function getBoolean = Functions.JSON.getBoolean(final json=json) "Get scalar Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getBooleanArray1D = Functions.JSON.getBooleanArray1D(final json=json) "Get 1D array Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getBooleanArray2D = Functions.JSON.getBooleanArray2D(final json=json) "Get 2D array Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.JSON.getString(final json=json) "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getStringArray1D = Functions.JSON.getStringArray1D(final json=json) "Get 1D array String value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getStringArray2D = Functions.JSON.getStringArray2D(final json=json) "Get 2D array String value from JSON file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize1D = Functions.JSON.getArraySize1D(final json=json) "Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.JSON.getArraySize2D(final json=json) "Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"jsonfile\" component is defined, please drag ExternData.JSONFile to the model top level",
+      missingInnerMessage="No \"jsonfile\" component is defined, please drag ExternData.JSONFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
@@ -127,7 +137,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"matfile\" component is defined, please drag ExternData.MATFile to the model top level",
+      missingInnerMessage="No \"matfile\" component is defined, please drag ExternData.MATFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={241,219,48},fillPattern=FillPattern.Solid),
@@ -158,7 +168,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"xlsfile\" component is defined, please drag ExternData.XLSFile to the model top level",
+      missingInnerMessage="No \"xlsfile\" component is defined, please drag ExternData.XLSFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
@@ -196,7 +206,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"xlsxfile\" component is defined, please drag ExternData.XLSXFile to the model top level",
+      missingInnerMessage="No \"xlsxfile\" component is defined, please drag ExternData.XLSXFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
@@ -235,7 +245,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
       defaultComponentPrefixes="inner",
-      missingInnerMessage = "No \"xmlfile\" component is defined, please drag ExternData.XMLFile to the model top level",
+      missingInnerMessage="No \"xmlfile\" component is defined, please drag ExternData.XMLFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
         Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid),
@@ -319,8 +329,35 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "bsxml-json"});
+          Library = {"ED_JSONFile", "parson"});
       end getReal;
+
+      function getRealArray1D "Get 1D Real values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer n=1 "Number of elements";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Real y[n] "1D Real values";
+        external "C" ED_getDoubleArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getRealArray1D;
+
+      function getRealArray2D "Get 2D Real values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Real y[m,n] "2D Real values";
+        external "C" ED_getDoubleArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getRealArray2D;
 
       function getInteger "Get scalar Integer value from JSON file"
         extends Interfaces.partialGetInteger;
@@ -329,16 +366,72 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "bsxml-json"});
+          Library = {"ED_JSONFile", "parson"});
       end getInteger;
+
+      function getIntegerArray1D "Get 1D Integer values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer n=1 "Number of elements";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Integer y[n] "1D Real values";
+        external "C" ED_getIntArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getIntegerArray1D;
+
+      function getIntegerArray2D "Get 2D Integer values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Integer y[m,n] "2D Real values";
+        external "C" ED_getIntArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getIntegerArray2D;
 
       function getBoolean "Get scalar Boolean value from JSON file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternJSONFile json "External JSON file object";
-        algorithm
-          y := getReal(json=json, varName=varName) <> 0;
-        annotation(Inline=true);
+        external "C" y = ED_getBooleanFromJSON(json, varName) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
       end getBoolean;
+
+      function getBooleanArray1D "Get 1D Boolean values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer n=1 "Number of elements";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Boolean y[n] "1D Real values";
+        external "C" ED_getBooleanArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getBooleanArray1D;
+
+      function getBooleanArray2D "Get 2D Boolean values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Boolean y[m,n] "2D Real values";
+        external "C" ED_getBooleanArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getBooleanArray2D;
 
       function getString "Get scalar String value from JSON file"
         extends Interfaces.partialGetString;
@@ -347,8 +440,88 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "bsxml-json"});
+          Library = {"ED_JSONFile", "parson"});
       end getString;
+
+      function getStringArray1D "Get 1D String values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer n=1 "Number of elements";
+        input Types.ExternJSONFile json "External JSON file object";
+        output String y[n] "1D Real values";
+        external "C" ED_getStringArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getStringArray1D;
+
+      function getStringArray2D "Get 2D String values from JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Types.ExternJSONFile json "External JSON file object";
+        output String y[m,n] "2D Real values";
+        external "C" ED_getStringArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getStringArray2D;
+
+      function getArraySize1D "Get length of 1D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Integer n "Number of elements in array";
+        external "C" ED_getArray1DDimensionFromJSON(json, varName, n) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getArraySize1D;
+
+      function getArraySize2D "Get dimensions of 2D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getArraySize2D;
+
+      function getArrayRows2D "Get first dimension of 2D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getArrayRows2D;
+
+      function getArrayColumns2D "Get second dimension of 2D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternJSONFile json "External JSON file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m "Number of rows in array";
+        external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_JSONFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_JSONFile.h\"",
+          Library = {"ED_JSONFile", "parson"});
+      end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end JSON;
 
@@ -371,9 +544,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       function getStringArray1D "Get 1D String values from MAT-file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
-        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of elements";
         input Types.ExternMATFile mat "External MATLAB MAT-file object";
-        output String str[m] "1D String values";
+        output String str[n] "1D String values";
         external "C" ED_getStringArray1DFromMAT(mat, varName, str, size(str, 1)) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
@@ -536,7 +709,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
       function getRealArray1D "Get 1D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of values";
+        input Integer n=1 "Number of elements";
         input Types.ExternXMLFile xml "External XML file object";
         output Real y[n] "1D Real values";
         external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
@@ -684,7 +857,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "bsxml-json"});
+          Library = {"ED_JSONFile", "parson"});
       end constructor;
 
       function destructor "Clean up"
@@ -694,7 +867,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "bsxml-json"});
+          Library = {"ED_JSONFile", "parson"});
       end destructor;
     end ExternJSONFile;
 

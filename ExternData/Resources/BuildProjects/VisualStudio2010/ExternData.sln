@@ -16,7 +16,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_INIFile", "ED_INIFile.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_JSONFile", "ED_JSONFile.vcxproj", "{81F23536-BFAC-4819-9D33-BE2513CF3A9E}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
+		{117CC546-B0E2-4E21-8F2B-9962E202749F} = {117CC546-B0E2-4E21-8F2B-9962E202749F}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_XLSFile", "ED_XLSFile.vcxproj", "{C93082DA-1029-4773-8A57-CBE7702ECC4F}"
@@ -44,6 +44,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_CSVFile", "ED_CSVFile.vc
 	ProjectSection(ProjectDependencies) = postProject
 		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parson", "parson.vcxproj", "{117CC546-B0E2-4E21-8F2B-9962E202749F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,6 +189,18 @@ Global
 		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|Win32.Build.0 = Release|Win32
 		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|x64.ActiveCfg = Release|x64
 		{BD637748-4793-4DA5-AA90-A9331173E352}.Release|x64.Build.0 = Release|x64
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Debug|Win32.Build.0 = Debug|Win32
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Debug|x64.ActiveCfg = Debug|x64
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Debug|x64.Build.0 = Debug|x64
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release Lib|Win32.ActiveCfg = Release Lib|Win32
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release Lib|Win32.Build.0 = Release Lib|Win32
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release Lib|x64.ActiveCfg = Release Lib|x64
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release Lib|x64.Build.0 = Release Lib|x64
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|Win32.ActiveCfg = Release|Win32
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|Win32.Build.0 = Release|Win32
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|x64.ActiveCfg = Release|x64
+		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

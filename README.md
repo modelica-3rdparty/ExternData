@@ -64,6 +64,8 @@ Christopher Hulbert's C library for reading and writing MATLAB MAT-files
 Thiadmer Riemersma's small and portable INI file library with read/write support
 * [minizip](http://www.winimage.com/zLibDll/minizip.html) -
 Gilles Vollant's Zip and UnZip library
+* [parson](https://github.com/kgabis/parson) -
+Krzysztof Gabis' lightweight JSON library written in C
 * [uthash](https://github.com/troydhanson/uthash) -
 Troy D. Hanson's C macros for hash tables and more
 * [zlib](https://github.com/madler/zlib) -
