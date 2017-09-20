@@ -26,10 +26,10 @@
     <ClInclude Include="..\..\C-Sources\ED_locale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\bsxml-json\bsjson.h">
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h">
+    <ClInclude Include="..\..\C-Sources\parson\parson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
