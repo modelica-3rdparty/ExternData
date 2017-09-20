@@ -34,5 +34,16 @@ void ED_destroyJSON(void* _json);
 double ED_getDoubleFromJSON(void* _json, const char* varName);
 const char* ED_getStringFromJSON(void* _json, const char* varName);
 int ED_getIntFromJSON(void* _json, const char* varName);
+int ED_getBooleanFromJSON(void* _json, const char* varName);
+void ED_getArrayDimensionFromJSON(void* _json, const char* varName, size_t* n);
+void ED_getArray2DDimensionsFromJSON(void* _json, const char* varName, size_t* n, size_t* m);
+void ED_getDoubleArrayFromJSON(void* _json, const char* varName, double* arr, size_t n);
+void ED_getStringArrayFromJSON(void* _json, const char* varName, char** arr, size_t n);
+void ED_getIntArrayFromJSON(void* _json, const char* varName, int* arr, size_t n);
+void ED_getBooleanArrayFromJSON(void* _json, const char* varName, int* arr, size_t n);
+void ED_getDoubleArray2DFromJSON(void* _json, const char* varName, double* arr, size_t n, size_t m);
+void ED_getStringArray2DFromJSON(void* _json, const char* varName, char** arr, size_t n, size_t m);
+void ED_getIntArray2DFromJSON(void* _json, const char* varName, int* arr, size_t n, size_t m);
+void ED_getBooleanArray2DFromJSON(void* _json, const char* varName, int* arr, size_t n, size_t m);
 
 #endif
