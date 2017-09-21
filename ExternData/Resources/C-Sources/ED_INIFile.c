@@ -160,7 +160,7 @@ void ED_destroyINI(void* _ini)
 	}
 }
 
-double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section)
+double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section, int strict)
 {
 	double ret = 0.;
 	INIFile* ini = (INIFile*)_ini;
@@ -169,7 +169,7 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section)
 		if (_section != NULL) {
 			INIPair* pair = findKey(_section, varName);
 			if (pair != NULL) {
-				if (ED_strtod(pair->value, ini->loc, &ret)) {
+				if (ED_strtod(pair->value, ini->loc, &ret, strict)) {
 					ModelicaFormatError("Cannot read double value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}
@@ -224,7 +224,7 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 	return "";
 }
 
-int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
+int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int strict)
 {
 	long ret = 0;
 	INIFile* ini = (INIFile*)_ini;
@@ -233,7 +233,7 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section)
 		if (_section != NULL) {
 			INIPair* pair = findKey(_section, varName);
 			if (pair != NULL) {
-				if (ED_strtol(pair->value, ini->loc, &ret)) {
+				if (ED_strtol(pair->value, ini->loc, &ret, strict)) {
 					ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
 						pair->value, ini->fileName);
 				}
