@@ -1,33 +1,7 @@
-// CP: 65001
-/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
- *
- * Copyright (C) 2015-2017, tbeu
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 within ExternData;
 package Examples "Test examples"
   extends Modelica.Icons.ExamplesPackage;
+
   model CSVTest "CSV file read test"
     extends Modelica.Icons.Example;
     inner CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
@@ -42,7 +16,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=inifile.getReal("gain.k", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-    equation
+  equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
     annotation(experiment(StopTime=1),
@@ -55,7 +29,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=jsonfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(jsonfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-    equation
+  equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
     annotation(experiment(StopTime=1),
@@ -77,7 +51,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    equation
+  equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
     annotation(experiment(StopTime=1),
@@ -91,7 +65,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsxfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    equation
+  equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
     annotation(experiment(StopTime=1),
@@ -105,7 +79,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xmlfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    equation
+  equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
     annotation(experiment(StopTime=1),

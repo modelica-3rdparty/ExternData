@@ -41,26 +41,30 @@ enum {
 #define ED_INIT_LOCALE _create_locale(LC_NUMERIC, "C")
 #define ED_FREE_LOCALE(loc) _free_locale(loc)
 
-static __inline int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val)
+static __inline int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = _strtod_l(token, &endptr, loc);
-	if (*endptr != 0) {
-		*val = 0.;
-		ret = ED_ERROR;
+	if (strict == 1) {
+		if (*endptr != 0) {
+			*val = 0.;
+			ret = ED_ERROR;
+		}
 	}
 	return ret;
 }
 
-static __inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
+static __inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = _strtol_l(token, &endptr, 10, loc);
-	if (*endptr != 0) {
-		*val = 0;
-		ret = ED_ERROR;
+	if (strict == 1) {
+		if (*endptr != 0) {
+			*val = 0;
+			ret = ED_ERROR;
+		}
 	}
 	return ret;
 }
