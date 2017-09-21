@@ -239,7 +239,7 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, siz
 						token[0] = ' ';
 						token[len - 1] = '\0';
 					}
-					if (ED_strtod(token, csv->loc, &a[i*n + j])) {
+					if (ED_strtod(token, csv->loc, &a[i*n + j], ED_STRICT)) {
 						ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" at column %i from file \"%s\"\n",
 							field[0] + (int)i, token, field[1] + (int)j, csv->fileName);
 						return;

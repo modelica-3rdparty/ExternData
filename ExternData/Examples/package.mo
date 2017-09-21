@@ -112,4 +112,13 @@ package Examples "Test examples"
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the gain and table parameters from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XMLFile.getReal\">ExternData.XMLFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XMLFile.getString\">ExternData.XMLFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.XMLFile.getRealArray2D\">ExternData.XMLFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
   end XMLTest;
+
+  model TIRTest "TIR file read test"
+    extends Modelica.Icons.Example;
+    inner TIRFile tirfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/sample.tir")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    Modelica.Blocks.Sources.Constant pcx1(k=tirfile.getReal("PCX1", "LONGITUDINAL_COEFFICIENTS")) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    Modelica.Blocks.Sources.Constant pcy1(k=tirfile.getReal("PCY1", "LATERAL_COEFFICIENTS")) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
+    annotation(experiment(StopTime=1),
+      Documentation(info="<html><p>This example model reads the tire coefficients from different sections of the TIR file <a href=\"modelica://ExternData/Resources/Examples/sample.tir\">sample.tir</a>. The coefficients are read as Real values using the function <a href=\"modelica://ExternData.TIRFile.getReal\">ExternData.TIRFile.getReal</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+  end TIRTest;
 end Examples;

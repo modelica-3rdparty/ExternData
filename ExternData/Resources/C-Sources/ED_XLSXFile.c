@@ -325,7 +325,7 @@ static char* findCellValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNo
 				XmlNode_getValue(ites, &token);
 				if (token != NULL) {
 					long idx = 0;
-					if (!ED_strtol(token, xlsx->loc, &idx)) {
+					if (!ED_strtol(token, xlsx->loc, &idx, ED_STRICT)) {
 						if (xlsx->sroot != NULL && (size_t)idx < XmlNode_getChildCount(xlsx->sroot)) {
 							iter = XmlNode_getChild(xlsx->sroot, (int)idx);
 						}
@@ -379,7 +379,7 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 		if (root != NULL) {
 			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			if (token != NULL) {
-				if (ED_strtod(token, xlsx->loc, &ret)) {
+				if (ED_strtod(token, xlsx->loc, &ret, ED_STRICT)) {
 					ModelicaFormatError("Cannot read double value \"%s\" from file \"%s\"\n",
 						token, xlsx->fileName);
 				}
@@ -429,7 +429,7 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 		if (root != NULL) {
 			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			if (token != NULL) {
-				if (ED_strtol(token, xlsx->loc, &ret)) {
+				if (ED_strtol(token, xlsx->loc, &ret, ED_STRICT)) {
 					ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
 						token, xlsx->fileName);
 				}
@@ -465,7 +465,7 @@ void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const cha
 					sprintf(cell, "%s%u", tmp, (unsigned int)(row + i + 1));
 					token = findCellValue(xlsx, cell, root, _sheetName);
 					if (token != NULL) {
-						if (ED_strtod(token, xlsx->loc, &a[i*n + j])) {
+						if (ED_strtod(token, xlsx->loc, &a[i*n + j], ED_STRICT)) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 								(unsigned int)(row + i), (unsigned int)(col + j), token, _sheetName, xlsx->fileName);
 						}

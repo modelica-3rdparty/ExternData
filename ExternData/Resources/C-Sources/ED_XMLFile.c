@@ -159,7 +159,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName)
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token != NULL) {
-			if (ED_strtod(token, xml->loc, &ret)) {
+			if (ED_strtod(token, xml->loc, &ret, ED_STRICT)) {
 				ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -199,7 +199,7 @@ int ED_getIntFromXML(void* _xml, const char* varName)
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
 		if (token != NULL) {
-			if (ED_strtol(token, xml->loc, &ret)) {
+			if (ED_strtol(token, xml->loc, &ret, ED_STRICT)) {
 				ModelicaFormatError("Error in line %i: Cannot read int value \"%s\" from file \"%s\"\n",
 					XmlNode_getLine(root), token, xml->fileName);
 			}
@@ -238,7 +238,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 				token = strtok_r(buf, "[]{},; \t", &nextToken);
 				while (i < n) {
 					if (token != NULL) {
-						if (ED_strtod(token, xml->loc, &a[i++])) {
+						if (ED_strtod(token, xml->loc, &a[i++], ED_STRICT)) {
 							free(buf);
 							ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" from file \"%s\"\n",
 								line, token, xml->fileName);

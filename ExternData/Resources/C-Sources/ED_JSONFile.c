@@ -123,7 +123,7 @@ double ED_getDoubleFromJSON(void* _json, const char* varName) {
 			return json_object_dotget_number(json->root, varName);
 		} else if (json_object_dothas_value_of_type(json->root, varName, JSONString)) {
 			strValue = strdup(json_object_dotget_string(json->root, varName));
-			if (ED_strtod(strValue, json->loc, &ret)) {
+			if (ED_strtod(strValue, json->loc, &ret, ED_STRICT)) {
 				ModelicaFormatError("Could not parse double from \"%s\" at \"%s\" in file \"%s\"\n",
 					strValue, varName, json->fileName);
 			}
@@ -158,7 +158,7 @@ int ED_getIntFromJSON(void* _json, const char* varName) {
 			return (int)json_object_dotget_number(json->root, varName);
 		} else if (json_object_dothas_value_of_type(json->root, varName, JSONString)) {
 			strValue = strdup(json_object_dotget_string(json->root, varName));
-			if (ED_strtol(strValue, json->loc, &ret)) {
+			if (ED_strtol(strValue, json->loc, &ret, ED_STRICT)) {
 				ModelicaFormatError("Could not parse integer from \"%s\" at \"%s\" in file \"%s\"\n",
 					strValue, varName, json->fileName);
 			}
@@ -251,7 +251,7 @@ void ED_getDoubleArray1DFromJSON(void* _json, const char* varName, double* arr, 
 				} else if (JSONString==json_array_get_type(jsonArray)) {
 					for (i=0; i<n; i++) {
 						strValue = strdup(json_array_get_string(jsonArray, i));
-						if (ED_strtod(strValue, json->loc, &(arr[i]))) {
+						if (ED_strtod(strValue, json->loc, &(arr[i]), ED_STRICT)) {
 							ModelicaFormatError("Could not parse double from \"%s\" in array at \"%s\" in file \"%s\"\n",
 								strValue, varName, json->fileName);
 						}
@@ -316,7 +316,7 @@ void ED_getIntArray1DFromJSON(void* _json, const char* varName, int* arr, size_t
 				} else if (JSONString==json_array_get_type(jsonArray)) {
 					for (i=0; i<n; i++) {
 						strValue = strdup(json_array_get_string(jsonArray, i));
-						if (ED_strtol(strValue, json->loc, &lValue)) {
+						if (ED_strtol(strValue, json->loc, &lValue, ED_STRICT)) {
 							ModelicaFormatError("Could not parse integer from \"%s\" in array at \"%s\" in file \"%s\"\n",
 								strValue, varName, json->fileName);
 						}
@@ -401,7 +401,7 @@ void ED_getDoubleArray2DFromJSON(void* _json, const char* varName, double* arr, 
 						subArray = json_array_get_array(jsonArray, i);
 						for (j=0; j<n; j++) {
 							strValue = strdup(json_array_get_string(jsonArray, i));
-							if (ED_strtod(strValue, json->loc, &(arr[i*n + j]))) {
+							if (ED_strtod(strValue, json->loc, &(arr[i*n + j]), ED_STRICT)) {
 								ModelicaFormatError("Could not parse double from \"%s\" in array at \"%s\" in file \"%s\"\n",
 									strValue, varName, json->fileName);
 							}
@@ -477,7 +477,7 @@ void ED_getIntArray2DFromJSON(void* _json, const char* varName, int* arr, size_t
 						subArray = json_array_get_array(jsonArray, i);
 						for (j=0; j<n; j++) {
 							strValue = strdup(json_array_get_string(jsonArray, i));
-							if (ED_strtol(strValue, json->loc, &lValue)) {
+							if (ED_strtol(strValue, json->loc, &lValue, ED_STRICT)) {
 								ModelicaFormatError("Could not parse double from \"%s\" in array at \"%s\" in file \"%s\"\n",
 									strValue, varName, json->fileName);
 							}

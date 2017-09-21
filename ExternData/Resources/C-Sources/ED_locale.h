@@ -36,29 +36,31 @@ enum {
 	ED_OOM = 2
 };
 
+#define ED_STRICT (1)
+
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 #define ED_LOCALE_TYPE _locale_t
 #define ED_INIT_LOCALE _create_locale(LC_NUMERIC, "C")
 #define ED_FREE_LOCALE(loc) _free_locale(loc)
 
-static __inline int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val)
+static __inline int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = _strtod_l(token, &endptr, loc);
-	if (*endptr != 0) {
+	if (ED_STRICT == strict && *endptr != 0) {
 		*val = 0.;
 		ret = ED_ERROR;
 	}
 	return ret;
 }
 
-static __inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
+static __inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = _strtol_l(token, &endptr, 10, loc);
-	if (*endptr != 0) {
+	if (ED_STRICT == strict && *endptr != 0) {
 		*val = 0;
 		ret = ED_ERROR;
 	}
@@ -70,24 +72,24 @@ static __inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
 #define ED_INIT_LOCALE newlocale(LC_NUMERIC, "C", NULL)
 #define ED_FREE_LOCALE(loc) freelocale(loc)
 
-static inline int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val)
+static inline int ED_strtod(char* token, ED_LOCALE_TYPE loc, double* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = strtod_l(token, &endptr, loc);
-	if (*endptr != 0) {
+	if (ED_STRICT == strict && *endptr != 0) {
 		*val = 0.;
 		ret = ED_ERROR;
 	}
 	return ret;
 }
 
-static inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
+static inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = strtol_l(token, &endptr, 10, loc);
-	if (*endptr != 0) {
+	if (ED_STRICT == strict && *endptr != 0) {
 		*val = 0;
 		ret = ED_ERROR;
 	}
@@ -99,7 +101,7 @@ static inline int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
 #define ED_INIT_LOCALE localeconv()->decimal_point
 #define ED_FREE_LOCALE(loc)
 
-static int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val)
+static int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
@@ -118,7 +120,7 @@ static int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val)
 			p = strchr(token2, '.');
 			*p = *dec;
 			*val = strtod(token2, &endptr);
-			if (*endptr != 0) {
+			if (ED_STRICT == strict && *endptr != 0) {
 				*val = 0.;
 				ret = ED_ERROR;
 			}
@@ -131,12 +133,12 @@ static int ED_strtod(char* token, ED_LOCALE_TYPE dec, double* val)
 	return ret;
 }
 
-static int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val)
+static int ED_strtol(char* token, ED_LOCALE_TYPE loc, long* val, int strict)
 {
 	int ret = ED_OK;
 	char* endptr;
 	*val = strtol(token, &endptr, 10);
-	if (*endptr != 0) {
+	if (ED_STRICT == strict && *endptr != 0) {
 		*val = 0;
 		ret = ED_ERROR;
 	}

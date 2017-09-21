@@ -1,5 +1,5 @@
 // CP: 65001
-/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
+/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015-2017, tbeu
  * All rights reserved.
@@ -26,7 +26,7 @@
  */
 
 within;
-package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files"
+package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   package UsersGuide "User's Guide"
     extends Modelica.Icons.Information;
@@ -75,9 +75,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead) "External INI file object";
-    final function getReal = Functions.INI.getReal(final ini=ini) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.INI.getInteger(final ini=ini) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.INI.getBoolean(final ini=ini) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.INI.getReal(final ini=ini, final strict=true) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.INI.getInteger(final ini=ini, final strict=true) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.INI.getBoolean(final ini=ini, final strict=true) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.INI.getString(final ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
@@ -253,6 +253,31 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
+  record TIRFile "Read data values from TIR file"
+    parameter String fileName="" "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="TIR files (*.tir)",
+        caption="Open file")));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+    final parameter Types.ExternINIFile tir=Types.ExternINIFile(fileName, verboseRead) "External TIR file object";
+    final function getReal = Functions.INI.getReal(final ini=tir, final strict=false) "Get scalar Real value from TIR file" annotation(Documentation(info="<html></html>"));
+    final function getInteger = Functions.INI.getInteger(final ini=tir, final strict=false) "Get scalar Integer value from TIR file" annotation(Documentation(info="<html></html>"));
+    final function getBoolean = Functions.INI.getBoolean(final ini=tir, final strict=false) "Get scalar Boolean value from TIR file" annotation(Documentation(info="<html></html>"));
+    final function getString = Functions.INI.getString(final ini=tir) "Get scalar String value from TIR file" annotation(Documentation(info="<html></html>"));
+    annotation(
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of tyre data (TIR) files.</p><p>See <a href=\"modelica://ExternData.Examples.TIRTest\">Examples.TIRTest</a> for an example.</p></html>"),
+      defaultComponentName="tirfile",
+      defaultComponentPrefixes="inner",
+      missingInnerMessage="No \"tirfile\" component is defined, please drag ExternData.TIRFile to the model top level",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid),
+        Text(lineColor={0,0,255},extent={{-36,84},{88,40}},textString="[tir]"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name"),
+        Ellipse(extent={{-50,20},{50,-80}},fillPattern=FillPattern.Solid),
+        Ellipse(extent={{-30,0},{30,-60}},fillColor={255,255,255},fillPattern=FillPattern.Solid)}));
+  end TIRFile;
+
   package Functions "Functions"
     extends Modelica.Icons.Package;
 
@@ -280,30 +305,45 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XL
         extends Interfaces.partialGetReal;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        external "C" y=ED_getDoubleFromINI(ini, varName, section) annotation(
+        input Boolean strict=true "Return an error if there are characters on the line that aren't part of the value";
+        external "C" y=ED_getDoubleFromINI(ini, varName, section, strict) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
           Library = {"ED_INIFile", "bsxml-json"});
+      annotation(Documentation(info="<html>
+<p>If strict=true and the line being read contains more than a name=value pair this function will return an error.  However, when strict=false it will return the value and ignore the rest of the line.</p>
+<p>For example</p>
+<code>[example_section]<br />name=65.2   ;this is a comment</code>
+<p>In this example, if strict=true we will get an error but if strict=false it will return the value 65.2</p>
+</html>"));
       end getReal;
 
       function getInteger "Get scalar Integer value from INI file"
         extends Interfaces.partialGetInteger;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        external "C" y=ED_getIntFromINI(ini, varName, section) annotation(
+        input Boolean strict=true "Return an error if there are characters on the line that aren't part of the value";
+        external "C" y=ED_getIntFromINI(ini, varName, section, strict) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
           Library = {"ED_INIFile", "bsxml-json"});
+        annotation(Documentation(info="<html>
+<p>If strict=true and the line being read contains more than a name=value pair this function will return an error.  However, when strict=false it will return the value and ignore the rest of the line.</p>
+<p>For example</p>
+<code>[example_section]<br />name=13   ;this is a comment</code>
+<p>In this example, if strict=true we will get an error but if strict=false it will return the value 13</p>
+</html>"));
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from INI file"
         extends Interfaces.partialGetBoolean;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
+        input Boolean strict=true "Return an error if there are characters on the line that aren't part of the value";
         algorithm
-          y := getReal(ini=ini, varName=varName, section=section) <> 0;
+          y := getReal(ini=ini, varName=varName, section=section, strict=strict) <> 0;
         annotation(Inline=true);
       end getBoolean;
 

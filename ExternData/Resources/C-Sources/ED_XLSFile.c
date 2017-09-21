@@ -241,7 +241,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 							(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 					}
 					else { /* Valid formula result */
-						if (ED_strtol((char*)cell->str, xls->loc, &ret)) {
+						if (ED_strtol((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 								(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 						}
@@ -249,7 +249,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
 				}
 			}
 			else if (cell->str != NULL) {
-				if (ED_strtol((char*)cell->str, xls->loc, &ret)) {
+				if (ED_strtol((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
 					ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
 				}
@@ -294,7 +294,7 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 									(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 							}
 							else { /* Valid formula result */
-								if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j])) {
+								if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j], ED_STRICT)) {
 									ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 										(unsigned int)(row + i), (unsigned int)(col + j), cell->str, _sheetName, xls->fileName);
 								}
@@ -302,7 +302,7 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 						}
 					}
 					else if (cell->str != NULL) {
-						if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j])) {
+						if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j], ED_STRICT)) {
 							ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
 								(unsigned int)(row + i), (unsigned int)(col + j), cell->str, _sheetName, xls->fileName);
 						}
