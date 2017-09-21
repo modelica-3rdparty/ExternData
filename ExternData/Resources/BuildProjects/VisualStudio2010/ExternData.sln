@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_XMLFile", "ED_XMLFile.vcxproj", "{DDEBF59B-8CA9-4901-A9C1-21FB5A3FE479}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
@@ -16,7 +16,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_INIFile", "ED_INIFile.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_JSONFile", "ED_JSONFile.vcxproj", "{81F23536-BFAC-4819-9D33-BE2513CF3A9E}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
 		{117CC546-B0E2-4E21-8F2B-9962E202749F} = {117CC546-B0E2-4E21-8F2B-9962E202749F}
 	EndProjectSection
 EndProject

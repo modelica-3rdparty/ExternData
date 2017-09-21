@@ -131,13 +131,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ED_JSONFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\parson;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bsxml-json.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>parson.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>ED_JSONFile.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
@@ -147,13 +147,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\parson;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_JSONFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>bsxml-json.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>parson.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
@@ -166,12 +166,12 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_JSONFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\parson;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bsxml-json.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>parson.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>ED_JSONFile.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
@@ -183,13 +183,13 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_JSONFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\parson;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>ED_JSONFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>bsxml-json.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>parson.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -202,7 +202,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\parson;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
@@ -221,7 +221,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\parson;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
