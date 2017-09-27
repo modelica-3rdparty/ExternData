@@ -32,9 +32,9 @@
 
 void* ED_createXML(const char* fileName, int verbose);
 void ED_destroyXML(void* _xml);
-double ED_getDoubleFromXML(void* _xml, const char* varName);
-const char* ED_getStringFromXML(void* _xml, const char* varName);
-int ED_getIntFromXML(void* _xml, const char* varName);
+double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist);
+const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist);
+int ED_getIntFromXML(void* _xml, const char* varName, int* exist);
 void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size_t n);
 void ED_getDoubleArray2DFromXML(void* _xml, const char* varName, double* a, size_t m, size_t n);
 

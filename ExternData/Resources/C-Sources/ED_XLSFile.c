@@ -150,7 +150,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 			}
 		}
 		if (sheet < 0) {
-			ModelicaFormatError("Cannot find sheet \"%s\" in file \"%s\"\n",
+			ModelicaFormatMessage("Cannot find sheet \"%s\" in file \"%s\"\n",
 				*sheetName, xls->fileName);
 			return NULL;
 		}
@@ -167,98 +167,194 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 	return pWS;
 }
 
-double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
+double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* sheetName, int* exist)
 {
 	double ret = 0.;
-	ED_getDoubleArray2DFromXLS(_xls, cellAddress, sheetName, &ret, 1, 1);
+	XLSFile* xls = (XLSFile*)_xls;
+	if (xls != NULL) {
+		char* _sheetName = (char*)sheetName;
+		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
+		if (NULL != pWS) {
+			xlsCell* cell;
+			WORD row = 0, col = 0;
+
+			*exist = 1;
+			rc(cellAddress, &row, &col);
+			cell = xls_cell(pWS, row, col);
+			if (cell != NULL && !cell->isHidden) {
+				/* Get the value of the cell (either numeric or string) */
+				if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
+					ret = cell->d;
+				}
+				else if (cell->id == XLS_RECORD_FORMULA) {
+					if (cell->l == 0) { /* It is a number */
+						ret = cell->d;
+					}
+					else {
+						if (0 == strcmp((char*)cell->str, "bool")) { /* It is boolean */
+							ret = (int)cell->d ? 1. : 0.;
+						}
+						else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
+							ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
+								(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+						}
+						else { /* Valid formula result */
+							if (ED_strtod((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
+								ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+									(unsigned int)row, (unsigned int)col, cell->str, _sheetName, xls->fileName);
+							}
+						}
+					}
+				}
+				else if (cell->id == XLS_RECORD_BLANK) {
+					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+				}
+				else if (cell->str != NULL) {
+					if (ED_strtod((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
+						ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+							(unsigned int)row, (unsigned int)col, cell->str, _sheetName, xls->fileName);
+					}
+				}
+				else {
+					*exist = 0;
+				}
+			}
+			else {
+				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+				*exist = 0;
+			}
+		}
+		else {
+			*exist = 0;
+		}
+	}
+	else {
+		*exist = 0;
+	}
 	return ret;
 }
 
-const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
+const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char* sheetName, int* exist)
 {
 	XLSFile* xls = (XLSFile*)_xls;
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
-		xlsCell* cell;
-		WORD row = 0, col = 0;
+		if (NULL != pWS) {
+			xlsCell* cell;
+			WORD row = 0, col = 0;
 
-		rc(cellAddress, &row, &col);
-		cell = xls_cell(pWS, row, col);
-		if (cell != NULL && !cell->isHidden) {
-			/* Get the string value of the cell */
-			if (cell->id == XLS_RECORD_FORMULA) {
-				if (cell->l != 0) { /* It is not a number */
-					if ((0 != strcmp((char*)cell->str, "bool")) && /* It is not boolean and */
-						(0 != strcmp((char*)cell->str, "error"))) { /* formula is not in error */
-						char* ret = ModelicaAllocateString(strlen((char*)cell->str));
-						strcpy(ret, (char*)cell->str);
-						return (const char*)ret;
+			*exist = 1;
+			rc(cellAddress, &row, &col);
+			cell = xls_cell(pWS, row, col);
+			if (cell != NULL && !cell->isHidden) {
+				/* Get the string value of the cell */
+				if (cell->id == XLS_RECORD_FORMULA) {
+					if (cell->l != 0) { /* It is not a number */
+						if ((0 != strcmp((char*)cell->str, "bool")) && /* It is not boolean and */
+							(0 != strcmp((char*)cell->str, "error"))) { /* formula is not in error */
+							char* ret = ModelicaAllocateString(strlen((char*)cell->str));
+							strcpy(ret, (char*)cell->str);
+							return (const char*)ret;
+						}
 					}
 				}
+				else if (cell->id == XLS_RECORD_BLANK) {
+					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+				}
+				else if (cell->str != NULL) {
+					char* ret = ModelicaAllocateString(strlen((char*)cell->str));
+					strcpy(ret, (char*)cell->str);
+					return (const char*)ret;
+				}
+				else {
+					*exist = 0;
+				}
 			}
-			else if (cell->str != NULL) {
-				char* ret = ModelicaAllocateString(strlen((char*)cell->str));
-				strcpy(ret, (char*)cell->str);
-				return (const char*)ret;
+			else {
+				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+				*exist = 0;
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
-				(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+			*exist = 0;
 		}
+	}
+	else {
+		*exist = 0;
 	}
 	return "";
 }
 
-int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName)
+int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName, int* exist)
 {
 	long ret = 0;
 	XLSFile* xls = (XLSFile*)_xls;
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
-		xlsCell* cell;
-		WORD row = 0, col = 0;
+		if (NULL != pWS) {
+			xlsCell* cell;
+			WORD row = 0, col = 0;
 
-		rc(cellAddress, &row, &col);
-		cell = xls_cell(pWS, row, col);
-		if (cell != NULL && !cell->isHidden) {
-			/* Get the value of the cell (either numeric or string) */
-			if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
-				ret = (long)cell->d;
-			}
-			else if (cell->id == XLS_RECORD_FORMULA) {
-				if (cell->l == 0) { /* It is a number */
+			*exist = 1;
+			rc(cellAddress, &row, &col);
+			cell = xls_cell(pWS, row, col);
+			if (cell != NULL && !cell->isHidden) {
+				/* Get the value of the cell (either numeric or string) */
+				if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
 					ret = (long)cell->d;
 				}
-				else {
-					if (0 == strcmp((char*)cell->str, "bool")) { /* It is boolean */
-						ret = (long)cell->d ? 1 : 0;
+				else if (cell->id == XLS_RECORD_FORMULA) {
+					if (cell->l == 0) { /* It is a number */
+						ret = (long)cell->d;
 					}
-					else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
-						ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
-							(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
-					}
-					else { /* Valid formula result */
-						if (ED_strtol((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
-							ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
-								(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
+					else {
+						if (0 == strcmp((char*)cell->str, "bool")) { /* It is boolean */
+							ret = (long)cell->d ? 1 : 0;
+						}
+						else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
+							ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
+								(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+						}
+						else { /* Valid formula result */
+							if (ED_strtol((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
+								ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+									(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
+							}
 						}
 					}
 				}
-			}
-			else if (cell->str != NULL) {
-				if (ED_strtol((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
-					ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
-						(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
+				else if (cell->id == XLS_RECORD_BLANK) {
+					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				}
+				else if (cell->str != NULL) {
+					if (ED_strtol((char*)cell->str, xls->loc, &ret, ED_STRICT)) {
+						ModelicaFormatError("Error in cell (%u,%u) when reading int value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+							(unsigned int)row, (unsigned int)col, (char*)cell->str, _sheetName, xls->fileName);
+					}
+				}
+				else {
+					*exist = 0;
+				}
+			}
+			else {
+				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+				*exist = 0;
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
-				(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
+			*exist = 0;
 		}
+	}
+	else {
+		*exist = 0;
 	}
 	return (int)ret;
 }
@@ -269,49 +365,59 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
-		WORD row = 0, col = 0;
-		WORD i, j;
+		if (NULL != pWS) {
+			WORD row = 0, col = 0;
+			WORD i, j;
 
-		rc(cellAddress, &row, &col);
-		for (i = 0; i < m; i++) {
-			for (j = 0; j < n; j++) {
-				xlsCell* cell = xls_cell(pWS, row + i, col + j);
-				if (cell != NULL && !cell->isHidden) {
-					/* Get the value of the cell (either numeric or string) */
-					if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
-						a[i*n + j] = cell->d;
-					}
-					else if (cell->id == XLS_RECORD_FORMULA) {
-						if (cell->l == 0) { /* It is a number */
+			rc(cellAddress, &row, &col);
+			for (i = 0; i < m; i++) {
+				for (j = 0; j < n; j++) {
+					xlsCell* cell = xls_cell(pWS, row + i, col + j);
+					if (cell != NULL && !cell->isHidden) {
+						/* Get the value of the cell (either numeric or string) */
+						if (cell->id == XLS_RECORD_RK || cell->id == XLS_RECORD_MULRK || cell->id == XLS_RECORD_NUMBER) {
 							a[i*n + j] = cell->d;
 						}
-						else {
-							if (0 == strcmp((char*)cell->str, "bool")) { /* It is boolean */
-								a[i*n + j] = (int)cell->d ? 1. : 0.;
+						else if (cell->id == XLS_RECORD_FORMULA) {
+							if (cell->l == 0) { /* It is a number */
+								a[i*n + j] = cell->d;
 							}
-							else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
-								ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
-									(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
-							}
-							else { /* Valid formula result */
-								if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j], ED_STRICT)) {
-									ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
-										(unsigned int)(row + i), (unsigned int)(col + j), cell->str, _sheetName, xls->fileName);
+							else {
+								if (0 == strcmp((char*)cell->str, "bool")) { /* It is boolean */
+									a[i*n + j] = (int)cell->d ? 1. : 0.;
+								}
+								else if (0 == strcmp((char*)cell->str, "error")) { /* Formula is in error */
+									ModelicaFormatError("Error in formula of cell (%u,%u) in sheet \"%s\" of file \"%s\"\n",
+										(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
+								}
+								else { /* Valid formula result */
+									if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j], ED_STRICT)) {
+										ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+											(unsigned int)(row + i), (unsigned int)(col + j), cell->str, _sheetName, xls->fileName);
+									}
 								}
 							}
 						}
-					}
-					else if (cell->str != NULL) {
-						if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j], ED_STRICT)) {
-							ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
-								(unsigned int)(row + i), (unsigned int)(col + j), cell->str, _sheetName, xls->fileName);
+						else if (cell->id == XLS_RECORD_BLANK) {
+							a[i*n + j] = 0.;
+							ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+								(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
+						}
+						else if (cell->str != NULL) {
+							if (ED_strtod((char*)cell->str, xls->loc, &a[i*n + j], ED_STRICT)) {
+								ModelicaFormatError("Error in cell (%u,%u) when reading double value \"%s\" from sheet \"%s\" of file \"%s\"\n",
+									(unsigned int)(row + i), (unsigned int)(col + j), cell->str, _sheetName, xls->fileName);
+							}
+						}
+						else {
+							a[i*n + j] = 0.;
 						}
 					}
-				}
-				else {
-					a[i*n + j] = 0.;
-					ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
-						(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
+					else {
+						a[i*n + j] = 0.;
+						ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+							(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
+					}
 				}
 			}
 		}

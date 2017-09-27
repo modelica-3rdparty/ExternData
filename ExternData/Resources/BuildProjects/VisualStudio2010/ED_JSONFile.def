@@ -4,6 +4,7 @@ EXPORTS
 	ED_getDoubleFromJSON
 	ED_getStringFromJSON
 	ED_getIntFromJSON
+	ED_getBooleanFromJSON
 	ED_getArray1DDimensionFromJSON
 	ED_getArray2DDimensionsFromJSON
 	ED_getDoubleArray1DFromJSON

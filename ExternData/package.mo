@@ -32,7 +32,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     extends Modelica.Icons.Information;
     class References "References"
       extends Modelica.Icons.References;
-      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/libexpat/libexpat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\https://github.com/kgabis/parson\">parson</a>&nbsp;-&nbsp;Krzysztof Gabis&#039; lightweight JSON library written in C</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;s string processing library for C</li></ul></html>"));
+      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/libexpat/libexpat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"http://sourceforge.net/projects/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"http://sourceforge.net/projects/matio\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"https://github.com/compuphase/minIni\">minIni</a>&nbsp;-&nbsp;Thiadmer Riemersma&#039;s small and portable INI file library with read/write support</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/kgabis/parson\">parson</a>&nbsp;-&nbsp;Krzysztof Gabis&#039; lightweight JSON library written in C</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;s string processing library for C</li></ul></html>"));
     end References;
     class License "Simplified BSD License"
       extends Modelica.Icons.Information;
@@ -59,7 +59,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"csvfile\" component is defined, please drag ExternData.CSVFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -82,7 +82,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="inifile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"inifile\" component is defined, please drag ExternData.INIFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -115,7 +115,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"jsonfile\" component is defined, please drag ExternData.JSONFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -136,7 +136,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"matfile\" component is defined, please drag ExternData.MATFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -167,7 +167,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"xlsfile\" component is defined, please drag ExternData.XLSFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -205,7 +205,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"xlsxfile\" component is defined, please drag ExternData.XLSXFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -244,7 +244,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"xmlfile\" component is defined, please drag ExternData.XMLFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -267,7 +267,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of tyre data (TIR) files.</p><p>See <a href=\"modelica://ExternData.Examples.TIRTest\">Examples.TIRTest</a> for an example.</p></html>"),
       defaultComponentName="tirfile",
-      defaultComponentPrefixes="inner",
+      defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"tirfile\" component is defined, please drag ExternData.TIRFile to the model top level",
       Icon(graphics={
         Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
@@ -306,7 +306,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
         input Boolean strict=true "Return an error if there are characters on the line that aren't part of the value";
-        external "C" y=ED_getDoubleFromINI(ini, varName, section, strict) annotation(
+        external "C" y=ED_getDoubleFromINI(ini, varName, section, strict, exist) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
@@ -324,7 +324,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
         input Boolean strict=true "Return an error if there are characters on the line that aren't part of the value";
-        external "C" y=ED_getIntFromINI(ini, varName, section, strict) annotation(
+        external "C" y=ED_getIntFromINI(ini, varName, section, strict, exist) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
@@ -342,16 +342,19 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
         input Boolean strict=true "Return an error if there are characters on the line that aren't part of the value";
+        protected
+          Real aux;
         algorithm
-          y := getReal(ini=ini, varName=varName, section=section, strict=strict) <> 0;
-        annotation(Inline=true);
+          (aux, exist) := getReal(ini=ini, varName=varName, section=section, strict=strict);
+          y := aux <> 0;
+        annotation(Inline=false);
       end getBoolean;
 
       function getString "Get scalar String value from INI file"
         extends Interfaces.partialGetString;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
-        external "C" str=ED_getStringFromINI(ini, varName, section) annotation(
+        external "C" str=ED_getStringFromINI(ini, varName, section, exist) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
@@ -365,7 +368,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getReal "Get scalar Real value from JSON file"
         extends Interfaces.partialGetReal;
         input Types.ExternJSONFile json "External JSON file object";
-        external "C" y=ED_getDoubleFromJSON(json, varName) annotation(
+        external "C" y=ED_getDoubleFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
@@ -402,7 +405,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getInteger "Get scalar Integer value from JSON file"
         extends Interfaces.partialGetInteger;
         input Types.ExternJSONFile json "External JSON file object";
-        external "C" y=ED_getIntFromJSON(json, varName) annotation(
+        external "C" y=ED_getIntFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
@@ -439,7 +442,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getBoolean "Get scalar Boolean value from JSON file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternJSONFile json "External JSON file object";
-        external "C" y = ED_getBooleanFromJSON(json, varName) annotation(
+        external "C" y = ED_getBooleanFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
@@ -476,7 +479,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getString "Get scalar String value from JSON file"
         extends Interfaces.partialGetString;
         input Types.ExternJSONFile json "External JSON file object";
-        external "C" str=ED_getStringFromJSON(json, varName) annotation(
+        external "C" str=ED_getStringFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
@@ -604,7 +607,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Real y "Real value";
-        external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName) annotation(
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to 0.0";
+        external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
@@ -632,7 +636,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Integer y "Integer value";
-        external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName) annotation(
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to 0";
+        external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
@@ -645,9 +650,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Boolean y "Boolean value";
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to false";
+        protected
+          Real aux;
         algorithm
-          y := getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName) <> 0;
-        annotation(Inline=true);
+          (aux, exist) := getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
+          y := aux <> 0;
+        annotation(Inline=false);
       end getBoolean;
 
       function getString "Get scalar String value from Excel XLS file"
@@ -656,7 +665,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output String str "String value";
-        external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName) annotation(
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to an empty string";
+        external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
@@ -673,7 +683,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Real y "Real value";
-        external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName) annotation(
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to 0.0";
+        external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
@@ -701,7 +712,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Integer y "Integer value";
-        external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName) annotation(
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set 0";
+        external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName, true) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
@@ -714,9 +726,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Boolean y "Boolean value";
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to false";
+        protected
+          Real aux;
         algorithm
-          y := getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName) <> 0;
-        annotation(Inline=true);
+          (aux, exist) := getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
+          y := aux <> 0;
+        annotation(Inline=false);
       end getBoolean;
 
       function getString "Get scalar String value from Excel XLSX file"
@@ -725,7 +741,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output String str "String value";
-        external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName) annotation(
+        output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to an empty string";
+        external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
@@ -739,7 +756,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getReal "Get scalar Real value from XML file"
         extends Interfaces.partialGetReal;
         input Types.ExternXMLFile xml "External XML file object";
-        external "C" y=ED_getDoubleFromXML(xml, varName) annotation(
+        external "C" y=ED_getDoubleFromXML(xml, varName, exist) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
@@ -776,7 +793,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getInteger "Get scalar Integer value from XML file"
         extends Interfaces.partialGetInteger;
         input Types.ExternXMLFile xml "External XML file object";
-        external "C" y=ED_getIntFromXML(xml, varName) annotation(
+        external "C" y=ED_getIntFromXML(xml, varName, exist) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
@@ -786,15 +803,18 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       function getBoolean "Get scalar Boolean value from XML file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternXMLFile xml "External XML file object";
+        protected
+          Real aux;
         algorithm
-          y := getReal(xml=xml, varName=varName) <> 0;
-        annotation(Inline=true);
+          (aux, exist) := getReal(xml=xml, varName=varName);
+          y := aux <> 0;
+        annotation(Inline=false);
       end getBoolean;
 
       function getString "Get scalar String value from XML file"
         extends Interfaces.partialGetString;
         input Types.ExternXMLFile xml "External XML file object";
-        external "C" str=ED_getStringFromXML(xml, varName) annotation(
+        external "C" str=ED_getStringFromXML(xml, varName, exist) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
@@ -811,24 +831,28 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       extends Modelica.Icons.Function;
       input String varName "Key";
       output Real y "Real value";
+      output Boolean exist "= true, if varName exits; = false, if it does not exist and y is set to 0.0";
     end partialGetReal;
 
     partial function partialGetInteger
       extends Modelica.Icons.Function;
       input String varName "Key";
       output Integer y "Integer value";
+      output Boolean exist "= true, if varName exits; = false, if it does not exist and y is set to 0";
     end partialGetInteger;
 
     partial function partialGetBoolean
       extends Modelica.Icons.Function;
       input String varName "Key";
       output Boolean y "Boolean value";
+      output Boolean exist "= true, if varName exits; = false, if it does not exist and y is set to false";
     end partialGetBoolean;
 
     partial function partialGetString
       extends Modelica.Icons.Function;
       input String varName "Key";
       output String str "String value";
+      output Boolean exist "= true, if varName exits; = false, if it does not exist and str is set to a an empty string";
     end partialGetString;
   end Interfaces;
 

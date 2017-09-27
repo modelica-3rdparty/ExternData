@@ -31,9 +31,9 @@
 
 void* ED_createXLSX(const char* fileName, int verbose);
 void ED_destroyXLSX(void* _xlsx);
-double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName);
-const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName);
-int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName);
+double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, int* exist);
+const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, int* exist);
+int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, int* exist);
 void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, double* a, size_t m, size_t n);
 
 #endif

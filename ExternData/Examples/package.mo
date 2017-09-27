@@ -1,5 +1,5 @@
 // CP: 65001
-/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, Excel XLS/XLSX or XML files
+/* package.mo - Modelica Examples library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015-2017, tbeu
  * All rights reserved.
@@ -30,7 +30,7 @@ package Examples "Test examples"
   extends Modelica.Icons.ExamplesPackage;
   model CSVTest "CSV file read test"
     extends Modelica.Icons.Example;
-    inner CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=csvfile.getRealArray2D(3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the table parameter from the CSV file <a href=\"modelica://ExternData/Resources/Examples/test.csv\">test.csv</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.CSVFile.getRealArray2D\">ExternData.CSVFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
@@ -38,7 +38,7 @@ package Examples "Test examples"
 
   model INITest "INI file read test"
     extends Modelica.Icons.Example;
-    inner INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=inifile.getReal("gain.k", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -51,7 +51,7 @@ package Examples "Test examples"
 
   model JSONTest "JSON file read test"
     extends Modelica.Icons.Example;
-    inner JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=jsonfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(jsonfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -65,7 +65,7 @@ package Examples "Test examples"
 
   model MATTest "MAT-file read test"
     extends Modelica.Icons.Example;
-    inner MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=matfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the table parameter from variable table1 of the HDF5-based MAT-file <a href=\"modelica://ExternData/Resources/Examples/test_v7.3.mat\">test_v7.3.mat</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.MATFile.getRealArray2D\">ExternData.MATFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
@@ -73,11 +73,36 @@ package Examples "Test examples"
 
   model XLSTest "Excel XLS file read test"
     extends Modelica.Icons.Example;
-    inner XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=xlsfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
+    parameter Real sumB = computeColSum(xlsfile, "B") "Sum of column B";
+    function computeColSum "Compute column sum"
+      extends Modelica.Icons.Function;
+      input XLSFile xlsfile "Excel XLS file record";
+      input String col = "A" "Column";
+      input String sheetName="" "Sheet name";
+      input Integer startRow = 2 "Start row";
+      output Real colSum "Column sum";
+      protected
+        Integer row;
+        Real val;
+        Boolean exist;
+      algorithm
+        colSum := 0.0;
+        row := startRow;
+        exist := true;
+        while exist loop
+          (val, exist) := Functions.XLS.getReal(cellAddress=col + String(row), sheetName=sheetName, xls=xlsfile.xls);
+          if exist then
+            colSum := colSum + val;
+            row := row + 1;
+          end if;
+        end while;
+      annotation(Documentation(info="<html><p>This function computes the column sum of a given column and sheet of an Excel XLS file.</p></html>"));
+    end computeColSum;
     equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
@@ -87,11 +112,36 @@ package Examples "Test examples"
 
   model XLSXTest "Excel XLSX file read test"
     extends Modelica.Icons.Example;
-    inner XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=xlsxfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsxfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
+    parameter Real sumB = computeColSum(xlsxfile, "B") "Sum of column B";
+    function computeColSum "Compute column sum"
+      extends Modelica.Icons.Function;
+      input XLSXFile xlsxfile "Excel XLSX file record";
+      input String col = "A" "Column";
+      input String sheetName="" "Sheet name";
+      input Integer startRow = 2 "Start row";
+      output Real colSum "Column sum";
+      protected
+        Integer row;
+        Real val;
+        Boolean exist;
+      algorithm
+        colSum := 0.0;
+        row := startRow;
+        exist := true;
+        while exist loop
+          (val, exist) := Functions.XLSX.getReal(cellAddress=col + String(row), sheetName=sheetName, xlsx=xlsxfile.xlsx);
+          if exist then
+            colSum := colSum + val;
+            row := row + 1;
+          end if;
+        end while;
+      annotation(Documentation(info="<html><p>This function computes the column sum of a given column and sheet of an Excel XLSX file.</p></html>"));
+    end computeColSum;
     equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
       connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
@@ -101,7 +151,7 @@ package Examples "Test examples"
 
   model XMLTest "XML file read test"
     extends Modelica.Icons.Example;
-    inner XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=xmlfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xmlfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
