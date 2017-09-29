@@ -67,6 +67,7 @@ package Examples "Test examples"
   model MATTest "MAT-file read test"
     extends Modelica.Icons.Example;
     inner parameter MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    parameter Integer m = matfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=matfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the table parameter from variable table1 of the HDF5-based MAT-file <a href=\"modelica://ExternData/Resources/Examples/test_v7.3.mat\">test_v7.3.mat</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.MATFile.getRealArray2D\">ExternData.MATFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));

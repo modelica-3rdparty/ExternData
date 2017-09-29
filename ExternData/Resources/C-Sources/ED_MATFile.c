@@ -144,3 +144,16 @@ void ED_getStringArray1DFromMAT(void* _mat, const char* varName, const char** a,
 		}
 	}
 }
+
+void ED_getArray2DDimensionsFromMAT(void* _mat, const char* varName, int* m, int* n)
+{
+	MATFile* mat = (MATFile*)_mat;
+	*m = 0;
+	*n = 0;
+	if (NULL != mat) {
+		int dim[2];
+		ModelicaIO_readMatrixSizes(mat->fileName, varName, dim);
+		*m = dim[0];
+		*n = dim[1];
+	}
+}

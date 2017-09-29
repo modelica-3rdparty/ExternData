@@ -135,6 +135,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     final parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
     final function getRealArray2D = Functions.MAT.getRealArray2D(final mat=mat) "Get 2D Real values from MAT-file" annotation(Documentation(info="<html></html>"));
     final function getStringArray1D = Functions.MAT.getStringArray1D(final mat=mat) "Get 1D String values from MAT-file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.MAT.getArraySize2D(final mat=mat) "Get the size of a 2D array in a MAT file" annotation(Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.MAT.getArrayRows2D(final mat=mat) "Get first dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.MAT.getArrayColumns2D(final mat=mat) "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
@@ -604,6 +607,47 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           Include = "#include \"ED_MATFile.h\"",
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getStringArray1D;
+
+      function getArraySize2D "Get dimensions of 2D array in MAT file"
+        extends Modelica.Icons.Function;
+        input String varName "Variable name";
+        input Types.ExternMATFile mat "External MATLAB MAT-file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromMAT(mat, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+      end getArraySize2D;
+
+      function getArrayRows2D "Get first dimension of 2D array in MAT file"
+        extends Modelica.Icons.Function;
+        input String varName "Variable name";
+        input Types.ExternMATFile mat "External MATLAB MAT-file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n[1] "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromMAT(mat, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+      end getArrayRows2D;
+
+      function getArrayColumns2D "Get second dimension of 2D array in MAT file"
+        extends Modelica.Icons.Function;
+        input String varName "Variable name";
+        input Types.ExternMATFile mat "External MATLAB MAT-file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m[1] "Number of rows in array";
+        external "C" ED_getArray2DDimensionsFromMAT(mat, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_MATFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_MATFile.h\"",
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+      end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end MAT;
 
