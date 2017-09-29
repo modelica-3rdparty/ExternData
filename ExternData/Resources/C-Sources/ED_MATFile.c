@@ -79,7 +79,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 	}
 }
 
-void ED_getStringArray1DFromMAT(void* _mat, const char* varName, const char* string[], size_t m)
+void ED_getStringArray1DFromMAT(void* _mat, const char* varName, const char** a, size_t m)
 {
 	MATFile* mat = (MATFile*)_mat;
 	if (mat != NULL) {
@@ -129,7 +129,7 @@ void ED_getStringArray1DFromMAT(void* _mat, const char* varName, const char* str
 						str[j] = ((char*)matvar->data)[i + j*nRow];
 					}
 					str[nCol] = '\0';
-					string[i] = str;
+					a[i] = str;
 				}
 				else {
 					Mat_VarFree(matio.matvarRoot);
