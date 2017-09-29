@@ -35,5 +35,6 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, int* exist);
 int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, int* exist);
 void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, double* a, size_t m, size_t n);
+void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m, int* n);
 
 #endif

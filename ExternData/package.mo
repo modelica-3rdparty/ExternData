@@ -112,6 +112,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     final function getStringArray2D = Functions.JSON.getStringArray2D(final json=json) "Get 2D array String value from JSON file" annotation(Documentation(info="<html></html>"));
     final function getArraySize1D = Functions.JSON.getArraySize1D(final json=json) "Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>"));
     final function getArraySize2D = Functions.JSON.getArraySize2D(final json=json) "Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.JSON.getArrayRows2D(final json=json) "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.JSON.getArrayColumns2D(final json=json) "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
@@ -164,6 +166,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     final function getInteger = Functions.XLS.getInteger(final xls=xls) "Get scalar Integer value from Excel XLS file" annotation(Documentation(info="<html></html>"));
     final function getBoolean = Functions.XLS.getBoolean(final xls=xls) "Get scalar Boolean value from Excel XLS file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XLS.getString(final xls=xls) "Get scalar String value from Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.XLS.getArraySize2D(final xls=xls) "Get the size of a 2D array in a Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.XLS.getArrayRows2D(final xls=xls) "Get first dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.XLS.getArrayColumns2D(final xls=xls) "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
@@ -202,6 +207,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     final function getInteger = Functions.XLSX.getInteger(final xlsx=xlsx) "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     final function getBoolean = Functions.XLSX.getBoolean(final xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XLSX.getString(final xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.XLSX.getArraySize2D(final xlsx=xlsx) "Get the size of a 2D array in a Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.XLSX.getArrayRows2D(final xlsx=xlsx) "Get first dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.XLSX.getArrayColumns2D(final xlsx=xlsx) "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
@@ -544,7 +552,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input Types.ExternJSONFile json "External JSON file object";
         output Integer m "Number of rows in array";
         protected
-          Integer n "Number of columns in array";
+          Integer n[1] "Number of columns in array";
         external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
@@ -558,7 +566,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         input Types.ExternJSONFile json "External JSON file object";
         output Integer n "Number of columns in array";
         protected
-          Integer m "Number of rows in array";
+          Integer m[1] "Number of rows in array";
         external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
@@ -672,6 +680,47 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           Include = "#include \"ED_XLSFile.h\"",
           Library = "ED_XLSFile");
       end getString;
+
+      function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
+        extends Modelica.Icons.Function;
+        input String sheetName="" "Sheet name";
+        input Types.ExternXLSFile xls "External Excel XLS file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromXLS(xls, sheetName, m, n) annotation(
+          __iti_dll = "ITI_ED_XLSFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
+      end getArraySize2D;
+
+      function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
+        extends Modelica.Icons.Function;
+        input String sheetName="" "Sheet name";
+        input Types.ExternXLSFile xls "External Excel XLS file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n[1] "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromXLS(xls, sheetName, m, n) annotation(
+          __iti_dll = "ITI_ED_XLSFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
+      end getArrayRows2D;
+
+      function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
+        extends Modelica.Icons.Function;
+        input String sheetName="" "Sheet name";
+        input Types.ExternXLSFile xls "External Excel XLS file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m[1] "Number of rows in array";
+        external "C" ED_getArray2DDimensionsFromXLS(xls, sheetName, m, n) annotation(
+          __iti_dll = "ITI_ED_XLSFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSFile.h\"",
+          Library = "ED_XLSFile");
+      end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLS;
 
@@ -748,6 +797,47 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getString;
+
+      function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String sheetName="" "Sheet name";
+        input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromXLSX(xlsx, sheetName, m, n) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+      end getArraySize2D;
+
+      function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String sheetName="" "Sheet name";
+        input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n[1] "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromXLSX(xlsx, sheetName, m, n) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+      end getArrayRows2D;
+
+      function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String sheetName="" "Sheet name";
+        input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m[1] "Number of rows in array";
+        external "C" ED_getArray2DDimensionsFromXLSX(xlsx, sheetName, m, n) annotation(
+          __iti_dll = "ITI_ED_XLSXFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XLSXFile.h\"",
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+      end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLSX;
 

@@ -375,7 +375,7 @@ static void findBlankCell(WORD row, WORD col, XmlNodeRef root, int* isBlank)
 	const XmlNodeRef dim = XmlNode_findChild(root, "dimension");
 	*isBlank = 0;
 	if (NULL != dim) {
-		const char* ref = XmlNode_getAttributeValue(dim, "ref");
+		char* ref = XmlNode_getAttributeValue(dim, "ref");
 		if (NULL != ref) {
 			char* colon = strchr(ref, ':');
 			if (NULL != colon) {
@@ -398,7 +398,7 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
-		XmlNodeRef root = findSheet(xlsx, &_sheetName);
+		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
 			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			*exist = 1;
@@ -439,7 +439,7 @@ const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const cha
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
-		XmlNodeRef root = findSheet(xlsx, &_sheetName);
+		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
 			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			*exist = 1;
@@ -478,7 +478,7 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
-		XmlNodeRef root = findSheet(xlsx, &_sheetName);
+		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
 			char* token = findCellValue(xlsx, cellAddress, root, _sheetName);
 			*exist = 1;
@@ -517,7 +517,7 @@ void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const cha
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
-		XmlNodeRef root = findSheet(xlsx, &_sheetName);
+		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
 		if (root != NULL) {
 			WORD row = 0, col = 0;
 			WORD i, j;
@@ -549,6 +549,32 @@ void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const cha
 							ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 								(unsigned int)(row +i), (unsigned int)(col + j), _sheetName, xlsx->fileName);
 						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m, int* n)
+{
+	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	*m = 0;
+	*n = 0;
+	if (xlsx != NULL) {
+		char* _sheetName = (char*)sheetName;
+		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
+		if (root != NULL) {
+			const XmlNodeRef dim = XmlNode_findChild(root, "dimension");
+			if (NULL != dim) {
+				char* ref = XmlNode_getAttributeValue(dim, "ref");
+				if (NULL != ref) {
+					char* colon = strchr(ref, ':');
+					if (NULL != colon) {
+						WORD row = 0, col = 0;
+						rc(++colon, &row, &col);
+						*m = (int)row;
+						*n = (int)col;
 					}
 				}
 			}

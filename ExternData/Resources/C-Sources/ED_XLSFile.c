@@ -423,3 +423,18 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 		}
 	}
 }
+
+void ED_getArray2DDimensionsFromXLS(void* _xls, const char* sheetName, int* m, int* n)
+{
+	XLSFile* xls = (XLSFile*)_xls;
+	*m = 0;
+	*n = 0;
+	if (xls != NULL) {
+		char* _sheetName = (char*)sheetName;
+		const xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
+		if (NULL != pWS) {
+			*m = pWS->rows.lastrow + 1;
+			*n = pWS->rows.lastcol;
+		}
+	}
+}

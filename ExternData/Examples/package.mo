@@ -55,6 +55,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=jsonfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(jsonfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    parameter Integer m = jsonfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=jsonfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
@@ -77,6 +78,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=xlsfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    parameter Integer m = xlsfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     parameter Real sumB = computeColSum(xlsfile, "B") "Sum of column B";
     function computeColSum "Compute column sum"
@@ -116,6 +118,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=xlsxfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    parameter Integer m = xlsxfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsxfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     parameter Real sumB = computeColSum(xlsxfile, "B") "Sum of column B";
     function computeColSum "Compute column sum"
