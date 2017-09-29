@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if defined(__gnu_linux__)
+#define _GNU_SOURCE 1
+#endif
+
 #include <string.h>
 #include <stdio.h>
 #if defined(_MSC_VER)
