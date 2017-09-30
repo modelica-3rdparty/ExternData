@@ -80,7 +80,7 @@ static INIPair* findKey(INISection* section, const char* key)
 }
 
 /* Callback function for ini_browse */
-static int fillValues(const char *section, const char *key, const char *value, const void *userdata)
+static int fillValues(const char *section, const char *key, const char *value, void *userdata)
 {
 	INIFile* ini = (INIFile*)userdata;
 	if (ini != NULL) {
