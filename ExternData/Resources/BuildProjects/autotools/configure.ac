@@ -1,6 +1,6 @@
 dnl Init
 AC_PREREQ([2.63])
-AC_INIT([ExternData],[2.3.0],[https://github.com/tbeu/ExternData/issues],[ExternData],[https://github.com/tbeu/ExternData])
+AC_INIT([ExternData],[2.3.1],[https://github.com/tbeu/ExternData/issues],[ExternData],[https://github.com/tbeu/ExternData])
 
 AM_INIT_AUTOMAKE([subdir-objects])
 AC_CONFIG_MACRO_DIR([m4])
