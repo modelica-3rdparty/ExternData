@@ -39,7 +39,7 @@
 #include "ModelicaUtilities.h"
 #include "../Include/ED_XLSXFile.h"
 #include "unzip.h"
-#define uthash_fatal(msg) ModelicaFormatMessage("Error: %s\n", msg); break
+#define HASH_NONFATAL_OOM 1
 #include "uthash.h"
 
 #define E_NO_MEMORY (11)
@@ -189,6 +189,11 @@ void* ED_createXLSX(const char* fileName, int verbose)
 					iter->sheetId = strdup(sheetId);
 					iter->root = NULL;
 					HASH_ADD_KEYPTR(hh, xlsx->sheets, iter->sheetName, strlen(iter->sheetName), iter);
+					if (NULL == iter->hh.tbl) {
+						free(iter->sheetName);
+						free(iter->sheetId);
+						free(iter);
+					}
 				}
 			}
 		}

@@ -37,7 +37,7 @@
 #include "ModelicaUtilities.h"
 #include "libxls/xls.h"
 #include "../Include/ED_XLSFile.h"
-#define uthash_fatal(msg) ModelicaFormatMessage("Error: %s\n", msg); break
+#define HASH_NONFATAL_OOM 1
 #include "uthash.h"
 
 typedef struct {
@@ -162,6 +162,10 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 			iter->sheetName = strdup(*sheetName);
 			iter->pWS = pWS;
 			HASH_ADD_KEYPTR(hh, xls->sheets, iter->sheetName, strlen(iter->sheetName), iter);
+			if (NULL == iter->hh.tbl) {
+				free(iter->sheetName);
+				free(iter);
+			}
 		}
 	}
 	return pWS;
