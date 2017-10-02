@@ -15,7 +15,7 @@ AC_PROG_CPP
 AC_PROG_MAKE_SET
 LT_INIT([disable-shared])
 
-CPPFLAGS="$CPPFLAGS -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DNDEBUG -I../../C-Sources/bsxml-json -I../../C-Sources/ -I../../C-Sources/expat/lib -I../../C-Sources/libxls/include -I../../C-Sources/minizip -I../../C-Sources/zlib"
+CPPFLAGS="$CPPFLAGS -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG -DXML_POOR_ENTROPY -I../../C-Sources/ -I../../C-Sources/bsxml-json -I../../C-Sources/expat/lib -I../../C-Sources/hdf5/include -I../../C-Sources/libxls/include -I../../C-Sources/minizip -I../../C-Sources/modelica -I../../C-Sources/zlib -I../../C-Sources/parson"
 
 if test "$libdir" = '${exec_prefix}/lib'; then
   # It is hard to detect where to put the libraries if we cross-compile. Let the tool decide where to put it.
