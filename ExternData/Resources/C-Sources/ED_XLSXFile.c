@@ -35,6 +35,7 @@
 #endif
 #include <ctype.h>
 #include "ED_locale.h"
+#include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_XLSXFile.h"
@@ -203,12 +204,14 @@ void* ED_createXLSX(const char* fileName, int verbose)
 	parseXML(xlsx->zfile, STR_XML, &xlsx->sroot);
 
 	xlsx->loc = ED_INIT_LOCALE;
+	ED_PTR_ADD(xlsx);
 	return xlsx;
 }
 
 void ED_destroyXLSX(void* _xlsx)
 {
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		SheetShare* iter;
 		SheetShare* tmp;
@@ -226,6 +229,7 @@ void ED_destroyXLSX(void* _xlsx)
 		}
 		XmlNode_deleteTree(xlsx->sroot);
 		free(xlsx);
+		ED_PTR_DEL(xlsx);
 	}
 }
 
@@ -401,6 +405,7 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 {
 	double ret = 0.;
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
@@ -442,6 +447,7 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, int* exist)
 {
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
@@ -481,6 +487,7 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 {
 	long ret = 0;
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
@@ -520,6 +527,7 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetName, double* a, size_t m, size_t n)
 {
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
+	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const XmlNodeRef root = findSheet(xlsx, &_sheetName);
@@ -566,6 +574,7 @@ void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m,
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
 	*m = 0;
 	*n = 0;
+	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const XmlNodeRef root = findSheet(xlsx, &_sheetName);

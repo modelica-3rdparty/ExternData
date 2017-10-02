@@ -33,6 +33,7 @@
 #if defined(_MSC_VER)
 #define strdup _strdup
 #endif
+#include "ED_ptrtrack.h"
 #include "ModelicaUtilities.h"
 #include "ModelicaIO.c"
 #include "../Include/ED_MATFile.h"
@@ -56,24 +57,27 @@ void* ED_createMAT(const char* fileName, int verbose)
 		return NULL;
 	}
 	mat->verbose = verbose;
-
+	ED_PTR_ADD(mat);
 	return mat;
 }
 
 void ED_destroyMAT(void* _mat)
 {
 	MATFile* mat = (MATFile*)_mat;
+	ED_PTR_CHECK(mat);
 	if (mat != NULL) {
 		if (mat->fileName != NULL) {
 			free(mat->fileName);
 		}
 		free(mat);
+		ED_PTR_DEL(mat);
 	}
 }
 
 void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size_t m, size_t n)
 {
 	MATFile* mat = (MATFile*)_mat;
+	ED_PTR_CHECK(mat);
 	if (mat != NULL) {
 		ModelicaIO_readRealMatrix(mat->fileName, varName, a, m, n, mat->verbose);
 	}
@@ -82,6 +86,7 @@ void ED_getDoubleArray2DFromMAT(void* _mat, const char* varName, double* a, size
 void ED_getStringArray1DFromMAT(void* _mat, const char* varName, const char** a, size_t m)
 {
 	MATFile* mat = (MATFile*)_mat;
+	ED_PTR_CHECK(mat);
 	if (mat != NULL) {
 		MatIO matio = {NULL, NULL, NULL};
 
@@ -150,6 +155,7 @@ void ED_getArray2DDimensionsFromMAT(void* _mat, const char* varName, int* m, int
 	MATFile* mat = (MATFile*)_mat;
 	*m = 0;
 	*n = 0;
+	ED_PTR_CHECK(mat);
 	if (NULL != mat) {
 		int dim[2];
 		ModelicaIO_readMatrixSizes(mat->fileName, varName, dim);

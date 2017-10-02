@@ -34,6 +34,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_ptrtrack.h"
 #include "parson.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_JSONFile.h"
@@ -81,12 +82,14 @@ void* ED_createJSON(const char* fileName, int verbose)
 	/* ModelicaFormatMessage("Loaded JSON data:\n%s\n", json_serialize_to_string(rootValue)); */
 
 	json->loc = ED_INIT_LOCALE;
+	ED_PTR_ADD(json);
 	return json;
 }
 
 void ED_destroyJSON(void* _json)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json->fileName != NULL) {
 			free(json->fileName);
@@ -95,6 +98,7 @@ void ED_destroyJSON(void* _json)
 		json_value_free(json->rootValue);
 		ED_FREE_LOCALE(json->loc);
 		free(json);
+		ED_PTR_DEL(json);
 	}
 }
 
@@ -102,6 +106,7 @@ double ED_getDoubleFromJSON(void* _json, const char* varName, int* exist)
 {
 	double ret = 0.;
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		*exist = 1;
 		if (json_object_dothas_value_of_type(json->root, varName, JSONNumber)) {
@@ -142,6 +147,7 @@ double ED_getDoubleFromJSON(void* _json, const char* varName, int* exist)
 const char* ED_getStringFromJSON(void* _json, const char* varName, int* exist)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		*exist = 1;
 		if (json_object_dothas_value_of_type(json->root, varName, JSONString)) {
@@ -171,6 +177,7 @@ int ED_getIntFromJSON(void* _json, const char* varName, int* exist)
 {
 	long ret = 0;
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		*exist = 1;
 		if (json_object_dothas_value_of_type(json->root, varName, JSONNumber)) {
@@ -212,6 +219,7 @@ int ED_getBooleanFromJSON(void* _json, const char* varName, int* exist)
 {
 	int ret = 0;
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		*exist = 1;
 		if (json_object_dothas_value_of_type(json->root, varName, JSONBoolean)) {
@@ -251,6 +259,7 @@ void ED_getArray1DDimensionFromJSON(void* _json, const char* varName, int* n)
 {
 	JSONFile* json = (JSONFile*)_json;
 	*n = 0;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -268,6 +277,7 @@ void ED_getArray2DDimensionsFromJSON(void* _json, const char* varName, int* m, i
 	JSONFile* json = (JSONFile*)_json;
 	*m = 0;
 	*n = 0;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -294,6 +304,7 @@ void ED_getArray2DDimensionsFromJSON(void* _json, const char* varName, int* m, i
 void ED_getDoubleArray1DFromJSON(void* _json, const char* varName, double* a, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -343,6 +354,7 @@ void ED_getDoubleArray1DFromJSON(void* _json, const char* varName, double* a, si
 void ED_getStringArray1DFromJSON(void* _json, const char* varName, char** a, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -377,6 +389,7 @@ void ED_getStringArray1DFromJSON(void* _json, const char* varName, char** a, siz
 void ED_getIntArray1DFromJSON(void* _json, const char* varName, int* a, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -430,6 +443,7 @@ void ED_getIntArray1DFromJSON(void* _json, const char* varName, int* a, size_t n
 void ED_getBooleanArray1DFromJSON(void* _json, const char* varName, int* a, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -477,6 +491,7 @@ void ED_getBooleanArray1DFromJSON(void* _json, const char* varName, int* a, size
 void ED_getDoubleArray2DFromJSON(void* _json, const char* varName, double* a, size_t m, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -532,6 +547,7 @@ void ED_getDoubleArray2DFromJSON(void* _json, const char* varName, double* a, si
 void ED_getStringArray2DFromJSON(void* _json, const char* varName, char** a, size_t m, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -569,6 +585,7 @@ void ED_getStringArray2DFromJSON(void* _json, const char* varName, char** a, siz
 void ED_getIntArray2DFromJSON(void* _json, const char* varName, int* a, size_t m, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
@@ -628,6 +645,7 @@ void ED_getIntArray2DFromJSON(void* _json, const char* varName, int* a, size_t m
 void ED_getBooleanArray2DFromJSON(void* _json, const char* varName, int* a, size_t m, size_t n)
 {
 	JSONFile* json = (JSONFile*)_json;
+	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);

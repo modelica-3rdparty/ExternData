@@ -38,6 +38,7 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\array.h" />
     <ClInclude Include="..\..\C-Sources\bsxml-json\utstring.h" />
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
+    <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h" />
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h" />
     <ClInclude Include="..\..\C-Sources\zstring_rtrim.h" />
     <ClInclude Include="..\..\C-Sources\zstring_strtok_dquotes.h" />

@@ -58,5 +58,8 @@
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

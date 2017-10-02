@@ -33,6 +33,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_ptrtrack.h"
 #include "array.h"
 #define INI_BUFFERSIZE 1024
 #include "minIni.h"
@@ -128,12 +129,14 @@ void* ED_createINI(const char* fileName, int verbose)
 		return NULL;
 	}
 	ini->loc = ED_INIT_LOCALE;
+	ED_PTR_ADD(ini);
 	return ini;
 }
 
 void ED_destroyINI(void* _ini)
 {
 	INIFile* ini = (INIFile*)_ini;
+	ED_PTR_CHECK(ini);
 	if (ini != NULL) {
 		if (ini->fileName != NULL) {
 			free(ini->fileName);
@@ -157,6 +160,7 @@ void ED_destroyINI(void* _ini)
 			cpo_array_destroy(ini->sections);
 		}
 		free(ini);
+		ED_PTR_DEL(ini);
 	}
 }
 
@@ -164,6 +168,7 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 {
 	double ret = 0.;
 	INIFile* ini = (INIFile*)_ini;
+	ED_PTR_CHECK(ini);
 	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
 		if (_section != NULL) {
@@ -209,6 +214,7 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 const char* ED_getStringFromINI(void* _ini, const char* varName, const char* section, int* exist)
 {
 	INIFile* ini = (INIFile*)_ini;
+	ED_PTR_CHECK(ini);
 	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
 		if (_section != NULL) {
@@ -254,6 +260,7 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int s
 {
 	long ret = 0;
 	INIFile* ini = (INIFile*)_ini;
+	ED_PTR_CHECK(ini);
 	if (ini != NULL) {
 		INISection* _section = findSection(ini, section);
 		if (_section != NULL) {

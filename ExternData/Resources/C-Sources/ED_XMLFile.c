@@ -33,6 +33,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_XMLFile.h"
@@ -95,12 +96,14 @@ void* ED_createXML(const char* fileName, int verbose)
 		return NULL;
 	}
 	xml->loc = ED_INIT_LOCALE;
+	ED_PTR_ADD(xml);
 	return xml;
 }
 
 void ED_destroyXML(void* _xml)
 {
 	XMLFile* xml = (XMLFile*)_xml;
+	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		if (xml->fileName != NULL) {
 			free(xml->fileName);
@@ -108,6 +111,7 @@ void ED_destroyXML(void* _xml)
 		XmlNode_deleteTree(xml->root);
 		ED_FREE_LOCALE(xml->loc);
 		free(xml);
+		ED_PTR_DEL(xml);
 	}
 }
 
@@ -153,6 +157,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist)
 {
 	double ret = 0.;
 	XMLFile* xml = (XMLFile*)_xml;
+	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
@@ -181,6 +186,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist)
 const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist)
 {
 	XMLFile* xml = (XMLFile*)_xml;
+	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
@@ -209,6 +215,7 @@ int ED_getIntFromXML(void* _xml, const char* varName, int* exist)
 {
 	long ret = 0;
 	XMLFile* xml = (XMLFile*)_xml;
+	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		char* token = findValue(&root, varName, xml->fileName);
@@ -237,6 +244,7 @@ int ED_getIntFromXML(void* _xml, const char* varName, int* exist)
 void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size_t n)
 {
 	XMLFile* xml = (XMLFile*)_xml;
+	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		int iLevel = 0;

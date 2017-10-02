@@ -34,6 +34,7 @@
 #endif
 #include <ctype.h>
 #include "ED_locale.h"
+#include "ED_ptrtrack.h"
 #include "ModelicaUtilities.h"
 #include "libxls/xls.h"
 #include "../Include/ED_XLSFile.h"
@@ -81,12 +82,14 @@ void* ED_createXLS(const char* fileName, const char* encoding, int verbose)
 	}
 	xls->sheets = NULL;
 	xls->loc = ED_INIT_LOCALE;
+	ED_PTR_ADD(xls);
 	return xls;
 }
 
 void ED_destroyXLS(void* _xls)
 {
 	XLSFile* xls = (XLSFile*)_xls;
+	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		SheetShare* iter;
 		SheetShare* tmp;
@@ -102,6 +105,7 @@ void ED_destroyXLS(void* _xls)
 		}
 		xls_close(xls->pWB);
 		free(xls);
+		ED_PTR_DEL(xls);
 	}
 }
 
@@ -175,6 +179,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 {
 	double ret = 0.;
 	XLSFile* xls = (XLSFile*)_xls;
+	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
@@ -243,6 +248,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char* sheetName, int* exist)
 {
 	XLSFile* xls = (XLSFile*)_xls;
+	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
@@ -298,6 +304,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName,
 {
 	long ret = 0;
 	XLSFile* xls = (XLSFile*)_xls;
+	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
@@ -366,6 +373,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName,
 void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char* sheetName, double* a, size_t m, size_t n)
 {
 	XLSFile* xls = (XLSFile*)_xls;
+	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
@@ -433,6 +441,7 @@ void ED_getArray2DDimensionsFromXLS(void* _xls, const char* sheetName, int* m, i
 	XLSFile* xls = (XLSFile*)_xls;
 	*m = 0;
 	*n = 0;
+	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const xlsWorkSheet* pWS = findSheet(xls, &_sheetName);

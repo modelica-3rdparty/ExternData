@@ -34,6 +34,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_ptrtrack.h"
 #include "array.h"
 #include "utstring.h"
 #include "zstring_strtok_dquotes.h"
@@ -173,12 +174,14 @@ void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int
 	}
 
 	csv->loc = ED_INIT_LOCALE;
+	ED_PTR_ADD(csv);
 	return csv;
 }
 
 void ED_destroyCSV(void* _csv)
 {
 	CSVFile* csv = (CSVFile*)_csv;
+	ED_PTR_CHECK(csv);
 	if (csv != NULL) {
 		if (csv->fileName != NULL) {
 			free(csv->fileName);
@@ -196,12 +199,14 @@ void ED_destroyCSV(void* _csv)
 			cpo_array_destroy(csv->lines);
 		}
 		free(csv);
+		ED_PTR_DEL(csv);
 	}
 }
 
 void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, size_t n)
 {
 	CSVFile* csv = (CSVFile*)_csv;
+	ED_PTR_CHECK(csv);
 	if (field[0] < 1) {
 		ModelicaError("Invalid line mumber, must be greater than or equal to one.\n");
 	}
