@@ -169,7 +169,7 @@ package Examples "Test examples"
 
   model TIRTest "TIR file read test"
     extends Modelica.Icons.Example;
-    inner TIRFile tirfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/sample.tir")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter TIRFile tirfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/sample.tir")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Sources.Constant pcx1(k=tirfile.getReal("PCX1", "LONGITUDINAL_COEFFICIENTS")) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.Constant pcy1(k=tirfile.getReal("PCY1", "LATERAL_COEFFICIENTS")) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     annotation(experiment(StopTime=1),
