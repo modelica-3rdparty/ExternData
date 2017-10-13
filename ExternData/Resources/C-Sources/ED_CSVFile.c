@@ -217,44 +217,52 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, siz
 		size_t i;
 		for (i = 0; i < m; i++) {
 			size_t j = field[0] + i - 1;
-			Line* line;
-			char* token;
-			char* nextToken = NULL;
-			int k;
+			char* lineCopy;
 			if (j >= csv->lines->num) {
 				ModelicaFormatError("Error in line %i: Cannot read line from file \"%s\"\n",
 					field[0] + (int)i, csv->fileName);
 				return;
 			}
-			line = (Line*)cpo_array_get_at(csv->lines, j);
-			token = zstring_strtok_dquotes(utstring_body(line), csv->sep, csv->quote, &nextToken);
-			for (k = 0; k < field[1] - 1; k++) {
-				// Ignore leading tokens
-				token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
-			}
-			for (j = 0; j < n; j++) {
-				if (token != NULL) {
-					size_t len;
-					if (token[0] == csv->sep[0]) {
-						a[i*n + j] = 0.;
-						continue;
-					}
-					len = strlen(token);
-					if (token[0] == csv->quote && token[len - 1] == csv->quote) {
-						token[0] = ' ';
-						token[len - 1] = '\0';
-					}
-					if (ED_strtod(token, csv->loc, &a[i*n + j], ED_STRICT)) {
-						ModelicaFormatError("Error in line %i: Cannot read double value \"%s\" at column %i from file \"%s\"\n",
-							field[0] + (int)i, token, field[1] + (int)j, csv->fileName);
-						return;
-					}
+			lineCopy = strdup(utstring_body((Line*)cpo_array_get_at(csv->lines, j)));
+			if (NULL != lineCopy) {
+				char* nextToken = NULL;
+				int k;
+				char* token = zstring_strtok_dquotes(lineCopy, csv->sep, csv->quote, &nextToken);
+				for (k = 0; k < field[1] - 1; k++) {
+					// Ignore leading tokens
 					token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
 				}
-				else {
-					ModelicaFormatError("Error in line %i: Cannot read double value at column %i from file \"%s\"\n",
-						field[0] + (int)i, field[1] + (int)j, csv->fileName);
+				for (j = 0; j < n; j++) {
+					if (token != NULL) {
+						size_t len;
+						if (token[0] == csv->sep[0]) {
+							a[i*n + j] = 0.;
+							continue;
+						}
+						len = strlen(token);
+						if (token[0] == csv->quote && token[len - 1] == csv->quote) {
+							token[0] = ' ';
+							token[len - 1] = '\0';
+						}
+						if (ED_strtod(token, csv->loc, &a[i*n + j], ED_STRICT)) {
+							free(lineCopy);
+							ModelicaFormatError("Error in line %i: Cannot read double value at column %i from file \"%s\"\n",
+								field[0] + (int)i, field[1] + (int)j, csv->fileName);
+							return;
+						}
+						token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
+					}
+					else {
+						free(lineCopy);
+						ModelicaFormatError("Error in line %i: Cannot read double value at column %i from file \"%s\"\n",
+							field[0] + (int)i, field[1] + (int)j, csv->fileName);
+						return;
+					}
 				}
+				free(lineCopy);
+			}
+			else {
+				ModelicaError("Memory allocation error\n");
 			}
 		}
 	}
