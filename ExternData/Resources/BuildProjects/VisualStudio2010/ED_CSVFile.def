@@ -2,3 +2,4 @@ EXPORTS
 	ED_createCSV
 	ED_destroyCSV
 	ED_getDoubleArray2DFromCSV
+	ED_getArray2DDimensionsFromCSV

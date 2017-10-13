@@ -56,6 +56,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External INI file object";
     final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.CSV.getArraySize2D(final csv=csv) "Get the size of a 2D array in a CSV file" annotation(Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.CSV.getArrayRows2D(final csv=csv) "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.CSV.getArrayColumns2D(final csv=csv) "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
@@ -307,6 +310,44 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           Include = "#include \"ED_CSVFile.h\"",
           Library = {"ED_CSVFile", "bsxml-json"});
       end getRealArray2D;
+
+      function getArraySize2D "Get dimensions of 2D array in CSV file"
+        extends Modelica.Icons.Function;
+        input Types.ExternCSVFile csv "External CSV file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromCSV(csv, m, n) annotation(
+          __iti_dll = "ITI_ED_CSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_CSVFile.h\"",
+          Library = {"ED_CSVFile", "bsxml-json"});
+      end getArraySize2D;
+
+      function getArrayRows2D "Get first dimension of 2D array in CSV file"
+        extends Modelica.Icons.Function;
+        input Types.ExternCSVFile csv "External CSV file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n[1] "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromCSV(csv, m, n) annotation(
+          __iti_dll = "ITI_ED_CSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_CSVFile.h\"",
+          Library = {"ED_CSVFile", "bsxml-json"});
+      end getArrayRows2D;
+
+      function getArrayColumns2D "Get second dimension of 2D array in CSV file"
+        extends Modelica.Icons.Function;
+        input Types.ExternCSVFile csv "External CSV file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m[1] "Number of rows in array";
+        external "C" ED_getArray2DDimensionsFromCSV(csv, m, n) annotation(
+          __iti_dll = "ITI_ED_CSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_CSVFile.h\"",
+          Library = {"ED_CSVFile", "bsxml-json"});
+      end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end CSV;
 

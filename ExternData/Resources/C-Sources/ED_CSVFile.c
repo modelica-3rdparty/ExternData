@@ -267,3 +267,24 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, siz
 		}
 	}
 }
+
+void ED_getArray2DDimensionsFromCSV(void* _csv, int* m, int* n)
+{
+	CSVFile* csv = (CSVFile*)_csv;
+	*m = 0;
+	*n = 0;
+	ED_PTR_CHECK(csv);
+	if (NULL != csv) {
+		char *lineCopy = strdup(utstring_body((Line*)cpo_array_get_at(csv->lines, 0)));
+		if (NULL != lineCopy) {
+			char* nextToken = NULL;
+			char* token = zstring_strtok_dquotes(lineCopy, csv->sep, csv->quote, &nextToken);
+			*m = (int)csv->lines->num;
+			while (NULL != token) {
+				(*n)++;
+				token = zstring_strtok_dquotes(NULL, csv->sep, csv->quote, &nextToken);
+			}
+			free(lineCopy);
+		}
+	}
+}
