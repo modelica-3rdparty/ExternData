@@ -255,6 +255,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     final function getInteger = Functions.XML.getInteger(final xml=xml) "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>"));
     final function getBoolean = Functions.XML.getBoolean(final xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
     final function getString = Functions.XML.getString(final xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize1D = Functions.XML.getArraySize1D(final xml=xml) "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.XML.getArraySize2D(final xml=xml) "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.XML.getArrayRows2D(final xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.XML.getArrayColumns2D(final xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
@@ -995,6 +999,59 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           Include = "#include \"ED_XMLFile.h\"",
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getString;
+
+      function getArraySize1D "Get length of 1D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXMLFile xml "External XML file object";
+        output Integer n "Number of elements in array";
+        external "C" ED_getArray1DDimensionFromXML(xml, varName, n) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+      end getArraySize1D;
+
+      function getArraySize2D "Get dimensions of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXMLFile xml "External XML file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromXML(xml, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+      end getArraySize2D;
+
+      function getArrayRows2D "Get first dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXMLFile xml "External XML file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n[1] "Number of columns in array";
+        external "C" ED_getArray2DDimensionsFromXML(xml, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+      end getArrayRows2D;
+
+      function getArrayColumns2D "Get second dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXMLFile xml "External XML file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m[1] "Number of rows in array";
+        external "C" ED_getArray2DDimensionsFromXML(xml, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_XMLFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XMLFile.h\"",
+          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+      end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XML;
     annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
