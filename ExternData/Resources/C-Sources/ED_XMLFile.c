@@ -287,7 +287,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 							if (token != NULL) {
 								buf = strdup(token);
 								if (buf != NULL) {
-									char* nextToken = NULL;
+									nextToken = NULL;
 									token = strtok_r(buf, "[]{},; \t", &nextToken);
 								}
 								else {
