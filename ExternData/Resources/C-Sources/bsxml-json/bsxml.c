@@ -38,7 +38,7 @@
 #define ENC_TYPE_UTF8   "UTF-8"
 
 #define isNullorEmpty(str) \
-    (str == NULL || strlen(str) == 0)
+    (str == NULL || str[0] == '\0')
 
 #define isAlpha(c) \
     ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))

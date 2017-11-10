@@ -33,7 +33,7 @@
 #define JSON_STACK_SIZE 32
 
 #define isNullorEmpty(str) \
-    (str == NULL || strlen(str) == 0)
+    (str == NULL || str[0] == '\0')
 
 #define utstring_addchr(s, c) \
     do {\
