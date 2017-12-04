@@ -360,12 +360,12 @@ extern "C" {
  *
  * PHDF5 uses several strategies to prevent such inconsistencies in metadata,
  * all of which use the fact that the same stream of dirty metadata is seen
- * by all processes for purposes of synchronization.  This is done by 
+ * by all processes for purposes of synchronization.  This is done by
  * having each process count the number of bytes of dirty metadata generated,
- * and then running a "sync point" whenever this count exceeds a user 
+ * and then running a "sync point" whenever this count exceeds a user
  * specified threshold (see dirty_bytes_threshold below).
  *
- * The current metadata write strategy is indicated by the 
+ * The current metadata write strategy is indicated by the
  * metadata_write_strategy field.  The possible values of this field, along
  * with the associated metadata write strategies are discussed below.
  *
@@ -384,8 +384,8 @@ extern "C" {
  *
  *	H5AC_METADATA_WRITE_STRATEGY__PROCESS_0_ONLY:
  *
- *	When metadata_write_strategy is set to this value, only process 
- *	zero is allowed to write dirty metadata to disk.  All other 
+ *	When metadata_write_strategy is set to this value, only process
+ *	zero is allowed to write dirty metadata to disk.  All other
  *	processes must retain dirty metadata until they are informed at
  *	a sync point that the dirty metadata in question has been written
  *	to disk.
@@ -393,7 +393,7 @@ extern "C" {
  *	When the sync point is reached (or when there is a user generated
  *	flush), process zero flushes sufficient entries to bring it into
  *	complience with its min clean size (or flushes all dirty entries in
- *	the case of a user generated flush), broad casts the list of 
+ *	the case of a user generated flush), broad casts the list of
  *	entries just cleaned to all the other processes, and then exits
  *	the sync point.
  *
@@ -404,8 +404,8 @@ extern "C" {
  *	H5AC_METADATA_WRITE_STRATEGY__DISTRIBUTED:
  *
  *	In the distributed metadata write strategy, process zero still makes
- *	the decisions as to what entries should be flushed, but the actual 
- *	flushes are distributed across the processes in the computation to 
+ *	the decisions as to what entries should be flushed, but the actual
+ *	flushes are distributed across the processes in the computation to
  *	the extent possible.
  *
  *	In this strategy, when a sync point is triggered (either by dirty
@@ -417,19 +417,19 @@ extern "C" {
  *
  *	All processes then scan the list of entries to be flushed, flushing
  *	some, and marking the rest as clean.  The algorithm for this purpose
- *	ensures that each entry in the list is flushed exactly once, and 
+ *	ensures that each entry in the list is flushed exactly once, and
  *	all are marked clean in each cache.
  *
  *	Note that in the case of a flush of the cache, no message passing
- *	is necessary, as all processes have the same list of dirty entries, 
- *	and all of these entries must be flushed.  Thus in this case it is 
- *	sufficient for each process to sort its list of dirty entries after 
- *	leaving the initial barrier, and use this list as if it had been 
+ *	is necessary, as all processes have the same list of dirty entries,
+ *	and all of these entries must be flushed.  Thus in this case it is
+ *	sufficient for each process to sort its list of dirty entries after
+ *	leaving the initial barrier, and use this list as if it had been
  *	received from process zero.
  *
  *	To avoid possible messages from the past/future, all caches must
  *	wait until all caches are done before leaving the sync point.
- *      
+ *
  ****************************************************************************/
 
 #define H5AC__CURR_CACHE_CONFIG_VERSION 	1
