@@ -312,7 +312,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_CSVFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zstring.txt"});
       end getRealArray2D;
 
       function getArraySize2D "Get dimensions of 2D array in CSV file"
@@ -324,7 +325,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_CSVFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zstring.txt"});
       end getArraySize2D;
 
       function getArrayRows2D "Get first dimension of 2D array in CSV file"
@@ -337,7 +339,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_CSVFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zstring.txt"});
       end getArrayRows2D;
 
       function getArrayColumns2D "Get second dimension of 2D array in CSV file"
@@ -350,7 +353,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_CSVFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zstring.txt"});
       end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end CSV;
@@ -366,7 +370,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_INIFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minini.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       annotation(Documentation(info="<html>
 <p>If strict=true and the line being read contains more than a name=value pair this function will return an error.  However, when strict=false it will return the value and ignore the rest of the line.</p>
 <p>For example</p>
@@ -384,7 +389,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_INIFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minini.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
         annotation(Documentation(info="<html>
 <p>If strict=true and the line being read contains more than a name=value pair this function will return an error.  However, when strict=false it will return the value and ignore the rest of the line.</p>
 <p>For example</p>
@@ -414,7 +420,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_INIFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minini.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getString;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end INI;
@@ -428,7 +435,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getReal;
 
       function getRealArray1D "Get 1D Real values from JSON file"
@@ -441,7 +449,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getRealArray1D;
 
       function getRealArray2D "Get 2D Real values from JSON file"
@@ -455,7 +464,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getRealArray2D;
 
       function getInteger "Get scalar Integer value from JSON file"
@@ -465,7 +475,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getInteger;
 
       function getIntegerArray1D "Get 1D Integer values from JSON file"
@@ -478,7 +489,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getIntegerArray1D;
 
       function getIntegerArray2D "Get 2D Integer values from JSON file"
@@ -492,7 +504,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getIntegerArray2D;
 
       function getBoolean "Get scalar Boolean value from JSON file"
@@ -502,7 +515,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getBoolean;
 
       function getBooleanArray1D "Get 1D Boolean values from JSON file"
@@ -515,7 +529,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getBooleanArray1D;
 
       function getBooleanArray2D "Get 2D Boolean values from JSON file"
@@ -529,7 +544,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getBooleanArray2D;
 
       function getString "Get scalar String value from JSON file"
@@ -539,7 +555,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getString;
 
       function getStringArray1D "Get 1D String values from JSON file"
@@ -552,7 +569,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getStringArray1D;
 
       function getStringArray2D "Get 2D String values from JSON file"
@@ -566,7 +584,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getStringArray2D;
 
       function getArraySize1D "Get length of 1D array in JSON file"
@@ -578,7 +597,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArraySize1D;
 
       function getArraySize2D "Get dimensions of 2D array in JSON file"
@@ -591,7 +611,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArraySize2D;
 
       function getArrayRows2D "Get first dimension of 2D array in JSON file"
@@ -605,7 +626,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArrayRows2D;
 
       function getArrayColumns2D "Get second dimension of 2D array in JSON file"
@@ -619,7 +641,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end JSON;
@@ -637,7 +660,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getRealArray2D;
 
       function getStringArray1D "Get 1D String values from MAT-file"
@@ -650,7 +674,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getStringArray1D;
 
       function getArraySize2D "Get dimensions of 2D array in MAT file"
@@ -663,7 +688,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getArraySize2D;
 
       function getArrayRows2D "Get first dimension of 2D array in MAT file"
@@ -677,7 +703,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getArrayRows2D;
 
       function getArrayColumns2D "Get second dimension of 2D array in MAT file"
@@ -691,7 +718,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end MAT;
@@ -709,7 +737,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getReal;
 
       function getRealArray2D "Get 2D Real values from Excel XLS file"
@@ -724,7 +753,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getRealArray2D;
 
       function getInteger "Get scalar Integer value from Excel XLS file"
@@ -738,7 +768,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from Excel XLS file"
@@ -767,7 +798,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getString;
 
       function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
@@ -780,7 +812,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArraySize2D;
 
       function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
@@ -794,7 +827,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArrayRows2D;
 
       function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
@@ -808,7 +842,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLS;
@@ -826,7 +861,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getReal;
 
       function getRealArray2D "Get 2D Real values from Excel XLSX file"
@@ -841,7 +877,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getRealArray2D;
 
       function getInteger "Get scalar Integer value from Excel XLSX file"
@@ -855,7 +892,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from Excel XLSX file"
@@ -884,7 +922,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getString;
 
       function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
@@ -897,7 +936,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getArraySize2D;
 
       function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
@@ -911,7 +951,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getArrayRows2D;
 
       function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
@@ -925,7 +966,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLSX;
@@ -939,7 +981,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getReal;
 
       function getRealArray1D "Get 1D Real values from XML file"
@@ -952,7 +995,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getRealArray1D;
 
       function getRealArray2D "Get 2D Real values from XML file"
@@ -966,7 +1010,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end getRealArray2D;
 
       function getInteger "Get scalar Integer value from XML file"
@@ -976,7 +1021,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getInteger;
 
       function getBoolean "Get scalar Boolean value from XML file"
@@ -997,7 +1043,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getString;
 
       function getArraySize1D "Get length of 1D array in XML file"
@@ -1009,7 +1056,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getArraySize1D;
 
       function getArraySize2D "Get dimensions of 2D array in XML file"
@@ -1022,7 +1070,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getArraySize2D;
 
       function getArrayRows2D "Get first dimension of 2D array in XML file"
@@ -1036,7 +1085,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getArrayRows2D;
 
       function getArrayColumns2D "Get second dimension of 2D array in XML file"
@@ -1050,7 +1100,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt"});
       end getArrayColumns2D;
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XML;
@@ -1103,7 +1154,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_CSVFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zstring.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1113,7 +1165,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",
-          Library = {"ED_CSVFile", "bsxml-json"});
+          Library = {"ED_CSVFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_utstring.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zstring.txt"});
       end destructor;
     end ExternCSVFile;
 
@@ -1128,7 +1181,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_INIFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minini.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1138,7 +1192,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
-          Library = {"ED_INIFile", "bsxml-json"});
+          Library = {"ED_INIFile", "bsxml-json"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minini.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end destructor;
     end ExternINIFile;
 
@@ -1153,7 +1208,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1163,7 +1219,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
-          Library = {"ED_JSONFile", "parson"});
+          Library = {"ED_JSONFile", "parson"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_parson.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end destructor;
     end ExternJSONFile;
 
@@ -1178,7 +1235,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1188,7 +1246,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_MATFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_MATFile.h\"",
-          Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
+          Library = {"ED_MATFile", "hdf5", "zlib", "dl"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_hdf5.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaMatIO.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end destructor;
     end ExternMATFile;
 
@@ -1204,7 +1263,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1214,7 +1274,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = "ED_XLSFile",
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_libxls.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end destructor;
     end ExternXLSFile;
 
@@ -1229,7 +1290,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1239,7 +1301,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_minizip.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt", "modelica://ExternData/Resources/Licenses/LICENSE_zlib.txt"});
       end destructor;
     end ExternXLSXFile;
 
@@ -1254,7 +1317,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end constructor;
 
       function destructor "Clean up"
@@ -1264,7 +1328,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",
-          Library = {"ED_XMLFile", "bsxml-json", "expat"});
+          Library = {"ED_XMLFile", "bsxml-json", "expat"},
+          __ModelicaAssociation_License = {"modelica://ExternData/Resources/Licenses/LICENSE_bsxml-json.txt", "modelica://ExternData/Resources/Licenses/LICENSE_expat.txt", "modelica://ExternData/Resources/Licenses/LICENSE_ModelicaUtilities.txt", "modelica://ExternData/Resources/Licenses/LICENSE_uthash.txt"});
       end destructor;
     end ExternXMLFile;
   end Types;
