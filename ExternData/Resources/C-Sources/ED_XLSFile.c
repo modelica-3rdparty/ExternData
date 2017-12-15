@@ -439,15 +439,23 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 void ED_getArray2DDimensionsFromXLS(void* _xls, const char* sheetName, int* m, int* n)
 {
 	XLSFile* xls = (XLSFile*)_xls;
-	*m = 0;
-	*n = 0;
+	int _m = 0;
+	int _n = 0;
+	if (NULL != m)
+		*m = 0;
+	if (NULL != n)
+		*n = 0;
 	ED_PTR_CHECK(xls);
 	if (xls != NULL) {
 		char* _sheetName = (char*)sheetName;
 		const xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
 		if (NULL != pWS) {
-			*m = pWS->rows.lastrow + 1;
-			*n = pWS->rows.lastcol;
+			_m = pWS->rows.lastrow + 1;
+			_n = pWS->rows.lastcol;
 		}
 	}
+	if (NULL != m)
+		*m = _m;
+	if (NULL != n)
+		*n = _n;
 }

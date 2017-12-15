@@ -275,16 +275,20 @@ void ED_getArray1DDimensionFromJSON(void* _json, const char* varName, int* n)
 void ED_getArray2DDimensionsFromJSON(void* _json, const char* varName, int* m, int* n)
 {
 	JSONFile* json = (JSONFile*)_json;
-	*m = 0;
-	*n = 0;
+	int _m = 0;
+	int _n = 0;
+	if (NULL != m)
+		*m = 0;
+	if (NULL != n)
+		*n = 0;
 	ED_PTR_CHECK(json);
 	if (json != NULL) {
 		if (json_object_dothas_value_of_type(json->root, varName, JSONArray)) {
 			const JSON_Array* jsonArray = json_object_dotget_array(json->root, varName);
 			if (JSONArray == json_array_get_type(jsonArray)) {
-				*m = (int)json_array_get_count(jsonArray);
-				*n = json_array_check_dimensions2D(jsonArray);
-				if (*n==-1) {
+				_m = (int)json_array_get_count(jsonArray);
+				_n = json_array_check_dimensions2D(jsonArray);
+				if (_n == -1) {
 					ModelicaFormatError("Array value has 2 dimensions, but not all rows have same column dimension \"%s\" in file \"%s\"\n",
 						varName, json->fileName);
 				}
@@ -299,6 +303,10 @@ void ED_getArray2DDimensionsFromJSON(void* _json, const char* varName, int* m, i
 				varName, json->fileName);
 		}
 	}
+	if (NULL != m)
+		*m = _m;
+	if (NULL != n)
+		*n = _n;
 }
 
 void ED_getDoubleArray1DFromJSON(void* _json, const char* varName, double* a, size_t n)

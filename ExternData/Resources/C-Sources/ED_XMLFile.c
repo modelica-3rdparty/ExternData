@@ -350,8 +350,12 @@ void ED_getArray1DDimensionFromXML(void* _xml, const char* varName, int* n)
 void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int* n)
 {
 	XMLFile* xml = (XMLFile*)_xml;
-	*m = 0;
-	*n = 0;
+	int _m = 0;
+	int _n = 0;
+	if (NULL != m)
+		*m = 0;
+	if (NULL != n)
+		*n = 0;
 	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
@@ -371,10 +375,10 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 				char* nextToken = NULL;
 				if (0 == iLevel) {
 					char* sep = strchr(tokenCopy, ';');
-					*m = 1;
+					_m = 1;
 					if (NULL != sep) {
 						do {
-							(*m)++;
+							_m++;
 							sep = strchr(sep + 1, ';');
 						} while (NULL != sep);
 					}
@@ -383,7 +387,7 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 						while (NULL != sep) {
 							sep = strchr(sep + 1, ',');
 							if (NULL != sep) {
-								(*m)++;
+								_m++;
 								sep = strchr(sep + 1, '}');
 							}
 						}
@@ -391,14 +395,14 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 					token = strtok_r(tokenCopy, "[]{},; \t", &nextToken);
 					if (NULL != token) {
 						do {
-							(*n)++;
+							_n++;
 							token = strtok_r(NULL, "[]{},; \t", &nextToken);
 						} while (NULL != token);
-						if (0 == *n%*m) {
-							*n /= *m;
+						if (0 == _n%_m) {
+							_n /= _m;
 						}
 						else {
-							*m = 1;
+							_m = 1;
 						}
 					}
 					free(tokenCopy);
@@ -415,7 +419,7 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 								if (NULL != tokenCopy) {
 									token = strtok_r(tokenCopy, "[]{},; \t", &nextToken);
 									while (NULL != token) {
-										(*n)++;
+										_n++;
 										token = strtok_r(NULL, "[]{},; \t", &nextToken);
 									}
 									free(tokenCopy);
@@ -423,15 +427,19 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 							}
 						}
 					}
-					*m = (int)nSiblings;
-					if (0 == *n%*m) {
-						*n /= *m;
+					_m = (int)nSiblings;
+					if (0 == _n%_m) {
+						_n /= _m;
 					}
 					else {
-						*m = 1;
+						_m = 1;
 					}
 				}
 			}
 		}
 	}
+	if (NULL != m)
+		*m = _m;
+	if (NULL != n)
+		*n = _n;
 }

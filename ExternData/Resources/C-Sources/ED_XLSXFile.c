@@ -572,8 +572,12 @@ void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const cha
 void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m, int* n)
 {
 	XLSXFile* xlsx = (XLSXFile*)_xlsx;
-	*m = 0;
-	*n = 0;
+	int _m = 0;
+	int _n = 0;
+	if (NULL != m)
+		*m = 0;
+	if (NULL != n)
+		*n = 0;
 	ED_PTR_CHECK(xlsx);
 	if (xlsx != NULL) {
 		char* _sheetName = (char*)sheetName;
@@ -587,11 +591,15 @@ void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m,
 					if (NULL != colon) {
 						WORD row = 0, col = 0;
 						rc(++colon, &row, &col);
-						*m = (int)row;
-						*n = (int)col;
+						_m = (int)row;
+						_n = (int)col;
 					}
 				}
 			}
 		}
 	}
+	if (NULL != m)
+		*m = _m;
+	if (NULL != n)
+		*n = _n;
 }
