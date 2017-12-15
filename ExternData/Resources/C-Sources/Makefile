@@ -46,7 +46,8 @@ EXPAT_OBJS = \
 	expat/lib/xmlrole.o \
 	expat/lib/xmltok.o \
 	expat/lib/xmltok_impl.o \
-	expat/lib/xmltok_ns.o
+	expat/lib/xmltok_ns.o \
+	expat/lib/loadlibrary.o
 
 ZLIB_OBJS = \
 	zlib/adler32.o \
