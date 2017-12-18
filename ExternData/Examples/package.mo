@@ -89,22 +89,19 @@ package Examples "Test examples"
       input String col = "A" "Column";
       input String sheetName="" "Sheet name";
       input Integer startRow = 2 "Start row";
+      input Integer endRow = Functions.XLS.getArrayRows2D(sheetName=sheetName, xls=xlsfile.xls) "End row";
       output Real colSum "Column sum";
       protected
-        Integer row;
         Real val;
         Boolean exist;
       algorithm
         colSum := 0.0;
-        row := startRow;
-        exist := true;
-        while exist loop
+        for row in startRow:endRow loop
           (val, exist) := Functions.XLS.getReal(cellAddress=col + String(row), sheetName=sheetName, xls=xlsfile.xls);
           if exist then
             colSum := colSum + val;
-            row := row + 1;
           end if;
-        end while;
+        end for;
       annotation(Documentation(info="<html><p>This function computes the column sum of a given column and sheet of an Excel XLS file.</p></html>"));
     end computeColSum;
     equation
@@ -129,22 +126,19 @@ package Examples "Test examples"
       input String col = "A" "Column";
       input String sheetName="" "Sheet name";
       input Integer startRow = 2 "Start row";
+      input Integer endRow = Functions.XLSX.getArrayRows2D(sheetName=sheetName, xlsx=xlsxfile.xlsx) "End row";
       output Real colSum "Column sum";
       protected
-        Integer row;
         Real val;
         Boolean exist;
       algorithm
         colSum := 0.0;
-        row := startRow;
-        exist := true;
-        while exist loop
+        for row in startRow:endRow loop
           (val, exist) := Functions.XLSX.getReal(cellAddress=col + String(row), sheetName=sheetName, xlsx=xlsxfile.xlsx);
           if exist then
             colSum := colSum + val;
-            row := row + 1;
           end if;
-        end while;
+        end for;
       annotation(Documentation(info="<html><p>This function computes the column sum of a given column and sheet of an Excel XLSX file.</p></html>"));
     end computeColSum;
     equation
