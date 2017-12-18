@@ -50,17 +50,17 @@ static PtrTrack* ptrTrack = NULL;
 #include <windows.h>
 static CRITICAL_SECTION cs;
 #ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(initializeCS)
+#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(ED_initializeCS)
 #endif
-G_DEFINE_CONSTRUCTOR(initializeCS)
-static void initializeCS(void) {
+G_DEFINE_CONSTRUCTOR(ED_initializeCS)
+static void ED_initializeCS(void) {
 	InitializeCriticalSection(&cs);
 }
 #ifdef G_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(cleanUp)
+#pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(ED_cleanUp)
 #endif
-G_DEFINE_DESTRUCTOR(cleanUp)
-static void cleanUp(void) {
+G_DEFINE_DESTRUCTOR(ED_cleanUp)
+static void ED_cleanUp(void) {
 	PtrTrack* iter;
 	PtrTrack* tmp;
 	DeleteCriticalSection(&cs);
