@@ -233,18 +233,27 @@ void ED_destroyXLSX(void* _xlsx)
 	}
 }
 
-static void rc(const char* cellAddress, WORD* row, WORD* col)
+static void rc1(const char* cellAddress, WORD* row, WORD* col)
 {
-	WORD i = 0, j, colVal = 0, rowVal;
+	WORD i = 0, j;
 	while (cellAddress[i++] >= 'A');
 	i--;
 	/* i now points to first character of row address */
+	*col = 0;
 	for (j = 0; j < i; j++) {
-		colVal = 26*colVal + toupper(cellAddress[j]) - 'A' + 1;
+		*col *= 26;
+		*col += toupper(cellAddress[j]) - 'A' + 1;
 	}
-	*col = colVal > 0 ? (colVal - 1) : 0;
-	rowVal = (WORD)atoi(cellAddress + i);
-	*row =  rowVal > 0 ? (rowVal - 1) : 0;
+	*row = (WORD)atoi(cellAddress + i);
+}
+
+static void rc(const char* cellAddress, WORD* row, WORD* col)
+{
+	rc1(cellAddress, row, col);
+	if (*col > 0)
+		(*col)--;
+	if (*row > 0)
+		(*row)--;
 }
 
 static void ca(char* colAddress, WORD idx)
@@ -590,7 +599,7 @@ void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m,
 					char* colon = strchr(ref, ':');
 					if (NULL != colon) {
 						WORD row = 0, col = 0;
-						rc(++colon, &row, &col);
+						rc1(++colon, &row, &col);
 						_m = (int)row;
 						_n = (int)col;
 					}
