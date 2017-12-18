@@ -107,20 +107,29 @@ void ED_destroyXLS(void* _xls)
 		free(xls);
 		ED_PTR_DEL(xls);
 	}
+}	
+
+static void rc1(const char* cellAddress, WORD* row, WORD* col)
+{
+	WORD i = 0, j;
+	while (cellAddress[i++] >= 'A');
+	i--;
+	/* i now points to first character of row address */
+	*col = 0;
+	for (j = 0; j < i; j++) {
+		*col *= 26;
+		*col += toupper(cellAddress[j]) - 'A' + 1;
+	}
+	*row = (WORD)atoi(cellAddress + i);
 }
 
 static void rc(const char* cellAddress, WORD* row, WORD* col)
 {
-	WORD i = 0, j, colVal = 0, rowVal;
-	while (cellAddress[i++] >= 'A');
-	i--;
-	/* i now points to first character of row address */
-	for (j = 0; j < i; j++) {
-		colVal = 26*colVal + toupper(cellAddress[j]) - 'A' + 1;
-	}
-	*col = colVal > 0 ? (colVal - 1) : 0;
-	rowVal = (WORD)atoi(cellAddress + i);
-	*row =  rowVal > 0 ? (rowVal - 1) : 0;
+	rc1(cellAddress, row, col);
+	if (*col > 0)
+		(*col)--;
+	if (*row > 0)
+		(*row)--;
 }
 
 static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
