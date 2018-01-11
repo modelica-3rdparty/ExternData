@@ -1,6 +1,6 @@
 /* msvc_compatibility.h - MSVC compatibility header
  *
- * Copyright (C) 2015-2017, tbeu
+ * Copyright (C) 2015-2018, tbeu
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
