@@ -3,7 +3,7 @@ RM = rm -f
 
 CFLAGS = -O3
 CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG -DXML_POOR_ENTROPY -DHAVE_EXPAT_CONFIG_H
-INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"libxls/include" -I"minizip" -I"modelica" -I"zlib" -I"parson"
+INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"inih" "-I"libxls/include" -I"minizip" -I"modelica" -I"zlib" -I"parson"
 
 TARGETDIR = linux64
 
@@ -16,7 +16,7 @@ CSV_OBJS = \
 	ED_CSVFile.o
 
 INI_OBJS = \
-	minIni.o \
+	inih/ini.o \
 	ED_INIFile.o
 
 JSON_OBJS = \

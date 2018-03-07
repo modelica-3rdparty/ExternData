@@ -57,12 +57,12 @@ Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
 James Clark's Expat XML parser library
 * [hdf5](https://support.hdfgroup.org/HDF5) -
 The HDF Group's data model, library and file format for storing and managing data
+* [inih](https://github.com/benhoyt/inih) -
+Ben Hoyt's simple INI file parser in C
 * [libxls](http://sourceforge.net/projects/libxls) -
 David Hoerl's C library for parsing Excel files
 * [matio](http://sourceforge.net/projects/matio) -
 Christopher Hulbert's C library for reading and writing MATLAB MAT-files
-* [minIni](https://github.com/compuphase/minIni) -
-Thiadmer Riemersma's small and portable INI file library with read/write support
 * [minizip](http://www.winimage.com/zLibDll/minizip.html) -
 Gilles Vollant's Zip and UnZip library
 * [parson](https://github.com/kgabis/parson) -

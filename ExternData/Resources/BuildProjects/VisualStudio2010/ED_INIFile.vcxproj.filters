@@ -18,17 +18,11 @@
     <ClCompile Include="..\..\C-Sources\ED_INIFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\minIni.c">
+    <ClCompile Include="..\..\C-Sources\inih\ini.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\minIni.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\minGlue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\ED_INIFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\inih\ini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

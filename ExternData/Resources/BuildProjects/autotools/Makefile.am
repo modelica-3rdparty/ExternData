@@ -6,7 +6,7 @@ libbsxml_json_la_SOURCES = \
 	../../C-Sources/bsxml-json/bsxml.c
 
 libED_INIFile_la_SOURCES = \
-	../../C-Sources/minIni.c \
+	../../C-Sources/inih/ini.c \
 	../../C-Sources/ED_INIFile.c
 
 libED_JSONFile_la_SOURCES = \

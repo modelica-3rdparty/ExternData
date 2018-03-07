@@ -35,8 +35,7 @@
 #include "ED_locale.h"
 #include "ED_ptrtrack.h"
 #include "array.h"
-#define INI_BUFFERSIZE 1024
-#include "minIni.h"
+#include "ini.h"
 #include "ModelicaUtilities.h"
 #include "../Include/ED_INIFile.h"
 
@@ -80,8 +79,8 @@ static INIPair* findKey(INISection* section, const char* key)
 	return ret;
 }
 
-/* Callback function for ini_browse */
-static int fillValues(const char *section, const char *key, const char *value, void *userdata)
+/* Callback function for ini_parse */
+static int fillValues(void* userdata, const char* section, const char* key, const char* value)
 {
 	INIFile* ini = (INIFile*)userdata;
 	if (ini != NULL) {
@@ -102,6 +101,7 @@ static int fillValues(const char *section, const char *key, const char *value, v
 
 void* ED_createINI(const char* fileName, int verbose)
 {
+	int ret;
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
 	if (ini == NULL) {
 		ModelicaError("Memory allocation error\n");
@@ -121,7 +121,8 @@ void* ED_createINI(const char* fileName, int verbose)
 		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
 	}
 
-	if (1 != ini_browse(fillValues, ini, fileName)) {
+	ret = ini_parse(fileName, fillValues, ini);
+	if (0 != ret) {
 		cpo_array_destroy(ini->sections);
 		free(ini->fileName);
 		free(ini);
