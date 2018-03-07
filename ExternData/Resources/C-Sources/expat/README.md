@@ -1,4 +1,4 @@
-# Expat, Release 2.2.4
+# Expat, Release 2.2.5
 
 This is Expat, a C library for parsing XML, started by
 [James Clark](https://en.wikipedia.org/wiki/James_Clark_(programmer)) in 1997.
@@ -79,7 +79,7 @@ support this mode of compilation (yet):
 1. Mass-patch `Makefile.am` files to use `libexpatw.la` for a library name:
    <br/>
    `find -name Makefile.am -exec sed
-       -e 's,libexpat\.la,libexpatw\.la,'
+       -e 's,libexpat\.la,libexpatw.la,'
        -e 's,libexpat_la,libexpatw_la,'
        -i {} +`
 
