@@ -12251,7 +12251,7 @@ Read5(mat_t *mat, matvar_t *matvar)
                             break;
                     }
 #else
-                    nBytes = ReadDoubleData(mat,complex_data->Re,
+                    nBytes = ReadDoubleData(mat,(double*)complex_data->Re,
                                  packed_type,data->ndata);
 #endif
                     if ( data_in_tag )
@@ -12324,7 +12324,7 @@ Read5(mat_t *mat, matvar_t *matvar)
                             break;
                     }
 #else /* EXTENDED_SPARSE */
-                    nBytes = ReadDoubleData(mat,complex_data->Im,
+                    nBytes = ReadDoubleData(mat,(double*)complex_data->Im,
                                  packed_type,data->ndata);
 #endif /* EXTENDED_SPARSE */
                     if ( data_in_tag )
