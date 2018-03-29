@@ -228,7 +228,7 @@
     <ClCompile Include="..\..\C-Sources\ED_MATFile.c" />
     <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h" />
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.c" />
-    <ClCompile Include="..\..\C-Sources\modelica\ModelicaMatIO.c" />
+    <ClInclude Include="..\..\C-Sources\modelica\ModelicaMatIO.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.h" />

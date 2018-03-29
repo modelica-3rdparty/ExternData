@@ -23,8 +23,7 @@ JSON_OBJS = \
 	ED_JSONFile.o
 
 MAT_OBJS = \
-	ED_MATFile.o \
-	modelica/ModelicaMatIO.o
+	ED_MATFile.o
 
 XLS_OBJS = \
 	libxls/src/endian.o \
