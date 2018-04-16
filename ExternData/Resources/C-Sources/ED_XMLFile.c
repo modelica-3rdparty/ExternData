@@ -115,7 +115,7 @@ void ED_destroyXML(void* _xml)
 	}
 }
 
-static char* findValue(XmlNodeRef* root, const char* varName, const char* fileName)
+static char* findValue(XmlNodeRef* root, XmlNodeRef* parent, const char* varName, const char* fileName)
 {
 	char* token = NULL;
 	char* varNameCopy = strdup(varName);
@@ -129,6 +129,7 @@ static char* findValue(XmlNodeRef* root, const char* varName, const char* fileNa
 		while (token != NULL && elementError == 0) {
 			XmlNodeRef iter = XmlNode_findChild(*root, token);
 			if (NULL != iter) {
+				*parent = *root;
 				*root = iter;
 				token = strtok_r(NULL, ".", &nextToken);
 			}
@@ -160,7 +161,8 @@ double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist)
 	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
-		char* token = findValue(&root, varName, xml->fileName);
+		XmlNodeRef parent = NULL;
+		char* token = findValue(&root, &parent, varName, xml->fileName);
 		*exist = 1;
 		if (token != NULL) {
 			if (ED_strtod(token, xml->loc, &ret, ED_STRICT)) {
@@ -189,7 +191,8 @@ const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist)
 	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
-		char* token = findValue(&root, varName, xml->fileName);
+		XmlNodeRef parent = NULL;
+		char* token = findValue(&root, &parent, varName, xml->fileName);
 		*exist = 1;
 		if (token != NULL) {
 			char* ret = ModelicaAllocateString(strlen(token));
@@ -218,7 +221,8 @@ int ED_getIntFromXML(void* _xml, const char* varName, int* exist)
 	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
-		char* token = findValue(&root, varName, xml->fileName);
+		XmlNodeRef parent = NULL;
+		char* token = findValue(&root, &parent, varName, xml->fileName);
 		*exist = 1;
 		if (token != NULL) {
 			if (ED_strtol(token, xml->loc, &ret, ED_STRICT)) {
@@ -247,8 +251,9 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
+		XmlNodeRef parent = NULL;
 		int iLevel = 0;
-		char* token = findValue(&root, varName, xml->fileName);
+		char* token = findValue(&root, &parent, varName, xml->fileName);
 		while (NULL == token && NULL != root && XmlNode_getChildCount(root) > 0) {
 			/* Try children if root is empty */
 			root = XmlNode_getChild(root, 0);
@@ -260,7 +265,6 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 			if (tokenCopy != NULL) {
 				size_t i = 0;
 				size_t iSibling = 0;
-				XmlNodeRef parent = XmlNode_getParent(root);
 				size_t nSiblings = XmlNode_getChildCount(parent);
 				int line = XmlNode_getLine(root);
 				int foundSibling = 0;
@@ -359,8 +363,9 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 	ED_PTR_CHECK(xml);
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
+		XmlNodeRef parent = NULL;
 		int iLevel = 0;
-		char* token = findValue(&root, varName, xml->fileName);
+		char* token = findValue(&root, &parent, varName, xml->fileName);
 		while (NULL == token && NULL != root && XmlNode_getChildCount(root) > 0) {
 			/* Try children if root is empty */
 			root = XmlNode_getChild(root, 0);
@@ -370,7 +375,6 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 		if (NULL != token) {
 			char* tokenCopy = strdup(token);
 			if (NULL != tokenCopy) {
-				XmlNodeRef parent = XmlNode_getParent(root);
 				size_t nSiblings = XmlNode_getChildCount(parent);
 				char* nextToken = NULL;
 				if (0 == iLevel) {

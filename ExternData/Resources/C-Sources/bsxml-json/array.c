@@ -67,6 +67,7 @@ static int cpo_array_preallocate(cpo_array_t *a, asize_t elements)
         return ENOMEM;
 
     a->v = newv;
+    memset((unsigned char*) a->v + a->elem_size * a->max, 0, (newmax - a->max) * a->elem_size);
     a->max = newmax;
     return 0;
 }
