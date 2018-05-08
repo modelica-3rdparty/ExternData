@@ -30,7 +30,7 @@ package Examples "Test examples"
   extends Modelica.Icons.ExamplesPackage;
   model CSVTest "CSV file read test"
     extends Modelica.Icons.Example;
-    inner parameter CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) "CSV file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     final parameter Integer m = csvfile.getArrayRows2D() "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=csvfile.getRealArray2D(3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
@@ -39,7 +39,7 @@ package Examples "Test examples"
 
   model INITest "INI file read test"
     extends Modelica.Icons.Example;
-    inner parameter INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter INIFile inifile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) "INI file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=inifile.getReal("gain.k", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(inifile.getString("gain.k", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -52,7 +52,7 @@ package Examples "Test examples"
 
   model JSONTest "JSON file read test"
     extends Modelica.Icons.Example;
-    inner parameter JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter JSONFile jsonfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) "JSON file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=jsonfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(jsonfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -67,7 +67,7 @@ package Examples "Test examples"
 
   model MATTest "MAT-file read test"
     extends Modelica.Icons.Example;
-    inner parameter MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) "MAT file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     final parameter Integer m = matfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=matfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
@@ -76,7 +76,7 @@ package Examples "Test examples"
 
   model XLSTest "Excel XLS file read test"
     extends Modelica.Icons.Example;
-    inner parameter XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter XLSFile xlsfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) "XLS file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=xlsfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -113,7 +113,7 @@ package Examples "Test examples"
 
   model XLSXTest "Excel XLSX file read test"
     extends Modelica.Icons.Example;
-    inner parameter XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter XLSXFile xlsxfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) "XLSX file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=xlsxfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -150,7 +150,7 @@ package Examples "Test examples"
 
   model XMLTest "XML file read test"
     extends Modelica.Icons.Example;
-    inner parameter XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter XMLFile xmlfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) "XML file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=xmlfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xmlfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
@@ -165,7 +165,7 @@ package Examples "Test examples"
 
   model TIRTest "TIR file read test"
     extends Modelica.Icons.Example;
-    inner parameter TIRFile tirfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/sample.tir")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter TIRFile tirfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/sample.tir")) "TIR file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Sources.Constant pcx1(k=tirfile.getReal("PCX1", "LONGITUDINAL_COEFFICIENTS")) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     Modelica.Blocks.Sources.Constant pcy1(k=tirfile.getReal("PCY1", "LATERAL_COEFFICIENTS")) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     annotation(experiment(StopTime=1),
