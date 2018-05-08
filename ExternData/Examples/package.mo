@@ -31,7 +31,7 @@ package Examples "Test examples"
   model CSVTest "CSV file read test"
     extends Modelica.Icons.Example;
     inner parameter CSVFile csvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-    parameter Integer m = csvfile.getArrayRows2D() "Number of rows in 2D array";
+    final parameter Integer m = csvfile.getArrayRows2D() "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=csvfile.getRealArray2D(3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the table parameter from the CSV file <a href=\"modelica://ExternData/Resources/Examples/test.csv\">test.csv</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.CSVFile.getRealArray2D\">ExternData.CSVFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
@@ -56,7 +56,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=jsonfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(jsonfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-    parameter Integer m = jsonfile.getArrayRows2D("table1") "Number of rows in 2D array";
+    final parameter Integer m = jsonfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=jsonfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
@@ -68,7 +68,7 @@ package Examples "Test examples"
   model MATTest "MAT-file read test"
     extends Modelica.Icons.Example;
     inner parameter MATFile matfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v7.3.mat")) annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-    parameter Integer m = matfile.getArrayRows2D("table1") "Number of rows in 2D array";
+    final parameter Integer m = matfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=matfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the table parameter from variable table1 of the HDF5-based MAT-file <a href=\"modelica://ExternData/Resources/Examples/test_v7.3.mat\">test_v7.3.mat</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.MATFile.getRealArray2D\">ExternData.MATFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
@@ -80,9 +80,9 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=xlsfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-    parameter Integer m = xlsfile.getArrayRows2D("table1") "Number of rows in 2D array";
+    final parameter Integer m = xlsfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    parameter Real sumB = computeColSum(xlsfile, "B") "Sum of column B";
+    final parameter Real sumB = computeColSum(xlsfile, "B") "Sum of column B";
     function computeColSum "Compute column sum"
       extends Modelica.Icons.Function;
       input XLSFile xlsfile "Excel XLS file record";
@@ -117,9 +117,9 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=xlsxfile.getReal("B2", "set1")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xlsxfile.getString("B2", "set2"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-    parameter Integer m = xlsxfile.getArrayRows2D("table1") "Number of rows in 2D array";
+    final parameter Integer m = xlsxfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=xlsxfile.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    parameter Real sumB = computeColSum(xlsxfile, "B") "Sum of column B";
+    final parameter Real sumB = computeColSum(xlsxfile, "B") "Sum of column B";
     function computeColSum "Compute column sum"
       extends Modelica.Icons.Function;
       input XLSXFile xlsxfile "Excel XLSX file record";
@@ -154,7 +154,7 @@ package Examples "Test examples"
     Modelica.Blocks.Math.Gain gain1(k=xmlfile.getReal("set1.gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(xmlfile.getString("set2.gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
     Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
-    parameter Integer m = xmlfile.getArrayRows2D("table1") "Number of rows in 2D array";
+    final parameter Integer m = xmlfile.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=xmlfile.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
