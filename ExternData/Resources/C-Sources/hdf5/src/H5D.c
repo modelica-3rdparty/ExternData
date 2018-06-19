@@ -70,7 +70,7 @@ H5FL_BLK_EXTERN(type_conv);
 /*******************/
 
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__init_pub_interface -- Initialize interface-specific information
@@ -91,7 +91,7 @@ H5D__init_pub_interface(void)
     FUNC_LEAVE_NOAPI(H5D_init())
 } /* H5D__init_pub_interface() */
 
-
+
 /*--------------------------------------------------------------------------
 NAME
    H5D__term_pub_interface -- Terminate interface
@@ -115,7 +115,7 @@ H5D__term_pub_interface(void)
     FUNC_LEAVE_NOAPI(0)
 } /* H5D__term_pub_interface() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dcreate2
  *
@@ -201,7 +201,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dcreate2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dcreate_anon
  *
@@ -299,7 +299,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dcreate_anon() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dopen2
  *
@@ -385,7 +385,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dopen2() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dclose
  *
@@ -427,7 +427,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dclose() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_space
  *
@@ -464,7 +464,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_space_status
  *
@@ -500,7 +500,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_type
  *
@@ -538,7 +538,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_type() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_create_plist
  *
@@ -575,7 +575,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_create_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_access_plist
  *
@@ -629,7 +629,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_access_plist() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_storage_size
  *
@@ -669,7 +669,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_storage_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dget_offset
  *
@@ -704,7 +704,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dget_offset() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Diterate
  *
@@ -800,7 +800,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Diterate() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dvlen_reclaim
  *
@@ -847,7 +847,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Dvlen_reclaim() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dvlen_get_buf_size
  *
@@ -963,7 +963,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 }   /* end H5Dvlen_get_buf_size() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5Dset_extent
  *
@@ -1000,7 +1000,7 @@ done:
     FUNC_LEAVE_API(ret_value)
 } /* end H5Dset_extent() */
 
-
+
 /*-------------------------------------------------------------------------
  * Function:    H5Dget_chunk_storage_size
  *
