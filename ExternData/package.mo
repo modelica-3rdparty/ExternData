@@ -55,10 +55,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     parameter String quotation="\"" "Quotation character" annotation(choices(choice="\"" "Double quotation mark", choice="'" "Single quotation mark"));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External INI file object";
-    final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize2D = Functions.CSV.getArraySize2D(final csv=csv) "Get the size of a 2D array in a CSV file" annotation(Documentation(info="<html></html>"));
-    final function getArrayRows2D = Functions.CSV.getArrayRows2D(final csv=csv) "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
-    final function getArrayColumns2D = Functions.CSV.getArrayColumns2D(final csv=csv) "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.CSV.getRealArray2D(final csv=csv) "Get 2D Real values from CSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.CSV.getArraySize2D(final csv=csv) "Get the size of a 2D array in a CSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.CSV.getArrayRows2D(final csv=csv) "Get first dimension of 2D array in CSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.CSV.getArrayColumns2D(final csv=csv) "Get second dimension of 2D array in CSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="csvfile",
@@ -78,10 +78,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead) "External INI file object";
-    final function getReal = Functions.INI.getReal(final ini=ini, final strict=true) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.INI.getInteger(final ini=ini, final strict=true) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.INI.getBoolean(final ini=ini, final strict=true) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
-    final function getString = Functions.INI.getString(final ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.INI.getReal(final ini=ini, final strict=true) "Get scalar Real value from INI file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.INI.getInteger(final ini=ini, final strict=true) "Get scalar Integer value from INI file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.INI.getBoolean(final ini=ini, final strict=true) "Get scalar Boolean value from INI file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.INI.getString(final ini=ini) "Get scalar String value from INI file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="inifile",
@@ -101,22 +101,22 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead) "External JSON file object";
-    final function getReal = Functions.JSON.getReal(final json=json) "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getRealArray1D = Functions.JSON.getRealArray1D(final json=json) "Get 1D array Real value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getRealArray2D = Functions.JSON.getRealArray2D(final json=json) "Get 2D array Real value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.JSON.getInteger(final json=json) "Get scalar Integer value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getIntegerArray1D = Functions.JSON.getIntegerArray1D(final json=json) "Get 1D array Integer value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getIntegerArray2D = Functions.JSON.getIntegerArray2D(final json=json) "Get 2D array Integer value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.JSON.getBoolean(final json=json) "Get scalar Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getBooleanArray1D = Functions.JSON.getBooleanArray1D(final json=json) "Get 1D array Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getBooleanArray2D = Functions.JSON.getBooleanArray2D(final json=json) "Get 2D array Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getString = Functions.JSON.getString(final json=json) "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getStringArray1D = Functions.JSON.getStringArray1D(final json=json) "Get 1D array String value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getStringArray2D = Functions.JSON.getStringArray2D(final json=json) "Get 2D array String value from JSON file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize1D = Functions.JSON.getArraySize1D(final json=json) "Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize2D = Functions.JSON.getArraySize2D(final json=json) "Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>"));
-    final function getArrayRows2D = Functions.JSON.getArrayRows2D(final json=json) "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
-    final function getArrayColumns2D = Functions.JSON.getArrayColumns2D(final json=json) "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.JSON.getReal(final json=json) "Get scalar Real value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getRealArray1D = Functions.JSON.getRealArray1D(final json=json) "Get 1D array Real value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.JSON.getRealArray2D(final json=json) "Get 2D array Real value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.JSON.getInteger(final json=json) "Get scalar Integer value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getIntegerArray1D = Functions.JSON.getIntegerArray1D(final json=json) "Get 1D array Integer value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getIntegerArray2D = Functions.JSON.getIntegerArray2D(final json=json) "Get 2D array Integer value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.JSON.getBoolean(final json=json) "Get scalar Boolean value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBooleanArray1D = Functions.JSON.getBooleanArray1D(final json=json) "Get 1D array Boolean value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBooleanArray2D = Functions.JSON.getBooleanArray2D(final json=json) "Get 2D array Boolean value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.JSON.getString(final json=json) "Get scalar String value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getStringArray1D = Functions.JSON.getStringArray1D(final json=json) "Get 1D array String value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getStringArray2D = Functions.JSON.getStringArray2D(final json=json) "Get 2D array String value from JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize1D = Functions.JSON.getArraySize1D(final json=json) "Get the size of a 1D array in a JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.JSON.getArraySize2D(final json=json) "Get the size of a 2D array in a JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.JSON.getArrayRows2D(final json=json) "Get first dimension of 2D array in JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.JSON.getArrayColumns2D(final json=json) "Get second dimension of 2D array in JSON file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="jsonfile",
@@ -136,11 +136,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
-    final function getRealArray2D = Functions.MAT.getRealArray2D(final mat=mat) "Get 2D Real values from MAT-file" annotation(Documentation(info="<html></html>"));
-    final function getStringArray1D = Functions.MAT.getStringArray1D(final mat=mat) "Get 1D String values from MAT-file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize2D = Functions.MAT.getArraySize2D(final mat=mat) "Get the size of a 2D array in a MAT file" annotation(Documentation(info="<html></html>"));
-    final function getArrayRows2D = Functions.MAT.getArrayRows2D(final mat=mat) "Get first dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
-    final function getArrayColumns2D = Functions.MAT.getArrayColumns2D(final mat=mat) "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.MAT.getRealArray2D(final mat=mat) "Get 2D Real values from MAT-file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getStringArray1D = Functions.MAT.getStringArray1D(final mat=mat) "Get 1D String values from MAT-file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.MAT.getArraySize2D(final mat=mat) "Get the size of a 2D array in a MAT file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.MAT.getArrayRows2D(final mat=mat) "Get first dimension of 2D array in MAT file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.MAT.getArrayColumns2D(final mat=mat) "Get second dimension of 2D array in MAT file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT-files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="matfile",
@@ -167,14 +167,14 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
     parameter String encoding="UTF-8" "Encoding";
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead) "External Excel XLS file object";
-    final function getReal = Functions.XLS.getReal(final xls=xls) "Get scalar Real value from Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getRealArray2D = Functions.XLS.getRealArray2D(final xls=xls) "Get 2D Real values from Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.XLS.getInteger(final xls=xls) "Get scalar Integer value from Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.XLS.getBoolean(final xls=xls) "Get scalar Boolean value from Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getString = Functions.XLS.getString(final xls=xls) "Get scalar String value from Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize2D = Functions.XLS.getArraySize2D(final xls=xls) "Get the size of a 2D array in a Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getArrayRows2D = Functions.XLS.getArrayRows2D(final xls=xls) "Get first dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
-    final function getArrayColumns2D = Functions.XLS.getArrayColumns2D(final xls=xls) "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.XLS.getReal(final xls=xls) "Get scalar Real value from Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.XLS.getRealArray2D(final xls=xls) "Get 2D Real values from Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.XLS.getInteger(final xls=xls) "Get scalar Integer value from Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.XLS.getBoolean(final xls=xls) "Get scalar Boolean value from Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.XLS.getString(final xls=xls) "Get scalar String value from Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.XLS.getArraySize2D(final xls=xls) "Get the size of a 2D array in a Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.XLS.getArrayRows2D(final xls=xls) "Get first dimension of 2D array in Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.XLS.getArrayColumns2D(final xls=xls) "Get second dimension of 2D array in Excel XLS file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="xlsfile",
@@ -208,14 +208,14 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead)  "External Excel XLSX file object";
-    final function getReal = Functions.XLSX.getReal(final xlsx=xlsx) "Get scalar Real value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getRealArray2D = Functions.XLSX.getRealArray2D(final xlsx=xlsx) "Get 2D Real values from Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.XLSX.getInteger(final xlsx=xlsx) "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.XLSX.getBoolean(final xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getString = Functions.XLSX.getString(final xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize2D = Functions.XLSX.getArraySize2D(final xlsx=xlsx) "Get the size of a 2D array in a Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getArrayRows2D = Functions.XLSX.getArrayRows2D(final xlsx=xlsx) "Get first dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
-    final function getArrayColumns2D = Functions.XLSX.getArrayColumns2D(final xlsx=xlsx) "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.XLSX.getReal(final xlsx=xlsx) "Get scalar Real value from Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.XLSX.getRealArray2D(final xlsx=xlsx) "Get 2D Real values from Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.XLSX.getInteger(final xlsx=xlsx) "Get scalar Integer value from Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.XLSX.getBoolean(final xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.XLSX.getString(final xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.XLSX.getArraySize2D(final xlsx=xlsx) "Get the size of a 2D array in a Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.XLSX.getArrayRows2D(final xlsx=xlsx) "Get first dimension of 2D array in Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.XLSX.getArrayColumns2D(final xlsx=xlsx) "Get second dimension of 2D array in Excel XLSX file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="xlsxfile",
@@ -249,16 +249,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead) "External XML file object";
-    final function getReal = Functions.XML.getReal(final xml=xml) "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>"));
-    final function getRealArray1D = Functions.XML.getRealArray1D(final xml=xml) "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>"));
-    final function getRealArray2D = Functions.XML.getRealArray2D(final xml=xml) "Get 2D Real values from XML file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.XML.getInteger(final xml=xml) "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.XML.getBoolean(final xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
-    final function getString = Functions.XML.getString(final xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize1D = Functions.XML.getArraySize1D(final xml=xml) "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>"));
-    final function getArraySize2D = Functions.XML.getArraySize2D(final xml=xml) "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>"));
-    final function getArrayRows2D = Functions.XML.getArrayRows2D(final xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
-    final function getArrayColumns2D = Functions.XML.getArrayColumns2D(final xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.XML.getReal(final xml=xml) "Get scalar Real value from XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getRealArray1D = Functions.XML.getRealArray1D(final xml=xml) "Get 1D Real values from XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getRealArray2D = Functions.XML.getRealArray2D(final xml=xml) "Get 2D Real values from XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.XML.getInteger(final xml=xml) "Get scalar Integer value from XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.XML.getBoolean(final xml=xml) "Get scalar Boolean value from XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.XML.getString(final xml=xml) "Get scalar String value from XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize1D = Functions.XML.getArraySize1D(final xml=xml) "Get the size of a 1D array in a XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArraySize2D = Functions.XML.getArraySize2D(final xml=xml) "Get the size of a 2D array in a XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayRows2D = Functions.XML.getArrayRows2D(final xml=xml) "Get first dimension of 2D array in XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getArrayColumns2D = Functions.XML.getArrayColumns2D(final xml=xml) "Get second dimension of 2D array in XML file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
       defaultComponentName="xmlfile",
@@ -278,10 +278,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         caption="Open file")));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternINIFile tir=Types.ExternINIFile(fileName, verboseRead) "External TIR file object";
-    final function getReal = Functions.INI.getReal(final ini=tir, final strict=false) "Get scalar Real value from TIR file" annotation(Documentation(info="<html></html>"));
-    final function getInteger = Functions.INI.getInteger(final ini=tir, final strict=false) "Get scalar Integer value from TIR file" annotation(Documentation(info="<html></html>"));
-    final function getBoolean = Functions.INI.getBoolean(final ini=tir, final strict=false) "Get scalar Boolean value from TIR file" annotation(Documentation(info="<html></html>"));
-    final function getString = Functions.INI.getString(final ini=tir) "Get scalar String value from TIR file" annotation(Documentation(info="<html></html>"));
+    final function getReal = Functions.INI.getReal(final ini=tir, final strict=false) "Get scalar Real value from TIR file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.INI.getInteger(final ini=tir, final strict=false) "Get scalar Integer value from TIR file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.INI.getBoolean(final ini=tir, final strict=false) "Get scalar Boolean value from TIR file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.INI.getString(final ini=tir) "Get scalar String value from TIR file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of tyre data (TIR) files.</p><p>See <a href=\"modelica://ExternData.Examples.TIRTest\">Examples.TIRTest</a> for an example.</p></html>"),
       defaultComponentName="tirfile",
