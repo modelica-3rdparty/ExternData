@@ -23,7 +23,8 @@ JSON_OBJS = \
 	ED_JSONFile.o
 
 MAT_OBJS = \
-	ED_MATFile.o
+	ED_MATFile.o \
+	snprintf.o
 
 XLS_OBJS = \
 	libxls/src/endian.o \
@@ -68,11 +69,11 @@ ZLIB_OBJS = \
 PARSON_OBJS = \
 	parson/parson.o
 
-ALL_OBJS = $(BS_OBJS) $(CSV_OBJS) $(INI_OBJS) $(JSON_OBJS) $(MAT_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS) $(PARSON_OBJS)
+ALL_OBJS = $(BS_OBJS) $(CSV_OBJS) $(INI_OBJS) $(JSON_OBJS) $(MAT_OBJS) $(SSV_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS) $(PARSON_OBJS)
 
 all: clean libs
 
-libs: libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a libparson.a
+libs: libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a libparson.a
 	cp $^ ../Library/$(TARGETDIR)
 
 libbsxml-json.a: $(BS_OBJS)
@@ -89,6 +90,9 @@ libED_JSONFile.a: $(JSON_OBJS)
 
 libED_MATFile.a: $(MAT_OBJS)
 	$(AR) $@ $(MAT_OBJS)
+
+libED_SSVFile.a: $(SSV_OBJS)
+	$(AR) $@ $(SSV_OBJS)
 
 libED_XLSFile.a: $(XLS_OBJS)
 	$(AR) $@ $(XLS_OBJS)

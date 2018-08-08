@@ -13,7 +13,8 @@ libED_JSONFile_la_SOURCES = \
 	../../C-Sources/ED_JSONFile.c
 
 libED_MATFile_la_SOURCES = \
-	../../C-Sources/ED_MATFile.c
+	../../C-Sources/ED_MATFile.c \
+	../../C-Sources/modelica/snprintf.c
 
 libED_XLSFile_la_SOURCES = \
 	../../C-Sources/libxls/src/endian.c \
