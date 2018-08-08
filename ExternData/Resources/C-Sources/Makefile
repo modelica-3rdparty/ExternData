@@ -24,7 +24,7 @@ JSON_OBJS = \
 
 MAT_OBJS = \
 	ED_MATFile.o \
-	snprintf.o
+	modelica/snprintf.o
 
 SSV_OBJS = \
 	ED_SSVFile.o
