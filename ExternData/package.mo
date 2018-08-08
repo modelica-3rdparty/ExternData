@@ -1,5 +1,5 @@
 // CP: 65001
-/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files
+/* package.mo - Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015-2018, tbeu
  * All rights reserved.
@@ -26,7 +26,7 @@
  */
 
 within;
-package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files"
+package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files"
   extends Modelica.Icons.Package;
   package UsersGuide "User's Guide"
     extends Modelica.Icons.Information;
@@ -158,6 +158,30 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
         Text(extent={{5,85},{65,40}},textString="mat"),
         Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end MATFile;
+
+  record SSVFile "Read data values from SSV file"
+    parameter String fileName="" "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="SSV files (*.ssv;*.xml)",
+        caption="Open file")));
+    parameter String nameSpace="http://www.pmsf.net/xsd/SystemStructureParameterValuesDraft" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://www.pmsf.net/xsd/SystemStructureParameterValuesDraft" "Draft20171219"));
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+    final parameter Types.ExternSSVFile ssv=Types.ExternSSVFile(fileName, nameSpace, verboseRead) "External SSV file object";
+    final function getReal = Functions.SSV.getReal(final ssv=ssv) "Get scalar Real value from SSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getInteger = Functions.SSV.getInteger(final ssv=ssv) "Get scalar Integer value from SSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getBoolean = Functions.SSV.getBoolean(final ssv=ssv) "Get scalar Boolean value from SSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    final function getString = Functions.SSV.getString(final ssv=ssv) "Get scalar String value from SSV file" annotation(__Dymola_interactive=true, Documentation(info="<html></html>"));
+    annotation(
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternSSVFile\">ExternSSVFile</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
+      defaultComponentName="ssvfile",
+      defaultComponentPrefixes="inner parameter",
+      missingInnerMessage="No \"ssvfile\" component is defined, please drag ExternData.SSVFile to the model top level",
+      Icon(graphics={
+        Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+        Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid),
+        Text(lineColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<ssv>"),
+        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+  end SSVFile;
 
   record XLSFile "Read data values from Excel XLS file"
     parameter String fileName="" "File where external data is stored"
@@ -696,6 +720,50 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
       annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end MAT;
 
+    package SSV "SSV file functions"
+      extends Modelica.Icons.Package;
+      function getReal "Get scalar Real value from SSV file"
+        extends Interfaces.partialGetReal;
+        input Types.ExternSSVFile ssv "External SSV file object";
+        external "C" y=ED_getDoubleFromSSV(ssv, varName, exist) annotation(
+          __iti_dll = "ITI_ED_SSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_SSVFile.h\"",
+          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+      end getReal;
+
+      function getInteger "Get scalar Integer value from SSV file"
+        extends Interfaces.partialGetInteger;
+        input Types.ExternSSVFile ssv "External SSV file object";
+        external "C" y=ED_getIntFromSSV(ssv, varName, exist) annotation(
+          __iti_dll = "ITI_ED_SSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_SSVFile.h\"",
+          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+      end getInteger;
+
+      function getBoolean "Get scalar Boolean value from SSV file"
+        extends Interfaces.partialGetBoolean;
+        input Types.ExternSSVFile ssv "External SSV file object";
+        external "C" y=ED_getBooleanFromSSV(ssv, varName, exist) annotation(
+          __iti_dll = "ITI_ED_SSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_SSVFile.h\"",
+          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+      end getBoolean;
+
+      function getString "Get scalar String value from SSV file"
+        extends Interfaces.partialGetString;
+        input Types.ExternSSVFile ssv "External SSV file object";
+        external "C" str=ED_getStringFromSSV(ssv, varName, exist) annotation(
+          __iti_dll = "ITI_ED_SSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_SSVFile.h\"",
+          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+      end getString;
+      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
+    end SSV;
+
     package XLS "Excel XLS file functions"
       extends Modelica.Icons.Package;
       function getReal "Get scalar Real value from Excel XLS file"
@@ -1191,6 +1259,32 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Exc
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end destructor;
     end ExternMATFile;
+
+    class ExternSSVFile "External SSV file object"
+      extends ExternalObject;
+      function constructor "Parse SSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String nameSpace "SSV name space";
+        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        output ExternSSVFile ssv "External SSV file object";
+        external "C" ssv=ED_createSSV(fileName, nameSpace, verboseRead) annotation(
+          __iti_dll = "ITI_ED_SSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_SSVFile.h\"",
+          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+      end constructor;
+
+      function destructor "Clean up"
+        extends Modelica.Icons.Function;
+        input ExternSSVFile ssv "External SSV file object";
+        external "C" ED_destroySSV(ssv) annotation(
+          __iti_dll = "ITI_ED_SSVFile.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_SSVFile.h\"",
+          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+      end destructor;
+    end ExternSSVFile;
 
     class ExternXLSFile "External XLS file object"
       extends ExternalObject;

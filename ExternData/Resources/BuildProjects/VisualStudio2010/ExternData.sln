@@ -47,6 +47,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_CSVFile", "ED_CSVFile.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parson", "parson.vcxproj", "{117CC546-B0E2-4E21-8F2B-9962E202749F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ED_SSVFile", "ED_SSVFile.vcxproj", "{9F91D24D-30A4-479F-8FCA-F692CDC76F95}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0231BB0A-07A6-415F-9576-3FA02BC91141} = {0231BB0A-07A6-415F-9576-3FA02BC91141}
+		{5AD64683-F022-444E-85AF-288C0E460382} = {5AD64683-F022-444E-85AF-288C0E460382}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -201,6 +207,18 @@ Global
 		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|Win32.Build.0 = Release|Win32
 		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|x64.ActiveCfg = Release|x64
 		{117CC546-B0E2-4E21-8F2B-9962E202749F}.Release|x64.Build.0 = Release|x64
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Debug|Win32.Build.0 = Debug|Win32
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Debug|x64.ActiveCfg = Debug|x64
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Debug|x64.Build.0 = Debug|x64
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release Lib|Win32.ActiveCfg = Release Lib|Win32
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release Lib|Win32.Build.0 = Release Lib|Win32
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release Lib|x64.ActiveCfg = Release Lib|x64
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release Lib|x64.Build.0 = Release Lib|x64
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release|Win32.ActiveCfg = Release|Win32
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release|Win32.Build.0 = Release|Win32
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release|x64.ActiveCfg = Release|x64
+		{9F91D24D-30A4-479F-8FCA-F692CDC76F95}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

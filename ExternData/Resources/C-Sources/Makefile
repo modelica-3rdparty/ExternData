@@ -26,6 +26,9 @@ MAT_OBJS = \
 	ED_MATFile.o \
 	snprintf.o
 
+SSV_OBJS = \
+	ED_SSVFile.o
+
 XLS_OBJS = \
 	libxls/src/endian.o \
 	libxls/src/ole.o \

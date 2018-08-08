@@ -66,8 +66,10 @@ struct XmlParser
     int         m_errorLineSet;
 };
 
-XmlNodeRef XmlParser_parse_file(XmlParser *parser,  const String fileName );
-XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml );
+XmlNodeRef XmlParser_parse_file(XmlParser *parser, const String fileName );
+XmlNodeRef XmlParser_parse_file_ns(XmlParser *parser, const String fileName, char ns_sep);
+XmlNodeRef XmlParser_parse(XmlParser *parser, const char * xml );
+XmlNodeRef XmlParser_parse_ns(XmlParser *parser, const char * xml, char ns_sep);
 const String XmlParser_getErrorString(struct XmlParser *parser);
 XML_Size XmlParser_getErrorLine(struct XmlParser *parser);
 int XmlParser_getErrorLineSet(struct XmlParser *parser);

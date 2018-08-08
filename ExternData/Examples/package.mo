@@ -76,6 +76,17 @@ package Examples "Test examples"
       Documentation(info="<html><p>This example model reads the table parameter from variable table1 of the HDF5-based MAT-file <a href=\"modelica://ExternData/Resources/Examples/test_v7.3.mat\">test_v7.3.mat</a>. The table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.MATFile.getRealArray2D\">ExternData.MATFile.getRealArray2D</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
   end MATTest;
 
+  model SSVTest "SSV file read test"
+    extends Modelica.Icons.Example;
+    inner parameter SSVFile ssvfile(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ssv")) "SSV file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    Modelica.Blocks.Math.Gain gain1(k=ssvfile.getReal("gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+    Modelica.Blocks.Sources.Clock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    equation
+      connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+    annotation(experiment(StopTime=1),
+      Documentation(info="<html><p>This example model reads the gain parameter from the corresponding node of the SSV file <a href=\"modelica://ExternData/Resources/Examples/test.ssv\">test.ssv</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.SSVFile.getReal\">ExternData.SSVFile.getReal</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
+  end SSVTest;
+
   model XLSTest "Excel XLS file read test"
     extends Modelica.Icons.Example;
     parameter String sheetName="set1" "Excel sheet name" annotation(choices(choice="set1" "First Excel sheet", choice="set2" "Second Excel sheet"));

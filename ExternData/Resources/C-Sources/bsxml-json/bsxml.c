@@ -175,7 +175,7 @@ String XmlNode_getAttributeValue(struct XmlNode *node, const String key)
 {
     String value = NULL;
     XmlAttribute *attr = XmlNode_getAttribute(node, key);
-    if(attr) {
+    if (attr) {
         value = attr->value;
     }
 
@@ -528,13 +528,18 @@ int XmlParser_getErrorLineSet(struct XmlParser *parser)
 }
 
 /* return root elem */
-XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
+XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml)
+{
+    return XmlParser_parse_ns(parser, xml, '\0');
+}
+
+XmlNodeRef XmlParser_parse_ns(XmlParser *parser,  const char * xml, char ns_sep)
 {
     XmlNodeRef root = NULL;
     parser->m_errorString = NULL;
     parser->m_nodeStack= cpo_array_create(XMLTREE_STACKSIZE, sizeof(void*));
     /*expat parser*/
-    parser->m_parser = XML_ParserCreate(NULL);
+    parser->m_parser = ns_sep == '\0' ? XML_ParserCreate(NULL) : XML_ParserCreateNS(NULL, ns_sep);
     XML_SetUserData(parser->m_parser, parser );
     XML_SetElementHandler(parser->m_parser, startElement, endElement );
     XML_SetCharacterDataHandler(parser->m_parser, characterData );
@@ -557,6 +562,11 @@ XmlNodeRef XmlParser_parse(XmlParser *parser,  const char * xml )
 
 XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName )
 {
+    return XmlParser_parse_file_ns(parser, fileName, '\0');
+}
+
+XmlNodeRef XmlParser_parse_file_ns(struct XmlParser *parser,  const String fileName, char ns_sep)
+{
     XmlNodeRef root = NULL;
     FILE *f = fopen (fileName, "rb");
 
@@ -574,7 +584,7 @@ XmlNodeRef XmlParser_parse_file(struct XmlParser *parser,  const String fileName
         }
         fclose (f);
         if (read == length) {
-            root = XmlParser_parse(parser,  buffer);
+            root = XmlParser_parse_ns(parser,  buffer, ns_sep);
         } else {
             parser->m_errorString = strerror(errno);
             parser->m_errorLine = 0;

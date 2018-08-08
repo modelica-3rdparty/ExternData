@@ -4,6 +4,7 @@ CSVFile
 INIFile
 JSONFile
 MATFile
+SSVFile
 XLSFile
 XLSXFile
 XMLFile
