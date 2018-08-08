@@ -1,12 +1,12 @@
 # ExternData
-Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX and XML files.
+Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX and XML files.
 
 ## Build status
 [![Build Status](https://travis-ci.org/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.org/modelica-3rdparty/ExternData)
 [![Build Status](https://ci.appveyor.com/api/projects/status/k77hnpxp99djcong/branch/master?svg=true)](https://ci.appveyor.com/project/tbeu/externdata/branch/master)
 
 ## Library description
-ExternData is a utility library to access data stored in CSV, INI, JSON, MATLAB MAT, SSV, Excel XLS/XLSX or XML files.
+ExternData is a utility library to access data stored in CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets for convenient model initialization and parametrization.
 
 ### Main features
@@ -76,8 +76,6 @@ Jean-loup Gailly's and Mark Adler's massively spiffy yet delicately unobtrusive 
 Fehmi Noyan ISI's string processing library for C
 
 ## Development and contribution
-* [tbeu](https://github.com/tbeu)
-
 You may report any issues with using the [Issues](../../issues) button.
 
 Contributions in shape of [Pull Requests](../../pulls) are always welcome.
