@@ -30,12 +30,14 @@
 #define ARR_VAL2PTR(v)  ((uintptr_t)(v))
 
 typedef size_t asize_t;
+typedef int (*cmp_func)(const void *, const void *) ;
 
 typedef struct s_array {
     asize_t num;
     asize_t max;
     void *v;
     asize_t elem_size;
+    cmp_func cmp;
 } cpo_array_t;
 
 cpo_array_t *
@@ -54,10 +56,9 @@ void *
 cpo_array_remove(cpo_array_t *a, asize_t index);
 
 void
-cpo_array_qsort(cpo_array_t *a, int (*cmp_func)(const void *, const void *));
+cpo_array_qsort(cpo_array_t *a, cmp_func cmp);
 
-void *cpo_array_bsearch(cpo_array_t *ar, const void *key,
-                        int (*compar)(const void *, const void *));
+void *cpo_array_bsearch(cpo_array_t *a, const void *key, cmp_func cmp);
 
 void
 cpo_array_destroy(cpo_array_t *a);

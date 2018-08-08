@@ -48,6 +48,7 @@ cpo_array_create(asize_t size, asize_t elem_size)
     a->num = 0;
     a->max = size;
     a->elem_size = elem_size;
+    a->cmp = NULL;
 
     return a;
 }
@@ -117,17 +118,17 @@ cpo_array_insert_at(cpo_array_t *a, asize_t index)
 
     if (index <= a->num) {
         int result = cpo_array_setsize(a, a->num + 1);
-        if(!result) {
+        if (!result) {
             asize_t nmove = a->num - index - 1;
             memmove((unsigned char*)a->v + a->elem_size * (index + 1),
                     (unsigned char*)a->v + a->elem_size * index, nmove * a->elem_size);
 
             elt = (unsigned char*) a->v + a->elem_size * index;
+            a->cmp = NULL;
         }
     }
     return elt;
 }
-
 
 void *
 cpo_array_remove(cpo_array_t *a, asize_t index)
@@ -157,17 +158,18 @@ void cpo_array_destroy(cpo_array_t *a)
     free(a);
 }
 
-void cpo_array_qsort(cpo_array_t *a,
-                     int (*cmp_func)(const void *, const void *))
+void cpo_array_qsort(cpo_array_t *a, cmp_func cmp)
 {
-    qsort(a->v, a->num, a->elem_size, cmp_func);
+    qsort(a->v, a->num, a->elem_size, cmp);
 }
 
-void *cpo_array_bsearch(cpo_array_t *ar, const void *key,
-                        int (*compar)(const void *, const void *))
+void *cpo_array_bsearch(cpo_array_t *a, const void *key, cmp_func cmp)
 {
-    cpo_array_qsort(ar, compar);
-    return bsearch(key, ar->v, ar->num, ar->elem_size, compar);
+    if (a->cmp == NULL || a->cmp != cmp) {
+        cpo_array_qsort(a, cmp);
+        a->cmp = cmp;
+    }
+    return bsearch(key, a->v, a->num, a->elem_size, cmp);
 }
 
 int array_cmp_int_asc(const void *a, const void *b)
