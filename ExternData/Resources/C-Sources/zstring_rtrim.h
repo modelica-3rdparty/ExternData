@@ -1,6 +1,6 @@
 /******************************************************************************
 * zstring_rtrim.h
-* Copyright (c) 2016, Fehmi Noyan ISI fnoyanisi@yahoo.com
+* Copyright (c) 2016-2018, Fehmi Noyan ISI fnoyanisi@yahoo.com
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,8 @@
 *  C function to trim trailing white-spaces from a character string
 *
 *  Function arguments:
-*	char *zstring_trim(char *str)
-*      - str is the string of char that is subject to right-trim operation 
+*   char *zstring_trim(char *str)
+*      - str is the string of char that is subject to right-trim operation
 *
 *  Return values
 *      - the resulting string is returned
@@ -43,35 +43,25 @@
 #ifndef ZSTRING_RTRIM_H
 #define ZSTRING_RTRIM_H
 
-#include <stddef.h>
+#include <stdio.h>
 
-char *zstring_rtrim(char *str){
-    char *src=str;  /* save the original pointer */
-    char *dst=str;  /* result */
-    int is_space=0;
-    ptrdiff_t index=0;    /* index of the last non-space char */
+char *
+zstring_rtrim(char *str){
+    char *i = str; /* last non-space character */
+    char *p = str; /* iterator */
+    if (str != NULL) {
+        while (*p != '\0'){
+            if (*p != '\t' && *p != '\v' && *p != '\f' &&
+                *p != '\n' && *p != '\r' && *p != ' ') {
+                i = p;
+            }
+            p++;
+        }
 
-    /* validate input */
-    if (!str)
-        return str;
-
-    /* copy the string */
-    while(*src){
-        char c;
-        *dst++ = *src++;
-        c = *src;
-
-        if (c=='\t' || c=='\v' || c=='\f' || c=='\n' || c=='\r' || c==' ')
-            is_space=1;
-        else
-            is_space=0;
-
-        if (is_space==0 && *src)
-            index = (src-str)+1;
+        if (*i != '\0'){
+            *(i+1) = '\0'; /* terminate the string */
+        }
     }
-
-    /* terminate the string */
-    *(str+index)='\0';
 
     return str;
 }
