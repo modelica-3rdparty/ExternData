@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\C-Sources\ED_MATFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\modelica\snprintf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\ED_MATFile.h">
