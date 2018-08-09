@@ -70,7 +70,7 @@ static char* find_chars_or_comment(const char* s, const char* chars)
 /* Version of strncpy that ensures dest (size bytes) is null-terminated. */
 static char* strncpy0(char* dest, const char* src, size_t size)
 {
-    strncpy(dest, src, size);
+    strncpy(dest, src, size - 1);
     dest[size - 1] = '\0';
     return dest;
 }
@@ -87,7 +87,7 @@ int ini_parse_stream(ini_reader reader, void* stream, ini_handler handler,
     char* line;
     int max_line = INI_INITIAL_ALLOC;
 #endif
-#if INI_ALLOW_REALLOC
+#if INI_ALLOW_REALLOC && !INI_USE_STACK
     char* new_line;
     int offset;
 #endif
@@ -116,7 +116,7 @@ int ini_parse_stream(ini_reader reader, void* stream, ini_handler handler,
 
     /* Scan through stream line by line */
     while (reader(line, max_line, stream) != NULL) {
-#if INI_ALLOW_REALLOC
+#if INI_ALLOW_REALLOC && !INI_USE_STACK
         offset = strlen(line);
         while (offset == max_line - 1 && line[offset - 1] != '\n') {
             max_line *= 2;
