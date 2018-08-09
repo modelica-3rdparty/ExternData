@@ -107,6 +107,7 @@ cpo_array_push(cpo_array_t *a)
 
     if (!result) {
         elt = (unsigned char*) a->v + a->elem_size * ix;
+        a->cmp = NULL;
     }
     return elt;
 }
