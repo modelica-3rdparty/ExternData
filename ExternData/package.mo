@@ -870,7 +870,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getRealArray2D "Get 2D Real values from CSV file"
+      partial function getRealArray2D "Get 2D Real values from CSV file"
         extends Modelica.Icons.Function;
         input Integer m=1 "Number of rows";
         input Integer n=1 "Number of columns";
@@ -880,7 +880,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray2D;
 
-      function getArraySize2D "Get dimensions of 2D array in CSV file"
+      partial function getArraySize2D "Get dimensions of 2D array in CSV file"
         extends Modelica.Icons.Function;
         input Types.ExternCSVFile csv "External CSV file object";
         output Integer m "Number of rows in array";
@@ -888,7 +888,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in CSV file"
+      partial function getArrayRows2D "Get first dimension of 2D array in CSV file"
         extends Modelica.Icons.Function;
         input Types.ExternCSVFile csv "External CSV file object";
         output Integer m "Number of rows in array";
@@ -897,7 +897,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in CSV file"
+      partial function getArrayColumns2D "Get second dimension of 2D array in CSV file"
         extends Modelica.Icons.Function;
         input Types.ExternCSVFile csv "External CSV file object";
         output Integer n "Number of columns in array";
@@ -921,7 +921,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getReal "Get scalar Real value from INI file"
+      partial function getReal "Get scalar Real value from INI file"
         extends Interfaces.partialGetReal;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
@@ -934,7 +934,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 </html>"));
       end getReal;
 
-      function getInteger "Get scalar Integer value from INI file"
+      partial function getInteger "Get scalar Integer value from INI file"
         extends Interfaces.partialGetInteger;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
@@ -947,7 +947,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 </html>"));
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from INI file"
+      partial function getBoolean "Get scalar Boolean value from INI file"
         extends Interfaces.partialGetBoolean;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
@@ -957,7 +957,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
-      function getString "Get scalar String value from INI file"
+      partial function getString "Get scalar String value from INI file"
         extends Interfaces.partialGetString;
         input String section="" "Section";
         input Types.ExternINIFile ini "External INI file object";
@@ -991,13 +991,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getReal "Get scalar Real value from JSON file"
+      partial function getReal "Get scalar Real value from JSON file"
         extends Interfaces.partialGetReal;
         input Types.ExternJSONFile json "External JSON file object";
         annotation(Documentation(info="<html></html>"));
       end getReal;
 
-      function getRealArray1D "Get 1D Real values from JSON file"
+      partial function getRealArray1D "Get 1D Real values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer n=1 "Number of elements";
@@ -1006,7 +1006,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray1D;
 
-      function getRealArray2D "Get 2D Real values from JSON file"
+      partial function getRealArray2D "Get 2D Real values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
@@ -1016,13 +1016,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from JSON file"
+      partial function getInteger "Get scalar Integer value from JSON file"
         extends Interfaces.partialGetInteger;
         input Types.ExternJSONFile json "External JSON file object";
         annotation(Documentation(info="<html></html>"));
       end getInteger;
 
-      function getIntegerArray1D "Get 1D Integer values from JSON file"
+      partial function getIntegerArray1D "Get 1D Integer values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer n=1 "Number of elements";
@@ -1031,7 +1031,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getIntegerArray1D;
 
-      function getIntegerArray2D "Get 2D Integer values from JSON file"
+      partial function getIntegerArray2D "Get 2D Integer values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
@@ -1041,13 +1041,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getIntegerArray2D;
 
-      function getBoolean "Get scalar Boolean value from JSON file"
+      partial function getBoolean "Get scalar Boolean value from JSON file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternJSONFile json "External JSON file object";
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
-      function getBooleanArray1D "Get 1D Boolean values from JSON file"
+      partial function getBooleanArray1D "Get 1D Boolean values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer n=1 "Number of elements";
@@ -1056,7 +1056,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getBooleanArray1D;
 
-      function getBooleanArray2D "Get 2D Boolean values from JSON file"
+      partial function getBooleanArray2D "Get 2D Boolean values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
@@ -1066,13 +1066,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getBooleanArray2D;
 
-      function getString "Get scalar String value from JSON file"
+      partial function getString "Get scalar String value from JSON file"
         extends Interfaces.partialGetString;
         input Types.ExternJSONFile json "External JSON file object";
         annotation(Documentation(info="<html></html>"));
       end getString;
 
-      function getStringArray1D "Get 1D String values from JSON file"
+      partial function getStringArray1D "Get 1D String values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer n=1 "Number of elements";
@@ -1081,7 +1081,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getStringArray1D;
 
-      function getStringArray2D "Get 2D String values from JSON file"
+      partial function getStringArray2D "Get 2D String values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
@@ -1091,7 +1091,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getStringArray2D;
 
-      function getArraySize1D "Get length of 1D array in JSON file"
+      partial function getArraySize1D "Get length of 1D array in JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternJSONFile json "External JSON file object";
@@ -1099,7 +1099,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize1D;
 
-      function getArraySize2D "Get dimensions of 2D array in JSON file"
+      partial function getArraySize2D "Get dimensions of 2D array in JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternJSONFile json "External JSON file object";
@@ -1108,7 +1108,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in JSON file"
+      partial function getArrayRows2D "Get first dimension of 2D array in JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternJSONFile json "External JSON file object";
@@ -1118,7 +1118,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in JSON file"
+      partial function getArrayColumns2D "Get second dimension of 2D array in JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternJSONFile json "External JSON file object";
@@ -1150,7 +1150,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Line(points={{-80,-30},{80,-30}})}));
       end Base;
 
-      function getRealArray2D "Get 2D Real values from MAT file"
+      partial function getRealArray2D "Get 2D Real values from MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
         input Integer m=1 "Number of rows";
@@ -1160,7 +1160,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray2D;
 
-      function getStringArray1D "Get 1D String values from MAT file"
+      partial function getStringArray1D "Get 1D String values from MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
         input Integer n=1 "Number of elements";
@@ -1169,7 +1169,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getStringArray1D;
 
-      function getArraySize2D "Get dimensions of 2D array in MAT file"
+      partial function getArraySize2D "Get dimensions of 2D array in MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
         input Types.ExternMATFile mat "External MATLAB MAT file object";
@@ -1178,7 +1178,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in MAT file"
+      partial function getArrayRows2D "Get first dimension of 2D array in MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
         input Types.ExternMATFile mat "External MATLAB MAT file object";
@@ -1188,7 +1188,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in MAT file"
+      partial function getArrayColumns2D "Get second dimension of 2D array in MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
         input Types.ExternMATFile mat "External MATLAB MAT file object";
@@ -1213,25 +1213,25 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getReal "Get scalar Real value from SSV file"
+      partial function getReal "Get scalar Real value from SSV file"
         extends Interfaces.partialGetReal;
         input Types.ExternSSVFile ssv "External SSV file object";
         annotation(Documentation(info="<html></html>"));
       end getReal;
 
-      function getInteger "Get scalar Integer value from SSV file"
+      partial function getInteger "Get scalar Integer value from SSV file"
         extends Interfaces.partialGetInteger;
         input Types.ExternSSVFile ssv "External SSV file object";
         annotation(Documentation(info="<html></html>"));
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from SSV file"
+      partial function getBoolean "Get scalar Boolean value from SSV file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternSSVFile ssv "External SSV file object";
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
-      function getString "Get scalar String value from SSV file"
+      partial function getString "Get scalar String value from SSV file"
         extends Interfaces.partialGetString;
         input Types.ExternSSVFile ssv "External SSV file object";
         annotation(Documentation(info="<html></html>"));
@@ -1270,7 +1270,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={0,127,0},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getReal "Get scalar Real value from Excel XLS file"
+      partial function getReal "Get scalar Real value from Excel XLS file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1280,7 +1280,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getReal;
 
-      function getRealArray2D "Get 2D Real values from Excel XLS file"
+      partial function getRealArray2D "Get 2D Real values from Excel XLS file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Start cell address";
         input String sheetName="" "Sheet name";
@@ -1291,7 +1291,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from Excel XLS file"
+      partial function getInteger "Get scalar Integer value from Excel XLS file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1301,7 +1301,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from Excel XLS file"
+      partial function getBoolean "Get scalar Boolean value from Excel XLS file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1313,7 +1313,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
-      function getString "Get scalar String value from Excel XLS file"
+      partial function getString "Get scalar String value from Excel XLS file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1323,7 +1323,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getString;
 
-      function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
+      partial function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
         extends Modelica.Icons.Function;
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
@@ -1332,7 +1332,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
+      partial function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
         extends Modelica.Icons.Function;
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
@@ -1342,7 +1342,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
+      partial function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
         extends Modelica.Icons.Function;
         input String sheetName="" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
@@ -1385,7 +1385,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={160,255,255},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getReal "Get scalar Real value from Excel XLSX file"
+      partial function getReal "Get scalar Real value from Excel XLSX file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1395,7 +1395,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getReal;
 
-      function getRealArray2D "Get 2D Real values from Excel XLSX file"
+      partial function getRealArray2D "Get 2D Real values from Excel XLSX file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Start cell address";
         input String sheetName="" "Sheet name";
@@ -1406,7 +1406,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from Excel XLSX file"
+      partial function getInteger "Get scalar Integer value from Excel XLSX file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1416,7 +1416,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from Excel XLSX file"
+      partial function getBoolean "Get scalar Boolean value from Excel XLSX file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1428,7 +1428,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
-      function getString "Get scalar String value from Excel XLSX file"
+      partial function getString "Get scalar String value from Excel XLSX file"
         extends Modelica.Icons.Function;
         input String cellAddress="A1" "Cell address";
         input String sheetName="" "Sheet name";
@@ -1438,7 +1438,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getString;
 
-      function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
+      partial function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
         extends Modelica.Icons.Function;
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
@@ -1447,7 +1447,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
+      partial function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
         extends Modelica.Icons.Function;
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
@@ -1457,7 +1457,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
+      partial function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
         extends Modelica.Icons.Function;
         input String sheetName="" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
@@ -1488,13 +1488,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid)}));
       end Base;
 
-      function getReal "Get scalar Real value from XML file"
+      partial function getReal "Get scalar Real value from XML file"
         extends Interfaces.partialGetReal;
         input Types.ExternXMLFile xml "External XML file object";
         annotation(Documentation(info="<html></html>"));
       end getReal;
 
-      function getRealArray1D "Get 1D Real values from XML file"
+      partial function getRealArray1D "Get 1D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer n=1 "Number of elements";
@@ -1503,7 +1503,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray1D;
 
-      function getRealArray2D "Get 2D Real values from XML file"
+      partial function getRealArray2D "Get 2D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Integer m=1 "Number of rows";
@@ -1513,13 +1513,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from XML file"
+      partial function getInteger "Get scalar Integer value from XML file"
         extends Interfaces.partialGetInteger;
         input Types.ExternXMLFile xml "External XML file object";
         annotation(Documentation(info="<html></html>"));
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from XML file"
+      partial function getBoolean "Get scalar Boolean value from XML file"
         extends Interfaces.partialGetBoolean;
         input Types.ExternXMLFile xml "External XML file object";
         protected
@@ -1527,13 +1527,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
-      function getString "Get scalar String value from XML file"
+      partial function getString "Get scalar String value from XML file"
         extends Interfaces.partialGetString;
         input Types.ExternXMLFile xml "External XML file object";
         annotation(Documentation(info="<html></html>"));
       end getString;
 
-      function getArraySize1D "Get length of 1D array in XML file"
+      partial function getArraySize1D "Get length of 1D array in XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternXMLFile xml "External XML file object";
@@ -1541,7 +1541,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize1D;
 
-      function getArraySize2D "Get dimensions of 2D array in XML file"
+      partial function getArraySize2D "Get dimensions of 2D array in XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternXMLFile xml "External XML file object";
@@ -1550,7 +1550,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in XML file"
+      partial function getArrayRows2D "Get first dimension of 2D array in XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternXMLFile xml "External XML file object";
@@ -1560,7 +1560,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Documentation(info="<html></html>"));
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in XML file"
+      partial function getArrayColumns2D "Get second dimension of 2D array in XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
         input Types.ExternXMLFile xml "External XML file object";
