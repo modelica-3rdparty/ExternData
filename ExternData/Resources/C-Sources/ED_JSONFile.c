@@ -348,8 +348,8 @@ void ED_getDoubleArray1DFromJSON(void* _json, const char* varName, double* a, si
 				}
 			}
 			else {
-				ModelicaFormatError("Array value dimension (%d) does not match requested size (%d) \"%s\" in file \"%s\"\n",
-					json_array_get_count(jsonArray), n, varName, json->fileName);
+				ModelicaFormatError("Array value dimension (%lu) does not match requested size (%lu) \"%s\" in file \"%s\"\n",
+					(unsigned long)json_array_get_count(jsonArray), (unsigned long)n, varName, json->fileName);
 			}
 		}
 		else {
@@ -541,8 +541,8 @@ void ED_getDoubleArray2DFromJSON(void* _json, const char* varName, double* a, si
 				}
 			}
 			else {
-				ModelicaFormatError("Array value dimensions (%dx%d) do not match requested size (%dx%d) \"%s\" in file \"%s\"\n",
-					json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), m, n, varName, json->fileName);
+				ModelicaFormatError("Array value dimensions (%lux%d) do not match requested size (%lux%lu) \"%s\" in file \"%s\"\n",
+					(unsigned long)json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), (unsigned long)m, (unsigned long)n, varName, json->fileName);
 			}
 		}
 		else {
@@ -579,8 +579,8 @@ void ED_getStringArray2DFromJSON(void* _json, const char* varName, char** a, siz
 				}
 			}
 			else {
-				ModelicaFormatError("Array value dimensions (%dx%d) do not match requested size (%dx%d) \"%s\" in file \"%s\"\n",
-					json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), m, n, varName, json->fileName);
+				ModelicaFormatError("Array value dimensions (%lux%d) do not match requested size (%lux%lu) \"%s\" in file \"%s\"\n",
+					(unsigned long)json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), (unsigned long)m, (unsigned long)n, varName, json->fileName);
 			}
 		}
 		else {
@@ -639,8 +639,8 @@ void ED_getIntArray2DFromJSON(void* _json, const char* varName, int* a, size_t m
 				}
 			}
 			else {
-				ModelicaFormatError("Array value dimensions (%dx%d) do not match requested size (%dx%d) \"%s\" in file \"%s\"\n",
-					json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), m, n, varName, json->fileName);
+				ModelicaFormatError("Array value dimensions (%lux%d) do not match requested size (%lux%lu) \"%s\" in file \"%s\"\n",
+					(unsigned long)json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), (unsigned long)m, (unsigned long)n, varName, json->fileName);
 			}
 		}
 		else {
@@ -693,8 +693,8 @@ void ED_getBooleanArray2DFromJSON(void* _json, const char* varName, int* a, size
 				}
 			}
 			else {
-				ModelicaFormatError("Array value dimensions (%dx%d) do not match requested size (%dx%d) \"%s\" in file \"%s\"\n",
-					json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), m, n, varName, json->fileName);
+				ModelicaFormatError("Array value dimensions (%lux%d) do not match requested size (%lux%lu) \"%s\" in file \"%s\"\n",
+					(unsigned long)json_array_get_count(jsonArray), json_array_check_dimensions2D(jsonArray), (unsigned long)m, (unsigned long)n, varName, json->fileName);
 			}
 		}
 		else {

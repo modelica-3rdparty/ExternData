@@ -300,7 +300,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 								}
 							}
 							else {
-								ModelicaFormatError("Error in line %: Cannot read empty (%lu.) element \"%s\" from file \"%s\"\n",
+								ModelicaFormatError("Error in line %i: Cannot read empty (%lu.) element \"%s\" from file \"%s\"\n",
 									line, (unsigned long)(iSibling + 1), varName, xml->fileName);
 								return;
 							}
