@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef UTHASH_H
 #define UTHASH_H
 
-#define UTHASH_VERSION 2.0.2
+#define UTHASH_VERSION 2.1.0
 
 #include <string.h>   /* memcmp, memset, strlen */
 #include <stddef.h>   /* ptrdiff_t */
@@ -88,11 +88,19 @@ typedef unsigned char uint8_t;
 #ifndef uthash_bzero
 #define uthash_bzero(a,n) memset(a,'\0',n)
 #endif
-#ifndef uthash_memcmp
-#define uthash_memcmp(a,b,n) memcmp(a,b,n)
-#endif
 #ifndef uthash_strlen
 #define uthash_strlen(s) strlen(s)
+#endif
+
+#ifdef uthash_memcmp
+/* This warning will not catch programs that define uthash_memcmp AFTER including uthash.h. */
+#warning "uthash_memcmp is deprecated; please use HASH_KEYCMP instead"
+#else
+#define uthash_memcmp(a,b,n) memcmp(a,b,n)
+#endif
+
+#ifndef HASH_KEYCMP
+#define HASH_KEYCMP(a,b,n) uthash_memcmp(a,b,n)
 #endif
 
 #ifndef uthash_noexpand_fyi
@@ -833,7 +841,7 @@ do {                                                                            
   }                                                                              \
   while ((out) != NULL) {                                                        \
     if ((out)->hh.hashv == (hashval) && (out)->hh.keylen == (keylen_in)) {       \
-      if (uthash_memcmp((out)->hh.key, keyptr, keylen_in) == 0) {                \
+      if (HASH_KEYCMP((out)->hh.key, keyptr, keylen_in) == 0) {              \
         break;                                                                   \
       }                                                                          \
     }                                                                            \
