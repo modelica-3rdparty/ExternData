@@ -1,32 +1,35 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * This file is part of libxls -- A multiplatform, C/C++ library
- * for parsing Excel(TM) files.
- *
- * Redistribution and use in source and binary forms, with or without modification, are
- * permitted provided that the following conditions are met:
- *
- *    1. Redistributions of source code must retain the above copyright notice, this list of
- *       conditions and the following disclaimer.
- *
- *    2. Redistributions in binary form must reproduce the above copyright notice, this list
- *       of conditions and the following disclaimer in the documentation and/or other materials
- *       provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY David Hoerl ''AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL David Hoerl OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  * Copyright 2004 Komarov Valery
  * Copyright 2006 Christophe Leitienne
+ * Copyright 2008-2017 David Hoerl
  * Copyright 2013 Bob Colbert
- * Copyright 2008-2013 David Hoerl
+ * Copyright 2013-2018 Evan Miller
+ *
+ * This file is part of libxls -- A multiplatform, C/C++ library for parsing
+ * Excel(TM) files.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *    1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ *    2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ''AS
+ * IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
 
@@ -35,12 +38,17 @@
 
 #include <stdio.h>			// FILE *
 
-#include "libxls/xlstypes.h"
+#include "../libxls/xlstypes.h"
 
-#ifdef AIX
+#if defined(_AIX) || defined(__sun)
 #pragma pack(1)
 #else
 #pragma pack(push, 1)
+#endif
+
+#if defined(_MSC_VER)
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
 #endif
 
 typedef struct TIME_T
@@ -86,7 +94,7 @@ typedef	struct st_olefiles
     long count;
     struct st_olefiles_data
     {
-        BYTE*	name;
+        char*	name;
         DWORD	start;
         DWORD	size;
    }
@@ -97,6 +105,10 @@ st_olefiles;
 typedef struct OLE2
 {
     FILE*		file;
+    const void *buffer;
+    size_t      buffer_len;
+    size_t      buffer_pos;
+
     WORD		lsector;
     WORD		lssector;
     DWORD		cfat;
@@ -107,9 +119,16 @@ typedef struct OLE2
     DWORD		csfat;
     DWORD		difstart;
     DWORD		cdif;
+
     DWORD*		SecID;	// regular sector data
+    DWORD       SecIDCount;
+
 	DWORD*		SSecID;	// short sector data
+    DWORD       SSecIDCount;
+
 	BYTE*		SSAT;	// directory of short sectors
+    DWORD       SSATCount;
+
     st_olefiles	files;
 }
 OLE2;
@@ -129,7 +148,7 @@ typedef struct OLE2Stream
 }
 OLE2Stream;
 
-#ifdef AIX
+#if defined(_AIX) || defined(__sun)
 #pragma pack(1)
 #else
 #pragma pack(push, 1)
@@ -137,7 +156,7 @@ OLE2Stream;
 
 typedef struct PSS
 {
-    BYTE	name[64];
+    char	name[64];
     WORD	bsize;
     BYTE	type;		//STGTY
 #define PS_EMPTY		00
@@ -160,14 +179,13 @@ PSS;
 
 #pragma pack(pop)
 
-extern size_t ole2_read(void* buf,size_t size,size_t count,OLE2Stream* olest);
-extern OLE2Stream* ole2_sopen(OLE2* ole,DWORD start, size_t size);
-extern void ole2_seek(OLE2Stream* olest,DWORD ofs);
-extern OLE2Stream*  ole2_fopen(OLE2* ole,BYTE* file);
-extern void ole2_fclose(OLE2Stream* ole2st);
-extern OLE2* ole2_open(const BYTE *file);
-extern void ole2_close(OLE2* ole2);
-extern void ole2_bufread(OLE2Stream* olest);
-
+ssize_t ole2_read(void* buf,size_t size,size_t count,OLE2Stream* olest);
+OLE2Stream* ole2_sopen(OLE2* ole,DWORD start, size_t size);
+int ole2_seek(OLE2Stream* olest,DWORD ofs);
+OLE2Stream*  ole2_fopen(OLE2* ole, const char *file);
+void ole2_fclose(OLE2Stream* ole2st);
+OLE2* ole2_open_file(const char *file);
+OLE2* ole2_open_buffer(const void *buffer, size_t len);
+void ole2_close(OLE2* ole2);
 
 #endif

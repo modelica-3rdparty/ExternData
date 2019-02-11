@@ -1,39 +1,42 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * This file is part of libxls -- A multiplatform, C/C++ library
- * for parsing Excel(TM) files.
- *
- * Redistribution and use in source and binary forms, with or without modification, are
- * permitted provided that the following conditions are met:
- *
- *    1. Redistributions of source code must retain the above copyright notice, this list of
- *       conditions and the following disclaimer.
- *
- *    2. Redistributions in binary form must reproduce the above copyright notice, this list
- *       of conditions and the following disclaimer in the documentation and/or other materials
- *       provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY David Hoerl ''AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL David Hoerl OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  * Copyright 2004 Komarov Valery
  * Copyright 2006 Christophe Leitienne
+ * Copyright 2008-2017 David Hoerl
  * Copyright 2013 Bob Colbert
- * Copyright 2008-2013 David Hoerl
+ * Copyright 2013-2018 Evan Miller
+ *
+ * This file is part of libxls -- A multiplatform, C/C++ library for parsing
+ * Excel(TM) files.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *    1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ *    2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ''AS
+ * IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
 
 #ifndef XLS_STRUCT_INC
 #define XLS_STRUCT_INC
 
-#include "libxls/ole.h"
+#include "../libxls/ole.h"
 
 #define XLS_RECORD_EOF          0x000A
 #define XLS_RECORD_DEFINEDNAME  0x0018
@@ -80,7 +83,7 @@
 
 #define BLANK_CELL  XLS_RECORD_BLANK  // compat
 
-#ifdef AIX
+#if defined(_AIX) || defined(__sun)
 #pragma pack(1)
 #else
 #pragma pack(push, 1)
@@ -101,7 +104,6 @@ typedef struct BIFF
     WORD year;
     DWORD flags;
     DWORD min_ver;
-    BYTE buf[100];
 }
 BIFF;
 
@@ -124,7 +126,7 @@ typedef struct BOUNDSHEET
     DWORD	filepos;
     BYTE	type;
     BYTE	visible;
-    BYTE	name[];
+    char	name[1];
 }
 BOUNDSHEET;
 
@@ -184,7 +186,7 @@ typedef struct RK
     WORD	row;
     WORD	col;
     WORD	xf;
-    DWORD_UA value;
+    DWORD   value;
 }
 RK;
 
@@ -194,8 +196,8 @@ typedef struct MULRK
     WORD	col;
 	struct {
 		WORD	xf;
-		DWORD_UA value;
-	}		rk[];
+		DWORD   value;
+	}		rk[1];
 	//WORD	last_col;
 }
 MULRK;
@@ -204,7 +206,7 @@ typedef struct MULBLANK
 {
     WORD	row;
     WORD	col;
-    WORD	xf[];
+    WORD	xf[1];
 	//WORD	last_col;
 }
 MULBLANK;
@@ -241,7 +243,7 @@ typedef struct SST
 {
     DWORD	num;
     DWORD	numofstr;
-    BYTE	strings;
+    BYTE	strings[1];
 }
 SST;
 
@@ -289,7 +291,12 @@ typedef struct COLINFO
     WORD	width;
     WORD	xf;
     WORD	flags;
-    WORD	notused;
+/* There should be an unused WORD field at the end here. However, some files in
+ * the wild report it as a BYTE, which results in a boundary-check parse error.
+ * Since the value is ignored anyway, we'll just pretend it was never there.
+ *
+ * See issue https://github.com/evanmiller/libxls/issues/27
+ */
 }
 COLINFO;
 
@@ -313,14 +320,14 @@ typedef struct FONT
     BYTE	family;
     BYTE	charset;
     BYTE	notused;
-    BYTE	name;
+    char    name[1];
 }
 FONT;
 
 typedef struct FORMAT
 {
     WORD	index;
-    BYTE	value[0];
+    char	value[1];
 }
 FORMAT;
 
@@ -336,7 +343,7 @@ typedef	struct st_sheet
         DWORD filepos;
         BYTE visibility;
         BYTE type;
-        BYTE* name;
+        char * name;
     }
     * sheet;
 }
@@ -355,7 +362,7 @@ typedef	struct st_font
         BYTE	underline;
         BYTE	family;
         BYTE	charset;
-        BYTE*	name;
+        char *	name;
     }
     * font;
 }
@@ -367,7 +374,7 @@ typedef struct st_format
     struct st_format_data
     {
          WORD index;
-         BYTE *value;
+         char *value;
     }
     * format;
 }
@@ -405,7 +412,7 @@ typedef	struct st_sst
     DWORD lastsz;
     struct str_sst_string
     {
-        BYTE* str;
+        char * str;
     }
     * string;
 }
@@ -421,7 +428,7 @@ typedef	struct st_cell
         WORD	row;
         WORD	col;
         WORD	xf;
-        BYTE*	str;		// String value;
+        char *	str;		// String value;
         double	d;
         int32_t	l;
         WORD	width;		// Width of col

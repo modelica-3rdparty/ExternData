@@ -1,37 +1,39 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * This file is part of libxls -- A multiplatform, C/C++ library
- * for parsing Excel(TM) files.
- *
- * Redistribution and use in source and binary forms, with or without modification, are
- * permitted provided that the following conditions are met:
- *
- *    1. Redistributions of source code must retain the above copyright notice, this list of
- *       conditions and the following disclaimer.
- *
- *    2. Redistributions in binary form must reproduce the above copyright notice, this list
- *       of conditions and the following disclaimer in the documentation and/or other materials
- *       provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY David Hoerl ''AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL David Hoerl OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
- * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  * Copyright 2013 Bob Colbert
+ *
+ * This file is part of libxls -- A multiplatform, C/C++ library for parsing
+ * Excel(TM) files.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *    1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ *    2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS''AS IS''
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  *
  */
 
 #include <stdlib.h>
 
-#include "libxls/xlstypes.h"
-#include "libxls/endian.h"
-#include "libxls/ole.h"
+#include "../include/libxls/xlstypes.h"
+#include "../include/libxls/endian.h"
+#include "../include/libxls/ole.h"
 
 #include "detail_endian.h"
 
@@ -50,14 +52,7 @@ int xls_is_bigendian()
 #else
     static int n = 1;
 
-    if (*(char *)&n == 1)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    return (*(char *)&n == 0);
 #endif
 }
 
@@ -137,8 +132,8 @@ void xlsConvertWindow(WIND1 *w)
 
 void xlsConvertSst(SST *s)
 {
-    s->num=xlsIntVal(s->num);
-    s->num=xlsIntVal(s->numofstr);
+    s->num = xlsIntVal(s->num);
+    s->numofstr = xlsIntVal(s->numofstr);
 }
 
 void xlsConvertXf5(XF5 *x)
@@ -189,7 +184,6 @@ void xlsConvertColinfo(COLINFO *c)
     W_ENDIAN(c->width);
     W_ENDIAN(c->xf);
     W_ENDIAN(c->flags);
-    W_ENDIAN(c->notused);
 }
 
 void xlsConvertRow(ROW *r)
@@ -226,12 +220,10 @@ void xlsConvertFormula(FORMULA *f)
     W_ENDIAN(f->xf);
 	if(f->res == 0xFFFF) {
 		switch(f->resid) {
-		case 0:
-		case 3:
-			break;
-		case 1:
-		case 2:
-			W_ENDIAN(*(WORD *)&f->resdata[1]);
+		case 0: // string
+		case 1: // bool
+		case 2: // error
+		case 3: // empty string
 			break;
 		default:
 			xlsConvertDouble(&f->resid);
@@ -258,10 +250,10 @@ void xlsConvertFormulaArray(FARRAY *f)
 
 void xlsConvertHeader(OLE2Header *h)
 {
-    int i;
-    for (i=0; i<2; i++)
+    unsigned long i;
+    for (i=0; i<sizeof(h->id)/sizeof(h->id[0]); i++)
         h->id[i] = xlsIntVal(h->id[i]);
-    for (i=0; i<4; i++)
+    for (i=0; i<sizeof(h->clid)/sizeof(h->clid[0]); i++)
         h->clid[i] = xlsIntVal(h->clid[i]);
     h->verminor  = xlsShortVal(h->verminor);
     h->verdll    = xlsShortVal(h->verdll);
@@ -282,7 +274,7 @@ void xlsConvertHeader(OLE2Header *h)
     h->csfat = xlsIntVal(h->csfat);
     h->difstart = xlsIntVal(h->difstart);
     h->cdif = xlsIntVal(h->cdif);
-    for (i=0; i<109; i++)
+    for (i=0; i<sizeof(h->MSAT)/sizeof(h->MSAT[0]); i++)
         h->MSAT[i] = xlsIntVal(h->MSAT[i]);
 }
 
@@ -302,21 +294,3 @@ void xlsConvertPss(PSS* pss)
     pss->size  = xlsIntVal(pss->size);
     pss->proptype  = xlsIntVal(pss->proptype);
 }
-
-#if 0 // not used?
-void xlsConvertUnicode(wchar_t *w, char *s, int len)
-{
-    short *x;
-    int i;
-
-    x=(short *)s;
-    w = (wchar_t*)malloc((len+1)*sizeof(wchar_t));
-
-    for(i=0; i<len; i++)
-    {
-        w[i]=xlsShortVal(x[i]);
-    }
-    w[len] = '\0';
-}
-#endif
-

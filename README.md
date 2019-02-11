@@ -60,7 +60,7 @@ James Clark's Expat XML parser library
 The HDF Group's data model, library and file format for storing and managing data
 * [inih](https://github.com/benhoyt/inih) -
 Ben Hoyt's simple INI file parser in C
-* [libxls](http://sourceforge.net/projects/libxls) -
+* [libxls](https://github.com/libxls/libxls) -
 David Hoerl's C library for parsing Excel files
 * [matio](http://sourceforge.net/projects/matio) -
 Christopher Hulbert's C library for reading and writing MATLAB MAT-files

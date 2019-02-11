@@ -45,10 +45,10 @@
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\endian.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\ole.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xls.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlsstruct.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstool.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\xls.h" />
     <ClInclude Include="..\..\C-Sources\libxls\src\config.h" />
     <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h" />
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h" />

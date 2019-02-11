@@ -36,7 +36,7 @@
 #include "ED_locale.h"
 #include "ED_ptrtrack.h"
 #include "ModelicaUtilities.h"
-#include "libxls/xls.h"
+#include "xls.h"
 #include "../Include/ED_XLSFile.h"
 #define HASH_NONFATAL_OOM 1
 #include "uthash.h"
