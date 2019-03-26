@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!-- test.ssv -->
 <ssv:ParameterSet version="Draft20171219" name="set1"
-    xmlns:ssv="http://www.pmsf.net/xsd/SystemStructureParameterValuesDraft"
-    xmlns:ssc="http://www.pmsf.net/xsd/SystemStructureCommonDraft"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.pmsf.net/xsd/SystemStructureParameterValuesDraft http://www.pmsf.net/xsd/SSP/Draft20171219/SystemStructureParameterValues.xsd">
+    xmlns:ssv="http://ssp-standard.org/SSP1/SystemStructureParameterValues"
+    xmlns:ssc="http://ssp-standard.org/SSP1/SystemStructureCommon"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ssv:Parameters>
         <ssv:Parameter name="gain.k">
             <ssv:Real value="2"/>

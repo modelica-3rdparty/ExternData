@@ -154,7 +154,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="SSV files (*.ssv;*.xml)",
         caption="Open file")));
-    parameter String nameSpace="http://www.pmsf.net/xsd/SystemStructureParameterValuesDraft" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://www.pmsf.net/xsd/SystemStructureParameterValuesDraft" "Draft20171219"));
+    parameter String nameSpace="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSP 1.0"));
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
     final parameter Types.ExternSSVFile ssv=Types.ExternSSVFile(fileName, nameSpace, verboseRead) "External SSV file object";
     extends Interfaces.SSV.Base(
