@@ -1807,6 +1807,6 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
     end ExternXMLFile;
   end Types;
 
-  annotation(uses(Modelica(version="3.2.2")), version="2.4.0",
+  annotation(uses(Modelica(version="3.2.3")), version="2.5.0",
     Documentation(info="<html><p>Library <strong>ExternData</strong> is a Modelica utility library for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a>, <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://modelica.github.io/ssp-standard.org/\">SSV</a> (System Structure Parameter Values), TIR, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
 end ExternData;
