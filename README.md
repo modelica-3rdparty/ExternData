@@ -15,13 +15,13 @@ The aim of this library is to provide access from Modelica simulation tools to d
   * [INI](https://en.wikipedia.org/wiki/INI_file)
   * [JSON](https://en.wikipedia.org/wiki/JSON)
   * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 and v7.3
-  * [SSV](https://ssp-standard.org/) (System Structure Parameter Values - experimental, based on Draft20171219)
+  * [SSV](https://ssp-standard.org/) (System Structure Parameter Values)
   * TIR
   * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
   * [XML](https://en.wikipedia.org/wiki/XML)
 * Pure C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
-* Tested in [Dymola](http://www.dynasim.se) and [SimulationX](http://simulationx.com), with dependency on the [Modelica Standard Library](https://github.com/modelica/Modelica) v3.2.2.
+* Tested in [Dymola](http://www.dynasim.se) and [SimulationX](https://www.simulationx.com/), with dependency on the [Modelica Standard Library](https://github.com/modelica/ModelicaStandardLibrary) v3.2.3.
 
 All data I/O access is implemented using external Modelica functions.
 
@@ -62,7 +62,7 @@ The HDF Group's data model, library and file format for storing and managing dat
 Ben Hoyt's simple INI file parser in C
 * [libxls](https://github.com/libxls/libxls) -
 David Hoerl's C library for parsing Excel files
-* [matio](http://sourceforge.net/projects/matio) -
+* [matio](https://sourceforge.net/projects/matio/) -
 Christopher Hulbert's C library for reading and writing MATLAB MAT-files
 * [minizip](http://www.winimage.com/zLibDll/minizip.html) -
 Gilles Vollant's Zip and UnZip library
