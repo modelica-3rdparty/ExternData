@@ -278,10 +278,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end TIRFile;
 
   package Functions "Functions"
-    extends Modelica.Icons.Package;
+    extends Modelica.Icons.FunctionsPackage;
 
     package CSV "CSV file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getRealArray2D "Get 2D Real values from CSV file"
         extends Interfaces.CSV.getRealArray2D;
         external "C" ED_getDoubleArray2DFromCSV(csv, field, y, size(y, 1), size(y, 2)) annotation(
@@ -317,11 +317,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_CSVFile.h\"",
           Library = {"ED_CSVFile", "bsxml-json"});
       end getArrayColumns2D;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end CSV;
 
     package INI "INI file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getReal "Get scalar Real value from INI file"
         extends Interfaces.INI.getReal;
         external "C" y=ED_getDoubleFromINI(ini, varName, section, strict, exist) annotation(
@@ -368,11 +367,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_INIFile.h\"",
           Library = {"ED_INIFile", "bsxml-json"});
       end getString;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end INI;
 
     package JSON "JSON file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getReal "Get scalar Real value from JSON file"
         extends Interfaces.JSON.getReal;
         external "C" y=ED_getDoubleFromJSON(json, varName, exist) annotation(
@@ -516,11 +514,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_JSONFile.h\"",
           Library = {"ED_JSONFile", "parson"});
       end getArrayColumns2D;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end JSON;
 
     package MAT "MAT file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getRealArray2D "Get 2D Real values from MAT file"
         extends Interfaces.MAT.getRealArray2D;
         external "C" ED_getDoubleArray2DFromMAT(mat, varName, y, size(y, 1), size(y, 2)) annotation(
@@ -565,11 +562,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_MATFile.h\"",
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getArrayColumns2D;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end MAT;
 
     package SSV "SSV file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getReal "Get scalar Real value from SSV file"
         extends Interfaces.SSV.getReal;
         external "C" y=ED_getDoubleFromSSV(ssv, varName, exist) annotation(
@@ -605,11 +601,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_SSVFile.h\"",
           Library = {"ED_SSVFile", "bsxml-json", "expat"});
       end getString;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end SSV;
 
     package XLS "Excel XLS file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getReal "Get scalar Real value from Excel XLS file"
         extends Interfaces.XLS.getReal;
         external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName, exist) annotation(
@@ -680,11 +675,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XLSFile.h\"",
           Library = "ED_XLSFile");
       end getArrayColumns2D;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLS;
 
     package XLSX "Excel XLSX file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getReal "Get scalar Real value from Excel XLSX file"
         extends Interfaces.XLSX.getReal;
         external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName, exist) annotation(
@@ -755,11 +749,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getArrayColumns2D;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XLSX;
 
     package XML "XML file functions"
-      extends Modelica.Icons.Package;
+      extends Modelica.Icons.FunctionsPackage;
       function getReal "Get scalar Real value from XML file"
         extends Interfaces.XML.getReal;
         external "C" y=ED_getDoubleFromXML(xml, varName, exist) annotation(
@@ -848,9 +841,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XMLFile.h\"",
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getArrayColumns2D;
-      annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
     end XML;
-    annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(lineColor={128,128,128},extent={{-90,-90},{90,90}},textString="f")}));
   end Functions;
 
   package Interfaces "Interfaces"
