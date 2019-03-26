@@ -15,7 +15,7 @@ The aim of this library is to provide access from Modelica simulation tools to d
   * [INI](https://en.wikipedia.org/wiki/INI_file)
   * [JSON](https://en.wikipedia.org/wiki/JSON)
   * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 and v7.3
-  * [SSV](https://modelica.github.io/ssp-standard.org/) (System Structure Parameter Values - experimental, based on Draft20171219)
+  * [SSV](https://ssp-standard.org/) (System Structure Parameter Values - experimental, based on Draft20171219)
   * TIR
   * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
   * [XML](https://en.wikipedia.org/wiki/XML)
