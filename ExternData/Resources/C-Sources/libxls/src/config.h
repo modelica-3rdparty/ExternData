@@ -72,7 +72,7 @@
 #define LIBXLS_MAJOR_VERSION 1
 
 /* Micro version */
-#define LIBXLS_MICRO_VERSION 0
+#define LIBXLS_MICRO_VERSION 1
 
 /* Minor version */
 #define LIBXLS_MINOR_VERSION 5

@@ -767,39 +767,39 @@ static xls_error_t xls_mergedCells(xlsWorkSheet* pWS,BOF* bof,BYTE* buf)
         return LIBXLS_ERROR_PARSE;
 
     {
-        int count = buf[0] + (buf[1] << 8);
-        DWORD limit = sizeof(WORD)+count*sizeof(struct MERGEDCELLS);
-        if(limit > (DWORD)bof->size) {
-            verbose("Merged Cells Count out of range");
-            return LIBXLS_ERROR_PARSE;
-        }
-        {
-            int i,c,r;
-            struct MERGEDCELLS *span;
-            verbose("Merged Cells");
-            for (i=0;i<count;i++)
-            {
-                span=(struct MERGEDCELLS*)(buf+(2+i*sizeof(struct MERGEDCELLS)));
-                xlsConvertMergedcells(span);
-                //      printf("Merged Cells: [%i,%i] [%i,%i] \n",span->colf,span->rowf,span->coll,span->rowl);
-                // Sanity check:
-                if(!(   span->rowf <= span->rowl &&
-                        span->rowl <= pWS->rows.lastrow &&
-                        span->colf <= span->coll &&
-                        span->coll <= pWS->rows.lastcol
-                )) {
-                    return LIBXLS_ERROR_PARSE;
-                }
+		int count = buf[0] + (buf[1] << 8);
+		DWORD limit = sizeof(WORD)+count*sizeof(struct MERGEDCELLS);
+		if(limit > (DWORD)bof->size) {
+			verbose("Merged Cells Count out of range");
+			return LIBXLS_ERROR_PARSE;
+		}
+		{
+			int i,c,r;
+			struct MERGEDCELLS *span;
+			verbose("Merged Cells");
+			for (i=0;i<count;i++)
+			{
+				span=(struct MERGEDCELLS*)(buf+(2+i*sizeof(struct MERGEDCELLS)));
+				xlsConvertMergedcells(span);
+				//		printf("Merged Cells: [%i,%i] [%i,%i] \n",span->colf,span->rowf,span->coll,span->rowl);
+				// Sanity check:
+				if(!(   span->rowf <= span->rowl &&
+						span->rowl <= pWS->rows.lastrow &&
+						span->colf <= span->coll &&
+						span->coll <= pWS->rows.lastcol
+				)) {
+					return LIBXLS_ERROR_PARSE;
+				}
 
-                for (r=span->rowf;r<=span->rowl;r++)
-                    for (c=span->colf;c<=span->coll;c++)
-                        pWS->rows.row[r].cells.cell[c].isHidden=1;
-                pWS->rows.row[span->rowf].cells.cell[span->colf].colspan=(span->coll-span->colf+1);
-                pWS->rows.row[span->rowf].cells.cell[span->colf].rowspan=(span->rowl-span->rowf+1);
-                pWS->rows.row[span->rowf].cells.cell[span->colf].isHidden=0;
-            }
-        }
-    }
+				for (r=span->rowf;r<=span->rowl;r++)
+					for (c=span->colf;c<=span->coll;c++)
+						pWS->rows.row[r].cells.cell[c].isHidden=1;
+				pWS->rows.row[span->rowf].cells.cell[span->colf].colspan=(span->coll-span->colf+1);
+				pWS->rows.row[span->rowf].cells.cell[span->colf].rowspan=(span->rowl-span->rowf+1);
+				pWS->rows.row[span->rowf].cells.cell[span->colf].isHidden=0;
+			}
+		}
+	}
     return LIBXLS_OK;
 }
 
