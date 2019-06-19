@@ -1,4 +1,4 @@
-# Expat, Release 2.2.6
+# Expat, Release 2.2.7
 
 This is Expat, a C library for parsing XML, started by
 [James Clark](https://en.wikipedia.org/wiki/James_Clark_(programmer)) in 1997.
