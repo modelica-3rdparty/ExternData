@@ -143,7 +143,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 		return pWS;
 	}
 
-	if (strlen(*sheetName) == 0) {
+	if ((*sheetName)[0] == '\0') {
 		/* Resolve default sheet name */
 		*sheetName = (char*)xls->pWB->sheets.sheet[0].name;
 	}
@@ -153,31 +153,46 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 		pWS = iter->pWS;
 	}
 	else {
-		int sheet = -1;
+		int sheetNo = -1;
 		DWORD i;
 		/* Process all sheets */
 		for (i = 0; i < xls->pWB->sheets.count; i++) {
 			if (0 == strcmp(*sheetName, (char*)xls->pWB->sheets.sheet[i].name)) {
-				sheet = (int)i;
+				sheetNo = (int)i;
 				break;
 			}
 		}
-		if (sheet < 0) {
+		if (sheetNo < 0) {
 			ModelicaFormatMessage("Cannot find sheet \"%s\" in file \"%s\"\n",
 				*sheetName, xls->fileName);
 			return NULL;
 		}
 		/* Open and parse the sheet */
-		pWS = xls_getWorkSheet(xls->pWB, sheet);
-		xls_parseWorkSheet(pWS);
-		iter = malloc(sizeof(SheetShare));
-		if (iter != NULL) {
-			iter->sheetName = strdup(*sheetName);
-			iter->pWS = pWS;
-			HASH_ADD_KEYPTR(hh, xls->sheets, iter->sheetName, strlen(iter->sheetName), iter);
-			if (NULL == iter->hh.tbl) {
-				free(iter->sheetName);
-				free(iter);
+		pWS = xls_getWorkSheet(xls->pWB, sheetNo);
+		if (pWS != NULL) {
+			xls_error_t err = xls_parseWorkSheet(pWS);
+			if (err == LIBXLS_OK) {
+				iter = malloc(sizeof(SheetShare));
+				if (iter != NULL) {
+					iter->sheetName = strdup(*sheetName);
+					iter->pWS = pWS;
+					HASH_ADD_KEYPTR(hh, xls->sheets, iter->sheetName, strlen(iter->sheetName), iter);
+					if (NULL == iter->hh.tbl) {
+						free(iter->sheetName);
+						free(iter);
+					}
+				}
+				else {
+					xls_close_WS(pWS);
+					pWS = NULL;
+					ModelicaError("Memory allocation error\n");
+				}
+			}
+			else {
+				xls_close_WS(pWS);
+				pWS = NULL;
+				ModelicaFormatError("Cannot parse sheet \"%s\" in file \"%s\"\n",
+					*sheetName, xls->fileName);
 			}
 		}
 	}
