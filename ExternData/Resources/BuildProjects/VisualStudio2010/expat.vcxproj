@@ -27,7 +27,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\C-Sources\expat\lib\loadlibrary.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmlparse.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmlrole.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmltok.c" />
