@@ -30,6 +30,7 @@ SSV_OBJS = \
 
 XLS_OBJS = \
 	libxls/src/endian.o \
+	libxls/src/locale.o \
 	libxls/src/ole.o \
 	libxls/src/xls.o \
 	libxls/src/xlstool.o \

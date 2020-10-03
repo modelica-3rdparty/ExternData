@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\C-Sources\libxls\src\xlstool.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C-Sources\libxls\src\locale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_XLSFile.def">
@@ -80,6 +83,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\libxls\include\xls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\locale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

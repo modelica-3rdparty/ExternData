@@ -20,6 +20,7 @@ libED_SSVFile_la_SOURCES = \
 
 libED_XLSFile_la_SOURCES = \
 	../../C-Sources/libxls/src/endian.c \
+	../../C-Sources/libxls/src/locale.c \
 	../../C-Sources/libxls/src/ole.c \
 	../../C-Sources/libxls/src/xls.c \
 	../../C-Sources/libxls/src/xlstool.c \

@@ -40,6 +40,10 @@
 #include <stddef.h>
 #include <errno.h>
 
+#ifdef HAVE_ICONV
+#include <iconv.h>
+#endif
+
 #include <memory.h>
 #include <math.h>
 #include <sys/types.h>
@@ -50,6 +54,7 @@
 #include <wchar.h>
 
 #include "../include/libxls/endian.h"
+#include "../include/libxls/locale.h"
 #include "../include/xls.h"
 
 #ifndef min
@@ -225,27 +230,26 @@ static xls_error_t xls_appendSST(xlsWorkBook* pWB, BYTE* buf, DWORD size)
             if (flag & 0x1) {
                 size_t new_len = 0;
                 ln_toread = min((size-ofs)/2, ln);
-                ret=unicode_decode((char *)buf+ofs,ln_toread*2,&new_len,pWB->charset);
+                ret=unicode_decode((char *)buf+ofs, ln_toread*2, pWB);
 
-                if (ret == NULL)
-                {
+                if (ret == NULL) {
                     ret = strdup("*failed to decode utf16*");
-                    new_len = strlen(ret);
                 }
-
-                ret = realloc(ret,new_len+1);
-                ret[new_len]=0;
 
                 ln -= ln_toread;
                 ofs+=ln_toread*2;
 
                 if (xls_debug) {
+                    new_len = strlen(ret);
 	                printf("String16SST: %s(%lu)\n", ret, (unsigned long)new_len);
                 }
             } else {
                 ln_toread = min((size-ofs), ln);
 
-				ret = utf8_decode((char *)buf+ofs, ln_toread, pWB->charset);
+                ret = codepage_decode((char *)buf+ofs, ln_toread, pWB);
+                if (ret == NULL) {
+                    ret = strdup("*failed to decode BIFF5 string*");
+                }
 
                 ln  -= ln_toread;
                 ofs += ln_toread;
@@ -356,7 +360,7 @@ static char * xls_addSheet(xlsWorkBook* pWB, BOUNDSHEET *bs, DWORD size)
 
 	// printf("charset=%s uni=%d\n", pWB->charset, unicode);
 	// printf("bs name %.*s\n", bs->name[0], bs->name+1);
-	name = get_string(bs->name, size - offsetof(BOUNDSHEET, name), 0, pWB->is5ver, pWB->charset);
+	name = get_string(bs->name, size - offsetof(BOUNDSHEET, name), 0, pWB);
 	// printf("name=%s\n", name);
 
 	if(xls_debug) {
@@ -472,7 +476,7 @@ int xls_isCellTooSmall(xlsWorkBook* pWB, BOF* bof, BYTE* buf) {
     if (bof->id == XLS_RECORD_LABELSST)
         return (bof->size < offsetof(LABEL, value) + (pWB->is5ver ? 2 : 4));
 
-    if (bof->id == XLS_RECORD_LABEL) {
+    if (bof->id == XLS_RECORD_LABEL || bof->id == XLS_RECORD_RSTRING) {
         if (bof->size < offsetof(LABEL, value) + 2)
             return 1;
 
@@ -601,6 +605,7 @@ static struct st_cell_data *xls_addCell(xlsWorkSheet* pWS,BOF* bof,BYTE* buf)
         break;
     case XLS_RECORD_LABELSST:
     case XLS_RECORD_LABEL:
+    case XLS_RECORD_RSTRING:
         xls_cell_set_str(cell, xls_getfcell(pWS->workbook, cell, ((LABEL*)buf)->value));
         if (cell->str) {
             sscanf((char *)cell->str, "%d", &cell->l);
@@ -647,7 +652,7 @@ static char *xls_addFont(xlsWorkBook* pWB, FONT* font, DWORD size)
 
     tmp=&pWB->fonts.font[pWB->fonts.count];
 
-    tmp->name = get_string(font->name, size - offsetof(FONT, name), 0, pWB->is5ver, pWB->charset);
+    tmp->name = get_string(font->name, size - offsetof(FONT, name), 0, pWB);
 
     tmp->height=font->height;
     tmp->flag=font->flag;
@@ -675,7 +680,7 @@ static xls_error_t xls_addFormat(xlsWorkBook* pWB, FORMAT* format, DWORD size)
 
     tmp = &pWB->formats.format[pWB->formats.count];
     tmp->index = format->index;
-    tmp->value = get_string(format->value, size - offsetof(FORMAT, value), (BYTE)!pWB->is5ver, (BYTE)pWB->is5ver, pWB->charset);
+    tmp->value = get_string(format->value, size - offsetof(FORMAT, value), (BYTE)!pWB->is5ver, pWB);
     if(xls_debug) xls_showFormat(tmp);
     pWB->formats.count++;
 
@@ -835,8 +840,8 @@ int xls_isRecordTooSmall(xlsWorkBook *pWB, BOF *bof1) {
 
 xls_error_t xls_parseWorkBook(xlsWorkBook* pWB)
 {
-    BOF bof1 = { 0, 0 };
-    BOF bof2 = { 0, 0 };
+    BOF bof1 = {0, 0};
+    BOF bof2 = {0, 0};
     BYTE* buf = NULL;
 	BYTE once = 0;
     xls_error_t retval = LIBXLS_OK;
@@ -882,7 +887,6 @@ xls_error_t xls_parseWorkBook(xlsWorkBook* pWB)
         case XLS_RECORD_BOF:	// BIFF5-8
             pWB->is5ver = (buf[0] + (buf[1] << 8) != 0x600);
             pWB->type = buf[2] + (buf[3] << 8);
-
             if(xls_debug) {
                 printf("version: %s\n", pWB->is5ver ? "BIFF5" : "BIFF8" );
                 printf("   type: %.2X\n", pWB->type);
@@ -891,7 +895,7 @@ xls_error_t xls_parseWorkBook(xlsWorkBook* pWB)
 
         case XLS_RECORD_CODEPAGE:
             pWB->codepage = buf[0] + (buf[1] << 8);
-			if(xls_debug) printf("codepage=%x\n", pWB->codepage);
+			if(xls_debug) printf("codepage: %d\n", pWB->codepage);
             break;
 
         case XLS_RECORD_CONTINUE:
@@ -1018,7 +1022,7 @@ xls_error_t xls_parseWorkBook(xlsWorkBook* pWB)
 					printf("  ident: 0x%x\n", styl->ident);
 					printf("  level: 0x%x\n", styl->lvl);
 				} else {
-					char *s = get_string((char *)&buf[2], bof1.size - 2, 1, pWB->is5ver, pWB->charset);
+					char *s = get_string((char *)&buf[2], bof1.size - 2, 1, pWB);
 					printf("  name=%s\n", s);
                     free(s);
 				}
@@ -1133,8 +1137,9 @@ static xls_error_t xls_preparseWorkSheet(xlsWorkSheet* pWS)
                 goto cleanup;
             }
             xlsConvertRow((ROW*)buf);
-            if (pWS->rows.lastcol<((ROW*)buf)->lcell)
-                pWS->rows.lastcol=((ROW*)buf)->lcell;
+            /* The lcell field is 1-indexed whereas lastcol is 0-indexed */
+            if (pWS->rows.lastcol+1<((ROW*)buf)->lcell)
+                pWS->rows.lastcol=((ROW*)buf)->lcell-1;
             if (pWS->rows.lastrow<((ROW*)buf)->index)
                 pWS->rows.lastrow=((ROW*)buf)->index;
             break;
@@ -1165,6 +1170,7 @@ static xls_error_t xls_preparseWorkSheet(xlsWorkSheet* pWS)
         case XLS_RECORD_LABELSST:
         case XLS_RECORD_BLANK:
         case XLS_RECORD_LABEL:
+        case XLS_RECORD_RSTRING:
         case XLS_RECORD_FORMULA:
         case XLS_RECORD_FORMULA_ALT:
         case XLS_RECORD_BOOLERR:
@@ -1178,7 +1184,7 @@ static xls_error_t xls_preparseWorkSheet(xlsWorkSheet* pWS)
                 pWS->rows.lastrow=xlsShortVal(((COL*)buf)->row);
             break;
         }
-        if (pWS->rows.lastcol > 256) {
+        if (pWS->rows.lastcol > 255) {
             retval = LIBXLS_ERROR_PARSE;
             goto cleanup;
         }
@@ -1351,6 +1357,7 @@ xls_error_t xls_parseWorkSheet(xlsWorkSheet* pWS)
         case XLS_RECORD_LABELSST:
         case XLS_RECORD_BLANK:
         case XLS_RECORD_LABEL:
+        case XLS_RECORD_RSTRING:
         case XLS_RECORD_FORMULA:
         case XLS_RECORD_FORMULA_ALT:
             if ((cell = xls_addCell(pWS, &tmp, buf)) == NULL) {
@@ -1365,7 +1372,7 @@ xls_error_t xls_parseWorkSheet(xlsWorkSheet* pWS)
 		case XLS_RECORD_STRING:
 			if(cell && (cell->id == XLS_RECORD_FORMULA || cell->id == XLS_RECORD_FORMULA_ALT)) {
                 xls_cell_set_str(cell, get_string((char *)buf, tmp.size,
-                            (BYTE)!pWB->is5ver, pWB->is5ver, pWB->charset));
+                            (BYTE)!pWB->is5ver, pWB));
 				if (xls_debug) xls_showCell(cell);
 			}
 			break;
@@ -1465,12 +1472,7 @@ static xlsWorkBook *xls_open_ole(OLE2 *ole, const char *charset, xls_error_t *ou
     pWB->sheets.count=0;
     pWB->xfs.count=0;
     pWB->fonts.count=0;
-    if (charset) {
-        pWB->charset = malloc(strlen(charset) * sizeof(char)+1);
-        strcpy(pWB->charset, charset);
-    } else {
-        pWB->charset = strdup("UTF-8");
-    }
+    pWB->charset = strdup(charset ? charset : "UTF-8");
 
     retval = xls_parseWorkBook(pWB);
 
@@ -1605,8 +1607,18 @@ void xls_close_WB(xlsWorkBook* pWB)
 	if(pWB->summary)  free(pWB->summary);
 	if(pWB->docSummary) free(pWB->docSummary);
 
-	// TODO - free other dynamically allocated objects like string table??
-	free(pWB);
+#ifdef HAVE_ICONV
+    if (pWB->converter)
+        iconv_close((iconv_t)pWB->converter);
+    if (pWB->utf16_converter)
+        iconv_close((iconv_t)pWB->utf16_converter);
+#endif
+
+    if (pWB->utf8_locale)
+        xls_freelocale((xls_locale_t)pWB->utf8_locale);
+
+    // TODO - free other dynamically allocated objects like string table??
+    free(pWB);
 }
 
 void xls_close_WS(xlsWorkSheet* pWS)
