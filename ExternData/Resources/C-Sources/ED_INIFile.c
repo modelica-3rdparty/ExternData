@@ -101,7 +101,7 @@ static int fillValues(void* userdata, const char* section, const char* key, cons
 
 void* ED_createINI(const char* fileName, int verbose)
 {
-	int ret;
+	int line;
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
 	if (ini == NULL) {
 		ModelicaError("Memory allocation error\n");
@@ -121,12 +121,12 @@ void* ED_createINI(const char* fileName, int verbose)
 		ModelicaFormatMessage("... loading \"%s\"\n", fileName);
 	}
 
-	ret = ini_parse(fileName, fillValues, ini);
-	if (0 != ret) {
+	line = ini_parse(fileName, fillValues, ini);
+	if (0 != line) {
 		cpo_array_destroy(ini->sections);
 		free(ini->fileName);
 		free(ini);
-		ModelicaFormatError("Cannot read \"%s\"\n", fileName);
+		ModelicaFormatError("Error in line %i: Cannot read from file \"%s\"\n", line, fileName);
 		return NULL;
 	}
 	ini->loc = ED_INIT_LOCALE;
