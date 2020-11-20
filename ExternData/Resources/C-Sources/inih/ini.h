@@ -85,7 +85,7 @@ int ini_parse_string(const char* string, ini_handler handler, void* user);
 /* Chars that begin a start-of-line comment. Per Python configparser, allow
    both ; and # comments at the start of a line by default. */
 #ifndef INI_START_COMMENT_PREFIXES
-#define INI_START_COMMENT_PREFIXES ";#"
+#define INI_START_COMMENT_PREFIXES ";#!$"
 #endif
 
 /* Nonzero to allow inline comments (with valid inline comment characters
@@ -100,31 +100,31 @@ int ini_parse_string(const char* string, ini_handler handler, void* user);
 
 /* Nonzero to use stack for line buffer, zero to use heap (malloc/free). */
 #ifndef INI_USE_STACK
-#define INI_USE_STACK 1
+#define INI_USE_STACK 0
 #endif
 
 /* Maximum line length for any line in INI file (stack or heap). Note that
    this must be 3 more than the longest line (due to '\r', '\n', and '\0'). */
 #ifndef INI_MAX_LINE
-#define INI_MAX_LINE 200
+#define INI_MAX_LINE 512
 #endif
 
 /* Nonzero to allow heap line buffer to grow via realloc(), zero for a
    fixed-size buffer of INI_MAX_LINE bytes. Only applies if INI_USE_STACK is
    zero. */
 #ifndef INI_ALLOW_REALLOC
-#define INI_ALLOW_REALLOC 0
+#define INI_ALLOW_REALLOC 1
 #endif
 
 /* Initial size in bytes for heap line buffer. Only applies if INI_USE_STACK
    is zero. */
 #ifndef INI_INITIAL_ALLOC
-#define INI_INITIAL_ALLOC 200
+#define INI_INITIAL_ALLOC 128
 #endif
 
 /* Stop parsing on first error (default is to keep parsing). */
 #ifndef INI_STOP_ON_FIRST_ERROR
-#define INI_STOP_ON_FIRST_ERROR 0
+#define INI_STOP_ON_FIRST_ERROR 1
 #endif
 
 /* Nonzero to call the handler at the start of each new section (with
