@@ -208,10 +208,10 @@ void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, siz
 	CSVFile* csv = (CSVFile*)_csv;
 	ED_PTR_CHECK(csv);
 	if (field[0] < 1) {
-		ModelicaError("Invalid line mumber, must be greater than or equal to one.\n");
+		ModelicaError("Invalid line number, must be greater than or equal to one.\n");
 	}
 	if (field[1] < 1) {
-		ModelicaError("Invalid column mumber, must be greater than or equal to one.\n");
+		ModelicaError("Invalid column number, must be greater than or equal to one.\n");
 	}
 	if (csv != NULL) {
 		size_t i;
