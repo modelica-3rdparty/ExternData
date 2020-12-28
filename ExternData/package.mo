@@ -61,13 +61,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.CSV.getArrayRows2D(csv=csv) "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.CSV.getArrayColumns2D(csv=csv) "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read function for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
-      defaultComponentName="csvfile",
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"csvfile\" component is defined, please drag ExternData.CSVFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.CSVFile to the model top level",
       Icon(graphics={
-        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString=DynamicSelect("csv", if delimiter == " " then "c s v" elseif delimiter == "," then "c,s,v" elseif delimiter == "\t" then "c\\ts\\tv" elseif delimiter == ";" then "c;s;v" else "csv")),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={0,0,255},extent={{-85,-10},{85,-55}},textString=DynamicSelect("csv", if delimiter == " " then "c s v" elseif delimiter == "," then "c,s,v" elseif delimiter == "\t" then "c\\ts\\tv" elseif delimiter == ";" then "c;s;v" else "csv")),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end CSVFile;
 
   record INIFile "Read data values from INI file"
@@ -84,12 +84,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getString = Functions.INI.getString(ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
-      defaultComponentName="inifile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"inifile\" component is defined, please drag ExternData.INIFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.INIFile to the model top level",
       Icon(graphics={
-        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="[ini]"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={0,0,255},extent={{-85,-10},{85,-55}},textString="[ini]"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end INIFile;
 
   record JSONFile "Read data values from JSON file"
@@ -118,12 +118,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayColumns2D = Functions.JSON.getArrayColumns2D(json=json) "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
-      defaultComponentName="jsonfile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"jsonfile\" component is defined, please drag ExternData.JSONFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.JSONFile to the model top level",
       Icon(graphics={
-        Text(lineColor={0,0,255},extent={{-85,-10},{85,-55}},textString="{\"json\"}"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={0,0,255},extent={{-85,-10},{85,-55}},textString="{\"json\"}"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
   record MATFile "Read data values from MATLAB MAT file"
@@ -141,12 +141,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayColumns2D = Functions.MAT.getArrayColumns2D(mat=mat) "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
-      defaultComponentName="matfile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"matfile\" component is defined, please drag ExternData.MATFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.MATFile to the model top level",
       Icon(graphics={
         Text(extent={{5,85},{65,40}},textString="mat"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end MATFile;
 
   record SSVFile "Read data values from SSV file"
@@ -164,12 +164,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getString = Functions.SSV.getString(ssv=ssv) "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternSSVFile\">ExternSSVFile</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
-      defaultComponentName="ssvfile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"ssvfile\" component is defined, please drag ExternData.SSVFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.SSVFile to the model top level",
       Icon(graphics={
-        Text(lineColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<ssv>"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<ssv>"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end SSVFile;
 
   record XLSFile "Read data values from Excel XLS file"
@@ -191,12 +191,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayColumns2D = Functions.XLS.getArrayColumns2D(xls=xls) "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
-      defaultComponentName="xlsfile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"xlsfile\" component is defined, please drag ExternData.XLSFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XLSFile to the model top level",
       Icon(graphics={
-        Text(lineColor={0,127,0},extent={{-85,-10},{85,-55}},textString="xls"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={0,127,0},extent={{-85,-10},{85,-55}},textString="xls"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSFile;
 
   record XLSXFile "Read data values from Excel XLSX file"
@@ -217,12 +217,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayColumns2D = Functions.XLSX.getArrayColumns2D(xlsx=xlsx) "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
-      defaultComponentName="xlsxfile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"xlsxfile\" component is defined, please drag ExternData.XLSXFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XLSXFile to the model top level",
       Icon(graphics={
-        Text(lineColor={0,127,255},extent={{-85,-10},{85,-55}},textString="xlsx"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={0,127,255},extent={{-85,-10},{85,-55}},textString="xlsx"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSXFile;
 
   record XMLFile "Read data values from XML file"
@@ -244,13 +244,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.XML.getArrayRows2D(xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XML.getArrayColumns2D(xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> for an example.</p></html>"),
-      defaultComponentName="xmlfile",
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> or <a href=\"modelica://ExternData.Examples.XMLTest2\">Examples.XMLTest2</a> for an example.</p></html>"),
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"xmlfile\" component is defined, please drag ExternData.XMLFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XMLFile to the model top level",
       Icon(graphics={
-        Text(lineColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+        Text(textColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
   record TIRFile "Read data values from TIR file"
@@ -267,12 +267,12 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getString = Functions.INI.getString(ini=tir) "Get scalar String value from TIR file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of tyre data (TIR) files.</p><p>See <a href=\"modelica://ExternData.Examples.TIRTest\">Examples.TIRTest</a> for an example.</p></html>"),
-      defaultComponentName="tirfile",
+      defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
-      missingInnerMessage="No \"tirfile\" component is defined, please drag ExternData.TIRFile to the model top level",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.TIRFile to the model top level",
       Icon(graphics={
-        Text(lineColor={0,0,255},extent={{-36,84},{88,40}},textString="[tir]"),
-        Text(lineColor={0,0,255},extent={{-150,150},{150,110}},textString="%name"),
+        Text(textColor={0,0,255},extent={{-36,84},{88,40}},textString="[tir]"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name"),
         Ellipse(extent={{-50,20},{50,-80}},fillPattern=FillPattern.Solid),
         Ellipse(extent={{-30,0},{30,-60}},fillColor={255,255,255},fillPattern=FillPattern.Solid)}));
   end TIRFile;
@@ -282,7 +282,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package CSV "CSV file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getRealArray2D "Get 2D Real values from CSV file"
+      pure function getRealArray2D "Get 2D Real values from CSV file"
         extends Interfaces.CSV.getRealArray2D;
         external "C" ED_getDoubleArray2DFromCSV(csv, field, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
@@ -291,7 +291,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_CSVFile", "bsxml-json"});
       end getRealArray2D;
 
-      function getArraySize2D "Get dimensions of 2D array in CSV file"
+      pure function getArraySize2D "Get dimensions of 2D array in CSV file"
         extends Interfaces.CSV.getArraySize2D;
         external "C" ED_getArray2DDimensionsFromCSV(csv, m, n) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
@@ -300,7 +300,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_CSVFile", "bsxml-json"});
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in CSV file"
+      pure function getArrayRows2D "Get first dimension of 2D array in CSV file"
         extends Interfaces.CSV.getArrayRows2D;
         external "C" ED_getArray2DDimensionsFromCSV(csv, m, n) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
@@ -309,7 +309,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_CSVFile", "bsxml-json"});
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in CSV file"
+      pure function getArrayColumns2D "Get second dimension of 2D array in CSV file"
         extends Interfaces.CSV.getArrayColumns2D;
         external "C" ED_getArray2DDimensionsFromCSV(csv, m, n) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
@@ -321,7 +321,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package INI "INI file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getReal "Get scalar Real value from INI file"
+      pure function getReal "Get scalar Real value from INI file"
         extends Interfaces.INI.getReal;
         external "C" y=ED_getDoubleFromINI(ini, varName, section, strict, exist) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
@@ -336,7 +336,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 </html>"));
       end getReal;
 
-      function getInteger "Get scalar Integer value from INI file"
+      pure function getInteger "Get scalar Integer value from INI file"
         extends Interfaces.INI.getInteger;
         external "C" y=ED_getIntFromINI(ini, varName, section, strict, exist) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
@@ -351,7 +351,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 </html>"));
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from INI file"
+      pure function getBoolean "Get scalar Boolean value from INI file"
         extends Interfaces.INI.getBoolean;
         algorithm
           (aux, exist) := getReal(ini=ini, varName=varName, section=section, strict=strict);
@@ -359,7 +359,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Inline=false);
       end getBoolean;
 
-      function getString "Get scalar String value from INI file"
+      pure function getString "Get scalar String value from INI file"
         extends Interfaces.INI.getString;
         external "C" str=ED_getStringFromINI(ini, varName, section, exist) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
@@ -371,7 +371,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package JSON "JSON file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getReal "Get scalar Real value from JSON file"
+      pure function getReal "Get scalar Real value from JSON file"
         extends Interfaces.JSON.getReal;
         external "C" y=ED_getDoubleFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -380,7 +380,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getReal;
 
-      function getRealArray1D "Get 1D Real values from JSON file"
+      pure function getRealArray1D "Get 1D Real values from JSON file"
         extends Interfaces.JSON.getRealArray1D;
         external "C" ED_getDoubleArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -389,7 +389,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getRealArray1D;
 
-      function getRealArray2D "Get 2D Real values from JSON file"
+      pure function getRealArray2D "Get 2D Real values from JSON file"
         extends Interfaces.JSON.getRealArray2D;
         external "C" ED_getDoubleArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -398,7 +398,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from JSON file"
+      pure function getInteger "Get scalar Integer value from JSON file"
         extends Interfaces.JSON.getInteger;
         external "C" y=ED_getIntFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -407,7 +407,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getInteger;
 
-      function getIntegerArray1D "Get 1D Integer values from JSON file"
+      pure function getIntegerArray1D "Get 1D Integer values from JSON file"
         extends Interfaces.JSON.getIntegerArray1D;
         external "C" ED_getIntArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -416,7 +416,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getIntegerArray1D;
 
-      function getIntegerArray2D "Get 2D Integer values from JSON file"
+      pure function getIntegerArray2D "Get 2D Integer values from JSON file"
         extends Interfaces.JSON.getIntegerArray2D;
         external "C" ED_getIntArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -425,7 +425,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getIntegerArray2D;
 
-      function getBoolean "Get scalar Boolean value from JSON file"
+      pure function getBoolean "Get scalar Boolean value from JSON file"
         extends Interfaces.JSON.getBoolean;
         external "C" y = ED_getBooleanFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -434,7 +434,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getBoolean;
 
-      function getBooleanArray1D "Get 1D Boolean values from JSON file"
+      pure function getBooleanArray1D "Get 1D Boolean values from JSON file"
         extends Interfaces.JSON.getBooleanArray1D;
         external "C" ED_getBooleanArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -443,7 +443,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getBooleanArray1D;
 
-      function getBooleanArray2D "Get 2D Boolean values from JSON file"
+      pure function getBooleanArray2D "Get 2D Boolean values from JSON file"
         extends Interfaces.JSON.getBooleanArray2D;
         external "C" ED_getBooleanArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -452,7 +452,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getBooleanArray2D;
 
-      function getString "Get scalar String value from JSON file"
+      pure function getString "Get scalar String value from JSON file"
         extends Interfaces.JSON.getString;
         external "C" str=ED_getStringFromJSON(json, varName, exist) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -461,7 +461,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getString;
 
-      function getStringArray1D "Get 1D String values from JSON file"
+      pure function getStringArray1D "Get 1D String values from JSON file"
         extends Interfaces.JSON.getStringArray1D;
         external "C" ED_getStringArray1DFromJSON(json, varName, y, size(y, 1)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -470,7 +470,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getStringArray1D;
 
-      function getStringArray2D "Get 2D String values from JSON file"
+      pure function getStringArray2D "Get 2D String values from JSON file"
         extends Interfaces.JSON.getStringArray2D;
         external "C" ED_getStringArray2DFromJSON(json, varName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -479,7 +479,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getStringArray2D;
 
-      function getArraySize1D "Get length of 1D array in JSON file"
+      pure function getArraySize1D "Get length of 1D array in JSON file"
         extends Interfaces.JSON.getArraySize1D;
         external "C" ED_getArray1DDimensionFromJSON(json, varName, n) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -488,7 +488,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getArraySize1D;
 
-      function getArraySize2D "Get dimensions of 2D array in JSON file"
+      pure function getArraySize2D "Get dimensions of 2D array in JSON file"
         extends Interfaces.JSON.getArraySize2D;
         external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -497,7 +497,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in JSON file"
+      pure function getArrayRows2D "Get first dimension of 2D array in JSON file"
         extends Interfaces.JSON.getArrayRows2D;
         external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -506,7 +506,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_JSONFile", "parson"});
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in JSON file"
+      pure function getArrayColumns2D "Get second dimension of 2D array in JSON file"
         extends Interfaces.JSON.getArrayColumns2D;
         external "C" ED_getArray2DDimensionsFromJSON(json, varName, m, n) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -518,7 +518,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package MAT "MAT file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getRealArray2D "Get 2D Real values from MAT file"
+      pure function getRealArray2D "Get 2D Real values from MAT file"
         extends Interfaces.MAT.getRealArray2D;
         external "C" ED_getDoubleArray2DFromMAT(mat, varName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -527,7 +527,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getRealArray2D;
 
-      function getStringArray1D "Get 1D String values from MAT file"
+      pure function getStringArray1D "Get 1D String values from MAT file"
         extends Interfaces.MAT.getStringArray1D;
         external "C" ED_getStringArray1DFromMAT(mat, varName, str, size(str, 1)) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -536,7 +536,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getStringArray1D;
 
-      function getArraySize2D "Get dimensions of 2D array in MAT file"
+      pure function getArraySize2D "Get dimensions of 2D array in MAT file"
         extends Interfaces.MAT.getArraySize2D;
         external "C" ED_getArray2DDimensionsFromMAT(mat, varName, m, n) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -545,7 +545,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in MAT file"
+      pure function getArrayRows2D "Get first dimension of 2D array in MAT file"
         extends Interfaces.MAT.getArrayRows2D;
         external "C" ED_getArray2DDimensionsFromMAT(mat, varName, m, n) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -554,7 +554,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in MAT file"
+      pure function getArrayColumns2D "Get second dimension of 2D array in MAT file"
         extends Interfaces.MAT.getArrayColumns2D;
         external "C" ED_getArray2DDimensionsFromMAT(mat, varName, m, n) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -566,7 +566,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package SSV "SSV file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getReal "Get scalar Real value from SSV file"
+      pure function getReal "Get scalar Real value from SSV file"
         extends Interfaces.SSV.getReal;
         external "C" y=ED_getDoubleFromSSV(ssv, varName, exist) annotation(
           __iti_dll = "ITI_ED_SSVFile.dll",
@@ -575,7 +575,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_SSVFile", "bsxml-json", "expat"});
       end getReal;
 
-      function getInteger "Get scalar Integer value from SSV file"
+      pure function getInteger "Get scalar Integer value from SSV file"
         extends Interfaces.SSV.getInteger;
         external "C" y=ED_getIntFromSSV(ssv, varName, exist) annotation(
           __iti_dll = "ITI_ED_SSVFile.dll",
@@ -584,7 +584,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_SSVFile", "bsxml-json", "expat"});
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from SSV file"
+      pure function getBoolean "Get scalar Boolean value from SSV file"
         extends Interfaces.SSV.getBoolean;
         external "C" y=ED_getBooleanFromSSV(ssv, varName, exist) annotation(
           __iti_dll = "ITI_ED_SSVFile.dll",
@@ -593,7 +593,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_SSVFile", "bsxml-json", "expat"});
       end getBoolean;
 
-      function getString "Get scalar String value from SSV file"
+      pure function getString "Get scalar String value from SSV file"
         extends Interfaces.SSV.getString;
         external "C" str=ED_getStringFromSSV(ssv, varName, exist) annotation(
           __iti_dll = "ITI_ED_SSVFile.dll",
@@ -605,7 +605,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XLS "Excel XLS file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getReal "Get scalar Real value from Excel XLS file"
+      pure function getReal "Get scalar Real value from Excel XLS file"
         extends Interfaces.XLS.getReal;
         external "C" y=ED_getDoubleFromXLS(xls, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -614,7 +614,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = "ED_XLSFile");
       end getReal;
 
-      function getRealArray2D "Get 2D Real values from Excel XLS file"
+      pure function getRealArray2D "Get 2D Real values from Excel XLS file"
         extends Interfaces.XLS.getRealArray2D;
         external "C" ED_getDoubleArray2DFromXLS(xls, cellAddress, sheetName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -623,7 +623,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = "ED_XLSFile");
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from Excel XLS file"
+      pure function getInteger "Get scalar Integer value from Excel XLS file"
         extends Interfaces.XLS.getInteger;
         external "C" y=ED_getIntFromXLS(xls, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -632,7 +632,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = "ED_XLSFile");
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from Excel XLS file"
+      pure function getBoolean "Get scalar Boolean value from Excel XLS file"
         extends Interfaces.XLS.getBoolean;
         algorithm
           (aux, exist) := getReal(xls=xls, cellAddress=cellAddress, sheetName=sheetName);
@@ -640,7 +640,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Inline=false);
       end getBoolean;
 
-      function getString "Get scalar String value from Excel XLS file"
+      pure function getString "Get scalar String value from Excel XLS file"
         extends Interfaces.XLS.getString;
         external "C" str=ED_getStringFromXLS(xls, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -649,7 +649,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = "ED_XLSFile");
       end getString;
 
-      function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
+      pure function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
         extends Interfaces.XLS.getArraySize2D;
         external "C" ED_getArray2DDimensionsFromXLS(xls, sheetName, m, n) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -658,7 +658,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = "ED_XLSFile");
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
+      pure function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
         extends Interfaces.XLS.getArrayRows2D;
         external "C" ED_getArray2DDimensionsFromXLS(xls, sheetName, m, n) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -667,7 +667,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = "ED_XLSFile");
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
+      pure function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
         extends Interfaces.XLS.getArrayColumns2D;
         external "C" ED_getArray2DDimensionsFromXLS(xls, sheetName, m, n) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -679,7 +679,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XLSX "Excel XLSX file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getReal "Get scalar Real value from Excel XLSX file"
+      pure function getReal "Get scalar Real value from Excel XLSX file"
         extends Interfaces.XLSX.getReal;
         external "C" y=ED_getDoubleFromXLSX(xlsx, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -688,7 +688,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getReal;
 
-      function getRealArray2D "Get 2D Real values from Excel XLSX file"
+      pure function getRealArray2D "Get 2D Real values from Excel XLSX file"
         extends Interfaces.XLSX.getRealArray2D;
         external "C" ED_getDoubleArray2DFromXLSX(xlsx, cellAddress, sheetName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -697,7 +697,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from Excel XLSX file"
+      pure function getInteger "Get scalar Integer value from Excel XLSX file"
         extends Interfaces.XLSX.getInteger;
         external "C" y=ED_getIntFromXLSX(xlsx, cellAddress, sheetName, true) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -706,7 +706,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from Excel XLSX file"
+      pure function getBoolean "Get scalar Boolean value from Excel XLSX file"
         extends Interfaces.XLSX.getBoolean;
         algorithm
           (aux, exist) := getReal(xlsx=xlsx, cellAddress=cellAddress, sheetName=sheetName);
@@ -714,7 +714,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Inline=false);
       end getBoolean;
 
-      function getString "Get scalar String value from Excel XLSX file"
+      pure function getString "Get scalar String value from Excel XLSX file"
         extends Interfaces.XLSX.getString;
         external "C" str=ED_getStringFromXLSX(xlsx, cellAddress, sheetName, exist) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -723,7 +723,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getString;
 
-      function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
+      pure function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
         extends Interfaces.XLSX.getArraySize2D;
         external "C" ED_getArray2DDimensionsFromXLSX(xlsx, sheetName, m, n) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -732,7 +732,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
+      pure function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
         extends Interfaces.XLSX.getArrayRows2D;
         external "C" ED_getArray2DDimensionsFromXLSX(xlsx, sheetName, m, n) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -741,7 +741,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
+      pure function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
         extends Interfaces.XLSX.getArrayColumns2D;
         external "C" ED_getArray2DDimensionsFromXLSX(xlsx, sheetName, m, n) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -753,7 +753,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XML "XML file functions"
       extends Modelica.Icons.FunctionsPackage;
-      function getReal "Get scalar Real value from XML file"
+      pure function getReal "Get scalar Real value from XML file"
         extends Interfaces.XML.getReal;
         external "C" y=ED_getDoubleFromXML(xml, varName, exist) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -762,7 +762,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getReal;
 
-      function getRealArray1D "Get 1D Real values from XML file"
+      pure function getRealArray1D "Get 1D Real values from XML file"
         extends Interfaces.XML.getRealArray1D;
         external "C" ED_getDoubleArray1DFromXML(xml, varName, y, size(y, 1)) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -771,7 +771,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getRealArray1D;
 
-      function getRealArray2D "Get 2D Real values from XML file"
+      pure function getRealArray2D "Get 2D Real values from XML file"
         extends Interfaces.XML.getRealArray2D;
         external "C" ED_getDoubleArray2DFromXML(xml, varName, y, size(y, 1), size(y, 2)) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -780,7 +780,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getRealArray2D;
 
-      function getInteger "Get scalar Integer value from XML file"
+      pure function getInteger "Get scalar Integer value from XML file"
         extends Interfaces.XML.getInteger;
         external "C" y=ED_getIntFromXML(xml, varName, exist) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -789,7 +789,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getInteger;
 
-      function getBoolean "Get scalar Boolean value from XML file"
+      pure function getBoolean "Get scalar Boolean value from XML file"
         extends Interfaces.XML.getBoolean;
         algorithm
           (aux, exist) := getReal(xml=xml, varName=varName);
@@ -797,7 +797,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         annotation(Inline=false);
       end getBoolean;
 
-      function getString "Get scalar String value from XML file"
+      pure function getString "Get scalar String value from XML file"
         extends Interfaces.XML.getString;
         external "C" str=ED_getStringFromXML(xml, varName, exist) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -806,7 +806,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getString;
 
-      function getArraySize1D "Get length of 1D array in XML file"
+      pure function getArraySize1D "Get length of 1D array in XML file"
         extends Interfaces.XML.getArraySize1D;
         external "C" ED_getArray1DDimensionFromXML(xml, varName, n) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -815,7 +815,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getArraySize1D;
 
-      function getArraySize2D "Get dimensions of 2D array in XML file"
+      pure function getArraySize2D "Get dimensions of 2D array in XML file"
         extends Interfaces.XML.getArraySize2D;
         external "C" ED_getArray2DDimensionsFromXML(xml, varName, m, n) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -824,7 +824,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getArraySize2D;
 
-      function getArrayRows2D "Get first dimension of 2D array in XML file"
+      pure function getArrayRows2D "Get first dimension of 2D array in XML file"
         extends Interfaces.XML.getArrayRows2D;
         external "C" ED_getArray2DDimensionsFromXML(xml, varName, m, n) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -833,7 +833,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getArrayRows2D;
 
-      function getArrayColumns2D "Get second dimension of 2D array in XML file"
+      pure function getArrayColumns2D "Get second dimension of 2D array in XML file"
         extends Interfaces.XML.getArrayColumns2D;
         external "C" ED_getArray2DDimensionsFromXML(xml, varName, m, n) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -846,6 +846,25 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
   package Interfaces "Interfaces"
     extends Modelica.Icons.InterfacesPackage;
+
+    record DataSource "Place holder for file based data source"
+      extends Modelica.Icons.Record;
+      annotation(
+        Documentation(info="<html><p>Place holder record that can be used as generic outer parameter instance in component models to reference an implemented inner parameter instance of <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>, <a href=\"modelica://ExternData.INIFile\">INIFile</a>, <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>, <a href=\"modelica://ExternData.MATFile\">MATFile</a>, <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>, <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>, <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>, <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>, or <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest2.Component\">Examples.XMLTest2.Component</a> for an example.</p></html>"),
+        defaultComponentName="dataSource",
+        defaultComponentPrefixes="outer parameter",
+        missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.CSVFile, ExternData.INIFile, ExternData.JSONFile, ExternData.MATFile, ExternData.SSVFile, ExternData.XLSFile, ExternData.XLSXFile, ExternData.XMLFile, or ExternData.TIRFile to the model top level");
+    end DataSource;
+
+    partial block DataSourceBlock "Base block containing an outer place holder data source"
+      outer parameter ExternData.Interfaces.DataSource dataSource "File based data source" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation(Documentation(info="<html><p>Partial base block that declares an outer parameter instance of generic record type <a href=\"modelica://ExternData.Interfaces.DataSource\">DataSource</a>.</p></html>"));
+    end DataSourceBlock;
+
+    partial model DataSourceModel "Base model containing an outer place holder data source"
+      outer parameter ExternData.Interfaces.DataSource dataSource "File based data source" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation(Documentation(info="<html><p>Partial base model that declares an outer parameter instance of generic record type <a href=\"modelica://ExternData.Interfaces.DataSource\">DataSource</a>.</p></html>"));
+    end DataSourceModel;
 
     package CSV "CSV file interfaces"
       extends Modelica.Icons.InterfacesPackage;
