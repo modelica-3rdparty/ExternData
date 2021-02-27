@@ -1,6 +1,6 @@
 /* ED_ptrtrack.h - Simple pointer tracker
  *
- * Copyright (C) 2017-2019, tbeu
+ * Copyright (C) 2017-2021, tbeu
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
