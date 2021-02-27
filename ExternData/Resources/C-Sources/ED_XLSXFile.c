@@ -35,6 +35,7 @@
 #endif
 #include <ctype.h>
 #include "ED_locale.h"
+#include "ED_logging.h"
 #include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
@@ -66,6 +67,7 @@ typedef struct {
 typedef struct {
 	char* fileName;
 	ED_LOCALE_TYPE loc;
+	ED_LOGGING_FUNC log;
 	unzFile zfile;
 	XmlNodeRef sroot; /* Shared strings */
 	SheetShare* sheets;
@@ -108,7 +110,7 @@ static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
 	return 0;
 }
 
-void* ED_createXLSX(const char* fileName, int verbose)
+void* ED_createXLSX(const char* fileName, int verbose, int detectMissingData)
 {
 	size_t i;
 	int rc;
@@ -204,6 +206,20 @@ void* ED_createXLSX(const char* fileName, int verbose)
 	parseXML(xlsx->zfile, STR_XML, &xlsx->sroot);
 
 	xlsx->loc = ED_INIT_LOCALE;
+	switch (detectMissingData) {
+		case ED_LOG_NONE:
+			xlsx->log = ED_LogNone;
+			break;
+		case ED_LOG_DEBUG:
+			xlsx->log = ED_LogDebug;
+			break;
+		case ED_LOG_ERROR:
+			xlsx->log = ED_LogError;
+			break;
+		default:
+			xlsx->log = ED_LogWarning;
+			break;
+	}
 	ED_PTR_ADD(xlsx);
 	return xlsx;
 }
@@ -284,7 +300,7 @@ static XmlNodeRef findSheet(XLSXFile* xlsx, char** sheetName)
 
 	HASH_FIND_STR(xlsx->sheets, *sheetName, iter);
 	if (iter == NULL) {
-		ModelicaFormatMessage("Cannot find sheet name \"%s\" in file \"%s\" of file \"%s\"\n",
+		xlsx->log("Cannot find sheet name \"%s\" in file \"%s\" of file \"%s\"\n",
 			*sheetName, WB_XML, xlsx->fileName);
 		return NULL;
 	}
@@ -432,17 +448,17 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 				rc(cellAddress, &row, &col);
 				findBlankCell(row, col, root, exist);
 				if (*exist == 1) {
-					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xlsx->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xlsx->fileName);
 				}
 				else {
-					ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xlsx->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xlsx->fileName);
 				}
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
+			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
 				_sheetName, xlsx->fileName);
 			*exist = 0;
 		}
@@ -473,16 +489,18 @@ const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const cha
 				rc(cellAddress, &row, &col);
 				findBlankCell(row, col, root, exist);
 				if (*exist == 1) {
-					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xlsx->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xlsx->fileName);
 				}
 				else {
-					ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xlsx->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xlsx->fileName);
 				}
 			}
 		}
 		else {
+			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
+				_sheetName, xlsx->fileName);
 			*exist = 0;
 		}
 	}
@@ -514,16 +532,18 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 				rc(cellAddress, &row, &col);
 				findBlankCell(row, col, root, exist);
 				if (*exist == 1) {
-					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xlsx->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xlsx->fileName);
 				}
 				else {
-					ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xlsx->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xlsx->fileName);
 				}
 			}
 		}
 		else {
+			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
+				_sheetName, xlsx->fileName);
 			*exist = 0;
 		}
 	}
@@ -564,16 +584,20 @@ void ED_getDoubleArray2DFromXLSX(void* _xlsx, const char* cellAddress, const cha
 						findBlankCell(row + i, col + j, root, &exist);
 						a[i*n + j] = 0.;
 						if (exist == 1) {
-							ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+							xlsx->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 								(unsigned int)(row +i), (unsigned int)(col + j), _sheetName, xlsx->fileName);
 						}
 						else {
-							ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+							xlsx->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 								(unsigned int)(row +i), (unsigned int)(col + j), _sheetName, xlsx->fileName);
 						}
 					}
 				}
 			}
+		}
+		else {
+			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
+				_sheetName, xlsx->fileName);
 		}
 	}
 }
@@ -605,6 +629,10 @@ void ED_getArray2DDimensionsFromXLSX(void* _xlsx, const char* sheetName, int* m,
 					}
 				}
 			}
+		}
+		else {
+			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
+				_sheetName, xlsx->fileName);
 		}
 	}
 	if (NULL != m)

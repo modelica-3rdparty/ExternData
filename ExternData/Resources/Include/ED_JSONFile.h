@@ -29,7 +29,7 @@
 
 #include "msvc_compatibility.h"
 
-void* ED_createJSON(const char* fileName, int verbose);
+void* ED_createJSON(const char* fileName, int verbose, int detectMissingData);
 void ED_destroyJSON(void* _json);
 double ED_getDoubleFromJSON(void* _json, const char* varName, int* exist);
 const char* ED_getStringFromJSON(void* _json, const char* varName, int* exist);

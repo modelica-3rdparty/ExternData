@@ -53,7 +53,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         caption="Open file")));
     parameter String delimiter="," "Column delimiter character" annotation(choices(choice=" " "Blank", choice="," "Comma", choice="\t" "Horizontal tabulator", choice=";" "Semicolon"));
     parameter String quotation="\"" "Quotation character" annotation(choices(choice="\"" "Double quotation mark", choice="'" "Single quotation mark"));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
     final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External CSV file object";
     extends Interfaces.CSV.Base(
       redeclare final function getRealArray2D = Functions.CSV.getRealArray2D(csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>")),
@@ -75,8 +76,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead) "External INI file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead, detectMissingData) "External INI file object";
     extends Interfaces.INI.Base(
       redeclare final function getReal = Functions.INI.getReal(ini=ini, strict=true) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.INI.getInteger(ini=ini, strict=true) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>")),
@@ -97,8 +101,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="JSON files (*.json)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead) "External JSON file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead, detectMissingData) "External JSON file object";
     extends Interfaces.JSON.Base(
       redeclare final function getReal = Functions.JSON.getReal(json=json) "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray1D = Functions.JSON.getRealArray1D(json=json) "Get 1D array Real value from JSON file" annotation(Documentation(info="<html></html>")),
@@ -131,7 +138,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="MATLAB MAT files (*.mat)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
     final parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
     extends Interfaces.MAT.Base(
       redeclare final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file" annotation(Documentation(info="<html></html>")),
@@ -155,8 +163,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         loadSelector(filter="SSV files (*.ssv;*.xml)",
         caption="Open file")));
     parameter String nameSpace="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSP 1.0"));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternSSVFile ssv=Types.ExternSSVFile(fileName, nameSpace, verboseRead) "External SSV file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternSSVFile ssv=Types.ExternSSVFile(fileName, nameSpace, verboseRead, detectMissingData) "External SSV file object";
     extends Interfaces.SSV.Base(
       redeclare final function getReal = Functions.SSV.getReal(ssv=ssv) "Get scalar Real value from SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.SSV.getInteger(ssv=ssv) "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>")),
@@ -178,8 +189,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         loadSelector(filter="Excel files (*.xls)",
         caption="Open file")));
     parameter String encoding="UTF-8" "Encoding";
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead) "External Excel XLS file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead, detectMissingData) "External Excel XLS file object";
     extends Interfaces.XLS.Base(
       redeclare final function getReal = Functions.XLS.getReal(xls=xls) "Get scalar Real value from Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray2D = Functions.XLS.getRealArray2D(xls=xls) "Get 2D Real values from Excel XLS file" annotation(Documentation(info="<html></html>")),
@@ -204,8 +218,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xlsx)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead)  "External Excel XLSX file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead, detectMissingData) "External Excel XLSX file object";
     extends Interfaces.XLSX.Base(
       redeclare final function getReal = Functions.XLSX.getReal(xlsx=xlsx) "Get scalar Real value from Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray2D = Functions.XLSX.getRealArray2D(xlsx=xlsx) "Get 2D Real values from Excel XLSX file" annotation(Documentation(info="<html></html>")),
@@ -230,8 +247,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead) "External XML file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead, detectMissingData) "External XML file object";
     extends Interfaces.XML.Base(
       redeclare final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>")),
@@ -258,8 +278,11 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="TIR files (*.tir)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-    final parameter Types.ExternINIFile tir=Types.ExternINIFile(fileName, verboseRead) "External TIR file object";
+    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternINIFile tir=Types.ExternINIFile(fileName, verboseRead, detectMissingData) "External TIR file object";
     extends Interfaces.INI.Base(
       redeclare final function getReal = Functions.INI.getReal(ini=tir, strict=false) "Get scalar Real value from TIR file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.INI.getInteger(ini=tir, strict=false) "Get scalar Integer value from TIR file" annotation(Documentation(info="<html></html>")),
@@ -1612,6 +1635,14 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
   package Types "Types"
     extends Modelica.Icons.TypesPackage;
+
+    type Diagnostics = enumeration(
+      None "No diagnostic messages",
+      Debug "Print diagnostic messages as information",
+      Warning "Print diagnostic messages as warning",
+      Error "Print diagnostic messages as error")
+      "Enumeration defining the diagnostics";
+
     class ExternCSVFile "External CSV file object"
       extends ExternalObject;
       function constructor "Parse CSV file"
@@ -1645,8 +1676,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         extends Modelica.Icons.Function;
         input String fileName "File name";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternINIFile ini "External INI file object";
-        external "C" ini=ED_createINI(fileName, verboseRead) annotation(
+        external "C" ini=ED_createINI(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_INIFile.h\"",
@@ -1670,8 +1702,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         extends Modelica.Icons.Function;
         input String fileName "File name";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternJSONFile json "External JSON file object";
-        external "C" json=ED_createJSON(fileName, verboseRead) annotation(
+        external "C" json=ED_createJSON(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_JSONFile.h\"",
@@ -1721,8 +1754,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         input String fileName "File name";
         input String nameSpace "SSV name space";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternSSVFile ssv "External SSV file object";
-        external "C" ssv=ED_createSSV(fileName, nameSpace, verboseRead) annotation(
+        external "C" ssv=ED_createSSV(fileName, nameSpace, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_SSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_SSVFile.h\"",
@@ -1747,8 +1781,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         input String fileName "File name";
         input String encoding="UTF-8" "Encoding";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXLSFile xls "External Excel XLS file object";
-        external "C" xls=ED_createXLS(fileName, encoding, verboseRead) annotation(
+        external "C" xls=ED_createXLS(fileName, encoding, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
@@ -1772,8 +1807,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         extends Modelica.Icons.Function;
         input String fileName "File name";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXLSXFile xlsx "External Excel XLSX file object";
-        external "C" xlsx=ED_createXLSX(fileName, verboseRead) annotation(
+        external "C" xlsx=ED_createXLSX(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
@@ -1797,8 +1833,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         extends Modelica.Icons.Function;
         input String fileName "File name";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXMLFile xml "External XML file object";
-        external "C" xml=ED_createXML(fileName, verboseRead) annotation(
+        external "C" xml=ED_createXML(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XMLFile.h\"",

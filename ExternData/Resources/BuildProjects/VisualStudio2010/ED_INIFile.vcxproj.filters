@@ -41,6 +41,9 @@
     <ClInclude Include="..\..\C-Sources\inih\ini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\ED_logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_INIFile.def">

@@ -88,5 +88,8 @@
     <ClInclude Include="..\..\C-Sources\libxls\include\libxls\locale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C-Sources\ED_logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

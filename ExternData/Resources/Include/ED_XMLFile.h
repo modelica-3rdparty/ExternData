@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include "msvc_compatibility.h"
 
-void* ED_createXML(const char* fileName, int verbose);
+void* ED_createXML(const char* fileName, int verbose, int detectMissingData);
 void ED_destroyXML(void* _xml);
 double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist);
 const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist);

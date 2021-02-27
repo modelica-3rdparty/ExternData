@@ -33,6 +33,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_logging.h"
 #include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
@@ -43,10 +44,11 @@ typedef struct {
 	char* ns;
 	XmlNodeRef root;
 	ED_LOCALE_TYPE loc;
+	ED_LOGGING_FUNC log;
 	char ns_sep;
 } SSVFile;
 
-void* ED_createSSV(const char* fileName, const char* ns, int verbose)
+void* ED_createSSV(const char* fileName, const char* ns, int verbose, int detectMissingData)
 {
 	XmlParser xmlParser;
 	SSVFile* ssv = (SSVFile*)malloc(sizeof(SSVFile));
@@ -94,6 +96,20 @@ void* ED_createSSV(const char* fileName, const char* ns, int verbose)
 		return NULL;
 	}
 	ssv->loc = ED_INIT_LOCALE;
+	switch (detectMissingData) {
+		case ED_LOG_NONE:
+			ssv->log = ED_LogNone;
+			break;
+		case ED_LOG_DEBUG:
+			ssv->log = ED_LogDebug;
+			break;
+		case ED_LOG_ERROR:
+			ssv->log = ED_LogError;
+			break;
+		default:
+			ssv->log = ED_LogWarning;
+			break;
+	}
 	ED_PTR_ADD(ssv);
 	return ssv;
 }
@@ -230,7 +246,7 @@ double ED_getDoubleFromSSV(void* _ssv, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read double value from file \"%s\"\n",
+			ssv->log("Line %i: Cannot read double value from file \"%s\"\n",
 				XmlNode_getLine(root), ssv->fileName);
 			*exist = 0;
 		}
@@ -258,7 +274,7 @@ const char* ED_getStringFromSSV(void* _ssv, const char* varName, int* exist)
 			return (const char*)ret;
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read value from file \"%s\"\n",
+			ssv->log("Line %i: Cannot read value from file \"%s\"\n",
 				XmlNode_getLine(root), ssv->fileName);
 			*exist = 0;
 		}
@@ -288,7 +304,7 @@ int ED_getIntFromSSV(void* _ssv, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read int value from file \"%s\"\n",
+			ssv->log("Line %i: Cannot read int value from file \"%s\"\n",
 				XmlNode_getLine(root), ssv->fileName);
 			*exist = 0;
 		}
@@ -324,7 +340,7 @@ int ED_getBooleanFromSSV(void* _ssv, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read boolean value from file \"%s\"\n",
+			ssv->log("Line %i: Cannot read boolean value from file \"%s\"\n",
 				XmlNode_getLine(root), ssv->fileName);
 			*exist = 0;
 		}

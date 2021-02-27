@@ -33,6 +33,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_logging.h"
 #include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
@@ -60,9 +61,10 @@ typedef struct {
 	char* fileName;
 	XmlNodeRef root;
 	ED_LOCALE_TYPE loc;
+	ED_LOGGING_FUNC log;
 } XMLFile;
 
-void* ED_createXML(const char* fileName, int verbose)
+void* ED_createXML(const char* fileName, int verbose, int detectMissingData)
 {
 	XmlParser xmlParser;
 	XMLFile* xml = (XMLFile*)malloc(sizeof(XMLFile));
@@ -96,6 +98,20 @@ void* ED_createXML(const char* fileName, int verbose)
 		return NULL;
 	}
 	xml->loc = ED_INIT_LOCALE;
+	switch (detectMissingData) {
+		case ED_LOG_NONE:
+			xml->log = ED_LogNone;
+			break;
+		case ED_LOG_DEBUG:
+			xml->log = ED_LogDebug;
+			break;
+		case ED_LOG_ERROR:
+			xml->log = ED_LogError;
+			break;
+		default:
+			xml->log = ED_LogWarning;
+			break;
+	}
 	ED_PTR_ADD(xml);
 	return xml;
 }
@@ -115,7 +131,7 @@ void ED_destroyXML(void* _xml)
 	}
 }
 
-static char* findValue(XmlNodeRef* root, XmlNodeRef* parent, const char* varName, const char* fileName)
+static char* findValue(XMLFile* xml, XmlNodeRef* root, XmlNodeRef* parent, const char* varName)
 {
 	char* token = NULL;
 	char* varNameCopy = strdup(varName);
@@ -142,8 +158,8 @@ static char* findValue(XmlNodeRef* root, XmlNodeRef* parent, const char* varName
 			XmlNode_getValue(*root, &token);
 		}
 		else {
-			ModelicaFormatMessage("Error in line %i: Cannot find element \"%s\" in file \"%s\"\n",
-				XmlNode_getLine(*root), varName, fileName);
+			xml->log("Line %i: Cannot find element \"%s\" in file \"%s\"\n",
+				XmlNode_getLine(*root), varName, xml->fileName);
 			*root = NULL;
 			token = NULL;
 		}
@@ -162,7 +178,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist)
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		XmlNodeRef parent = NULL;
-		char* token = findValue(&root, &parent, varName, xml->fileName);
+		char* token = findValue(xml, &root, &parent, varName);
 		*exist = 1;
 		if (token != NULL) {
 			if (ED_strtod(token, xml->loc, &ret, ED_STRICT)) {
@@ -171,7 +187,7 @@ double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read double value from file \"%s\"\n",
+			xml->log("Line %i: Cannot read double value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 			*exist = 0;
 		}
@@ -192,7 +208,7 @@ const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist)
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		XmlNodeRef parent = NULL;
-		char* token = findValue(&root, &parent, varName, xml->fileName);
+		char* token = findValue(xml, &root, &parent, varName);
 		*exist = 1;
 		if (token != NULL) {
 			char* ret = ModelicaAllocateString(strlen(token));
@@ -200,7 +216,7 @@ const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist)
 			return (const char*)ret;
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read value from file \"%s\"\n",
+			xml->log("Line %i: Cannot read value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 			*exist = 0;
 		}
@@ -222,7 +238,7 @@ int ED_getIntFromXML(void* _xml, const char* varName, int* exist)
 	if (xml != NULL) {
 		XmlNodeRef root = xml->root;
 		XmlNodeRef parent = NULL;
-		char* token = findValue(&root, &parent, varName, xml->fileName);
+		char* token = findValue(xml, &root, &parent, varName);
 		*exist = 1;
 		if (token != NULL) {
 			if (ED_strtol(token, xml->loc, &ret, ED_STRICT)) {
@@ -231,7 +247,7 @@ int ED_getIntFromXML(void* _xml, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
-			ModelicaFormatMessage("Error in line %i: Cannot read int value from file \"%s\"\n",
+			xml->log("Line %i: Cannot read int value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
 			*exist = 0;
 		}
@@ -253,7 +269,7 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 		XmlNodeRef root = xml->root;
 		XmlNodeRef parent = NULL;
 		int iLevel = 0;
-		char* token = findValue(&root, &parent, varName, xml->fileName);
+		char* token = findValue(xml, &root, &parent, varName);
 		while (NULL == token && NULL != root && XmlNode_getChildCount(root) > 0) {
 			/* Try children if root is empty */
 			root = XmlNode_getChild(root, 0);
@@ -365,7 +381,7 @@ void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int
 		XmlNodeRef root = xml->root;
 		XmlNodeRef parent = NULL;
 		int iLevel = 0;
-		char* token = findValue(&root, &parent, varName, xml->fileName);
+		char* token = findValue(xml, &root, &parent, varName);
 		while (NULL == token && NULL != root && XmlNode_getChildCount(root) > 0) {
 			/* Try children if root is empty */
 			root = XmlNode_getChild(root, 0);

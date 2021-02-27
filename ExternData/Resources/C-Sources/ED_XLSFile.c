@@ -34,6 +34,7 @@
 #endif
 #include <ctype.h>
 #include "ED_locale.h"
+#include "ED_logging.h"
 #include "ED_ptrtrack.h"
 #include "ModelicaUtilities.h"
 #include "xls.h"
@@ -50,11 +51,12 @@ typedef struct {
 typedef struct {
 	char* fileName;
 	ED_LOCALE_TYPE loc;
+	ED_LOGGING_FUNC log;
 	xlsWorkBook* pWB;
 	SheetShare* sheets;
 } XLSFile;
 
-void* ED_createXLS(const char* fileName, const char* encoding, int verbose)
+void* ED_createXLS(const char* fileName, const char* encoding, int verbose, int detectMissingData)
 {
 	XLSFile* xls = (XLSFile*)malloc(sizeof(XLSFile));
 	if (xls == NULL) {
@@ -82,6 +84,20 @@ void* ED_createXLS(const char* fileName, const char* encoding, int verbose)
 	}
 	xls->sheets = NULL;
 	xls->loc = ED_INIT_LOCALE;
+	switch (detectMissingData) {
+		case ED_LOG_NONE:
+			xls->log = ED_LogNone;
+			break;
+		case ED_LOG_DEBUG:
+			xls->log = ED_LogDebug;
+			break;
+		case ED_LOG_ERROR:
+			xls->log = ED_LogError;
+			break;
+		default:
+			xls->log = ED_LogWarning;
+			break;
+	}
 	ED_PTR_ADD(xls);
 	return xls;
 }
@@ -163,7 +179,7 @@ static xlsWorkSheet* findSheet(XLSFile* xls, char** sheetName)
 			}
 		}
 		if (sheetNo < 0) {
-			ModelicaFormatMessage("Cannot find sheet \"%s\" in file \"%s\"\n",
+			xls->log("Cannot find sheet \"%s\" in file \"%s\"\n",
 				*sheetName, xls->fileName);
 			return NULL;
 		}
@@ -240,7 +256,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 					}
 				}
 				else if (cell->id == XLS_RECORD_BLANK) {
-					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xls->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				}
 				else if (cell->str != NULL) {
@@ -254,7 +270,7 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 				}
 			}
 			else {
-				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+				xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				*exist = 0;
 			}
@@ -296,7 +312,7 @@ const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char*
 					}
 				}
 				else if (cell->id == XLS_RECORD_BLANK) {
-					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xls->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				}
 				else if (cell->str != NULL) {
@@ -309,7 +325,7 @@ const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char*
 				}
 			}
 			else {
-				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+				xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				*exist = 0;
 			}
@@ -365,7 +381,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName,
 					}
 				}
 				else if (cell->id == XLS_RECORD_BLANK) {
-					ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+					xls->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 						(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				}
 				else if (cell->str != NULL) {
@@ -379,7 +395,7 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName,
 				}
 			}
 			else {
-				ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+				xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
 				*exist = 0;
 			}
@@ -436,7 +452,7 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 						}
 						else if (cell->id == XLS_RECORD_BLANK) {
 							a[i*n + j] = 0.;
-							ModelicaFormatMessage("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+							xls->log("Found blank cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 								(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 						}
 						else if (cell->str != NULL) {
@@ -451,7 +467,7 @@ void ED_getDoubleArray2DFromXLS(void* _xls, const char* cellAddress, const char*
 					}
 					else {
 						a[i*n + j] = 0.;
-						ModelicaFormatMessage("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
+						xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 							(unsigned int)(row + i), (unsigned int)(col + j), _sheetName, xls->fileName);
 					}
 				}

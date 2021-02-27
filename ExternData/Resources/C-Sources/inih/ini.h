@@ -138,7 +138,7 @@ int ini_parse_string(const char* string, ini_handler handler, void* user);
    call the handler with value NULL in this case. Default is to treat
    no-value lines as an error. */
 #ifndef INI_ALLOW_NO_VALUE
-#define INI_ALLOW_NO_VALUE 0
+#define INI_ALLOW_NO_VALUE 1
 #endif
 
 #ifdef __cplusplus

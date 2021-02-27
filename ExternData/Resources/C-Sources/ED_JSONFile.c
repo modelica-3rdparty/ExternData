@@ -34,6 +34,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_logging.h"
 #include "ED_ptrtrack.h"
 #include "parson.h"
 #include "ModelicaUtilities.h"
@@ -48,9 +49,10 @@ typedef struct {
 	JSON_Value* rootValue;
 	JSON_Object* root;
 	ED_LOCALE_TYPE loc;
+	ED_LOGGING_FUNC log;
 } JSONFile;
 
-void* ED_createJSON(const char* fileName, int verbose)
+void* ED_createJSON(const char* fileName, int verbose, int detectMissingData)
 {
 	JSONFile* json = (JSONFile*)malloc(sizeof(JSONFile));
 	if (json == NULL) {
@@ -82,6 +84,20 @@ void* ED_createJSON(const char* fileName, int verbose)
 	/* ModelicaFormatMessage("Loaded JSON data:\n%s\n", json_serialize_to_string(rootValue)); */
 
 	json->loc = ED_INIT_LOCALE;
+	switch (detectMissingData) {
+		case ED_LOG_NONE:
+			json->log = ED_LogNone;
+			break;
+		case ED_LOG_DEBUG:
+			json->log = ED_LogDebug;
+			break;
+		case ED_LOG_ERROR:
+			json->log = ED_LogError;
+			break;
+		default:
+			json->log = ED_LogWarning;
+			break;
+	}
 	ED_PTR_ADD(json);
 	return json;
 }
@@ -133,7 +149,7 @@ double ED_getDoubleFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot find numeric value \"%s\" in file \"%s\"\n",
+			json->log("Cannot find numeric value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
 			*exist = 0;
 		}
@@ -162,7 +178,7 @@ const char* ED_getStringFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot find string value \"%s\" in file \"%s\"\n",
+			json->log("Cannot find string value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
 			*exist = 0;
 		}
@@ -204,7 +220,7 @@ int ED_getIntFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot find numeric value \"%s\" in file \"%s\"\n",
+			json->log("Cannot find numeric value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
 			*exist = 0;
 		}
@@ -244,7 +260,7 @@ int ED_getBooleanFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
-			ModelicaFormatMessage("Cannot find boolean value \"%s\" in file \"%s\"\n",
+			json->log("Cannot find boolean value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
 			*exist = 0;
 		}

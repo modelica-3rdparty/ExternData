@@ -33,6 +33,7 @@
 #define strdup _strdup
 #endif
 #include "ED_locale.h"
+#include "ED_logging.h"
 #include "ED_ptrtrack.h"
 #include "array.h"
 #include "ini.h"
@@ -52,6 +53,7 @@ typedef struct {
 typedef struct {
 	char* fileName;
 	ED_LOCALE_TYPE loc;
+	ED_LOGGING_FUNC log;
 	cpo_array_t* sections;
 } INIFile;
 
@@ -99,7 +101,7 @@ static int fillValues(void* userdata, const char* section, const char* key, cons
 	return 0;
 }
 
-void* ED_createINI(const char* fileName, int verbose)
+void* ED_createINI(const char* fileName, int verbose, int detectMissingData)
 {
 	int line;
 	INIFile* ini = (INIFile*)malloc(sizeof(INIFile));
@@ -130,6 +132,20 @@ void* ED_createINI(const char* fileName, int verbose)
 		return NULL;
 	}
 	ini->loc = ED_INIT_LOCALE;
+	switch (detectMissingData) {
+		case ED_LOG_NONE:
+			ini->log = ED_LogNone;
+			break;
+		case ED_LOG_DEBUG:
+			ini->log = ED_LogDebug;
+			break;
+		case ED_LOG_ERROR:
+			ini->log = ED_LogError;
+			break;
+		default:
+			ini->log = ED_LogWarning;
+			break;
+	}
 	ED_PTR_ADD(ini);
 	return ini;
 }
@@ -178,29 +194,47 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 			if (pair != NULL) {
 				if (NULL != pair->value) {
 					if (ED_strtod(pair->value, ini->loc, &ret, strict)) {
-						ModelicaFormatError("Cannot read double value \"%s\" from file \"%s\"\n",
-							pair->value, ini->fileName);
+						if (section[0] != '\0') {
+							ModelicaFormatError("Cannot read double value \"%s\" of section \"%s\" "
+								"from file \"%s\"\n", pair->value, section, ini->fileName);
+						}
+						else {
+							ModelicaFormatError("Cannot read double value \"%s\" of default section "
+								"from file \"%s\"\n", pair->value, ini->fileName);
+						}
 					}
 				}
 				else {
-					ModelicaFormatError("Cannot read value for key \"%s\" from file \"%s\"\n",
-						varName, ini->fileName);
+					if (section[0] != '\0') {
+						ini->log("Cannot read value for key \"%s\" of section \"%s\" from file \"%s\"\n",
+							varName, section, ini->fileName);
+					}
+					else {
+						ini->log("Cannot read value for key \"%s\" of default section from file \"%s\"\n",
+							varName, ini->fileName);
+					}
 					*exist = 0;
 				}
 			}
 			else {
-				ModelicaFormatMessage("Cannot read key \"%s\" from file \"%s\"\n",
-					varName, ini->fileName);
+				if (section[0] != '\0') {
+					ini->log("Cannot read key \"%s\" of section \"%s\" from file \"%s\"\n",
+						varName, section, ini->fileName);
+				}
+				else {
+					ini->log("Cannot read key \"%s\" of default section from file \"%s\"\n",
+						varName, ini->fileName);
+				}
 				*exist = 0;
 			}
 		}
 		else {
-			if (strlen(section) > 0) {
-				ModelicaFormatMessage("Cannot read section \"%s\" from file \"%s\"\n",
+			if (section[0] != '\0') {
+				ini->log("Cannot read section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
 			}
 			else {
-				ModelicaFormatMessage("Cannot read empty section from file \"%s\"\n",
+				ini->log("Cannot read default section from file \"%s\"\n",
 					ini->fileName);
 			}
 			*exist = 0;
@@ -228,24 +262,36 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 					return (const char*)ret;
 				}
 				else {
-					ModelicaFormatError("Cannot read value for key \"%s\" from file \"%s\"\n",
-						varName, ini->fileName);
+					if (section[0] != '\0') {
+						ini->log("Cannot read value for key \"%s\" of section \"%s\" from file \"%s\"\n",
+							varName, section, ini->fileName);
+					}
+					else {
+						ini->log("Cannot read value for key \"%s\" of default section from file \"%s\"\n",
+							varName, ini->fileName);
+					}
 					*exist = 0;
 				}
 			}
 			else {
-				ModelicaFormatMessage("Cannot read key \"%s\" from file \"%s\"\n",
-					varName, ini->fileName);
+				if (section[0] != '\0') {
+					ini->log("Cannot read key \"%s\" of section \"%s\" from file \"%s\"\n",
+						varName, section, ini->fileName);
+				}
+				else {
+					ini->log("Cannot read key \"%s\" of default section from file \"%s\"\n",
+						varName, ini->fileName);
+				}
 				*exist = 0;
 			}
 		}
 		else {
-			if (strlen(section) > 0) {
-				ModelicaFormatMessage("Cannot read section \"%s\" from file \"%s\"\n",
+			if (section[0] != '\0') {
+				ini->log("Cannot read section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
 			}
 			else {
-				ModelicaFormatMessage("Cannot read empty section from file \"%s\"\n",
+				ini->log("Cannot read default section from file \"%s\"\n",
 					ini->fileName);
 			}
 			*exist = 0;
@@ -270,29 +316,47 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int s
 			if (pair != NULL) {
 				if (NULL != pair->value) {
 					if (ED_strtol(pair->value, ini->loc, &ret, strict)) {
-						ModelicaFormatError("Cannot read int value \"%s\" from file \"%s\"\n",
-							pair->value, ini->fileName);
+						if (section[0] != '\0') {
+							ModelicaFormatError("Cannot read int value \"%s\" of section \"%s\" "
+								"from file \"%s\"\n", pair->value, section, ini->fileName);
+						}
+						else {
+							ModelicaFormatError("Cannot read int value \"%s\" of default section "
+								"from file \"%s\"\n", pair->value, ini->fileName);
+						}
 					}
 				}
 				else {
-					ModelicaFormatError("Cannot read value for key \"%s\" from file \"%s\"\n",
-						varName, ini->fileName);
+					if (section[0] != '\0') {
+						ini->log("Cannot read value for key \"%s\" of section \"%s\" from file \"%s\"\n",
+							varName, section, ini->fileName);
+					}
+					else {
+						ini->log("Cannot read value for key \"%s\" of default section from file \"%s\"\n",
+							varName, ini->fileName);
+					}
 					*exist = 0;
 				}
 			}
 			else {
-				ModelicaFormatMessage("Cannot read key \"%s\" from file \"%s\"\n",
-					varName, ini->fileName);
+				if (section[0] != '\0') {
+					ini->log("Cannot read key \"%s\" of section \"%s\" from file \"%s\"\n",
+						varName, section, ini->fileName);
+				}
+				else {
+					ini->log("Cannot read key \"%s\" of default section from file \"%s\"\n",
+						varName, ini->fileName);
+				}
 				*exist = 0;
 			}
 		}
 		else {
-			if (strlen(section) > 0) {
-				ModelicaFormatMessage("Cannot read section \"%s\" from file \"%s\"\n",
+			if (section[0] != '\0') {
+				ini->log("Cannot read section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
 			}
 			else {
-				ModelicaFormatMessage("Cannot read empty section from file \"%s\"\n",
+				ini->log("Cannot read default section from file \"%s\"\n",
 					ini->fileName);
 			}
 			*exist = 0;
