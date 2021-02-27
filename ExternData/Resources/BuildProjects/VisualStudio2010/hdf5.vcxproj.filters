@@ -732,6 +732,15 @@
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5lib_settings.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C-Sources\hdf5\src\H5FDhdfs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C-Sources\hdf5\src\H5FDros3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C-Sources\hdf5\src\H5FDs3comms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\hdf5\src\H5ACpkg.h">
@@ -1065,6 +1074,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\hdf5\include\hdf5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDhdfs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDros3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDs3comms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,7 @@
  * This file is part of HDF5.  The full HDF5 copyright notice, including     *
  * terms governing use, modification, and redistribution, is contained in    *
  * the COPYING file, which can be found at the root of the source code       *
- * distribution tree, or in https://support.hdfgroup.org/ftp/HDF5/releases.  *
+ * distribution tree, or in https://www.hdfgroup.org/licenses.               *
  * If you do not have access to either file, you may request a copy from     *
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -34,15 +34,13 @@
 #define _H5ACpkg_H
 
 /* Get package's private header */
-#include "H5ACprivate.h"	/* Metadata cache			*/
-
+#include "H5ACprivate.h" /* Metadata cache			*/
 
 /* Get needed headers */
-#include "H5Cprivate.h"         /* Cache                                */
-#include "H5SLprivate.h"        /* Skip lists */
+#include "H5Cprivate.h"  /* Cache                                */
+#include "H5SLprivate.h" /* Skip lists */
 
-
-#define H5AC_DEBUG_DIRTY_BYTES_CREATION	0
+#define H5AC_DEBUG_DIRTY_BYTES_CREATION 0
 
 #ifdef H5_HAVE_PARALLEL
 
@@ -50,8 +48,8 @@
  * at a sync point.
  */
 
-#define H5AC_SYNC_POINT_OP__FLUSH_TO_MIN_CLEAN		0
-#define H5AC_SYNC_POINT_OP__FLUSH_CACHE			1
+#define H5AC_SYNC_POINT_OP__FLUSH_TO_MIN_CLEAN 0
+#define H5AC_SYNC_POINT_OP__FLUSH_CACHE        1
 
 #endif /* H5_HAVE_PARALLEL */
 
@@ -62,12 +60,9 @@
  *-------------------------------------------------------------------------
  */
 
-#define H5AC__MIN_DIRTY_BYTES_THRESHOLD		(int32_t) \
-						(H5C__MIN_MAX_CACHE_SIZE / 2)
-#define H5AC__DEFAULT_DIRTY_BYTES_THRESHOLD	(256 * 1024)
-#define H5AC__MAX_DIRTY_BYTES_THRESHOLD   	(int32_t) \
-						(H5C__MAX_MAX_CACHE_SIZE / 4)
-
+#define H5AC__MIN_DIRTY_BYTES_THRESHOLD     (int32_t)(H5C__MIN_MAX_CACHE_SIZE / 2)
+#define H5AC__DEFAULT_DIRTY_BYTES_THRESHOLD (256 * 1024)
+#define H5AC__MAX_DIRTY_BYTES_THRESHOLD     (int32_t)(H5C__MAX_MAX_CACHE_SIZE / 4)
 
 /****************************************************************************
  *
@@ -328,61 +323,58 @@
 
 #ifdef H5_HAVE_PARALLEL
 
-#define H5AC__H5AC_AUX_T_MAGIC        (unsigned)0x00D0A01
+#define H5AC__H5AC_AUX_T_MAGIC (unsigned)0x00D0A01
 
-typedef struct H5AC_aux_t
-{
-    uint32_t	magic;
+typedef struct H5AC_aux_t {
+    uint32_t magic;
 
-    MPI_Comm	mpi_comm;
+    MPI_Comm mpi_comm;
 
-    int		mpi_rank;
+    int mpi_rank;
 
-    int		mpi_size;
+    int mpi_size;
 
-    hbool_t	write_permitted;
+    hbool_t write_permitted;
 
-    int32_t	dirty_bytes_threshold;
+    int32_t dirty_bytes_threshold;
 
-    int32_t	dirty_bytes;
+    int32_t dirty_bytes;
 
-    int32_t	metadata_write_strategy;
+    int32_t metadata_write_strategy;
 
 #if H5AC_DEBUG_DIRTY_BYTES_CREATION
 
-    int32_t	dirty_bytes_propagations;
+    int32_t dirty_bytes_propagations;
 
-    int32_t     unprotect_dirty_bytes;
-    int32_t     unprotect_dirty_bytes_updates;
+    int32_t unprotect_dirty_bytes;
+    int32_t unprotect_dirty_bytes_updates;
 
-    int32_t     insert_dirty_bytes;
-    int32_t     insert_dirty_bytes_updates;
+    int32_t insert_dirty_bytes;
+    int32_t insert_dirty_bytes_updates;
 
-    int32_t     move_dirty_bytes;
-    int32_t     move_dirty_bytes_updates;
+    int32_t move_dirty_bytes;
+    int32_t move_dirty_bytes_updates;
 
 #endif /* H5AC_DEBUG_DIRTY_BYTES_CREATION */
 
-    H5SL_t *	d_slist_ptr;
+    H5SL_t *d_slist_ptr;
 
-    int32_t	d_slist_len;
+    int32_t d_slist_len;
 
-    H5SL_t *	c_slist_ptr;
+    H5SL_t *c_slist_ptr;
 
-    int32_t	c_slist_len;
+    int32_t c_slist_len;
 
-    H5SL_t *	candidate_slist_ptr;
+    H5SL_t *candidate_slist_ptr;
 
-    int32_t	candidate_slist_len;
+    int32_t candidate_slist_len;
 
-    void	(* write_done)(void);
+    void (*write_done)(void);
 
-    void	(* sync_point_done)(int num_writes,
-                                    haddr_t * written_entries_tbl);
+    void (*sync_point_done)(int num_writes, haddr_t *written_entries_tbl);
 
 } H5AC_aux_t; /* struct H5AC_aux_t */
 
 #endif /* H5_HAVE_PARALLEL */
 
 #endif /* _H5ACpkg_H */
-

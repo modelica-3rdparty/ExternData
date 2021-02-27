@@ -9,15 +9,12 @@
  *                                                                           *
  * This file is part of HDF5.  The full HDF5 copyright notice, including     *
  * terms governing use, modification, and redistribution, is contained in    *
- * the files COPYING and Copyright.html.  COPYING can be found at the root   *
- * of the source code distribution tree; Copyright.html can be found at the  *
- * root level of an installed copy of the electronic HDF5 document set and   *
- * is linked from the top-level documents page.  It can also be found at     *
- * http://hdfgroup.org/HDF5/doc/Copyright.html.  If you do not have          *
- * access to either file, you may request a copy from help@hdfgroup.org.     *
+ * the COPYING file, which can be found at the root of the source code       *
+ * distribution tree, or in https://www.hdfgroup.org/licenses.               *
+ * If you do not have access to either file, you may request a copy from     *
+ * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *
- * Created:		Nov 10, 2016
+ * Created:		Feb 27, 2021
  *
  *
  * Purpose:		This machine-generated source code contains
@@ -52,7 +49,7 @@
  *			If the most significant bit of the normalized
  *			mantissa (always a `1' except for `0.0') is
  *			not stored then an `implicit=yes' appears
- *			under the field description.  In thie case,
+ *			under the field description.  In this case,
  *			the radix point is still assumed to be
  *			before the first `M' but after the implicit
  *			bit.
@@ -123,7 +120,7 @@
 /*******************/
 
 
-
+
 /*-------------------------------------------------------------------------
  * Function:	H5TN_init_interface
  *
@@ -976,6 +973,7 @@ done:
 /******************************/
 /* signal handlers statistics */
 /******************************/
-/* signal_handlers tested: 10 times */
+/* signal_handlers tested: 15 times */
 /* sigbus_handler called: 5 times */
 /* sigsegv_handler called: 5 times */
+/* sigill_handler called: 5 times */

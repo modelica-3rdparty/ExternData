@@ -348,6 +348,9 @@
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5.c" />
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5checksum.c" />
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5dbg.c" />
+    <ClCompile Include="..\..\C-Sources\hdf5\src\H5FDhdfs.c" />
+    <ClCompile Include="..\..\C-Sources\hdf5\src\H5FDros3.c" />
+    <ClCompile Include="..\..\C-Sources\hdf5\src\H5FDs3comms.c" />
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5system.c" />
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5timer.c" />
     <ClCompile Include="..\..\C-Sources\hdf5\src\H5trace.c" />
@@ -598,11 +601,14 @@
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDcore.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDdirect.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDfamily.h" />
+    <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDhdfs.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDlog.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDmpi.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDmpio.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDmulti.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDpublic.h" />
+    <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDros3.h" />
+    <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDs3comms.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDsec2.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDstdio.h" />
     <ClInclude Include="..\..\C-Sources\hdf5\include\H5FDwindows.h" />

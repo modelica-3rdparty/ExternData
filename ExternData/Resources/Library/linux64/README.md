@@ -1,2 +1,2 @@
-* The hdf5 static library is built with an hdf5 dummy project on [Travis CI](https://travis-ci.org/tbeu/hdf5) and can be downloaded from [hdf5-1.8.21_linux64.tar.xz](https://bitbucket.org/tbeu/downloads/downloads/hdf5-1.8.21_linux64.tar.xz).
+* The hdf5 static library is built with an hdf5 dummy project on [Travis CI](https://travis-ci.org/tbeu/hdf5) and can be downloaded from [hdf5-1.8.22_linux64.tar.xz](https://bitbucket.org/tbeu/downloads/downloads/hdf5-1.8.22_linux64.tar.xz).
 * All other static libraries are built with the ExternData project on [Travis CI](https://travis-ci.org/github/modelica-3rdparty/ExternData) and can be downloaded from [ExternData_linux64.tar.xz](https://bitbucket.org/tbeu/downloads/downloads/ExternData_linux64.tar.xz).
