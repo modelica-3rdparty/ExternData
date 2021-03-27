@@ -53,9 +53,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         caption="Open file")));
     parameter String delimiter="," "Column delimiter character" annotation(choices(choice=" " "Blank", choice="," "Comma", choice="\t" "Horizontal tabulator", choice=";" "Semicolon"));
     parameter String quotation="\"" "Quotation character" annotation(choices(choice="\"" "Double quotation mark", choice="'" "Single quotation mark"));
+    parameter Integer nHeaderLines=0 "Number of header lines to ignore";
     parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, verboseRead) "External CSV file object";
+    final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, nHeaderLines, verboseRead) "External CSV file object";
     extends Interfaces.CSV.Base(
       redeclare final function getRealArray2D = Functions.CSV.getRealArray2D(csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArraySize2D = Functions.CSV.getArraySize2D(csv=csv) "Get the size of a 2D array in a CSV file" annotation(Documentation(info="<html></html>")),
@@ -1650,9 +1651,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         input String fileName "File name";
         input String delimiter="," "Column delimiter character";
         input String quotation="\"" "Quotation character";
+        input Integer nHeaderLines=0 "Number of header lines to ignore";
         input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
         output ExternCSVFile csv "External CSV file object";
-        external "C" csv=ED_createCSV(fileName, delimiter, quotation, verboseRead) annotation(
+        external "C" csv=ED_createCSV(fileName, delimiter, quotation, nHeaderLines, verboseRead) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_CSVFile.h\"",

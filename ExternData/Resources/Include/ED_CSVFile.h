@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include "msvc_compatibility.h"
 
-void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int verbose);
+void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int nHeaderLines, int verbose);
 void ED_destroyCSV(void* _csv);
 void ED_getDoubleArray2DFromCSV(void* _csv, int* field, double* a, size_t m, size_t n);
 void ED_getArray2DDimensionsFromCSV(void* _csv, int* m, int* n);

@@ -90,11 +90,12 @@ static int readLine(char** buf, int* bufLen, FILE* fp) {
 	return 0;
 }
 
-void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int verbose)
+void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int nHeaderLines, int verbose)
 {
 	char* buf;
 	int bufLen = LINE_BUFFER_LENGTH;
 	int readError;
+	unsigned long lineNo = 1;
 	FILE* fp;
 	CSVFile* csv;
 
@@ -159,6 +160,25 @@ void* ED_createCSV(const char* fileName, const char* sep, const char* quote, int
 		free(csv);
 		ModelicaError("Memory allocation error\n");
 		return NULL;
+	}
+
+	/* Ignore file header */
+	while (lineNo <= (unsigned long)nHeaderLines) {
+		if ((readError = readLine(&buf, &bufLen, fp)) != 0) {
+			free(buf);
+			fclose(fp);
+			cpo_array_destroy(csv->lines);
+			free(csv->sep);
+			free(csv->fileName);
+			free(csv);
+			if (readError < 0) {
+				ModelicaFormatError(
+					"Error reading line %lu from file \"%s\": "
+					"End-Of-File reached.\n", lineNo, fileName);
+			}
+			return NULL;
+		}
+		lineNo++;
 	}
 
 	/* Loop over lines of file */
