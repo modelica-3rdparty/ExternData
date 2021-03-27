@@ -634,7 +634,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getReal;
 
       pure function getRealArray2D "Get 2D Real values from Excel XLS file"
@@ -643,7 +643,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getRealArray2D;
 
       pure function getInteger "Get scalar Integer value from Excel XLS file"
@@ -652,7 +652,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getInteger;
 
       pure function getBoolean "Get scalar Boolean value from Excel XLS file"
@@ -669,7 +669,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getString;
 
       pure function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
@@ -678,7 +678,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getArraySize2D;
 
       pure function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
@@ -687,7 +687,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getArrayRows2D;
 
       pure function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
@@ -696,7 +696,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end getArrayColumns2D;
     end XLS;
 
@@ -708,7 +708,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getReal;
 
       pure function getRealArray2D "Get 2D Real values from Excel XLSX file"
@@ -717,7 +717,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getRealArray2D;
 
       pure function getInteger "Get scalar Integer value from Excel XLSX file"
@@ -726,7 +726,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getInteger;
 
       pure function getBoolean "Get scalar Boolean value from Excel XLSX file"
@@ -743,7 +743,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getString;
 
       pure function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
@@ -752,7 +752,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getArraySize2D;
 
       pure function getArrayRows2D "Get first dimension of 2D array in Excel XLSX file"
@@ -761,7 +761,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getArrayRows2D;
 
       pure function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
@@ -770,7 +770,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getArrayColumns2D;
     end XLSX;
 
@@ -1787,7 +1787,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end constructor;
 
       function destructor "Clean up"
@@ -1797,7 +1797,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSFile.h\"",
-          Library = "ED_XLSFile");
+          Library = {"ED_XLSFile", "xlsreader"});
       end destructor;
     end ExternXLSFile;
 
@@ -1813,7 +1813,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end constructor;
 
       function destructor "Clean up"
@@ -1823,7 +1823,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XLSXFile.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XLSXFile.h\"",
-          Library = {"ED_XLSXFile", "bsxml-json", "expat", "zlib"});
+          Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end destructor;
     end ExternXLSXFile;
 

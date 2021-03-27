@@ -15,6 +15,13 @@ BS_OBJS = \
 CSV_OBJS = \
 	ED_CSVFile.o
 
+EXPAT_OBJS = \
+	expat/lib/xmlparse.o \
+	expat/lib/xmlrole.o \
+	expat/lib/xmltok.o \
+	expat/lib/xmltok_impl.o \
+	expat/lib/xmltok_ns.o
+
 INI_OBJS = \
 	inih/ini.o \
 	ED_INIFile.o
@@ -22,34 +29,34 @@ INI_OBJS = \
 JSON_OBJS = \
 	ED_JSONFile.o
 
+LIBXLS_OBJS = \
+	libxls/src/endian.o \
+	libxls/src/locale.o \
+	libxls/src/ole.o \
+	libxls/src/xls.o \
+	libxls/src/xlstool.o
+
 MAT_OBJS = \
 	ED_MATFile.o
+
+MINIZIP_OBJS = \
+	minizip/ioapi.o \
+	minizip/unzip.o
+
+PARSON_OBJS = \
+	parson/parson.o
 
 SSV_OBJS = \
 	ED_SSVFile.o
 
 XLS_OBJS = \
-	libxls/src/endian.o \
-	libxls/src/locale.o \
-	libxls/src/ole.o \
-	libxls/src/xls.o \
-	libxls/src/xlstool.o \
 	ED_XLSFile.o
 
 XLSX_OBJS = \
-	minizip/ioapi.o \
-	minizip/unzip.o \
 	ED_XLSXFile.o
 
 XML_OBJS = \
 	ED_XMLFile.o
-
-EXPAT_OBJS = \
-	expat/lib/xmlparse.o \
-	expat/lib/xmlrole.o \
-	expat/lib/xmltok.o \
-	expat/lib/xmltok_impl.o \
-	expat/lib/xmltok_ns.o
 
 ZLIB_OBJS = \
 	zlib/adler32.o \
@@ -68,18 +75,26 @@ ZLIB_OBJS = \
 	zlib/uncompr.o \
 	zlib/zutil.o
 
-PARSON_OBJS = \
-	parson/parson.o
-
-ALL_OBJS = $(BS_OBJS) $(CSV_OBJS) $(INI_OBJS) $(JSON_OBJS) $(MAT_OBJS) $(SSV_OBJS) $(XLS_OBJS) $(XLSX_OBJS) $(XML_OBJS) $(EXPAT_OBJS) $(ZLIB_OBJS) $(PARSON_OBJS)
+ALL_OBJS = \
+	$(BS_OBJS) \
+	$(CSV_OBJS) \
+	$(EXPAT_OBJS) \
+	$(INI_OBJS) \
+	$(JSON_OBJS) \
+	$(LIBXLS_OBJS) \
+	$(MAT_OBJS) \
+	$(MINIZIP_OBJS) \
+	$(PARSON_OBJS) \
+	$(SSV_OBJS) \
+	$(XLS_OBJS) \
+	$(XLSX_OBJS) \
+	$(XML_OBJS) \
+	$(ZLIB_OBJS)
 
 all: clean libs
 
-libs: libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a libparson.a
+libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
 	cp $^ ../Library/$(TARGETDIR)
-
-libbsxml-json.a: $(BS_OBJS)
-	$(AR) $@ $(BS_OBJS)
 
 libED_CSVFile.a: $(CSV_OBJS)
 	$(AR) $@ $(CSV_OBJS)
@@ -105,14 +120,23 @@ libED_XLSXFile.a: $(XLSX_OBJS)
 libED_XMLFile.a: $(XML_OBJS)
 	$(AR) $@ $(XML_OBJS)
 
+libbsxml-json.a: $(BS_OBJS)
+	$(AR) $@ $(BS_OBJS)
+
 libexpat.a: $(EXPAT_OBJS)
 	$(AR) $@ $(EXPAT_OBJS)
 
-libzlib.a: $(ZLIB_OBJS)
-	$(AR) $@ $(ZLIB_OBJS)
-
 libparson.a: $(PARSON_OBJS)
 	$(AR) $@ $(PARSON_OBJS)
+
+libminizip.a: $(MINIZIP_OBJS)
+	$(AR) $@ $(MINIZIP_OBJS)
+
+libxlsreader.a: $(LIBXLS_OBJS)
+	$(AR) $@ $(LIBXLS_OBJS)
+
+libzlib.a: $(ZLIB_OBJS)
+	$(AR) $@ $(ZLIB_OBJS)
 
 %.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(INC) -c -o $@ $<

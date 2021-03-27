@@ -27,47 +27,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\C-Sources\ED_XLSXFile.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
-    </ClCompile>
+    <ClCompile Include="..\..\C-Sources\libxls\src\endian.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\locale.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\ole.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\xls.c" />
+    <ClCompile Include="..\..\C-Sources\libxls\src\xlstool.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ED_XLSXFile.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
-    <ClInclude Include="..\..\C-Sources\ED_locale.h" />
-    <ClInclude Include="..\..\C-Sources\ED_logging.h" />
-    <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h" />
-    <ClInclude Include="..\..\C-Sources\minizip\unzip.h" />
-    <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h" />
-    <ClInclude Include="..\..\C-Sources\uthash.h" />
-    <ClInclude Include="..\..\Include\ED_XLSXFile.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.c.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\endian.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\locale.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\ole.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlsstruct.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstool.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\include\xls.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\src\config.h" />
+    <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7186953C-9C20-43A1-B64B-6515B6A132BD}</ProjectGuid>
+    <ProjectGuid>{C9251159-2B0B-469F-8D33-675CEE88DC0F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ED_XLSXFile</RootNamespace>
+    <RootNamespace>xlsreader</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
@@ -105,18 +107,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)..\..\Library\win32\</OutDir>
-    <TargetName>ITI_$(ProjectName)</TargetName>
     <IntDir>$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)..\..\Library\win64\</OutDir>
-    <TargetName>ITI_$(ProjectName)</TargetName>
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)..\..\Library\win32\</OutDir>
-    <TargetName>ITI_$(ProjectName)</TargetName>
     <IntDir>$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|Win32'">
@@ -128,40 +124,38 @@
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>ITI_$(ProjectName)</TargetName>
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir>$(SolutionDir)..\..\Library\win64\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;USE_EXPAT=1;XML_STATIC;_WINDOWS;_USRDLL;ED_XLSXFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;_WINDOWS;_USRDLL;ED_XLSFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>xlsreader.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;minizip.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>ED_XLSXFile.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;USE_EXPAT=1;XML_STATIC;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>xlsreader.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
-      <ModuleDefinitionFile>ED_XLSXFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;minizip.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -169,16 +163,16 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_USRDLL;_WINDOWS;ED_XLSXFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_XLSFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;minizip.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>ED_XLSXFile.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>xlsreader.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -187,16 +181,16 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_USRDLL;_WINDOWS;ED_XLSXFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_USRDLL;_WINDOWS;ED_XLSFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>xlsreader.def</ModuleDefinitionFile>
+      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>ED_XLSXFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>bsxml-json.lib;expat.lib;minizip.lib;zlib.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|Win32'">
@@ -204,10 +198,10 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <DebugInformationFormat>
       </DebugInformationFormat>
@@ -224,10 +218,10 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\C-Sources\libxls\include;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>

@@ -14,7 +14,7 @@ addons:
 
 env:
   global:
-    - DEPLOY_LIBS="libbsxml-json.a libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libexpat.a libzlib.a libparson.a"
+    - DEPLOY_LIBS="libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a"
     # BBPASS
     - secure: "QTj7LL9IODoPLwiha1ZZOkaPmgP4V9yVBJG4Z9qjm54Zv7UYHwHX1ghDN+DkzlPbNUXBBhclekmyCsxiZI9JZsYBWl84p33VrSTWD5eGQ4M6jJaXIiXk8hsStKHNfeq3FB+Bc+0R5ST0/OdyMex8sNfW9nntRbkjDT5jRdrbt/KG694dj5YvmL/E+RdLfXe6a/y3wlGXF6N/0Z9cHtP0TKgEQij/+KrGPk5qxwbAzYbT9jzmgGBbH8WHV1l8FtlVCYio7PVDswGkYgsMPn2lS3VZxOmZn5XJyYkOPQE3Fxlsr/50q2kHe4ufIX8U03upHvmW2FuXaPxar7ssAORPFIF+zKcKpCCMz6mfHgQB20tefqr2EvfTV6UJIx4pnUCJ5pzrlEBI3AQcUjQwFv0HnGeK/wiQFlny85POuoKN9V+jwUAxoXhnCZFLO2D8n4uyplvwximifEuaQ1gd835dan2ngGp0Ws6psnYC4iLJ6aULbD0EIc1aAbf3H+NF3GfqKhH4nz18eHNbd0ghMbTSvKWm2eKb9oX8anuCZtO0VO79A6lu8A86ZthnAS1dQ3J2KR7/xjug75nqlBpXHcIFB40sfl/zQntCK5SNMzGGojNWn/SGEDf7jon9esda3dtmHMo6mFNUTA/CX4E+xGjtpaafyCnOo82a/FD3wu8kjy4="
 

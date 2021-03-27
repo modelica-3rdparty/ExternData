@@ -18,21 +18,6 @@
     <ClCompile Include="..\..\C-Sources\ED_XLSFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxls\src\endian.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxls\src\ole.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxls\src\xls.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxls\src\xlstool.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxls\src\locale.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_XLSFile.def">
@@ -40,33 +25,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\endian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\ole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlsstruct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\src\config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\ED_XLSFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -83,9 +41,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\libxls\include\xls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\locale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C-Sources\ED_logging.h">

@@ -30,11 +30,6 @@
     <ClCompile Include="..\..\C-Sources\ED_XLSFile.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxls\src\endian.c" />
-    <ClCompile Include="..\..\C-Sources\libxls\src\locale.c" />
-    <ClCompile Include="..\..\C-Sources\libxls\src\ole.c" />
-    <ClCompile Include="..\..\C-Sources\libxls\src\xls.c" />
-    <ClCompile Include="..\..\C-Sources\libxls\src\xlstool.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ED_XLSFile.def" />
@@ -43,17 +38,7 @@
     <ClInclude Include="..\..\C-Sources\ED_locale.h" />
     <ClInclude Include="..\..\C-Sources\ED_logging.h" />
     <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.c.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\brdb.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\endian.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\locale.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\ole.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlsstruct.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstool.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\include\libxls\xlstypes.h" />
     <ClInclude Include="..\..\C-Sources\libxls\include\xls.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\src\config.h" />
-    <ClInclude Include="..\..\C-Sources\libxls\src\detail_endian.h" />
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h" />
     <ClInclude Include="..\..\C-Sources\uthash.h" />
     <ClInclude Include="..\..\Include\ED_XLSFile.h" />
@@ -156,8 +141,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xlsreader.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>ED_XLSFile.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
@@ -174,8 +159,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>ED_XLSFile.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xlsreader.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -190,8 +175,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xlsreader.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>ED_XLSFile.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
@@ -207,9 +192,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)..\..\thirdParty\ITI\win64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>ED_XLSFile.def</ModuleDefinitionFile>
-      <AdditionalDependencies>ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xlsreader.lib;ModelicaExternalC.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
