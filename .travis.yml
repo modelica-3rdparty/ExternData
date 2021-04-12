@@ -14,7 +14,7 @@ addons:
 
 env:
   global:
-    - DEPLOY_LIBS="libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a"
+    - DEPLOY_LIBS="libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxml2.a libxlsreader.a libzlib.a"
     # BBPASS
     - secure: "QTj7LL9IODoPLwiha1ZZOkaPmgP4V9yVBJG4Z9qjm54Zv7UYHwHX1ghDN+DkzlPbNUXBBhclekmyCsxiZI9JZsYBWl84p33VrSTWD5eGQ4M6jJaXIiXk8hsStKHNfeq3FB+Bc+0R5ST0/OdyMex8sNfW9nntRbkjDT5jRdrbt/KG694dj5YvmL/E+RdLfXe6a/y3wlGXF6N/0Z9cHtP0TKgEQij/+KrGPk5qxwbAzYbT9jzmgGBbH8WHV1l8FtlVCYio7PVDswGkYgsMPn2lS3VZxOmZn5XJyYkOPQE3Fxlsr/50q2kHe4ufIX8U03upHvmW2FuXaPxar7ssAORPFIF+zKcKpCCMz6mfHgQB20tefqr2EvfTV6UJIx4pnUCJ5pzrlEBI3AQcUjQwFv0HnGeK/wiQFlny85POuoKN9V+jwUAxoXhnCZFLO2D8n4uyplvwximifEuaQ1gd835dan2ngGp0Ws6psnYC4iLJ6aULbD0EIc1aAbf3H+NF3GfqKhH4nz18eHNbd0ghMbTSvKWm2eKb9oX8anuCZtO0VO79A6lu8A86ZthnAS1dQ3J2KR7/xjug75nqlBpXHcIFB40sfl/zQntCK5SNMzGGojNWn/SGEDf7jon9esda3dtmHMo6mFNUTA/CX4E+xGjtpaafyCnOo82a/FD3wu8kjy4="
 
@@ -23,28 +23,43 @@ matrix:
     - os: linux
       compiler: gcc-4.8
       env:
-        - PLATFORM=32
+        - PLATFORM=linux32
+        - CFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32"
+        - CXXFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32" 
     - os: linux
       compiler: gcc-4.8
       env:
-        - PLATFORM=64
+        - PLATFORM=linux64
+        - CFLAGS="-O3 -DNDEBUG -fPIC"
+        - CXXFLAGS="-O3 -DNDEBUG -fPIC"
     - os: linux
       compiler: clang
       env:
-        - PLATFORM=64
+        - PLATFORM=linux64
+        - CFLAGS="-O3 -DNDEBUG -fPIC"
+        - CXXFLAGS="-O3 -DNDEBUG -fPIC"
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
   - curl https://bitbucket.org/Swyter/bitbucket-curl-upload-to-repo-downloads/raw/default/upload-to-bitbucket.sh -O -J -L
   - chmod +x ./upload-to-bitbucket.sh
+  - git clone --branch v2.9.12 --depth 1 https://gitlab.gnome.org/GNOME/libxml2
+  - mkdir -p libxml2/$PLATFORM
+  - curl -sSL https://cmake.org/files/v3.18/cmake-3.18.6-Linux-x86_64.tar.gz | sudo tar -xzC /opt 
 
 script:
-  - cd ExternData/Resources/C-Sources
-  - if [[ "$PLATFORM" == "32" ]]; then make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"; fi
-  - if [[ "$PLATFORM" == "64" ]]; then make CFLAGS="-O3 -fPIC"; fi
-  - cd ../Library/linux$PLATFORM
-  - tar cJf ExternData_linux$PLATFORM.tar.xz $DEPLOY_LIBS
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_linux$PLATFORM.tar.xz; fi
+  - pushd ExternData/Resources/C-Sources
+  - if [[ "$PLATFORM" == "linux32" ]]; then make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"; fi
+  - if [[ "$PLATFORM" == "linux64" ]]; then make CFLAGS="-O3 -fPIC"; fi
+  - popd
+  - pushd libxml2/$PLATFORM
+  - /opt/cmake-3.18.6-Linux-x86_64/bin/cmake -DZLIB_LIBRARY_RELEASE:FILEPATH="$TRAVIS_BUILD_DIR/ExternData/Resources/Library/$PLATFORM/libzlib.a" -DLIBXML2_WITH_DEBUG:BOOL="0" -DZLIB_INCLUDE_DIR:PATH="$TRAVIS_BUILD_DIR/ExternData/Resources/C-Sources/zlib/" -DLIBXML2_WITH_C14N:BOOL=OFF -DLIBXML2_WITH_CATALOG:BOOL=OFF -DLIBXML2_WITH_DEBUG:BOOL=OFF -DLIBXML2_WITH_DOCB:BOOL=OFF -DLIBXML2_WITH_FTP:BOOL=OFF -DLIBXML2_WITH_HTML:BOOL=OFF -DLIBXML2_WITH_HTTP:BOOL=OFF -DLIBXML2_WITH_ICONV:BOOL=OFF -DLIBXML2_WITH_ICU:BOOL=OFF -DLIBXML2_WITH_ISO8859X:BOOL=OFF -DLIBXML2_WITH_LEGACY:BOOL=OFF -DLIBXML2_WITH_LZMA:BOOL=OFF -DLIBXML2_WITH_MEM_DEBUG:BOOL=OFF -DLIBXML2_WITH_MODULES:BOOL=OFF -DLIBXML2_WITH_OUTPUT:BOOL=OFF -DLIBXML2_WITH_PATTERN:BOOL=OFF -DLIBXML2_WITH_PROGRAMS:BOOL=OFF -DLIBXML2_WITH_PUSH:BOOL=OFF -DLIBXML2_WITH_PYTHON:BOOL=OFF -DLIBXML2_WITH_READER:BOOL=OFF -DLIBXML2_WITH_REGEXPS:BOOL=OFF -DLIBXML2_WITH_RUN_DEBUG:BOOL=OFF -DLIBXML2_WITH_SAX1:BOOL=OFF -DLIBXML2_WITH_SCHEMAS:BOOL=OFF -DLIBXML2_WITH_SCHEMATRON:BOOL=OFF -DLIBXML2_WITH_TESTS:BOOL=OFF -DLIBXML2_WITH_THREADS:BOOL=ON -DLIBXML2_WITH_THREAD_ALLOC:BOOL=OFF -DLIBXML2_WITH_TREE:BOOL=OFF -DLIBXML2_WITH_VALID:BOOL=OFF -DLIBXML2_WITH_WRITER:BOOL=OFF -DLIBXML2_WITH_XINCLUDE:BOOL=OFF -DLIBXML2_WITH_XPATH:BOOL=ON -DLIBXML2_WITH_XPTR:BOOL=OFF -DLIBXML2_WITH_ZLIB:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=OFF -DCPACK_BINARY_7Z:BOOL=OFF -DCPACK_BINARY_IFW:BOOL=OFF -DCPACK_BINARY_NSIS:BOOL=OFF -DCPACK_BINARY_NUGET:BOOL=OFF -DCPACK_BINARY_WIX:BOOL=OFF -DCPACK_BINARY_ZIP:BOOL=OFF -DCPACK_SOURCE_7Z:BOOL=OFF -DCPACK_SOURCE_ZIP:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ../
+  - /opt/cmake-3.18.6-Linux-x86_64/bin/cmake --build .
+  - mv libxml2.a ../../ExternData/Resources/Library/$PLATFORM/libxml2.a
+  - popd
+  - cd ExternData/Resources/Library/$PLATFORM
+  - tar cJf ExternData_$PLATFORM.tar.xz $DEPLOY_LIBS
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
 
 notifications:
   email: false
