@@ -7,5 +7,6 @@ XLSTest
 XLSXTest
 XMLTest
 XMLTestInnerOuter
+XMLTestReadDim
 XMLTestXPath
 TIRTest

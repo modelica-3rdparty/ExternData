@@ -204,6 +204,24 @@ package Examples "Test examples"
       Documentation(info="<html><p>This example model reads the gain and table parameters in the component model from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For component.gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XMLFile.getReal\">ExternData.XMLFile.getReal</a>. For component.gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XMLFile.getString\">ExternData.XMLFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For component.timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.XMLFile.getRealArray2D\">ExternData.XMLFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
   end XMLTestInnerOuter;
 
+  model XMLTestReadDim "XML file read test (where array dimensions are read from file)"
+    extends Modelica.Icons.Example;
+    parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
+    parameter String fileName = Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml") "File where external data is stored";
+    inner parameter ExternData.XMLFile dataSource(fileName=fileName) "XML file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal(setName + ".gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+    Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString(setName + ".gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+    Modelica.Blocks.Sources.ContinuousClock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    final parameter Integer m = ExternData.Functions.XML.readArrayRows2D(fileName, "table2") "Number of rows in 2D array";
+    final parameter Integer n = ExternData.Functions.XML.readArrayColumns2D(fileName, "table2") "Number of columns in 2D array";
+    Modelica.Blocks.Sources.TimeTable timeTable(table=dataSource.getRealArray2D("table2", m, n)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
+    equation
+      connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+      connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+    annotation(experiment(StopTime=1),
+      Documentation(info="<html><p>This example model reads the gain and table parameters from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XMLFile.getReal\">ExternData.XMLFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XMLFile.getString\">ExternData.XMLFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For timeTable the table parameter is read as Real array of dimension mxn by function <a href=\"modelica://ExternData.XMLFile.getRealArray2D\">ExternData.XMLFile.getRealArray2D</a>. The array dimensions m and n are also read from file by separate read functions <a href=\"modelica://ExternData.Functions.XML.readArrayRows2D\">ExternData.Functions.XML.readArrayRows2D</a> and <a href=\"modelica://ExternData.Functions.XML.readArrayColumns2D\">ExternData.Functions.XML.readArrayColumns2D</a> (and thus avoiding the already available ExternData.XMLFile component). The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+  end XMLTestReadDim;
+
   model XMLTestXPath "XML file read test (utilizing XPath expressions)"
     extends Modelica.Icons.Example;
     parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));

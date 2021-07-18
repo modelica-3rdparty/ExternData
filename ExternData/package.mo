@@ -163,7 +163,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(
         loadSelector(filter="SSV files (*.ssv;*.xml)",
         caption="Open file")));
-    parameter String nameSpace = "http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSP 1.0"));
+    parameter String nameSpace = "http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSV name space" annotation(choices(choice="" "No name space", choice="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSP 1.0"));
     parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
     parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
@@ -373,6 +373,52 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_CSVFile.h\"",
           Library = {"ED_CSVFile", "bsxml-json"});
       end getArrayColumns2D;
+
+      function readArraySize2D "Read dimensions of 2D array in CSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String delimiter = "," "Column delimiter character";
+        input String quotation = "\"" "Quotation character";
+        input Integer nHeaderLines = 0 "Number of header lines to ignore";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternCSVFile csv = Types.ExternCSVFile(fileName=fileName, delimiter=delimiter, quotation=quotation, nHeaderLines=nHeaderLines, verboseRead=verboseRead) "External CSV file object";
+        algorithm
+          (m, n) := getArraySize2D(csv=csv);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in CSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String delimiter = "," "Column delimiter character";
+        input String quotation = "\"" "Quotation character";
+        input Integer nHeaderLines = 0 "Number of header lines to ignore";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternCSVFile csv = Types.ExternCSVFile(fileName=fileName, delimiter=delimiter, quotation=quotation, nHeaderLines=nHeaderLines, verboseRead=verboseRead) "External CSV file object";
+        algorithm
+          m := getArrayRows2D(csv=csv);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in CSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String delimiter = "," "Column delimiter character";
+        input String quotation = "\"" "Quotation character";
+        input Integer nHeaderLines = 0 "Number of header lines to ignore";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternCSVFile csv = Types.ExternCSVFile(fileName=fileName, delimiter=delimiter, quotation=quotation, nHeaderLines=nHeaderLines, verboseRead=verboseRead) "External CSV file object";
+        algorithm
+          n := getArrayColumns2D(csv=csv);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end CSV;
 
     package INI "INI file functions"
@@ -570,6 +616,63 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_JSONFile.h\"",
           Library = {"ED_JSONFile", "parson"});
       end getArrayColumns2D;
+
+      function readArraySize1D "Read length of 1D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of elements in array";
+        protected
+          Types.ExternJSONFile json = Types.ExternJSONFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External JSON file object";
+        algorithm
+          n := getArraySize1D(json=json, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize1D;
+
+      function readArraySize2D "Read dimensions of 2D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternJSONFile json = Types.ExternJSONFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External JSON file object";
+        algorithm
+          (m, n) := getArraySize2D(json=json, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternJSONFile json = Types.ExternJSONFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External JSON file object";
+        algorithm
+          m := getArrayRows2D(json=json, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in JSON file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternJSONFile json = Types.ExternJSONFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External JSON file object";
+        algorithm
+          n := getArrayColumns2D(json=json, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end JSON;
 
     package MAT "MAT file functions"
@@ -618,6 +721,46 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_MATFile.h\"",
           Library = {"ED_MATFile", "hdf5", "zlib", "dl"});
       end getArrayColumns2D;
+
+      function readArraySize2D "Read dimensions of 2D array in MAT file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Variable name";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternMATFile mat = Types.ExternMATFile(fileName=fileName, verboseRead=verboseRead) "External MAT file object";
+        algorithm
+          (m, n) := getArraySize2D(mat=mat, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in MAT file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Variable name";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternMATFile mat = Types.ExternMATFile(fileName=fileName, verboseRead=verboseRead) "External MAT file object";
+        algorithm
+          m := getArrayRows2D(mat=mat, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in MAT file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Variable name";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternMATFile mat = Types.ExternMATFile(fileName=fileName, verboseRead=verboseRead) "External MAT file object";
+        algorithm
+          n := getArrayColumns2D(mat=mat, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end MAT;
 
     package SSV "SSV file functions"
@@ -720,6 +863,52 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XLSFile.h\"",
           Library = {"ED_XLSFile", "xlsreader"});
       end getArrayColumns2D;
+
+      function readArraySize2D "Read dimensions of 2D array in Excel XLS file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String sheetName = "" "Sheet name";
+        input String encoding = "UTF-8" "Encoding";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXLSFile xls = Types.ExternXLSFile(fileName=fileName, encoding=encoding, verboseRead=verboseRead, detectMissingData=detectMissingData) "External Excel XLS file object";
+        algorithm
+          (m, n) := getArraySize2D(xls=xls, sheetName=sheetName);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in Excel XLS file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String sheetName = "" "Sheet name";
+        input String encoding = "UTF-8" "Encoding";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternXLSFile xls = Types.ExternXLSFile(fileName=fileName, encoding=encoding, verboseRead=verboseRead, detectMissingData=detectMissingData) "External Excel XLS file object";
+        algorithm
+          m := getArrayRows2D(xls=xls, sheetName=sheetName);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in Excel XLS file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String sheetName = "" "Sheet name";
+        input String encoding = "UTF-8" "Encoding";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXLSFile xls = Types.ExternXLSFile(fileName=fileName, encoding=encoding, verboseRead=verboseRead, detectMissingData=detectMissingData) "External Excel XLS file object";
+        algorithm
+          n := getArrayColumns2D(xls=xls, sheetName=sheetName);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end XLS;
 
     package XLSX "Excel XLSX file functions"
@@ -794,6 +983,49 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XLSXFile.h\"",
           Library = {"ED_XLSXFile", "bsxml-json", "expat", "minizip", "zlib"});
       end getArrayColumns2D;
+
+      function readArraySize2D "Read dimensions of 2D array in Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String sheetName = "" "Sheet name";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXLSXFile xlsx = Types.ExternXLSXFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External Excel XLSX file object";
+        algorithm
+          (m, n) := getArraySize2D(xlsx=xlsx, sheetName=sheetName);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String sheetName = "" "Sheet name";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternXLSXFile xlsx = Types.ExternXLSXFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External Excel XLSX file object";
+        algorithm
+          m := getArrayRows2D(xlsx=xlsx, sheetName=sheetName);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in Excel XLSX file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String sheetName = "" "Sheet name";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXLSXFile xlsx = Types.ExternXLSXFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External Excel XLSX file object";
+        algorithm
+          n := getArrayColumns2D(xlsx=xlsx, sheetName=sheetName);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end XLSX;
 
     package XML "XML file functions"
@@ -886,6 +1118,63 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XMLFile.h\"",
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getArrayColumns2D;
+
+      function readArraySize1D "Read length of 1D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of elements in array";
+        protected
+          Types.ExternXMLFile xml = Types.ExternXMLFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML file object";
+        algorithm
+          n := getArraySize1D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize1D;
+
+      function readArraySize2D "Read dimensions of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXMLFile xml = Types.ExternXMLFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML file object";
+        algorithm
+          (m, n) := getArraySize2D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternXMLFile xml = Types.ExternXMLFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML file object";
+        algorithm
+          m := getArrayRows2D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXMLFile xml = Types.ExternXMLFile(fileName=fileName, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML file object";
+        algorithm
+          n := getArrayColumns2D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end XML;
 
     package XML2 "XML2 file functions"
@@ -978,6 +1267,67 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Include = "#include \"ED_XML2File.h\"",
           Library = {"ED_XML2File", "xml2", "zlib"});
       end getArrayColumns2D;
+
+      function readArraySize1D "Read length of 1D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of elements in array";
+        protected
+          Types.ExternXML2File xml = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          n := getArraySize1D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize1D;
+
+      function readArraySize2D "Read dimensions of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXML2File xml = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          (m, n) := getArraySize2D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternXML2File xml = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          m := getArrayRows2D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXML2File xml = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          n := getArrayColumns2D(xml=xml, varName=varName);
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end XML2;
   end Functions;
 
@@ -1019,8 +1369,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getRealArray2D "Get 2D Real values from CSV file"
         extends Modelica.Icons.Function;
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Integer field[2](each min=1)={1,1} "Start field {row, col}";
         input Types.ExternCSVFile csv "External CSV file object";
         output Real y[m,n] "2D Real values";
@@ -1147,7 +1497,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray1D "Get 1D Real values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternJSONFile json "External JSON file object";
         output Real y[n] "1D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1156,8 +1506,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray2D "Get 2D Real values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternJSONFile json "External JSON file object";
         output Real y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1172,7 +1522,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getIntegerArray1D "Get 1D Integer values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternJSONFile json "External JSON file object";
         output Integer y[n] "1D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1181,8 +1531,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getIntegerArray2D "Get 2D Integer values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternJSONFile json "External JSON file object";
         output Integer y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1197,7 +1547,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getBooleanArray1D "Get 1D Boolean values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternJSONFile json "External JSON file object";
         output Boolean y[n] "1D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1206,8 +1556,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getBooleanArray2D "Get 2D Boolean values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternJSONFile json "External JSON file object";
         output Boolean y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1222,7 +1572,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getStringArray1D "Get 1D String values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternJSONFile json "External JSON file object";
         output String y[n] "1D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1231,8 +1581,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getStringArray2D "Get 2D String values from JSON file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternJSONFile json "External JSON file object";
         output String y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1300,8 +1650,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray2D "Get 2D Real values from MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternMATFile mat "External MATLAB MAT file object";
         output Real y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1310,7 +1660,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getStringArray1D "Get 1D String values from MAT file"
         extends Modelica.Icons.Function;
         input String varName "Variable name";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternMATFile mat "External MATLAB MAT file object";
         output String str[n] "1D String values";
         annotation(Documentation(info="<html></html>"));
@@ -1425,8 +1775,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getReal "Get scalar Real value from Excel XLS file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Real y "Real value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to 0.0";
@@ -1435,10 +1785,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getRealArray2D "Get 2D Real values from Excel XLS file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Start cell address";
-        input String sheetName="" "Sheet name";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input String cellAddress = "A1" "Start cell address";
+        input String sheetName = "" "Sheet name";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Real y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1446,8 +1796,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getInteger "Get scalar Integer value from Excel XLS file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Integer y "Integer value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to 0";
@@ -1456,8 +1806,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getBoolean "Get scalar Boolean value from Excel XLS file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Boolean y "Boolean value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to false";
@@ -1468,8 +1818,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getString "Get scalar String value from Excel XLS file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output String str "String value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to an empty string";
@@ -1478,7 +1828,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getArraySize2D "Get dimensions of 2D array in Excel XLS file"
         extends Modelica.Icons.Function;
-        input String sheetName="" "Sheet name";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Integer m "Number of rows in array";
         output Integer n "Number of columns in array";
@@ -1487,7 +1837,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getArrayRows2D "Get first dimension of 2D array in Excel XLS file"
         extends Modelica.Icons.Function;
-        input String sheetName="" "Sheet name";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Integer m "Number of rows in array";
         protected
@@ -1497,7 +1847,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getArrayColumns2D "Get second dimension of 2D array in Excel XLS file"
         extends Modelica.Icons.Function;
-        input String sheetName="" "Sheet name";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSFile xls "External Excel XLS file object";
         output Integer n "Number of columns in array";
         protected
@@ -1540,8 +1890,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getReal "Get scalar Real value from Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Real y "Real value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to 0.0";
@@ -1550,10 +1900,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getRealArray2D "Get 2D Real values from Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Start cell address";
-        input String sheetName="" "Sheet name";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input String cellAddress = "A1" "Start cell address";
+        input String sheetName = "" "Sheet name";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Real y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1561,8 +1911,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getInteger "Get scalar Integer value from Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Integer y "Integer value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set 0";
@@ -1571,8 +1921,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getBoolean "Get scalar Boolean value from Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Boolean y "Boolean value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to false";
@@ -1583,8 +1933,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getString "Get scalar String value from Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String cellAddress="A1" "Cell address";
-        input String sheetName="" "Sheet name";
+        input String cellAddress = "A1" "Cell address";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output String str "String value";
         output Boolean exist "= true, if cellAddress exits; = false, if it does not exist and y is set to an empty string";
@@ -1593,7 +1943,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getArraySize2D "Get dimensions of 2D array in Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String sheetName="" "Sheet name";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Integer m "Number of rows in array";
         output Integer n "Number of columns in array";
@@ -1612,7 +1962,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file"
         extends Modelica.Icons.Function;
-        input String sheetName="" "Sheet name";
+        input String sheetName = "" "Sheet name";
         input Types.ExternXLSXFile xlsx "External Excel XLSX file object";
         output Integer n "Number of columns in array";
         protected
@@ -1650,7 +2000,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray1D "Get 1D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternXMLFile xml "External XML file object";
         output Real y[n] "1D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1659,8 +2009,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray2D "Get 2D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternXMLFile xml "External XML file object";
         output Real y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1753,7 +2103,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray1D "Get 1D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer n=1 "Number of elements";
+        input Integer n = 1 "Number of elements";
         input Types.ExternXML2File xml "External XML2 file object";
         output Real y[n] "1D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -1762,8 +2112,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial function getRealArray2D "Get 2D Real values from XML file"
         extends Modelica.Icons.Function;
         input String varName "Key";
-        input Integer m=1 "Number of rows";
-        input Integer n=1 "Number of columns";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
         input Types.ExternXML2File xml "External XML2 file object";
         output Real y[m,n] "2D Real values";
         annotation(Documentation(info="<html></html>"));
@@ -2055,7 +2405,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Parse XML file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input String nameSpace[:,2] "XML name spaces";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
         input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
         input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXML2File xml "External XML2 file object";
