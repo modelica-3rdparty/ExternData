@@ -6,5 +6,6 @@ SSVTest
 XLSTest
 XLSXTest
 XMLTest
-XMLTest2
+XMLTestInnerOuter
+XMLTestXPath
 TIRTest

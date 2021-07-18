@@ -149,9 +149,9 @@ double ED_getDoubleFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
+			*exist = 0;
 			json->log("Cannot find numeric value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
-			*exist = 0;
 		}
 	}
 	else {
@@ -178,9 +178,9 @@ const char* ED_getStringFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
+			*exist = 0;
 			json->log("Cannot find string value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
-			*exist = 0;
 		}
 	}
 	else {
@@ -220,9 +220,9 @@ int ED_getIntFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
+			*exist = 0;
 			json->log("Cannot find numeric value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
-			*exist = 0;
 		}
 	}
 	else {
@@ -260,9 +260,9 @@ int ED_getBooleanFromJSON(void* _json, const char* varName, int* exist)
 			}
 		}
 		else {
+			*exist = 0;
 			json->log("Cannot find boolean value \"%s\" in file \"%s\"\n",
 				varName, json->fileName);
-			*exist = 0;
 		}
 	}
 	else {

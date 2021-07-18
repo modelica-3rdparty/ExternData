@@ -187,9 +187,9 @@ double ED_getDoubleFromXML(void* _xml, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
+			*exist = 0;
 			xml->log("Line %i: Cannot read double value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
-			*exist = 0;
 		}
 		else {
 			*exist = 0;
@@ -216,9 +216,9 @@ const char* ED_getStringFromXML(void* _xml, const char* varName, int* exist)
 			return (const char*)ret;
 		}
 		else if (NULL != root) {
+			*exist = 0;
 			xml->log("Line %i: Cannot read value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
-			*exist = 0;
 		}
 		else {
 			*exist = 0;
@@ -247,9 +247,9 @@ int ED_getIntFromXML(void* _xml, const char* varName, int* exist)
 			}
 		}
 		else if (NULL != root) {
+			*exist = 0;
 			xml->log("Line %i: Cannot read int value from file \"%s\"\n",
 				XmlNode_getLine(root), xml->fileName);
-			*exist = 0;
 		}
 		else {
 			*exist = 0;

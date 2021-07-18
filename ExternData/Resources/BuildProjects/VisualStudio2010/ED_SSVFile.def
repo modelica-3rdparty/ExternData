@@ -1,7 +1,0 @@
-EXPORTS
-	ED_createSSV
-	ED_destroySSV
-	ED_getDoubleFromSSV
-	ED_getStringFromSSV
-	ED_getIntFromSSV
-	ED_getBooleanFromSSV

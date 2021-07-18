@@ -46,9 +46,6 @@ MINIZIP_OBJS = \
 PARSON_OBJS = \
 	parson/parson.o
 
-SSV_OBJS = \
-	ED_SSVFile.o
-
 XLS_OBJS = \
 	ED_XLSFile.o
 
@@ -85,7 +82,6 @@ ALL_OBJS = \
 	$(MAT_OBJS) \
 	$(MINIZIP_OBJS) \
 	$(PARSON_OBJS) \
-	$(SSV_OBJS) \
 	$(XLS_OBJS) \
 	$(XLSX_OBJS) \
 	$(XML_OBJS) \
@@ -93,7 +89,7 @@ ALL_OBJS = \
 
 all: clean libs
 
-libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_SSVFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
+libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
 	cp $^ ../Library/$(TARGETDIR)
 
 libED_CSVFile.a: $(CSV_OBJS)
@@ -107,9 +103,6 @@ libED_JSONFile.a: $(JSON_OBJS)
 
 libED_MATFile.a: $(MAT_OBJS)
 	$(AR) $@ $(MAT_OBJS)
-
-libED_SSVFile.a: $(SSV_OBJS)
-	$(AR) $@ $(SSV_OBJS)
 
 libED_XLSFile.a: $(XLS_OBJS)
 	$(AR) $@ $(XLS_OBJS)

@@ -28,6 +28,7 @@
 within ExternData;
 package Examples "Test examples"
   extends Modelica.Icons.ExamplesPackage;
+
   model CSVTest "CSV file read test"
     extends Modelica.Icons.Example;
     inner parameter ExternData.CSVFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.csv")) "CSV file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
@@ -39,7 +40,7 @@ package Examples "Test examples"
 
   model INITest "INI file read test"
     extends Modelica.Icons.Example;
-    parameter String setName="set1" "Parameter set name" annotation(choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
+    parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
     inner parameter ExternData.INIFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ini")) "INI file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal("gain.k", setName)) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString("gain.k", setName))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
@@ -53,7 +54,7 @@ package Examples "Test examples"
 
   model JSONTest "JSON file read test"
     extends Modelica.Icons.Example;
-    parameter String setName="set1" "Parameter set name" annotation(choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
+    parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
     inner parameter ExternData.JSONFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.json")) "JSON file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal(setName + ".gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString(setName + ".gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
@@ -89,7 +90,7 @@ package Examples "Test examples"
 
   model XLSTest "Excel XLS file read test"
     extends Modelica.Icons.Example;
-    parameter String sheetName="set1" "Excel sheet name" annotation(choices(choice="set1" "First Excel sheet", choice="set2" "Second Excel sheet"));
+    parameter String sheetName = "set1" "Excel sheet name" annotation(Evaluate=true, choices(choice="set1" "First Excel sheet", choice="set2" "Second Excel sheet"));
     inner parameter ExternData.XLSFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xls")) "XLS file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal("B2", sheetName)) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString("B2", sheetName))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
@@ -101,7 +102,7 @@ package Examples "Test examples"
       extends Modelica.Icons.Function;
       input ExternData.XLSFile dataSource "Excel XLS file record";
       input String col = "A" "Column";
-      input String sheetName="" "Sheet name";
+      input String sheetName = "" "Sheet name";
       input Integer startRow = 2 "Start row";
       input Integer endRow = ExternData.Functions.XLS.getArrayRows2D(sheetName=sheetName, xls=dataSource.xls) "End row";
       output Real colSum "Column sum";
@@ -127,7 +128,7 @@ package Examples "Test examples"
 
   model XLSXTest "Excel XLSX file read test"
     extends Modelica.Icons.Example;
-    parameter String sheetName="set1" "Excel sheet name" annotation(choices(choice="set1" "First Excel sheet", choice="set2" "Second Excel sheet"));
+    parameter String sheetName = "set1" "Excel sheet name" annotation(Evaluate=true, choices(choice="set1" "First Excel sheet", choice="set2" "Second Excel sheet"));
     inner parameter ExternData.XLSXFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xlsx")) "XLSX file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal("B2", sheetName)) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString("B2", sheetName))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
@@ -139,7 +140,7 @@ package Examples "Test examples"
       extends Modelica.Icons.Function;
       input ExternData.XLSXFile dataSource "Excel XLSX file record";
       input String col = "A" "Column";
-      input String sheetName="" "Sheet name";
+      input String sheetName = "" "Sheet name";
       input Integer startRow = 2 "Start row";
       input Integer endRow = ExternData.Functions.XLSX.getArrayRows2D(sheetName=sheetName, xlsx=dataSource.xlsx) "End row";
       output Real colSum "Column sum";
@@ -165,7 +166,7 @@ package Examples "Test examples"
 
   model XMLTest "XML file read test"
     extends Modelica.Icons.Example;
-    parameter String setName="set1" "Parameter set name" annotation(choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
+    parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
     inner parameter ExternData.XMLFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) "XML file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal(setName + ".gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString(setName + ".gain.k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
@@ -179,9 +180,9 @@ package Examples "Test examples"
       Documentation(info="<html><p>This example model reads the gain and table parameters from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XMLFile.getReal\">ExternData.XMLFile.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XMLFile.getString\">ExternData.XMLFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.XMLFile.getRealArray2D\">ExternData.XMLFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
   end XMLTest;
 
-  model XMLTest2 "XML file read test using inner/outer hierarchy"
+  model XMLTestInnerOuter "XML file read test (utilizing inner/outer hierarchy)"
     extends Modelica.Icons.Example;
-    inner parameter String setName="set1" "Parameter set name" annotation(choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
+    inner parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
     inner parameter ExternData.XMLFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) "XML file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     model Component
       outer parameter String setName "Parameter set name";
@@ -201,7 +202,23 @@ package Examples "Test examples"
     Component component annotation(Placement(transformation(extent={{-40,60},{-20,80}})));
     annotation(experiment(StopTime=1),
       Documentation(info="<html><p>This example model reads the gain and table parameters in the component model from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For component.gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XMLFile.getReal\">ExternData.XMLFile.getReal</a>. For component.gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XMLFile.getString\">ExternData.XMLFile.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For component.timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.XMLFile.getRealArray2D\">ExternData.XMLFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
-  end XMLTest2;
+  end XMLTestInnerOuter;
+
+  model XMLTestXPath "XML file read test (utilizing XPath expressions)"
+    extends Modelica.Icons.Example;
+    parameter String setName = "set1" "Parameter set name" annotation(Evaluate=true, choices(choice="set1" "First parameter set", choice="set2" "Second parameter set"));
+    inner parameter ExternData.XML2File dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.xml")) "XML file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal("//" + setName + "/gain/k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
+    Modelica.Blocks.Math.Gain gain2(k=Modelica.Utilities.Strings.scanReal(dataSource.getString("//" + setName + "/gain/k"))) annotation(Placement(transformation(extent={{-15,30},{5,50}})));
+    Modelica.Blocks.Sources.ContinuousClock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    final parameter Integer m = dataSource.getArrayRows2D("//table5//val") "Number of rows in 2D array";
+    Modelica.Blocks.Sources.TimeTable timeTable(table=dataSource.getRealArray2D("//table5//val", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
+    equation
+      connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
+      connect(clock.y,gain2.u) annotation(Line(points={{-29,70},{-22,70},{-22,40},{-17,40}}, color={0,0,127}));
+    annotation(experiment(StopTime=1),
+      Documentation(info="<html><p>This example model reads the gain and table parameters from different nodes of the XML file <a href=\"modelica://ExternData/Resources/Examples/test.xml\">test.xml</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.XML2File.getReal\">ExternData.XML2File.getReal</a>. For gain2 the String value is retrieved by function <a href=\"modelica://ExternData.XML2File.getString\">ExternData.XML2File.getString</a> and converted to a Real value (using the utility function <a href=\"modelica://Modelica.Utilities.Strings.scanReal\">Modelica.Utilities.Strings.scanReal</a>). For timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.XML2File.getRealArray2D\">ExternData.XML2File.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
+  end XMLTestXPath;
 
   model TIRTest "TIR file read test"
     extends Modelica.Icons.Example;

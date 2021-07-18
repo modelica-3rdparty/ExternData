@@ -75,7 +75,7 @@
 #include <math.h>   /* isnan */
 #if defined(_MSC_VER) && (_MSC_VER == 1600)
 #include <float.h>
-#define isnan _isnan
+#define isnan(d) (_isnan(d))
 #endif
 
 #ifdef _WIN32

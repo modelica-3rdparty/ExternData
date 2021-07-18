@@ -458,9 +458,9 @@ double ED_getDoubleFromXLSX(void* _xlsx, const char* cellAddress, const char* sh
 			}
 		}
 		else {
+			*exist = 0;
 			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
 				_sheetName, xlsx->fileName);
-			*exist = 0;
 		}
 	}
 	else {
@@ -499,9 +499,9 @@ const char* ED_getStringFromXLSX(void* _xlsx, const char* cellAddress, const cha
 			}
 		}
 		else {
+			*exist = 0;
 			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
 				_sheetName, xlsx->fileName);
-			*exist = 0;
 		}
 	}
 	else {
@@ -542,9 +542,9 @@ int ED_getIntFromXLSX(void* _xlsx, const char* cellAddress, const char* sheetNam
 			}
 		}
 		else {
+			*exist = 0;
 			xlsx->log("Cannot find \"sheetData\" in sheet \"%s\" from file \"%s\"\n",
 				_sheetName, xlsx->fileName);
-			*exist = 0;
 		}
 	}
 	else {

@@ -32,7 +32,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
     extends Modelica.Icons.Information;
     class References "References"
       extends Modelica.Icons.References;
-      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/libexpat/libexpat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"https://github.com/benhoyt/inih\">inih</a>&nbsp;-&nbsp;Ben Hoyt&#039;s simple INI file parser in C</li><li><a href=\"https://github.com/libxls/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"https://sourceforge.net/projects/matio/\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/kgabis/parson\">parson</a>&nbsp;-&nbsp;Krzysztof Gabis&#039; lightweight JSON library written in C</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;s string processing library for C</li></ul></html>"));
+      annotation(Documentation(info="<html><p>The ExternData Modelica library is based on the following third-party C projects</p><ul><li><a href=\"https://github.com/bsapundzhiev/bsxml-json\">bsxml-json</a>&nbsp;-&nbsp;Borislav Sapundzhiev&#039;s fairly simple XML DOM and JSON implementation</li><li><a href=\"https://github.com/libexpat/libexpat\">expat</a>&nbsp;-&nbsp;James Clark&#039;s Expat XML parser library</li><li><a href=\"https://support.hdfgroup.org/HDF5\">hdf5</a>&nbsp;-&nbsp;The HDF Group&#039;s data model, library and file format for storing and managing data</li><li><a href=\"https://github.com/benhoyt/inih\">inih</a>&nbsp;-&nbsp;Ben Hoyt&#039;s simple INI file parser in C</li><li><a href=\"https://github.com/libxls/libxls\">libxls</a>&nbsp;-&nbsp;David Hoerl&#039;s C library for parsing Excel files</li><li><a href=\"https://gitlab.gnome.org/GNOME/libxml2\">libxml2</a>&nbsp;-&nbsp;Daniel Veillard&#039;s XML C parser and toolkit of Gnome</li><li><a href=\"https://sourceforge.net/projects/matio/\">matio</a>&nbsp;-&nbsp;Christopher Hulbert&#039;s C library for reading and writing MATLAB MAT-files</li><li><a href=\"http://www.winimage.com/zLibDll/minizip.html\">minizip</a>&nbsp;-&nbsp;Gilles Vollant&#039;s Zip and UnZip library</li><li><a href=\"https://github.com/kgabis/parson\">parson</a>&nbsp;-&nbsp;Krzysztof Gabis&#039; lightweight JSON library written in C</li><li><a href=\"https://github.com/troydhanson/uthash\">uthash</a>&nbsp;-&nbsp;Troy D. Hanson&#039;s C macros for hash tables and more</li><li><a href=\"https://github.com/madler/zlib\">zlib</a>&nbsp;-&nbsp;Jean-loup Gailly&#039;s and Mark Adler&#039;s massively spiffy yet delicately unobtrusive compression library</li><li><a href=\"https://github.com/fnoyanisi/zString\">zstring</a>&nbsp;-&nbsp;Fehmi Noyan ISI&#039;s string processing library for C</li></ul></html>"));
     end References;
     class License "Simplified BSD License"
       extends Modelica.Icons.Information;
@@ -47,16 +47,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end UsersGuide;
 
   record CSVFile "Read data values from CSV file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Comma-separated values files (*.csv);;Text files (*.txt)",
         caption="Open file")));
-    parameter String delimiter="," "Column delimiter character" annotation(choices(choice=" " "Blank", choice="," "Comma", choice="\t" "Horizontal tabulator", choice=";" "Semicolon"));
-    parameter String quotation="\"" "Quotation character" annotation(choices(choice="\"" "Double quotation mark", choice="'" "Single quotation mark"));
-    parameter Integer nHeaderLines=0 "Number of header lines to ignore";
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter String delimiter = "," "Column delimiter character" annotation(choices(choice=" " "Blank", choice="," "Comma", choice="\t" "Horizontal tabulator", choice=";" "Semicolon"));
+    parameter String quotation = "\"" "Quotation character" annotation(choices(choice="\"" "Double quotation mark", choice="'" "Single quotation mark"));
+    parameter Integer nHeaderLines = 0 "Number of header lines to ignore";
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternCSVFile csv=Types.ExternCSVFile(fileName, delimiter, quotation, nHeaderLines, verboseRead) "External CSV file object";
+    final parameter Types.ExternCSVFile csv = Types.ExternCSVFile(fileName, delimiter, quotation, nHeaderLines, verboseRead) "External CSV file object";
     extends Interfaces.CSV.Base(
       redeclare final function getRealArray2D = Functions.CSV.getRealArray2D(csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArraySize2D = Functions.CSV.getArraySize2D(csv=csv) "Get the size of a 2D array in a CSV file" annotation(Documentation(info="<html></html>")),
@@ -73,15 +73,15 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end CSVFile;
 
   record INIFile "Read data values from INI file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternINIFile ini=Types.ExternINIFile(fileName, verboseRead, detectMissingData) "External INI file object";
+    final parameter Types.ExternINIFile ini = Types.ExternINIFile(fileName, verboseRead, detectMissingData) "External INI file object";
     extends Interfaces.INI.Base(
       redeclare final function getReal = Functions.INI.getReal(ini=ini, strict=true) "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.INI.getInteger(ini=ini, strict=true) "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>")),
@@ -98,15 +98,15 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end INIFile;
 
   record JSONFile "Read data values from JSON file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="JSON files (*.json)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternJSONFile json=Types.ExternJSONFile(fileName, verboseRead, detectMissingData) "External JSON file object";
+    final parameter Types.ExternJSONFile json = Types.ExternJSONFile(fileName, verboseRead, detectMissingData) "External JSON file object";
     extends Interfaces.JSON.Base(
       redeclare final function getReal = Functions.JSON.getReal(json=json) "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray1D = Functions.JSON.getRealArray1D(json=json) "Get 1D array Real value from JSON file" annotation(Documentation(info="<html></html>")),
@@ -135,13 +135,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end JSONFile;
 
   record MATFile "Read data values from MATLAB MAT file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="MATLAB MAT files (*.mat)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternMATFile mat=Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
+    final parameter Types.ExternMATFile mat = Types.ExternMATFile(fileName, verboseRead) "External MAT file object";
     extends Interfaces.MAT.Base(
       redeclare final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file" annotation(Documentation(info="<html></html>")),
       redeclare final function getStringArray1D = Functions.MAT.getStringArray1D(mat=mat) "Get 1D String values from MAT file" annotation(Documentation(info="<html></html>")),
@@ -159,23 +159,23 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end MATFile;
 
   record SSVFile "Read data values from SSV file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="SSV files (*.ssv;*.xml)",
         caption="Open file")));
-    parameter String nameSpace="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSP 1.0"));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter String nameSpace = "http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSV name space" annotation(choices(choice="" "No namespace", choice="http://ssp-standard.org/SSP1/SystemStructureParameterValues" "SSP 1.0"));
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternSSVFile ssv=Types.ExternSSVFile(fileName, nameSpace, verboseRead, detectMissingData) "External SSV file object";
+    final parameter Types.ExternXML2File ssv = Types.ExternXML2File(fileName, if nameSpace == "" then fill("", 0, 2) else {{"ssv", nameSpace}}, verboseRead, detectMissingData) "External SSV file object";
     extends Interfaces.SSV.Base(
-      redeclare final function getReal = Functions.SSV.getReal(ssv=ssv) "Get scalar Real value from SSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getInteger = Functions.SSV.getInteger(ssv=ssv) "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getBoolean = Functions.SSV.getBoolean(ssv=ssv) "Get scalar Boolean value from SSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getString = Functions.SSV.getString(ssv=ssv) "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>")));
+      redeclare final function getReal = Functions.SSV.getReal(ssv=ssv, nameSpace=nameSpace) "Get scalar Real value from SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getInteger = Functions.SSV.getInteger(ssv=ssv, nameSpace=nameSpace) "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getBoolean = Functions.SSV.getBoolean(ssv=ssv, nameSpace=nameSpace) "Get scalar Boolean value from SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getString = Functions.SSV.getString(ssv=ssv, nameSpace=nameSpace) "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternSSVFile\">ExternSSVFile</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
       defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.SSVFile to the model top level",
@@ -185,16 +185,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end SSVFile;
 
   record XLSFile "Read data values from Excel XLS file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xls)",
         caption="Open file")));
-    parameter String encoding="UTF-8" "Encoding";
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter String encoding = "UTF-8" "Encoding";
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternXLSFile xls=Types.ExternXLSFile(fileName, encoding, verboseRead, detectMissingData) "External Excel XLS file object";
+    final parameter Types.ExternXLSFile xls = Types.ExternXLSFile(fileName, encoding, verboseRead, detectMissingData) "External Excel XLS file object";
     extends Interfaces.XLS.Base(
       redeclare final function getReal = Functions.XLS.getReal(xls=xls) "Get scalar Real value from Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray2D = Functions.XLS.getRealArray2D(xls=xls) "Get 2D Real values from Excel XLS file" annotation(Documentation(info="<html></html>")),
@@ -215,15 +215,15 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end XLSFile;
 
   record XLSXFile "Read data values from Excel XLSX file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xlsx)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternXLSXFile xlsx=Types.ExternXLSXFile(fileName, verboseRead, detectMissingData) "External Excel XLSX file object";
+    final parameter Types.ExternXLSXFile xlsx = Types.ExternXLSXFile(fileName, verboseRead, detectMissingData) "External Excel XLSX file object";
     extends Interfaces.XLSX.Base(
       redeclare final function getReal = Functions.XLSX.getReal(xlsx=xlsx) "Get scalar Real value from Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray2D = Functions.XLSX.getRealArray2D(xlsx=xlsx) "Get 2D Real values from Excel XLSX file" annotation(Documentation(info="<html></html>")),
@@ -244,15 +244,15 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   end XLSXFile;
 
   record XMLFile "Read data values from XML file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternXMLFile xml=Types.ExternXMLFile(fileName, verboseRead, detectMissingData) "External XML file object";
+    final parameter Types.ExternXMLFile xml = Types.ExternXMLFile(fileName, verboseRead, detectMissingData) "External XML file object";
     extends Interfaces.XML.Base(
       redeclare final function getReal = Functions.XML.getReal(xml=xml) "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getRealArray1D = Functions.XML.getRealArray1D(xml=xml) "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>")),
@@ -274,16 +274,48 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
+  record XML2File "Read data values from XML file (utilizing XPath expressions)"
+    parameter String fileName = "" "File where external data is stored"
+      annotation(Dialog(
+        loadSelector(filter="XML files (*.xml)",
+        caption="Open file")));
+    parameter String nameSpace[:,2] = fill("", 0, 2) "XML name spaces (prefix = first column; e.g., nameSpace = [\"prefix\", \"url\"])";
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
+      annotation(Dialog(group="Diagnostics"));
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+      annotation(Dialog(group="Diagnostics"));
+    final parameter Types.ExternXML2File xml = Types.ExternXML2File(fileName, nameSpace, verboseRead, detectMissingData) "External XML2 file object";
+    extends Interfaces.XML2.Base(
+      redeclare final function getReal = Functions.XML2.getReal(xml=xml) "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getRealArray1D = Functions.XML2.getRealArray1D(xml=xml) "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getRealArray2D = Functions.XML2.getRealArray2D(xml=xml) "Get 2D Real values from XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getInteger = Functions.XML2.getInteger(xml=xml) "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getBoolean = Functions.XML2.getBoolean(xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getString = Functions.XML2.getString(xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize1D = Functions.XML2.getArraySize1D(xml=xml) "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.XML2.getArraySize2D(xml=xml) "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArrayRows2D = Functions.XML2.getArrayRows2D(xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArrayColumns2D = Functions.XML2.getArrayColumns2D(xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")));
+    annotation(
+      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.XML2\">XML2</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XML2Test\">Examples.XML2Test</a> for an example.</p></html>"),
+      defaultComponentName="dataSource",
+      defaultComponentPrefixes="inner parameter",
+      missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XML2File to the model top level",
+      Icon(graphics={
+        Text(textColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
+        Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
+  end XML2File;
+
   record TIRFile "Read data values from TIR file"
-    parameter String fileName="" "File where external data is stored"
+    parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="TIR files (*.tir)",
         caption="Open file")));
-    parameter Boolean verboseRead=true "= true, if info message that file is loading is to be printed"
+    parameter Boolean verboseRead = true "= true, if info message that file is loading is to be printed"
       annotation(Dialog(group="Diagnostics"));
-    parameter Types.Diagnostics detectMissingData=Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
+    parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternINIFile tir=Types.ExternINIFile(fileName, verboseRead, detectMissingData) "External TIR file object";
+    final parameter Types.ExternINIFile tir = Types.ExternINIFile(fileName, verboseRead, detectMissingData) "External TIR file object";
     extends Interfaces.INI.Base(
       redeclare final function getReal = Functions.INI.getReal(ini=tir, strict=false) "Get scalar Real value from TIR file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.INI.getInteger(ini=tir, strict=false) "Get scalar Integer value from TIR file" annotation(Documentation(info="<html></html>")),
@@ -592,38 +624,27 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       extends Modelica.Icons.FunctionsPackage;
       pure function getReal "Get scalar Real value from SSV file"
         extends Interfaces.SSV.getReal;
-        external "C" y=ED_getDoubleFromSSV(ssv, varName, exist) annotation(
-          __iti_dll = "ITI_ED_SSVFile.dll",
-          __iti_dllNoExport = true,
-          Include = "#include \"ED_SSVFile.h\"",
-          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+        algorithm
+          (y, exist) := XML2.getReal(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Real/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Real/@value");
       end getReal;
 
       pure function getInteger "Get scalar Integer value from SSV file"
         extends Interfaces.SSV.getInteger;
-        external "C" y=ED_getIntFromSSV(ssv, varName, exist) annotation(
-          __iti_dll = "ITI_ED_SSVFile.dll",
-          __iti_dllNoExport = true,
-          Include = "#include \"ED_SSVFile.h\"",
-          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+        algorithm
+          (y, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Integer/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Integer/@value");
       end getInteger;
 
       pure function getBoolean "Get scalar Boolean value from SSV file"
         extends Interfaces.SSV.getBoolean;
-        external "C" y=ED_getBooleanFromSSV(ssv, varName, exist) annotation(
-          __iti_dll = "ITI_ED_SSVFile.dll",
-          __iti_dllNoExport = true,
-          Include = "#include \"ED_SSVFile.h\"",
-          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+        algorithm
+          (aux, exist) := XML2.getString(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Boolean/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Boolean/@value");
+          y := aux == "true" or aux == "1";
       end getBoolean;
 
       pure function getString "Get scalar String value from SSV file"
         extends Interfaces.SSV.getString;
-        external "C" str=ED_getStringFromSSV(ssv, varName, exist) annotation(
-          __iti_dll = "ITI_ED_SSVFile.dll",
-          __iti_dllNoExport = true,
-          Include = "#include \"ED_SSVFile.h\"",
-          Library = {"ED_SSVFile", "bsxml-json", "expat"});
+        algorithm
+          (str, exist) := XML2.getString(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/String/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:String/@value");
       end getString;
     end SSV;
 
@@ -866,6 +887,98 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end getArrayColumns2D;
     end XML;
+
+    package XML2 "XML2 file functions"
+      extends Modelica.Icons.FunctionsPackage;
+      pure function getReal "Get scalar Real value from XML file"
+        extends Interfaces.XML2.getReal;
+        external "C" y=ED_getDoubleFromXML2(xml, varName, exist) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getReal;
+
+      pure function getRealArray1D "Get 1D Real values from XML file"
+        extends Interfaces.XML2.getRealArray1D;
+        external "C" ED_getDoubleArray1DFromXML2(xml, varName, y, size(y, 1)) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getRealArray1D;
+
+      pure function getRealArray2D "Get 2D Real values from XML file"
+        extends Interfaces.XML2.getRealArray2D;
+        external "C" ED_getDoubleArray2DFromXML2(xml, varName, y, size(y, 1), size(y, 2)) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getRealArray2D;
+
+      pure function getInteger "Get scalar Integer value from XML file"
+        extends Interfaces.XML2.getInteger;
+        external "C" y=ED_getIntFromXML2(xml, varName, exist) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getInteger;
+
+      pure function getBoolean "Get scalar Boolean value from XML file"
+        extends Interfaces.XML2.getBoolean;
+        algorithm
+          (aux, exist) := getReal(xml=xml, varName=varName);
+          y := aux <> 0;
+        annotation(Inline=false);
+      end getBoolean;
+
+      pure function getString "Get scalar String value from XML file"
+        extends Interfaces.XML2.getString;
+        external "C" str=ED_getStringFromXML2(xml, varName, exist) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getString;
+
+      pure function getArraySize1D "Get length of 1D array in XML file"
+        extends Interfaces.XML2.getArraySize1D;
+        external "C" ED_getArray1DDimensionFromXML2(xml, varName, n) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getArraySize1D;
+
+      pure function getArraySize2D "Get dimensions of 2D array in XML file"
+        extends Interfaces.XML2.getArraySize2D;
+        external "C" ED_getArray2DDimensionsFromXML2(xml, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getArraySize2D;
+
+      pure function getArrayRows2D "Get first dimension of 2D array in XML file"
+        extends Interfaces.XML2.getArrayRows2D;
+        external "C" ED_getArray2DDimensionsFromXML2(xml, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getArrayRows2D;
+
+      pure function getArrayColumns2D "Get second dimension of 2D array in XML file"
+        extends Interfaces.XML2.getArrayColumns2D;
+        external "C" ED_getArray2DDimensionsFromXML2(xml, varName, m, n) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end getArrayColumns2D;
+    end XML2;
   end Functions;
 
   package Interfaces "Interfaces"
@@ -874,10 +987,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
     record DataSource "Place holder for file based data source"
       extends Modelica.Icons.Record;
       annotation(
-        Documentation(info="<html><p>Place holder record that can be used as generic outer parameter instance in component models to reference an implemented inner parameter instance of <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>, <a href=\"modelica://ExternData.INIFile\">INIFile</a>, <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>, <a href=\"modelica://ExternData.MATFile\">MATFile</a>, <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>, <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>, <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>, <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>, or <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest2.Component\">Examples.XMLTest2.Component</a> for an example.</p></html>"),
+        Documentation(info="<html><p>Place holder record that can be used as generic outer parameter instance in component models to reference an implemented inner parameter instance of <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>, <a href=\"modelica://ExternData.INIFile\">INIFile</a>, <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>, <a href=\"modelica://ExternData.MATFile\">MATFile</a>, <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>, <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>, <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>, <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>, <a href=\"modelica://ExternData.XML2File\">XML2File</a>, or <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest2.Component\">Examples.XMLTest2.Component</a> for an example.</p></html>"),
         defaultComponentName="dataSource",
         defaultComponentPrefixes="outer parameter",
-        missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.CSVFile, ExternData.INIFile, ExternData.JSONFile, ExternData.MATFile, ExternData.SSVFile, ExternData.XLSFile, ExternData.XLSXFile, ExternData.XMLFile, or ExternData.TIRFile to the model top level");
+        missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.CSVFile, ExternData.INIFile, ExternData.JSONFile, ExternData.MATFile, ExternData.SSVFile, ExternData.XLSFile, ExternData.XLSXFile, ExternData.XMLFile, ExternData.XML2File, or ExternData.TIRFile to the model top level");
     end DataSource;
 
     partial block DataSourceBlock "Base block containing an outer place holder data source"
@@ -1249,25 +1362,31 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
       partial function getReal "Get scalar Real value from SSV file"
         extends Interfaces.partialGetReal;
-        input Types.ExternSSVFile ssv "External SSV file object";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
         annotation(Documentation(info="<html></html>"));
       end getReal;
 
       partial function getInteger "Get scalar Integer value from SSV file"
         extends Interfaces.partialGetInteger;
-        input Types.ExternSSVFile ssv "External SSV file object";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
         annotation(Documentation(info="<html></html>"));
       end getInteger;
 
       partial function getBoolean "Get scalar Boolean value from SSV file"
         extends Interfaces.partialGetBoolean;
-        input Types.ExternSSVFile ssv "External SSV file object";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        protected
+          String aux;
         annotation(Documentation(info="<html></html>"));
       end getBoolean;
 
       partial function getString "Get scalar String value from SSV file"
         extends Interfaces.partialGetString;
-        input Types.ExternSSVFile ssv "External SSV file object";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
         annotation(Documentation(info="<html></html>"));
       end getString;
     end SSV;
@@ -1605,6 +1724,109 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       end getArrayColumns2D;
     end XML;
 
+    package XML2 "XML2 file interfaces"
+      extends Modelica.Icons.InterfacesPackage;
+      partial record Base "Interface for XML2 file"
+        replaceable function getReal = XML2.getReal "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getRealArray1D = XML2.getRealArray1D "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getRealArray2D = XML2.getRealArray2D "Get 2D Real values from XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getInteger = XML2.getInteger "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getBoolean = XML2.getBoolean "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getString = XML2.getString "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = XML2.getArraySize1D "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = XML2.getArraySize2D "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArrayRows2D = XML2.getArrayRows2D "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArrayColumns2D = XML2.getArrayColumns2D "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
+      annotation(
+        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.XML2File\">XML2File</a>.</p></html>"),
+        Icon(graphics={
+          Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
+          Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid)}));
+      end Base;
+
+      partial function getReal "Get scalar Real value from XML file"
+        extends Interfaces.partialGetReal;
+        input Types.ExternXML2File xml "External XML2 file object";
+        annotation(Documentation(info="<html></html>"));
+      end getReal;
+
+      partial function getRealArray1D "Get 1D Real values from XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer n=1 "Number of elements";
+        input Types.ExternXML2File xml "External XML2 file object";
+        output Real y[n] "1D Real values";
+        annotation(Documentation(info="<html></html>"));
+      end getRealArray1D;
+
+      partial function getRealArray2D "Get 2D Real values from XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer m=1 "Number of rows";
+        input Integer n=1 "Number of columns";
+        input Types.ExternXML2File xml "External XML2 file object";
+        output Real y[m,n] "2D Real values";
+        annotation(Documentation(info="<html></html>"));
+      end getRealArray2D;
+
+      partial function getInteger "Get scalar Integer value from XML file"
+        extends Interfaces.partialGetInteger;
+        input Types.ExternXML2File xml "External XML2 file object";
+        annotation(Documentation(info="<html></html>"));
+      end getInteger;
+
+      partial function getBoolean "Get scalar Boolean value from XML file"
+        extends Interfaces.partialGetBoolean;
+        input Types.ExternXML2File xml "External XML2 file object";
+        protected
+          Real aux;
+        annotation(Documentation(info="<html></html>"));
+      end getBoolean;
+
+      partial function getString "Get scalar String value from XML file"
+        extends Interfaces.partialGetString;
+        input Types.ExternXML2File xml "External XML2 file object";
+        annotation(Documentation(info="<html></html>"));
+      end getString;
+
+      partial function getArraySize1D "Get length of 1D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File xml "External XML2 file object";
+        output Integer n "Number of elements in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArraySize1D;
+
+      partial function getArraySize2D "Get dimensions of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File xml "External XML2 file object";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArraySize2D;
+
+      partial function getArrayRows2D "Get first dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File xml "External XML2 file object";
+        output Integer m "Number of rows in array";
+        protected
+          Integer n[1] "Number of columns in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArrayRows2D;
+
+      partial function getArrayColumns2D "Get second dimension of 2D array in XML file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File xml "External XML2 file object";
+        output Integer n "Number of columns in array";
+        protected
+          Integer m[1] "Number of rows in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArrayColumns2D;
+    end XML2;
+
     partial function partialGetReal
       extends Modelica.Icons.Function;
       input String varName "Key";
@@ -1649,10 +1871,10 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Parse CSV file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input String delimiter="," "Column delimiter character";
-        input String quotation="\"" "Quotation character";
-        input Integer nHeaderLines=0 "Number of header lines to ignore";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input String delimiter = "," "Column delimiter character";
+        input String quotation = "\"" "Quotation character";
+        input Integer nHeaderLines = 0 "Number of header lines to ignore";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
         output ExternCSVFile csv "External CSV file object";
         external "C" csv=ED_createCSV(fileName, delimiter, quotation, nHeaderLines, verboseRead) annotation(
           __iti_dll = "ITI_ED_CSVFile.dll",
@@ -1677,8 +1899,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Parse INI file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternINIFile ini "External INI file object";
         external "C" ini=ED_createINI(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_INIFile.dll",
@@ -1703,8 +1925,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Parse JSON file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternJSONFile json "External JSON file object";
         external "C" json=ED_createJSON(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_JSONFile.dll",
@@ -1729,7 +1951,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Only copy MAT file name (File not yet opened)"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
         output ExternMATFile mat "External MATLAB MAT file object";
         external "C" mat=ED_createMAT(fileName, verboseRead) annotation(
           __iti_dll = "ITI_ED_MATFile.dll",
@@ -1749,41 +1971,14 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       end destructor;
     end ExternMATFile;
 
-    class ExternSSVFile "External SSV file object"
-      extends ExternalObject;
-      function constructor "Parse SSV file"
-        extends Modelica.Icons.Function;
-        input String fileName "File name";
-        input String nameSpace "SSV name space";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
-        output ExternSSVFile ssv "External SSV file object";
-        external "C" ssv=ED_createSSV(fileName, nameSpace, verboseRead, detectMissingData) annotation(
-          __iti_dll = "ITI_ED_SSVFile.dll",
-          __iti_dllNoExport = true,
-          Include = "#include \"ED_SSVFile.h\"",
-          Library = {"ED_SSVFile", "bsxml-json", "expat"});
-      end constructor;
-
-      function destructor "Clean up"
-        extends Modelica.Icons.Function;
-        input ExternSSVFile ssv "External SSV file object";
-        external "C" ED_destroySSV(ssv) annotation(
-          __iti_dll = "ITI_ED_SSVFile.dll",
-          __iti_dllNoExport = true,
-          Include = "#include \"ED_SSVFile.h\"",
-          Library = {"ED_SSVFile", "bsxml-json", "expat"});
-      end destructor;
-    end ExternSSVFile;
-
     class ExternXLSFile "External XLS file object"
       extends ExternalObject;
       function constructor "Open Excel XLS file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input String encoding="UTF-8" "Encoding";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
+        input String encoding = "UTF-8" "Encoding";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXLSFile xls "External Excel XLS file object";
         external "C" xls=ED_createXLS(fileName, encoding, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_XLSFile.dll",
@@ -1808,8 +2003,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Parse Excel XLSX file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXLSXFile xlsx "External Excel XLSX file object";
         external "C" xlsx=ED_createXLSX(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_XLSXFile.dll",
@@ -1834,8 +2029,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       function constructor "Parse XML file"
         extends Modelica.Icons.Function;
         input String fileName "File name";
-        input Boolean verboseRead=true "= true, if info message that file is loading is to be printed";
-        input Diagnostics detectMissingData=Diagnostics.Warning "Print diagnostic message in case of missing data";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
         output ExternXMLFile xml "External XML file object";
         external "C" xml=ED_createXML(fileName, verboseRead, detectMissingData) annotation(
           __iti_dll = "ITI_ED_XMLFile.dll",
@@ -1854,6 +2049,33 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           Library = {"ED_XMLFile", "bsxml-json", "expat"});
       end destructor;
     end ExternXMLFile;
+
+    class ExternXML2File "External XML2 file object"
+      extends ExternalObject;
+      function constructor "Parse XML file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String nameSpace[:,2] "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Diagnostics detectMissingData = Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output ExternXML2File xml "External XML2 file object";
+        external "C" xml=ED_createXML2(fileName, nameSpace, size(nameSpace, 1), verboseRead, detectMissingData) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end constructor;
+
+      function destructor "Clean up"
+        extends Modelica.Icons.Function;
+        input ExternXML2File xml "External XML2 file object";
+        external "C" ED_destroyXML2(xml) annotation(
+          __iti_dll = "ITI_ED_XML2File.dll",
+          __iti_dllNoExport = true,
+          Include = "#include \"ED_XML2File.h\"",
+          Library = {"ED_XML2File", "xml2", "zlib"});
+      end destructor;
+    end ExternXML2File;
   end Types;
 
   annotation(uses(Modelica(version="4.0.0")), version="2.6.1",

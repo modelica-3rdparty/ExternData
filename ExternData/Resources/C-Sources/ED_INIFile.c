@@ -205,6 +205,7 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 					}
 				}
 				else {
+					*exist = 0;
 					if (section[0] != '\0') {
 						ini->log("Cannot read value for key \"%s\" of section \"%s\" from file \"%s\"\n",
 							varName, section, ini->fileName);
@@ -213,10 +214,10 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 						ini->log("Cannot read value for key \"%s\" of default section from file \"%s\"\n",
 							varName, ini->fileName);
 					}
-					*exist = 0;
 				}
 			}
 			else {
+				*exist = 0;
 				if (section[0] != '\0') {
 					ini->log("Cannot read key \"%s\" of section \"%s\" from file \"%s\"\n",
 						varName, section, ini->fileName);
@@ -225,10 +226,10 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 					ini->log("Cannot read key \"%s\" of default section from file \"%s\"\n",
 						varName, ini->fileName);
 				}
-				*exist = 0;
 			}
 		}
 		else {
+			*exist = 0;
 			if (section[0] != '\0') {
 				ini->log("Cannot read section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
@@ -237,7 +238,6 @@ double ED_getDoubleFromINI(void* _ini, const char* varName, const char* section,
 				ini->log("Cannot read default section from file \"%s\"\n",
 					ini->fileName);
 			}
-			*exist = 0;
 		}
 	}
 	else {
@@ -262,6 +262,7 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 					return (const char*)ret;
 				}
 				else {
+					*exist = 0;
 					if (section[0] != '\0') {
 						ini->log("Cannot read value for key \"%s\" of section \"%s\" from file \"%s\"\n",
 							varName, section, ini->fileName);
@@ -270,10 +271,10 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 						ini->log("Cannot read value for key \"%s\" of default section from file \"%s\"\n",
 							varName, ini->fileName);
 					}
-					*exist = 0;
 				}
 			}
 			else {
+				*exist = 0;
 				if (section[0] != '\0') {
 					ini->log("Cannot read key \"%s\" of section \"%s\" from file \"%s\"\n",
 						varName, section, ini->fileName);
@@ -282,10 +283,10 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 					ini->log("Cannot read key \"%s\" of default section from file \"%s\"\n",
 						varName, ini->fileName);
 				}
-				*exist = 0;
 			}
 		}
 		else {
+			*exist = 0;
 			if (section[0] != '\0') {
 				ini->log("Cannot read section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
@@ -294,7 +295,6 @@ const char* ED_getStringFromINI(void* _ini, const char* varName, const char* sec
 				ini->log("Cannot read default section from file \"%s\"\n",
 					ini->fileName);
 			}
-			*exist = 0;
 		}
 	}
 	else {
@@ -327,6 +327,7 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int s
 					}
 				}
 				else {
+					*exist = 0;
 					if (section[0] != '\0') {
 						ini->log("Cannot read value for key \"%s\" of section \"%s\" from file \"%s\"\n",
 							varName, section, ini->fileName);
@@ -335,10 +336,10 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int s
 						ini->log("Cannot read value for key \"%s\" of default section from file \"%s\"\n",
 							varName, ini->fileName);
 					}
-					*exist = 0;
 				}
 			}
 			else {
+				*exist = 0;
 				if (section[0] != '\0') {
 					ini->log("Cannot read key \"%s\" of section \"%s\" from file \"%s\"\n",
 						varName, section, ini->fileName);
@@ -347,10 +348,10 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int s
 					ini->log("Cannot read key \"%s\" of default section from file \"%s\"\n",
 						varName, ini->fileName);
 				}
-				*exist = 0;
 			}
 		}
 		else {
+			*exist = 0;
 			if (section[0] != '\0') {
 				ini->log("Cannot read section \"%s\" from file \"%s\"\n",
 					section, ini->fileName);
@@ -359,7 +360,6 @@ int ED_getIntFromINI(void* _ini, const char* varName, const char* section, int s
 				ini->log("Cannot read default section from file \"%s\"\n",
 					ini->fileName);
 			}
-			*exist = 0;
 		}
 	}
 	else {

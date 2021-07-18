@@ -31,6 +31,7 @@
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsjson.h" />
     <ClInclude Include="..\..\C-Sources\bsxml-json\bsxml.h" />
     <ClInclude Include="..\..\C-Sources\bsxml-json\utstring.h" />
+    <ClInclude Include="..\..\C-Sources\expat\lib\expat.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C-Sources\bsxml-json\array.c" />

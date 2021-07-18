@@ -270,9 +270,9 @@ double ED_getDoubleFromXLS(void* _xls, const char* cellAddress, const char* shee
 				}
 			}
 			else {
+				*exist = 0;
 				xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
-				*exist = 0;
 			}
 		}
 		else {
@@ -325,9 +325,9 @@ const char* ED_getStringFromXLS(void* _xls, const char* cellAddress, const char*
 				}
 			}
 			else {
+				*exist = 0;
 				xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
-				*exist = 0;
 			}
 		}
 		else {
@@ -395,9 +395,9 @@ int ED_getIntFromXLS(void* _xls, const char* cellAddress, const char* sheetName,
 				}
 			}
 			else {
+				*exist = 0;
 				xls->log("Cannot get cell (%u,%u) in sheet \"%s\" from file \"%s\"\n",
 					(unsigned int)row, (unsigned int)col, _sheetName, xls->fileName);
-				*exist = 0;
 			}
 		}
 		else {
