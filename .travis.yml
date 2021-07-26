@@ -116,13 +116,14 @@ script:
         popd
         cd ExternData/Resources/Library/$PLATFORM
         tar cJf ExternData_$PLATFORM.tar.xz $DEPLOY_LIBS
-        if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
+        if [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
         ;;
       osx)
         ## nothing yet
         ;;
       windows)
         $mingw64 chmod +x ./.msys2-build.sh && ./.msys2-build.sh mingw64
+        $mingw64 ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
         ;;
     esac
 

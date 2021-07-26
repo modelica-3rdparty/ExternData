@@ -26,4 +26,3 @@ echo Moving libxml2.a
 
 cd ExternData/Resources/Library/$PLATFORM 
 tar cJf ExternData_$PLATFORM.tar.xz $DEPLOY_LIBS
-
