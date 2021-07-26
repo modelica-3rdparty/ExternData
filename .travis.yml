@@ -122,7 +122,7 @@ script:
         ## nothing yet
         ;;
       windows)
-        $mingw64 chmod +x ./.msys2-build.sh && ./.msys2-build.sh mingw64
+        $mingw64 ./.msys2-build.sh && ./.msys2-build.sh mingw64
         $mingw64 ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
         ;;
     esac
