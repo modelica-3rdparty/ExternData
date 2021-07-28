@@ -27,6 +27,8 @@ matrix:
         - CFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32"
         - CXXFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32" 
         - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
+        - TARGETDIR="linux32"
+        - GM="Unix Makefiles"
     - os: linux
       compiler: gcc-4.8
       env:
@@ -34,6 +36,8 @@ matrix:
         - CFLAGS="-O3 -DNDEBUG -fPIC"
         - CXXFLAGS="-O3 -DNDEBUG -fPIC"
         - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
+        - TARGETDIR="linux64"
+        - GM="Unix Makefiles"
     - os: linux
       compiler: clang
       env:
@@ -41,24 +45,32 @@ matrix:
         - CFLAGS="-O3 -DNDEBUG -fPIC"
         - CXXFLAGS="-O3 -DNDEBUG -fPIC"
         - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
+        - TARGETDIR="linux64"
+        - GM="Unix Makefiles"
     - os: osx
       compiler: gcc
       env:
         - PLATFORM=darwin64
         - CC=gcc
         - CMAKE=cmake
+        - TARGETDIR="darwin64"
+        - GM="Unix Makefiles"
     - os: windows
       compiler: gcc
       env:
         - PLATFORM=mingw64
         - CC=gcc
         - CMAKE=cmake
+        - TARGETDIR="mingw64"
+        - GM="MinGW Makefiles"
     - os: windows
       compiler: gcc
       env:
         - PLATFORM=mingw32
         - CC=gcc
         - CMAKE=cmake
+        - TARGETDIR="mingw32"
+        - GM="MinGW Makefiles"
 
 before_install:
   - |-
@@ -111,22 +123,22 @@ script:
 - |-
     case $TRAVIS_OS_NAME in
       linux)
-        if [[ "$PLATFORM" == "linux32" ]]; then ./.build.sh CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32" GM="Unix Makefiles"; fi
-        if [[ "$PLATFORM" == "linux64" ]]; then ./.build.sh CFLAGS="-O3 -fPIC" TARGETDIR="linux64" GM="Unix Makefiles"; fi
+        if [[ "$PLATFORM" == "linux32" ]]; then ./.build.sh CFLAGS="-O3 -msse2 -m32 -fPIC"; fi
+        if [[ "$PLATFORM" == "linux64" ]]; then ./.build.sh CFLAGS="-O3 -fPIC"; fi
         if [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
         ;;
       osx)
-        ./.build.sh CFLAGS="-O3" TARGETDIR="darwin64" GM="Unix Makefiles"
+        ./.build.sh CFLAGS="-O3"
         ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
         ;;
       windows)
         case $PLATFORM in
           mingw64)
-            $mingw64 ./.build.sh CFLAGS="-O3" TARGETDIR="mingw64" GM="MinGW Makefiles" 
+            $mingw64 ./.build.sh CFLAGS="-O3"
             $mingw64 ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
             ;;
           mingw32)
-            $mingw32 ./.build.sh CFLAGS="-O3" TARGETDIR="mingw32" GM="MinGW Makefiles"
+            $mingw32 ./.build.sh CFLAGS="-O3"
             $mingw32 ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
             ;;
         esac
