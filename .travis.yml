@@ -116,7 +116,8 @@ script:
         if [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
         ;;
       osx)
-        ./build.sh CFLAGS="-O3" TARGETDIR="darwin64" GM="Unix Makefiles"; fi
+        ./build.sh CFLAGS="-O3" TARGETDIR="darwin64" GM="Unix Makefiles"
+        ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
         ;;
       windows)
         case $PLATFORM in
