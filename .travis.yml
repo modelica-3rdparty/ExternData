@@ -111,12 +111,12 @@ script:
 - |-
     case $TRAVIS_OS_NAME in
       linux)
-        if [[ "$PLATFORM" == "linux32" ]]; then ./build.sh CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32" GM="Unix Makefiles"; fi
-        if [[ "$PLATFORM" == "linux64" ]]; then ./build.sh CFLAGS="-O3 -fPIC" TARGETDIR="linux64" GM="Unix Makefiles"; fi
+        if [[ "$PLATFORM" == "linux32" ]]; then ./.build.sh CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32" GM="Unix Makefiles"; fi
+        if [[ "$PLATFORM" == "linux64" ]]; then ./.build.sh CFLAGS="-O3 -fPIC" TARGETDIR="linux64" GM="Unix Makefiles"; fi
         if [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
         ;;
       osx)
-        ./build.sh CFLAGS="-O3" TARGETDIR="darwin64" GM="Unix Makefiles"
+        ./.build.sh CFLAGS="-O3" TARGETDIR="darwin64" GM="Unix Makefiles"
         ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
         ;;
       windows)
