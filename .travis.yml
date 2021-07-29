@@ -134,7 +134,7 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw64" ]]; then $mingw64 ./.CI/travis_script.sh CFLAGS="-O3"; fi
 
 after_success:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then bash ./.CI/travis_after_success.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
 
 notifications:
   email: false
