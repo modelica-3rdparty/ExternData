@@ -127,16 +127,14 @@ cache:
     - /C/tools/msys64
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$PLATFORM" == "linux32" ]]; then ./.build.sh CFLAGS="-O3 -msse2 -m32 -fPIC"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$PLATFORM" == "linux64" ]]; then ./.build.sh CFLAGS="-O3 -fPIC"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./.build.sh CFLAGS="-O3"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw32" ]]; then $mingw32 ./.build.sh CFLAGS="-O3"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw64" ]]; then $mingw64 ./.build.sh CFLAGS="-O3"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$PLATFORM" == "linux32" ]]; then ./.CI/travis_script.sh CFLAGS="-O3 -msse2 -m32 -fPIC"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$PLATFORM" == "linux64" ]]; then ./.CI/travis_script.sh CFLAGS="-O3 -fPIC"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./.CI/travis_script.sh CFLAGS="-O3"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw32" ]]; then $mingw32 ./.CI/travis_script.sh CFLAGS="-O3"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw64" ]]; then $mingw64 ./.CI/travis_script.sh CFLAGS="-O3"; fi
 
 after_success:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads "./ExternData_{$PLATFORM}.tar.xz"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"./ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $msys2 curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"./ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then bash ./.CI/travis_after_success.sh; fi
 
 notifications:
   email: false
