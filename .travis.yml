@@ -62,19 +62,19 @@ matrix:
     - os: windows
       compiler: gcc
       env:
-        - PLATFORM=mingw64
+        - PLATFORM=mingw32
         - CC=gcc
         - CMAKE=cmake
-        - TARGETDIR="mingw64"
+        - TARGETDIR="mingw32"
         - GM="MinGW Makefiles"
         - MAKE=mingw32-make
     - os: windows
       compiler: gcc
       env:
-        - PLATFORM=mingw32
+        - PLATFORM=mingw64
         - CC=gcc
         - CMAKE=cmake
-        - TARGETDIR="mingw32"
+        - TARGETDIR="mingw64"
         - GM="MinGW Makefiles"
         - MAKE=mingw32-make
 
@@ -96,16 +96,15 @@ before_install:
         export msys2='cmd //C RefreshEnv.cmd '
         export msys2+='& set MSYS=winsymlinks:nativestrict '
         export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
-        ## 64bit mingw
-        export mingw64="$msys2 -mingw64 -full-path -here -c \$\* --"
         ## 32bit mingw
         export mingw32="$msys2 -mingw32 -full-path -here -c \$\* --"
+        ## 64bit mingw
+        export mingw64="$msys2 -mingw64 -full-path -here -c \$\* --"
         export msys2+=" -msys2 -c \$\* --"
-        $msys2 pacman --sync --noconfirm --needed autoconf autoconf-archive automake automake-wrapper binutils gettext git libtool m4 make pkg-config   mingw-w64-{i686,x86_64}-toolchain mingw-w64-{i686,x86_64}-clang mingw-w64-{i686,x86_64}-make mingw-w64-{i686,x86_64}-cmake mingw-w64-{i686,x86_64}-extra-cmake-modules mingw-w64-{i686,x86_64}-{gcc,binutils} mingw-w64-{i686,x86_64}-hdf5
+        $msys2 pacman --sync --noconfirm --needed autoconf autoconf-archive automake automake-wrapper binutils gettext git libtool m4 make pkg-config mingw-w64-{i686,x86_64}-toolchain mingw-w64-{i686,x86_64}-clang mingw-w64-{i686,x86_64}-make mingw-w64-{i686,x86_64}-cmake mingw-w64-{i686,x86_64}-extra-cmake-modules mingw-w64-{i686,x86_64}-{gcc,binutils} mingw-w64-{i686,x86_64}-hdf5
         ## Install more MSYS2 packages from https://packages.msys2.org/base here
         taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
         export PATH=/C/tools/msys64/mingw64/bin:$PATH
-        export MAKE=mingw32-make  # so that Autotools can find it
         ;;
     esac
   - curl https://bitbucket.org/Swyter/bitbucket-curl-upload-to-repo-downloads/raw/default/upload-to-bitbucket.sh -O -J -L
@@ -123,7 +122,7 @@ before_cache:
     esac
 
 cache:
-    directories:
+  directories:
     - $HOME/AppData/Local/Temp/chocolatey
     - /C/tools/msys64
 
@@ -136,20 +135,8 @@ script:
 
 after_success:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ./ExternData/Resources/Library/$PLATFORM/ExternData_$PLATFORM.tar.xz; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ./ExternData/Resources/Library/$PLATFORM/ExternData_$PLATFORM.tar.xz; fi
-  - |-
-    case $TRAVIS_OS_NAME in
-      windows)
-        case $PLATFORM in
-          mingw64)
-            $mingw64 ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ./ExternData/Resources/Library/$PLATFORM/ExternData_$PLATFORM.tar.xz
-            ;;
-          mingw32)
-            $mingw32 ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ./ExternData/Resources/Library/$PLATFORM/ExternData_$PLATFORM.tar.xz
-            ;;
-        esac
-        ;;
-    esac
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ./ExternData/Resources/Library/$PLATFORM/ExternData_$PLATFORM.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $msys2 curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"./ExternData/Resources/Library/$PLATFORM/ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
 
 notifications:
   email: false

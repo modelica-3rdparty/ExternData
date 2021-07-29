@@ -9,8 +9,8 @@ pushd ExternData/Resources/C-Sources
 echo Running make: $MAKE CFLAGS="${CFLAGS}" TARGETDIR="${TARGETDIR}"
 $MAKE CFLAGS="${CFLAGS}" TARGETDIR="${TARGETDIR}"
 
-popd 
-pushd libxml2/$PLATFORM 
+popd
+pushd libxml2/$PLATFORM
 
 which $CMAKE
 
@@ -23,10 +23,8 @@ $CMAKE --build .
 
 echo Moving libxml2.a
 
-mv libxml2.a ../../ExternData/Resources/Library/$PLATFORM/libxml2.a 
-popd 
+mv libxml2.a ../../ExternData/Resources/Library/$PLATFORM/libxml2.a
+popd
 
-echo Moving libxml2.a
-
-cd ExternData/Resources/Library/$PLATFORM 
+cd ExternData/Resources/Library/$PLATFORM
 tar cJf ExternData_$PLATFORM.tar.xz $DEPLOY_LIBS
