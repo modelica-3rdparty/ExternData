@@ -89,7 +89,9 @@ before_install:
         export msys2='cmd //C RefreshEnv.cmd '
         export msys2+='& set MSYS=winsymlinks:nativestrict '
         export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
+        ## 64bit mingw
         export mingw64="$msys2 -mingw64 -full-path -here -c \$\* --"
+        ## 32bit mingw
         export mingw32="$msys2 -mingw32 -full-path -here -c \$\* --"
         export msys2+=" -msys2 -c \$\* --"
         $msys2 pacman --sync --noconfirm --needed autoconf autoconf-archive automake automake-wrapper binutils gettext git libtool m4 make pkg-config   mingw-w64-{i686,x86_64}-toolchain mingw-w64-{i686,x86_64}-clang mingw-w64-{i686,x86_64}-make mingw-w64-{i686,x86_64}-cmake mingw-w64-{i686,x86_64}-extra-cmake-modules mingw-w64-{i686,x86_64}-{gcc,binutils} mingw-w64-{i686,x86_64}-hdf5 
