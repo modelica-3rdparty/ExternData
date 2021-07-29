@@ -25,41 +25,118 @@ matrix:
       env:
         - PLATFORM=linux32
         - CFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32"
-        - CXXFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32" 
+        - CXXFLAGS="-O3 -DNDEBUG -fPIC -msse2 -m32"
+        - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
+        - TARGETDIR="linux32"
+        - GM="Unix Makefiles"
+        - MAKE=make
     - os: linux
       compiler: gcc-4.8
       env:
         - PLATFORM=linux64
         - CFLAGS="-O3 -DNDEBUG -fPIC"
         - CXXFLAGS="-O3 -DNDEBUG -fPIC"
+        - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
+        - TARGETDIR="linux64"
+        - GM="Unix Makefiles"
+        - MAKE=make
     - os: linux
       compiler: clang
       env:
         - PLATFORM=linux64
         - CFLAGS="-O3 -DNDEBUG -fPIC"
         - CXXFLAGS="-O3 -DNDEBUG -fPIC"
+        - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
+        - TARGETDIR="linux64"
+        - GM="Unix Makefiles"
+        - MAKE=make
+    - os: osx
+      compiler: gcc
+      env:
+        - PLATFORM=darwin64
+        - CC=gcc
+        - CMAKE=cmake
+        - TARGETDIR="darwin64"
+        - GM="Unix Makefiles"
+        - MAKE=make
+    - os: windows
+      compiler: gcc
+      env:
+        - PLATFORM=mingw32
+        - CC=gcc
+        - CMAKE=cmake
+        - TARGETDIR="mingw32"
+        - GM="MinGW Makefiles"
+        - MAKE=mingw32-make
+    - os: windows
+      compiler: gcc
+      env:
+        - PLATFORM=mingw64
+        - CC=gcc
+        - CMAKE=cmake
+        - TARGETDIR="mingw64"
+        - GM="MinGW Makefiles"
+        - MAKE=mingw32-make
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - |-
+    case $TRAVIS_OS_NAME in
+      linux)
+        curl -sSL https://cmake.org/files/v3.18/cmake-3.18.6-Linux-x86_64.tar.gz | sudo tar -xzC /opt
+        ;;
+      osx)
+        ## do not update, it seems to just waste resources and is never able to finish
+        ## brew update
+        ;;
+      windows)
+        ## mostly from here: https://docs.travis-ci.com/user/reference/windows/
+        [[ ! -f C:/tools/msys64/msys2_shell.cmd ]] && rm -rf C:/tools/msys64
+        choco uninstall -y mingw
+        choco upgrade --no-progress -y msys2
+        export msys2='cmd //C RefreshEnv.cmd '
+        export msys2+='& set MSYS=winsymlinks:nativestrict '
+        export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
+        ## 32bit mingw
+        export mingw32="$msys2 -mingw32 -full-path -here -c \$\* --"
+        ## 64bit mingw
+        export mingw64="$msys2 -mingw64 -full-path -here -c \$\* --"
+        export msys2+=" -msys2 -c \$\* --"
+        $msys2 pacman --sync --noconfirm --needed autoconf autoconf-archive automake automake-wrapper binutils gettext git libtool m4 make pkg-config mingw-w64-{i686,x86_64}-toolchain mingw-w64-{i686,x86_64}-clang mingw-w64-{i686,x86_64}-make mingw-w64-{i686,x86_64}-cmake mingw-w64-{i686,x86_64}-extra-cmake-modules mingw-w64-{i686,x86_64}-{gcc,binutils} mingw-w64-{i686,x86_64}-hdf5
+        ## Install more MSYS2 packages from https://packages.msys2.org/base here
+        taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
+        export PATH=/C/tools/msys64/mingw64/bin:$PATH
+        ;;
+    esac
   - curl https://bitbucket.org/Swyter/bitbucket-curl-upload-to-repo-downloads/raw/default/upload-to-bitbucket.sh -O -J -L
   - chmod +x ./upload-to-bitbucket.sh
   - git clone --branch v2.9.12 --depth 1 https://gitlab.gnome.org/GNOME/libxml2
   - mkdir -p libxml2/$PLATFORM
-  - curl -sSL https://cmake.org/files/v3.18/cmake-3.18.6-Linux-x86_64.tar.gz | sudo tar -xzC /opt 
+
+before_cache:
+  - |-
+    case $TRAVIS_OS_NAME in
+      windows)
+        # https://unix.stackexchange.com/a/137322/107554
+        $msys2 pacman --sync --clean --noconfirm
+        ;;
+    esac
+
+cache:
+  directories:
+    - $HOME/AppData/Local/Temp/chocolatey
+    - /C/tools/msys64
 
 script:
-  - pushd ExternData/Resources/C-Sources
-  - if [[ "$PLATFORM" == "linux32" ]]; then make CFLAGS="-O3 -msse2 -m32 -fPIC" TARGETDIR="linux32"; fi
-  - if [[ "$PLATFORM" == "linux64" ]]; then make CFLAGS="-O3 -fPIC"; fi
-  - popd
-  - pushd libxml2/$PLATFORM
-  - /opt/cmake-3.18.6-Linux-x86_64/bin/cmake -DZLIB_LIBRARY_RELEASE:FILEPATH="$TRAVIS_BUILD_DIR/ExternData/Resources/Library/$PLATFORM/libzlib.a" -DLIBXML2_WITH_DEBUG:BOOL="0" -DZLIB_INCLUDE_DIR:PATH="$TRAVIS_BUILD_DIR/ExternData/Resources/C-Sources/zlib/" -DLIBXML2_WITH_C14N:BOOL=OFF -DLIBXML2_WITH_CATALOG:BOOL=OFF -DLIBXML2_WITH_DEBUG:BOOL=OFF -DLIBXML2_WITH_DOCB:BOOL=OFF -DLIBXML2_WITH_FTP:BOOL=OFF -DLIBXML2_WITH_HTML:BOOL=OFF -DLIBXML2_WITH_HTTP:BOOL=OFF -DLIBXML2_WITH_ICONV:BOOL=OFF -DLIBXML2_WITH_ICU:BOOL=OFF -DLIBXML2_WITH_ISO8859X:BOOL=OFF -DLIBXML2_WITH_LEGACY:BOOL=OFF -DLIBXML2_WITH_LZMA:BOOL=OFF -DLIBXML2_WITH_MEM_DEBUG:BOOL=OFF -DLIBXML2_WITH_MODULES:BOOL=OFF -DLIBXML2_WITH_OUTPUT:BOOL=OFF -DLIBXML2_WITH_PATTERN:BOOL=OFF -DLIBXML2_WITH_PROGRAMS:BOOL=OFF -DLIBXML2_WITH_PUSH:BOOL=OFF -DLIBXML2_WITH_PYTHON:BOOL=OFF -DLIBXML2_WITH_READER:BOOL=OFF -DLIBXML2_WITH_REGEXPS:BOOL=OFF -DLIBXML2_WITH_RUN_DEBUG:BOOL=OFF -DLIBXML2_WITH_SAX1:BOOL=OFF -DLIBXML2_WITH_SCHEMAS:BOOL=OFF -DLIBXML2_WITH_SCHEMATRON:BOOL=OFF -DLIBXML2_WITH_TESTS:BOOL=OFF -DLIBXML2_WITH_THREADS:BOOL=ON -DLIBXML2_WITH_THREAD_ALLOC:BOOL=OFF -DLIBXML2_WITH_TREE:BOOL=OFF -DLIBXML2_WITH_VALID:BOOL=OFF -DLIBXML2_WITH_WRITER:BOOL=OFF -DLIBXML2_WITH_XINCLUDE:BOOL=OFF -DLIBXML2_WITH_XPATH:BOOL=ON -DLIBXML2_WITH_XPTR:BOOL=OFF -DLIBXML2_WITH_ZLIB:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=OFF -DCPACK_BINARY_7Z:BOOL=OFF -DCPACK_BINARY_IFW:BOOL=OFF -DCPACK_BINARY_NSIS:BOOL=OFF -DCPACK_BINARY_NUGET:BOOL=OFF -DCPACK_BINARY_WIX:BOOL=OFF -DCPACK_BINARY_ZIP:BOOL=OFF -DCPACK_SOURCE_7Z:BOOL=OFF -DCPACK_SOURCE_ZIP:BOOL=OFF -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ../
-  - /opt/cmake-3.18.6-Linux-x86_64/bin/cmake --build .
-  - mv libxml2.a ../../ExternData/Resources/Library/$PLATFORM/libxml2.a
-  - popd
-  - cd ExternData/Resources/Library/$PLATFORM
-  - tar cJf ExternData_$PLATFORM.tar.xz $DEPLOY_LIBS
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$PLATFORM" == "linux32" ]]; then ./.CI/travis_script.sh CFLAGS="-O3 -msse2 -m32 -fPIC"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$PLATFORM" == "linux64" ]]; then ./.CI/travis_script.sh CFLAGS="-O3 -fPIC"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./.CI/travis_script.sh CFLAGS="-O3"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw32" ]]; then $mingw32 ./.CI/travis_script.sh CFLAGS="-O3"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw64" ]]; then $mingw64 ./.CI/travis_script.sh CFLAGS="-O3"; fi
+
+after_success:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $msys2 curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
 
 notifications:
   email: false

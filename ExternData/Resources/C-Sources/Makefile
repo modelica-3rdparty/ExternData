@@ -90,6 +90,7 @@ ALL_OBJS = \
 all: clean libs
 
 libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
+	mkdir -p ../Library/$(TARGETDIR)
 	cp $^ ../Library/$(TARGETDIR)
 
 libED_CSVFile.a: $(CSV_OBJS)
