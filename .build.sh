@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
 echo Target dir: ${TARGETDIR}
 echo CFLAGS: ${CFLAGS}
