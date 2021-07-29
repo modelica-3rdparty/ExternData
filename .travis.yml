@@ -134,7 +134,7 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$PLATFORM" == "mingw64" ]]; then $mingw64 ./.build.sh CFLAGS="-O3"; fi
 
 after_success:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"./ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ./ExternData_$PLATFORM.tar.xz; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"./ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then $msys2 curl -k --progress-bar -o nul -L -f -u "tbeu:$BBPASS" -F files=@"./ExternData_$PLATFORM.tar.xz" "https://api.bitbucket.org/2.0/repositories/tbeu/downloads/downloads"; fi
 
