@@ -28,3 +28,4 @@ popd
 
 cd ExternData/Resources/Library/$PLATFORM
 tar cJf ExternData_$PLATFORM.tar.xz $DEPLOY_LIBS
+cp ExternData_$PLATFORM.tar.xz $TRAVIS_BUILD_DIR/ExternData_$PLATFORM.tar.xz
