@@ -134,21 +134,25 @@ script:
       linux)
         if [[ "$PLATFORM" == "linux32" ]]; then ./.build.sh CFLAGS="-O3 -msse2 -m32 -fPIC"; fi
         if [[ "$PLATFORM" == "linux64" ]]; then ./.build.sh CFLAGS="-O3 -fPIC"; fi
-        if [[ "$CC" == "gcc-4.8" ]]; then sh ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
+        cd ExternData/Resources/Library/$PLATFORM
+        if [[ "$CC" == "gcc-4.8" ]]; then sh ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz; fi
         ;;
       osx)
         ./.build.sh CFLAGS="-O3"
-        ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
+        cd ExternData/Resources/Library/$PLATFORM
+        ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
         ;;
       windows)
         case $PLATFORM in
           mingw64)
             $mingw64 ./.build.sh CFLAGS="-O3"
-            $mingw64 ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
+            $mingw64 cd ExternData/Resources/Library/$PLATFORM
+            $mingw64 ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
             ;;
           mingw32)
             $mingw32 ./.build.sh CFLAGS="-O3"
-            $mingw32 ./upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
+            $mingw32 cd ExternData/Resources/Library/$PLATFORM
+            $mingw32 ../../../../upload-to-bitbucket.sh tbeu $BBPASS /tbeu/downloads/downloads ExternData_$PLATFORM.tar.xz
             ;;
         esac
         ;;
