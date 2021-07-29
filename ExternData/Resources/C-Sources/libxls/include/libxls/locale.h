@@ -33,6 +33,11 @@
 #endif
 #include <locale.h>
 
+#ifdef __APPLE__
+# include <string.h>
+# include <xlocale.h>
+#endif
+
 #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64) || defined(WINDOWS)
 typedef _locale_t xls_locale_t;
 #else
