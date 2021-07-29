@@ -29,6 +29,7 @@ matrix:
         - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
         - TARGETDIR="linux32"
         - GM="Unix Makefiles"
+        - MAKE=make
     - os: linux
       compiler: gcc-4.8
       env:
@@ -38,6 +39,7 @@ matrix:
         - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
         - TARGETDIR="linux64"
         - GM="Unix Makefiles"
+        - MAKE=make
     - os: linux
       compiler: clang
       env:
@@ -47,6 +49,7 @@ matrix:
         - CMAKE=/opt/cmake-3.18.6-Linux-x86_64/bin/cmake
         - TARGETDIR="linux64"
         - GM="Unix Makefiles"
+        - MAKE=make
     - os: osx
       compiler: gcc
       env:
@@ -55,6 +58,7 @@ matrix:
         - CMAKE=cmake
         - TARGETDIR="darwin64"
         - GM="Unix Makefiles"
+        - MAKE=make
     - os: windows
       compiler: gcc
       env:
@@ -63,6 +67,7 @@ matrix:
         - CMAKE=cmake
         - TARGETDIR="mingw64"
         - GM="MinGW Makefiles"
+        - MAKE=mingw32-make
     - os: windows
       compiler: gcc
       env:
@@ -71,6 +76,7 @@ matrix:
         - CMAKE=cmake
         - TARGETDIR="mingw32"
         - GM="MinGW Makefiles"
+        - MAKE=mingw32-make
 
 before_install:
   - |-
@@ -79,7 +85,8 @@ before_install:
         curl -sSL https://cmake.org/files/v3.18/cmake-3.18.6-Linux-x86_64.tar.gz | sudo tar -xzC /opt 
         ;;
       osx)
-        brew update
+        ## do not update, it seems to just waste resources and is never able to finish
+        ## brew update
         ;;
       windows)
         ## mostly from here: https://docs.travis-ci.com/user/reference/windows/
