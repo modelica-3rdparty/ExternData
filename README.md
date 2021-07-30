@@ -2,7 +2,7 @@
 Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX and XML files.
 
 ## Build status
-[![Build Status](https://travis-ci.org/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.org/modelica-3rdparty/ExternData)
+[![Build Status](https://api.travis-ci.com/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.com/github/modelica-3rdparty/ExternData)
 [![CI checks](https://github.com/modelica-3rdparty/ExternData/workflows/CI/badge.svg)](https://github.com/modelica-3rdparty/ExternData/actions)
 
 ## Library description
@@ -22,7 +22,7 @@ The aim of this library is to provide access from Modelica simulation tools to d
 * C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
 * Dependency on the [Modelica Standard Library](https://github.com/modelica/ModelicaStandardLibrary) v4.0.0
-* Tested in [Dymola](http://www.dynasim.se), [OpenModelica](https://openmodelica.org/) (Linux only) and [SimulationX](https://www.simulationx.com/)
+* Tested in [Dymola](http://www.dynasim.se), [OpenModelica](https://openmodelica.org/) and [SimulationX](https://www.simulationx.com/)
 
 All data I/O access is implemented using external Modelica functions.
 
