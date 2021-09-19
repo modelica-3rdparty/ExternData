@@ -1,0 +1,10 @@
+EXPORTS
+	ED_createXML2
+	ED_destroyXML2
+	ED_getDoubleFromXML2
+	ED_getStringFromXML2
+	ED_getIntFromXML2
+	ED_getDoubleArray1DFromXML2
+	ED_getDoubleArray2DFromXML2
+	ED_getArray1DDimensionFromXML2
+	ED_getArray2DDimensionsFromXML2
