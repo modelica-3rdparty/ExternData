@@ -488,6 +488,15 @@ int wrap_cmp( xmlNodePtr x, xmlNodePtr y );
  *									*
  ************************************************************************/
 
+#ifdef ITI_NO_FP_EXC
+#ifndef _HUGE_ENUF
+    #define _HUGE_ENUF  1e+300  // _HUGE_ENUF*_HUGE_ENUF must overflow
+#endif
+
+#define INFINITY   ((float)(_HUGE_ENUF * _HUGE_ENUF))
+#define NAN        ((float)(INFINITY * 0.0F))
+#endif
+
 double xmlXPathNAN;
 double xmlXPathPINF;
 double xmlXPathNINF;
@@ -502,8 +511,13 @@ void
 xmlXPathInit(void) {
     /* MSVC doesn't allow division by zero in constant expressions. */
     double zero = 0.0;
+#ifdef ITI_NO_FP_EXC
+    xmlXPathNAN = NAN;
+    xmlXPathPINF = INFINITY;
+#else
     xmlXPathNAN = 0.0 / zero;
     xmlXPathPINF = 1.0 / zero;
+#endif
     xmlXPathNINF = -xmlXPathPINF;
 }
 
