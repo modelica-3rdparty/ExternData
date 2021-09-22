@@ -1,4 +1,4 @@
-lib_LTLIBRARIES = libbsxml-json.la libED_INIFile.la libED_JSONFile.la libED_MATFile.la libED_XLSFile.la libED_XLSXFile.la libED_XMLFile.la libexpat.la libzlib.la libparson.la
+lib_LTLIBRARIES = libbsxml-json.la libED_INIFile.la libED_JSONFile.la libED_MATFile.la libED_XLSFile.la libED_XLSXFile.la libED_XMLFile.la libED_XML2File.la libexpat.la libzlib.la libparson.la
 
 libbsxml_json_la_SOURCES = \
 	../../C-Sources/bsxml-json/array.c \
@@ -30,6 +30,9 @@ libED_XLSXFile_la_SOURCES = \
 
 libED_XMLFile_la_SOURCES = \
 	../../C-Sources/ED_XMLFile.c
+
+libED_XML2File_la_SOURCES = \
+	../../C-Sources/ED_XML2File.c
 
 libexpat_la_SOURCES = \
 	../../C-Sources/expat/lib/xmlparse.c \
