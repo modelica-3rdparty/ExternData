@@ -3,7 +3,7 @@ RM = rm -f
 
 CFLAGS = -O3
 CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG -DXML_POOR_ENTROPY -DHAVE_EXPAT_CONFIG_H
-INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"inih" -I"libxls/include" -I"minizip" -I"modelica" -I"zlib" -I"parson"
+INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"inih" -I"libxls/include" -I"minizip" -I"modelica" -I"zlib" -I"parson" -I"libxml2/include"
 
 TARGETDIR = linux64
 
@@ -55,6 +55,9 @@ XLSX_OBJS = \
 XML_OBJS = \
 	ED_XMLFile.o
 
+XML2_OBJS = \
+	ED_XML2File.o
+
 ZLIB_OBJS = \
 	zlib/adler32.o \
 	zlib/compress.o \
@@ -85,11 +88,12 @@ ALL_OBJS = \
 	$(XLS_OBJS) \
 	$(XLSX_OBJS) \
 	$(XML_OBJS) \
+	$(XML2_OBJS) \
 	$(ZLIB_OBJS)
 
 all: clean libs
 
-libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
+libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libED_XML2File.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
 	mkdir -p ../Library/$(TARGETDIR)
 	cp $^ ../Library/$(TARGETDIR)
 
@@ -113,6 +117,9 @@ libED_XLSXFile.a: $(XLSX_OBJS)
 
 libED_XMLFile.a: $(XML_OBJS)
 	$(AR) $@ $(XML_OBJS)
+
+libED_XML2File.a: $(XML2_OBJS)
+	$(AR) $@ $(XML2_OBJS)
 
 libbsxml-json.a: $(BS_OBJS)
 	$(AR) $@ $(BS_OBJS)
