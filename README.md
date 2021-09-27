@@ -56,6 +56,23 @@ Jean-loup Gailly's and Mark Adler's massively spiffy yet delicately unobtrusive 
 * [zstring](https://github.com/fnoyanisi/zString) -
 Fehmi Noyan ISI's string processing library for C
 
+## Citing
+Use the following BibTeX lines to cite the ExternData library.
+
+```
+@InProceedings{modelica2021ed,
+  Title = {Efficient Parameterization of Modelica Models},
+  Author = {Beutlich, Thomas and Winkler, Dietmar},
+  Address = {Linköping, Sweden},
+  Booktitle = {Proceedings of the 14th International Modelica Conference},
+  Editor = {Sjölund, Martin and Buffoni, Lena and Pop, Adrian and Ochel, Lennart},
+  Month = {09},
+  Pages = {141--146},
+  Year = {2021},
+  Doi = {10.3384/ecp21181141},
+}
+```
+
 ## Development and contribution
 You may report any issues with using the [Issues](../../issues) button.
 
