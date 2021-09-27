@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !defined(ED_XM2LFILE_H)
+#if !defined(ED_XML2FILE_H)
 #define ED_XML2FILE_H
 
 #include <stdlib.h>
