@@ -14,11 +14,11 @@ The aim of this library is to provide access from Modelica simulation tools to d
   * [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
   * [INI](https://en.wikipedia.org/wiki/INI_file)
   * [JSON](https://en.wikipedia.org/wiki/JSON)
-  * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 and v7.3
+  * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 and v7.3 ([HDF5](https://en.wikipedia.org/wiki/Hierarchical_Data_Format))
   * [SSV](https://ssp-standard.org/) (System Structure Parameter Values v1.0)
   * TIR (Tire properties)
   * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
-  * [XML](https://en.wikipedia.org/wiki/XML)
+  * [XML](https://en.wikipedia.org/wiki/XML) (incl. [XPath](https://en.wikipedia.org/wiki/XPath) queries)
 * C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
 * Dependency on the [Modelica Standard Library](https://github.com/modelica/ModelicaStandardLibrary) v4.0.0
