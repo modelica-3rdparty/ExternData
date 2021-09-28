@@ -7,7 +7,11 @@ Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Exce
 
 ## Library description
 ExternData is a utility library to access data stored in CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files.
-The aim of this library is to provide access from Modelica simulation tools to data sets for convenient model initialization and parametrization.
+The aim of this library is to provide access from Modelica simulation tools to data sets for convenient model initialization and parameterization.
+An overview of the library is provided in
+
+> Thomas Beutlich and Dietmar Winkler. Efficient Parameterization of Modelica Models. In: _Proceedings of
+the 14th International Modelica Conference_. Ed. by Martin Sjölund, Lena Buffoni, Adrian Pop, and Lennart Ochel. Linköping, Sweden, September 2021. DOI: [10.3384/ecp21181141](https://doi.org/10.3384/ecp21181141).
 
 ### Main features
 * Read support of file formats
