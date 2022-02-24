@@ -1,0 +1,33 @@
+authors:
+  - family-names: Beutlich
+    given-names: Thomas
+cff-version: 1.2.0
+license: BSD-2-Clause
+message: "If you use this software, please cite it using these metadata."
+preferred-citation:
+  abbreviation: modelica2021ed
+  authors:
+    - family-names: Beutlich
+      given-names: Thomas
+    - family-names: Winkler
+      given-names: Dietmar
+  collection-title: "Proceedings of the 14th International Modelica Conference"
+  collection-type: proceedings
+  doi: 10.3384/ecp21181141
+  editors:
+    - family-names: Sjölund
+      given-names: Martin
+    - family-names: Buffoni
+      given-names: Lena
+    - family-names: Pop
+      given-names: Adrian
+    - family-names: Ochel
+      given-names: Lennart
+  location:
+    name: "Linköping, Sweden"
+  month: 9
+  pages: "141-146"
+  title: "Efficient Parameterization of Modelica Models"
+  type: conference-paper
+  year: 2021
+title: "ExternData"
