@@ -488,18 +488,9 @@ int wrap_cmp( xmlNodePtr x, xmlNodePtr y );
  *									*
  ************************************************************************/
 
-#ifdef ITI_NO_FP_EXC
-#ifndef _HUGE_ENUF
-    #define _HUGE_ENUF  1e+300  // _HUGE_ENUF*_HUGE_ENUF must overflow
-#endif
-
-#define INFINITY   ((float)(_HUGE_ENUF * _HUGE_ENUF))
-#define NAN        ((float)(INFINITY * 0.0F))
-#endif
-
-double xmlXPathNAN;
-double xmlXPathPINF;
-double xmlXPathNINF;
+double xmlXPathNAN = 0.0;
+double xmlXPathPINF = 0.0;
+double xmlXPathNINF = 0.0;
 
 /**
  * xmlXPathInit:
@@ -511,13 +502,8 @@ void
 xmlXPathInit(void) {
     /* MSVC doesn't allow division by zero in constant expressions. */
     double zero = 0.0;
-#ifdef ITI_NO_FP_EXC
-    xmlXPathNAN = NAN;
-    xmlXPathPINF = INFINITY;
-#else
     xmlXPathNAN = 0.0 / zero;
     xmlXPathPINF = 1.0 / zero;
-#endif
     xmlXPathNINF = -xmlXPathPINF;
 }
 
@@ -9274,52 +9260,45 @@ xmlXPathSubstringAfterFunction(xmlXPathParserContextPtr ctxt, int nargs) {
  */
 void
 xmlXPathNormalizeFunction(xmlXPathParserContextPtr ctxt, int nargs) {
-  xmlXPathObjectPtr obj = NULL;
-  xmlChar *source = NULL;
-  xmlBufPtr target;
-  xmlChar blank;
+    xmlChar *source, *target;
+    int blank;
 
-  if (ctxt == NULL) return;
-  if (nargs == 0) {
-    /* Use current context node */
-      valuePush(ctxt,
-	  xmlXPathCacheWrapString(ctxt->context,
-	    xmlXPathCastNodeToString(ctxt->context->node)));
-    nargs = 1;
-  }
+    if (ctxt == NULL) return;
+    if (nargs == 0) {
+        /* Use current context node */
+        valuePush(ctxt,
+            xmlXPathCacheWrapString(ctxt->context,
+                xmlXPathCastNodeToString(ctxt->context->node)));
+        nargs = 1;
+    }
 
-  CHECK_ARITY(1);
-  CAST_TO_STRING;
-  CHECK_TYPE(XPATH_STRING);
-  obj = valuePop(ctxt);
-  source = obj->stringval;
-
-  target = xmlBufCreate();
-  if (target && source) {
+    CHECK_ARITY(1);
+    CAST_TO_STRING;
+    CHECK_TYPE(XPATH_STRING);
+    source = ctxt->value->stringval;
+    if (source == NULL)
+        return;
+    target = source;
 
     /* Skip leading whitespaces */
     while (IS_BLANK_CH(*source))
-      source++;
+        source++;
 
     /* Collapse intermediate whitespaces, and skip trailing whitespaces */
     blank = 0;
     while (*source) {
-      if (IS_BLANK_CH(*source)) {
-	blank = 0x20;
-      } else {
-	if (blank) {
-	  xmlBufAdd(target, &blank, 1);
-	  blank = 0;
-	}
-	xmlBufAdd(target, source, 1);
-      }
-      source++;
+        if (IS_BLANK_CH(*source)) {
+	    blank = 1;
+        } else {
+            if (blank) {
+                *target++ = 0x20;
+                blank = 0;
+            }
+            *target++ = *source;
+        }
+        source++;
     }
-    valuePush(ctxt, xmlXPathCacheNewString(ctxt->context,
-	xmlBufContent(target)));
-    xmlBufFree(target);
-  }
-  xmlXPathReleaseObject(ctxt->context, obj);
+    *target = 0;
 }
 
 /**
