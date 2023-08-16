@@ -1,7 +1,7 @@
 /*
  SPDX-License-Identifier: MIT
 
- Parson 1.5.1 (https://github.com/kgabis/parson)
+ Parson 1.5.2 (https://github.com/kgabis/parson)
  Copyright (c) 2012 - 2023 Krzysztof Gabis
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,7 +32,7 @@
 
 #define PARSON_IMPL_VERSION_MAJOR 1
 #define PARSON_IMPL_VERSION_MINOR 5
-#define PARSON_IMPL_VERSION_PATCH 1
+#define PARSON_IMPL_VERSION_PATCH 2
 
 #if (PARSON_VERSION_MAJOR != PARSON_IMPL_VERSION_MAJOR)\
 || (PARSON_VERSION_MINOR != PARSON_IMPL_VERSION_MINOR)\
@@ -441,7 +441,7 @@ static JSON_Status json_object_init(JSON_Object *object, size_t capacity) {
 
     object->count = 0;
     object->cell_capacity = capacity;
-    object->item_capacity = (unsigned int)(capacity * 0.7f);
+    object->item_capacity = (unsigned int)(capacity * 7/10);
 
     if (capacity == 0) {
         return JSONSuccess;
@@ -2155,7 +2155,7 @@ JSON_Status json_object_dotset_value(JSON_Object *object, const char *name, JSON
     JSON_Status status = JSONFailure;
     size_t name_len = 0;
     char *name_copy = NULL;
-    
+
     if (object == NULL || name == NULL || value == NULL) {
         return JSONFailure;
     }
@@ -2275,7 +2275,7 @@ JSON_Status json_object_clear(JSON_Object *object) {
     for (i = 0; i < json_object_get_count(object); i++) {
         parson_free(object->names[i]);
         object->names[i] = NULL;
-        
+
         json_value_free(object->values[i]);
         object->values[i] = NULL;
     }
