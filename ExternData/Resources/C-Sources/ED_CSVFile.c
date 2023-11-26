@@ -1,6 +1,6 @@
 /* ED_CSVFile.c - CSV functions
  *
- * Copyright (C) 2015-2021, tbeu
+ * Copyright (C) 2015-2023, tbeu
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
