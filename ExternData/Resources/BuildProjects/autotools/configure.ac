@@ -1,6 +1,6 @@
 dnl Init
 AC_PREREQ([2.63])
-AC_INIT([ExternData],[3.0.3],[https://github.com/modelica-3rdparty/ExternData/issues],[ExternData],[https://github.com/modelica-3rdparty/ExternData])
+AC_INIT([ExternData],[3.0.4],[https://github.com/modelica-3rdparty/ExternData/issues],[ExternData],[https://github.com/modelica-3rdparty/ExternData])
 
 AM_INIT_AUTOMAKE([subdir-objects])
 AC_CONFIG_MACRO_DIR([m4])
