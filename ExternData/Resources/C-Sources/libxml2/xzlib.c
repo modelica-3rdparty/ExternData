@@ -14,9 +14,6 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
 #ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
 #endif
@@ -25,6 +22,8 @@
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#elif defined (_WIN32)
+#include <io.h>
 #endif
 #ifdef LIBXML_ZLIB_ENABLED
 #include <zlib.h>
@@ -33,7 +32,7 @@
 #include <lzma.h>
 #endif
 
-#include "xzlib.h"
+#include "private/xzlib.h"
 #include <libxml/xmlmemory.h>
 
 /* values for xz_state how */
@@ -134,6 +133,7 @@ static xzFile
 xz_open(const char *path, int fd, const char *mode ATTRIBUTE_UNUSED)
 {
     xz_statep state;
+    off_t offset;
 
     /* allocate xzFile structure to return */
     state = xmlMalloc(sizeof(xz_state));
@@ -168,9 +168,11 @@ xz_open(const char *path, int fd, const char *mode ATTRIBUTE_UNUSED)
     }
 
     /* save the current position for rewinding (only if reading) */
-    state->start = lseek(state->fd, 0, SEEK_CUR);
-    if (state->start == (uint64_t) - 1)
+    offset = lseek(state->fd, 0, SEEK_CUR);
+    if (offset == -1)
         state->start = 0;
+    else
+        state->start = offset;
 
     /* initialize stream */
     xz_reset(state);
@@ -214,11 +216,12 @@ xzFile
 __libxml2_xzdopen(int fd, const char *mode)
 {
     char *path;                 /* identifier for error messages */
+    size_t path_size = 7 + 3 * sizeof(int);
     xzFile xz;
 
-    if (fd == -1 || (path = xmlMalloc(7 + 3 * sizeof(int))) == NULL)
+    if (fd == -1 || (path = xmlMalloc(path_size)) == NULL)
         return NULL;
-    sprintf(path, "<fd:%d>", fd);       /* for debugging */
+    snprintf(path, path_size, "<fd:%d>", fd);       /* for debugging */
     xz = xz_open(path, fd, mode);
     xmlFree(path);
     return xz;

@@ -25,6 +25,7 @@
 
 #ifdef LIBXML_SCHEMATRON_ENABLED
 
+#include <stdlib.h>
 #include <string.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
@@ -33,6 +34,8 @@
 #include <libxml/xpathInternals.h>
 #include <libxml/pattern.h>
 #include <libxml/schematron.h>
+
+#include "private/error.h"
 
 #define SCHEMATRON_PARSE_OPTIONS XML_PARSE_NOENT
 
@@ -1506,11 +1509,12 @@ xmlSchematronFormatReport(xmlSchematronValidCtxtPtr ctxt,
                 int size;
 
                 size = snprintf(NULL, 0, "%0g", eval->floatval);
-                buf = (xmlChar*) malloc(size * sizeof(xmlChar));
-                /* xmlStrPrintf(buf, size, "%0g", eval->floatval); // doesn't work */
-                sprintf((char*) buf, "%0g", eval->floatval);
-                ret = xmlStrcat(ret, buf);
-                free(buf);
+                buf = (xmlChar *) xmlMalloc(size + 1);
+                if (buf != NULL) {
+                    snprintf((char *) buf, size + 1, "%0g", eval->floatval);
+                    ret = xmlStrcat(ret, buf);
+                    xmlFree(buf);
+                }
                 break;
             }
             case XPATH_STRING:
@@ -1584,8 +1588,8 @@ xmlSchematronReportSuccess(xmlSchematronValidCtxtPtr ctxt,
         long line;
         const xmlChar *report = NULL;
 
-        if (((test->type == XML_SCHEMATRON_REPORT) & (!success)) ||
-            ((test->type == XML_SCHEMATRON_ASSERT) & (success)))
+        if (((test->type == XML_SCHEMATRON_REPORT) && (!success)) ||
+            ((test->type == XML_SCHEMATRON_ASSERT) && (success)))
             return;
         line = xmlGetLineNo(cur);
         path = xmlGetNodePath(cur);
@@ -2051,7 +2055,6 @@ main(void)
     xmlFreeDoc(instance);
 
     xmlCleanupParser();
-    xmlMemoryDump();
 
     return (0);
 }
