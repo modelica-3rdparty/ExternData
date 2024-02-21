@@ -1,11 +1,13 @@
 # ExternData
+
 Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX and XML files.
 
 ## Build status
-[![Build Status](https://api.travis-ci.com/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.com/github/modelica-3rdparty/ExternData)
-[![CI checks](https://github.com/modelica-3rdparty/ExternData/workflows/CI/badge.svg)](https://github.com/modelica-3rdparty/ExternData/actions)
+
+[![Build Status](https://api.travis-ci.com/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.com/github/modelica-3rdparty/ExternData) [![CI checks](https://github.com/modelica-3rdparty/ExternData/workflows/CI/badge.svg)](https://github.com/modelica-3rdparty/ExternData/actions) [![Modelica Library Award 2021](https://img.shields.io/badge/award-%F0%9F%A5%88_Modelica_Library_Award_2021-silver?labelColor=grey)](https://2021.international.conference.modelica.org/libraries.html) 
 
 ## Library description
+
 ExternData is a utility library to access data stored in CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files.
 The aim of this library is to provide access from Modelica simulation tools to data sets for convenient model initialization and parameterization.
 An overview of the library is provided in
@@ -14,6 +16,7 @@ An overview of the library is provided in
 the 14th International Modelica Conference_. Ed. by Martin Sjölund, Lena Buffoni, Adrian Pop, and Lennart Ochel. Linköping, Sweden, September 2021. DOI: [10.3384/ecp21181141](https://doi.org/10.3384/ecp21181141).
 
 ### Main features
+
 * Read support of file formats
   * [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
   * [INI](https://en.wikipedia.org/wiki/INI_file)
@@ -31,9 +34,11 @@ the 14th International Modelica Conference_. Ed. by Martin Sjölund, Lena Buffon
 All data I/O access is implemented using external Modelica functions.
 
 ## License
+
 ExternData is released under the terms of the Simplified BSD License.
 
 ## Acknowledgement
+
 ExternData is based on the following third-party C projects
 * [bsxml-json](https://github.com/bsapundzhiev/bsxml-json) -
 Borislav Sapundzhiev's fairly simple XML DOM and JSON implementation
@@ -61,6 +66,7 @@ Jean-loup Gailly's and Mark Adler's massively spiffy yet delicately unobtrusive 
 Fehmi Noyan ISI's string processing library for C
 
 ## Citing
+
 Use the following BibTeX lines to cite the ExternData library.
 
 ```
@@ -83,6 +89,7 @@ Use the following BibTeX lines to cite the ExternData library.
 ```
 
 ## Development and contribution
+
 You may report any issues with using the [Issues](../../issues) button.
 
 Contributions in shape of [Pull Requests](../../pulls) are always welcome.
