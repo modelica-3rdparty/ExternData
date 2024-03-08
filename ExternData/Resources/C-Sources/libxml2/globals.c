@@ -82,7 +82,6 @@ XML_GLOBALS_ERROR
 XML_GLOBALS_HTML
 XML_GLOBALS_IO
 XML_GLOBALS_PARSER
-XML_GLOBALS_SAVE
 XML_GLOBALS_TREE
 #undef XML_OP
 };
@@ -100,8 +99,14 @@ static xmlMutex xmlThrDefMutex;
  * On Darwin, thread-local storage destructors seem to be run before
  * pthread thread-specific data destructors. This causes ASan to
  * report a use-after-free.
+ *
+ * On Windows, we can't use TLS in static builds. The RegisterWait
+ * callback would run after TLS was deallocated.
  */
-#if defined(XML_THREAD_LOCAL) && !defined(__APPLE__)
+#if defined(XML_THREAD_LOCAL) && \
+    !defined(__APPLE__) && \
+    (!defined(HAVE_WIN32_THREADS) || \
+     !defined(LIBXML_STATIC) || defined(LIBXML_STATIC_FOR_DLL))
 #define USE_TLS
 #endif
 
@@ -117,6 +122,13 @@ static XML_THREAD_LOCAL xmlGlobalState globalState;
 #if defined(__GNUC__) && \
     defined(__GLIBC__) && \
     __GLIBC__ * 100 + __GLIBC_MINOR__ < 234
+
+#pragma weak pthread_getspecific
+#pragma weak pthread_setspecific
+#pragma weak pthread_key_create
+#pragma weak pthread_key_delete
+#pragma weak pthread_equal
+#pragma weak pthread_self
 
 #define XML_PTHREAD_WEAK
 
@@ -566,7 +578,13 @@ void xmlInitGlobalsInternal(void) {
             (pthread_getspecific != NULL) &&
             (pthread_setspecific != NULL) &&
             (pthread_key_create != NULL) &&
-            (pthread_key_delete != NULL);
+            (pthread_key_delete != NULL) &&
+            /*
+             * pthread_equal can be inline, resuting in -Waddress warnings.
+             * Let's assume it's available if all the other functions are.
+             */
+            /* (pthread_equal != NULL) && */
+            (pthread_self != NULL);
     if (libxml_is_threaded == 0)
         return;
 #endif /* XML_PTHREAD_WEAK */
@@ -889,7 +907,6 @@ XML_GLOBALS_ERROR
 XML_GLOBALS_HTML
 XML_GLOBALS_IO
 XML_GLOBALS_PARSER
-XML_GLOBALS_SAVE
 XML_GLOBALS_TREE
 #undef XML_OP
 
