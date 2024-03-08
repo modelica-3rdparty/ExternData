@@ -1,6 +1,6 @@
 /* ED_logging.h - Logging functions
  *
- * Copyright (C) 2021, tbeu
+ * Copyright (C) 2021-2024, Thomas Beutlich
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

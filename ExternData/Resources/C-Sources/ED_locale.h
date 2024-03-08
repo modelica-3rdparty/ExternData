@@ -1,6 +1,6 @@
 /* ED_locale.h - C locale specific string to number conversions
  *
- * Copyright (C) 2015-2023, tbeu
+ * Copyright (C) 2015-2024, Thomas Beutlich
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

@@ -1,7 +1,7 @@
 // CP: 65001
 /* package.mo - Modelica Examples library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files
  *
- * Copyright (C) 2015-2021, tbeu
+ * Copyright (C) 2015-2024, Thomas Beutlich
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

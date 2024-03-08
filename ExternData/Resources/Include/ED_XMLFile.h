@@ -1,6 +1,6 @@
 /* ED_XMLFile.h - XML functions header
  *
- * Copyright (C) 2015-2023, tbeu
+ * Copyright (C) 2015-2024, Thomas Beutlich
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
