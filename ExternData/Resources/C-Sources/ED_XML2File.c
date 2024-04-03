@@ -68,15 +68,13 @@ typedef struct {
 	ED_LOGGING_FUNC log;
 } XML2File;
 
-static void _errorFunc(void* ctx, const char* string, ...)
+static void errorFunc(void* ctx, const char* string, ...)
 {
 	va_list args;
 	va_start(args, string);
 	ModelicaVFormatMessage(string, args);
 	va_end(args);
 }
-
-static xmlGenericErrorFunc errorFunc = _errorFunc;
 
 void* ED_createXML2(const char* fileName, const char** ns, size_t sizeNS, int verbose, int detectMissingData)
 {
@@ -96,7 +94,7 @@ void* ED_createXML2(const char* fileName, const char** ns, size_t sizeNS, int ve
 	/* Init libxml */
 	xmlInitParser();
 
-	initGenericErrorDefaultFunc(&errorFunc);
+	xmlSetGenericErrorFunc(NULL, errorFunc);
 
 	if (verbose == 1) {
 		/* Print info message, that file is loading */
