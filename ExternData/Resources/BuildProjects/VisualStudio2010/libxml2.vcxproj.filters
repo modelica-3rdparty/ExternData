@@ -102,9 +102,6 @@
     <ClCompile Include="..\..\C-Sources\libxml2\xmlIO.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\C-Sources\libxml2\xmllint.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\C-Sources\libxml2\xmlmemory.c">
       <Filter>Source Files</Filter>
     </ClCompile>

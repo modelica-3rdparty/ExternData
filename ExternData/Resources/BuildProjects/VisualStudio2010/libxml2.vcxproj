@@ -58,7 +58,6 @@
     <ClCompile Include="..\..\C-Sources\libxml2\xinclude.c" />
     <ClCompile Include="..\..\C-Sources\libxml2\xlink.c" />
     <ClCompile Include="..\..\C-Sources\libxml2\xmlIO.c" />
-    <ClCompile Include="..\..\C-Sources\libxml2\xmllint.c" />
     <ClCompile Include="..\..\C-Sources\libxml2\xmlmemory.c" />
     <ClCompile Include="..\..\C-Sources\libxml2\xmlmodule.c" />
     <ClCompile Include="..\..\C-Sources\libxml2\xmlreader.c" />
