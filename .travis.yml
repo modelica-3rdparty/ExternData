@@ -97,19 +97,21 @@ before_install:
         export msys2+='& set MSYS=winsymlinks:nativestrict '
         export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
         ## 32bit mingw
-        export mingw32="$msys2 -mingw32 -full-path -here -c \$\* --"
+        export mingw32="$msys2 -mingw32 -full-path -here -c "\"\$@"\" --"
         ## 64bit mingw
-        export mingw64="$msys2 -mingw64 -full-path -here -c \$\* --"
-        export msys2+=" -msys2 -c \$\* --"
-        $msys2 pacman --sync --noconfirm --needed autoconf autoconf-archive automake automake-wrapper binutils cmake gettext git libtool m4 make pkg-config mingw-w64-{i686,x86_64}-toolchain mingw-w64-{i686,x86_64}-clang mingw-w64-{i686,x86_64}-make mingw-w64-{i686,x86_64}-cmake mingw-w64-{i686,x86_64}-extra-cmake-modules mingw-w64-{i686,x86_64}-{gcc,binutils} mingw-w64-{i686,x86_64}-hdf5
+        export mingw64="$msys2 -mingw64 -full-path -here -c "\"\$@"\" --"
+        export msys2+=" -msys2 -c "\"\$@"\" --"
+        $msys2 pacman --sync --noconfirm --needed mingw-w64-{i686,x86_64}-toolchain
         ## Install more MSYS2 packages from https://packages.msys2.org/base here
+        $msys2 pacman --sync --noconfirm --needed autoconf autoconf-archive automake automake-wrapper binutils gettext git libtool m4 make pkg-config mingw-w64-{i686,x86_64}-clang mingw-w64-{i686,x86_64}-make mingw-w64-{i686,x86_64}-cmake mingw-w64-{i686,x86_64}-extra-cmake-modules mingw-w64-{i686,x86_64}-{gcc,binutils} mingw-w64-{i686,x86_64}-hdf5
         taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
         export PATH=/C/tools/msys64/mingw64/bin:$PATH
+        export MAKE=mingw32-make  # so that Autotools can find it
         ;;
     esac
   - curl https://bitbucket.org/Swyter/bitbucket-curl-upload-to-repo-downloads/raw/default/upload-to-bitbucket.sh -O -J -L
   - chmod +x ./upload-to-bitbucket.sh
-  - git clone --branch v2.12.5 --depth 1 https://gitlab.gnome.org/GNOME/libxml2
+  - git clone --branch v2.12.7 --depth 1 https://gitlab.gnome.org/GNOME/libxml2
   - mkdir -p libxml2/$PLATFORM
 
 before_cache:
