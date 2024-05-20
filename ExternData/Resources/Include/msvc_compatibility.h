@@ -49,18 +49,29 @@ static void Timezone_initialize(void) {
 #endif
 
 /* Dymola 2017 FD01 defines __iob_func in dsutil.h */
+/* Dymola 2024x R1 no longer defines __iob_func in dsutil.h (by default) */
 #if !defined(HACK_SUPPORT_VS2015)
-extern FILE _iob[3];
+FILE* __cdecl __iob_func(void)
+{
+	unsigned char* retaddr = (unsigned char*)_ReturnAddress();
+#ifndef _M_AMD64
 
-#undef stdin
-#undef stdout
-#undef stderr
-#define stdin _iob
-#define stdout (_iob+1)
-#define stderr (_iob+2)
-
-FILE* __iob_func(void) {
-	return _iob;
+	if (retaddr[0] != 0x83 || retaddr[1] != 0xC0)
+		return stdin;
+	switch (retaddr[2]) {
+		case 0x20: return (FILE*)((char*)stdout - 0x20);
+		case 0x40: return (FILE*)((char*)stderr - 0x40);
+		default:return stdin;
+	}
+#else
+	if (retaddr[0] != 0x48 || retaddr[1] != 0x83 || retaddr[2] != 0xC0)
+		return stdin;
+	switch (retaddr[3]) {
+		case 0x30: return (FILE*)((char*)stdout - 0x30);
+		case 0x60: return (FILE*)((char*)stderr - 0x60);
+		default:return stdin;
+	}
+#endif
 }
 #endif
 
