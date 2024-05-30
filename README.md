@@ -69,7 +69,7 @@ Fehmi Noyan ISI's string processing library for C
 
 Use the following BibTeX lines to cite the ExternData library.
 
-```
+```bibtex
 @InProceedings{ExternData,
   title = {{Efficient Parameterization of Modelica Models}},
   author = {Beutlich, Thomas and Winkler, Dietmar},
