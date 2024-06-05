@@ -1,9 +1,12 @@
+cff-version: 1.2.0
+title: ExternData
+message: "If you use this software, please cite it using these metadata."
+type: software
 authors:
   - family-names: Beutlich
     given-names: Thomas
-cff-version: 1.2.0
+repository-code: "https://github.com/modelica-3rdparty/ExternData"
 license: BSD-2-Clause
-message: "If you use this software, please cite it using these metadata."
 preferred-citation:
   abbreviation: modelica2021ed
   authors:
@@ -13,6 +16,8 @@ preferred-citation:
       given-names: Dietmar
   collection-title: "Proceedings of the 14th International Modelica Conference"
   collection-type: proceedings
+  conference:
+    name: "Linköping Electronic Conference Proceedings"
   doi: 10.3384/ecp21181141
   editors:
     - family-names: Sjölund
@@ -23,11 +28,15 @@ preferred-citation:
       given-names: Adrian
     - family-names: Ochel
       given-names: Lennart
+  isbn: "978-91-7929-027-6"
+  issn: "1650-3740"
   location:
     name: "Linköping, Sweden"
   month: 9
+  number: 181
   pages: "141-146"
+  publisher:
+    name: "Modelica Association and Linköping University Electronic Press"
   title: "Efficient Parameterization of Modelica Models"
   type: conference-paper
   year: 2021
-title: "ExternData"
