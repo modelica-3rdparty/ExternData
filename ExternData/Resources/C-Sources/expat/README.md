@@ -1,4 +1,4 @@
-# Expat, Release 2.6.2
+# Expat, Release 2.6.3
 
 This is Expat, a C99 library for parsing
 [XML 1.0 Fourth Edition](https://www.w3.org/TR/2006/REC-xml-20060816/), started by
@@ -13,7 +13,7 @@ Expat supports the following compilers:
 
 - GNU GCC >=4.5
 - LLVM Clang >=3.5
-- Microsoft Visual Studio >=15.0/2017 (rolling `${today} minus 5 years`)
+- Microsoft Visual Studio >=16.0/2019 (rolling `${today} minus 5 years`)
 
 Windows users can use the
 [`expat-win32bin-*.*.*.{exe,zip}` download](https://github.com/libexpat/libexpat/releases),
@@ -151,10 +151,10 @@ support this mode of compilation (yet):
 
 1. Mass-patch `Makefile.am` files to use `libexpatw.la` for a library name:
    <br/>
-   `find -name Makefile.am -exec sed
+   `find . -name Makefile.am -exec sed
        -e 's,libexpat\.la,libexpatw.la,'
        -e 's,libexpat_la,libexpatw_la,'
-       -i {} +`
+       -i.bak {} +`
 
 1. Run `automake` to re-write `Makefile.in` files:<br/>
    `automake`
