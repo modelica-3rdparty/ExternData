@@ -209,7 +209,9 @@ void* ED_createXLSX(const char* fileName, int verbose, int detectMissingData)
 	}
 
 	XmlNode_deleteTree(root);
-	parseXML(xlsx->zfile, STR_XML, &xlsx->sharedStringsRoot);
+	if (parseXML(xlsx->zfile, STR_XML, &xlsx->sharedStringsRoot) != 0) {
+		xlsx->sharedStringsRoot = NULL;
+	}
 
 	xlsx->loc = ED_INIT_LOCALE;
 	switch (detectMissingData) {
