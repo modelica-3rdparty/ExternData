@@ -741,6 +741,11 @@ static ssize_t read_MSAT_body(OLE2 *ole2, DWORD sectorOffset, DWORD sectorCount)
                 sectorNum++;
             }
         }
+        if (sid == sector[posInSector]) {
+            if (xls_debug) fprintf(stderr, "Error: Loop detected in sector #%d\n", sid);
+            total_bytes_read = -1;
+            goto cleanup;
+        }
         sid = sector[posInSector];
         //printf("   s[%d]=%d (0x%x)\n", posInSector, sid, sid);
     }
@@ -808,15 +813,16 @@ cleanup:
 // Read MSAT
 static ssize_t read_MSAT(OLE2* ole2, OLE2Header* oleh)
 {
-    ssize_t total_bytes_read = 0;
-    ssize_t bytes_read = 0;
-
     // reconstitution of the MSAT
     DWORD count = ole2->cfat;
     if(count == 0 || count > (1 << 24)) {
         if (xls_debug) fprintf(stderr, "Error: MSAT count %u out-of-bounds\n", count);
         return -1;
     }
+
+    {
+    ssize_t total_bytes_read = 0;
+    ssize_t bytes_read = 0;
 
     ole2->SecIDCount = count*ole2->lsector/4;
     if ((ole2->SecID = ole_malloc(ole2->SecIDCount * sizeof(DWORD))) == NULL) {
@@ -855,4 +861,5 @@ cleanup:
     }
 
     return total_bytes_read;
+    }
 }

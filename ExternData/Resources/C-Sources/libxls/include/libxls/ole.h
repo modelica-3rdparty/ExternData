@@ -36,11 +36,12 @@
 #ifndef OLE_INCLUDE
 #define OLE_INCLUDE
 
-#ifdef __cplusplus
-#include <cstdio>			// FILE *
-#else
-#include <stdio.h>			// FILE *
+#ifdef _MSC_VER
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
 #endif
+
+#include <stdio.h>			// FILE *
 
 #include "../libxls/xlstypes.h"
 
@@ -48,11 +49,6 @@
 #pragma pack(1)
 #else
 #pragma pack(push, 1)
-#endif
-
-#if defined(_MSC_VER)
-#include <BaseTsd.h>
-typedef SSIZE_T ssize_t;
 #endif
 
 typedef struct TIME_T

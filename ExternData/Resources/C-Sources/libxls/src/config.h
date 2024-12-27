@@ -72,10 +72,10 @@
 #define LIBXLS_MAJOR_VERSION 1
 
 /* Micro version */
-#define LIBXLS_MICRO_VERSION 2
+#define LIBXLS_MICRO_VERSION 3
 
 /* Minor version */
-#define LIBXLS_MINOR_VERSION 5
+#define LIBXLS_MINOR_VERSION 6
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
@@ -90,7 +90,7 @@
 #define PACKAGE_NAME "libxls"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "libxls 1.5.2"
+#define PACKAGE_STRING "libxls 1.6.3"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libxls"
@@ -99,7 +99,7 @@
 #define PACKAGE_URL "https://github.com/libxls/libxls"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.5.2"
+#define PACKAGE_VERSION "1.6.3"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
@@ -112,7 +112,7 @@
 #endif
 
 /* Version number of package */
-#define VERSION "1.5.2"
+#define VERSION "1.6.3"
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */

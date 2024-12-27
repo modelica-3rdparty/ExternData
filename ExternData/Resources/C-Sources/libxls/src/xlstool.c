@@ -287,8 +287,8 @@ static char *unicode_decode_wcstombs(const char *s, size_t len, xls_locale_t loc
 
 cleanup:
     free(w);
-        return converted;
-    }
+    return converted;
+}
 
 // Converts Latin-1 to UTF-8 the old-fashioned way
 static char *transcode_latin1_to_utf8(const char *str, DWORD len)
@@ -296,29 +296,29 @@ static char *transcode_latin1_to_utf8(const char *str, DWORD len)
 	int utf8_chars = 0;
 	char *ret = NULL;
     DWORD i;
-	
+
     for(i=0; i<len; ++i) {
         if(str[i] & (BYTE)0x80) {
             ++utf8_chars;
         }
     }
-	
-    {
-		char *out = ret = malloc(len+utf8_chars+1);
-		// UTF-8 encoding inline
-		for(i=0; i<len; ++i) {
-			BYTE c = str[i];
-			if(c & (BYTE)0x80) {
-				*out++ = (BYTE)0xC0 | (c >> 6);
-				*out++ = (BYTE)0x80 | (c & 0x3F);
-			} else {
-				*out++ = c;
-			}
-		}
-		*out = 0;
-	}
 
-	return ret;
+    {
+    char *out = ret = malloc(len+utf8_chars+1);
+    // UTF-8 encoding inline
+    for(i=0; i<len; ++i) {
+        BYTE c = str[i];
+        if(c & (BYTE)0x80) {
+            *out++ = (BYTE)0xC0 | (c >> 6);
+            *out++ = (BYTE)0x80 | (c & 0x3F);
+        } else {
+            *out++ = c;
+        }
+    }
+    *out = 0;
+
+    return ret;
+    }
 }
 
 // Convert BIFF5 string or compressed BIFF8 string to the encoding desired
@@ -339,12 +339,12 @@ char* codepage_decode(const char *s, size_t len, xlsWorkBook *pWB) {
     }
     return unicode_decode_iconv(s, len, pWB->converter);
 #else
-	{
-		char *ret = malloc(len+1);
-		memcpy(ret, s, len);
-		ret[len] = 0;
-		return ret;
-	}
+    {
+    char *ret = malloc(len+1);
+    memcpy(ret, s, len);
+    ret[len] = 0;
+    return ret;
+    }
 #endif
 }
 
@@ -746,7 +746,8 @@ char* xls_getCSS(xlsWorkBook* pWB)
     DWORD i;
 
     char *ret = malloc(65535);
-    char *buf = malloc(4096);
+    size_t buf_len = 4096;
+    char *buf = malloc(buf_len);
 	ret[0] = '\0';
 
     for (i=0;i<pWB->xfs.count;i++)
@@ -789,62 +790,62 @@ char* xls_getCSS(xlsWorkBook* pWB)
         switch (xf->linestyle & 0x0f)
         {
         case 0:
-            sprintf(borderleft,"%s", "");
+            snprintf(borderleft, sizeof(borderleft), "%s", "");
             break;
         default:
-            sprintf(borderleft,"border-left: 1px solid black;");
+            snprintf(borderleft, sizeof(borderleft), "border-left: 1px solid black;");
             break;
         }
 
         switch (xf->linestyle & 0x0f0)
         {
         case 0:
-            sprintf(borderright,"%s", "");
+            snprintf(borderright, sizeof(borderright), "%s", "");
             break;
         default:
-            sprintf(borderright,"border-right: 1px solid black;");
+            snprintf(borderright, sizeof(borderright), "border-right: 1px solid black;");
             break;
         }
 
         switch (xf->linestyle & 0x0f00)
         {
         case 0:
-            sprintf(bordertop,"%s", "");
+            snprintf(bordertop, sizeof(bordertop), "%s", "");
             break;
         default:
-            sprintf(bordertop,"border-top: 1px solid black;");
+            snprintf(bordertop, sizeof(bordertop), "border-top: 1px solid black;");
             break;
         }
 
         switch (xf->linestyle & 0x0f000)
         {
         case 0:
-            sprintf(borderbottom,"%s", "");
+            snprintf(borderbottom, sizeof(borderbottom), "%s", "");
             break;
         default:
-            sprintf(borderbottom,"border-bottom: 1px solid Black;");
+            snprintf(borderbottom, sizeof(borderbottom), "border-bottom: 1px solid Black;");
             break;
         }
 
         if (xf->font)
-            sprintf(color,"color:#%.6X;",xls_getColor(pWB->fonts.font[xf->font-1].color,0));
+            snprintf(color, sizeof(color), "color:#%.6X;",xls_getColor(pWB->fonts.font[xf->font-1].color,0));
         else
-            sprintf(color,"%s", "");
+            snprintf(color, sizeof(color), "%s", "");
 
         if (xf->font && (pWB->fonts.font[xf->font-1].flag & 2))
-            sprintf(italic,"font-style: italic;");
+            snprintf(italic, sizeof(italic), "font-style: italic;");
         else
-            sprintf(italic,"%s", "");
+            snprintf(italic, sizeof(italic), "%s", "");
 
         if (xf->font && (pWB->fonts.font[xf->font-1].bold>400))
-            sprintf(bold,"font-weight: bold;");
+            snprintf(bold, sizeof(bold), "font-weight: bold;");
         else
-            sprintf(bold,"%s", "");
+            snprintf(bold, sizeof(bold), "%s", "");
 
         if (xf->font && (pWB->fonts.font[xf->font-1].underline))
-            sprintf(underline,"text-decoration: underline;");
+            snprintf(underline, sizeof(underline), "text-decoration: underline;");
         else
-            sprintf(underline,"%s", "");
+            snprintf(underline, sizeof(underline), "%s", "");
 
         if (xf->font)
             size=pWB->fonts.font[xf->font-1].height/20;
@@ -852,12 +853,12 @@ char* xls_getCSS(xlsWorkBook* pWB)
             size=10;
 
         if (xf->font)
-            sprintf(fontname,"%s",pWB->fonts.font[xf->font-1].name);
+            snprintf(fontname, sizeof(fontname),"%s",pWB->fonts.font[xf->font-1].name);
         else
-            sprintf(fontname,"Arial");
+            snprintf(fontname, sizeof(fontname),"Arial");
 
         background=xls_getColor((WORD)(xf->groundcolor & 0x7f),1);
-        sprintf(buf,".xf%i{ font-size:%ipt;font-family: \"%s\";background:#%.6X;text-align:%s;vertical-align:%s;%s%s%s%s%s%s%s%s}\n",
+        snprintf(buf, buf_len, ".xf%i{ font-size:%ipt;font-family: \"%s\";background:#%.6X;text-align:%s;vertical-align:%s;%s%s%s%s%s%s%s%s}\n",
                 i,size,fontname,background,align,valign,borderleft,borderright,bordertop,borderbottom,color,italic,bold,underline);
 
 		strcat(ret,buf);
