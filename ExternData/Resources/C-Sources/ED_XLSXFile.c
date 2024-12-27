@@ -53,6 +53,7 @@
 #define E_EGETFILEINFO (31)
 
 #define WB_XML "xl/workbook.xml"
+#define WB_RELS "xl/_rels/workbook.xml.rels"
 #define STR_XML "xl/sharedStrings.xml"
 
 typedef uint16_t WORD;
@@ -69,8 +70,9 @@ typedef struct {
 	ED_LOCALE_TYPE loc;
 	ED_LOGGING_FUNC log;
 	unzFile zfile;
-	XmlNodeRef sroot; /* Shared strings */
+	XmlNodeRef sharedStringsRoot;
 	SheetShare* sheets;
+	char* defaultSheetName;
 } XLSXFile;
 
 static int parseXML(unzFile zfile, const char* fileName, XmlNodeRef* root)
@@ -127,6 +129,7 @@ void* ED_createXLSX(const char* fileName, int verbose, int detectMissingData)
 		ModelicaError("Memory allocation error\n");
 		return NULL;
 	}
+	xlsx->defaultSheetName = NULL;
 
 	if (verbose == 1) {
 		/* Print info message, that file is loading */
@@ -184,7 +187,7 @@ void* ED_createXLSX(const char* fileName, int verbose, int detectMissingData)
 		XmlNodeRef child = XmlNode_getChild(sheets, i);
 		if (XmlNode_isTag(child, "sheet")) {
 			char* sheetName = XmlNode_getAttributeValue(child, "name");
-			char* sheetId = XmlNode_getAttributeValue(child, "sheetId");
+			char* sheetId = XmlNode_getAttributeValue(child, "r:id");
 			if (sheetName != NULL && sheetId != NULL) {
 				SheetShare* iter = malloc(sizeof(SheetShare));
 				if (iter != NULL) {
@@ -197,13 +200,16 @@ void* ED_createXLSX(const char* fileName, int verbose, int detectMissingData)
 						free(iter->sheetId);
 						free(iter);
 					}
+					if (xlsx->defaultSheetName == NULL) {
+						xlsx->defaultSheetName = strdup(sheetName);
+					}
 				}
 			}
 		}
 	}
 
 	XmlNode_deleteTree(root);
-	parseXML(xlsx->zfile, STR_XML, &xlsx->sroot);
+	parseXML(xlsx->zfile, STR_XML, &xlsx->sharedStringsRoot);
 
 	xlsx->loc = ED_INIT_LOCALE;
 	switch (detectMissingData) {
@@ -243,7 +249,10 @@ void ED_destroyXLSX(void* _xlsx)
 			HASH_DEL(xlsx->sheets, iter);
 			free(iter);
 		}
-		XmlNode_deleteTree(xlsx->sroot);
+		XmlNode_deleteTree(xlsx->sharedStringsRoot);
+		if (xlsx->defaultSheetName != NULL) {
+			free(xlsx->defaultSheetName);
+		}
 		free(xlsx);
 		ED_PTR_DEL(xlsx);
 	}
@@ -285,17 +294,11 @@ static void ca(char* colAddress, WORD idx)
 static XmlNodeRef findSheet(XLSXFile* xlsx, char** sheetName)
 {
 	SheetShare* iter;
-	XmlNodeRef root;
+	XmlNodeRef root = NULL;
 
 	if (strlen(*sheetName) == 0) {
-		SheetShare* tmp;
 		/* Resolve default sheet name */
-		HASH_ITER(hh, xlsx->sheets, iter, tmp) {
-			if (0 == strcmp(iter->sheetId, "1")) {
-				*sheetName = iter->sheetName;
-				break;
-			}
-		}
+		*sheetName = xlsx->defaultSheetName;
 	}
 
 	HASH_FIND_STR(xlsx->sheets, *sheetName, iter);
@@ -309,20 +312,30 @@ static XmlNodeRef findSheet(XLSXFile* xlsx, char** sheetName)
 		root = iter->root;
 	}
 	else {
-		const char* sp = "xl/worksheets/sheet";
-		char* s = malloc((strlen(sp) + strlen(iter->sheetId) + strlen(".xml") + 1)*sizeof(char));
-		if (s == NULL) {
-			ModelicaError("Memory allocation error\n");
-			return NULL;
+		XmlNodeRef workbookRelsRoot;
+		if (parseXML(xlsx->zfile, WB_RELS, &workbookRelsRoot) == 0) {
+			size_t i;
+			for (i = 0; i < XmlNode_getChildCount(workbookRelsRoot); i++) {
+				XmlNodeRef child = XmlNode_getChild(workbookRelsRoot, i);
+				if (XmlNode_isTag(child, "Relationship") && 0 == strcmp(iter->sheetId, XmlNode_getAttributeValue(child, "Id"))) {
+					char* target = XmlNode_getAttributeValue(child, "Target");
+					const char* folderPrefix = "xl/";
+					char* sheetPath = malloc((strlen(folderPrefix) + strlen(target) + 1)*sizeof(char));
+					if (sheetPath == NULL) {
+						ModelicaError("Memory allocation error\n");
+						return NULL;
+					}
+					strcpy(sheetPath, folderPrefix);
+					strcat(sheetPath, target);
+					parseXML(xlsx->zfile, sheetPath, &root);
+					free(sheetPath);
+					iter->root = root;
+					break;
+				}
+			}
+			XmlNode_deleteTree(workbookRelsRoot);
 		}
-		strcpy(s, sp);
-		strcat(s, iter->sheetId);
-		strcat(s, ".xml");
-		parseXML(xlsx->zfile, s, &root);
-		free(s);
-		iter->root = root;
 	}
-
 	return root;
 }
 
@@ -360,8 +373,8 @@ static char* findCellValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNo
 				if (token != NULL) {
 					long idx = 0;
 					if (!ED_strtol(token, xlsx->loc, &idx, ED_STRICT)) {
-						if (xlsx->sroot != NULL && (size_t)idx < XmlNode_getChildCount(xlsx->sroot)) {
-							iter = XmlNode_getChild(xlsx->sroot, (int)idx);
+						if (xlsx->sharedStringsRoot != NULL && (size_t)idx < XmlNode_getChildCount(xlsx->sharedStringsRoot)) {
+							iter = XmlNode_getChild(xlsx->sharedStringsRoot, (int)idx);
 						}
 					}
 					token = NULL;
