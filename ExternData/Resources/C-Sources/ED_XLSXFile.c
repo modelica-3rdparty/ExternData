@@ -365,28 +365,28 @@ static char* findCellValueFromRow(XLSXFile* xlsx, const char* cellAddress, XmlNo
 	char* token = NULL;
 	XmlNodeRef iter = XmlNode_findRow(root, cellAddress);
 	if (iter != NULL) {
-		char* t = XmlNode_getAttributeValue(iter, "t");
+		XmlNodeRef value = XmlNode_findChild(iter, "v");
+		if (value != NULL) {
+			XmlNode_getValue(value, &token);
+		}
+	}
+	if (token != NULL) {
+		const char* t = XmlNode_getAttributeValue(iter, "t");
 		if (t != NULL && 0 == strncmp(t, "s", 1)) {
-			/* Shared string */
-			XmlNodeRef ites = XmlNode_getChild(iter, 0);
+			/* Shared string -> token is the index */
+			long idx = 0;
 			iter = NULL;
-			if (ites != NULL) {
-				XmlNode_getValue(ites, &token);
-				if (token != NULL) {
-					long idx = 0;
-					if (!ED_strtol(token, xlsx->loc, &idx, ED_STRICT)) {
-						if (xlsx->sharedStringsRoot != NULL && (size_t)idx < XmlNode_getChildCount(xlsx->sharedStringsRoot)) {
-							iter = XmlNode_getChild(xlsx->sharedStringsRoot, (int)idx);
-						}
-					}
-					token = NULL;
+			if (!ED_strtol(token, xlsx->loc, &idx, ED_STRICT)) {
+				if (xlsx->sharedStringsRoot != NULL && (size_t)idx < XmlNode_getChildCount(xlsx->sharedStringsRoot)) {
+					iter = XmlNode_getChild(xlsx->sharedStringsRoot, (int)idx);
 				}
 			}
-		}
-		if (iter != NULL) {
-			iter = XmlNode_getChild(iter, 0);
+			token = NULL;
 			if (iter != NULL) {
-				XmlNode_getValue(iter, &token);
+				iter = XmlNode_findChild(iter, "t");
+				if (iter != NULL) {
+					XmlNode_getValue(iter, &token);
+				}
 			}
 		}
 	}
