@@ -1,6 +1,6 @@
 /* ED_MATFile.h - MAT functions header
  *
- * Copyright (C) 2015-2024, Thomas Beutlich
+ * Copyright (C) 2015-2025, Thomas Beutlich
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
