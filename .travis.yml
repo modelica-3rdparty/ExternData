@@ -111,7 +111,7 @@ before_install:
     esac
   - curl https://bitbucket.org/Swyter/bitbucket-curl-upload-to-repo-downloads/raw/default/upload-to-bitbucket.sh -O -J -L
   - chmod +x ./upload-to-bitbucket.sh
-  - git clone --branch v2.12.7 --depth 1 https://gitlab.gnome.org/GNOME/libxml2
+  - git clone --branch v2.13.5 --depth 1 https://gitlab.gnome.org/GNOME/libxml2
   - mkdir -p libxml2/$PLATFORM
 
 before_cache:

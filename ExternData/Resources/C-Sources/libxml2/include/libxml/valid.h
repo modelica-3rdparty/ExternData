@@ -11,6 +11,7 @@
 #ifndef __XML_VALID_H__
 #define __XML_VALID_H__
 
+/** DOC_DISABLE */
 #include <libxml/xmlversion.h>
 #include <libxml/xmlerror.h>
 #define XML_TREE_INTERNALS
@@ -19,6 +20,7 @@
 #include <libxml/list.h>
 #include <libxml/xmlautomata.h>
 #include <libxml/xmlregexp.h>
+/** DOC_ENABLE */
 
 #ifdef __cplusplus
 extern "C" {
@@ -150,9 +152,11 @@ XMLPUBFUN xmlNotationTablePtr
 XMLPUBFUN void
 		xmlFreeNotationTable	(xmlNotationTablePtr table);
 #ifdef LIBXML_OUTPUT_ENABLED
+XML_DEPRECATED
 XMLPUBFUN void
 		xmlDumpNotationDecl	(xmlBufferPtr buf,
 					 xmlNotationPtr nota);
+/* XML_DEPRECATED, still used in lxml */
 XMLPUBFUN void
 		xmlDumpNotationTable	(xmlBufferPtr buf,
 					 xmlNotationTablePtr table);
@@ -184,13 +188,12 @@ XMLPUBFUN void
 	                                 xmlElementContentPtr content,
 					 int englob);
 #ifdef LIBXML_OUTPUT_ENABLED
-/* DEPRECATED */
+XML_DEPRECATED
 XMLPUBFUN void
 		xmlSprintfElementContent(char *buf,
 	                                 xmlElementContentPtr content,
 					 int englob);
 #endif /* LIBXML_OUTPUT_ENABLED */
-/* DEPRECATED */
 
 /* Element */
 XMLPUBFUN xmlElementPtr
@@ -206,9 +209,11 @@ XMLPUBFUN xmlElementTablePtr
 XMLPUBFUN void
 		xmlFreeElementTable	(xmlElementTablePtr table);
 #ifdef LIBXML_OUTPUT_ENABLED
+XML_DEPRECATED
 XMLPUBFUN void
 		xmlDumpElementTable	(xmlBufferPtr buf,
 					 xmlElementTablePtr table);
+XML_DEPRECATED
 XMLPUBFUN void
 		xmlDumpElementDecl	(xmlBufferPtr buf,
 					 xmlElementPtr elem);
@@ -242,15 +247,20 @@ XMLPUBFUN xmlAttributeTablePtr
 XMLPUBFUN void
 		xmlFreeAttributeTable  (xmlAttributeTablePtr table);
 #ifdef LIBXML_OUTPUT_ENABLED
+XML_DEPRECATED
 XMLPUBFUN void
 		xmlDumpAttributeTable  (xmlBufferPtr buf,
 					xmlAttributeTablePtr table);
+XML_DEPRECATED
 XMLPUBFUN void
 		xmlDumpAttributeDecl   (xmlBufferPtr buf,
 					xmlAttributePtr attr);
 #endif /* LIBXML_OUTPUT_ENABLED */
 
 /* IDs */
+XMLPUBFUN int
+		xmlAddIDSafe	       (xmlAttrPtr attr,
+					const xmlChar *value);
 XMLPUBFUN xmlIDPtr
 		xmlAddID	       (xmlValidCtxtPtr ctxt,
 					xmlDocPtr doc,
@@ -303,31 +313,38 @@ XMLPUBFUN xmlValidCtxtPtr
 XMLPUBFUN void
 		xmlFreeValidCtxt(xmlValidCtxtPtr);
 
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateRoot		(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateElementDecl	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 		                         xmlElementPtr elem);
+XML_DEPRECATED
 XMLPUBFUN xmlChar *
 		xmlValidNormalizeAttributeValue(xmlDocPtr doc,
 					 xmlNodePtr elem,
 					 const xmlChar *name,
 					 const xmlChar *value);
+XML_DEPRECATED
 XMLPUBFUN xmlChar *
 		xmlValidCtxtNormalizeAttributeValue(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 					 xmlNodePtr elem,
 					 const xmlChar *name,
 					 const xmlChar *value);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateAttributeDecl(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 		                         xmlAttributePtr attr);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateAttributeValue(xmlAttributeType type,
 					 const xmlChar *value);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateNotationDecl	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
@@ -336,6 +353,7 @@ XMLPUBFUN int
 		xmlValidateDtd		(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 					 xmlDtdPtr dtd);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateDtdFinal	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc);
@@ -346,16 +364,19 @@ XMLPUBFUN int
 		xmlValidateElement	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 					 xmlNodePtr elem);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateOneElement	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 		                         xmlNodePtr elem);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateOneAttribute	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 					 xmlNodePtr	elem,
 					 xmlAttrPtr attr,
 					 const xmlChar *value);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateOneNamespace	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
@@ -363,12 +384,14 @@ XMLPUBFUN int
 					 const xmlChar *prefix,
 					 xmlNsPtr ns,
 					 const xmlChar *value);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateDocumentFinal(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc);
 #endif /* LIBXML_VALID_ENABLED */
 
 #if defined(LIBXML_VALID_ENABLED) || defined(LIBXML_SCHEMAS_ENABLED)
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidateNotationUse	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
@@ -424,19 +447,23 @@ XMLPUBFUN int
 /*
  * Validation based on the regexp support
  */
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidBuildContentModel(xmlValidCtxtPtr ctxt,
 					 xmlElementPtr elem);
 
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidatePushElement	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
 					 xmlNodePtr elem,
 					 const xmlChar *qname);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidatePushCData	(xmlValidCtxtPtr ctxt,
 					 const xmlChar *data,
 					 int len);
+XML_DEPRECATED
 XMLPUBFUN int
 		xmlValidatePopElement	(xmlValidCtxtPtr ctxt,
 					 xmlDocPtr doc,
