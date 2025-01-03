@@ -172,7 +172,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       defaultComponentPrefixes="inner parameter",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.SSVFile to the model top level",
       Icon(graphics={
-        Text(textColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<ssv>"),
+        Text(textColor={200,16,46},extent={{-85,-10},{85,-55}},textString="<ssv>"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end SSVFile;
 
@@ -1830,7 +1830,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
-          Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid)}));
+          Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={200,16,46},fillPattern=FillPattern.Solid)}));
       end Base;
 
       partial function getReal "Get scalar Real value from SSV file"
