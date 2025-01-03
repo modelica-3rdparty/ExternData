@@ -1,5 +1,5 @@
 // CP: 65001
-/* package.mo - Modelica Examples library for data I/O of CSV, INI, JSON, MATLAB MAT, TIR, Excel XLS/XLSX or XML files
+/* package.mo - Modelica Examples library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files
  *
  * Copyright (C) 2015-2025, Thomas Beutlich
  * All rights reserved.
@@ -61,13 +61,15 @@ package Examples "Test examples"
 
   model SSVTest "SSV file read test"
     extends Modelica.Icons.Example;
-    inner parameter ExternData.SSVFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test.ssv")) "SSV file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+    inner parameter ExternData.SSVFile dataSource(fileName=Modelica.Utilities.Files.loadResource("modelica://ExternData/Resources/Examples/test_v2.ssv")) "SSV file" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
     Modelica.Blocks.Math.Gain gain1(k=dataSource.getReal("gain.k")) annotation(Placement(transformation(extent={{-15,60},{5,80}})));
     Modelica.Blocks.Sources.ContinuousClock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
+    final parameter Integer m = dataSource.getArrayRows2D("table1") "Number of rows in 2D array";
+    Modelica.Blocks.Sources.TimeTable timeTable(table=dataSource.getRealArray2D("table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
     equation
       connect(clock.y,gain1.u) annotation(Line(points={{-29,70},{-17,70}}, color={0,0,127}));
     annotation(experiment(StopTime=1),
-      Documentation(info="<html><p>This example model reads the gain parameter from the corresponding node of the SSV file <a href=\"modelica://ExternData/Resources/Examples/test.ssv\">test.ssv</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.SSVFile.getReal\">ExternData.SSVFile.getReal</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"));
+      Documentation(info="<html><p>This example model reads the gain parameter from the corresponding node of the SSV file <a href=\"modelica://ExternData/Resources/Examples/test_v2.ssv\">test_v2.ssv</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.SSVFile.getReal\">ExternData.SSVFile.getReal</a>. For timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.SSVFile.getRealArray2D\">ExternData.SSVFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"));
   end SSVTest;
 
   model XLSTest "Excel XLS file read test"

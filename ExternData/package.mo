@@ -154,12 +154,18 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       annotation(Dialog(group="Diagnostics"));
     parameter Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data"
       annotation(Dialog(group="Diagnostics"));
-    final parameter Types.ExternXML2File ssv = Types.ExternXML2File(fileName, if nameSpace == "" then fill("", 0, 2) else {{"ssv", nameSpace}}, verboseRead, detectMissingData) "External SSV file object";
+    final parameter Types.ExternXML2File ssv = Types.ExternXML2File(fileName, if nameSpace == "" then fill("", 0, 2) else {{"ssv", nameSpace}, {"ssc", "http://ssp-standard.org/SSP1/SystemStructureCommon"}}, verboseRead, detectMissingData) "External SSV file object";
     extends Interfaces.SSV.Base(
       redeclare final function getReal = Functions.SSV.getReal(ssv=ssv, nameSpace=nameSpace) "Get scalar Real value from SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getRealArray1D = Functions.SSV.getRealArray1D(ssv=ssv, nameSpace=nameSpace) "Get 1D Real values from SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getRealArray2D = Functions.SSV.getRealArray2D(ssv=ssv, nameSpace=nameSpace) "Get 2D Real values from SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.SSV.getInteger(ssv=ssv, nameSpace=nameSpace) "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.SSV.getBoolean(ssv=ssv, nameSpace=nameSpace) "Get scalar Boolean value from SSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getString = Functions.SSV.getString(ssv=ssv, nameSpace=nameSpace) "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>")));
+      redeclare final function getString = Functions.SSV.getString(ssv=ssv, nameSpace=nameSpace) "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize1D = Functions.SSV.getArraySize1D(ssv=ssv, nameSpace=nameSpace) "Get the size of a 1D array in a SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.SSV.getArraySize2D(ssv=ssv, nameSpace=nameSpace) "Get the size of a 2D array in a SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArrayRows2D = Functions.SSV.getArrayRows2D(ssv=ssv, nameSpace=nameSpace) "Get first dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArrayColumns2D = Functions.SSV.getArrayColumns2D(ssv=ssv, nameSpace=nameSpace) "Get second dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>")));
     annotation(
       Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
@@ -754,13 +760,35 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       pure function getReal "Get scalar Real value from SSV file"
         extends Interfaces.SSV.getReal;
         algorithm
-          (y, exist) := XML2.getReal(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Real/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Real/@value");
+          (y, exist) := XML2.getReal(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Real/@value | //Parameters/Parameter[@name='" + varName + "']/Float64/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Real/@value | //ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Float64/@value");
       end getReal;
+
+      pure function getRealArray1D "Get 1D Real values from SSV file"
+        extends Interfaces.SSV.getRealArray1D;
+        algorithm
+          assert(XML2.getReal(xml=ssv, varName=if nameSpace == "" then "/ParameterSet/@version" else "/ssv:ParameterSet/@version") >= 2.0, "SSV version needs to be greater than or equal to 2.0");
+          (aux, ) := XML2.getString(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Real/@value | //Parameters/Parameter[@name='" + varName + "']/Float64/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Real/@value | //ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Float64/@value");
+          for i in 1:n loop
+            (y[i], index) := Modelica.Utilities.Strings.scanReal(aux, index, message="for " + varName + "[" + String(i) + "] in SSV file");
+          end for;
+      end getRealArray1D;
+
+      pure function getRealArray2D "Get 2D Real values from SSV file"
+        extends Interfaces.SSV.getRealArray2D;
+        algorithm
+          assert(XML2.getReal(xml=ssv, varName=if nameSpace == "" then "/ParameterSet/@version" else "/ssv:ParameterSet/@version") >= 2.0, "SSV version needs to be greater than or equal to 2.0");
+          (aux, ) := XML2.getString(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Real/@value | //Parameters/Parameter[@name='" + varName + "']/Float64/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Real/@value | //ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Float64/@value");
+          for i in 1:m loop
+            for j in 1:n loop
+              (y[i, j], index) := Modelica.Utilities.Strings.scanReal(aux, index, message="for " + varName + "[" + String(i) + ", " + String(j) + "] in SSV file");
+            end for;
+          end for;
+      end getRealArray2D;
 
       pure function getInteger "Get scalar Integer value from SSV file"
         extends Interfaces.SSV.getInteger;
         algorithm
-          (y, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Integer/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Integer/@value");
+          (y, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Integer/@value | //Parameters/Parameter[@name='" + varName + "']/Int32/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Integer/@value | //ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:Int32/@value");
       end getInteger;
 
       pure function getBoolean "Get scalar Boolean value from SSV file"
@@ -775,6 +803,109 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         algorithm
           (str, exist) := XML2.getString(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/String/@value" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssv:String/@value");
       end getString;
+
+      pure function getArraySize1D "Get length of 1D array in SSV file"
+        extends Interfaces.SSV.getArraySize1D;
+        protected
+          Boolean exist "= true, if dimension element exists";
+        algorithm
+          assert(XML2.getReal(xml=ssv, varName=if nameSpace == "" then "/ParameterSet/@version" else "/ssv:ParameterSet/@version") >= 2.0, "SSV version needs to be greater than or equal to 2.0");
+          (n, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Dimension[1]/@size" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssc:Dimension[1]/@size");
+          assert(exist, "Dimension element not found for " + varName + " in SSV file");
+      end getArraySize1D;
+
+      pure function getArraySize2D "Get dimensions of 2D array in SSV file"
+        extends Interfaces.SSV.getArraySize2D;
+        protected
+          Boolean exist "= true, if dimension element exists";
+        algorithm
+          assert(XML2.getReal(xml=ssv, varName=if nameSpace == "" then "/ParameterSet/@version" else "/ssv:ParameterSet/@version") >= 2.0, "SSV version needs to be greater than or equal to 2.0");
+          (m, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Dimension[1]/@size" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssc:Dimension[1]/@size");
+          assert(exist, "First dimension element not found for " + varName + " in SSV file");
+          (n, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Dimension[2]/@size" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssc:Dimension[2]/@size");
+          assert(exist, "Second dimension element not found for " + varName + " in SSV file");
+      end getArraySize2D;
+
+      pure function getArrayRows2D "Get first dimension of 2D array in SSV file"
+        extends Interfaces.SSV.getArrayRows2D;
+        protected
+          Boolean exist "= true, if dimension element exists";
+        algorithm
+          assert(XML2.getReal(xml=ssv, varName=if nameSpace == "" then "/ParameterSet/@version" else "/ssv:ParameterSet/@version") >= 2.0, "SSV version needs to be greater than or equal to 2.0");
+          (m, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Dimension[1]/@size" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssc:Dimension[1]/@size");
+          assert(exist, "First dimension element not found for " + varName + " in SSV file");
+      end getArrayRows2D;
+
+      pure function getArrayColumns2D "Get second dimension of 2D array in SSV file"
+        extends Interfaces.SSV.getArrayColumns2D;
+        protected
+          Boolean exist "= true, if dimension element exists";
+        algorithm
+          assert(XML2.getReal(xml=ssv, varName=if nameSpace == "" then "/ParameterSet/@version" else "/ssv:ParameterSet/@version") >= 2.0, "SSV version needs to be greater than or equal to 2.0");
+          (n, exist) := XML2.getInteger(xml=ssv, varName=if nameSpace == "" then "//Parameters/Parameter[@name='" + varName + "']/Dimension[2]/@size" else "//ssv:Parameters/ssv:Parameter[@name='" + varName + "']/ssc:Dimension[2]/@size");
+          assert(exist, "Second dimension element not found for " + varName + " in SSV file");
+      end getArrayColumns2D;
+
+      function readArraySize1D "Read length of 1D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of elements in array";
+        protected
+          Types.ExternXML2File ssv = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          n := getArraySize1D(ssv=ssv, varName=varName, nameSpace=if size(nameSpace, 1) > 0 then nameSpace[1,2] else "");
+        annotation(__Dymola_translate=true);
+      end readArraySize1D;
+
+      function readArraySize2D "Read dimensions of 2D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXML2File ssv = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          (m, n) := getArraySize2D(ssv=ssv, varName=varName, nameSpace=if size(nameSpace, 1) > 0 then nameSpace[1,2] else "");
+        annotation(__Dymola_translate=true);
+      end readArraySize2D;
+
+      function readArrayRows2D "Read first dimension of 2D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer m "Number of rows in array";
+        protected
+          Types.ExternXML2File ssv = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          m := getArrayRows2D(ssv=ssv, varName=varName, nameSpace=if size(nameSpace, 1) > 0 then nameSpace[1,2] else "");
+        annotation(__Dymola_translate=true);
+      end readArrayRows2D;
+
+      function readArrayColumns2D "Read second dimension of 2D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String fileName "File name";
+        input String varName "Key";
+        input String nameSpace[:,2] = fill("", 0, 2) "XML name spaces";
+        input Boolean verboseRead = true "= true, if info message that file is loading is to be printed";
+        input Types.Diagnostics detectMissingData = Types.Diagnostics.Warning "Print diagnostic message in case of missing data";
+        output Integer n "Number of columns in array";
+        protected
+          Types.ExternXML2File ssv = Types.ExternXML2File(fileName=fileName, nameSpace=nameSpace, verboseRead=verboseRead, detectMissingData=detectMissingData) "External XML2 file object";
+        algorithm
+          n := getArrayColumns2D(ssv=ssv, varName=varName, nameSpace=if size(nameSpace, 1) > 0 then nameSpace[1,2] else "");
+        annotation(__Dymola_translate=true);
+      end readArrayColumns2D;
     end SSV;
 
     package XLS "Excel XLS file functions"
@@ -1463,8 +1594,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getString = JSON.getString "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getStringArray1D = JSON.getStringArray1D "Get 1D array String value from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getStringArray2D = JSON.getStringArray2D "Get 2D array String value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize1D = JSON.getArraySize1D"Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = JSON.getArraySize2D"Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = JSON.getArraySize1D "Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = JSON.getArraySize2D "Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = JSON.getArrayRows2D "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = JSON.getArrayColumns2D "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -1686,9 +1817,15 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       extends Modelica.Icons.InterfacesPackage;
       partial record Base "Interface for SSV file"
         replaceable function getReal = SSV.getReal "Get scalar Real value from SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getRealArray1D = SSV.getRealArray1D "Get 1D Real values from SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getRealArray2D = SSV.getRealArray2D "Get 2D Real values from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getInteger = SSV.getInteger "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = SSV.getBoolean "Get scalar Boolean value from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = SSV.getString "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = SSV.getArraySize1D "Get the size of a 1D array in a SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = SSV.getArraySize2D "Get the size of a 2D array in a SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArrayRows2D = SSV.getArrayRows2D "Get first dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArrayColumns2D = SSV.getArrayColumns2D "Get second dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
       annotation(
         Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>.</p></html>"),
         Icon(graphics={
@@ -1702,6 +1839,33 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         input String nameSpace "SSV name space";
         annotation(Documentation(info="<html></html>"));
       end getReal;
+
+      partial function getRealArray1D "Get 1D Real values from SSV file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer n = 1 "Number of elements";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        output Real y[n] "1D Real values";
+        protected
+          String aux;
+          Integer index = 1;
+        annotation(Documentation(info="<html></html>"));
+      end getRealArray1D;
+
+      partial function getRealArray2D "Get 2D Real values from SSV file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Integer m = 1 "Number of rows";
+        input Integer n = 1 "Number of columns";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        output Real y[m,n] "2D Real values";
+        protected
+          String aux;
+          Integer index = 1;
+        annotation(Documentation(info="<html></html>"));
+      end getRealArray2D;
 
       partial function getInteger "Get scalar Integer value from SSV file"
         extends Interfaces.partialGetInteger;
@@ -1725,6 +1889,43 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         input String nameSpace "SSV name space";
         annotation(Documentation(info="<html></html>"));
       end getString;
+
+      partial function getArraySize1D "Get length of 1D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        output Integer n "Number of elements in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArraySize1D;
+
+      partial function getArraySize2D "Get dimensions of 2D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        output Integer m "Number of rows in array";
+        output Integer n "Number of columns in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArraySize2D;
+
+      partial function getArrayRows2D "Get first dimension of 2D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        output Integer m "Number of rows in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArrayRows2D;
+
+      partial function getArrayColumns2D "Get second dimension of 2D array in SSV file"
+        extends Modelica.Icons.Function;
+        input String varName "Key";
+        input Types.ExternXML2File ssv "External XML2 file object";
+        input String nameSpace "SSV name space";
+        output Integer n "Number of columns in array";
+        annotation(Documentation(info="<html></html>"));
+      end getArrayColumns2D;
     end SSV;
 
     package XLS "Excel XLS file interfaces"
