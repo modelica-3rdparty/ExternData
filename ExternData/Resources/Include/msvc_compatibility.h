@@ -16,7 +16,12 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <intrin.h>
 #include "gconstructor.h"
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
 
 extern long timezone = 0;
 
@@ -58,6 +63,10 @@ FILE* __cdecl __iob_func(void)
 #endif
 
 #pragma comment( lib, "legacy_stdio_definitions.lib" )
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif
 

@@ -9,8 +9,12 @@
 #if !defined(ED_XMLFILE_H)
 #define ED_XMLFILE_H
 
-#include <stdlib.h>
+#include <stddef.h>
 #include "msvc_compatibility.h"
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
 
 void* ED_createXML(const char* fileName, int verbose, int detectMissingData);
 void ED_destroyXML(void* _xml);
@@ -21,5 +25,9 @@ void ED_getDoubleArray1DFromXML(void* _xml, const char* varName, double* a, size
 void ED_getDoubleArray2DFromXML(void* _xml, const char* varName, double* a, size_t m, size_t n);
 void ED_getArray1DDimensionFromXML(void* _xml, const char* varName, int* n);
 void ED_getArray2DDimensionsFromXML(void* _xml, const char* varName, int* m, int* n);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif

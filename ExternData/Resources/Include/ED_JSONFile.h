@@ -9,7 +9,12 @@
 #if !defined(ED_JSONFILE_H)
 #define ED_JSONFILE_H
 
+#include <stddef.h>
 #include "msvc_compatibility.h"
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
 
 void* ED_createJSON(const char* fileName, int verbose, int detectMissingData);
 void ED_destroyJSON(void* _json);
@@ -27,5 +32,9 @@ void ED_getDoubleArray2DFromJSON(void* _json, const char* varName, double* a, si
 void ED_getStringArray2DFromJSON(void* _json, const char* varName, char** a, size_t m, size_t n);
 void ED_getIntArray2DFromJSON(void* _json, const char* varName, int* a, size_t m, size_t n);
 void ED_getBooleanArray2DFromJSON(void* _json, const char* varName, int* a, size_t m, size_t n);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif
