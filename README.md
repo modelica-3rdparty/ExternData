@@ -51,7 +51,7 @@ Ben Hoyt's simple INI file parser in C
 * [libxls](https://github.com/libxls/libxls) -
 David Hoerl's C library for parsing Excel files
 * [libxml2](https://gitlab.gnome.org/GNOME/libxml2) -
-Daniel Veillard's XML C parser and toolkit of Gnome
+Daniel Veillard's XML toolkit implemented in C, originally developed for the GNOME Project
 * [matio](https://sourceforge.net/projects/matio/) -
 Christopher Hulbert's C library for reading and writing MATLAB MAT-files
 * [minizip](http://www.winimage.com/zLibDll/minizip.html) -
