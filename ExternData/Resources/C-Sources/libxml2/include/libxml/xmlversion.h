@@ -150,7 +150,7 @@
  *
  * Whether the DTD validation support is configured in
  */
-#if 0
+#if 1
 #define LIBXML_VALID_ENABLED
 #endif
 
