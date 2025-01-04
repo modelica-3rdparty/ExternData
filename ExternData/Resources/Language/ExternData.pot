@@ -161,7 +161,11 @@ msgid "SSV file"
 msgstr ""
 
 msgctxt "ExternData.Examples.SSVTest"
-msgid "<html><p>This example model reads the gain parameter from the corresponding node of the SSV file <a href=\"modelica://ExternData/Resources/Examples/test.ssv\">test.ssv</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.SSVFile.getReal\">ExternData.SSVFile.getReal</a>. The read parameter is assigned by a parameter binding to the appropriate model parameter.</p></html>"
+msgid "Number of rows in 2D array"
+msgstr ""
+
+msgctxt "ExternData.Examples.SSVTest"
+msgid "<html><p>This example model reads the gain parameter from the corresponding node of the SSV file <a href=\"modelica://ExternData/Resources/Examples/test_v2.ssv\">test_v2.ssv</a>. For gain1 the gain parameter is read as Real value using the function <a href=\"modelica://ExternData.SSVFile.getReal\">ExternData.SSVFile.getReal</a>. For timeTable the table parameter is read as Real array of dimension 3x2 by function <a href=\"modelica://ExternData.SSVFile.getRealArray2D\">ExternData.SSVFile.getRealArray2D</a>. The read parameters are assigned by parameter bindings to the appropriate model parameters.</p></html>"
 msgstr ""
 
 msgctxt "ExternData.Examples.XLSTest"
@@ -949,6 +953,22 @@ msgid "<html></html>"
 msgstr ""
 
 msgctxt "ExternData.SSVFile"
+msgid "Get 1D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "Get 2D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
 msgid "Get scalar Integer value from SSV file"
 msgstr ""
 
@@ -966,6 +986,38 @@ msgstr ""
 
 msgctxt "ExternData.SSVFile"
 msgid "Get scalar String value from SSV file"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "Get the size of a 1D array in a SSV file"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "Get the size of a 2D array in a SSV file"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "Get first dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.SSVFile"
+msgid "Get second dimension of 2D array in SSV file"
 msgstr ""
 
 msgctxt "ExternData.SSVFile"
@@ -2030,6 +2082,14 @@ msgctxt "ExternData.Functions.SSV.getReal"
 msgid "Get scalar Real value from SSV file"
 msgstr ""
 
+msgctxt "ExternData.Functions.SSV.getRealArray1D"
+msgid "Get 1D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getRealArray2D"
+msgid "Get 2D Real values from SSV file"
+msgstr ""
+
 msgctxt "ExternData.Functions.SSV.getInteger"
 msgid "Get scalar Integer value from SSV file"
 msgstr ""
@@ -2040,6 +2100,170 @@ msgstr ""
 
 msgctxt "ExternData.Functions.SSV.getString"
 msgid "Get scalar String value from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArraySize1D"
+msgid "Get length of 1D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArraySize1D"
+msgid "= true, if dimension element exists"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArraySize2D"
+msgid "Get dimensions of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArraySize2D"
+msgid "= true, if dimension element exists"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArrayRows2D"
+msgid "Get first dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArrayRows2D"
+msgid "= true, if dimension element exists"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArrayColumns2D"
+msgid "Get second dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.getArrayColumns2D"
+msgid "= true, if dimension element exists"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "Read length of 1D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "File name"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "XML name spaces"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "= true, if info message that file is loading is to be printed"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "Print diagnostic message in case of missing data"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "Number of elements in array"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize1D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "Read dimensions of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "File name"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "XML name spaces"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "= true, if info message that file is loading is to be printed"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "Print diagnostic message in case of missing data"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "Number of rows in array"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "Number of columns in array"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArraySize2D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "Read first dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "File name"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "XML name spaces"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "= true, if info message that file is loading is to be printed"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "Print diagnostic message in case of missing data"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "Number of rows in array"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayRows2D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "Read second dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "File name"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "XML name spaces"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "= true, if info message that file is loading is to be printed"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "Print diagnostic message in case of missing data"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "Number of columns in array"
+msgstr ""
+
+msgctxt "ExternData.Functions.SSV.readArrayColumns2D"
+msgid "External XML2 file object"
 msgstr ""
 
 msgctxt "ExternData.Functions.XLS"
@@ -3621,6 +3845,22 @@ msgid "<html></html>"
 msgstr ""
 
 msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "Get 1D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "Get 2D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
 msgid "Get scalar Integer value from SSV file"
 msgstr ""
 
@@ -3638,6 +3878,38 @@ msgstr ""
 
 msgctxt "ExternData.Interfaces.SSV.Base"
 msgid "Get scalar String value from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "Get the size of a 1D array in a SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "Get the size of a 2D array in a SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "Get first dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.Base"
+msgid "Get second dimension of 2D array in SSV file"
 msgstr ""
 
 msgctxt "ExternData.Interfaces.SSV.Base"
@@ -3664,6 +3936,66 @@ msgctxt "ExternData.Interfaces.SSV.getReal"
 msgid "<html></html>"
 msgstr ""
 
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "Get 1D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "Number of elements"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "SSV name space"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "1D Real values"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray1D"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "Get 2D Real values from SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "Number of rows"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "Number of columns"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "SSV name space"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "2D Real values"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getRealArray2D"
+msgid "<html></html>"
+msgstr ""
+
 msgctxt "ExternData.Interfaces.SSV.getInteger"
 msgid "Get scalar Integer value from SSV file"
 msgstr ""
@@ -3709,6 +4041,106 @@ msgid "SSV name space"
 msgstr ""
 
 msgctxt "ExternData.Interfaces.SSV.getString"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize1D"
+msgid "Get length of 1D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize1D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize1D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize1D"
+msgid "SSV name space"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize1D"
+msgid "Number of elements in array"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize1D"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "Get dimensions of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "SSV name space"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "Number of rows in array"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "Number of columns in array"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArraySize2D"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayRows2D"
+msgid "Get first dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayRows2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayRows2D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayRows2D"
+msgid "SSV name space"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayRows2D"
+msgid "Number of rows in array"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayRows2D"
+msgid "<html></html>"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayColumns2D"
+msgid "Get second dimension of 2D array in SSV file"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayColumns2D"
+msgid "Key"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayColumns2D"
+msgid "External XML2 file object"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayColumns2D"
+msgid "SSV name space"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayColumns2D"
+msgid "Number of columns in array"
+msgstr ""
+
+msgctxt "ExternData.Interfaces.SSV.getArrayColumns2D"
 msgid "<html></html>"
 msgstr ""
 
