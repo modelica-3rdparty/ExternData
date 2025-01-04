@@ -5,7 +5,60 @@ on:
   pull_request:
   workflow_dispatch:
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
+  test:
+    name: build_cmake_${{ matrix.toolchain }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        toolchain:
+          - linux-gcc
+          - windows-msvc
+          - windows-mingw
+        configuration:
+          - Release
+        include:
+          - toolchain: linux-gcc
+            os: ubuntu-latest
+            compiler: gcc
+          - toolchain: windows-msvc
+            os: windows-latest
+            compiler: msvc
+          - toolchain: windows-mingw
+            os: windows-latest
+            compiler: mingw
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+      - name: Configure
+        run: |
+          if [ "${{ matrix.compiler }}" == "msvc" ]; then
+            cmake -S "$SRCDIR" -B build
+          elif [ "${{ matrix.compiler }}" == "mingw" ]; then
+            cmake -S "$SRCDIR" -B build -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "MinGW Makefiles"
+          else
+            cmake -S "$SRCDIR" -B build -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -DCMAKE_C_FLAGS="-Wall -Wextra"
+          fi
+        env:
+          SRCDIR: ${{ github.workspace }}/ExternData/Resources
+      - name: Build with ${{ matrix.compiler }}
+        run: |
+          if [ "${{ matrix.compiler }}" == "msvc" ]; then
+            cmake --build build --config ${{ matrix.configuration }}
+          else
+            cmake --build build -- -j8
+          fi
+      - name: Run tests
+        run: ctest --no-tests=error --test-dir build --build-config ${{ matrix.configuration }} --parallel 8
+
   html_documentation_checks:
     timeout-minutes: 5
     runs-on: ubuntu-latest
