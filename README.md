@@ -22,7 +22,7 @@ the 14th International Modelica Conference_. Ed. by Martin Sjölund, Lena Buffon
   * [INI](https://en.wikipedia.org/wiki/INI_file)
   * [JSON](https://en.wikipedia.org/wiki/JSON)
   * [MATLAB](https://en.wikipedia.org/wiki/MATLAB) MAT of version v4, v6, v7 and v7.3 ([HDF5](https://en.wikipedia.org/wiki/Hierarchical_Data_Format))
-  * [SSV](https://ssp-standard.org/) (System Structure Parameter Values v1.0 and v2.0)
+  * [SSV](https://ssp-standard.org/) (System Structure Parameter Values) v1.0 and v2.0
   * TIR (Tire properties)
   * [Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) [XLS](https://en.wikipedia.org/wiki/Microsoft_Excel#Binary) and [XLSX](https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet)
   * [XML](https://en.wikipedia.org/wiki/XML) (incl. [XPath](https://en.wikipedia.org/wiki/XPath) queries)
