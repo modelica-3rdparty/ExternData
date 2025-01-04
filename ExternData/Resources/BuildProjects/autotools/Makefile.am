@@ -13,6 +13,9 @@ libED_JSONFile_la_SOURCES = \
 	../../C-Sources/ED_JSONFile.c
 
 libED_MATFile_la_SOURCES = \
+	../../C-Sources/modelica/ModelicaIO.c \
+	../../C-Sources/modelica/ModelicaMatIO.c \
+	../../C-Sources/modelica/snprintf.c \
 	../../C-Sources/ED_MATFile.c
 
 libED_XLSFile_la_SOURCES = \

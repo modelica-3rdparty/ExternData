@@ -37,6 +37,9 @@ LIBXLS_OBJS = \
 	libxls/src/xlstool.o
 
 MAT_OBJS = \
+	modelica/ModelicaIO.o \
+	modelica/ModelicaMatIO.o \
+	modelica/snprintf.o \
 	ED_MATFile.o
 
 MINIZIP_OBJS = \

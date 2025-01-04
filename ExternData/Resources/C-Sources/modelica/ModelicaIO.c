@@ -1,6 +1,6 @@
 /* ModelicaIO.c - Array I/O functions
 
-   Copyright (C) 2016-2019, Modelica Association and contributors
+   Copyright (C) 2016-2024, Modelica Association and contributors
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,18 @@
       Modelica.Utilities.Streams.readRealMatrix
       Modelica.Utilities.Streams.writeRealMatrix
 
-   Release Notes:
+   Changelog:
+      Nov. 27, 2021: by Thomas Beutlich
+                     Fixed error handling for invalid format specifier in
+                     text file (ticket #3903)
+
+      Dec. 22, 2020: by Thomas Beutlich
+                     Added reading of CSV files (ticket #1153)
+
+      July 08, 2020: by Thomas Beutlich
+                     Improved error message if reading text file with zero bytes
+                     (ticket #3603)
+
       Jan. 15, 2018: by Thomas Beutlich, ESI ITI GmbH
                      Added support to ignore UTF-8 BOM if reading text file
                      (ticket #2404)
@@ -84,6 +95,60 @@
 #include "ModelicaUtilities.h"
 
 #ifdef NO_FILE_SYSTEM
+
+/*
+  ModelicaNotExistError never returns to the caller. In order to compile
+  external Modelica C-code in most compilers, noreturn attributes need to
+  be present to avoid warnings or errors.
+
+  The following macros handle noreturn attributes according to the
+  C11/C++11 standard with fallback to GNU, Clang or MSVC extensions if using
+  an older compiler.
+*/
+#undef MODELICA_NORETURN
+#undef MODELICA_NORETURNATTR
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#define MODELICA_NORETURN _Noreturn
+#define MODELICA_NORETURNATTR
+#elif defined(__cplusplus) && __cplusplus >= 201103L
+#if (defined(__GNUC__) && __GNUC__ >= 5) || \
+    (defined(__GNUC__) && defined(__GNUC_MINOR__) && __GNUC__ == 4 && __GNUC_MINOR__ >= 8)
+#define MODELICA_NORETURN [[noreturn]]
+#define MODELICA_NORETURNATTR
+#elif (defined(__GNUC__) && __GNUC__ >= 3) || \
+      (defined(__GNUC__) && defined(__GNUC_MINOR__) && __GNUC__ == 2 && __GNUC_MINOR__ >= 8)
+#define MODELICA_NORETURN
+#define MODELICA_NORETURNATTR __attribute__((noreturn))
+#elif defined(__GNUC__)
+#define MODELICA_NORETURN
+#define MODELICA_NORETURNATTR
+#else
+#define MODELICA_NORETURN [[noreturn]]
+#define MODELICA_NORETURNATTR
+#endif
+#elif defined(__clang__)
+/* Encapsulated for Clang since GCC fails to process __has_attribute */
+#if __has_attribute(noreturn)
+#define MODELICA_NORETURN
+#define MODELICA_NORETURNATTR __attribute__((noreturn))
+#else
+#define MODELICA_NORETURN
+#define MODELICA_NORETURNATTR
+#endif
+#elif (defined(__GNUC__) && __GNUC__ >= 3) || \
+      (defined(__GNUC__) && defined(__GNUC_MINOR__) && __GNUC__ == 2 && __GNUC_MINOR__ >= 8) || \
+      (defined(__SUNPRO_C) && __SUNPRO_C >= 0x5110)
+#define MODELICA_NORETURN
+#define MODELICA_NORETURNATTR __attribute__((noreturn))
+#elif (defined(_MSC_VER) && _MSC_VER >= 1200) || \
+       defined(__BORLANDC__)
+#define MODELICA_NORETURN __declspec(noreturn)
+#define MODELICA_NORETURNATTR
+#else
+#define MODELICA_NORETURN
+#define MODELICA_NORETURNATTR
+#endif
+
 MODELICA_NORETURN static void ModelicaNotExistError(const char* name) MODELICA_NORETURNATTR;
 static void ModelicaNotExistError(const char* name) {
   /* Print error message if a function is not implemented */
@@ -93,6 +158,9 @@ static void ModelicaNotExistError(const char* name) {
         "as for dSPACE or xPC systems)\n", name);
 }
 
+#undef MODELICA_NORETURN
+#undef MODELICA_NORETURNATTR
+
 void ModelicaIO_readMatrixSizes(_In_z_ const char* fileName,
     _In_z_ const char* matrixName, _Out_ int* dim) {
     ModelicaNotExistError("ModelicaIO_readMatrixSizes"); }
@@ -101,7 +169,7 @@ void ModelicaIO_readRealMatrix(_In_z_ const char* fileName,
     int verbose) {
     ModelicaNotExistError("ModelicaIO_readRealMatrix"); }
 int ModelicaIO_writeRealMatrix(_In_z_ const char* fileName,
-    _In_z_ const char* matrixName, _In_ double* matrix, size_t m, size_t n,
+    _In_z_ const char* matrixName, _In_ const double* matrix, size_t m, size_t n,
     int append, _In_z_ const char* version) {
     ModelicaNotExistError("ModelicaIO_writeRealMatrix"); return 0; }
 double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
@@ -114,7 +182,7 @@ double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
 #if !defined(NO_LOCALE)
 #include <locale.h>
 #endif
-#include "ModelicaMatIO.c"
+#include "ModelicaMatIO.h"
 
 /* The standard way to detect POSIX is to check _POSIX_VERSION,
  * which is defined in <unistd.h>
@@ -141,12 +209,6 @@ double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
 #define MATLAB_NAME_LENGTH_MAX (64)
 #endif
 
-typedef struct MatIO {
-    mat_t* mat; /* Pointer to MAT-file */
-    matvar_t* matvar; /* Pointer to MAT-file variable for data */
-    matvar_t* matvarRoot; /* Pointer to MAT-file variable for free */
-} MatIO;
-
 static double* readMatTable(_In_z_ const char* fileName, _In_z_ const char* tableName,
                             _Out_ size_t* m, _Out_ size_t* n) MODELICA_NONNULLATTR;
   /* Read a table from a MATLAB MAT-file using MatIO functions
@@ -154,13 +216,17 @@ static double* readMatTable(_In_z_ const char* fileName, _In_z_ const char* tabl
      <- RETURN: Pointer to array (row-wise storage) of table values
   */
 
-static void readMatIO(_In_z_ const char* fileName, _In_z_ const char* matrixName,
-                      _Inout_ MatIO* matio);
-  /* Read a variable from a MATLAB MAT-file using MatIO functions */
-
 static void readRealMatIO(_In_z_ const char* fileName, _In_z_ const char* matrixName,
                           _Inout_ MatIO* matio);
   /* Read a real variable from a MATLAB MAT-file using MatIO functions */
+
+static double* readCsvTable(_In_z_ const char* fileName, _In_z_ const char* tableName,
+                            _Out_ size_t* m, _Out_ size_t* n, _In_z_ const char* delimiter,
+                            int nHeaderLines) MODELICA_NONNULLATTR;
+  /* Read a table from a CSV file
+
+     <- RETURN: Pointer to array (row-wise storage) of table values
+  */
 
 static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tableName,
                             _Out_ size_t* m, _Out_ size_t* n) MODELICA_NONNULLATTR;
@@ -177,6 +243,11 @@ static int IsNumber(char* token);
 
 static void transpose(_Inout_ double* table, size_t nRow, size_t nCol) MODELICA_NONNULLATTR;
   /* Cycle-based in-place array transposition */
+
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wtautological-compare"
+#endif
 
 void ModelicaIO_readMatrixSizes(_In_z_ const char* fileName,
                                 _In_z_ const char* matrixName,
@@ -266,7 +337,7 @@ void ModelicaIO_readRealMatrix(_In_z_ const char* fileName,
 
 int ModelicaIO_writeRealMatrix(_In_z_ const char* fileName,
                                _In_z_ const char* matrixName,
-                               _In_ double* matrix, size_t m, size_t n,
+                               _In_ const double* matrix, size_t m, size_t n,
                                int append,
                                _In_z_ const char* version) {
     int status;
@@ -344,9 +415,18 @@ double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
                                  _In_z_ const char* tableName,
                                  _Out_ size_t* m, _Out_ size_t* n,
                                  int verbose) {
-    double* table = NULL;
+    return ModelicaIO_readRealTable2(fileName, tableName, m, n, verbose, ",", 0);
+}
+
+double* ModelicaIO_readRealTable2(_In_z_ const char* fileName,
+                                  _In_z_ const char* tableName,
+                                  _Out_ size_t* m, _Out_ size_t* n,
+                                  int verbose, _In_z_ const char* delimiter,
+                                  int nHeaderLines) {
+    double* table;
     const char* ext;
     int isMatExt = 0;
+    int isCsvExt = 0;
 
     /* Table file can be either text or binary MATLAB MAT-file */
     ext = strrchr(fileName, '.');
@@ -354,6 +434,14 @@ double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
         if (0 == strncmp(ext, ".mat", 4) ||
             0 == strncmp(ext, ".MAT", 4)) {
             isMatExt = 1;
+        }
+        else if (0 == strncmp(ext, ".csv", 4) ||
+            0 == strncmp(ext, ".CSV", 4)) {
+            isCsvExt = 1;
+            if (strlen(delimiter) != 1) {
+                ModelicaFormatError("Invalid column delimiter \"%s\", must be a single character.\n", delimiter);
+                return NULL;
+            }
         }
     }
 
@@ -365,6 +453,9 @@ double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
 
     if (isMatExt == 1) {
         table = readMatTable(fileName, tableName, m, n);
+    }
+    else if (isCsvExt == 1) {
+        table = readCsvTable(fileName, tableName, m, n, delimiter, nHeaderLines);
     }
     else {
         table = readTxtTable(fileName, tableName, m, n);
@@ -433,7 +524,7 @@ static double* readMatTable(_In_z_ const char* fileName, _In_z_ const char* tabl
     return table;
 }
 
-static void readMatIO(_In_z_ const char* fileName,
+void readMatIO(_In_z_ const char* fileName,
                       _In_z_ const char* matrixName, _Inout_ MatIO* matio) {
     mat_t* mat;
     matvar_t* matvar;
@@ -470,7 +561,7 @@ static void readMatIO(_In_z_ const char* fileName,
         if (NULL == token) {
             free(matrixNameCopy);
             ModelicaFormatError(
-                "Variable \"%s\" not found on file \"%s\".\n",
+                "Variable \"%s\" not found in file \"%s\".\n",
                 matrixName, fileName);
         }
         else {
@@ -487,7 +578,7 @@ static void readMatIO(_In_z_ const char* fileName,
             }
             free(matrixNameCopy);
             ModelicaFormatError(
-                "Variable \"%s%s\" not found on file \"%s\".\n",
+                "Variable \"%s%s\" not found in file \"%s\".\n",
                 matrixNameBuf, dots, fileName);
         }
         return;
@@ -555,7 +646,7 @@ static void readMatIO(_In_z_ const char* fileName,
         else {
             free(matrixNameCopy);
             ModelicaFormatError(
-                "Variable \"%s\" not found on file \"%s\".\n", matrixName, fileName);
+                "Variable \"%s\" not found in file \"%s\".\n", matrixName, fileName);
         }
         return;
     }
@@ -650,6 +741,215 @@ static int IsNumber(char* token) {
     return isNumber && foundDigit > 0;
 }
 
+static double* readCsvTable(_In_z_ const char* fileName, _In_z_ const char* tableName,
+                            _Out_ size_t* m, _Out_ size_t* n, _In_z_ const char* delimiter,
+                            int nHeaderLines) {
+    double* table = NULL;
+    char* buf;
+    int bufLen = LINE_BUFFER_LENGTH;
+    FILE* fp;
+    int readError;
+    unsigned long nRow = 0;
+    unsigned long nCol = 0;
+    unsigned long lineNo = 1;
+#if defined(NO_LOCALE)
+    const char * const dec = ".";
+#elif defined(_MSC_VER) && _MSC_VER >= 1400
+    _locale_t loc;
+#elif defined(__GLIBC__) && defined(__GLIBC_MINOR__) && ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= (2 << 16) + 3)
+    locale_t loc;
+#else
+    char* dec;
+#endif
+    char delimTable[5] = " \t\r";
+    if (delimiter[0] != ' ' && delimiter[0] != '\t' && delimiter[0] != '\r') {
+        strncat(delimTable, delimiter, 1);
+    }
+
+    fp = fopen(fileName, "r");
+    if (NULL == fp) {
+        ModelicaFormatError("Not possible to open file \"%s\": "
+            "No such file or directory\n", fileName);
+        return NULL;
+    }
+
+    buf = (char*)malloc(LINE_BUFFER_LENGTH*sizeof(char));
+    if (NULL == buf) {
+        fclose(fp);
+        ModelicaError("Memory allocation error\n");
+        return NULL;
+    }
+
+    /* Ignore file header */
+    while (lineNo <= (unsigned long)nHeaderLines) {
+        if ((readError = readLine(&buf, &bufLen, fp)) != 0) {
+            free(buf);
+            fclose(fp);
+            if (readError < 0) {
+                ModelicaFormatError(
+                    "Error reading line %lu from file \"%s\": "
+                    "End-Of-File reached.\n", lineNo, fileName);
+            }
+            return NULL;
+        }
+        lineNo++;
+    }
+
+#if defined(NO_LOCALE)
+#elif defined(_MSC_VER) && _MSC_VER >= 1400
+    loc = _create_locale(LC_NUMERIC, "C");
+#elif defined(__GLIBC__) && defined(__GLIBC_MINOR__) && ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= (2 << 16) + 3)
+    loc = newlocale(LC_NUMERIC, "C", NULL);
+#else
+    dec = localeconv()->decimal_point;
+#endif
+
+    /* First pass: Loop over lines of file and determine dimensions */
+    while (readLine(&buf, &bufLen, fp) == 0) {
+        nRow++;
+        if (nRow == 1) {
+#if defined(_POSIX_) || (defined(_MSC_VER) && _MSC_VER >= 1400)
+            char* nextToken = NULL;
+#endif
+            char* token = strtok_r(buf, delimTable, &nextToken);
+            while (NULL != token) {
+                token = strtok_r(NULL, delimTable, &nextToken);
+                nCol++;
+            }
+        }
+    }
+
+    /* Reset for second pass */
+    fseek(fp, 0, SEEK_SET);
+    lineNo = 1;
+    /* Ignore file header */
+    while (lineNo <= (unsigned long)nHeaderLines) {
+        readLine(&buf, &bufLen, fp);
+        lineNo++;
+    }
+    lineNo--;
+
+    {
+        size_t i = 0;
+
+        table = (double*)malloc(nRow*nCol*sizeof(double));
+        if (NULL == table) {
+            *m = 0;
+            *n = 0;
+            free(buf);
+            fclose(fp);
+#if defined(NO_LOCALE)
+#elif defined(_MSC_VER) && _MSC_VER >= 1400
+            _free_locale(loc);
+#elif defined(__GLIBC__) && defined(__GLIBC_MINOR__) && ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= (2 << 16) + 3)
+            freelocale(loc);
+#endif
+            ModelicaError("Memory allocation error\n");
+            return table;
+        }
+
+        readError = 0;
+        /* Loop over rows and store table row-wise */
+        for (i = 0; i < nRow; i++) {
+            size_t j = 0;
+            char* token;
+            char* endptr;
+#if defined(_POSIX_) || (defined(_MSC_VER) && _MSC_VER >= 1400)
+            char* nextToken = NULL;
+#endif
+            if (readError != 0) {
+                break;
+            }
+
+            lineNo++;
+            readError = readLine(&buf, &bufLen, fp) != 0;
+#if defined(_POSIX_) || (defined(_MSC_VER) && _MSC_VER >= 1400)
+            nextToken = NULL;
+#endif
+            token = strtok_r(buf, delimTable, &nextToken);
+            for (j = 0; j < nCol; j++) {
+                if (token == NULL) {
+                    readError = 1;
+                    break;
+                }
+#if !defined(NO_LOCALE) && (defined(_MSC_VER) && _MSC_VER >= 1400)
+                table[i*nCol + j] = _strtod_l(token, &endptr, loc);
+                if (*endptr != 0) {
+                    readError = 1;
+                }
+#elif !defined(NO_LOCALE) && (defined(__GLIBC__) && defined(__GLIBC_MINOR__) && ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= (2 << 16) + 3))
+                table[i*nCol + j] = strtod_l(token, &endptr, loc);
+                if (*endptr != 0) {
+                    readError = 1;
+                }
+#else
+                if (*dec == '.') {
+                    table[i*nCol + j] = strtod(token, &endptr);
+                }
+                else if (NULL == strchr(token, '.')) {
+                    table[i*nCol + j] = strtod(token, &endptr);
+                }
+                else {
+                    char* token2 = (char*)malloc(
+                        (strlen(token) + 1)*sizeof(char));
+                    if (NULL != token2) {
+                        char* p;
+                        strcpy(token2, token);
+                        p = strchr(token2, '.');
+                        *p = *dec;
+                        table[i*nCol + j] = strtod(token2, &endptr);
+                        if (*endptr != 0) {
+                            readError = 1;
+                        }
+                        free(token2);
+                    }
+                    else {
+                        *m = 0;
+                        *n = 0;
+                        free(buf);
+                        fclose(fp);
+                        readError = 1;
+                        ModelicaError("Memory allocation error\n");
+                        break;
+                    }
+                }
+#endif
+                if (readError == 0) {
+                    token = strtok_r(NULL, delimTable, &nextToken);
+                }
+                else {
+                    break;
+                }
+            }
+        }
+    }
+
+    free(buf);
+    fclose(fp);
+#if defined(NO_LOCALE)
+#elif defined(_MSC_VER) && _MSC_VER >= 1400
+    _free_locale(loc);
+#elif defined(__GLIBC__) && defined(__GLIBC_MINOR__) && ((__GLIBC__ << 16) + __GLIBC_MINOR__ >= (2 << 16) + 3)
+    freelocale(loc);
+#endif
+
+    if (readError == 0) {
+        *m = (size_t)nRow;
+        *n = (size_t)nCol;
+    }
+    else {
+        free(table);
+        table = NULL;
+        *m = 0;
+        *n = 0;
+        ModelicaFormatError(
+            "Error in line %lu when reading numeric data of matrix "
+            "\"%s(%lu,%lu)\" from file \"%s\"\n", lineNo,
+            tableName, nRow, nCol, fileName);
+    }
+    return table;
+}
+
 static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tableName,
                             _Out_ size_t* m, _Out_ size_t* n) {
 #define DELIM_TABLE_HEADER " \t(,)\r"
@@ -660,12 +960,13 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
     int bufLen = LINE_BUFFER_LENGTH;
     FILE* fp;
     int foundTable = 0;
+    int foundDims = 0;
     int readError;
     unsigned long nRow = 0;
     unsigned long nCol = 0;
     unsigned long lineNo = 1;
     const unsigned char txtHeader[2] = { 0x23,0x31 };
-    const unsigned char bomHeader[3] = { 0xef,0xbb,0xbf };
+    const unsigned char utf8BOM[3] = { 0xef,0xbb,0xbf };
 #if defined(NO_LOCALE)
     const char * const dec = ".";
 #elif defined(_MSC_VER) && _MSC_VER >= 1400
@@ -691,7 +992,7 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
     }
 
     /* Read file header */
-    if ((readError = readLine(&buf, &bufLen, fp)) != 0) {
+    if ((readError = readLine(&buf, &bufLen, fp)) == EOF) {
         free(buf);
         fclose(fp);
         if (readError < 0) {
@@ -704,9 +1005,9 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
 
     header = buf;
     /* Ignore optional UTF-8 BOM */
-    if (0 == memcmp(buf, bomHeader, sizeof(bomHeader)))
+    if (0 == memcmp(buf, utf8BOM, sizeof(utf8BOM)))
     {
-        header += sizeof(bomHeader);
+        header += sizeof(utf8BOM);
     }
 
     /* Expected file header format: "#1" */
@@ -724,8 +1025,8 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
             free(buf);
             ModelicaFormatError(
                 "Error reading format and version information in first "
-                "line of file \"%s\": \"#1\" expected, but \"%c\" found.\n",
-                fileName, c0);
+                "line of file \"%s\": \"#1\" expected, but \"0x%02x\" found.\n",
+                fileName, (int)(c0 & 0xff));
         }
         else {
             char c0 = header[0];
@@ -733,8 +1034,8 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
             free(buf);
             ModelicaFormatError(
                 "Error reading format and version information in first "
-                "line of file \"%s\": \"#1\" expected, but \"%c%c\" "
-                "found.\n", fileName, c0, c1);
+                "line of file \"%s\": \"#1\" expected, but \"0x%02x0x%02x\" "
+                "found.\n", fileName, (int)(c0 & 0xff), (int)(c1 & 0xff));
         }
         return NULL;
     }
@@ -804,6 +1105,7 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
             continue;
         }
 
+        foundDims = 1;
         { /* foundTable == 1 */
             size_t i = 0;
             size_t j = 0;
@@ -948,7 +1250,7 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
                         break;
                     }
                     if (1 == tableReadPartial) {
-                        ModelicaFormatMessage(
+                        ModelicaFormatWarning(
                             "The table dimensions of matrix \"%s(%lu,%lu)\" from file "
                             "\"%s\" do not match the actual table size (line %lu).\n",
                             tableName, nRow, nCol, fileName, lineNoPartial);
@@ -970,7 +1272,13 @@ static double* readTxtTable(_In_z_ const char* fileName, _In_z_ const char* tabl
 #endif
     if (foundTable == 0) {
         ModelicaFormatError(
-            "Table matrix \"%s\" not found on file \"%s\".\n",
+            "Table matrix \"%s\" not found in file \"%s\".\n",
+            tableName, fileName);
+        return table;
+    }
+    if (foundDims == 0) {
+        ModelicaFormatError(
+            "Invalid table dimensions of matrix \"%s\" found in file \"%s\".\n",
             tableName, fileName);
         return table;
     }
@@ -1015,6 +1323,9 @@ static int readLine(_In_ char** buf, _In_ int* bufLen, _In_ FILE* fp) {
     if (fgets(*buf, *bufLen, fp) == NULL) {
         return EOF;
     }
+    if (feof(fp)) {
+        return 0;
+    }
 
     do {
         char* p;
@@ -1023,6 +1334,9 @@ static int readLine(_In_ char** buf, _In_ int* bufLen, _In_ FILE* fp) {
         if ((p = strchr(*buf, '\n')) != NULL) {
             *p = '\0';
             return 0;
+        }
+        if ((p = memchr(*buf, 0, (size_t)(*bufLen - 1))) != NULL) {
+            return 1;
         }
 
         oldBufLen = *bufLen;
@@ -1076,5 +1390,9 @@ static void transpose(_Inout_ double* table, size_t nRow, size_t nCol) {
         }
     }
 }
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif
 
 #endif

@@ -16,11 +16,10 @@
 #define strdup _strdup
 #endif
 #include "ED_ptrtrack.h"
-#include "ModelicaUtilities.h"
-#define MODELICA_EXPORT static
-#define MATIO_EXTERN static
-#include "ModelicaIO.c"
 #include "../Include/ED_MATFile.h"
+#include "ModelicaIO.h"
+#include "ModelicaMatIO.h"
+#include "ModelicaUtilities.h"
 
 typedef struct {
 	char* fileName;

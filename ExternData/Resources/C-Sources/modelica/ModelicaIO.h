@@ -1,6 +1,6 @@
 /* ModelicaIO.h - Array I/O functions header
 
-   Copyright (C) 2016-2019, Modelica Association and contributors
+   Copyright (C) 2016-2024, Modelica Association and contributors
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,10 @@
                     - "__declspec(dllexport)" if included in a DLL and the
                       functions shall be visible outside of the DLL
 
-   Release Notes:
+   Changelog:
+      Dec. 22, 2020: by Thomas Beutlich
+                     Added reading of CSV files (ticket #1153)
+
       Mar. 08, 2017: by Thomas Beutlich, ESI ITI GmbH
                      Added ModelicaIO_readRealTable from ModelicaStandardTables
                      (ticket #2192)
@@ -60,18 +63,25 @@
 #endif
 #endif
 
+#include "ModelicaMatIO.h"
+
 /*
  * Non-null pointers and esp. null-terminated strings need to be passed to
  * external functions.
  *
  * The following macros handle nonnull attributes for GNU C and Microsoft SAL.
  */
+#undef MODELICA_NONNULLATTR
 #if defined(__GNUC__)
 #define MODELICA_NONNULLATTR __attribute__((nonnull))
 #else
 #define MODELICA_NONNULLATTR
 #endif
 #if !defined(__ATTR_SAL)
+#undef _In_
+#undef _In_z_
+#undef _Inout_
+#undef _Out_
 #define _In_
 #define _In_z_
 #define _Inout_
@@ -104,7 +114,7 @@ MODELICA_EXPORT void ModelicaIO_readRealMatrix(_In_z_ const char* fileName,
 
 MODELICA_EXPORT int ModelicaIO_writeRealMatrix(_In_z_ const char* fileName,
                                _In_z_ const char* matrixName,
-                               _In_ double* matrix, size_t m, size_t n,
+                               _In_ const double* matrix, size_t m, size_t n,
                                int append,
                                _In_z_ const char* version) MODELICA_NONNULLATTR;
   /* Write matrix to file
@@ -140,10 +150,39 @@ MODELICA_EXPORT double* ModelicaIO_readRealTable(_In_z_ const char* fileName,
      <- RETURN: Array of dimensions m by n
   */
 
+MODELICA_EXPORT double* ModelicaIO_readRealTable2(_In_z_ const char* fileName,
+                                 _In_z_ const char* tableName,
+                                 _Out_ size_t* m, _Out_ size_t* n,
+                                 int verbose, _In_z_ const char* delimiter,
+                                 int nHeaderLines) MODELICA_NONNULLATTR;
+  /* Read matrix and its dimensions from file
+     Note: Only called from ModelicaStandardTables, but impossible to be called
+     from a Modelica environment
+
+     -> fileName: Name of file
+     -> matrixName: Name of matrix
+     -> m: Number of rows
+     -> n: Number of columns
+     -> verbose: Print message that file is loading
+     -> delimiter: Column delimiter character (CSV file only)
+     -> nHeaderLines: Number of header lines to ignore (CSV file only)
+     <- RETURN: Array of dimensions m by n
+  */
+
 MODELICA_EXPORT void ModelicaIO_freeRealTable(double* table);
   /* Free table
      Note: Only called from ModelicaStandardTables to free the allocated memory by
      ModelicaIO_readRealTable
   */
+
+typedef struct MatIO {
+    mat_t* mat; /* Pointer to MAT-file */
+    matvar_t* matvar; /* Pointer to MAT-file variable for data */
+    matvar_t* matvarRoot; /* Pointer to MAT-file variable for free */
+} MatIO;
+
+MODELICA_EXPORT void readMatIO(_In_z_ const char* fileName, _In_z_ const char* matrixName,
+                      _Inout_ MatIO* matio);
+  /* Read a variable from a MATLAB MAT-file using MatIO functions */
 
 #endif

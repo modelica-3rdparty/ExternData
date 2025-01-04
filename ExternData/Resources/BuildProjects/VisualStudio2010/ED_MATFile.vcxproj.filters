@@ -18,6 +18,15 @@
     <ClCompile Include="..\..\C-Sources\ED_MATFile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C-Sources\modelica\snprintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C-Sources\modelica\ModelicaIO.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C-Sources\modelica\ModelicaMatIO.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\ED_MATFile.h">
@@ -32,13 +41,16 @@
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.c">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\C-Sources\modelica\ModelicaMatIO.c">
+    <ClInclude Include="..\..\C-Sources\modelica\read_data_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\modelica\safe-math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C-Sources\modelica\stdint_msvc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -226,14 +226,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C-Sources\ED_MATFile.c" />
+    <ClCompile Include="..\..\C-Sources\modelica\snprintf.c" />
     <ClInclude Include="..\..\C-Sources\ED_ptrtrack.h" />
-    <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.c" />
-    <ClInclude Include="..\..\C-Sources\modelica\ModelicaMatIO.c" />
+    <ClCompile Include="..\..\C-Sources\modelica\ModelicaIO.c" />
+    <ClCompile Include="..\..\C-Sources\modelica\ModelicaMatIO.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaIO.h" />
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaMatIO.h" />
     <ClInclude Include="..\..\C-Sources\modelica\ModelicaUtilities.h" />
+    <ClInclude Include="..\..\C-Sources\modelica\read_data_impl.h" />
+    <ClInclude Include="..\..\C-Sources\modelica\safe-math.h" />
+    <ClInclude Include="..\..\C-Sources\modelica\stdint_msvc.h" />
     <ClInclude Include="..\..\Include\ED_MATFile.h" />
   </ItemGroup>
   <ItemGroup>
