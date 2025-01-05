@@ -2,7 +2,7 @@ AR = ar -ru
 RM = rm -f
 
 CFLAGS = -O3
-CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG -DXML_POOR_ENTROPY -DHAVE_EXPAT_CONFIG_H -DLIBXML_STATIC
+CPPFLAGS = -DHAVE_UNISTD_H=1 -DHAVE_STDARG_H=1 -DHAVE_STDINT_H=1 -DHAVE_HIDDEN=1 -DHAVE_MEMCPY=1 -DHAVE_MEMMOVE=1 -DHAVE_ZLIB=1 -DHAVE_HDF5=1 -DNDEBUG -DXML_POOR_ENTROPY -DHAVE_EXPAT_CONFIG_H -DLIBXML_STATIC
 INC = -I"bsxml-json" -I"expat/lib" -I"hdf5/include" -I"inih" -I"libxls/include" -I"minizip" -I"modelica" -I"zlib" -I"parson" -I"libxml2/include"
 
 TARGETDIR = linux64
@@ -28,6 +28,52 @@ INI_OBJS = \
 
 JSON_OBJS = \
 	ED_JSONFile.o
+
+LIBXML2_OBJS = \
+	libxml2/buf.o \
+	libxml2/c14n.o \
+	libxml2/catalog.o \
+	libxml2/chvalid.o \
+	libxml2/debugXML.o \
+	libxml2/dict.o \
+	libxml2/encoding.o \
+	libxml2/entities.o \
+	libxml2/error.o \
+	libxml2/globals.o \
+	libxml2/hash.o \
+	libxml2/HTMLparser.o \
+	libxml2/HTMLtree.o \
+	libxml2/legacy.o \
+	libxml2/list.o \
+	libxml2/nanoftp.o \
+	libxml2/nanohttp.o \
+	libxml2/parser.o \
+	libxml2/parserInternals.o \
+	libxml2/pattern.o \
+	libxml2/relaxng.o \
+	libxml2/SAX.o \
+	libxml2/SAX2.o \
+	libxml2/schematron.o \
+	libxml2/threads.o \
+	libxml2/tree.o \
+	libxml2/uri.o \
+	libxml2/valid.o \
+	libxml2/xinclude.o \
+	libxml2/xlink.o \
+	libxml2/xmlIO.o \
+	libxml2/xmlmemory.o \
+	libxml2/xmlmodule.o \
+	libxml2/xmlreader.o \
+	libxml2/xmlregexp.o \
+	libxml2/xmlsave.o \
+	libxml2/xmlschemas.o \
+	libxml2/xmlschemastypes.o \
+	libxml2/xmlstring.o \
+	libxml2/xmlunicode.o \
+	libxml2/xmlwriter.o \
+	libxml2/xpath.o \
+	libxml2/xpointer.o \
+	libxml2/xzlib.o
 
 LIBXLS_OBJS = \
 	libxls/src/endian.o \
@@ -85,6 +131,7 @@ ALL_OBJS = \
 	$(INI_OBJS) \
 	$(JSON_OBJS) \
 	$(LIBXLS_OBJS) \
+	$(LIBXML2_OBJS) \
 	$(MAT_OBJS) \
 	$(MINIZIP_OBJS) \
 	$(PARSON_OBJS) \
@@ -96,7 +143,7 @@ ALL_OBJS = \
 
 all: clean libs
 
-libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libED_XML2File.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libzlib.a
+libs: libED_CSVFile.a libED_INIFile.a libED_JSONFile.a libED_MATFile.a libED_XLSFile.a libED_XLSXFile.a libED_XMLFile.a libED_XML2File.a libbsxml-json.a libexpat.a libminizip.a libparson.a libxlsreader.a libxml2.a libzlib.a
 	mkdir -p ../Library/$(TARGETDIR)
 	cp $^ ../Library/$(TARGETDIR)
 
@@ -138,6 +185,9 @@ libminizip.a: $(MINIZIP_OBJS)
 
 libxlsreader.a: $(LIBXLS_OBJS)
 	$(AR) $@ $(LIBXLS_OBJS)
+
+libxml2.a: $(LIBXML2_OBJS)
+	$(AR) $@ $(LIBXML2_OBJS)
 
 libzlib.a: $(ZLIB_OBJS)
 	$(AR) $@ $(ZLIB_OBJS)

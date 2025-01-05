@@ -10,8 +10,47 @@ defaults:
     shell: bash
 
 jobs:
+  build:
+    name: build_${{ matrix.platform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux32
+          - linux64
+        include:
+          - platform: linux32
+            cflags: "-O3 -DNDEBUG -fPIC -msse2 -m32"
+          - platform: linux64
+            cflags: "-O3 -DNDEBUG -fPIC"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+      - name: Build with gcc
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ubuntu:16.04 bash -c "
+            dpkg --add-architecture i386 &&
+            apt-get update &&
+            apt-get install -y software-properties-common libc6-dev-i386 gcc-multilib g++-multilib build-essential &&
+            add-apt-repository -y ppa:ubuntu-toolchain-r/test &&
+            apt-get update &&
+            apt-get install -y gcc-4.8 g++-4.8 &&
+            update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10 &&
+            update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10 &&
+            pushd ExternData/Resources/C-Sources &&
+            make CFLAGS=\"${{ matrix.cflags }}\" CXXFLAGS=\"${{ matrix.cflags }}\" TARGETDIR=\"${{ matrix.platform }}\"
+          "
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExternData_${{ matrix.platform }}
+          path: ExternData/Resources/Library/${{ matrix.platform }}/*.a
+
   test:
-    name: build_cmake_${{ matrix.toolchain }}
+    name: test_cmake_${{ matrix.toolchain }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -49,7 +88,7 @@ jobs:
           fi
         env:
           SRCDIR: ${{ github.workspace }}/ExternData/Resources
-      - name: Build with ${{ matrix.compiler }}
+      - name: Build tests with ${{ matrix.compiler }}
         run: |
           if [ "${{ matrix.compiler }}" == "msvc" ]; then
             cmake --build build --config ${{ matrix.configuration }}
