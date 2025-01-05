@@ -1,3 +1,11 @@
+/* Test_ED_JSON.cc - JSON functions tester
+ *
+ * Copyright (C) 2015-2025, Thomas Beutlich
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
 #include "../Include/ED_JSONFile.h"
 #include "Constants.h"
 #include <gtest/gtest.h>

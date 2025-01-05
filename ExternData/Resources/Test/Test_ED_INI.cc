@@ -1,3 +1,11 @@
+/* Test_ED_INI.cc - INI functions tester
+ *
+ * Copyright (C) 2015-2025, Thomas Beutlich
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-2-Clause
+ */
+
 #include "../Include/ED_INIFile.h"
 #include "Constants.h"
 #include <gtest/gtest.h>
