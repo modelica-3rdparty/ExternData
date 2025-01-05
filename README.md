@@ -4,7 +4,7 @@ Free Modelica library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Exce
 
 ## Status
 
-[![Build Status](https://api.travis-ci.com/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.com/github/modelica-3rdparty/ExternData) [![CI checks](https://github.com/modelica-3rdparty/ExternData/workflows/CI/badge.svg)](https://github.com/modelica-3rdparty/ExternData/actions) [![GitHub license](https://img.shields.io/github/license/modelica-3rdparty/ExternData)](https://github.com/modelica-3rdparty/ExternData/blob/master/LICENSE) [![Modelica Library Award 2021](https://img.shields.io/badge/award-%F0%9F%A5%88_Modelica_Library_Award_2021-silver?labelColor=grey)](https://2021.international.conference.modelica.org/libraries.html) 
+[![Build Status](https://api.travis-ci.com/modelica-3rdparty/ExternData.svg?branch=master)](https://travis-ci.com/github/modelica-3rdparty/ExternData) [![CI checks](https://github.com/modelica-3rdparty/ExternData/actions/workflows/checkCI.yml/badge.svg?branch=master)](https://github.com/modelica-3rdparty/ExternData/actions/workflows/checkCI.yml) [![GitHub license](https://img.shields.io/github/license/modelica-3rdparty/ExternData)](https://github.com/modelica-3rdparty/ExternData/blob/master/LICENSE) [![Modelica Library Award 2021](https://img.shields.io/badge/award-%F0%9F%A5%88_Modelica_Library_Award_2021-silver?labelColor=grey)](https://2021.international.conference.modelica.org/libraries.html) 
 
 ## Library description
 
