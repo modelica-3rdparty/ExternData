@@ -473,7 +473,7 @@ void ED_getArray2DDimensionsFromXLS(void* _xls, const char* sheetName, int* m, i
 		const xlsWorkSheet* pWS = findSheet(xls, &_sheetName);
 		if (NULL != pWS) {
 			_m = pWS->rows.lastrow + 1;
-			_n = pWS->rows.lastcol;
+			_n = pWS->rows.lastcol + 1;
 		}
 	}
 	if (NULL != m)
