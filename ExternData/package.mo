@@ -1302,7 +1302,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getReal;
 
       pure function getRealArray1D "Get 1D Real values from XML file"
@@ -1311,7 +1311,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getRealArray1D;
 
       pure function getRealArray2D "Get 2D Real values from XML file"
@@ -1320,7 +1320,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getRealArray2D;
 
       pure function getInteger "Get scalar Integer value from XML file"
@@ -1329,7 +1329,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getInteger;
 
       pure function getBoolean "Get scalar Boolean value from XML file"
@@ -1346,7 +1346,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getString;
 
       pure function getArraySize1D "Get length of 1D array in XML file"
@@ -1355,7 +1355,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getArraySize1D;
 
       pure function getArraySize2D "Get dimensions of 2D array in XML file"
@@ -1364,7 +1364,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getArraySize2D;
 
       pure function getArrayRows2D "Get first dimension of 2D array in XML file"
@@ -1373,7 +1373,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getArrayRows2D;
 
       pure function getArrayColumns2D "Get second dimension of 2D array in XML file"
@@ -1382,7 +1382,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end getArrayColumns2D;
 
       function readArraySize1D "Read length of 1D array in XML file"
@@ -2600,7 +2600,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end constructor;
 
       function destructor "Clean up"
@@ -2610,7 +2610,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
           __iti_dll = "ITI_ED_XML2File.dll",
           __iti_dllNoExport = true,
           Include = "#include \"ED_XML2File.h\"",
-          Library = {"ED_XML2File", "xml2", "zlib"});
+          Library = {"ED_XML2File", "xml2", "zlib", "bcrypt"});
       end destructor;
     end ExternXML2File;
   end Types;

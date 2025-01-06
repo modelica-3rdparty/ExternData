@@ -71,6 +71,7 @@ if(EXISTS "${ED_TEST_DIR}")
       xlsreader
       xml2
       zlib
+      bcrypt
       gtest
     )
     if(UNIX)
