@@ -27,11 +27,11 @@ if(EXISTS "${ED_TEST_DIR}")
   endif()
   set(TEST_COMMON_SOURCES
     "${CMAKE_CURRENT_BINARY_DIR}/EDTestCommon/Common.c"
-    "${ED_TEST_DIR}/ModelicaUtilities.h"
+    "${ED_RESOURCES_DIR}/C-Sources/modelica/ModelicaUtilities.h"
   )
   add_library(EDTestCommon STATIC ${TEST_COMMON_SOURCES})
   set_target_properties(EDTestCommon PROPERTIES FOLDER "Test/Third-party")
-  target_include_directories(EDTestCommon PRIVATE ${ED_TEST_DIR})
+  target_include_directories(EDTestCommon PRIVATE ${ED_RESOURCES_DIR}/C-Sources/modelica)
 
   set(ED_TESTS
     Test_ED_CSV
