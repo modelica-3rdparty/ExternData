@@ -43,9 +43,6 @@ if(EXISTS "${ED_TEST_DIR}")
     Test_ED_XML
     Test_ED_XML2
   )
-  if(MINGW)
-    list(REMOVE_ITEM ED_TESTS Test_ED_MAT)
-  endif()
   foreach(TEST ${ED_TESTS})
     add_executable(${TEST}
       "${ED_TEST_DIR}/${TEST}.cc"
@@ -76,8 +73,6 @@ if(EXISTS "${ED_TEST_DIR}")
     )
     if(UNIX)
       list(APPEND ED_ALL_LIBS m)
-    elseif(MINGW)
-      list(REMOVE_ITEM ED_ALL_LIBS hdf5)
     endif()
     target_link_libraries(${TEST} PRIVATE ${ED_ALL_LIBS})
 

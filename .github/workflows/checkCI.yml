@@ -10,7 +10,7 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  build_linux:
     name: build_${{ matrix.platform }}
     runs-on: ubuntu-latest
     strategy:
@@ -49,10 +49,35 @@ jobs:
           name: ExternData_${{ matrix.platform }}
           path: ExternData/Resources/Library/${{ matrix.platform }}/*.a
 
+  build_mingw64:
+    name: build_mingw64
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+      - name: Install HDF5
+        shell: pwsh
+        run: |
+          $env:PATH="$env:PATH;C:\msys64\mingw64\bin;C:\msys64\usr\bin;"
+          C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
+          C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-hdf5 mingw-w64-x86_64-pkgconf
+      - name: Build with gcc
+        shell: pwsh
+        run: |
+          $env:PATH="$env:PATH;C:\msys64\mingw64\bin;C:\msys64\usr\bin;"
+          pushd ExternData/Resources/C-Sources
+          mingw32-make CC="gcc" CFLAGS="-O3 -DNDEBUG" INC="-Ibsxml-json -Iexpat/lib -IC:\msys64\mingw64\include -Iinih -Ilibxls/include -Iminizip -Imodelica -Izlib -Iparson -Ilibxml2/include" TARGETDIR="mingw64"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExternData_mingw64
+          path: ExternData/Resources/Library/mingw64/*.a
+
   test:
     name: test_cmake_${{ matrix.toolchain }}
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -77,12 +102,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 5
+      - name: Install HDF5
+        if: matrix.compiler == 'mingw'
+        shell: pwsh
+        run: |
+          $env:PATH="$env:PATH;C:\msys64\mingw64\bin;C:\msys64\usr\bin;"
+          C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
+          C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-hdf5 mingw-w64-x86_64-pkgconf
       - name: Configure
         run: |
           if [ "${{ matrix.compiler }}" == "msvc" ]; then
             cmake -S "$SRCDIR" -B build
           elif [ "${{ matrix.compiler }}" == "mingw" ]; then
-            cmake -S "$SRCDIR" -B build -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -G "MinGW Makefiles"
+            cmake -S "$SRCDIR" -B build -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -DCMAKE_EXE_LINKER_FLAGS="-L/C:\msys64\mingw64\lib" -G "MinGW Makefiles"
           else
             cmake -S "$SRCDIR" -B build -DCMAKE_BUILD_TYPE=${{ matrix.configuration }} -DCMAKE_C_FLAGS="-Wall -Wextra"
           fi
@@ -96,6 +128,13 @@ jobs:
             cmake --build build -- -j8
           fi
       - name: Run tests
+        if: matrix.compiler == 'mingw'
+        shell: pwsh
+        run: |
+          $env:PATH="$env:PATH;C:\msys64\mingw64\bin;C:\msys64\usr\bin;"
+          ctest --no-tests=error --test-dir build --build-config ${{ matrix.configuration }} --parallel 8
+      - name: Run tests
+        if: matrix.compiler != 'mingw'
         run: ctest --no-tests=error --test-dir build --build-config ${{ matrix.configuration }} --parallel 8
 
   html_documentation_checks:
@@ -132,6 +171,7 @@ jobs:
           echo "::add-matcher::./.github/checkTags.json"
           python ./.CI/check_html.py checkTags ./
           echo "::remove-matcher owner=checkTags::"
+
   syntax_checks:
     timeout-minutes: 5
     runs-on: ubuntu-latest
@@ -150,6 +190,7 @@ jobs:
           echo "::add-matcher::./.github/moparser.json"
           ModelicaSyntaxChecker/Linux64/moparser -v 3.4 -r ExternData
           echo "::remove-matcher owner=moparser::"
+
   deprecation_checks:
     timeout-minutes: 5
     runs-on: ubuntu-latest
