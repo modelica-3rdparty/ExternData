@@ -32,7 +32,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       Documentation(info="<html><p>Library <strong>ExternData</strong> is a <a href=\"https://en.wikipedia.org/wiki/Modelica\">Modelica</a> utility library to access data stored in <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a>, <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a>, <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a>, <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT, <a href=\"https://ssp-standard.org/\">SSV</a> (System Structure Parameter Values), TIR, <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a>/<a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> and <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p></html>"));
   end UsersGuide;
 
-  record CSVFile "Read data values from CSV file"
+  model CSVFile "Read data values from CSV file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Comma-separated values files (*.csv);;Text files (*.txt)",
@@ -49,16 +49,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.CSV.getArrayRows2D(csv=csv) "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.CSV.getArrayColumns2D(csv=csv) "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternCSVFile\">ExternCSVFile</a> and the <a href=\"modelica://ExternData.Functions.CSV\">CSV</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Comma-separated_values\">CSV</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.CSVTest\">Examples.CSVTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.CSVFile to the model top level",
       Icon(graphics={
         Text(textColor={0,0,255},extent={{-85,-10},{85,-55}},textString=DynamicSelect("csv", if delimiter == " " then "c s v" elseif delimiter == "," then "c,s,v" elseif delimiter == "\t" then "c\\ts\\tv" elseif delimiter == ";" then "c;s;v" else "csv")),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end CSVFile;
 
-  record INIFile "Read data values from INI file"
+  model INIFile "Read data values from INI file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="INI files (*.ini);;Configuration files (*.cfg;*.conf;config.txt);;Text files (*.txt)",
@@ -74,16 +74,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getBoolean = Functions.INI.getBoolean(ini=ini, strict=true) "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.INI.getString(ini=ini) "Get scalar String value from INI file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/INI_file\">INI</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.INITest\">Examples.INITest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.INIFile to the model top level",
       Icon(graphics={
         Text(textColor={0,0,255},extent={{-85,-10},{85,-55}},textString="[ini]"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end INIFile;
 
-  record JSONFile "Read data values from JSON file"
+  model JSONFile "Read data values from JSON file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="JSON files (*.json)",
@@ -111,16 +111,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.JSON.getArrayRows2D(json=json) "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.JSON.getArrayColumns2D(json=json) "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternJSONFile\">ExternJSONFile</a> and the <a href=\"modelica://ExternData.Functions.JSON\">JSON</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/JSON\">JSON</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.JSONTest\">Examples.JSONTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.JSONFile to the model top level",
       Icon(graphics={
         Text(textColor={0,0,255},extent={{-85,-10},{85,-55}},textString="{\"json\"}"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end JSONFile;
 
-  record MATFile "Read data values from MATLAB MAT file"
+  model MATFile "Read data values from MATLAB MAT file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="MATLAB MAT files (*.mat)",
@@ -135,16 +135,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.MAT.getArrayRows2D(mat=mat) "Get first dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.MAT.getArrayColumns2D(mat=mat) "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternMATFile\">ExternMATFile</a> and the <a href=\"modelica://ExternData.Functions.MAT\">MAT</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/MATLAB\">MATLAB</a> MAT files.</p><p>See <a href=\"modelica://ExternData.Examples.MATTest\">Examples.MATTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.MATFile to the model top level",
       Icon(graphics={
         Text(extent={{5,85},{65,40}},textString="mat"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end MATFile;
 
-  record SSVFile "Read data values from SSV file"
+  model SSVFile "Read data values from SSV file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="SSV files (*.ssv;*.xml)",
@@ -167,16 +167,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.SSV.getArrayRows2D(ssv=ssv, nameSpace=nameSpace) "Get first dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.SSV.getArrayColumns2D(ssv=ssv, nameSpace=nameSpace) "Get second dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.SSV\">SSV</a> read functions for data access of System Structure Parameter Values.</p><p>See <a href=\"modelica://ExternData.Examples.SSVTest\">Examples.SSVTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.SSVFile to the model top level",
       Icon(graphics={
         Text(textColor={200,16,46},extent={{-85,-10},{85,-55}},textString="<ssv>"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end SSVFile;
 
-  record XLSFile "Read data values from Excel XLS file"
+  model XLSFile "Read data values from Excel XLS file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xls)",
@@ -197,16 +197,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.XLS.getArrayRows2D(xls=xls) "Get first dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XLS.getArrayColumns2D(xls=xls) "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSFile\">ExternXLSFile</a> and the <a href=\"modelica://ExternData.Functions.XLS\">XLS</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#Binary\">XLS</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSTest\">Examples.XLSTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XLSFile to the model top level",
       Icon(graphics={
         Text(textColor={0,127,0},extent={{-85,-10},{85,-55}},textString="xls"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSFile;
 
-  record XLSXFile "Read data values from Excel XLSX file"
+  model XLSXFile "Read data values from Excel XLSX file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="Excel files (*.xlsx)",
@@ -226,16 +226,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.XLSX.getArrayRows2D(xlsx=xlsx) "Get first dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XLSX.getArrayColumns2D(xlsx=xlsx) "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXLSXFile\">ExternXLSXFile</a> and the <a href=\"modelica://ExternData.Functions.XLSX\">XLSX</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel\">Excel</a> <a href=\"https://en.wikipedia.org/wiki/Microsoft_Excel#XML_Spreadsheet\">XLSX</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XLSXTest\">Examples.XLSXTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XLSXFile to the model top level",
       Icon(graphics={
         Text(textColor={0,127,255},extent={{-85,-10},{85,-55}},textString="xlsx"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XLSXFile;
 
-  record XMLFile "Read data values from XML file"
+  model XMLFile "Read data values from XML file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
@@ -257,16 +257,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.XML.getArrayRows2D(xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XML.getArrayColumns2D(xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> or <a href=\"modelica://ExternData.Examples.XMLTest2\">Examples.XMLTest2</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXMLFile\">ExternXMLFile</a> and the <a href=\"modelica://ExternData.Functions.XML\">XML</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTest\">Examples.XMLTest</a> or <a href=\"modelica://ExternData.Examples.XMLTest2\">Examples.XMLTest2</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XMLFile to the model top level",
       Icon(graphics={
         Text(textColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XMLFile;
 
-  record XML2File "Read data values from XML file (utilizing XPath expressions)"
+  model XML2File "Read data values from XML file (utilizing XPath expressions)"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="XML files (*.xml)",
@@ -289,16 +289,16 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getArrayRows2D = Functions.XML2.getArrayRows2D(xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XML2.getArrayColumns2D(xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.XML2\">XML2</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XML2Test\">Examples.XML2Test</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternXML2File\">ExternXML2File</a> and the <a href=\"modelica://ExternData.Functions.XML2\">XML2</a> read functions for data access of <a href=\"https://en.wikipedia.org/wiki/XML\">XML</a> files.</p><p>See <a href=\"modelica://ExternData.Examples.XML2Test\">Examples.XML2Test</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.XML2File to the model top level",
       Icon(graphics={
         Text(textColor={255,128,0},extent={{-85,-10},{85,-55}},textString="<?xml?>"),
         Text(textColor={0,0,255},extent={{-150,150},{150,110}},textString="%name")}));
   end XML2File;
 
-  record TIRFile "Read data values from TIR file"
+  model TIRFile "Read data values from TIR file"
     parameter String fileName = "" "File where external data is stored"
       annotation(Dialog(
         loadSelector(filter="TIR files (*.tir)",
@@ -314,9 +314,9 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getBoolean = Functions.INI.getBoolean(ini=tir, strict=false) "Get scalar Boolean value from TIR file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.INI.getString(ini=tir) "Get scalar String value from TIR file" annotation(Documentation(info="<html></html>")));
     annotation(
-      Documentation(info="<html><p>Record that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of tyre data (TIR) files.</p><p>See <a href=\"modelica://ExternData.Examples.TIRTest\">Examples.TIRTest</a> for an example.</p></html>"),
+      Documentation(info="<html><p>Model that wraps the external object <a href=\"modelica://ExternData.Types.ExternINIFile\">ExternINIFile</a> and the <a href=\"modelica://ExternData.Functions.INI\">INI</a> read functions for data access of tyre data (TIR) files.</p><p>See <a href=\"modelica://ExternData.Examples.TIRTest\">Examples.TIRTest</a> for an example.</p></html>"),
       defaultComponentName="dataSource",
-      defaultComponentPrefixes="inner parameter",
+      defaultComponentPrefixes="inner",
       missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.TIRFile to the model top level",
       Icon(graphics={
         Text(textColor={0,0,255},extent={{-36,84},{88,40}},textString="[tir]"),
@@ -1451,8 +1451,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   package Interfaces "Interfaces"
     extends Modelica.Icons.InterfacesPackage;
 
-    partial record DataSource "Place holder for file based data source"
-      extends Modelica.Icons.Record;
+    partial model DataSource "Place holder for file based data source"
 
       partial function getReal "Get scalar Real value from data source"
         extends Modelica.Icons.Function;
@@ -1535,31 +1534,31 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       end getArrayColumns2D;
 
       annotation(
-        Documentation(info="<html><p>Place holder record that can be used as generic outer parameter instance in component models to reference an implemented inner parameter instance of <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>, <a href=\"modelica://ExternData.INIFile\">INIFile</a>, <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>, <a href=\"modelica://ExternData.MATFile\">MATFile</a>, <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>, <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>, <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>, <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>, <a href=\"modelica://ExternData.XML2File\">XML2File</a>, or <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTestInnerOuter.Component\">Examples.XMLTestInnerOuter.Component</a> for an example.</p></html>"),
+        Documentation(info="<html><p>Place holder model that can be used as generic outer instance in component models to reference an implemented inner instance of <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>, <a href=\"modelica://ExternData.INIFile\">INIFile</a>, <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>, <a href=\"modelica://ExternData.MATFile\">MATFile</a>, <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>, <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>, <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>, <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>, <a href=\"modelica://ExternData.XML2File\">XML2File</a>, or <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTestInnerOuter.Component\">Examples.XMLTestInnerOuter.Component</a> for an example.</p></html>"),
         defaultComponentName="dataSource",
-        defaultComponentPrefixes="outer parameter",
+        defaultComponentPrefixes="outer",
         missingInnerMessage="No \"dataSource\" component is defined, please drag ExternData.CSVFile, ExternData.INIFile, ExternData.JSONFile, ExternData.MATFile, ExternData.SSVFile, ExternData.XLSFile, ExternData.XLSXFile, ExternData.XMLFile, ExternData.XML2File, or ExternData.TIRFile to the model top level");
     end DataSource;
 
     partial block DataSourceBlock "Base block containing an outer place holder data source"
-      outer parameter ExternData.Interfaces.DataSource dataSource "File based data source" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      annotation(Documentation(info="<html><p>Partial base block that declares an outer parameter instance of generic record type <a href=\"modelica://ExternData.Interfaces.DataSource\">DataSource</a>.</p></html>"));
+      outer ExternData.Interfaces.DataSource dataSource "File based data source" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation(Documentation(info="<html><p>Partial base block that declares an outer instance of generic model type <a href=\"modelica://ExternData.Interfaces.DataSource\">DataSource</a>.</p></html>"));
     end DataSourceBlock;
 
     partial model DataSourceModel "Base model containing an outer place holder data source"
-      outer parameter ExternData.Interfaces.DataSource dataSource "File based data source" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
-      annotation(Documentation(info="<html><p>Partial base model that declares an outer parameter instance of generic record type <a href=\"modelica://ExternData.Interfaces.DataSource\">DataSource</a>.</p></html>"));
+      outer ExternData.Interfaces.DataSource dataSource "File based data source" annotation(Placement(transformation(extent={{-80,60},{-60,80}})));
+      annotation(Documentation(info="<html><p>Partial base model that declares an outer instance of generic model  type <a href=\"modelica://ExternData.Interfaces.DataSource\">DataSource</a>.</p></html>"));
     end DataSourceModel;
 
     package CSV "CSV file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for CSV file"
+      partial model Base "Interface for CSV file"
         replaceable function getRealArray2D = CSV.getRealArray2D "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArraySize2D = CSV.getArraySize2D "Get dimensions of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = CSV.getArrayRows2D "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = CSV.getArrayColumns2D "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid)}));
@@ -1604,13 +1603,13 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package INI "INI file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for INI file and TIR file"
+      partial model Base "Interface for INI file and TIR file"
         replaceable function getReal = INI.getReal "Get scalar Real value from INI file" annotation(Documentation(info="<html></html>"));
         replaceable function getInteger = INI.getInteger "Get scalar Integer value from INI file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = INI.getBoolean "Get scalar Boolean value from INI file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = INI.getString "Get scalar String value from INI file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.INIFile\">INIFile</a> and <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.INIFile\">INIFile</a> and <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid)}));
@@ -1662,7 +1661,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package JSON "JSON file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for JSON file"
+      partial model Base "Interface for JSON file"
         replaceable function getReal = JSON.getReal "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray1D = JSON.getRealArray1D "Get 1D Real values from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray2D = JSON.getRealArray2D "Get 2D Real values from JSON file" annotation(Documentation(info="<html></html>"));
@@ -1680,7 +1679,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getArrayRows2D = JSON.getArrayRows2D "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = JSON.getArrayColumns2D "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillPattern=FillPattern.Solid)}));
@@ -1826,14 +1825,14 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package MAT "MAT file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for MAT file"
+      partial model Base "Interface for MAT file"
         replaceable function getRealArray2D = MAT.getRealArray2D "Get 2D Real values from MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getStringArray1D = MAT.getStringArray1D "Get 1D String values from MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getArraySize2D = MAT.getArraySize2D "Get dimensions of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = MAT.getArrayRows2D "Get first dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = MAT.getArrayColumns2D "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.MATFile\">MATFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.MATFile\">MATFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={241,219,48},fillPattern=FillPattern.Solid),
@@ -1896,7 +1895,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package SSV "SSV file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for SSV file"
+      partial model Base "Interface for SSV file"
         replaceable function getReal = SSV.getReal "Get scalar Real value from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray1D = SSV.getRealArray1D "Get 1D Real values from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray2D = SSV.getRealArray2D "Get 2D Real values from SSV file" annotation(Documentation(info="<html></html>"));
@@ -1908,7 +1907,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getArrayRows2D = SSV.getArrayRows2D "Get first dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = SSV.getArrayColumns2D "Get second dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={200,16,46},fillPattern=FillPattern.Solid)}));
@@ -2011,7 +2010,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XLS "Excel XLS file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for Excel XLS file"
+      partial model Base "Interface for Excel XLS file"
         replaceable function getReal = XLS.getReal "Get scalar Real value from Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray2D = XLS.getRealArray2D "Get 2D Real values from Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getInteger = XLS.getInteger "Get scalar Integer value from Excel XLS file" annotation(Documentation(info="<html></html>"));
@@ -2021,7 +2020,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getArrayRows2D = XLS.getArrayRows2D "Get first dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XLS.getArrayColumns2D "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
@@ -2126,7 +2125,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XLSX "Excel XLSX file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for Excel XLSX file"
+      partial model Base "Interface for Excel XLSX file"
         replaceable function getReal = XLSX.getReal "Get scalar Real value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray2D = XLSX.getRealArray2D "Get 2D Real values from Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getInteger = XLSX.getInteger "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
@@ -2136,7 +2135,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getArrayRows2D = XLSX.getArrayRows2D "Get first dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XLSX.getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Rectangle(extent={{80,70},{40,50}},lineColor={215,215,215},fillColor={215,215,215},fillPattern=FillPattern.Solid),
@@ -2241,7 +2240,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XML "XML file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for XML file"
+      partial model Base "Interface for XML file"
         replaceable function getReal = XML.getReal "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray1D = XML.getRealArray1D "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray2D = XML.getRealArray2D "Get 2D Real values from XML file" annotation(Documentation(info="<html></html>"));
@@ -2253,7 +2252,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getArrayRows2D = XML.getArrayRows2D "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XML.getArrayColumns2D "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid)}));
@@ -2344,7 +2343,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
 
     package XML2 "XML2 file interfaces"
       extends Modelica.Icons.InterfacesPackage;
-      partial record Base "Interface for XML2 file"
+      partial model Base "Interface for XML2 file"
         replaceable function getReal = XML2.getReal "Get scalar Real value from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray1D = XML2.getRealArray1D "Get 1D Real values from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getRealArray2D = XML2.getRealArray2D "Get 2D Real values from XML file" annotation(Documentation(info="<html></html>"));
@@ -2356,7 +2355,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getArrayRows2D = XML2.getArrayRows2D "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XML2.getArrayColumns2D "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
       annotation(
-        Documentation(info="<html><p>Base record that defines the function interfaces for <a href=\"modelica://ExternData.XML2File\">XML2File</a>.</p></html>"),
+        Documentation(info="<html><p>Base model that defines the function interfaces for <a href=\"modelica://ExternData.XML2File\">XML2File</a>.</p></html>"),
         Icon(graphics={
           Line(points={{-40,90},{-90,40},{-90,-90},{90,-90},{90,90},{-40,90}}),
           Polygon(points={{-40,90},{-40,40},{-90,40},{-40,90}},fillColor={255,128,0},fillPattern=FillPattern.Solid)}));
