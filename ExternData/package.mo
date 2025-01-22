@@ -45,7 +45,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
     final parameter Types.ExternCSVFile csv = Types.ExternCSVFile(fileName, delimiter, quotation, nHeaderLines, verboseRead) "External CSV file object";
     extends Interfaces.CSV.Base(
       redeclare final function getRealArray2D = Functions.CSV.getRealArray2D(csv=csv) "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.CSV.getArraySize2D(csv=csv) "Get the size of a 2D array in a CSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.CSV.getArraySize2D(csv=csv) "Get dimensions of 2D array in CSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.CSV.getArrayRows2D(csv=csv) "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.CSV.getArrayColumns2D(csv=csv) "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -95,19 +95,19 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
     final parameter Types.ExternJSONFile json = Types.ExternJSONFile(fileName, verboseRead, detectMissingData) "External JSON file object";
     extends Interfaces.JSON.Base(
       redeclare final function getReal = Functions.JSON.getReal(json=json) "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getRealArray1D = Functions.JSON.getRealArray1D(json=json) "Get 1D array Real value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getRealArray2D = Functions.JSON.getRealArray2D(json=json) "Get 2D array Real value from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getRealArray1D = Functions.JSON.getRealArray1D(json=json) "Get 1D Real values from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getRealArray2D = Functions.JSON.getRealArray2D(json=json) "Get 2D Real values from JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getInteger = Functions.JSON.getInteger(json=json) "Get scalar Integer value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getIntegerArray1D = Functions.JSON.getIntegerArray1D(json=json) "Get 1D array Integer value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getIntegerArray2D = Functions.JSON.getIntegerArray2D(json=json) "Get 2D array Integer value from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getIntegerArray1D = Functions.JSON.getIntegerArray1D(json=json) "Get 1D Integer values from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getIntegerArray2D = Functions.JSON.getIntegerArray2D(json=json) "Get 2D Integer values from JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.JSON.getBoolean(json=json) "Get scalar Boolean value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getBooleanArray1D = Functions.JSON.getBooleanArray1D(json=json) "Get 1D array Boolean value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getBooleanArray2D = Functions.JSON.getBooleanArray2D(json=json) "Get 2D array Boolean value from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getBooleanArray1D = Functions.JSON.getBooleanArray1D(json=json) "Get 1D Boolean values from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getBooleanArray2D = Functions.JSON.getBooleanArray2D(json=json) "Get 2D Boolean values from JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.JSON.getString(json=json) "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getStringArray1D = Functions.JSON.getStringArray1D(json=json) "Get 1D array String value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getStringArray2D = Functions.JSON.getStringArray2D(json=json) "Get 2D array String value from JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize1D = Functions.JSON.getArraySize1D(json=json) "Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.JSON.getArraySize2D(json=json) "Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getStringArray1D = Functions.JSON.getStringArray1D(json=json) "Get 1D String values from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getStringArray2D = Functions.JSON.getStringArray2D(json=json) "Get 2D String values from JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize1D = Functions.JSON.getArraySize1D(json=json) "Get length of 1D array in JSON file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.JSON.getArraySize2D(json=json) "Get dimensions of 2D array in JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.JSON.getArrayRows2D(json=json) "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.JSON.getArrayColumns2D(json=json) "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -131,7 +131,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
     extends Interfaces.MAT.Base(
       redeclare final function getRealArray2D = Functions.MAT.getRealArray2D(mat=mat) "Get 2D Real values from MAT file" annotation(Documentation(info="<html></html>")),
       redeclare final function getStringArray1D = Functions.MAT.getStringArray1D(mat=mat) "Get 1D String values from MAT file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.MAT.getArraySize2D(mat=mat) "Get the size of a 2D array in a MAT file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.MAT.getArraySize2D(mat=mat) "Get dimensions of 2D array in MAT file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.MAT.getArrayRows2D(mat=mat) "Get first dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.MAT.getArrayColumns2D(mat=mat) "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -162,8 +162,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getInteger = Functions.SSV.getInteger(ssv=ssv, nameSpace=nameSpace) "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.SSV.getBoolean(ssv=ssv, nameSpace=nameSpace) "Get scalar Boolean value from SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.SSV.getString(ssv=ssv, nameSpace=nameSpace) "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize1D = Functions.SSV.getArraySize1D(ssv=ssv, nameSpace=nameSpace) "Get the size of a 1D array in a SSV file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.SSV.getArraySize2D(ssv=ssv, nameSpace=nameSpace) "Get the size of a 2D array in a SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize1D = Functions.SSV.getArraySize1D(ssv=ssv, nameSpace=nameSpace) "Get length of 1D array in SSV file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.SSV.getArraySize2D(ssv=ssv, nameSpace=nameSpace) "Get dimensions of 2D array in SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.SSV.getArrayRows2D(ssv=ssv, nameSpace=nameSpace) "Get first dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.SSV.getArrayColumns2D(ssv=ssv, nameSpace=nameSpace) "Get second dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -193,7 +193,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getInteger = Functions.XLS.getInteger(xls=xls) "Get scalar Integer value from Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.XLS.getBoolean(xls=xls) "Get scalar Boolean value from Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.XLS.getString(xls=xls) "Get scalar String value from Excel XLS file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.XLS.getArraySize2D(xls=xls) "Get the size of a 2D array in a Excel XLS file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.XLS.getArraySize2D(xls=xls) "Get dimensions of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.XLS.getArrayRows2D(xls=xls) "Get first dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XLS.getArrayColumns2D(xls=xls) "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -222,7 +222,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getInteger = Functions.XLSX.getInteger(xlsx=xlsx) "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.XLSX.getBoolean(xlsx=xlsx) "Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.XLSX.getString(xlsx=xlsx) "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.XLSX.getArraySize2D(xlsx=xlsx) "Get the size of a 2D array in a Excel XLSX file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.XLSX.getArraySize2D(xlsx=xlsx) "Get dimensions of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.XLSX.getArrayRows2D(xlsx=xlsx) "Get first dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XLSX.getArrayColumns2D(xlsx=xlsx) "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -252,8 +252,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getInteger = Functions.XML.getInteger(xml=xml) "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.XML.getBoolean(xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.XML.getString(xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize1D = Functions.XML.getArraySize1D(xml=xml) "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.XML.getArraySize2D(xml=xml) "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize1D = Functions.XML.getArraySize1D(xml=xml) "Get length of 1D array in XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.XML.getArraySize2D(xml=xml) "Get dimensions of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.XML.getArrayRows2D(xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XML.getArrayColumns2D(xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -284,8 +284,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       redeclare final function getInteger = Functions.XML2.getInteger(xml=xml) "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getBoolean = Functions.XML2.getBoolean(xml=xml) "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getString = Functions.XML2.getString(xml=xml) "Get scalar String value from XML file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize1D = Functions.XML2.getArraySize1D(xml=xml) "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>")),
-      redeclare final function getArraySize2D = Functions.XML2.getArraySize2D(xml=xml) "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize1D = Functions.XML2.getArraySize1D(xml=xml) "Get length of 1D array in XML file" annotation(Documentation(info="<html></html>")),
+      redeclare final function getArraySize2D = Functions.XML2.getArraySize2D(xml=xml) "Get dimensions of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayRows2D = Functions.XML2.getArrayRows2D(xml=xml) "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")),
       redeclare final function getArrayColumns2D = Functions.XML2.getArrayColumns2D(xml=xml) "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>")));
     annotation(
@@ -1474,7 +1474,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       extends Modelica.Icons.InterfacesPackage;
       partial record Base "Interface for CSV file"
         replaceable function getRealArray2D = CSV.getRealArray2D "Get 2D Real values from CSV file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = CSV.getArraySize2D "Get the size of a 2D array in a CSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = CSV.getArraySize2D "Get dimensions of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = CSV.getArrayRows2D "Get first dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = CSV.getArrayColumns2D "Get second dimension of 2D array in CSV file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -1583,19 +1583,19 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       extends Modelica.Icons.InterfacesPackage;
       partial record Base "Interface for JSON file"
         replaceable function getReal = JSON.getReal "Get scalar Real value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getRealArray1D = JSON.getRealArray1D "Get 1D array Real value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getRealArray2D = JSON.getRealArray2D "Get 2D array Real value from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getRealArray1D = JSON.getRealArray1D "Get 1D Real values from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getRealArray2D = JSON.getRealArray2D "Get 2D Real values from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getInteger = JSON.getInteger "Get scalar Integer value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getIntegerArray1D = JSON.getIntegerArray1D "Get 1D array Integer value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getIntegerArray2D = JSON.getIntegerArray2D "Get 2D array Integer value from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getIntegerArray1D = JSON.getIntegerArray1D "Get 1D Integer values from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getIntegerArray2D = JSON.getIntegerArray2D "Get 2D Integer values from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = JSON.getBoolean "Get scalar Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getBooleanArray1D = JSON.getBooleanArray1D "Get 1D array Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getBooleanArray2D = JSON.getBooleanArray2D "Get 2D array Boolean value from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getBooleanArray1D = JSON.getBooleanArray1D "Get 1D Boolean values from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getBooleanArray2D = JSON.getBooleanArray2D "Get 2D Boolean values from JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = JSON.getString "Get scalar String value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getStringArray1D = JSON.getStringArray1D "Get 1D array String value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getStringArray2D = JSON.getStringArray2D "Get 2D array String value from JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize1D = JSON.getArraySize1D "Get the size of a 1D array in a JSON file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = JSON.getArraySize2D "Get the size of a 2D array in a JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getStringArray1D = JSON.getStringArray1D "Get 1D String values from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getStringArray2D = JSON.getStringArray2D "Get 2D String values from JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = JSON.getArraySize1D "Get length of 1D array in JSON file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = JSON.getArraySize2D "Get dimensions of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = JSON.getArrayRows2D "Get first dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = JSON.getArrayColumns2D "Get second dimension of 2D array in JSON file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -1748,7 +1748,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
       partial record Base "Interface for MAT file"
         replaceable function getRealArray2D = MAT.getRealArray2D "Get 2D Real values from MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getStringArray1D = MAT.getStringArray1D "Get 1D String values from MAT file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = MAT.getArraySize2D "Get the size of a 2D array in a MAT file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = MAT.getArraySize2D "Get dimensions of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = MAT.getArrayRows2D "Get first dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = MAT.getArrayColumns2D "Get second dimension of 2D array in MAT file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -1822,8 +1822,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getInteger = SSV.getInteger "Get scalar Integer value from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = SSV.getBoolean "Get scalar Boolean value from SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = SSV.getString "Get scalar String value from SSV file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize1D = SSV.getArraySize1D "Get the size of a 1D array in a SSV file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = SSV.getArraySize2D "Get the size of a 2D array in a SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = SSV.getArraySize1D "Get length of 1D array in SSV file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = SSV.getArraySize2D "Get dimensions of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = SSV.getArrayRows2D "Get first dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = SSV.getArrayColumns2D "Get second dimension of 2D array in SSV file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -1936,7 +1936,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getInteger = XLS.getInteger "Get scalar Integer value from Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = XLS.getBoolean "Get scalar Boolean value from Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = XLS.getString "Get scalar String value from Excel XLS file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = XLS.getArraySize2D "Get the size of a 2D array in a Excel XLS file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = XLS.getArraySize2D "Get dimensions of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = XLS.getArrayRows2D "Get first dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XLS.getArrayColumns2D "Get second dimension of 2D array in Excel XLS file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -2051,7 +2051,7 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getInteger = XLSX.getInteger "Get scalar Integer value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = XLSX.getBoolean"Get scalar Boolean value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = XLSX.getString "Get scalar String value from Excel XLSX file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = XLSX.getArraySize2D "Get the size of a 2D array in a Excel XLSX file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = XLSX.getArraySize2D "Get dimensions of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = XLSX.getArrayRows2D "Get first dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XLSX.getArrayColumns2D "Get second dimension of 2D array in Excel XLSX file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -2167,8 +2167,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getInteger = XML.getInteger "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = XML.getBoolean "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = XML.getString "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize1D = XML.getArraySize1D "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = XML.getArraySize2D "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = XML.getArraySize1D "Get length of 1D array in XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = XML.getArraySize2D "Get dimensions of 2D array in XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = XML.getArrayRows2D "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XML.getArrayColumns2D "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
       annotation(
@@ -2270,8 +2270,8 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
         replaceable function getInteger = XML2.getInteger "Get scalar Integer value from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getBoolean = XML2.getBoolean "Get scalar Boolean value from XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getString = XML2.getString "Get scalar String value from XML file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize1D = XML2.getArraySize1D "Get the size of a 1D array in a XML file" annotation(Documentation(info="<html></html>"));
-        replaceable function getArraySize2D = XML2.getArraySize2D "Get the size of a 2D array in a XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize1D = XML2.getArraySize1D "Get length of 1D array in XML file" annotation(Documentation(info="<html></html>"));
+        replaceable function getArraySize2D = XML2.getArraySize2D "Get dimensions of 2D array in XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayRows2D = XML2.getArrayRows2D "Get first dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
         replaceable function getArrayColumns2D = XML2.getArrayColumns2D "Get second dimension of 2D array in XML file" annotation(Documentation(info="<html></html>"));
       annotation(
