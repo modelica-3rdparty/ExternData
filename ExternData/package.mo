@@ -1451,8 +1451,89 @@ package ExternData "Library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR
   package Interfaces "Interfaces"
     extends Modelica.Icons.InterfacesPackage;
 
-    record DataSource "Place holder for file based data source"
+    partial record DataSource "Place holder for file based data source"
       extends Modelica.Icons.Record;
+
+      partial function getReal "Get scalar Real value from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getReal;
+
+      partial function getRealArray1D "Get 1D Real values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getRealArray1D;
+
+      partial function getRealArray2D "Get 2D Real values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getRealArray2D;
+
+      partial function getInteger "Get scalar Integer value from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getInteger;
+
+      partial function getIntegerArray1D "Get 1D Integer values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getIntegerArray1D;
+
+      partial function getIntegerArray2D "Get 2D Integer values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getIntegerArray2D;
+
+      partial function getBoolean "Get scalar Boolean value from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getBoolean;
+
+      partial function getBooleanArray1D "Get 1D Boolean values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getBooleanArray1D;
+
+      partial function getBooleanArray2D "Get 2D Boolean values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getBooleanArray2D;
+
+      partial function getString "Get scalar String value from data source"
+        extends Interfaces.partialGetString;
+        annotation(Documentation(info="<html></html>"));
+      end getString;
+
+      partial function getStringArray1D "Get 1D String values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getStringArray1D;
+
+      partial function getStringArray2D "Get 2D String values from data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getStringArray2D;
+
+      partial function getArraySize1D "Get length of 1D array in data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getArraySize1D;
+
+      partial function getArraySize2D "Get dimensions of 2D array in data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getArraySize2D;
+
+      partial function getArrayRows2D "Get first dimension of 2D array in data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getArrayRows2D;
+
+      partial function getArrayColumns2D "Get second dimension of 2D array in data source"
+        extends Modelica.Icons.Function;
+        annotation(Documentation(info="<html></html>"));
+      end getArrayColumns2D;
+
       annotation(
         Documentation(info="<html><p>Place holder record that can be used as generic outer parameter instance in component models to reference an implemented inner parameter instance of <a href=\"modelica://ExternData.CSVFile\">CSVFile</a>, <a href=\"modelica://ExternData.INIFile\">INIFile</a>, <a href=\"modelica://ExternData.JSONFile\">JSONFile</a>, <a href=\"modelica://ExternData.MATFile\">MATFile</a>, <a href=\"modelica://ExternData.SSVFile\">SSVFile</a>, <a href=\"modelica://ExternData.XLSFile\">XLSFile</a>, <a href=\"modelica://ExternData.XLSXFile\">XLSXFile</a>, <a href=\"modelica://ExternData.XMLFile\">XMLFile</a>, <a href=\"modelica://ExternData.XML2File\">XML2File</a>, or <a href=\"modelica://ExternData.TIRFile\">TIRFile</a>.</p><p>See <a href=\"modelica://ExternData.Examples.XMLTestInnerOuter.Component\">Examples.XMLTestInnerOuter.Component</a> for an example.</p></html>"),
         defaultComponentName="dataSource",
