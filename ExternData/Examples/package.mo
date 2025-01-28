@@ -81,14 +81,14 @@ package Examples "Test examples"
     Modelica.Blocks.Sources.ContinuousClock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     final parameter Integer m = dataSource.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=dataSource.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    final parameter Real sumB = computeColSum(dataSource, "B") "Sum of column B";
+    final parameter Real sumB = computeColSum(dataSource.xls, "B") "Sum of column B";
     function computeColSum "Compute column sum"
       extends Modelica.Icons.Function;
-      input ExternData.XLSFile dataSource "Excel XLS file record";
+      input ExternData.Types.ExternXLSFile xls "External Excel XLS file object";
       input String col = "A" "Column";
       input String sheetName = "" "Sheet name";
       input Integer startRow = 2 "Start row";
-      input Integer endRow = ExternData.Functions.XLS.getArrayRows2D(sheetName=sheetName, xls=dataSource.xls) "End row";
+      input Integer endRow = ExternData.Functions.XLS.getArrayRows2D(sheetName=sheetName, xls=xls) "End row";
       output Real colSum "Column sum";
       protected
         Real val;
@@ -96,7 +96,7 @@ package Examples "Test examples"
       algorithm
         colSum := 0.0;
         for row in startRow:endRow loop
-          (val, exist) := ExternData.Functions.XLS.getReal(cellAddress=col + String(row), sheetName=sheetName, xls=dataSource.xls);
+          (val, exist) := ExternData.Functions.XLS.getReal(cellAddress=col + String(row), sheetName=sheetName, xls=xls);
           if exist then
             colSum := colSum + val;
           end if;
@@ -119,14 +119,14 @@ package Examples "Test examples"
     Modelica.Blocks.Sources.ContinuousClock clock annotation(Placement(transformation(extent={{-50,60},{-30,80}})));
     final parameter Integer m = dataSource.getArrayRows2D("table1") "Number of rows in 2D array";
     Modelica.Blocks.Sources.TimeTable timeTable(table=dataSource.getRealArray2D("A1", "table1", 3, 2)) annotation(Placement(transformation(extent={{-50,30},{-30,50}})));
-    final parameter Real sumB = computeColSum(dataSource, "B") "Sum of column B";
+    final parameter Real sumB = computeColSum(dataSource.xlsx, "B") "Sum of column B";
     function computeColSum "Compute column sum"
       extends Modelica.Icons.Function;
-      input ExternData.XLSXFile dataSource "Excel XLSX file record";
+      input ExternData.Types.ExternXLSXFile xlsx "External Excel XLSX file object";
       input String col = "A" "Column";
       input String sheetName = "" "Sheet name";
       input Integer startRow = 2 "Start row";
-      input Integer endRow = ExternData.Functions.XLSX.getArrayRows2D(sheetName=sheetName, xlsx=dataSource.xlsx) "End row";
+      input Integer endRow = ExternData.Functions.XLSX.getArrayRows2D(sheetName=sheetName, xlsx=xlsx) "End row";
       output Real colSum "Column sum";
       protected
         Real val;
@@ -134,7 +134,7 @@ package Examples "Test examples"
       algorithm
         colSum := 0.0;
         for row in startRow:endRow loop
-          (val, exist) := ExternData.Functions.XLSX.getReal(cellAddress=col + String(row), sheetName=sheetName, xlsx=dataSource.xlsx);
+          (val, exist) := ExternData.Functions.XLSX.getReal(cellAddress=col + String(row), sheetName=sheetName, xlsx=xlsx);
           if exist then
             colSum := colSum + val;
           end if;
