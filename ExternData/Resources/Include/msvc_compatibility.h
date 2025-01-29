@@ -23,14 +23,14 @@
 extern "C" {
 #endif
 
-extern long timezone = 0;
+__declspec(selectany) extern long timezone = 0;
 
 #if defined(G_HAS_CONSTRUCTORS)
 #ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
 #pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(Timezone_initialize)
 #endif
 G_DEFINE_CONSTRUCTOR(Timezone_initialize)
-static void Timezone_initialize(void) {
+static inline void Timezone_initialize(void) {
 	_get_timezone(&timezone);
 }
 #endif

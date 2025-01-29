@@ -46,6 +46,8 @@ if(EXISTS "${ED_TEST_DIR}")
   foreach(TEST ${ED_TESTS})
     add_executable(${TEST}
       "${ED_TEST_DIR}/${TEST}.cc"
+      "${ED_TEST_DIR}/Test_Linkage.cc"
+      "${ED_TEST_DIR}/Test_Linkage.c"
       "${ED_TEST_DIR}/Constants.h"
     )
     target_compile_features(${TEST} PRIVATE cxx_std_17)
@@ -73,6 +75,8 @@ if(EXISTS "${ED_TEST_DIR}")
     )
     if(UNIX)
       list(APPEND ED_ALL_LIBS m)
+    elseif(MSVC)
+      target_link_options(${TEST} PRIVATE "/FORCE:MULTIPLE")
     endif()
     target_link_libraries(${TEST} PRIVATE ${ED_ALL_LIBS})
 
