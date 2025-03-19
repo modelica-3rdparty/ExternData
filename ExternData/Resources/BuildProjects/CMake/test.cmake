@@ -19,7 +19,7 @@ set_target_properties(gtest gtest_main PROPERTIES FOLDER "Test/Third-party")
 
 set(ED_TEST_DIR "${ED_RESOURCES_DIR}/Test")
 if(EXISTS "${ED_TEST_DIR}")
-  set(MSL_URL https://raw.githubusercontent.com/modelica/ModelicaStandardLibrary/master)
+  set(MSL_URL https://raw.githubusercontent.com/modelica/ModelicaStandardLibrary/7ac7906706d000c1fc67a5812cd866618b63ffaf)
   if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/EDTestCommon")
     file(DOWNLOAD
       "${MSL_URL}/.CI/Test/Common.c"
