@@ -16,7 +16,7 @@
 #endif
 
 #include "uthash.h"
-#include "gconstructor.h"
+#include "g2constructor.h"
 
 typedef struct {
 	void* key;
@@ -25,24 +25,24 @@ typedef struct {
 
 static PtrTrack* ptrTrack = NULL;
 
-#if defined(G_HAS_CONSTRUCTORS)
+#if defined(G2_HAS_CONSTRUCTORS)
 #if !defined(WIN32_LEAN_AND_MEAN)
 #define WIN32_LEAN_AND_MEAN
 #endif
 #include <windows.h>
 static CRITICAL_SECTION cs;
-#ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(ED_initializeCS)
+#ifdef G2_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
+#pragma G2_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(G2_FUNCNAME(ED_initializeCS))
 #endif
-G_DEFINE_CONSTRUCTOR(ED_initializeCS)
-static void ED_initializeCS(void) {
+G2_DEFINE_CONSTRUCTOR(G2_FUNCNAME(ED_initializeCS))
+static void G2_FUNCNAME(ED_initializeCS)(void) {
 	InitializeCriticalSection(&cs);
 }
-#ifdef G_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(ED_cleanUp)
+#ifdef G2_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
+#pragma G2_DEFINE_DESTRUCTOR_PRAGMA_ARGS(G2_FUNCNAME(ED_cleanUp))
 #endif
-G_DEFINE_DESTRUCTOR(ED_cleanUp)
-static void ED_cleanUp(void) {
+G2_DEFINE_DESTRUCTOR(G2_FUNCNAME(ED_cleanUp))
+static void G2_FUNCNAME(ED_cleanUp)(void) {
 	PtrTrack* iter;
 	PtrTrack* tmp;
 	DeleteCriticalSection(&cs);

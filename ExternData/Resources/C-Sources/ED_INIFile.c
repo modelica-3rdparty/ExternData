@@ -20,7 +20,7 @@
 #include "array.h"
 #include "ini.h"
 #include "ModelicaUtilities.h"
-#include "../Include/ED_INIFile.h"
+#include "ED_INIFile.h"
 
 typedef struct {
 	char* key;

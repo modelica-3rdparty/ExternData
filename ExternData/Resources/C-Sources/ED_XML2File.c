@@ -22,7 +22,7 @@
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
 #include "ModelicaUtilities.h"
-#include "../Include/ED_XML2File.h"
+#include "ED_XML2File.h"
 
 /* The standard way to detect posix is to check _POSIX_VERSION,
  * which is defined in <unistd.h>

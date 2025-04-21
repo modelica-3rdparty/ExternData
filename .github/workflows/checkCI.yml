@@ -68,7 +68,7 @@ jobs:
         run: |
           $env:PATH="$env:PATH;C:\msys64\mingw64\bin;C:\msys64\usr\bin;"
           pushd ExternData/Resources/C-Sources
-          mingw32-make CC="gcc" CFLAGS="-O3 -DNDEBUG" INC="-Ibsxml-json -Iexpat/lib -IC:\msys64\mingw64\include -Iinih -Ilibxls/include -Iminizip -Imodelica -Izlib -Iparson -Ilibxml2/include" TARGETDIR="mingw64"
+          mingw32-make CC="gcc" CFLAGS="-O3 -DNDEBUG" INC="-I../Include -Ibsxml-json -Iexpat/lib -IC:\msys64\mingw64\include -Iinih -Ilibxls/include -Iminizip -Imodelica -Izlib -Iparson -Ilibxml2/include" TARGETDIR="mingw64"
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:

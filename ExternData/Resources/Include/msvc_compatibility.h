@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <intrin.h>
-#include "gconstructor.h"
+#include "g2constructor.h"
 
 #if defined(__cplusplus)
 extern "C" {
@@ -25,12 +25,12 @@ extern "C" {
 
 extern long timezone = 0;
 
-#if defined(G_HAS_CONSTRUCTORS)
-#ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(Timezone_initialize)
+#if defined(G2_HAS_CONSTRUCTORS)
+#ifdef G2_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
+#pragma G2_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(G2_FUNCNAME(Timezone_initialize))
 #endif
-G_DEFINE_CONSTRUCTOR(Timezone_initialize)
-static void Timezone_initialize(void) {
+G2_DEFINE_CONSTRUCTOR(G2_FUNCNAME(Timezone_initialize))
+static void G2_FUNCNAME(Timezone_initialize)(void) {
 	_get_timezone(&timezone);
 }
 #endif

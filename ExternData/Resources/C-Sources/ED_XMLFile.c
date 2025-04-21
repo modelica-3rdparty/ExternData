@@ -19,7 +19,7 @@
 #include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
-#include "../Include/ED_XMLFile.h"
+#include "ED_XMLFile.h"
 
 /* The standard way to detect posix is to check _POSIX_VERSION,
  * which is defined in <unistd.h>

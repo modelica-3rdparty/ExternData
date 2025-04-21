@@ -22,7 +22,7 @@
 #include "zstring_strtok_dquotes.h"
 #include "zstring_rtrim.h"
 #include "ModelicaUtilities.h"
-#include "../Include/ED_CSVFile.h"
+#include "ED_CSVFile.h"
 
 #if !defined(LINE_BUFFER_LENGTH)
 #define LINE_BUFFER_LENGTH (64)

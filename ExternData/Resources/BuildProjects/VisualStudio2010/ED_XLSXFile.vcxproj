@@ -137,7 +137,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;USE_EXPAT=1;XML_STATIC;_WINDOWS;_USRDLL;ED_XLSXFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,7 +153,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;_DEBUG;USE_EXPAT=1;XML_STATIC;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,7 +172,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_USRDLL;_WINDOWS;ED_XLSXFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -189,7 +189,7 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_USRDLL;_WINDOWS;ED_XLSXFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -207,7 +207,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <DebugInformationFormat>
       </DebugInformationFormat>
@@ -227,7 +227,7 @@
       <PreprocessorDefinitions>NO_ALIGN;WIN32;NDEBUG;USE_EXPAT=1;XML_STATIC;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\bsxml-json;..\..\C-Sources\expat\lib;..\..\C-Sources\minizip;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>

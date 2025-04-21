@@ -119,7 +119,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;_DEBUG;_WINDOWS;_USRDLL;ED_MATFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -134,7 +134,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;_DEBUG;_WINDOWS;_USRDLL;ED_XMLFILE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -152,7 +152,7 @@
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
@@ -169,7 +169,7 @@
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_USRDLL;_WINDOWS;ED_XMLFILE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ED_MATFile.def</ModuleDefinitionFile>
@@ -188,7 +188,7 @@
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
@@ -210,7 +210,7 @@
       <PreprocessorDefinitions>WIN32;HAVE_ZLIB=1;HAVE_HDF5=1;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\C-Sources\hdf5\include;..\..\C-Sources\zlib;..\..\C-Sources\modelica;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>

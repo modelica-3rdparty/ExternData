@@ -21,7 +21,7 @@
 #include "ED_ptrtrack.h"
 #include "bsxml.h"
 #include "ModelicaUtilities.h"
-#include "../Include/ED_XLSXFile.h"
+#include "ED_XLSXFile.h"
 #include "unzip.h"
 #define HASH_NONFATAL_OOM 1
 #include "uthash.h"

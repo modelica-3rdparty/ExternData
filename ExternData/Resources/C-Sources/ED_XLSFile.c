@@ -20,7 +20,7 @@
 #include "ED_ptrtrack.h"
 #include "ModelicaUtilities.h"
 #include "xls.h"
-#include "../Include/ED_XLSFile.h"
+#include "ED_XLSFile.h"
 #define HASH_NONFATAL_OOM 1
 #include "uthash.h"
 

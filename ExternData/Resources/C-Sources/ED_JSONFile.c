@@ -20,7 +20,7 @@
 #include "ED_ptrtrack.h"
 #include "parson.h"
 #include "ModelicaUtilities.h"
-#include "../Include/ED_JSONFile.h"
+#include "ED_JSONFile.h"
 
 static JSON_Value_Type json_array_get_type(const JSON_Array *array);
 static JSON_Value_Type json_array_get_type2D(const JSON_Array *array);

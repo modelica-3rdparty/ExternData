@@ -16,7 +16,7 @@
 #define strdup _strdup
 #endif
 #include "ED_ptrtrack.h"
-#include "../Include/ED_MATFile.h"
+#include "ED_MATFile.h"
 #include "ModelicaIO.h"
 #include "ModelicaMatIO.h"
 #include "ModelicaUtilities.h"
