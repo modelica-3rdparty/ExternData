@@ -1,4 +1,4 @@
-/* 7d6840a33c250b74adb0ba295d6ec818dccebebaffc8c3ed27d0b29c28adbeb3 (2.7.0+)
+/* d19ae032c224863c1527ba44d228cc34b99192c3a4c5a27af1f4e054d45ee031 (2.7.1+)
                             __  __            _
                          ___\ \/ /_ __   __ _| |_
                         / _ \\  /| '_ \ / _` | __|
@@ -551,7 +551,7 @@ static enum XML_Error storeEntityValue(XML_Parser parser, const ENCODING *enc,
 static enum XML_Error callStoreEntityValue(XML_Parser parser,
                                            const ENCODING *enc,
                                            const char *start, const char *end,
-                                       enum XML_Account account);
+                                           enum XML_Account account);
 #else
 static enum XML_Error storeSelfEntityValue(XML_Parser parser, ENTITY *entity);
 #endif
@@ -3420,12 +3420,13 @@ doContent(XML_Parser parser, int startTagLevel, const ENCODING *enc,
       break;
       /* LCOV_EXCL_STOP */
     }
-    *eventPP = s = next;
     switch (parser->m_parsingStatus.parsing) {
     case XML_SUSPENDED:
+      *eventPP = next;
       *nextPtr = next;
       return XML_ERROR_NONE;
     case XML_FINISHED:
+      *eventPP = next;
       return XML_ERROR_ABORTED;
     case XML_PARSING:
       if (parser->m_reenter) {
@@ -3434,6 +3435,7 @@ doContent(XML_Parser parser, int startTagLevel, const ENCODING *enc,
       }
       /* Fall through */
     default:;
+      *eventPP = s = next;
     }
   }
   /* not reached */
@@ -4352,12 +4354,13 @@ doCdataSection(XML_Parser parser, const ENCODING *enc, const char **startPtr,
       /* LCOV_EXCL_STOP */
     }
 
-    *eventPP = s = next;
     switch (parser->m_parsingStatus.parsing) {
     case XML_SUSPENDED:
+      *eventPP = next;
       *nextPtr = next;
       return XML_ERROR_NONE;
     case XML_FINISHED:
+      *eventPP = next;
       return XML_ERROR_ABORTED;
     case XML_PARSING:
       if (parser->m_reenter) {
@@ -4365,6 +4368,7 @@ doCdataSection(XML_Parser parser, const ENCODING *enc, const char **startPtr,
       }
       /* Fall through */
     default:;
+      *eventPP = s = next;
     }
   }
   /* not reached */
@@ -5973,19 +5977,21 @@ epilogProcessor(XML_Parser parser, const char *s, const char *end,
     default:
       return XML_ERROR_JUNK_AFTER_DOC_ELEMENT;
     }
-    parser->m_eventPtr = s = next;
     switch (parser->m_parsingStatus.parsing) {
     case XML_SUSPENDED:
+      parser->m_eventPtr = next;
       *nextPtr = next;
       return XML_ERROR_NONE;
     case XML_FINISHED:
+      parser->m_eventPtr = next;
       return XML_ERROR_ABORTED;
     case XML_PARSING:
       if (parser->m_reenter) {
         return XML_ERROR_UNEXPECTED_STATE; // LCOV_EXCL_LINE
-}
+      }
     /* Fall through */
     default:;
+      parser->m_eventPtr = s = next;
     }
   }
 }
@@ -6072,33 +6078,33 @@ internalEntityProcessor(XML_Parser parser, const char *s, const char *end,
   // This will return early
   if (entity->hasMore) {
     textStart = ((const char *)entity->textPtr) + entity->processed;
-  textEnd = (const char *)(entity->textPtr + entity->textLen);
-  /* Set a safe default value in case 'next' does not get set */
-  next = textStart;
+    textEnd = (const char *)(entity->textPtr + entity->textLen);
+    /* Set a safe default value in case 'next' does not get set */
+    next = textStart;
 
-  if (entity->is_param) {
-    int tok
-        = XmlPrologTok(parser->m_internalEncoding, textStart, textEnd, &next);
-    result = doProlog(parser, parser->m_internalEncoding, textStart, textEnd,
-                      tok, next, &next, XML_FALSE, XML_FALSE,
-                      XML_ACCOUNT_ENTITY_EXPANSION);
-  } else {
-    result = doContent(parser, openEntity->startTagLevel,
-                       parser->m_internalEncoding, textStart, textEnd, &next,
-                       XML_FALSE, XML_ACCOUNT_ENTITY_EXPANSION);
-  }
+    if (entity->is_param) {
+      int tok
+          = XmlPrologTok(parser->m_internalEncoding, textStart, textEnd, &next);
+      result = doProlog(parser, parser->m_internalEncoding, textStart, textEnd,
+                        tok, next, &next, XML_FALSE, XML_FALSE,
+                        XML_ACCOUNT_ENTITY_EXPANSION);
+    } else {
+      result = doContent(parser, openEntity->startTagLevel,
+                         parser->m_internalEncoding, textStart, textEnd, &next,
+                         XML_FALSE, XML_ACCOUNT_ENTITY_EXPANSION);
+    }
 
-  if (result != XML_ERROR_NONE)
-    return result;
+    if (result != XML_ERROR_NONE)
+      return result;
     // Check if entity is complete, if not, mark down how much of it is
     // processed
     if (textEnd != next
         && (parser->m_parsingStatus.parsing == XML_SUSPENDED
             || (parser->m_parsingStatus.parsing == XML_PARSING
                 && parser->m_reenter))) {
-    entity->processed = (int)(next - (const char *)entity->textPtr);
-    return result;
-  }
+      entity->processed = (int)(next - (const char *)entity->textPtr);
+      return result;
+    }
 
     // Entity is complete. We cannot close it here since we need to first
     // process its possible inner entities (which are added to the
@@ -8288,7 +8294,7 @@ entityTrackingReportStats(XML_Parser rootParser, ENTITY *entity,
       (void *)rootParser, rootParser->m_entity_stats.countEverOpened,
       rootParser->m_entity_stats.currentDepth,
       rootParser->m_entity_stats.maximumDepthSeen,
-      (rootParser->m_entity_stats.currentDepth - 1) * 2, "",
+      ((int)rootParser->m_entity_stats.currentDepth - 1) * 2, "",
       entity->is_param ? "%" : "&", entityName, action, entity->textLen,
       sourceLine);
 
