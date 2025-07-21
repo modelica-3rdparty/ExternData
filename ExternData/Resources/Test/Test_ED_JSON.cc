@@ -19,6 +19,36 @@ TEST(ED_JSON, Create) {
     ED_destroyJSON(handle);
 }
 
+TEST(ED_JSON, GetDouble) {
+    auto handle = ED_createJSON("../Examples/test.json", verbose_on, log_debug);
+    ASSERT_NE(nullptr, handle);
+    int exist;
+    auto val = ED_getDoubleFromJSON(handle, "set1.gain.k", &exist);
+    EXPECT_EQ(2, val);
+    EXPECT_EQ(1, exist);
+    ED_destroyJSON(handle);
+}
+
+TEST(ED_JSON, GetInt) {
+    auto handle = ED_createJSON("../Examples/test.json", verbose_on, log_debug);
+    ASSERT_NE(nullptr, handle);
+    int exist;
+    auto val = ED_getIntFromJSON(handle, "set1.gain.k", &exist);
+    EXPECT_EQ(2, val);
+    EXPECT_EQ(1, exist);
+    ED_destroyJSON(handle);
+}
+
+TEST(ED_JSON, GetString) {
+    auto handle = ED_createJSON("../Examples/test.json", verbose_on, log_debug);
+    ASSERT_NE(nullptr, handle);
+    int exist;
+    auto val = ED_getStringFromJSON(handle, "set1.gain.k", &exist);
+    EXPECT_STREQ("2", val);
+    EXPECT_EQ(1, exist);
+    ED_destroyJSON(handle);
+}
+
 }  // namespace
 
 int main(int argc, char **argv)
