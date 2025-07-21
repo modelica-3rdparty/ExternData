@@ -1,9 +1,9 @@
-{ // test.json
-  "set1": { // First set
+{
+  "set1": {
     "gain": { "k": "2" },
     "clock": { "offset": "0.1" }
   },
-  "set2": { // Second set
+  "set2": {
     "gain": { "k": "-2" },
     "clock": { "offset": "-0.1" }
   },
