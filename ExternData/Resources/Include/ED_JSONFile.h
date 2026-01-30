@@ -1,6 +1,6 @@
 /* ED_JSONFile.h - JSON functions header
  *
- * Copyright (C) 2015-2025, Thomas Beutlich
+ * Copyright (C) 2015-2026, Thomas Beutlich
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-2-Clause
