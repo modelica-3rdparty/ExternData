@@ -1,7 +1,7 @@
 // CP: 65001
 /* package.mo - Modelica Examples library for data I/O of CSV, INI, JSON, MATLAB MAT, SSV, TIR, Excel XLS/XLSX or XML files
  *
- * Copyright (C) 2015-2025, Thomas Beutlich
+ * Copyright (C) 2015-2026, Thomas Beutlich
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-2-Clause
