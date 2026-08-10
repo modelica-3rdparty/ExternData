@@ -27,17 +27,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\C-Sources\expat\lib\random_rand_s.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmlparse.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmlrole.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmltok.c" />
     <ClCompile Include="..\..\C-Sources\expat\lib\xmltok_impl.c" />
-    <ClCompile Include="..\..\C-Sources\expat\lib\xmltok_ns.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\C-Sources\expat\lib\xcsinc.c" />
+    <ClInclude Include="..\..\C-Sources\expat\lib\xmltok_ns.c" />
     <ClInclude Include="..\..\C-Sources\expat\lib\ascii.h" />
     <ClInclude Include="..\..\C-Sources\expat\lib\asciitab.h" />
     <ClInclude Include="..\..\C-Sources\expat\lib\expat.h" />
     <ClInclude Include="..\..\C-Sources\expat\lib\expat_external.h" />
+    <ClInclude Include="..\..\C-Sources\expat\lib\fallthrough.h" />
     <ClInclude Include="..\..\C-Sources\expat\lib\iasciitab.h" />
     <ClInclude Include="..\..\C-Sources\expat\lib\internal.h" />
     <ClInclude Include="..\..\C-Sources\expat\lib\latin1tab.h" />
