@@ -26,7 +26,7 @@ jobs:
             cflags: "-O3 -DNDEBUG -fPIC"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 5
       - name: Build with gcc
@@ -44,7 +44,7 @@ jobs:
             make CFLAGS=\"${{ matrix.cflags }}\" CXXFLAGS=\"${{ matrix.cflags }}\" TARGETDIR=\"${{ matrix.platform }}\"
           "
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ExternData_${{ matrix.platform }}
           path: ExternData/Resources/Library/${{ matrix.platform }}/*.a
@@ -54,7 +54,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 5
       - name: Install HDF5
@@ -70,7 +70,7 @@ jobs:
           pushd ExternData/Resources/C-Sources
           mingw32-make CC="gcc" CFLAGS="-O3 -DNDEBUG" INC="-I../Include -Ibsxml-json -Iexpat/lib -IC:\msys64\mingw64\include -Iinih -Ilibxls/include -Iminizip -Imodelica -Izlib -Iparson -Ilibxml2/include" TARGETDIR="mingw64"
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ExternData_mingw64
           path: ExternData/Resources/Library/mingw64/*.a
@@ -99,7 +99,7 @@ jobs:
             compiler: mingw
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 5
       - name: Install HDF5
@@ -141,11 +141,11 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 5
       - name: Setup python environment
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: 3.8
       - name: Install python packages
@@ -176,7 +176,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 5
       - name: Get moparser
@@ -195,11 +195,11 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 5
       - name: Setup python environment
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: 3.8
       - name: Check deprecated Text.lineColor annotation
