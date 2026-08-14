@@ -28,7 +28,7 @@ the 14th International Modelica Conference_. Ed. by Martin Sjölund, Lena Buffon
   * [XML](https://en.wikipedia.org/wiki/XML) (incl. [XPath](https://en.wikipedia.org/wiki/XPath) queries)
 * C (and not C++) code for external functions and objects
 * Cross-platform (Windows and Linux)
-* Dependency on the [Modelica Standard Library](https://github.com/modelica/ModelicaStandardLibrary) v4.0.0
+* Dependency on the [Modelica Standard Library](https://github.com/modelica/ModelicaStandardLibrary) v4.1.0
 * Tested in [Dymola](http://www.dynasim.se), [OpenModelica](https://openmodelica.org/) and [SimulationX](https://www.simulationx.com/)
 
 All data I/O access is implemented using external Modelica functions.
